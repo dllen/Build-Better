@@ -75,8 +75,7 @@ export default function Home() {
           Developer Micro-Tools Collection
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          A suite of essential tools for developers, built with the power of Cloudflare.
-          Fast, reliable, and easy to use.
+          A suite of essential tools for developers, Fast, reliable, and easy to use.
         </p>
       </div>
 
