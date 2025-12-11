@@ -1,57 +1,43 @@
-# React + TypeScript + Vite
+# Build Better — Cloudflare Pages 部署指南
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 本地构建
 
-Currently, two official plugins are available:
+- 依赖安装：`npm install`
+- 类型检查：`npm run check`
+- 代码规范：`npm run lint`
+- 构建产物：`npm run build`（生成 `dist`）
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 本地预览
 
-## Expanding the ESLint configuration
+- 仅前端：`npm run dev` → `http://localhost:5173/`
+- 前端 + Pages Functions：`npm run pages:dev`（使用 `dist` 目录模式）
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Cloudflare Pages 部署（CLI）
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. 登录 Cloudflare：`npx wrangler login`
+2. 创建 Pages 项目（首次）：`npm run pages:create`
+3. 构建并部署：`npm run pages:deploy`
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+配置：
+- `wrangler.toml` 已设置 `pages_build_output_dir = "dist"`
+- Functions 目录：`functions/`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## GitHub Actions 自动部署（推荐）
 
-export default tseslint.config({
-  extends: [
-    // other configs...
-    // Enable lint rules for React
-    reactX.configs['recommended-typescript'],
-    // Enable lint rules for React DOM
-    reactDom.configs.recommended,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+仓库已包含工作流：`.github/workflows/cloudflare-pages.yml`
+
+在 GitHub 仓库 Secrets 中添加：
+- `CLOUDFLARE_API_TOKEN`（Pages 写入权限）
+- `CLOUDFLARE_ACCOUNT_ID`（你的 Cloudflare 账号 ID）
+
+默认分支 `main` 推送后自动部署到生产；Pull Request 自动生成预览环境。
+
+## 自定义域名
+
+- 在 Cloudflare Pages 控制台为项目添加域名
+- 在 DNS 供应商添加 CNAME 指向 `<project>.pages.dev`
+
+## 环境变量
+
+- Pages 项目 → Settings → Environment variables
+- 可分别为 Production 与 Preview 配置不同值

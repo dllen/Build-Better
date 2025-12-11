@@ -14,7 +14,7 @@ export default function MarkdownHtml() {
 
   useEffect(() => {
     setHtml(htmlFromMarkdown);
-  }, []);
+  }, [htmlFromMarkdown]);
 
   return (
     <div className="space-y-6">
@@ -72,4 +72,3 @@ export default function MarkdownHtml() {
     </div>
   );
 }
-

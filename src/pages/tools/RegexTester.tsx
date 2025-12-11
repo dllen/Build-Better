@@ -12,8 +12,9 @@ export default function RegexTester() {
     try {
       const r = new RegExp(pattern, flagsString);
       return { regex: r, error: null as string | null };
-    } catch (e: any) {
-      return { regex: null, error: e?.message || "Invalid regex" };
+    } catch (e: unknown) {
+      const message = e instanceof Error ? e.message : String(e);
+      return { regex: null, error: message || "Invalid regex" };
     }
   }, [pattern, flagsString]);
 
@@ -150,4 +151,3 @@ export default function RegexTester() {
     </div>
   );
 }
-

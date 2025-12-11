@@ -9,8 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "check": "tsc -b --noEmit",
-    "pages:dev": "wrangler pages dev -- npm run dev",
-    "pages:deploy": "npm run build && wrangler pages deploy dist"
+    "pages:dev": "wrangler pages dev dist",
+    "pages:create": "wrangler pages project create build-better",
+    "pages:deploy": "npm run build && wrangler pages deploy dist --project-name build-better"
   },
   "dependencies": {
     "clsx": "^2.1.1",

@@ -36,7 +36,7 @@ export default function PasswordGenerator() {
       includeSymbol ? SYMBOL : "",
     ].filter(Boolean);
 
-    let safeSets = selectedSets.map((s) => avoidAmbiguous ? s.split("").filter((c) => !AMBIGUOUS.includes(c)).join("") : s);
+    const safeSets = selectedSets.map((s) => avoidAmbiguous ? s.split("").filter((c) => !AMBIGUOUS.includes(c)).join("") : s);
     const all = pool;
     if (!all) { setPassword(""); return; }
 
@@ -99,4 +99,3 @@ export default function PasswordGenerator() {
     </div>
   );
 }
-
