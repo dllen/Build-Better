@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar } from "lucide-react";
+import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe } from "lucide-react";
 
 const tools = [
   {
@@ -100,6 +100,24 @@ const tools = [
     path: "/tools/date-time",
     color: "text-emerald-600",
     bgColor: "bg-emerald-100",
+  },
+  {
+    id: "network-tools",
+    name: "Network Tools",
+    description: "URL解析、HTTP延迟测试、IPv4 CIDR计算、客户端信息。",
+    icon: Globe,
+    path: "/tools/network-tools",
+    color: "text-cyan-600",
+    bgColor: "bg-cyan-100",
+  },
+  {
+    id: "base-converter",
+    name: "Base Converter",
+    description: "进制转换：二/八/十/十六，支持 2-36 进制。",
+    icon: Code,
+    path: "/tools/base-converter",
+    color: "text-teal-600",
+    bgColor: "bg-teal-100",
   },
 ];
 

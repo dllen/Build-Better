@@ -13,6 +13,8 @@ import LotterySsq from "@/pages/tools/LotterySsq";
 import CsvToJson from "@/pages/tools/CsvToJson";
 import HashTools from "@/pages/tools/HashTools";
 import DateTimeTools from "@/pages/tools/DateTimeTools";
+import NetworkTools from "@/pages/tools/NetworkTools";
+import BaseConverter from "@/pages/tools/BaseConverter";
 
 export default function App() {
   return (
@@ -32,6 +34,8 @@ export default function App() {
           <Route path="/tools/csv-to-json" element={<CsvToJson />} />
           <Route path="/tools/hash-tools" element={<HashTools />} />
           <Route path="/tools/date-time" element={<DateTimeTools />} />
+          <Route path="/tools/network-tools" element={<NetworkTools />} />
+          <Route path="/tools/base-converter" element={<BaseConverter />} />
         </Route>
       </Routes>
     </Router>

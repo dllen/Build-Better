@@ -7,7 +7,20 @@ const NUM = "0123456789";
 const SYMBOL = "!@#$%^&*()-_=+[]{};:,./?";
 const AMBIGUOUS = "Il1O0";
 
-function randomInt(max: number) { return Math.floor(Math.random() * max); }
+function randomInt(max: number) {
+  if (max <= 1) return 0;
+  if (typeof crypto !== "undefined" && crypto.getRandomValues) {
+    const arr = new Uint32Array(1);
+    const bound = Math.floor(0x100000000 / max) * max;
+    let v = 0;
+    do {
+      crypto.getRandomValues(arr);
+      v = arr[0];
+    } while (v >= bound);
+    return v % max;
+  }
+  return Math.floor(Math.random() * max);
+}
 
 export default function PasswordGenerator() {
   const [length, setLength] = useState(16);
@@ -27,6 +40,21 @@ export default function PasswordGenerator() {
     if (avoidAmbiguous) p = p.split("").filter((c) => !AMBIGUOUS.includes(c)).join("");
     return p;
   }, [includeLower, includeUpper, includeNum, includeSymbol, avoidAmbiguous]);
+
+  const entropyBits = useMemo(() => {
+    const size = pool.length;
+    if (!size || !length) return 0;
+    return Math.round(Math.log2(size) * length);
+  }, [pool, length]);
+
+  const strength = useMemo(() => {
+    const e = entropyBits;
+    if (e >= 128) return "Excellent";
+    if (e >= 80) return "Strong";
+    if (e >= 60) return "Medium";
+    if (e >= 40) return "Weak";
+    return "Very weak";
+  }, [entropyBits]);
 
   function generate() {
     const selectedSets = [
@@ -85,9 +113,14 @@ export default function PasswordGenerator() {
             <label className="inline-flex items-center gap-2 col-span-2"><input type="checkbox" checked={avoidAmbiguous} onChange={(e) => setAvoidAmbiguous(e.target.checked)} /> Avoid ambiguous (Il1O0)</label>
           </div>
 
+          <div className="grid grid-cols-2 gap-3 text-xs text-gray-600">
+            <div>Pool size: {pool.length}</div>
+            <div>Entropy: {entropyBits} bits ({strength})</div>
+          </div>
+
           <div className="flex gap-3">
-            <button className="px-4 py-2 rounded-md bg-blue-600 text-white" onClick={generate}>Generate</button>
-            <button className="px-4 py-2 rounded-md bg-gray-100 text-gray-700" onClick={copy} disabled={!password}>Copy</button>
+            <button className="px-4 py-2 rounded-md bg-blue-600 text-white disabled:opacity-50" disabled={!pool.length} onClick={generate}>Generate</button>
+            <button className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 disabled:opacity-50" onClick={copy} disabled={!password}>Copy</button>
           </div>
         </div>
 
