@@ -230,6 +230,15 @@ const tools = [
     color: "text-lime-600",
     bgColor: "bg-lime-100",
   },
+  {
+    id: "bcrypt",
+    name: "Bcrypt",
+    description: "使用bcrypt进行哈希与比较，支持轮次设置。",
+    icon: Lock,
+    path: "/tools/bcrypt",
+    color: "text-gray-700",
+    bgColor: "bg-gray-100",
+  },
 ];
 
 export default function Home() {

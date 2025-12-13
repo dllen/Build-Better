@@ -20,6 +20,7 @@ import TextDeduper from "@/pages/tools/TextDeduper";
 import DedupSortDiff from "@/pages/tools/DedupSortDiff";
 import CronQuartz from "@/pages/tools/CronQuartz";
 import CalculatorTool from "@/pages/tools/Calculator";
+import BcryptTool from "@/pages/tools/BcryptTool";
 import Snake from "@/pages/games/Snake";
 import Tetris from "@/pages/games/Tetris";
 import Gomoku from "@/pages/games/Gomoku";
@@ -53,6 +54,7 @@ export default function App() {
           <Route path="/tools/dedup-sort-diff" element={<DedupSortDiff />} />
           <Route path="/tools/cron-quartz" element={<CronQuartz />} />
           <Route path="/tools/calculator" element={<CalculatorTool />} />
+          <Route path="/tools/bcrypt" element={<BcryptTool />} />
           <Route path="/games/snake" element={<Snake />} />
           <Route path="/games/tetris" element={<Tetris />} />
           <Route path="/games/gomoku" element={<Gomoku />} />
