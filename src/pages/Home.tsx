@@ -302,6 +302,15 @@ const tools = [
     color: "text-sky-600",
     bgColor: "bg-sky-100",
   },
+  {
+    id: "chmod",
+    name: "Chmod Calculator",
+    description: "计算chmod权限与命令：r/w/x 与 setuid/setgid/sticky。",
+    icon: Shield,
+    path: "/tools/chmod",
+    color: "text-emerald-600",
+    bgColor: "bg-emerald-100",
+  },
 ];
 
 export default function Home() {
