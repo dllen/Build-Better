@@ -208,13 +208,14 @@ export default function Tetris() {
         case "ArrowRight": movePiece(1, 0); break;
         case "ArrowDown": movePiece(0, 1); break;
         case "ArrowUp": rotatePiece(); break;
-        case " ": // Hard drop
+        case " ": { // Hard drop
           let dropY = 0;
           while (isValidMove(currentPiece!, currentPiece!.x, currentPiece!.y + dropY + 1)) {
             dropY++;
           }
           movePiece(0, dropY);
           break;
+        }
       }
     };
 

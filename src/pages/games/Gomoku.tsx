@@ -49,17 +49,6 @@ export default function Gomoku() {
     return false;
   }, []);
 
-  const evaluateBoard = (board: BoardState, player: Player) => {
-    // Simple heuristic: count consecutive pieces and open ends
-    // This is a very basic evaluation function
-    let score = 0;
-    const opponent = player === BLACK ? WHITE : BLACK;
-
-    // TODO: Implement a more robust evaluation function (Minimax/Alpha-Beta)
-    // For now, random + simple blocking/winning check in AI move logic
-    return score;
-  };
-
   const getAiMove = useCallback((board: BoardState) => {
     // 1. Check if AI can win immediately
     for (let r = 0; r < BOARD_SIZE; r++) {
@@ -122,22 +111,9 @@ export default function Gomoku() {
     return top[Math.floor(Math.random() * top.length)];
   }, [checkWin]);
 
-  useEffect(() => {
-    if (currentPlayer === WHITE && !winner) {
-      setIsAiThinking(true);
-      // Simulate thinking delay
-      const timer = setTimeout(() => {
-        const move = getAiMove(board);
-        if (move) {
-          makeMove(move.r, move.c);
-        }
-        setIsAiThinking(false);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [currentPlayer, winner, board, getAiMove]);
+  
 
-  const makeMove = (r: number, c: number) => {
+  const makeMove = useCallback((r: number, c: number) => {
     if (board[r][c] !== EMPTY || winner) return;
 
     const newBoard = board.map((row) => [...row]);
@@ -151,7 +127,21 @@ export default function Gomoku() {
     } else {
       setCurrentPlayer(currentPlayer === BLACK ? WHITE : BLACK);
     }
-  };
+  }, [board, winner, currentPlayer, checkWin]);
+
+  useEffect(() => {
+    if (currentPlayer === WHITE && !winner) {
+      setIsAiThinking(true);
+      const timer = setTimeout(() => {
+        const move = getAiMove(board);
+        if (move) {
+          makeMove(move.r, move.c);
+        }
+        setIsAiThinking(false);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [currentPlayer, winner, board, getAiMove, makeMove]);
 
   const handleCellClick = (r: number, c: number) => {
     if (currentPlayer === BLACK && !isAiThinking) {

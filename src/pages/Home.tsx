@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Play, Box, User, Gamepad2 } from "lucide-react";
+import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2 } from "lucide-react";
 
 const games = [
   {
@@ -37,6 +37,33 @@ const games = [
     path: "/games/dino",
     color: "text-gray-600",
     bgColor: "bg-gray-100",
+  },
+  {
+    id: "minesweeper",
+    name: "Minesweeper",
+    description: "Uncover all safe cells. Right-click to flag mines.",
+    icon: Bomb,
+    path: "/games/minesweeper",
+    color: "text-red-600",
+    bgColor: "bg-red-100",
+  },
+  {
+    id: "game-2048",
+    name: "2048",
+    description: "Combine tiles to reach 2048. Arrows to move.",
+    icon: Grid2x2,
+    path: "/games/2048",
+    color: "text-amber-600",
+    bgColor: "bg-amber-100",
+  },
+  {
+    id: "link-match",
+    name: "Link Match",
+    description: "字母数字连连看：最多两次拐弯连通即可消除。",
+    icon: Link2,
+    path: "/games/link-match",
+    color: "text-pink-600",
+    bgColor: "bg-pink-100",
   },
 ];
 

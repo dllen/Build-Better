@@ -48,7 +48,6 @@ export default function Dino() {
 
   const update = useCallback((time: number) => {
     if (!lastTimeRef.current) lastTimeRef.current = time;
-    const delta = time - lastTimeRef.current;
     lastTimeRef.current = time;
 
     // Physics

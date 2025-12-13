@@ -19,6 +19,9 @@ import Snake from "@/pages/games/Snake";
 import Tetris from "@/pages/games/Tetris";
 import Gomoku from "@/pages/games/Gomoku";
 import Dino from "@/pages/games/Dino";
+import Minesweeper from "@/pages/games/Minesweeper";
+import Game2048 from "@/pages/games/Game2048";
+import LinkMatch from "@/pages/games/LinkMatch";
 
 export default function App() {
   return (
@@ -44,6 +47,9 @@ export default function App() {
           <Route path="/games/tetris" element={<Tetris />} />
           <Route path="/games/gomoku" element={<Gomoku />} />
           <Route path="/games/dino" element={<Dino />} />
+          <Route path="/games/minesweeper" element={<Minesweeper />} />
+          <Route path="/games/2048" element={<Game2048 />} />
+          <Route path="/games/link-match" element={<LinkMatch />} />
         </Route>
       </Routes>
     </Router>

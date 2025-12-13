@@ -11,7 +11,6 @@ type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT";
 export default function Snake() {
   const [snake, setSnake] = useState<Point[]>([{ x: 10, y: 10 }]);
   const [food, setFood] = useState<Point>({ x: 15, y: 15 });
-  const [direction, setDirection] = useState<Direction>("RIGHT");
   const [isPlaying, setIsPlaying] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
@@ -49,7 +48,6 @@ export default function Snake() {
   const resetGame = () => {
     setSnake([{ x: 10, y: 10 }]);
     setFood(generateFood([{ x: 10, y: 10 }]));
-    setDirection("RIGHT");
     directionRef.current = "RIGHT";
     setScore(0);
     setGameOver(false);
@@ -122,25 +120,21 @@ export default function Snake() {
         case "ArrowUp":
           if (directionRef.current !== "DOWN") {
             directionRef.current = "UP";
-            setDirection("UP");
           }
           break;
         case "ArrowDown":
           if (directionRef.current !== "UP") {
             directionRef.current = "DOWN";
-            setDirection("DOWN");
           }
           break;
         case "ArrowLeft":
           if (directionRef.current !== "RIGHT") {
             directionRef.current = "LEFT";
-            setDirection("LEFT");
           }
           break;
         case "ArrowRight":
           if (directionRef.current !== "LEFT") {
             directionRef.current = "RIGHT";
-            setDirection("RIGHT");
           }
           break;
       }
