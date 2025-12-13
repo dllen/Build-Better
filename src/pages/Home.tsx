@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound } from "lucide-react";
+import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield } from "lucide-react";
 
 const games = [
   {
@@ -157,6 +157,15 @@ const tools = [
     path: "/tools/hash-tools",
     color: "text-indigo-600",
     bgColor: "bg-indigo-100",
+  },
+  {
+    id: "hmac",
+    name: "HMAC Generator",
+    description: "使用密钥与哈希函数计算 HMAC。",
+    icon: Shield,
+    path: "/tools/hmac",
+    color: "text-emerald-600",
+    bgColor: "bg-emerald-100",
   },
   {
     id: "date-time",
