@@ -141,6 +141,15 @@ const tools = [
     bgColor: "bg-orange-100",
   },
   {
+    id: "text-stats",
+    name: "Text Stats",
+    description: "统计文本字符数、字数、行数、字节大小与频率。",
+    icon: FileText,
+    path: "/tools/text-stats",
+    color: "text-indigo-600",
+    bgColor: "bg-indigo-100",
+  },
+  {
     id: "lottery-ssq",
     name: "福利彩票 · 双色球",
     description: "随机生成6红球(1-33)和1蓝球(1-16)。",

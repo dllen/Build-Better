@@ -29,6 +29,7 @@ import RsaKeygen from "@/pages/tools/RsaKeygen";
 import KeycodeInfo from "@/pages/tools/KeycodeInfo";
 import JsonDiffTool from "@/pages/tools/JsonDiffTool";
 import ChmodCalculator from "@/pages/tools/ChmodCalculator";
+import TextStats from "@/pages/tools/TextStats";
 import Snake from "@/pages/games/Snake";
 import Tetris from "@/pages/games/Tetris";
 import Gomoku from "@/pages/games/Gomoku";
@@ -71,6 +72,7 @@ export default function App() {
           <Route path="/tools/keycode" element={<KeycodeInfo />} />
           <Route path="/tools/json-diff" element={<JsonDiffTool />} />
           <Route path="/tools/chmod" element={<ChmodCalculator />} />
+          <Route path="/tools/text-stats" element={<TextStats />} />
           <Route path="/games/snake" element={<Snake />} />
           <Route path="/games/tetris" element={<Tetris />} />
           <Route path="/games/gomoku" element={<Gomoku />} />
