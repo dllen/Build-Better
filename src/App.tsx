@@ -9,6 +9,8 @@ import RegexTester from "@/pages/tools/RegexTester";
 import MarkdownHtml from "@/pages/tools/MarkdownHtml";
 import PasswordGenerator from "@/pages/tools/PasswordGenerator";
 import TextDiff from "@/pages/tools/TextDiff";
+import LotterySsq from "@/pages/tools/LotterySsq";
+import CsvToJson from "@/pages/tools/CsvToJson";
 
 export default function App() {
   return (
@@ -24,6 +26,8 @@ export default function App() {
           <Route path="/tools/markdown-html" element={<MarkdownHtml />} />
           <Route path="/tools/password-generator" element={<PasswordGenerator />} />
           <Route path="/tools/text-diff" element={<TextDiff />} />
+          <Route path="/tools/lottery-ssq" element={<LotterySsq />} />
+          <Route path="/tools/csv-to-json" element={<CsvToJson />} />
         </Route>
       </Routes>
     </Router>

@@ -9,6 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "check": "tsc -b --noEmit",
+    "test": "node --test tests/**/*.mjs",
+    "bench:csv": "node scripts/bench-csv.mjs",
+    "csv2json": "node bin/csv2json.mjs",
     "pages:dev": "wrangler pages dev dist",
     "pages:create": "wrangler pages project create build-better",
     "pages:deploy": "npm run build && wrangler pages deploy dist --project-name build-better"

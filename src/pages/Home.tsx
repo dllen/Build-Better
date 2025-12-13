@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare } from "lucide-react";
+import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6 } from "lucide-react";
 
 const tools = [
   {
@@ -64,6 +64,24 @@ const tools = [
     path: "/tools/text-diff",
     color: "text-orange-600",
     bgColor: "bg-orange-100",
+  },
+  {
+    id: "lottery-ssq",
+    name: "福利彩票 · 双色球",
+    description: "随机生成6红球(1-33)和1蓝球(1-16)。",
+    icon: Dice6,
+    path: "/tools/lottery-ssq",
+    color: "text-red-600",
+    bgColor: "bg-red-100",
+  },
+  {
+    id: "csv-to-json",
+    name: "CSV → JSON",
+    description: "解析CSV为JSON数组，支持分隔符/引号、数字识别。",
+    icon: FileText,
+    path: "/tools/csv-to-json",
+    color: "text-cyan-600",
+    bgColor: "bg-cyan-100",
   },
 ];
 
