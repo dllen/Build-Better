@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield } from "lucide-react";
+import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield, Key } from "lucide-react";
 
 const games = [
   {
@@ -166,6 +166,15 @@ const tools = [
     path: "/tools/hmac",
     color: "text-emerald-600",
     bgColor: "bg-emerald-100",
+  },
+  {
+    id: "rsa-keygen",
+    name: "RSA Keygen",
+    description: "生成随机 RSA 私钥/公钥（PEM）。",
+    icon: Key,
+    path: "/tools/rsa-keygen",
+    color: "text-yellow-600",
+    bgColor: "bg-yellow-100",
   },
   {
     id: "date-time",
