@@ -249,6 +249,15 @@ const tools = [
     bgColor: "bg-teal-100",
   },
   {
+    id: "programmer-naming",
+    name: "Programmer Naming",
+    description: "根据关键词生成变量/函数/类/文件/包命名建议。",
+    icon: Code,
+    path: "/tools/naming",
+    color: "text-indigo-600",
+    bgColor: "bg-indigo-100",
+  },
+  {
     id: "color-hunt",
     name: "Color Hunt",
     description: "Explore palettes, copy colors, CSS vars, and gradients.",

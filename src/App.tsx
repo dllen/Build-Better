@@ -32,6 +32,7 @@ import ChmodCalculator from "@/pages/tools/ChmodCalculator";
 import TextStats from "@/pages/tools/TextStats";
 import UnitConverter from "@/pages/tools/UnitConverter";
 import DateDiffCalculator from "@/pages/tools/DateDiffCalculator";
+import ProgrammerNamingTool from "@/pages/tools/ProgrammerNamingTool";
 import Snake from "@/pages/games/Snake";
 import Tetris from "@/pages/games/Tetris";
 import Gomoku from "@/pages/games/Gomoku";
@@ -77,6 +78,7 @@ export default function App() {
           <Route path="/tools/text-stats" element={<TextStats />} />
           <Route path="/tools/unit-converter" element={<UnitConverter />} />
           <Route path="/tools/date-diff" element={<DateDiffCalculator />} />
+          <Route path="/tools/naming" element={<ProgrammerNamingTool />} />
           <Route path="/games/snake" element={<Snake />} />
           <Route path="/games/tetris" element={<Tetris />} />
           <Route path="/games/gomoku" element={<Gomoku />} />
