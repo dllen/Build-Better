@@ -11,6 +11,7 @@ import PasswordGenerator from "@/pages/tools/PasswordGenerator";
 import TextDiff from "@/pages/tools/TextDiff";
 import LotterySsq from "@/pages/tools/LotterySsq";
 import CsvToJson from "@/pages/tools/CsvToJson";
+import HashTools from "@/pages/tools/HashTools";
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/tools/text-diff" element={<TextDiff />} />
           <Route path="/tools/lottery-ssq" element={<LotterySsq />} />
           <Route path="/tools/csv-to-json" element={<CsvToJson />} />
+          <Route path="/tools/hash-tools" element={<HashTools />} />
         </Route>
       </Routes>
     </Router>

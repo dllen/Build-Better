@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6 } from "lucide-react";
+import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash } from "lucide-react";
 
 const tools = [
   {
@@ -82,6 +82,15 @@ const tools = [
     path: "/tools/csv-to-json",
     color: "text-cyan-600",
     bgColor: "bg-cyan-100",
+  },
+  {
+    id: "hash-tools",
+    name: "Hash Tools",
+    description: "计算 SHA-1/256/512、HMAC、CRC32。",
+    icon: Hash,
+    path: "/tools/hash-tools",
+    color: "text-indigo-600",
+    bgColor: "bg-indigo-100",
   },
 ];
 
