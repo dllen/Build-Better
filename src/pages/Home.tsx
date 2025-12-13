@@ -231,6 +231,15 @@ const tools = [
     bgColor: "bg-teal-100",
   },
   {
+    id: "unit-converter",
+    name: "Unit Converter",
+    description: "长度、重量、温度、面积、存储单位转换。",
+    icon: Box,
+    path: "/tools/unit-converter",
+    color: "text-teal-600",
+    bgColor: "bg-teal-100",
+  },
+  {
     id: "color-hunt",
     name: "Color Hunt",
     description: "Explore palettes, copy colors, CSS vars, and gradients.",
