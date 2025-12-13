@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Palette, Filter, Clock, Calculator } from "lucide-react";
+import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound } from "lucide-react";
 
 const games = [
   {
@@ -238,6 +238,33 @@ const tools = [
     path: "/tools/bcrypt",
     color: "text-gray-700",
     bgColor: "bg-gray-100",
+  },
+  {
+    id: "ulid",
+    name: "ULID Generator",
+    description: "生成词典可排序的通用唯一标识符（ULID）。",
+    icon: Fingerprint,
+    path: "/tools/ulid",
+    color: "text-violet-600",
+    bgColor: "bg-violet-100",
+  },
+  {
+    id: "text-cipher",
+    name: "Text Cipher",
+    description: "使用 AES/TripleDES/Rabbit/RC4 加密/解密文本。",
+    icon: Lock,
+    path: "/tools/text-cipher",
+    color: "text-slate-700",
+    bgColor: "bg-slate-100",
+  },
+  {
+    id: "bip39",
+    name: "BIP39 Generator",
+    description: "随机或指定生成助记符，助记符+短语派生种子。",
+    icon: KeyRound,
+    path: "/tools/bip39",
+    color: "text-sky-600",
+    bgColor: "bg-sky-100",
   },
 ];
 

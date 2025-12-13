@@ -21,6 +21,9 @@ import DedupSortDiff from "@/pages/tools/DedupSortDiff";
 import CronQuartz from "@/pages/tools/CronQuartz";
 import CalculatorTool from "@/pages/tools/Calculator";
 import BcryptTool from "@/pages/tools/BcryptTool";
+import UlidTool from "@/pages/tools/UlidTool";
+import TextCipher from "@/pages/tools/TextCipher";
+import Bip39Tool from "@/pages/tools/Bip39Tool";
 import Snake from "@/pages/games/Snake";
 import Tetris from "@/pages/games/Tetris";
 import Gomoku from "@/pages/games/Gomoku";
@@ -55,6 +58,9 @@ export default function App() {
           <Route path="/tools/cron-quartz" element={<CronQuartz />} />
           <Route path="/tools/calculator" element={<CalculatorTool />} />
           <Route path="/tools/bcrypt" element={<BcryptTool />} />
+          <Route path="/tools/ulid" element={<UlidTool />} />
+          <Route path="/tools/text-cipher" element={<TextCipher />} />
+          <Route path="/tools/bip39" element={<Bip39Tool />} />
           <Route path="/games/snake" element={<Snake />} />
           <Route path="/games/tetris" element={<Tetris />} />
           <Route path="/games/gomoku" element={<Gomoku />} />

@@ -17,8 +17,10 @@
     "pages:deploy": "npm run build && wrangler pages deploy dist --project-name build-better"
   },
   "dependencies": {
+    "@scure/bip39": "^2.0.1",
     "bcryptjs": "^3.0.3",
     "clsx": "^2.1.1",
+    "crypto-js": "^4.2.0",
     "diff": "^5.2.0",
     "lucide-react": "^0.511.0",
     "marked": "^12.0.2",
