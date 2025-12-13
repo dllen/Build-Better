@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash } from "lucide-react";
+import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar } from "lucide-react";
 
 const tools = [
   {
@@ -91,6 +91,15 @@ const tools = [
     path: "/tools/hash-tools",
     color: "text-indigo-600",
     bgColor: "bg-indigo-100",
+  },
+  {
+    id: "date-time",
+    name: "Date & Time Tools",
+    description: "时间戳转换、格式化、区间差值、相对时间。",
+    icon: Calendar,
+    path: "/tools/date-time",
+    color: "text-emerald-600",
+    bgColor: "bg-emerald-100",
   },
 ];
 
