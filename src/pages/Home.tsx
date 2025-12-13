@@ -132,6 +132,15 @@ const tools = [
     bgColor: "bg-orange-100",
   },
   {
+    id: "json-diff",
+    name: "JSON Diff",
+    description: "Compare two JSON objects structurally and pretty print changes.",
+    icon: GitCompare,
+    path: "/tools/json-diff",
+    color: "text-orange-600",
+    bgColor: "bg-orange-100",
+  },
+  {
     id: "lottery-ssq",
     name: "福利彩票 · 双色球",
     description: "随机生成6红球(1-33)和1蓝球(1-16)。",
