@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2 } from "lucide-react";
+import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Palette, Filter, Clock, Calculator } from "lucide-react";
 
 const games = [
   {
@@ -184,6 +184,51 @@ const tools = [
     path: "/tools/base-converter",
     color: "text-teal-600",
     bgColor: "bg-teal-100",
+  },
+  {
+    id: "color-hunt",
+    name: "Color Hunt",
+    description: "Explore palettes, copy colors, CSS vars, and gradients.",
+    icon: Palette,
+    path: "/tools/color-hunt",
+    color: "text-fuchsia-600",
+    bgColor: "bg-fuchsia-100",
+  },
+  {
+    id: "text-deduper",
+    name: "Text Deduper",
+    description: "文本去重：按行/分隔符，大小写、排序、统计。",
+    icon: Filter,
+    path: "/tools/text-deduper",
+    color: "text-amber-600",
+    bgColor: "bg-amber-100",
+  },
+  {
+    id: "dedup-sort-diff",
+    name: "Dedup & Sort Diff",
+    description: "文本去重后排序 DIFF：对比差异高亮。",
+    icon: GitCompare,
+    path: "/tools/dedup-sort-diff",
+    color: "text-orange-600",
+    bgColor: "bg-orange-100",
+  },
+  {
+    id: "cron-quartz",
+    name: "Cron & Quartz",
+    description: "编写/校验 Cron 与 Quartz，预览下次运行与配置。",
+    icon: Clock,
+    path: "/tools/cron-quartz",
+    color: "text-blue-600",
+    bgColor: "bg-blue-100",
+  },
+  {
+    id: "calculator",
+    name: "Calculator",
+    description: "基础/科学计算器：四则运算、函数、角度/弧度。",
+    icon: Calculator,
+    path: "/tools/calculator",
+    color: "text-lime-600",
+    bgColor: "bg-lime-100",
   },
 ];
 

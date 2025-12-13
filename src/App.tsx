@@ -15,6 +15,11 @@ import HashTools from "@/pages/tools/HashTools";
 import DateTimeTools from "@/pages/tools/DateTimeTools";
 import NetworkTools from "@/pages/tools/NetworkTools";
 import BaseConverter from "@/pages/tools/BaseConverter";
+import ColorHunt from "@/pages/tools/ColorHunt";
+import TextDeduper from "@/pages/tools/TextDeduper";
+import DedupSortDiff from "@/pages/tools/DedupSortDiff";
+import CronQuartz from "@/pages/tools/CronQuartz";
+import CalculatorTool from "@/pages/tools/Calculator";
 import Snake from "@/pages/games/Snake";
 import Tetris from "@/pages/games/Tetris";
 import Gomoku from "@/pages/games/Gomoku";
@@ -43,6 +48,11 @@ export default function App() {
           <Route path="/tools/date-time" element={<DateTimeTools />} />
           <Route path="/tools/network-tools" element={<NetworkTools />} />
           <Route path="/tools/base-converter" element={<BaseConverter />} />
+          <Route path="/tools/color-hunt" element={<ColorHunt />} />
+          <Route path="/tools/text-deduper" element={<TextDeduper />} />
+          <Route path="/tools/dedup-sort-diff" element={<DedupSortDiff />} />
+          <Route path="/tools/cron-quartz" element={<CronQuartz />} />
+          <Route path="/tools/calculator" element={<CalculatorTool />} />
           <Route path="/games/snake" element={<Snake />} />
           <Route path="/games/tetris" element={<Tetris />} />
           <Route path="/games/gomoku" element={<Gomoku />} />
