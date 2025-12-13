@@ -15,6 +15,10 @@ import HashTools from "@/pages/tools/HashTools";
 import DateTimeTools from "@/pages/tools/DateTimeTools";
 import NetworkTools from "@/pages/tools/NetworkTools";
 import BaseConverter from "@/pages/tools/BaseConverter";
+import Snake from "@/pages/games/Snake";
+import Tetris from "@/pages/games/Tetris";
+import Gomoku from "@/pages/games/Gomoku";
+import Dino from "@/pages/games/Dino";
 
 export default function App() {
   return (
@@ -36,6 +40,10 @@ export default function App() {
           <Route path="/tools/date-time" element={<DateTimeTools />} />
           <Route path="/tools/network-tools" element={<NetworkTools />} />
           <Route path="/tools/base-converter" element={<BaseConverter />} />
+          <Route path="/games/snake" element={<Snake />} />
+          <Route path="/games/tetris" element={<Tetris />} />
+          <Route path="/games/gomoku" element={<Gomoku />} />
+          <Route path="/games/dino" element={<Dino />} />
         </Route>
       </Routes>
     </Router>
