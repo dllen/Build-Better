@@ -213,6 +213,15 @@ const tools = [
     bgColor: "bg-emerald-100",
   },
   {
+    id: "date-diff",
+    name: "Date Diff",
+    description: "计算两个日期的差值：多少天与多少周。",
+    icon: Calendar,
+    path: "/tools/date-diff",
+    color: "text-emerald-600",
+    bgColor: "bg-emerald-100",
+  },
+  {
     id: "network-tools",
     name: "Network Tools",
     description: "URL解析、HTTP延迟测试、IPv4 CIDR计算、客户端信息。",
