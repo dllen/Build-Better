@@ -26,6 +26,7 @@ import TextCipher from "@/pages/tools/TextCipher";
 import Bip39Tool from "@/pages/tools/Bip39Tool";
 import HmacTool from "@/pages/tools/HmacTool";
 import RsaKeygen from "@/pages/tools/RsaKeygen";
+import KeycodeInfo from "@/pages/tools/KeycodeInfo";
 import Snake from "@/pages/games/Snake";
 import Tetris from "@/pages/games/Tetris";
 import Gomoku from "@/pages/games/Gomoku";
@@ -65,6 +66,7 @@ export default function App() {
           <Route path="/tools/bip39" element={<Bip39Tool />} />
           <Route path="/tools/hmac" element={<HmacTool />} />
           <Route path="/tools/rsa-keygen" element={<RsaKeygen />} />
+          <Route path="/tools/keycode" element={<KeycodeInfo />} />
           <Route path="/games/snake" element={<Snake />} />
           <Route path="/games/tetris" element={<Tetris />} />
           <Route path="/games/gomoku" element={<Gomoku />} />

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield, Key } from "lucide-react";
+import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield, Key, Keyboard } from "lucide-react";
 
 const games = [
   {
@@ -175,6 +175,15 @@ const tools = [
     path: "/tools/rsa-keygen",
     color: "text-yellow-600",
     bgColor: "bg-yellow-100",
+  },
+  {
+    id: "keycode-info",
+    name: "Keycode Info",
+    description: "查看按键的 key/code/keyCode/位置/修饰符。",
+    icon: Keyboard,
+    path: "/tools/keycode",
+    color: "text-gray-600",
+    bgColor: "bg-gray-100",
   },
   {
     id: "date-time",
