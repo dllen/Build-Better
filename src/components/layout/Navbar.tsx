@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Wrench, Settings, Menu } from "lucide-react";
+import { Settings, Menu } from "lucide-react";
 import { useState } from "react";
 
 export function Navbar() {
@@ -10,7 +10,7 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center gap-2 font-bold text-xl text-blue-600">
-            <Wrench className="h-6 w-6" />
+            <img src="/logo.svg" alt="BuildBetter" className="h-6 w-6" />
             <span>Build Better</span>
           </Link>
 
