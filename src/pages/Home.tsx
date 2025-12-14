@@ -66,6 +66,15 @@ const games = [
     color: "text-pink-600",
     bgColor: "bg-pink-100",
   },
+  {
+    id: "sudoku",
+    name: "Sudoku",
+    description: "经典数独：填充1-9，行列与宫内不重复。",
+    icon: Grid2x2,
+    path: "/games/sudoku",
+    color: "text-amber-600",
+    bgColor: "bg-amber-100",
+  },
 ];
 
 const tools = [
