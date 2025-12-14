@@ -258,6 +258,15 @@ const tools = [
     bgColor: "bg-indigo-100",
   },
   {
+    id: "jwt-decode",
+    name: "JWT Decode",
+    description: "解码JWT头与负载，查看标准声明与时间。",
+    icon: Shield,
+    path: "/tools/jwt-decode",
+    color: "text-violet-600",
+    bgColor: "bg-violet-100",
+  },
+  {
     id: "color-hunt",
     name: "Color Hunt",
     description: "Explore palettes, copy colors, CSS vars, and gradients.",
