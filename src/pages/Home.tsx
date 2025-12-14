@@ -267,6 +267,15 @@ const tools = [
     bgColor: "bg-violet-100",
   },
   {
+    id: "short-url",
+    name: "Short URL",
+    description: "本地生成短码映射，支持哈希或随机，复制分享链接。",
+    icon: Link2,
+    path: "/tools/short-url",
+    color: "text-teal-600",
+    bgColor: "bg-teal-100",
+  },
+  {
     id: "color-hunt",
     name: "Color Hunt",
     description: "Explore palettes, copy colors, CSS vars, and gradients.",
