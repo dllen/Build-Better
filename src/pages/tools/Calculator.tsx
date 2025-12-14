@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Calculator, ClipboardCopy } from "lucide-react";
+import { SEO } from "@/components/SEO";
 
 type Mode = "basic" | "scientific";
 type AngleMode = "deg" | "rad";
@@ -228,6 +229,11 @@ export default function CalculatorTool() {
 
   return (
     <div className="space-y-8">
+      <SEO
+        title="Calculator Tool"
+        description="A powerful calculator supporting basic and scientific operations, functions, and history."
+        keywords={["calculator", "scientific calculator", "math tool", "online calculator", "developer tools"]}
+      />
       <div className="flex items-center gap-2">
         <div className="inline-flex p-2 rounded-lg bg-lime-100 text-lime-600">
           <Calculator className="h-5 w-5" />

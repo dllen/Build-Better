@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { GitCompare } from "lucide-react";
 import * as JsDiff from "diff";
+import { SEO } from "@/components/SEO";
 
 type Algo = "characters" | "words" | "lines";
 
@@ -32,6 +33,11 @@ export default function TextDiff() {
 
   return (
     <div className="space-y-6">
+      <SEO
+        title="Text Diff Tool"
+        description="Compare two text files or snippets to find differences by characters, words, or lines."
+        keywords={["text diff", "text compare", "diff checker", "developer tools", "online diff"]}
+      />
       <div className="flex items-center gap-2">
         <div className="inline-flex p-2 rounded-lg bg-orange-100 text-orange-600">
           <GitCompare className="h-5 w-5" />

@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { GitCompare } from "lucide-react";
 import * as JsDiff from "diff";
+import { SEO } from "@/components/SEO";
 
 type ChangeType = "added" | "removed" | "changed";
 type ChangeRow = { path: string; type: ChangeType; left?: unknown; right?: unknown };
@@ -120,6 +121,11 @@ export default function JsonDiffTool() {
 
   return (
     <div className="space-y-6">
+      <SEO
+        title="JSON Diff Tool"
+        description="Compare two JSON objects structurally and visualize differences with pretty printing."
+        keywords={["json diff", "json compare", "json validator", "developer tools", "structural diff"]}
+      />
       <div className="flex items-center gap-2">
         <div className="inline-flex p-2 rounded-lg bg-orange-100 text-orange-600">
           <GitCompare className="h-5 w-5" />

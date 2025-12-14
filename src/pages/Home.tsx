@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield, Key, Keyboard } from "lucide-react";
+import { SEO } from "@/components/SEO";
 
 const games = [
   {
@@ -370,6 +371,7 @@ const tools = [
 export default function Home() {
   return (
     <div className="space-y-12">
+      <SEO />
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold text-gray-900 tracking-tight">
           Developer Micro-Tools Collection
