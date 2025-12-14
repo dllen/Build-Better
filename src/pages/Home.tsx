@@ -75,6 +75,15 @@ const games = [
     color: "text-amber-600",
     bgColor: "bg-amber-100",
   },
+  {
+    id: "pacvim",
+    name: "PacVim",
+    description: "用 Vim 键位在网格中闯关，按顺序收集字符。",
+    icon: Keyboard,
+    path: "/games/pacvim",
+    color: "text-teal-600",
+    bgColor: "bg-teal-100",
+  },
 ];
 
 const tools = [

@@ -43,6 +43,7 @@ import Minesweeper from "@/pages/games/Minesweeper";
 import Game2048 from "@/pages/games/Game2048";
 import LinkMatch from "@/pages/games/LinkMatch";
 import Sudoku from "@/pages/games/Sudoku";
+import PacVim from "@/pages/games/PacVim";
 
 export default function App() {
   return (
@@ -92,6 +93,7 @@ export default function App() {
           <Route path="/games/2048" element={<Game2048 />} />
           <Route path="/games/link-match" element={<LinkMatch />} />
           <Route path="/games/sudoku" element={<Sudoku />} />
+          <Route path="/games/pacvim" element={<PacVim />} />
         </Route>
       </Routes>
     </Router>
