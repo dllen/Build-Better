@@ -18,6 +18,9 @@ export function Navbar() {
             <Link to="/" className="text-gray-600 hover:text-blue-600 transition-colors">
               Tools
             </Link>
+            <Link to="/games" className="text-gray-600 hover:text-blue-600 transition-colors">
+              Games
+            </Link>
             <Link to="/settings" className="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-1">
               <Settings className="h-4 w-4" />
               <span>Settings</span>
@@ -43,6 +46,13 @@ export function Navbar() {
               onClick={() => setIsMenuOpen(false)}
             >
               Tools
+            </Link>
+            <Link 
+              to="/games" 
+              className="py-2 text-gray-600 hover:text-blue-600"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Games
             </Link>
             <Link 
               to="/settings" 

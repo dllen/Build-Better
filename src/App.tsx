@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import Home from "@/pages/Home";
 import Settings from "@/pages/Settings";
+import Games from "@/pages/Games";
 import ApiDebugger from "@/pages/tools/ApiDebugger";
 import CodeFormatter from "@/pages/tools/CodeFormatter";
 import QrGenerator from "@/pages/tools/QrGenerator";
@@ -51,6 +52,7 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/games" element={<Games />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/tools/api-debugger" element={<ApiDebugger />} />
           <Route path="/tools/code-formatter" element={<CodeFormatter />} />

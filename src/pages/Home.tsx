@@ -1,90 +1,8 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield, Key, Keyboard } from "lucide-react";
+import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Box, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield, Key, Keyboard } from "lucide-react";
 import { SEO } from "@/components/SEO";
 
-const games = [
-  {
-    id: "snake",
-    name: "Snake",
-    description: "Classic snake game. Eat food, grow longer, don't hit the wall!",
-    icon: Play,
-    path: "/games/snake",
-    color: "text-green-600",
-    bgColor: "bg-green-100",
-  },
-  {
-    id: "tetris",
-    name: "Tetris",
-    description: "Classic block stacking game. Clear lines to score points.",
-    icon: Box,
-    path: "/games/tetris",
-    color: "text-blue-600",
-    bgColor: "bg-blue-100",
-  },
-  {
-    id: "gomoku",
-    name: "Gomoku (AI)",
-    description: "Five in a row strategy game against an AI opponent.",
-    icon: User,
-    path: "/games/gomoku",
-    color: "text-purple-600",
-    bgColor: "bg-purple-100",
-  },
-  {
-    id: "dino",
-    name: "Chrome Dino",
-    description: "The famous offline dinosaur runner game. Jump over obstacles!",
-    icon: Gamepad2,
-    path: "/games/dino",
-    color: "text-gray-600",
-    bgColor: "bg-gray-100",
-  },
-  {
-    id: "minesweeper",
-    name: "Minesweeper",
-    description: "Uncover all safe cells. Right-click to flag mines.",
-    icon: Bomb,
-    path: "/games/minesweeper",
-    color: "text-red-600",
-    bgColor: "bg-red-100",
-  },
-  {
-    id: "game-2048",
-    name: "2048",
-    description: "Combine tiles to reach 2048. Arrows to move.",
-    icon: Grid2x2,
-    path: "/games/2048",
-    color: "text-amber-600",
-    bgColor: "bg-amber-100",
-  },
-  {
-    id: "link-match",
-    name: "Link Match",
-    description: "字母数字连连看：最多两次拐弯连通即可消除。",
-    icon: Link2,
-    path: "/games/link-match",
-    color: "text-pink-600",
-    bgColor: "bg-pink-100",
-  },
-  {
-    id: "sudoku",
-    name: "Sudoku",
-    description: "经典数独：填充1-9，行列与宫内不重复。",
-    icon: Grid2x2,
-    path: "/games/sudoku",
-    color: "text-amber-600",
-    bgColor: "bg-amber-100",
-  },
-  {
-    id: "pacvim",
-    name: "PacVim",
-    description: "用 Vim 键位在网格中闯关，按顺序收集字符。",
-    icon: Keyboard,
-    path: "/games/pacvim",
-    color: "text-teal-600",
-    bgColor: "bg-teal-100",
-  },
-];
+
 
 const tools = [
   {
@@ -399,28 +317,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="space-y-6">
-        <h2 className="text-2xl font-bold text-gray-900 border-b pb-2">Games & Relax</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {games.map((game) => (
-            <Link
-              key={game.id}
-              to={game.path}
-              className="group block p-6 bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md hover:border-blue-300 transition-all duration-200"
-            >
-              <div className={`inline-flex p-3 rounded-lg ${game.bgColor} ${game.color} mb-4 group-hover:scale-110 transition-transform`}>
-                <game.icon className="h-6 w-6" />
-              </div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600">
-                {game.name}
-              </h2>
-              <p className="text-gray-600 text-sm">
-                {game.description}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </div>
+
 
       <div className="space-y-6">
         <h2 className="text-2xl font-bold text-gray-900 border-b pb-2">Developer Tools</h2>
