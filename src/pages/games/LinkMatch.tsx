@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link2, RotateCcw, Info, X } from "lucide-react";
+import { Link2, RotateCcw, Info, X, Lightbulb } from "lucide-react";
 
 type Tile = { ch: string; removed: boolean };
 
@@ -94,7 +94,7 @@ function canConnect(grid: Tile[][], r1: number, c1: number, r2: number, c2: numb
   return false;
 }
 
-function hasAvailableMove(grid: Tile[][]): boolean {
+function findHint(grid: Tile[][]): [{ r: number; c: number }, { r: number; c: number }] | null {
   const rows = grid.length;
   const cols = grid[0].length;
   const tiles: { r: number; c: number; ch: string }[] = [];
@@ -113,12 +113,16 @@ function hasAvailableMove(grid: Tile[][]): boolean {
     for (let j = i + 1; j < tiles.length; j++) {
       if (tiles[i].ch === tiles[j].ch) {
         if (canConnect(grid, tiles[i].r, tiles[i].c, tiles[j].r, tiles[j].c)) {
-          return true;
+          return [{ r: tiles[i].r, c: tiles[i].c }, { r: tiles[j].r, c: tiles[j].c }];
         }
       }
     }
   }
-  return false;
+  return null;
+}
+
+function hasAvailableMove(grid: Tile[][]): boolean {
+  return findHint(grid) !== null;
 }
 
 export default function LinkMatch() {
@@ -134,6 +138,7 @@ export default function LinkMatch() {
     return newGrid;
   });
   const [sel, setSel] = useState<{ r: number; c: number } | null>(null);
+  const [hint, setHint] = useState<[{ r: number; c: number }, { r: number; c: number }] | null>(null);
   const [showRules, setShowRules] = useState(false);
 
   const { rows, cols } = LEVELS[difficulty];
@@ -157,11 +162,22 @@ export default function LinkMatch() {
 
     setGrid(newGrid);
     setSel(null);
+    setHint(null);
   }
 
   function handleDifficultyChange(diff: Difficulty) {
     setDifficulty(diff);
     reset(diff);
+  }
+
+  function handleHint() {
+    const found = findHint(grid);
+    if (found) {
+      setHint(found);
+    } else {
+      alert("No moves available! Reshuffling...");
+      reset();
+    }
   }
 
   function click(r: number, c: number) {
@@ -179,6 +195,7 @@ export default function LinkMatch() {
         tempGrid[r][c].removed = true;
         setGrid(tempGrid);
         setSel(null);
+        setHint(null);
       } else {
         setSel({ r, c });
       }
@@ -210,6 +227,12 @@ export default function LinkMatch() {
         <div className="text-sm text-gray-600">Remaining: {remaining}</div>
         <button className="px-3 py-2 bg-blue-600 text-white rounded-md flex items-center gap-2 text-sm" onClick={() => reset()}>
           <RotateCcw className="h-4 w-4" /> Reset
+        </button>
+        <button
+          className="px-3 py-2 bg-amber-500 text-white rounded-md flex items-center gap-2 text-sm hover:bg-amber-600 transition-colors"
+          onClick={handleHint}
+        >
+          <Lightbulb className="h-4 w-4" /> Hint
         </button>
         <button
           className="px-3 py-2 bg-gray-100 text-gray-700 rounded-md flex items-center gap-2 text-sm hover:bg-gray-200 transition-colors"
@@ -248,10 +271,12 @@ export default function LinkMatch() {
               const removed = "bg-transparent";
               const normal = "bg-white border border-gray-300 cursor-pointer hover:bg-gray-50 hover:scale-105 hover:shadow-sm hover:z-10";
               const selected = sel && sel.r === r && sel.c === c ? "ring-2 ring-pink-400 bg-pink-50 scale-105 z-10 shadow-sm" : "";
+              const isHint = hint && ((hint[0].r === r && hint[0].c === c) || (hint[1].r === r && hint[1].c === c));
+              const hinted = isHint ? "ring-2 ring-amber-400 bg-amber-50 scale-105 z-10 shadow-sm animate-pulse" : "";
               return (
                 <div
                   key={`${r}-${c}`}
-                  className={`${base} ${cell.removed ? removed : normal} ${selected}`}
+                  className={`${base} ${cell.removed ? removed : normal} ${selected} ${hinted}`}
                   onClick={() => click(r, c)}
                 >
                   {!cell.removed ? cell.ch : ""}
