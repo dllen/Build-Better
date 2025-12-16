@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link2, RotateCcw } from "lucide-react";
+import { Link2, RotateCcw, Info, X } from "lucide-react";
 
 type Tile = { ch: string; removed: boolean };
 
@@ -101,6 +101,7 @@ export default function LinkMatch() {
     return genGrid(rows, cols);
   });
   const [sel, setSel] = useState<{ r: number; c: number } | null>(null);
+  const [showRules, setShowRules] = useState(false);
 
   const { rows, cols } = LEVELS[difficulty];
 
@@ -168,7 +169,31 @@ export default function LinkMatch() {
         <button className="px-3 py-2 bg-blue-600 text-white rounded-md flex items-center gap-2 text-sm" onClick={() => reset()}>
           <RotateCcw className="h-4 w-4" /> Reset
         </button>
+        <button
+          className="px-3 py-2 bg-gray-100 text-gray-700 rounded-md flex items-center gap-2 text-sm hover:bg-gray-200 transition-colors"
+          onClick={() => setShowRules(!showRules)}
+        >
+          <Info className="h-4 w-4" /> Rules
+        </button>
       </div>
+
+      {showRules && (
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 relative">
+          <button 
+            onClick={() => setShowRules(false)}
+            className="absolute top-2 right-2 text-blue-400 hover:text-blue-600"
+          >
+            <X className="h-5 w-5" />
+          </button>
+          <h3 className="font-semibold text-blue-900 mb-2">How to Play</h3>
+          <ul className="list-disc list-inside space-y-1 text-sm text-blue-800">
+            <li>Connect two identical tiles to remove them from the board.</li>
+            <li>The connecting line between two tiles cannot have more than <strong>two turns</strong> (90-degree angles).</li>
+            <li>The path cannot pass through other tiles, but can go through empty spaces.</li>
+            <li>Clear all tiles to win the game!</li>
+          </ul>
+        </div>
+      )}
 
       <div className="overflow-auto pb-4">
         <div
