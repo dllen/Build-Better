@@ -2,33 +2,57 @@ import { useMemo, useState } from "react";
 import { Link2, RotateCcw } from "lucide-react";
 
 type Tile = { ch: string; removed: boolean };
-const ROWS = 10;
-const COLS = 14;
+
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-function genPairs(rows: number, cols: number): Tile[][] {
-  const total = rows * cols;
-  const pairs = total % 2 === 0 ? total / 2 : Math.floor(total / 2);
-  const list: string[] = [];
-  for (let i = 0; i < pairs; i++) {
-    const ch = CHARS[i % CHARS.length];
-    list.push(ch, ch);
-  }
-  while (list.length < total) list.push(CHARS[Math.floor(Math.random() * CHARS.length)]);
-  // shuffle
-  for (let i = list.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [list[i], list[j]] = [list[j], list[i]];
-  }
+type Difficulty = "Easy" | "Normal" | "Hard";
+
+const LEVELS: Record<Difficulty, { rows: number; cols: number }> = {
+  Easy: { rows: 8, cols: 12 },
+  Normal: { rows: 10, cols: 14 },
+  Hard: { rows: 12, cols: 18 },
+};
+
+function genGrid(rows: number, cols: number): Tile[][] {
   const grid: Tile[][] = [];
-  let k = 0;
+  // Initialize empty grid with border
   for (let r = 0; r < rows; r++) {
     const row: Tile[] = [];
     for (let c = 0; c < cols; c++) {
-      row.push({ ch: list[k++], removed: false });
+      row.push({ ch: "", removed: true });
     }
     grid.push(row);
   }
+
+  // Calculate playable area (inner grid)
+  const innerRows = rows - 2;
+  const innerCols = cols - 2;
+  const totalSlots = innerRows * innerCols;
+
+  // Generate pairs
+  const pairCount = Math.floor(totalSlots / 2);
+  const content: string[] = [];
+  for (let i = 0; i < pairCount; i++) {
+    const ch = CHARS[i % CHARS.length];
+    content.push(ch, ch);
+  }
+
+  // Shuffle content
+  for (let i = content.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [content[i], content[j]] = [content[j], content[i]];
+  }
+
+  // Fill inner grid
+  let k = 0;
+  for (let r = 1; r < rows - 1; r++) {
+    for (let c = 1; c < cols - 1; c++) {
+      if (k < content.length) {
+        grid[r][c] = { ch: content[k++], removed: false };
+      }
+    }
+  }
+
   return grid;
 }
 
@@ -71,24 +95,30 @@ function canConnect(grid: Tile[][], r1: number, c1: number, r2: number, c2: numb
 }
 
 export default function LinkMatch() {
+  const [difficulty, setDifficulty] = useState<Difficulty>("Normal");
   const [grid, setGrid] = useState<Tile[][]>(() => {
-    const g = genPairs(ROWS, COLS);
-    // make edges empty to allow turns
-    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) if (r === 0 || c === 0 || r === ROWS - 1 || c === COLS - 1) g[r][c].removed = true;
-    return g;
+    const { rows, cols } = LEVELS["Normal"];
+    return genGrid(rows, cols);
   });
   const [sel, setSel] = useState<{ r: number; c: number } | null>(null);
+
+  const { rows, cols } = LEVELS[difficulty];
+
   const remaining = useMemo(() => {
     let count = 0;
-    for (let r = 1; r < ROWS - 1; r++) for (let c = 1; c < COLS - 1; c++) if (!grid[r][c].removed) count++;
+    for (let r = 1; r < rows - 1; r++) for (let c = 1; c < cols - 1; c++) if (!grid[r][c].removed) count++;
     return count;
-  }, [grid]);
+  }, [grid, rows, cols]);
 
-  function reset() {
-    const g = genPairs(ROWS, COLS);
-    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) if (r === 0 || c === 0 || r === ROWS - 1 || c === COLS - 1) g[r][c].removed = true;
-    setGrid(g);
+  function reset(diff: Difficulty = difficulty) {
+    const { rows, cols } = LEVELS[diff];
+    setGrid(genGrid(rows, cols));
     setSel(null);
+  }
+
+  function handleDifficultyChange(diff: Difficulty) {
+    setDifficulty(diff);
+    reset(diff);
   }
 
   function click(r: number, c: number) {
@@ -121,34 +151,48 @@ export default function LinkMatch() {
         <h1 className="text-2xl font-semibold">Link Match</h1>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-4">
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-medium text-gray-700">Difficulty:</span>
+          <select
+            className="rounded-md border border-gray-300 px-3 py-1.5 text-sm"
+            value={difficulty}
+            onChange={(e) => handleDifficultyChange(e.target.value as Difficulty)}
+          >
+            {(Object.keys(LEVELS) as Difficulty[]).map((d) => (
+              <option key={d} value={d}>{d}</option>
+            ))}
+          </select>
+        </div>
         <div className="text-sm text-gray-600">Remaining: {remaining}</div>
-        <button className="px-3 py-2 bg-blue-600 text-white rounded-md flex items-center gap-2" onClick={reset}>
+        <button className="px-3 py-2 bg-blue-600 text-white rounded-md flex items-center gap-2 text-sm" onClick={() => reset()}>
           <RotateCcw className="h-4 w-4" /> Reset
         </button>
       </div>
 
-      <div
-        className="inline-grid bg-gray-100 p-1 rounded-md border border-gray-200"
-        style={{ gridTemplateColumns: `repeat(${COLS}, 36px)`, gridTemplateRows: `repeat(${ROWS}, 36px)` }}
-      >
-        {grid.map((row, r) =>
-          row.map((cell, c) => {
-            const base = "w-[34px] h-[34px] m-[1px] rounded text-sm font-bold flex items-center justify-center select-none";
-            const removed = "bg-transparent";
-            const normal = "bg-white border border-gray-300 cursor-pointer hover:bg-gray-50";
-            const selected = sel && sel.r === r && sel.c === c ? "ring-2 ring-pink-400" : "";
-            return (
-              <div
-                key={`${r}-${c}`}
-                className={`${base} ${cell.removed ? removed : normal} ${selected}`}
-                onClick={() => click(r, c)}
-              >
-                {!cell.removed ? cell.ch : ""}
-              </div>
-            );
-          })
-        )}
+      <div className="overflow-auto pb-4">
+        <div
+          className="inline-grid bg-gray-100 p-1 rounded-md border border-gray-200"
+          style={{ gridTemplateColumns: `repeat(${cols}, 36px)`, gridTemplateRows: `repeat(${rows}, 36px)` }}
+        >
+          {grid.map((row, r) =>
+            row.map((cell, c) => {
+              const base = "w-[34px] h-[34px] m-[1px] rounded text-sm font-bold flex items-center justify-center select-none transition-all duration-200";
+              const removed = "bg-transparent";
+              const normal = "bg-white border border-gray-300 cursor-pointer hover:bg-gray-50 hover:scale-105 hover:shadow-sm hover:z-10";
+              const selected = sel && sel.r === r && sel.c === c ? "ring-2 ring-pink-400 bg-pink-50 scale-105 z-10 shadow-sm" : "";
+              return (
+                <div
+                  key={`${r}-${c}`}
+                  className={`${base} ${cell.removed ? removed : normal} ${selected}`}
+                  onClick={() => click(r, c)}
+                >
+                  {!cell.removed ? cell.ch : ""}
+                </div>
+              );
+            })
+          )}
+        </div>
       </div>
     </div>
   );
