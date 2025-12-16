@@ -94,11 +94,44 @@ function canConnect(grid: Tile[][], r1: number, c1: number, r2: number, c2: numb
   return false;
 }
 
+function hasAvailableMove(grid: Tile[][]): boolean {
+  const rows = grid.length;
+  const cols = grid[0].length;
+  const tiles: { r: number; c: number; ch: string }[] = [];
+
+  // Collect all active tiles
+  for (let r = 1; r < rows - 1; r++) {
+    for (let c = 1; c < cols - 1; c++) {
+      if (!grid[r][c].removed) {
+        tiles.push({ r, c, ch: grid[r][c].ch });
+      }
+    }
+  }
+
+  // Check all pairs
+  for (let i = 0; i < tiles.length; i++) {
+    for (let j = i + 1; j < tiles.length; j++) {
+      if (tiles[i].ch === tiles[j].ch) {
+        if (canConnect(grid, tiles[i].r, tiles[i].c, tiles[j].r, tiles[j].c)) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
+
 export default function LinkMatch() {
   const [difficulty, setDifficulty] = useState<Difficulty>("Normal");
   const [grid, setGrid] = useState<Tile[][]>(() => {
     const { rows, cols } = LEVELS["Normal"];
-    return genGrid(rows, cols);
+    let newGrid: Tile[][] = [];
+    let attempts = 0;
+    do {
+      newGrid = genGrid(rows, cols);
+      attempts++;
+    } while (!hasAvailableMove(newGrid) && attempts < 50);
+    return newGrid;
   });
   const [sel, setSel] = useState<{ r: number; c: number } | null>(null);
   const [showRules, setShowRules] = useState(false);
@@ -113,7 +146,16 @@ export default function LinkMatch() {
 
   function reset(diff: Difficulty = difficulty) {
     const { rows, cols } = LEVELS[diff];
-    setGrid(genGrid(rows, cols));
+    let newGrid: Tile[][] = [];
+    let attempts = 0;
+    
+    // Try to generate a solvable grid up to 50 times
+    do {
+      newGrid = genGrid(rows, cols);
+      attempts++;
+    } while (!hasAvailableMove(newGrid) && attempts < 50);
+
+    setGrid(newGrid);
     setSel(null);
   }
 
