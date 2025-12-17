@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./i18n/config"; // Import i18n config
 import { Layout } from "@/components/layout/Layout";
 import Home from "@/pages/Home";
 import Settings from "@/pages/Settings";
@@ -26,6 +27,7 @@ import UlidTool from "@/pages/tools/UlidTool";
 import TextCipher from "@/pages/tools/TextCipher";
 import Bip39Tool from "@/pages/tools/Bip39Tool";
 import PerpetualCalendar from "@/pages/tools/PerpetualCalendar";
+import I18nManager from "@/pages/tools/I18nManager";
 import HmacTool from "@/pages/tools/HmacTool";
 import RsaKeygen from "@/pages/tools/RsaKeygen";
 import KeycodeInfo from "@/pages/tools/KeycodeInfo";
@@ -78,6 +80,7 @@ export default function App() {
           <Route path="/tools/text-cipher" element={<TextCipher />} />
           <Route path="/tools/bip39" element={<Bip39Tool />} />
           <Route path="/tools/perpetual-calendar" element={<PerpetualCalendar />} />
+          <Route path="/tools/i18n-manager" element={<I18nManager />} />
           <Route path="/tools/hmac" element={<HmacTool />} />
           <Route path="/tools/rsa-keygen" element={<RsaKeygen />} />
           <Route path="/tools/keycode" element={<KeycodeInfo />} />

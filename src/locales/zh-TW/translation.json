@@ -1,0 +1,33 @@
+{
+  "app": {
+    "title": "Build Better",
+    "description": "開發者必備工具箱，快速、可靠、易用。",
+    "tools": "工具",
+    "games": "遊戲",
+    "settings": "設置",
+    "search_placeholder": "搜索工具..."
+  },
+  "home": {
+    "title": "開發者微工具集合",
+    "subtitle": "開發者必備工具箱，快速、可靠、易用。",
+    "section_tools": "開發工具"
+  },
+  "tools": {
+    "api-debugger": {
+      "name": "API 調試器",
+      "desc": "輕鬆測試和調試 HTTP 請求。支持 GET, POST, PUT, DELETE。"
+    },
+    "code-formatter": {
+      "name": "代碼格式化",
+      "desc": "將代碼格式化為標準風格。支持 JS, TS, HTML, CSS, JSON。"
+    },
+    "qr-generator": {
+      "name": "二維碼生成器",
+      "desc": "生成 URL、文本等的二維碼。可自定義大小和顏色。"
+    },
+    "perpetual-calendar": {
+      "name": "萬年曆",
+      "desc": "帶有中國農曆、節氣、節日、干支宜忌的萬年曆。"
+    }
+  }
+}

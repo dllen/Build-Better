@@ -1,0 +1,33 @@
+{
+  "app": {
+    "title": "Build Better",
+    "description": "A suite of essential tools for developers, Fast, reliable, and easy to use.",
+    "tools": "Tools",
+    "games": "Games",
+    "settings": "Settings",
+    "search_placeholder": "Search tools..."
+  },
+  "home": {
+    "title": "Developer Micro-Tools Collection",
+    "subtitle": "A suite of essential tools for developers, Fast, reliable, and easy to use.",
+    "section_tools": "Developer Tools"
+  },
+  "tools": {
+    "api-debugger": {
+      "name": "API Debugger",
+      "desc": "Test and debug HTTP requests with ease. Support for GET, POST, PUT, DELETE."
+    },
+    "code-formatter": {
+      "name": "Code Formatter",
+      "desc": "Format your code to standard styles. Supports JS, TS, HTML, CSS, JSON."
+    },
+    "qr-generator": {
+      "name": "QR Code Generator",
+      "desc": "Generate QR codes for URLs, text, and more. Customizable size and color."
+    },
+    "perpetual-calendar": {
+      "name": "Perpetual Calendar",
+      "desc": "Comprehensive calendar with Chinese Lunar date, Solar terms, and festivals."
+    }
+  }
+}
