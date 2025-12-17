@@ -1,129 +1,14 @@
 import { useMemo, useState } from "react";
 import { Link2, RotateCcw, Info, X, Lightbulb } from "lucide-react";
-
-type Tile = { ch: string; removed: boolean };
-
-const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-type Difficulty = "Easy" | "Normal" | "Hard";
-
-const LEVELS: Record<Difficulty, { rows: number; cols: number }> = {
-  Easy: { rows: 8, cols: 12 },
-  Normal: { rows: 10, cols: 14 },
-  Hard: { rows: 12, cols: 18 },
-};
-
-function genGrid(rows: number, cols: number): Tile[][] {
-  const grid: Tile[][] = [];
-  // Initialize empty grid with border
-  for (let r = 0; r < rows; r++) {
-    const row: Tile[] = [];
-    for (let c = 0; c < cols; c++) {
-      row.push({ ch: "", removed: true });
-    }
-    grid.push(row);
-  }
-
-  // Calculate playable area (inner grid)
-  const innerRows = rows - 2;
-  const innerCols = cols - 2;
-  const totalSlots = innerRows * innerCols;
-
-  // Generate pairs
-  const pairCount = Math.floor(totalSlots / 2);
-  const content: string[] = [];
-  for (let i = 0; i < pairCount; i++) {
-    const ch = CHARS[i % CHARS.length];
-    content.push(ch, ch);
-  }
-
-  // Shuffle content
-  for (let i = content.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [content[i], content[j]] = [content[j], content[i]];
-  }
-
-  // Fill inner grid
-  let k = 0;
-  for (let r = 1; r < rows - 1; r++) {
-    for (let c = 1; c < cols - 1; c++) {
-      if (k < content.length) {
-        grid[r][c] = { ch: content[k++], removed: false };
-      }
-    }
-  }
-
-  return grid;
-}
-
-function isClearRow(grid: Tile[][], r: number, c1: number, c2: number): boolean {
-  const [a, b] = c1 < c2 ? [c1, c2] : [c2, c1];
-  for (let c = a + 1; c < b; c++) {
-    if (!grid[r][c].removed) return false;
-  }
-  return true;
-}
-function isClearCol(grid: Tile[][], c: number, r1: number, r2: number): boolean {
-  const [a, b] = r1 < r2 ? [r1, r2] : [r2, r1];
-  for (let r = a + 1; r < b; r++) {
-    if (!grid[r][c].removed) return false;
-  }
-  return true;
-}
-
-function canConnect(grid: Tile[][], r1: number, c1: number, r2: number, c2: number): boolean {
-  if (r1 === r2) {
-    return isClearRow(grid, r1, c1, c2);
-  }
-  if (c1 === c2) {
-    return isClearCol(grid, c1, r1, r2);
-  }
-  // one turn via corner (r1,c2) or (r2,c1)
-  if (grid[r1][c2].removed && isClearRow(grid, r1, c1, c2) && isClearCol(grid, c2, r1, r2)) return true;
-  if (grid[r2][c1].removed && isClearRow(grid, r2, c1, c2) && isClearCol(grid, c1, r1, r2)) return true;
-  // two turns: scan rows
-  for (let r = 0; r < grid.length; r++) {
-    if (!grid[r][c1].removed || !grid[r][c2].removed) continue;
-    if (isClearCol(grid, c1, r1, r) && isClearRow(grid, r, c1, c2) && isClearCol(grid, c2, r, r2)) return true;
-  }
-  // scan cols
-  for (let c = 0; c < grid[0].length; c++) {
-    if (!grid[r1][c].removed || !grid[r2][c].removed) continue;
-    if (isClearRow(grid, r1, c1, c) && isClearCol(grid, c, r1, r2) && isClearRow(grid, r2, c, c2)) return true;
-  }
-  return false;
-}
-
-function findHint(grid: Tile[][]): [{ r: number; c: number }, { r: number; c: number }] | null {
-  const rows = grid.length;
-  const cols = grid[0].length;
-  const tiles: { r: number; c: number; ch: string }[] = [];
-
-  // Collect all active tiles
-  for (let r = 1; r < rows - 1; r++) {
-    for (let c = 1; c < cols - 1; c++) {
-      if (!grid[r][c].removed) {
-        tiles.push({ r, c, ch: grid[r][c].ch });
-      }
-    }
-  }
-
-  // Check all pairs
-  for (let i = 0; i < tiles.length; i++) {
-    for (let j = i + 1; j < tiles.length; j++) {
-      if (tiles[i].ch === tiles[j].ch) {
-        if (canConnect(grid, tiles[i].r, tiles[i].c, tiles[j].r, tiles[j].c)) {
-          return [{ r: tiles[i].r, c: tiles[i].c }, { r: tiles[j].r, c: tiles[j].c }];
-        }
-      }
-    }
-  }
-  return null;
-}
-
-function hasAvailableMove(grid: Tile[][]): boolean {
-  return findHint(grid) !== null;
-}
+import {
+  Tile,
+  Difficulty,
+  LEVELS,
+  genGrid,
+  canConnect,
+  findHint,
+  hasAvailableMove,
+} from "./linkMatchLogic";
 
 export default function LinkMatch() {
   const [difficulty, setDifficulty] = useState<Difficulty>("Normal");
