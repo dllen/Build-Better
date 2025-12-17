@@ -159,6 +159,15 @@ const tools = [
     bgColor: "bg-emerald-100",
   },
   {
+    id: "perpetual-calendar",
+    name: "万年历 (Calendar)",
+    description: "带有中国农历、节气、节日、干支宜忌的万年历。",
+    icon: Calendar,
+    path: "/tools/perpetual-calendar",
+    color: "text-red-600",
+    bgColor: "bg-red-100",
+  },
+  {
     id: "network-tools",
     name: "Network Tools",
     description: "URL解析、HTTP延迟测试、IPv4 CIDR计算、客户端信息。",
