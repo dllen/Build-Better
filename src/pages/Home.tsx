@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Box, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield, Key, Keyboard, DollarSign, Server, Network, Landmark } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useTranslation } from "react-i18next";
+import { useState, useMemo } from "react";
+import Fuse from "fuse.js";
+import { SearchInput } from "@/components/common/SearchInput";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -360,6 +363,18 @@ export default function Home() {
     },
   ];
 
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const fuse = useMemo(() => new Fuse(tools, {
+    keys: ['name', 'description'],
+    threshold: 0.3,
+  }), [tools]);
+
+  const filteredTools = useMemo(() => {
+    if (!searchTerm) return tools;
+    return fuse.search(searchTerm).map(result => result.item);
+  }, [searchTerm, fuse, tools]);
+
   return (
     <div className="space-y-12">
       <SEO />
@@ -372,12 +387,12 @@ export default function Home() {
         </p>
       </div>
 
-
+      <SearchInput value={searchTerm} onChange={setSearchTerm} />
 
       <div className="space-y-6">
         <h2 className="text-2xl font-bold text-gray-900 border-b pb-2">{t('home.section_tools')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {tools.map((tool) => (
+          {filteredTools.map((tool) => (
             <Link
               key={tool.id}
               to={tool.path}

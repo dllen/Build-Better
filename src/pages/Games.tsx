@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Keyboard } from "lucide-react";
 import { SEO } from "@/components/SEO";
+import { useState, useMemo } from "react";
+import Fuse from "fuse.js";
+import { SearchInput } from "@/components/common/SearchInput";
 
 const games = [
   {
@@ -87,6 +90,18 @@ const games = [
 ];
 
 export default function Games() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const fuse = useMemo(() => new Fuse(games, {
+    keys: ['name', 'description'],
+    threshold: 0.3,
+  }), []);
+
+  const filteredGames = useMemo(() => {
+    if (!searchTerm) return games;
+    return fuse.search(searchTerm).map(result => result.item);
+  }, [searchTerm, fuse]);
+
   return (
     <div className="space-y-12">
       <SEO title="Games & Relax - BuildBetter" description="Collection of mini games to relax." />
@@ -99,8 +114,14 @@ export default function Games() {
         </p>
       </div>
 
+      <SearchInput 
+        value={searchTerm} 
+        onChange={setSearchTerm} 
+        placeholder="Search games..."
+      />
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {games.map((game) => (
+        {filteredGames.map((game) => (
           <Link
             key={game.id}
             to={game.path}
