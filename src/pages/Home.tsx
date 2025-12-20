@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Box, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield, Key, Keyboard } from "lucide-react";
+import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Box, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield, Key, Keyboard, DollarSign, Server, Network } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useTranslation } from "react-i18next";
 
@@ -43,7 +43,42 @@ export default function Home() {
       color: "text-red-600",
       bgColor: "bg-red-100",
     },
-    // ... other tools can be translated similarly later
+    {
+      id: "domain-valuation",
+      name: t('tools.domain-valuation.name', "Domain Valuation"),
+      description: t('tools.domain-valuation.desc', "Estimate domain market value based on length, TLD, and keywords."),
+      icon: DollarSign,
+      path: "/tools/domain-valuation",
+      color: "text-emerald-600",
+      bgColor: "bg-emerald-100",
+    },
+    {
+      id: "nginx-config",
+      name: t('tools.nginx-config.name', "Nginx Config"),
+      description: t('tools.nginx-config.desc', "Generate Nginx configuration files online with HTTPS, proxy, Gzip support."),
+      icon: Server,
+      path: "/tools/nginx-config",
+      color: "text-green-600",
+      bgColor: "bg-green-100",
+    },
+    {
+      id: "apache-config",
+      name: t('tools.apache-config.name', "Apache Config"),
+      description: t('tools.apache-config.desc', "Generate Apache VirtualHost configuration files online with HTTPS, redirects, logs."),
+      icon: Server,
+      path: "/tools/apache-config",
+      color: "text-red-600",
+      bgColor: "bg-red-100",
+    },
+    {
+      id: "haproxy-config",
+      name: t('tools.haproxy-config.name', "HAProxy Config"),
+      description: t('tools.haproxy-config.desc', "Generate HAProxy load balancer configuration files with algorithms, health checks."),
+      icon: Network,
+      path: "/tools/haproxy-config",
+      color: "text-blue-600",
+      bgColor: "bg-blue-100",
+    },
     {
       id: "regex-tester",
       name: "Regex Tester",

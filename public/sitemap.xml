@@ -161,6 +161,26 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://buildbetter.tools/tools/domain-valuation</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildbetter.tools/tools/nginx-config</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildbetter.tools/tools/apache-config</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildbetter.tools/tools/haproxy-config</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://buildbetter.tools/tools/jwt-decode</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

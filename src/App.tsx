@@ -37,6 +37,10 @@ import TextStats from "@/pages/tools/TextStats";
 import UnitConverter from "@/pages/tools/UnitConverter";
 import DateDiffCalculator from "@/pages/tools/DateDiffCalculator";
 import ProgrammerNamingTool from "@/pages/tools/ProgrammerNamingTool";
+import DomainValuation from "@/pages/tools/DomainValuation";
+import NginxConfigGenerator from "@/pages/tools/NginxConfigGenerator";
+import ApacheConfigGenerator from "@/pages/tools/ApacheConfigGenerator";
+import HAProxyConfigGenerator from "@/pages/tools/HAProxyConfigGenerator";
 import JwtDecodeTool from "@/pages/tools/JwtDecodeTool";
 import ShortUrlTool from "@/pages/tools/ShortUrlTool";
 import Snake from "@/pages/games/Snake";
@@ -90,6 +94,10 @@ export default function App() {
           <Route path="/tools/unit-converter" element={<UnitConverter />} />
           <Route path="/tools/date-diff" element={<DateDiffCalculator />} />
           <Route path="/tools/naming" element={<ProgrammerNamingTool />} />
+          <Route path="/tools/domain-valuation" element={<DomainValuation />} />
+          <Route path="/tools/nginx-config" element={<NginxConfigGenerator />} />
+          <Route path="/tools/apache-config" element={<ApacheConfigGenerator />} />
+          <Route path="/tools/haproxy-config" element={<HAProxyConfigGenerator />} />
           <Route path="/tools/jwt-decode" element={<JwtDecodeTool />} />
           <Route path="/tools/short-url" element={<ShortUrlTool />} />
           <Route path="/games/snake" element={<Snake />} />
