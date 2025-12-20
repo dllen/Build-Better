@@ -46,6 +46,7 @@ const routes = [
   '/tools/nginx-config',
   '/tools/apache-config',
   '/tools/haproxy-config',
+  '/tools/mortgage-calculator',
   '/tools/jwt-decode',
   '/tools/short-url',
   '/tools/chmod',

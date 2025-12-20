@@ -97,6 +97,33 @@
       "add_server": "添加服务器",
       "balance": "负载均衡算法",
       "generated_config": "生成配置"
+    },
+    "mortgage-calculator": {
+      "name": "房贷计算器",
+      "desc": "支持商业贷款、公积金贷款及组合贷款计算，提供等额本息和等额本金两种方式。",
+      "title": "房贷计算器",
+      "subtitle": "快速计算您的房贷月供和利息",
+      "loan_type": "贷款类型",
+      "type_commercial": "商业贷款",
+      "type_provident": "公积金贷款",
+      "type_combination": "组合贷款",
+      "commercial_amount": "商业贷款金额",
+      "provident_amount": "公积金贷款金额",
+      "unit_wan": "万元",
+      "years": "贷款期限",
+      "year_unit": "年",
+      "commercial_rate": "商贷利率",
+      "provident_rate": "公积金利率",
+      "payment_method": "还款方式",
+      "method_interest": "等额本息",
+      "method_principal": "等额本金",
+      "monthly_payment": "每月还款",
+      "first_month_payment": "首月还款",
+      "monthly_decrease": "每月递减 {amount}",
+      "total_interest": "支付利息",
+      "total_payment": "还款总额",
+      "tip_interest": "等额本息：每月还款额固定，其中本金逐月增加、利息逐月减少。",
+      "tip_principal": "等额本金：每月还款本金固定，利息逐月减少，因此每月还款额逐月减少。"
     }
   }
 }

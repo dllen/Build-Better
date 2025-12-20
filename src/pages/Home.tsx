@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Box, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield, Key, Keyboard, DollarSign, Server, Network } from "lucide-react";
+import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Box, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield, Key, Keyboard, DollarSign, Server, Network, Landmark } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useTranslation } from "react-i18next";
 
@@ -78,6 +78,15 @@ export default function Home() {
       path: "/tools/haproxy-config",
       color: "text-blue-600",
       bgColor: "bg-blue-100",
+    },
+    {
+      id: "mortgage-calculator",
+      name: t('tools.mortgage-calculator.name', "Mortgage Calculator"),
+      description: t('tools.mortgage-calculator.desc', "Calculate mortgage payments for commercial, provident fund, and combination loans."),
+      icon: Landmark,
+      path: "/tools/mortgage-calculator",
+      color: "text-indigo-600",
+      bgColor: "bg-indigo-100",
     },
     {
       id: "regex-tester",

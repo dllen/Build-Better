@@ -97,6 +97,33 @@
       "add_server": "添加服務器",
       "balance": "負載均衡算法",
       "generated_config": "生成配置"
+    },
+    "mortgage-calculator": {
+      "name": "房貸計算器",
+      "desc": "支持商業貸款、公積金貸款及組合貸款計算，提供等額本息和等額本金兩種方式。",
+      "title": "房貸計算器",
+      "subtitle": "快速計算您的房貸月供和利息",
+      "loan_type": "貸款類型",
+      "type_commercial": "商業貸款",
+      "type_provident": "公積金貸款",
+      "type_combination": "組合貸款",
+      "commercial_amount": "商業貸款金額",
+      "provident_amount": "公積金貸款金額",
+      "unit_wan": "萬元",
+      "years": "貸款期限",
+      "year_unit": "年",
+      "commercial_rate": "商貸利率",
+      "provident_rate": "公積金利率",
+      "payment_method": "還款方式",
+      "method_interest": "等額本息",
+      "method_principal": "等額本金",
+      "monthly_payment": "每月還款",
+      "first_month_payment": "首月還款",
+      "monthly_decrease": "每月遞減 {amount}",
+      "total_interest": "支付利息",
+      "total_payment": "還款總額",
+      "tip_interest": "等額本息：每月還款額固定，其中本金逐月增加、利息逐月減少。",
+      "tip_principal": "等額本金：每月還款本金固定，利息逐月減少，因此每月還款額逐月減少。"
     }
   }
 }

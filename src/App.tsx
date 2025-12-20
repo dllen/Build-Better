@@ -41,6 +41,7 @@ import DomainValuation from "@/pages/tools/DomainValuation";
 import NginxConfigGenerator from "@/pages/tools/NginxConfigGenerator";
 import ApacheConfigGenerator from "@/pages/tools/ApacheConfigGenerator";
 import HAProxyConfigGenerator from "@/pages/tools/HAProxyConfigGenerator";
+import MortgageCalculator from "@/pages/tools/MortgageCalculator";
 import JwtDecodeTool from "@/pages/tools/JwtDecodeTool";
 import ShortUrlTool from "@/pages/tools/ShortUrlTool";
 import Snake from "@/pages/games/Snake";
@@ -98,6 +99,7 @@ export default function App() {
           <Route path="/tools/nginx-config" element={<NginxConfigGenerator />} />
           <Route path="/tools/apache-config" element={<ApacheConfigGenerator />} />
           <Route path="/tools/haproxy-config" element={<HAProxyConfigGenerator />} />
+          <Route path="/tools/mortgage-calculator" element={<MortgageCalculator />} />
           <Route path="/tools/jwt-decode" element={<JwtDecodeTool />} />
           <Route path="/tools/short-url" element={<ShortUrlTool />} />
           <Route path="/games/snake" element={<Snake />} />
