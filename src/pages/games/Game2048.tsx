@@ -10,7 +10,8 @@ function emptyGrid(): Grid {
 
 function randomEmptyCell(g: Grid): [number, number] | null {
   const empties: Array<[number, number]> = [];
-  for (let r = 0; r < SIZE; r++) for (let c = 0; c < SIZE; c++) if (g[r][c] === 0) empties.push([r, c]);
+  for (let r = 0; r < SIZE; r++)
+    for (let c = 0; c < SIZE; c++) if (g[r][c] === 0) empties.push([r, c]);
   if (empties.length === 0) return null;
   return empties[Math.floor(Math.random() * empties.length)];
 }
@@ -72,11 +73,12 @@ export default function Game2048() {
   }, [score, best]);
 
   const canMove = useCallback((g: Grid) => {
-    for (let r = 0; r < SIZE; r++) for (let c = 0; c < SIZE; c++) {
-      if (g[r][c] === 0) return true;
-      if (r < SIZE - 1 && g[r][c] === g[r + 1][c]) return true;
-      if (c < SIZE - 1 && g[r][c] === g[r][c + 1]) return true;
-    }
+    for (let r = 0; r < SIZE; r++)
+      for (let c = 0; c < SIZE; c++) {
+        if (g[r][c] === 0) return true;
+        if (r < SIZE - 1 && g[r][c] === g[r + 1][c]) return true;
+        if (c < SIZE - 1 && g[r][c] === g[r][c + 1]) return true;
+      }
     return false;
   }, []);
 
@@ -224,15 +226,27 @@ export default function Game2048() {
           </div>
           <div className="text-2xl font-bold text-purple-600">{best}</div>
         </div>
-        <button className="px-3 py-2 bg-blue-600 text-white rounded-md flex items-center gap-2" onClick={reset}>
+        <button
+          className="px-3 py-2 bg-blue-600 text-white rounded-md flex items-center gap-2"
+          onClick={reset}
+        >
           <RotateCcw className="h-4 w-4" /> Reset
         </button>
       </div>
 
-      <div className="inline-grid bg-gray-100 p-2 rounded-md border border-gray-200 gap-2" style={{ gridTemplateColumns: `repeat(${SIZE}, 80px)`, gridTemplateRows: `repeat(${SIZE}, 80px)` }}>
+      <div
+        className="inline-grid bg-gray-100 p-2 rounded-md border border-gray-200 gap-2"
+        style={{
+          gridTemplateColumns: `repeat(${SIZE}, 80px)`,
+          gridTemplateRows: `repeat(${SIZE}, 80px)`,
+        }}
+      >
         {grid.map((row, r) =>
           row.map((v, c) => (
-            <div key={`${r}-${c}`} className={`w-[80px] h-[80px] rounded-md flex items-center justify-center font-bold text-xl text-gray-800 ${tileColor(v)}`}>
+            <div
+              key={`${r}-${c}`}
+              className={`w-[80px] h-[80px] rounded-md flex items-center justify-center font-bold text-xl text-gray-800 ${tileColor(v)}`}
+            >
               {v || ""}
             </div>
           ))

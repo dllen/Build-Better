@@ -7,16 +7,16 @@ graph TD
     B --> D[Cloudflare Workers]
     D --> E[工具处理逻辑]
     D --> F[数据存储]
-    
+
     subgraph "前端层"
         B
     end
-    
+
     subgraph "Cloudflare 服务层"
         C
         D
     end
-    
+
     subgraph "功能模块"
         E
         F
@@ -25,28 +25,28 @@ graph TD
 
 ## 2. 技术描述
 
-* **前端框架**: Remix\@2 + React\@18 + TypeScript
+- **前端框架**: Remix\@2 + React\@18 + TypeScript
 
-* **样式框架**: Tailwind CSS\@3
+- **样式框架**: Tailwind CSS\@3
 
-* **部署平台**: Cloudflare Pages (前端) + Cloudflare Workers (后端逻辑)
+- **部署平台**: Cloudflare Pages (前端) + Cloudflare Workers (后端逻辑)
 
-* **初始化工具**: create-remix\@latest (Cloudflare Pages 模板)
+- **初始化工具**: create-remix\@latest (Cloudflare Pages 模板)
 
-* **构建工具**: Vite (内置于 Remix)
+- **构建工具**: Vite (内置于 Remix)
 
-* **包管理器**: pnpm
+- **包管理器**: pnpm
 
 ## 3. 路由定义
 
-| 路由                    | 用途          |
-| --------------------- | ----------- |
+| 路由                  | 用途                   |
+| --------------------- | ---------------------- |
 | /                     | 首页，展示所有工具入口 |
-| /tools/api-debugger   | API调试工具页面   |
-| /tools/code-formatter | 代码格式化工具页面   |
-| /tools/qr-generator   | 二维码生成器页面    |
-| /settings             | 用户设置页面      |
-| /api/tools/\*         | 工具API接口路由   |
+| /tools/api-debugger   | API调试工具页面        |
+| /tools/code-formatter | 代码格式化工具页面     |
+| /tools/qr-generator   | 二维码生成器页面       |
+| /settings             | 用户设置页面           |
+| /api/tools/\*         | 工具API接口路由        |
 
 ## 4. API 定义
 
@@ -60,21 +60,21 @@ POST /api/tools/api-debugger
 
 请求参数：
 
-| 参数名     | 参数类型   | 是否必需 | 描述                              |
-| ------- | ------ | ---- | ------------------------------- |
-| method  | string | 是    | HTTP方法 (GET, POST, PUT, DELETE) |
-| url     | string | 是    | 请求URL                           |
-| headers | object | 否    | 请求头对象                           |
-| body    | string | 否    | 请求体                             |
+| 参数名  | 参数类型 | 是否必需 | 描述                              |
+| ------- | -------- | -------- | --------------------------------- |
+| method  | string   | 是       | HTTP方法 (GET, POST, PUT, DELETE) |
+| url     | string   | 是       | 请求URL                           |
+| headers | object   | 否       | 请求头对象                        |
+| body    | string   | 否       | 请求体                            |
 
 响应参数：
 
-| 参数名     | 参数类型   | 描述        |
-| ------- | ------ | --------- |
-| status  | number | 响应状态码     |
-| headers | object | 响应头对象     |
-| data    | any    | 响应数据      |
-| error   | string | 错误信息（如果有） |
+| 参数名  | 参数类型 | 描述               |
+| ------- | -------- | ------------------ |
+| status  | number   | 响应状态码         |
+| headers | object   | 响应头对象         |
+| data    | any      | 响应数据           |
+| error   | string   | 错误信息（如果有） |
 
 **代码格式化工具**
 
@@ -84,17 +84,17 @@ POST /api/tools/code-formatter
 
 请求参数：
 
-| 参数名      | 参数类型   | 是否必需 | 描述     |
-| -------- | ------ | ---- | ------ |
-| code     | string | 是    | 待格式化代码 |
-| language | string | 是    | 编程语言类型 |
+| 参数名   | 参数类型 | 是否必需 | 描述         |
+| -------- | -------- | -------- | ------------ |
+| code     | string   | 是       | 待格式化代码 |
+| language | string   | 是       | 编程语言类型 |
 
 响应参数：
 
-| 参数名           | 参数类型   | 描述        |
-| ------------- | ------ | --------- |
-| formattedCode | string | 格式化后的代码   |
-| error         | string | 错误信息（如果有） |
+| 参数名        | 参数类型 | 描述               |
+| ------------- | -------- | ------------------ |
+| formattedCode | string   | 格式化后的代码     |
+| error         | string   | 错误信息（如果有） |
 
 **二维码生成器**
 
@@ -104,18 +104,18 @@ POST /api/tools/qr-generator
 
 请求参数：
 
-| 参数名     | 参数类型   | 是否必需 | 描述               |
-| ------- | ------ | ---- | ---------------- |
-| content | string | 是    | 二维码内容            |
-| size    | number | 否    | 二维码尺寸（默认200）     |
-| color   | string | 否    | 二维码颜色（默认#000000） |
+| 参数名  | 参数类型 | 是否必需 | 描述                      |
+| ------- | -------- | -------- | ------------------------- |
+| content | string   | 是       | 二维码内容                |
+| size    | number   | 否       | 二维码尺寸（默认200）     |
+| color   | string   | 否       | 二维码颜色（默认#000000） |
 
 响应参数：
 
-| 参数名    | 参数类型   | 描述             |
-| ------ | ------ | -------------- |
-| qrCode | string | Base64格式的二维码图片 |
-| error  | string | 错误信息（如果有）      |
+| 参数名 | 参数类型 | 描述                   |
+| ------ | -------- | ---------------------- |
+| qrCode | string   | Base64格式的二维码图片 |
+| error  | string   | 错误信息（如果有）     |
 
 ## 5. 服务器架构
 
@@ -126,7 +126,7 @@ graph TD
     C --> D[工具服务层]
     D --> E[工具逻辑处理]
     E --> F[响应返回]
-    
+
     subgraph "Cloudflare Workers"
         B
         C
@@ -171,31 +171,31 @@ build-better/
 
 ### 8.1 代码规范
 
-* 使用 TypeScript 进行开发
+- 使用 TypeScript 进行开发
 
-* 遵循 ESLint 和 Prettier 配置
+- 遵循 ESLint 和 Prettier 配置
 
-* 组件采用函数式组件和 Hooks
+- 组件采用函数式组件和 Hooks
 
-* 使用语义化的 HTML 标签
+- 使用语义化的 HTML 标签
 
 ### 8.2 文件命名
 
-* 组件文件使用 PascalCase (如: ApiDebugger.tsx)
+- 组件文件使用 PascalCase (如: ApiDebugger.tsx)
 
-* 工具函数使用 camelCase (如: formatCode.ts)
+- 工具函数使用 camelCase (如: formatCode.ts)
 
-* 路由文件使用 kebab-case (如: api-debugger.tsx)
+- 路由文件使用 kebab-case (如: api-debugger.tsx)
 
 ### 8.3 性能优化
 
-* 使用 Remix 的 data loading 和 caching 机制
+- 使用 Remix 的 data loading 和 caching 机制
 
-* 实现组件级别的代码分割
+- 实现组件级别的代码分割
 
-* 优化图片和资源加载
+- 优化图片和资源加载
 
-* 使用 Cloudflare 的边缘缓存
+- 使用 Cloudflare 的边缘缓存
 
 ## 9. 部署配置
 
@@ -227,21 +227,20 @@ command = "npm run build"
 
 ### 10.1 监控指标
 
-* 页面加载时间
+- 页面加载时间
 
-* API响应时间
+- API响应时间
 
-* 错误率统计
+- 错误率统计
 
-* 用户使用频率
+- 用户使用频率
 
 ### 10.2 扩展点
 
-* 支持更多编程语言的代码格式化
+- 支持更多编程语言的代码格式化
 
-* 添加用户登录和个性化设置
+- 添加用户登录和个性化设置
 
-* 实现工具使用历史记录
+- 实现工具使用历史记录
 
-* 支持自定义工具开发
-
+- 支持自定义工具开发

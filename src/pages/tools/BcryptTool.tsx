@@ -39,10 +39,13 @@ export default function BcryptTool() {
 
   function copy(textToCopy: string) {
     if (!textToCopy) return;
-    navigator.clipboard.writeText(textToCopy).then(() => {
-      setCopied("ok");
-      setTimeout(() => setCopied(""), 1000);
-    }).catch(() => {});
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        setCopied("ok");
+        setTimeout(() => setCopied(""), 1000);
+      })
+      .catch(() => {});
   }
 
   return (
@@ -58,8 +61,20 @@ export default function BcryptTool() {
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">哈希生成</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <input className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2" placeholder="输入明文字符串" value={text} onChange={(e) => setText(e.target.value)} />
-            <input type="number" min={4} max={15} className="rounded-md border border-gray-300 px-3 py-2" value={rounds} onChange={(e) => setRounds(Number(e.target.value))} />
+            <input
+              className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2"
+              placeholder="输入明文字符串"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+            <input
+              type="number"
+              min={4}
+              max={15}
+              className="rounded-md border border-gray-300 px-3 py-2"
+              value={rounds}
+              onChange={(e) => setRounds(Number(e.target.value))}
+            />
           </div>
           <button
             className="inline-flex items-center gap-2 px-3 py-2 bg-gray-700 text-white rounded-md text-sm hover:bg-gray-800 disabled:opacity-50"
@@ -69,21 +84,36 @@ export default function BcryptTool() {
             生成哈希
           </button>
           <div className="flex items-center gap-2">
-            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all">{hashOut || "—"}</div>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(hashOut)} disabled={!hashOut}>
-              <ClipboardCopy className="h-4 w-4" /> 复制 {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all">
+              {hashOut || "—"}
+            </div>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => copy(hashOut)}
+              disabled={!hashOut}
+            >
+              <ClipboardCopy className="h-4 w-4" /> 复制{" "}
+              {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
             </button>
           </div>
-          <div className="text-xs text-gray-600">
-            轮次（cost）越高越安全但越慢。推荐 10-12。
-          </div>
+          <div className="text-xs text-gray-600">轮次（cost）越高越安全但越慢。推荐 10-12。</div>
         </div>
 
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">哈希比较</div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <input className="rounded-md border border-gray-300 px-3 py-2" placeholder="输入明文待比较" value={cmpText} onChange={(e) => setCmpText(e.target.value)} />
-            <input className="rounded-md border border-gray-300 px-3 py-2" placeholder="输入bcrypt哈希" value={cmpHash} onChange={(e) => setCmpHash(e.target.value)} />
+            <input
+              className="rounded-md border border-gray-300 px-3 py-2"
+              placeholder="输入明文待比较"
+              value={cmpText}
+              onChange={(e) => setCmpText(e.target.value)}
+            />
+            <input
+              className="rounded-md border border-gray-300 px-3 py-2"
+              placeholder="输入bcrypt哈希"
+              value={cmpHash}
+              onChange={(e) => setCmpHash(e.target.value)}
+            />
           </div>
           <button
             className="inline-flex items-center gap-2 px-3 py-2 bg-gray-700 text-white rounded-md text-sm hover:bg-gray-800 disabled:opacity-50"
@@ -92,8 +122,10 @@ export default function BcryptTool() {
           >
             比较
           </button>
-          <div className={`rounded-md border px-3 py-2 text-sm ${cmpResult === null ? "border-gray-200" : cmpResult ? "border-green-200 bg-green-50 text-green-700" : "border-red-200 bg-red-50 text-red-700"}`}>
-            {cmpResult === null ? "—" : (cmpResult ? "匹配" : "不匹配")}
+          <div
+            className={`rounded-md border px-3 py-2 text-sm ${cmpResult === null ? "border-gray-200" : cmpResult ? "border-green-200 bg-green-50 text-green-700" : "border-red-200 bg-red-50 text-red-700"}`}
+          >
+            {cmpResult === null ? "—" : cmpResult ? "匹配" : "不匹配"}
           </div>
         </div>
       </div>
@@ -101,10 +133,10 @@ export default function BcryptTool() {
       <div className="rounded-lg border border-gray-200 p-4 space-y-2 bg-white">
         <div className="font-medium">说明</div>
         <div className="text-sm text-gray-700">
-          Bcrypt 基于 Blowfish 密码，包含自适应成本参数（轮次）。本工具在浏览器中使用 bcryptjs 实现。
+          Bcrypt 基于 Blowfish 密码，包含自适应成本参数（轮次）。本工具在浏览器中使用 bcryptjs
+          实现。
         </div>
       </div>
     </div>
   );
 }
-

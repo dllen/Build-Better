@@ -19,6 +19,7 @@
 3. 构建并部署：`npm run pages:deploy`
 
 配置：
+
 - `wrangler.toml` 已设置 `pages_build_output_dir = "dist"`
 - Functions 目录：`functions/`
 
@@ -27,6 +28,7 @@
 仓库已包含工作流：`.github/workflows/cloudflare-pages.yml`
 
 在 GitHub 仓库 Secrets 中添加：
+
 - `CLOUDFLARE_API_TOKEN`（Pages 写入权限）
 - `CLOUDFLARE_ACCOUNT_ID`（你的 Cloudflare 账号 ID）
 

@@ -9,7 +9,7 @@ interface ProxyLocation {
 
 export default function NginxConfigGenerator() {
   const { t } = useTranslation();
-  
+
   // State
   const [domain, setDomain] = useState("example.com");
   const [port, setPort] = useState(80);
@@ -41,7 +41,7 @@ export default function NginxConfigGenerator() {
 
     // Main Server Block
     config += `server {
-    listen ${https ? '443 ssl' : port};
+    listen ${https ? "443 ssl" : port};
     server_name ${domain};
     
     root ${root};
@@ -82,7 +82,7 @@ export default function NginxConfigGenerator() {
     }
 
     // Custom Proxies
-    proxies.forEach(p => {
+    proxies.forEach((p) => {
       config += `
     location ${p.path} {
         proxy_pass ${p.proxyPass};
@@ -127,25 +127,30 @@ export default function NginxConfigGenerator() {
           <Server className="h-6 w-6" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t("tools.nginx-config.title", "Nginx Config Generator")}</h1>
-          <p className="text-gray-500">{t("tools.nginx-config.subtitle", "Generate Nginx server block configurations easily")}</p>
+          <h1 className="text-2xl font-bold text-gray-900">
+            {t("tools.nginx-config.title", "Nginx Config Generator")}
+          </h1>
+          <p className="text-gray-500">
+            {t("tools.nginx-config.subtitle", "Generate Nginx server block configurations easily")}
+          </p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Configuration Form */}
         <div className="space-y-6">
-          
           {/* Basic Settings */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
             <h2 className="text-lg font-semibold flex items-center gap-2">
               <Globe className="h-5 w-5 text-blue-500" />
               {t("tools.nginx-config.basic_settings", "Basic Settings")}
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.nginx-config.domain", "Domain Name")}</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  {t("tools.nginx-config.domain", "Domain Name")}
+                </label>
                 <input
                   type="text"
                   value={domain}
@@ -154,7 +159,9 @@ export default function NginxConfigGenerator() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.nginx-config.port", "Listen Port")}</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  {t("tools.nginx-config.port", "Listen Port")}
+                </label>
                 <input
                   type="number"
                   value={port}
@@ -164,9 +171,11 @@ export default function NginxConfigGenerator() {
                 />
               </div>
             </div>
-            
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.nginx-config.root", "Document Root")}</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                {t("tools.nginx-config.root", "Document Root")}
+              </label>
               <input
                 type="text"
                 value={root}
@@ -175,14 +184,16 @@ export default function NginxConfigGenerator() {
               />
             </div>
 
-             <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-700">{t("tools.nginx-config.client_max_body_size", "Max Body Size (MB)")}</span>
-                <input
-                  type="number"
-                  value={clientMaxBodySize}
-                  onChange={(e) => setClientMaxBodySize(Number(e.target.value))}
-                  className="w-24 rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-green-500 outline-none"
-                />
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-gray-700">
+                {t("tools.nginx-config.client_max_body_size", "Max Body Size (MB)")}
+              </span>
+              <input
+                type="number"
+                value={clientMaxBodySize}
+                onChange={(e) => setClientMaxBodySize(Number(e.target.value))}
+                className="w-24 rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-green-500 outline-none"
+              />
             </div>
           </div>
 
@@ -192,7 +203,7 @@ export default function NginxConfigGenerator() {
               <Shield className="h-5 w-5 text-green-500" />
               HTTPS & SSL
             </h2>
-            
+
             <div className="flex items-center gap-4">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
@@ -201,9 +212,11 @@ export default function NginxConfigGenerator() {
                   onChange={(e) => setHttps(e.target.checked)}
                   className="w-4 h-4 text-green-600 rounded focus:ring-green-500"
                 />
-                <span className="text-sm text-gray-700">{t("tools.nginx-config.enable_https", "Enable HTTPS")}</span>
+                <span className="text-sm text-gray-700">
+                  {t("tools.nginx-config.enable_https", "Enable HTTPS")}
+                </span>
               </label>
-              
+
               {https && (
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
@@ -212,7 +225,9 @@ export default function NginxConfigGenerator() {
                     onChange={(e) => setRedirectHttp(e.target.checked)}
                     className="w-4 h-4 text-green-600 rounded focus:ring-green-500"
                   />
-                  <span className="text-sm text-gray-700">{t("tools.nginx-config.force_https", "Force HTTPS Redirect")}</span>
+                  <span className="text-sm text-gray-700">
+                    {t("tools.nginx-config.force_https", "Force HTTPS Redirect")}
+                  </span>
                 </label>
               )}
             </div>
@@ -220,7 +235,9 @@ export default function NginxConfigGenerator() {
             {https && (
               <div className="grid grid-cols-1 gap-4 pt-2">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.nginx-config.ssl_cert", "SSL Certificate Path")}</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    {t("tools.nginx-config.ssl_cert", "SSL Certificate Path")}
+                  </label>
                   <input
                     type="text"
                     value={sslCert}
@@ -229,7 +246,9 @@ export default function NginxConfigGenerator() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.nginx-config.ssl_key", "SSL Key Path")}</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    {t("tools.nginx-config.ssl_key", "SSL Key Path")}
+                  </label>
                   <input
                     type="text"
                     value={sslKey}
@@ -257,7 +276,9 @@ export default function NginxConfigGenerator() {
             </div>
 
             {proxies.length === 0 && (
-              <p className="text-sm text-gray-500 italic">{t("tools.nginx-config.no_proxies", "No proxy locations added.")}</p>
+              <p className="text-sm text-gray-500 italic">
+                {t("tools.nginx-config.no_proxies", "No proxy locations added.")}
+              </p>
             )}
 
             <div className="space-y-3">
@@ -268,14 +289,14 @@ export default function NginxConfigGenerator() {
                       type="text"
                       placeholder="Path (e.g. /api)"
                       value={p.path}
-                      onChange={(e) => updateProxy(i, 'path', e.target.value)}
+                      onChange={(e) => updateProxy(i, "path", e.target.value)}
                       className="w-full rounded border border-gray-300 px-2 py-1 text-sm"
                     />
                     <input
                       type="text"
                       placeholder="Proxy Pass (e.g. http://localhost:3000)"
                       value={p.proxyPass}
-                      onChange={(e) => updateProxy(i, 'proxyPass', e.target.value)}
+                      onChange={(e) => updateProxy(i, "proxyPass", e.target.value)}
                       className="w-full rounded border border-gray-300 px-2 py-1 text-sm"
                     />
                   </div>
@@ -291,28 +312,31 @@ export default function NginxConfigGenerator() {
           </div>
 
           {/* Advanced */}
-           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
             <h2 className="text-lg font-semibold flex items-center gap-2">
               <Settings className="h-5 w-5 text-gray-500" />
               {t("tools.nginx-config.advanced", "Advanced")}
             </h2>
             <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={gzip}
-                  onChange={(e) => setGzip(e.target.checked)}
-                  className="w-4 h-4 text-green-600 rounded focus:ring-green-500"
-                />
-                <span className="text-sm text-gray-700">{t("tools.nginx-config.enable_gzip", "Enable Gzip Compression")}</span>
-              </label>
-           </div>
-
+              <input
+                type="checkbox"
+                checked={gzip}
+                onChange={(e) => setGzip(e.target.checked)}
+                className="w-4 h-4 text-green-600 rounded focus:ring-green-500"
+              />
+              <span className="text-sm text-gray-700">
+                {t("tools.nginx-config.enable_gzip", "Enable Gzip Compression")}
+              </span>
+            </label>
+          </div>
         </div>
 
         {/* Output Area */}
         <div className="lg:sticky lg:top-6 h-fit space-y-4">
           <div className="flex justify-between items-center">
-            <h3 className="font-semibold text-gray-700">{t("tools.nginx-config.generated_config", "Generated Configuration")}</h3>
+            <h3 className="font-semibold text-gray-700">
+              {t("tools.nginx-config.generated_config", "Generated Configuration")}
+            </h3>
             <button
               onClick={handleCopy}
               className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors shadow-sm"
@@ -321,7 +345,7 @@ export default function NginxConfigGenerator() {
               {copied ? "Copied!" : "Copy Config"}
             </button>
           </div>
-          
+
           <div className="relative group">
             <pre className="bg-gray-900 text-gray-100 p-6 rounded-xl overflow-x-auto font-mono text-sm leading-relaxed min-h-[500px] shadow-lg">
               {generatedConfig}
@@ -335,7 +359,18 @@ export default function NginxConfigGenerator() {
 
 function CheckCircle({ className }: { className?: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
       <polyline points="22 4 12 14.01 9 11.01"></polyline>
     </svg>

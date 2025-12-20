@@ -18,8 +18,8 @@ export default function I18nManager() {
   useEffect(() => {
     // Ensure we have the full language code (e.g., 'en', 'zh-CN')
     const lang = selectedLang;
-    const resources = i18n.getResourceBundle(lang, 'translation');
-    
+    const resources = i18n.getResourceBundle(lang, "translation");
+
     if (resources) {
       setJsonContent(JSON.stringify(resources, null, 2));
     } else {
@@ -53,18 +53,18 @@ export default function I18nManager() {
   };
 
   const languages = [
-    { code: 'en', name: 'English' },
-    { code: 'zh-CN', name: '简体中文' },
-    { code: 'zh-TW', name: '繁體中文' },
+    { code: "en", name: "English" },
+    { code: "zh-CN", name: "简体中文" },
+    { code: "zh-TW", name: "繁體中文" },
   ];
 
   return (
     <div className="space-y-6">
-      <SEO 
-        title="Translation Manager" 
-        description="Manage and edit translation resources for the application." 
+      <SEO
+        title="Translation Manager"
+        description="Manage and edit translation resources for the application."
       />
-      
+
       <div className="flex items-center gap-2">
         <div className="inline-flex p-2 rounded-lg bg-indigo-100 text-indigo-600">
           <Globe className="h-5 w-5" />
@@ -76,24 +76,27 @@ export default function I18nManager() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="flex items-center gap-4">
             <label className="font-medium text-gray-700">Select Language:</label>
-            <select 
-              value={selectedLang} 
+            <select
+              value={selectedLang}
               onChange={(e) => setSelectedLang(e.target.value)}
               className="rounded-md border border-gray-300 px-3 py-2 bg-white"
             >
-              {languages.map(lang => (
-                <option key={lang.code} value={lang.code}>{lang.name} ({lang.code})</option>
+              {languages.map((lang) => (
+                <option key={lang.code} value={lang.code}>
+                  {lang.name} ({lang.code})
+                </option>
               ))}
             </select>
           </div>
-          
+
           <div className="flex items-center gap-2">
-            <button 
+            <button
               onClick={handleCopy}
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors
-                ${copied 
-                  ? "bg-green-100 text-green-700 border border-green-200" 
-                  : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
+                ${
+                  copied
+                    ? "bg-green-100 text-green-700 border border-green-200"
+                    : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
                 }`}
             >
               {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
@@ -122,7 +125,13 @@ export default function I18nManager() {
             <li>Select the language you want to edit.</li>
             <li>Modify the JSON content in the editor above.</li>
             <li>Click "Copy JSON" to copy the updated content.</li>
-            <li>Paste the content into the corresponding file in <code className="bg-blue-100 px-1 rounded">src/locales/&#123;lang&#125;/translation.json</code>.</li>
+            <li>
+              Paste the content into the corresponding file in{" "}
+              <code className="bg-blue-100 px-1 rounded">
+                src/locales/&#123;lang&#125;/translation.json
+              </code>
+              .
+            </li>
             <li>Commit the changes to the codebase.</li>
           </ol>
         </div>

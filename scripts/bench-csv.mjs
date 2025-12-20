@@ -20,7 +20,9 @@ async function main() {
   const end = process.hrtime.bigint();
   const ms = Number(end - start) / 1e6;
   const rps = count / (ms / 1000);
-  console.log(JSON.stringify({ rows: count, ms: Number(ms.toFixed(2)), rps: Number(rps.toFixed(0)) }));
+  console.log(
+    JSON.stringify({ rows: count, ms: Number(ms.toFixed(2)), rps: Number(rps.toFixed(0)) })
+  );
 }
 
 main();

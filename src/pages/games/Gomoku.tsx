@@ -49,85 +49,95 @@ export default function Gomoku() {
     return false;
   }, []);
 
-  const getAiMove = useCallback((board: BoardState) => {
-    // 1. Check if AI can win immediately
-    for (let r = 0; r < BOARD_SIZE; r++) {
-      for (let c = 0; c < BOARD_SIZE; c++) {
-        if (board[r][c] === EMPTY) {
-          board[r][c] = WHITE;
-          if (checkWin(board, r, c, WHITE)) {
+  const getAiMove = useCallback(
+    (board: BoardState) => {
+      // 1. Check if AI can win immediately
+      for (let r = 0; r < BOARD_SIZE; r++) {
+        for (let c = 0; c < BOARD_SIZE; c++) {
+          if (board[r][c] === EMPTY) {
+            board[r][c] = WHITE;
+            if (checkWin(board, r, c, WHITE)) {
+              board[r][c] = EMPTY;
+              return { r, c };
+            }
             board[r][c] = EMPTY;
-            return { r, c };
           }
-          board[r][c] = EMPTY;
         }
       }
-    }
 
-    // 2. Check if opponent can win immediately and block
-    for (let r = 0; r < BOARD_SIZE; r++) {
-      for (let c = 0; c < BOARD_SIZE; c++) {
-        if (board[r][c] === EMPTY) {
-          board[r][c] = BLACK;
-          if (checkWin(board, r, c, BLACK)) {
+      // 2. Check if opponent can win immediately and block
+      for (let r = 0; r < BOARD_SIZE; r++) {
+        for (let c = 0; c < BOARD_SIZE; c++) {
+          if (board[r][c] === EMPTY) {
+            board[r][c] = BLACK;
+            if (checkWin(board, r, c, BLACK)) {
+              board[r][c] = EMPTY;
+              return { r, c };
+            }
             board[r][c] = EMPTY;
-            return { r, c };
           }
-          board[r][c] = EMPTY;
         }
       }
-    }
 
-    // 3. Otherwise pick a random valid move near center or existing pieces
-    // Better: Pick move that maximizes potential (e.g. 3 in a row)
-    const candidates: { r: number; c: number; score: number }[] = [];
-    for (let r = 0; r < BOARD_SIZE; r++) {
-      for (let c = 0; c < BOARD_SIZE; c++) {
-        if (board[r][c] === EMPTY) {
-          // Score based on proximity to center and other pieces
-          let score = 0;
-          const distToCenter = Math.abs(r - 7) + Math.abs(c - 7);
-          score += (30 - distToCenter); // Prefer center
+      // 3. Otherwise pick a random valid move near center or existing pieces
+      // Better: Pick move that maximizes potential (e.g. 3 in a row)
+      const candidates: { r: number; c: number; score: number }[] = [];
+      for (let r = 0; r < BOARD_SIZE; r++) {
+        for (let c = 0; c < BOARD_SIZE; c++) {
+          if (board[r][c] === EMPTY) {
+            // Score based on proximity to center and other pieces
+            let score = 0;
+            const distToCenter = Math.abs(r - 7) + Math.abs(c - 7);
+            score += 30 - distToCenter; // Prefer center
 
-          // Check neighbors
-          for (let dr = -1; dr <= 1; dr++) {
-            for (let dc = -1; dc <= 1; dc++) {
-              if (dr === 0 && dc === 0) continue;
-              const nr = r + dr;
-              const nc = c + dc;
-              if (nr >= 0 && nr < BOARD_SIZE && nc >= 0 && nc < BOARD_SIZE && board[nr][nc] !== EMPTY) {
-                score += 10;
+            // Check neighbors
+            for (let dr = -1; dr <= 1; dr++) {
+              for (let dc = -1; dc <= 1; dc++) {
+                if (dr === 0 && dc === 0) continue;
+                const nr = r + dr;
+                const nc = c + dc;
+                if (
+                  nr >= 0 &&
+                  nr < BOARD_SIZE &&
+                  nc >= 0 &&
+                  nc < BOARD_SIZE &&
+                  board[nr][nc] !== EMPTY
+                ) {
+                  score += 10;
+                }
               }
             }
+            candidates.push({ r, c, score });
           }
-          candidates.push({ r, c, score });
         }
       }
-    }
 
-    candidates.sort((a, b) => b.score - a.score);
-    // Pick one of the top 3 best moves to add variety
-    const top = candidates.slice(0, 3);
-    return top[Math.floor(Math.random() * top.length)];
-  }, [checkWin]);
+      candidates.sort((a, b) => b.score - a.score);
+      // Pick one of the top 3 best moves to add variety
+      const top = candidates.slice(0, 3);
+      return top[Math.floor(Math.random() * top.length)];
+    },
+    [checkWin]
+  );
 
-  
+  const makeMove = useCallback(
+    (r: number, c: number) => {
+      if (board[r][c] !== EMPTY || winner) return;
 
-  const makeMove = useCallback((r: number, c: number) => {
-    if (board[r][c] !== EMPTY || winner) return;
+      const newBoard = board.map((row) => [...row]);
+      newBoard[r][c] = currentPlayer;
+      setBoard(newBoard);
 
-    const newBoard = board.map((row) => [...row]);
-    newBoard[r][c] = currentPlayer;
-    setBoard(newBoard);
-
-    if (checkWin(newBoard, r, c, currentPlayer)) {
-      setWinner(currentPlayer);
-    } else if (newBoard.every((row) => row.every((cell) => cell !== EMPTY))) {
-      setWinner("DRAW");
-    } else {
-      setCurrentPlayer(currentPlayer === BLACK ? WHITE : BLACK);
-    }
-  }, [board, winner, currentPlayer, checkWin]);
+      if (checkWin(newBoard, r, c, currentPlayer)) {
+        setWinner(currentPlayer);
+      } else if (newBoard.every((row) => row.every((cell) => cell !== EMPTY))) {
+        setWinner("DRAW");
+      } else {
+        setCurrentPlayer(currentPlayer === BLACK ? WHITE : BLACK);
+      }
+    },
+    [board, winner, currentPlayer, checkWin]
+  );
 
   useEffect(() => {
     if (currentPlayer === WHITE && !winner) {
@@ -163,11 +173,15 @@ export default function Gomoku() {
       </div>
 
       <div className="flex items-center gap-8 bg-white p-4 rounded-xl shadow-sm border border-gray-200">
-        <div className={`flex items-center gap-2 ${currentPlayer === BLACK ? "font-bold text-blue-600" : "text-gray-500"}`}>
+        <div
+          className={`flex items-center gap-2 ${currentPlayer === BLACK ? "font-bold text-blue-600" : "text-gray-500"}`}
+        >
           <User className="w-5 h-5" /> You (Black)
         </div>
         <div className="text-gray-300">vs</div>
-        <div className={`flex items-center gap-2 ${currentPlayer === WHITE ? "font-bold text-red-600" : "text-gray-500"}`}>
+        <div
+          className={`flex items-center gap-2 ${currentPlayer === WHITE ? "font-bold text-red-600" : "text-gray-500"}`}
+        >
           <Cpu className="w-5 h-5" /> AI (White) {isAiThinking && "..."}
         </div>
       </div>
@@ -192,7 +206,7 @@ export default function Gomoku() {
                   <div className="w-full h-[1px] bg-gray-700/50 absolute" />
                   <div className="h-full w-[1px] bg-gray-700/50 absolute" />
                 </div>
-                
+
                 {/* Piece */}
                 {cell !== EMPTY && (
                   <div
@@ -203,7 +217,7 @@ export default function Gomoku() {
                     }`}
                   />
                 )}
-                
+
                 {/* Hover effect */}
                 {cell === EMPTY && !winner && currentPlayer === BLACK && (
                   <div className="w-[10px] h-[10px] rounded-full bg-black/10 opacity-0 hover:opacity-100 transition-opacity z-10" />

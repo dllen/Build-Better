@@ -20,7 +20,9 @@ interface ApiResponse {
 export default function ApiDebugger() {
   const [method, setMethod] = useState<Method>("GET");
   const [url, setUrl] = useState("https://jsonplaceholder.typicode.com/todos/1");
-  const [headers, setHeaders] = useState<Header[]>([{ key: "Content-Type", value: "application/json" }]);
+  const [headers, setHeaders] = useState<Header[]>([
+    { key: "Content-Type", value: "application/json" },
+  ]);
   const [body, setBody] = useState("");
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<ApiResponse | null>(null);
@@ -48,10 +50,13 @@ export default function ApiDebugger() {
     const startTime = performance.now();
 
     try {
-      const headerObj = headers.reduce((acc, curr) => {
-        if (curr.key) acc[curr.key] = curr.value;
-        return acc;
-      }, {} as Record<string, string>);
+      const headerObj = headers.reduce(
+        (acc, curr) => {
+          if (curr.key) acc[curr.key] = curr.value;
+          return acc;
+        },
+        {} as Record<string, string>
+      );
 
       // Call our proxy function
       const res = await fetch("/api/tools/api-debugger", {
@@ -184,26 +189,29 @@ export default function ApiDebugger() {
 
       {/* Response Area */}
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
-          {error}
-        </div>
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">{error}</div>
       )}
 
       {response && (
         <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
           <div className="flex items-center justify-between border-b border-gray-200 pb-4">
             <div className="flex items-center gap-4">
-              <span className={cn(
-                "px-3 py-1 rounded-full text-sm font-medium",
-                response.status >= 200 && response.status < 300 ? "bg-green-100 text-green-700" :
-                response.status >= 400 ? "bg-red-100 text-red-700" : "bg-yellow-100 text-yellow-700"
-              )}>
+              <span
+                className={cn(
+                  "px-3 py-1 rounded-full text-sm font-medium",
+                  response.status >= 200 && response.status < 300
+                    ? "bg-green-100 text-green-700"
+                    : response.status >= 400
+                      ? "bg-red-100 text-red-700"
+                      : "bg-yellow-100 text-yellow-700"
+                )}
+              >
                 {response.status} {response.statusText}
               </span>
               <span className="text-gray-500 text-sm">{response.time}ms</span>
             </div>
           </div>
-          
+
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Response Body</h3>
             <pre className="bg-gray-50 p-4 rounded-lg overflow-x-auto text-sm font-mono border border-gray-200">

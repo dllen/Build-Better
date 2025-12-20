@@ -41,12 +41,23 @@ function maskToCidr(mask: string): number | null {
 
 export default function NetworkTools() {
   const [urlInput, setUrlInput] = useState("");
-  const [urlParsed, setUrlParsed] = useState<{ protocol: string; host: string; port: string; pathname: string; searchParams: Array<{ k: string; v: string }>; hash: string } | null>(null);
+  const [urlParsed, setUrlParsed] = useState<{
+    protocol: string;
+    host: string;
+    port: string;
+    pathname: string;
+    searchParams: Array<{ k: string; v: string }>;
+    hash: string;
+  } | null>(null);
   const [urlBuilt, setUrlBuilt] = useState("");
 
   useEffect(() => {
     try {
-      if (!urlInput) { setUrlParsed(null); setUrlBuilt(""); return; }
+      if (!urlInput) {
+        setUrlParsed(null);
+        setUrlBuilt("");
+        return;
+      }
       const u = new URL(urlInput);
       const params: Array<{ k: string; v: string }> = [];
       u.searchParams.forEach((v, k) => params.push({ k, v }));
@@ -68,7 +79,12 @@ export default function NetworkTools() {
   const [latencyUrl, setLatencyUrl] = useState("https://jsonplaceholder.typicode.com/todos/1");
   const [latencyCount, setLatencyCount] = useState(5);
   const [latencyRunning, setLatencyRunning] = useState(false);
-  const [latencyResult, setLatencyResult] = useState<{ min: number; max: number; avg: number; codes: Record<string, number> } | null>(null);
+  const [latencyResult, setLatencyResult] = useState<{
+    min: number;
+    max: number;
+    avg: number;
+    codes: Record<string, number>;
+  } | null>(null);
 
   async function runLatency() {
     if (!latencyUrl) return;
@@ -104,19 +120,36 @@ export default function NetworkTools() {
   const [ipInput, setIpInput] = useState("192.168.1.10");
   const [cidrInput, setCidrInput] = useState(24);
   const [maskInput, setMaskInput] = useState("");
-  const [cidrOut, setCidrOut] = useState<{ network: string; broadcast: string; firstHost: string; lastHost: string; hosts: number; cidr: number; mask: string } | null>(null);
+  const [cidrOut, setCidrOut] = useState<{
+    network: string;
+    broadcast: string;
+    firstHost: string;
+    lastHost: string;
+    hosts: number;
+    cidr: number;
+    mask: string;
+  } | null>(null);
 
   useEffect(() => {
     const ipn = ipToInt(ipInput);
-    if (ipn == null) { setCidrOut(null); return; }
+    if (ipn == null) {
+      setCidrOut(null);
+      return;
+    }
     let cidr = cidrInput;
     if (maskInput) {
       const c = maskToCidr(maskInput);
-      if (c == null) { setCidrOut(null); return; }
+      if (c == null) {
+        setCidrOut(null);
+        return;
+      }
       cidr = c;
     }
     const mask = cidrMask(cidr);
-    if (mask == null) { setCidrOut(null); return; }
+    if (mask == null) {
+      setCidrOut(null);
+      return;
+    }
     const net = (ipn & mask) >>> 0;
     const bcast = (net | (~mask >>> 0)) >>> 0;
     let hosts = 0;
@@ -149,14 +182,27 @@ export default function NetworkTools() {
 
   const [ua, setUa] = useState("");
   const [ipInfo, setIpInfo] = useState("");
-  const [conn, setConn] = useState<{ type?: string; effectiveType?: string; downlink?: number; rtt?: number } | null>(null);
+  const [conn, setConn] = useState<{
+    type?: string;
+    effectiveType?: string;
+    downlink?: number;
+    rtt?: number;
+  } | null>(null);
 
   useEffect(() => {
     setUa(navigator.userAgent);
-    const anyNav = navigator as Navigator & { connection?: { type?: string; effectiveType?: string; downlink?: number; rtt?: number }; mozConnection?: { type?: string; effectiveType?: string; downlink?: number; rtt?: number }; webkitConnection?: { type?: string; effectiveType?: string; downlink?: number; rtt?: number } };
+    const anyNav = navigator as Navigator & {
+      connection?: { type?: string; effectiveType?: string; downlink?: number; rtt?: number };
+      mozConnection?: { type?: string; effectiveType?: string; downlink?: number; rtt?: number };
+      webkitConnection?: { type?: string; effectiveType?: string; downlink?: number; rtt?: number };
+    };
     const c = anyNav.connection || anyNav.mozConnection || anyNav.webkitConnection;
-    if (c) setConn({ type: c.type, effectiveType: c.effectiveType, downlink: c.downlink, rtt: c.rtt });
-    fetch("https://api.ipify.org?format=json").then((r) => r.json()).then((j) => setIpInfo(j.ip)).catch(() => {});
+    if (c)
+      setConn({ type: c.type, effectiveType: c.effectiveType, downlink: c.downlink, rtt: c.rtt });
+    fetch("https://api.ipify.org?format=json")
+      .then((r) => r.json())
+      .then((j) => setIpInfo(j.ip))
+      .catch(() => {});
   }, []);
 
   function copy(text: string) {
@@ -198,9 +244,13 @@ export default function NetworkTools() {
               </div>
               <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
                 <div className="text-gray-500 mb-1">query:</div>
-                {urlParsed.searchParams.length ? urlParsed.searchParams.map((p, i) => (
-                  <div key={i} className="font-mono">{p.k}={p.v}</div>
-                )) : "—"}
+                {urlParsed.searchParams.length
+                  ? urlParsed.searchParams.map((p, i) => (
+                      <div key={i} className="font-mono">
+                        {p.k}={p.v}
+                      </div>
+                    ))
+                  : "—"}
               </div>
             </div>
           ) : (
@@ -208,7 +258,11 @@ export default function NetworkTools() {
           )}
           <div className="flex items-center gap-2">
             <div className="flex-1 font-mono text-sm break-all">{urlBuilt || "—"}</div>
-            <button className="inline-flex items-center gap-2 px-3 py-2 bg-cyan-600 text-white rounded-md text-sm hover:bg-cyan-700 disabled:opacity-50" disabled={!urlBuilt} onClick={() => copy(urlBuilt)}>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 bg-cyan-600 text-white rounded-md text-sm hover:bg-cyan-700 disabled:opacity-50"
+              disabled={!urlBuilt}
+              onClick={() => copy(urlBuilt)}
+            >
               <ClipboardCopy className="h-4 w-4" /> Copy
             </button>
           </div>
@@ -217,8 +271,19 @@ export default function NetworkTools() {
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">HTTP 延迟测试</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <input className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2" value={latencyUrl} onChange={(e) => setLatencyUrl(e.target.value)} />
-            <input type="number" min={1} max={20} className="rounded-md border border-gray-300 px-3 py-2" value={latencyCount} onChange={(e) => setLatencyCount(Number(e.target.value))} />
+            <input
+              className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2"
+              value={latencyUrl}
+              onChange={(e) => setLatencyUrl(e.target.value)}
+            />
+            <input
+              type="number"
+              min={1}
+              max={20}
+              className="rounded-md border border-gray-300 px-3 py-2"
+              value={latencyCount}
+              onChange={(e) => setLatencyCount(Number(e.target.value))}
+            />
           </div>
           <button
             className="inline-flex items-center gap-2 px-3 py-2 bg-cyan-600 text-white rounded-md text-sm hover:bg-cyan-700 disabled:opacity-50"
@@ -228,15 +293,25 @@ export default function NetworkTools() {
             <Activity className="h-4 w-4" /> Run
           </button>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">min: {latencyResult?.min ?? "—"} ms</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">avg: {latencyResult?.avg ?? "—"} ms</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">max: {latencyResult?.max ?? "—"} ms</div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              min: {latencyResult?.min ?? "—"} ms
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              avg: {latencyResult?.avg ?? "—"} ms
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              max: {latencyResult?.max ?? "—"} ms
+            </div>
           </div>
           <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
             <div className="text-gray-500 mb-1">状态码统计</div>
-            {codesList.length ? codesList.map(([code, cnt]) => (
-              <div key={code} className="font-mono">{code}: {cnt}</div>
-            )) : "—"}
+            {codesList.length
+              ? codesList.map(([code, cnt]) => (
+                  <div key={code} className="font-mono">
+                    {code}: {cnt}
+                  </div>
+                ))
+              : "—"}
           </div>
         </div>
       </div>
@@ -245,18 +320,48 @@ export default function NetworkTools() {
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">IPv4 CIDR 计算</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <input className="rounded-md border border-gray-300 px-3 py-2" placeholder="IP，如 192.168.1.10" value={ipInput} onChange={(e) => setIpInput(e.target.value)} />
-            <input type="number" min={0} max={32} className="rounded-md border border-gray-300 px-3 py-2" placeholder="CIDR" value={cidrInput} onChange={(e) => setCidrInput(Number(e.target.value))} />
-            <input className="rounded-md border border-gray-300 px-3 py-2" placeholder="子网掩码(可选)" value={maskInput} onChange={(e) => setMaskInput(e.target.value)} />
+            <input
+              className="rounded-md border border-gray-300 px-3 py-2"
+              placeholder="IP，如 192.168.1.10"
+              value={ipInput}
+              onChange={(e) => setIpInput(e.target.value)}
+            />
+            <input
+              type="number"
+              min={0}
+              max={32}
+              className="rounded-md border border-gray-300 px-3 py-2"
+              placeholder="CIDR"
+              value={cidrInput}
+              onChange={(e) => setCidrInput(Number(e.target.value))}
+            />
+            <input
+              className="rounded-md border border-gray-300 px-3 py-2"
+              placeholder="子网掩码(可选)"
+              value={maskInput}
+              onChange={(e) => setMaskInput(e.target.value)}
+            />
           </div>
           {cidrOut ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-              <div className="rounded-md border border-gray-200 px-3 py-2">网络地址: {cidrOut.network}</div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">广播地址: {cidrOut.broadcast}</div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">首个主机: {cidrOut.firstHost}</div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">最后主机: {cidrOut.lastHost}</div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">掩码: {cidrOut.mask} /{cidrOut.cidr}</div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">可用主机数: {cidrOut.hosts}</div>
+              <div className="rounded-md border border-gray-200 px-3 py-2">
+                网络地址: {cidrOut.network}
+              </div>
+              <div className="rounded-md border border-gray-200 px-3 py-2">
+                广播地址: {cidrOut.broadcast}
+              </div>
+              <div className="rounded-md border border-gray-200 px-3 py-2">
+                首个主机: {cidrOut.firstHost}
+              </div>
+              <div className="rounded-md border border-gray-200 px-3 py-2">
+                最后主机: {cidrOut.lastHost}
+              </div>
+              <div className="rounded-md border border-gray-200 px-3 py-2">
+                掩码: {cidrOut.mask} /{cidrOut.cidr}
+              </div>
+              <div className="rounded-md border border-gray-200 px-3 py-2">
+                可用主机数: {cidrOut.hosts}
+              </div>
             </div>
           ) : (
             <div className="text-sm text-red-600">输入无效</div>
@@ -268,13 +373,25 @@ export default function NetworkTools() {
             <Server className="h-5 w-5 text-gray-600" />
             <div className="font-medium">客户端网络信息</div>
           </div>
-          <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">Public IP: {ipInfo || "—"}</div>
-          <div className="rounded-md border border-gray-200 px-3 py-2 text-sm break-all">User-Agent: {ua || "—"}</div>
+          <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            Public IP: {ipInfo || "—"}
+          </div>
+          <div className="rounded-md border border-gray-200 px-3 py-2 text-sm break-all">
+            User-Agent: {ua || "—"}
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-            <div className="rounded-md border border-gray-200 px-3 py-2">类型: {conn?.type || "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">有效类型: {conn?.effectiveType || "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">下行: {conn?.downlink ?? "—"} Mbps</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">RTT: {conn?.rtt ?? "—"} ms</div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              类型: {conn?.type || "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              有效类型: {conn?.effectiveType || "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              下行: {conn?.downlink ?? "—"} Mbps
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              RTT: {conn?.rtt ?? "—"} ms
+            </div>
           </div>
         </div>
       </div>

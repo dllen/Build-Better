@@ -3,7 +3,12 @@ import { Box, ClipboardCopy, Check } from "lucide-react";
 
 type Category = "length" | "weight" | "temperature" | "area" | "storage";
 type UnitDef = { key: string; label: string; toBase: number };
-type TempDef = { key: string; label: string; toC: (v: number) => number; fromC: (c: number) => number };
+type TempDef = {
+  key: string;
+  label: string;
+  toC: (v: number) => number;
+  fromC: (c: number) => number;
+};
 
 const lengthUnits: UnitDef[] = [
   { key: "km", label: "Kilometer (km)", toBase: 1000 },
@@ -39,7 +44,12 @@ const areaUnits: UnitDef[] = [
 
 const tempUnits: TempDef[] = [
   { key: "C", label: "Celsius (°C)", toC: (v) => v, fromC: (c) => c },
-  { key: "F", label: "Fahrenheit (°F)", toC: (v) => (v - 32) * 5 / 9, fromC: (c) => c * 9 / 5 + 32 },
+  {
+    key: "F",
+    label: "Fahrenheit (°F)",
+    toC: (v) => ((v - 32) * 5) / 9,
+    fromC: (c) => (c * 9) / 5 + 32,
+  },
   { key: "K", label: "Kelvin (K)", toC: (v) => v - 273.15, fromC: (c) => c + 273.15 },
 ];
 
@@ -102,10 +112,13 @@ export default function UnitConverter() {
 
   function copy(textToCopy: string) {
     if (!textToCopy) return;
-    navigator.clipboard.writeText(textToCopy).then(() => {
-      setCopied("ok");
-      setTimeout(() => setCopied(""), 1000);
-    }).catch(() => {});
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        setCopied("ok");
+        setTimeout(() => setCopied(""), 1000);
+      })
+      .catch(() => {});
   }
 
   return (
@@ -120,7 +133,11 @@ export default function UnitConverter() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="space-y-3 bg-white rounded-lg border border-gray-200 p-4">
           <div className="font-medium">类别</div>
-          <select className="rounded-md border border-gray-300 px-3 py-2" value={category} onChange={(e) => setCategory(e.target.value as Category)}>
+          <select
+            className="rounded-md border border-gray-300 px-3 py-2"
+            value={category}
+            onChange={(e) => setCategory(e.target.value as Category)}
+          >
             <option value="length">长度</option>
             <option value="weight">重量</option>
             <option value="temperature">温度</option>
@@ -131,22 +148,50 @@ export default function UnitConverter() {
         <div className="space-y-3 bg-white rounded-lg border border-gray-200 p-4">
           <div className="font-medium">输入</div>
           {category === "temperature" ? (
-            <select className="rounded-md border border-gray-300 px-3 py-2" value={unit} onChange={(e) => setUnit(e.target.value)}>
-              {tempUnits.map((u) => <option key={u.key} value={u.key}>{u.label}</option>)}
+            <select
+              className="rounded-md border border-gray-300 px-3 py-2"
+              value={unit}
+              onChange={(e) => setUnit(e.target.value)}
+            >
+              {tempUnits.map((u) => (
+                <option key={u.key} value={u.key}>
+                  {u.label}
+                </option>
+              ))}
             </select>
           ) : (
-            <select className="rounded-md border border-gray-300 px-3 py-2" value={unit} onChange={(e) => setUnit(e.target.value)}>
-              {unitList.map((u) => <option key={u.key} value={u.key}>{u.label}</option>)}
+            <select
+              className="rounded-md border border-gray-300 px-3 py-2"
+              value={unit}
+              onChange={(e) => setUnit(e.target.value)}
+            >
+              {unitList.map((u) => (
+                <option key={u.key} value={u.key}>
+                  {u.label}
+                </option>
+              ))}
             </select>
           )}
-          <input className="w-full rounded-md border border-gray-300 px-3 py-2" value={value} onChange={(e) => setValue(e.target.value)} placeholder="输入数值" />
+          <input
+            className="w-full rounded-md border border-gray-300 px-3 py-2"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            placeholder="输入数值"
+          />
         </div>
         <div className="space-y-3 bg-white rounded-lg border border-gray-200 p-4">
           <div className="font-medium">结果摘要</div>
           <div className="flex items-center gap-2">
-            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-words whitespace-pre-wrap">{summary || "—"}</div>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(summary)} disabled={!summary}>
-              <ClipboardCopy className="h-4 w-4" /> 复制 {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-words whitespace-pre-wrap">
+              {summary || "—"}
+            </div>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => copy(summary)}
+              disabled={!summary}
+            >
+              <ClipboardCopy className="h-4 w-4" /> 复制{" "}
+              {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
             </button>
           </div>
         </div>

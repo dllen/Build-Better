@@ -92,50 +92,59 @@ export default function PacVim() {
     setWon(false);
   }, [initGrid, start]);
 
-  const canMove = useCallback((r: number, c: number) => {
-    if (r < 0 || c < 0 || r >= grid.length || c >= grid[0].length) return false;
-    const cell = grid[r][c];
-    if (cell.t === "wall") return false;
-    if (cell.t === "door" && !open) return false;
-    return true;
-  }, [grid, open]);
+  const canMove = useCallback(
+    (r: number, c: number) => {
+      if (r < 0 || c < 0 || r >= grid.length || c >= grid[0].length) return false;
+      const cell = grid[r][c];
+      if (cell.t === "wall") return false;
+      if (cell.t === "door" && !open) return false;
+      return true;
+    },
+    [grid, open]
+  );
 
-  const handleStep = useCallback((r: number, c: number) => {
-    const cell = grid[r][c];
-    if (cell.t === "spike") {
-      setPos(start);
-      setProgress(0);
-      return;
-    }
-    if (cell.t === "letter") {
-      const need = level.sequence[progress];
-      if (cell.ch === need) {
-        const ng = grid.map(row => row.slice());
-        ng[r][c] = { t: "empty" };
-        setGrid(ng);
-        const np = progress + 1;
-        setProgress(np);
-        if (np === level.sequence.length) setOpen(true);
-      } else {
+  const handleStep = useCallback(
+    (r: number, c: number) => {
+      const cell = grid[r][c];
+      if (cell.t === "spike") {
+        setPos(start);
         setProgress(0);
+        return;
       }
-    }
-    if (cell.t === "door" && open) {
-      if (levelIndex + 1 < LEVELS.length) {
-        setLevelIndex(levelIndex + 1);
-      } else {
-        setWon(true);
+      if (cell.t === "letter") {
+        const need = level.sequence[progress];
+        if (cell.ch === need) {
+          const ng = grid.map((row) => row.slice());
+          ng[r][c] = { t: "empty" };
+          setGrid(ng);
+          const np = progress + 1;
+          setProgress(np);
+          if (np === level.sequence.length) setOpen(true);
+        } else {
+          setProgress(0);
+        }
       }
-    }
-  }, [grid, level.sequence, progress, open, start, levelIndex]);
+      if (cell.t === "door" && open) {
+        if (levelIndex + 1 < LEVELS.length) {
+          setLevelIndex(levelIndex + 1);
+        } else {
+          setWon(true);
+        }
+      }
+    },
+    [grid, level.sequence, progress, open, start, levelIndex]
+  );
 
-  const move = useCallback((dr: number, dc: number) => {
-    const nr = pos.r + dr;
-    const nc = pos.c + dc;
-    if (!canMove(nr, nc)) return;
-    setPos({ r: nr, c: nc });
-    handleStep(nr, nc);
-  }, [pos, canMove, handleStep]);
+  const move = useCallback(
+    (dr: number, dc: number) => {
+      const nr = pos.r + dr;
+      const nc = pos.c + dc;
+      if (!canMove(nr, nc)) return;
+      setPos({ r: nr, c: nc });
+      handleStep(nr, nc);
+    },
+    [pos, canMove, handleStep]
+  );
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -163,7 +172,9 @@ export default function PacVim() {
   }, [move, initGrid, start, open, levelIndex, won]);
 
   const seqState = useMemo(() => {
-    return level.sequence.map((ch, i) => i < progress ? "done" : i === progress ? "next" : "todo");
+    return level.sequence.map((ch, i) =>
+      i < progress ? "done" : i === progress ? "next" : "todo"
+    );
   }, [level.sequence, progress]);
 
   const resetLevel = useCallback(() => {
@@ -188,32 +199,91 @@ export default function PacVim() {
           <div className="flex items-center justify-between mb-4">
             <div className="font-medium">{level.name}</div>
             <div className="flex items-center gap-2">
-              {open ? <span className="inline-flex items-center gap-1 text-green-600 text-sm"><Check className="h-4 w-4" /> Exit Open</span> : <span className="text-gray-500 text-sm">Collect sequence to open</span>}
-              <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={resetLevel}>
+              {open ? (
+                <span className="inline-flex items-center gap-1 text-green-600 text-sm">
+                  <Check className="h-4 w-4" /> Exit Open
+                </span>
+              ) : (
+                <span className="text-gray-500 text-sm">Collect sequence to open</span>
+              )}
+              <button
+                className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                onClick={resetLevel}
+              >
                 <RotateCcw className="h-4 w-4" /> Reset
               </button>
             </div>
           </div>
 
           <div className="inline-block bg-gray-50 rounded-md border border-gray-200 p-2">
-            <div className="grid" style={{ gridTemplateColumns: `repeat(${grid[0].length}, 28px)`, gridTemplateRows: `repeat(${grid.length}, 28px)`, gap: 2 }}>
-              {grid.map((row, r) => row.map((cell, c) => {
-                const isPlayer = pos.r === r && pos.c === c;
-                const base = "w-7 h-7 rounded flex items-center justify-center text-xs font-mono";
-                if (isPlayer) return <div key={`${r}-${c}`} className="w-7 h-7 rounded bg-blue-500 text-white flex items-center justify-center">@</div>;
-                if (cell.t === "wall") return <div key={`${r}-${c}`} className={`${base} bg-gray-300`} />;
-                if (cell.t === "empty") return <div key={`${r}-${c}`} className={`${base} bg-white border border-gray-200`} />;
-                if (cell.t === "spike") return <div key={`${r}-${c}`} className={`${base} bg-red-100 text-red-600 border border-red-200`}>!</div>;
-                if (cell.t === "door") return <div key={`${r}-${c}`} className={`${base} ${open ? "bg-green-100 text-green-700 border border-green-200" : "bg-yellow-100 text-yellow-700 border border-yellow-200"}`}>{open ? "E" : "X"}</div>;
-                return <div key={`${r}-${c}`} className={`${base} bg-indigo-100 text-indigo-700 border border-indigo-200`}>{cell.ch}</div>;
-              }))}
+            <div
+              className="grid"
+              style={{
+                gridTemplateColumns: `repeat(${grid[0].length}, 28px)`,
+                gridTemplateRows: `repeat(${grid.length}, 28px)`,
+                gap: 2,
+              }}
+            >
+              {grid.map((row, r) =>
+                row.map((cell, c) => {
+                  const isPlayer = pos.r === r && pos.c === c;
+                  const base = "w-7 h-7 rounded flex items-center justify-center text-xs font-mono";
+                  if (isPlayer)
+                    return (
+                      <div
+                        key={`${r}-${c}`}
+                        className="w-7 h-7 rounded bg-blue-500 text-white flex items-center justify-center"
+                      >
+                        @
+                      </div>
+                    );
+                  if (cell.t === "wall")
+                    return <div key={`${r}-${c}`} className={`${base} bg-gray-300`} />;
+                  if (cell.t === "empty")
+                    return (
+                      <div
+                        key={`${r}-${c}`}
+                        className={`${base} bg-white border border-gray-200`}
+                      />
+                    );
+                  if (cell.t === "spike")
+                    return (
+                      <div
+                        key={`${r}-${c}`}
+                        className={`${base} bg-red-100 text-red-600 border border-red-200`}
+                      >
+                        !
+                      </div>
+                    );
+                  if (cell.t === "door")
+                    return (
+                      <div
+                        key={`${r}-${c}`}
+                        className={`${base} ${open ? "bg-green-100 text-green-700 border border-green-200" : "bg-yellow-100 text-yellow-700 border border-yellow-200"}`}
+                      >
+                        {open ? "E" : "X"}
+                      </div>
+                    );
+                  return (
+                    <div
+                      key={`${r}-${c}`}
+                      className={`${base} bg-indigo-100 text-indigo-700 border border-indigo-200`}
+                    >
+                      {cell.ch}
+                    </div>
+                  );
+                })
+              )}
             </div>
           </div>
 
           {won && (
             <div className="mt-4 rounded-md border border-green-200 bg-green-50 p-3 text-green-700 text-sm flex items-center justify-between">
               <div>All levels complete</div>
-              <button className="inline-flex items-center gap-2 px-3 py-2 bg-teal-600 text-white rounded-md text-sm" onClick={() => setLevelIndex(0)}>
+              <button
+                className="inline-flex items-center gap-2 px-3 py-2 bg-teal-600 text-white rounded-md text-sm"
+                onClick={() => setLevelIndex(0)}
+              >
                 <Play className="h-4 w-4" /> Replay
               </button>
             </div>
@@ -224,7 +294,10 @@ export default function PacVim() {
           <div className="font-medium">Sequence</div>
           <div className="flex flex-wrap gap-2">
             {level.sequence.map((ch, i) => (
-              <div key={i} className={`px-2 py-1 rounded-md border text-sm font-mono ${seqState[i] === "done" ? "bg-green-100 text-green-700 border-green-200" : seqState[i] === "next" ? "bg-blue-100 text-blue-700 border-blue-200" : "bg-gray-100 text-gray-700 border-gray-200"}`}>
+              <div
+                key={i}
+                className={`px-2 py-1 rounded-md border text-sm font-mono ${seqState[i] === "done" ? "bg-green-100 text-green-700 border-green-200" : seqState[i] === "next" ? "bg-blue-100 text-blue-700 border-blue-200" : "bg-gray-100 text-gray-700 border-gray-200"}`}
+              >
                 {ch}
               </div>
             ))}

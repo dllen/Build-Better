@@ -15,7 +15,12 @@ function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
 
-function parseField(text: string, min: number, max: number, allowQuestion = false): FieldSpec | null {
+function parseField(
+  text: string,
+  min: number,
+  max: number,
+  allowQuestion = false
+): FieldSpec | null {
   const t = text.trim();
   if (!t) return null;
   if (allowQuestion && t === "?") return { any: false, question: true };
@@ -41,7 +46,11 @@ function parseField(text: string, min: number, max: number, allowQuestion = fals
       return null;
     }
   }
-  return { any: false, set: set.size ? set : undefined, ranges: ranges.length ? ranges : undefined };
+  return {
+    any: false,
+    set: set.size ? set : undefined,
+    ranges: ranges.length ? ranges : undefined,
+  };
 }
 
 function matchField(val: number, spec: FieldSpec | null): boolean {
@@ -158,7 +167,11 @@ export default function CronQuartz() {
 
   const tzOptions = useMemo(() => {
     const arr: Array<{ v: number; label: string }> = [];
-    for (let h = -12; h <= 14; h++) arr.push({ v: h * 60, label: `UTC${h >= 0 ? "+" + String(h).padStart(2, "0") : String(h).padStart(3, "0")}:00` });
+    for (let h = -12; h <= 14; h++)
+      arr.push({
+        v: h * 60,
+        label: `UTC${h >= 0 ? "+" + String(h).padStart(2, "0") : String(h).padStart(3, "0")}:00`,
+      });
     return arr;
   }, []);
 
@@ -171,9 +184,9 @@ export default function CronQuartz() {
     { label: "每5分钟 (Unix)", mode: "unix", value: "*/5 * * * *" },
     { label: "每小时整点 (Unix)", mode: "unix", value: "0 * * * *" },
     { label: "每日 02:30 (Unix)", mode: "unix", value: "30 2 * * *" },
-    { label: "每10秒 (Quartz)", mode: "quartz", value: "*/10 * * * * ?"},
-    { label: "每小时 15分 (Quartz)", mode: "quartz", value: "0 15 * * * ?"},
-    { label: "工作日 09:00 (Quartz)", mode: "quartz", value: "0 0 9 ? * 1-5"},
+    { label: "每10秒 (Quartz)", mode: "quartz", value: "*/10 * * * * ?" },
+    { label: "每小时 15分 (Quartz)", mode: "quartz", value: "0 15 * * * ?" },
+    { label: "工作日 09:00 (Quartz)", mode: "quartz", value: "0 0 9 ? * 1-5" },
   ];
 
   const springScheduled = useMemo(() => {
@@ -185,9 +198,9 @@ export default function CronQuartz() {
   const quartzTrigger = useMemo(() => {
     if (!spec) return "";
     return [
-      "JobDetail job = JobBuilder.newJob(MyJob.class).withIdentity(\"myJob\").build();",
+      'JobDetail job = JobBuilder.newJob(MyJob.class).withIdentity("myJob").build();',
       `CronScheduleBuilder schedule = CronScheduleBuilder.cronSchedule("${expr}");`,
-      "Trigger trigger = TriggerBuilder.newTrigger().withIdentity(\"myTrigger\").withSchedule(schedule).build();",
+      'Trigger trigger = TriggerBuilder.newTrigger().withIdentity("myTrigger").withSchedule(schedule).build();',
       "scheduler.scheduleJob(job, trigger);",
     ].join("\n");
   }, [spec, expr]);
@@ -205,16 +218,34 @@ export default function CronQuartz() {
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">表达式</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <select className="rounded-md border border-gray-300 px-3 py-2" value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
+            <select
+              className="rounded-md border border-gray-300 px-3 py-2"
+              value={mode}
+              onChange={(e) => setMode(e.target.value as Mode)}
+            >
               <option value="unix">Unix (5段)</option>
               <option value="quartz">Quartz (6/7段)</option>
             </select>
-            <input className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2" placeholder={mode === "unix" ? "m h dom mon dow" : "s m h dom mon dow [year]"} value={expr} onChange={(e) => setExpr(e.target.value)} />
+            <input
+              className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2"
+              placeholder={mode === "unix" ? "m h dom mon dow" : "s m h dom mon dow [year]"}
+              value={expr}
+              onChange={(e) => setExpr(e.target.value)}
+            />
           </div>
-          <div className={`text-sm ${valid ? "text-green-600" : "text-red-600"}`}>{valid ? describe(spec) : "无效表达式"}</div>
+          <div className={`text-sm ${valid ? "text-green-600" : "text-red-600"}`}>
+            {valid ? describe(spec) : "无效表达式"}
+          </div>
           <div className="flex flex-wrap gap-2">
             {presets.map((p) => (
-              <button key={p.label} className="px-2 py-1 text-xs rounded border border-gray-300 hover:bg-gray-100" onClick={() => { setMode(p.mode); setExpr(p.value); }}>
+              <button
+                key={p.label}
+                className="px-2 py-1 text-xs rounded border border-gray-300 hover:bg-gray-100"
+                onClick={() => {
+                  setMode(p.mode);
+                  setExpr(p.value);
+                }}
+              >
                 {p.label}
               </button>
             ))}
@@ -224,18 +255,33 @@ export default function CronQuartz() {
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">起始与时区</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <input type="datetime-local" className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2" value={start} onChange={(e) => setStart(e.target.value)} />
-            <select className="rounded-md border border-gray-300 px-3 py-2" value={tz} onChange={(e) => setTz(Number(e.target.value))}>
-              {tzOptions.map((o) => <option key={o.v} value={o.v}>{o.label}</option>)}
+            <input
+              type="datetime-local"
+              className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2"
+              value={start}
+              onChange={(e) => setStart(e.target.value)}
+            />
+            <select
+              className="rounded-md border border-gray-300 px-3 py-2"
+              value={tz}
+              onChange={(e) => setTz(Number(e.target.value))}
+            >
+              {tzOptions.map((o) => (
+                <option key={o.v} value={o.v}>
+                  {o.label}
+                </option>
+              ))}
             </select>
           </div>
           <div className="rounded-md border border-gray-200 p-3 space-y-2">
-            {runs.length ? runs.map((d, i) => (
-              <div key={i} className="flex items-center justify-between text-sm">
-                <span className="font-mono">{format(d, "YYYY-MM-DD HH:mm:ss Z", tz)}</span>
-                <span className="text-gray-600">{relativeTime(d)}</span>
-              </div>
-            )) : "—"}
+            {runs.length
+              ? runs.map((d, i) => (
+                  <div key={i} className="flex items-center justify-between text-sm">
+                    <span className="font-mono">{format(d, "YYYY-MM-DD HH:mm:ss Z", tz)}</span>
+                    <span className="text-gray-600">{relativeTime(d)}</span>
+                  </div>
+                ))
+              : "—"}
           </div>
         </div>
       </div>
@@ -244,24 +290,36 @@ export default function CronQuartz() {
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-medium">Spring @Scheduled</div>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(springScheduled)} disabled={!springScheduled}>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => copy(springScheduled)}
+              disabled={!springScheduled}
+            >
               <ClipboardCopy className="h-4 w-4" /> 复制
             </button>
           </div>
           <div className="rounded-md border border-gray-200 p-3">
-            <pre className="whitespace-pre-wrap break-words text-sm font-mono">{springScheduled || "—"}</pre>
+            <pre className="whitespace-pre-wrap break-words text-sm font-mono">
+              {springScheduled || "—"}
+            </pre>
           </div>
         </div>
 
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-medium">Quartz Trigger Builder</div>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(quartzTrigger)} disabled={!quartzTrigger}>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => copy(quartzTrigger)}
+              disabled={!quartzTrigger}
+            >
               <ClipboardCopy className="h-4 w-4" /> 复制
             </button>
           </div>
           <div className="rounded-md border border-gray-200 p-3">
-            <pre className="whitespace-pre-wrap break-words text-sm font-mono">{quartzTrigger || "—"}</pre>
+            <pre className="whitespace-pre-wrap break-words text-sm font-mono">
+              {quartzTrigger || "—"}
+            </pre>
           </div>
         </div>
       </div>

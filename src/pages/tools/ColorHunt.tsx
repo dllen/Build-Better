@@ -8,7 +8,9 @@ function clamp(n: number, min: number, max: number) {
 function hexNorm(hex: string) {
   const h = hex.trim().replace(/^#/, "");
   if (/^[0-9a-fA-F]{3}$/.test(h)) {
-    const r = h[0], g = h[1], b = h[2];
+    const r = h[0],
+      g = h[1],
+      b = h[2];
     return `#${r}${r}${g}${g}${b}${b}`.toLowerCase();
   }
   if (/^[0-9a-fA-F]{6}$/.test(h)) return `#${h.toLowerCase()}`;
@@ -25,16 +27,27 @@ function hexToRgb(hex: string) {
 }
 
 function rgbToHsl(r: number, g: number, b: number) {
-  r /= 255; g /= 255; b /= 255;
-  const max = Math.max(r, g, b), min = Math.min(r, g, b);
-  let h = 0, s = 0; const l = (max + min) / 2;
+  r /= 255;
+  g /= 255;
+  b /= 255;
+  const max = Math.max(r, g, b),
+    min = Math.min(r, g, b);
+  let h = 0,
+    s = 0;
+  const l = (max + min) / 2;
   if (max !== min) {
     const d = max - min;
     s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
     switch (max) {
-      case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-      case g: h = (b - r) / d + 2; break;
-      default: h = (r - g) / d + 4; break;
+      case r:
+        h = (g - b) / d + (g < b ? 6 : 0);
+        break;
+      case g:
+        h = (b - r) / d + 2;
+        break;
+      default:
+        h = (r - g) / d + 4;
+        break;
     }
     h /= 6;
   }
@@ -43,17 +56,39 @@ function rgbToHsl(r: number, g: number, b: number) {
 
 function hslToHex(h: number, s: number, l: number) {
   h = ((h % 360) + 360) % 360;
-  s /= 100; l /= 100;
+  s /= 100;
+  l /= 100;
   const c = (1 - Math.abs(2 * l - 1)) * s;
   const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
   const m = l - c / 2;
-  let r = 0, g = 0, b = 0;
-  if (0 <= h && h < 60) { r = c; g = x; b = 0; }
-  else if (60 <= h && h < 120) { r = x; g = c; b = 0; }
-  else if (120 <= h && h < 180) { r = 0; g = c; b = x; }
-  else if (180 <= h && h < 240) { r = 0; g = x; b = c; }
-  else if (240 <= h && h < 300) { r = x; g = 0; b = c; }
-  else { r = c; g = 0; b = x; }
+  let r = 0,
+    g = 0,
+    b = 0;
+  if (0 <= h && h < 60) {
+    r = c;
+    g = x;
+    b = 0;
+  } else if (60 <= h && h < 120) {
+    r = x;
+    g = c;
+    b = 0;
+  } else if (120 <= h && h < 180) {
+    r = 0;
+    g = c;
+    b = x;
+  } else if (180 <= h && h < 240) {
+    r = 0;
+    g = x;
+    b = c;
+  } else if (240 <= h && h < 300) {
+    r = x;
+    g = 0;
+    b = c;
+  } else {
+    r = c;
+    g = 0;
+    b = x;
+  }
   const toHex = (v: number) => {
     const n = Math.round((v + m) * 255);
     return n.toString(16).padStart(2, "0");
@@ -70,10 +105,13 @@ function relLuminance({ r, g, b }: { r: number; g: number; b: number }) {
 }
 
 function contrastRatio(hex1: string, hex2: string) {
-  const a = hexToRgb(hex1), b = hexToRgb(hex2);
+  const a = hexToRgb(hex1),
+    b = hexToRgb(hex2);
   if (!a || !b) return null;
-  const L1 = relLuminance(a), L2 = relLuminance(b);
-  const lighter = Math.max(L1, L2), darker = Math.min(L1, L2);
+  const L1 = relLuminance(a),
+    L2 = relLuminance(b);
+  const lighter = Math.max(L1, L2),
+    darker = Math.min(L1, L2);
   return Math.round(((lighter + 0.05) / (darker + 0.05)) * 100) / 100;
 }
 
@@ -107,8 +145,14 @@ export default function ColorHunt() {
   const [copied, setCopied] = useState<string>("");
   const [gen, setGen] = useState<string[]>(() => {
     const h = Math.floor(Math.random() * 360);
-    const s = 70, l = 50;
-    return [hslToHex(h, s, l), hslToHex(h + 20, s, l), hslToHex(h + 40, s, l), hslToHex(h + 60, s, l)];
+    const s = 70,
+      l = 50;
+    return [
+      hslToHex(h, s, l),
+      hslToHex(h + 20, s, l),
+      hslToHex(h + 40, s, l),
+      hslToHex(h + 60, s, l),
+    ];
   });
   const [colorInput, setColorInput] = useState("#3498db");
   const [gradA, setGradA] = useState("#ff7f50");
@@ -117,17 +161,25 @@ export default function ColorHunt() {
 
   function copy(text: string) {
     if (!text) return;
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(text);
-      setTimeout(() => setCopied(""), 1200);
-    }).catch(() => {});
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setCopied(text);
+        setTimeout(() => setCopied(""), 1200);
+      })
+      .catch(() => {});
   }
 
   function generate() {
     const h = Math.floor(Math.random() * 360);
     const s = 65 + Math.floor(Math.random() * 20);
     const l = 45 + Math.floor(Math.random() * 10);
-    setGen([hslToHex(h, s, l), hslToHex(h + 25, s, l), hslToHex(h + 50, s, l), hslToHex(h + 75, s, l)]);
+    setGen([
+      hslToHex(h, s, l),
+      hslToHex(h + 25, s, l),
+      hslToHex(h + 50, s, l),
+      hslToHex(h + 75, s, l),
+    ]);
   }
 
   const rgb = useMemo(() => {
@@ -177,7 +229,12 @@ export default function ColorHunt() {
                         onClick={() => copy(hexNorm(c))}
                         style={{ backgroundColor: hexNorm(c), color: bestTextColor(c) }}
                       >
-                        {hexNorm(c)} {copied === hexNorm(c) ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                        {hexNorm(c)}{" "}
+                        {copied === hexNorm(c) ? (
+                          <Check className="h-4 w-4" />
+                        ) : (
+                          <Copy className="h-4 w-4" />
+                        )}
                       </button>
                     ))}
                   </div>
@@ -204,7 +261,10 @@ export default function ColorHunt() {
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-medium">Generate Palette</div>
-            <button className="inline-flex items-center gap-2 px-3 py-2 bg-fuchsia-600 text-white rounded-md text-sm hover:bg-fuchsia-700" onClick={generate}>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 bg-fuchsia-600 text-white rounded-md text-sm hover:bg-fuchsia-700"
+              onClick={generate}
+            >
               <Shuffle className="h-4 w-4" /> Shuffle
             </button>
           </div>
@@ -223,15 +283,22 @@ export default function ColorHunt() {
                     onClick={() => copy(c)}
                     style={{ backgroundColor: c, color: bestTextColor(c) }}
                   >
-                    {hexNorm(c)} {copied === c ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                    {hexNorm(c)}{" "}
+                    {copied === c ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   </button>
                 ))}
               </div>
               <div className="flex items-center gap-2">
-                <button className="inline-flex items-center gap-2 px-3 py-2 bg-fuchsia-600 text-white rounded-md text-sm hover:bg-fuchsia-700" onClick={() => copy(cssVars(gen, "generated"))}>
+                <button
+                  className="inline-flex items-center gap-2 px-3 py-2 bg-fuchsia-600 text-white rounded-md text-sm hover:bg-fuchsia-700"
+                  onClick={() => copy(cssVars(gen, "generated"))}
+                >
                   <Copy className="h-4 w-4" /> Copy CSS Vars
                 </button>
-                <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(JSON.stringify(gen))}>
+                <button
+                  className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                  onClick={() => copy(JSON.stringify(gen))}
+                >
                   <Copy className="h-4 w-4" /> Copy JSON
                 </button>
               </div>
@@ -244,26 +311,57 @@ export default function ColorHunt() {
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">Color Utilities</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <input className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2" value={colorInput} onChange={(e) => setColorInput(e.target.value)} />
-            <div className="rounded-md border border-gray-200" style={{ backgroundColor: hexNorm(colorInput) }}>
-              <div className="h-full w-full p-2 text-sm font-mono" style={{ color: bestTextColor(colorInput) }}>{hexNorm(colorInput) || "—"}</div>
+            <input
+              className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2"
+              value={colorInput}
+              onChange={(e) => setColorInput(e.target.value)}
+            />
+            <div
+              className="rounded-md border border-gray-200"
+              style={{ backgroundColor: hexNorm(colorInput) }}
+            >
+              <div
+                className="h-full w-full p-2 text-sm font-mono"
+                style={{ color: bestTextColor(colorInput) }}
+              >
+                {hexNorm(colorInput) || "—"}
+              </div>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-            <div className="rounded-md border border-gray-200 px-3 py-2">RGB: {rgb ? `${rgb.r}, ${rgb.g}, ${rgb.b}` : "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">HSL: {hsl ? `${hsl.h}, ${hsl.s}%, ${hsl.l}%` : "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">Contrast vs #ffffff: {contrastWhite ?? "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">Contrast vs #000000: {contrastBlack ?? "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">Recommended Text: {recommendedText}</div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              RGB: {rgb ? `${rgb.r}, ${rgb.g}, ${rgb.b}` : "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              HSL: {hsl ? `${hsl.h}, ${hsl.s}%, ${hsl.l}%` : "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              Contrast vs #ffffff: {contrastWhite ?? "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              Contrast vs #000000: {contrastBlack ?? "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              Recommended Text: {recommendedText}
+            </div>
           </div>
           <div className="flex items-center gap-2">
-            <button className="inline-flex items-center gap-2 px-3 py-2 bg-fuchsia-600 text-white rounded-md text-sm hover:bg-fuchsia-700" onClick={() => copy(hexNorm(colorInput))}>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 bg-fuchsia-600 text-white rounded-md text-sm hover:bg-fuchsia-700"
+              onClick={() => copy(hexNorm(colorInput))}
+            >
               <Copy className="h-4 w-4" /> Copy HEX
             </button>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => rgb && copy(`${rgb.r},${rgb.g},${rgb.b}`)}>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => rgb && copy(`${rgb.r},${rgb.g},${rgb.b}`)}
+            >
               <Copy className="h-4 w-4" /> Copy RGB
             </button>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => hsl && copy(`${hsl.h},${hsl.s}%,${hsl.l}%`)}>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => hsl && copy(`${hsl.h},${hsl.s}%,${hsl.l}%`)}
+            >
               <Copy className="h-4 w-4" /> Copy HSL
             </button>
           </div>
@@ -272,16 +370,48 @@ export default function ColorHunt() {
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">Gradient Maker</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <input className="rounded-md border border-gray-300 px-3 py-2" value={gradA} onChange={(e) => setGradA(e.target.value)} />
-            <input className="rounded-md border border-gray-300 px-3 py-2" value={gradB} onChange={(e) => setGradB(e.target.value)} />
-            <input type="range" min={0} max={360} className="w-full" value={angle} onChange={(e) => setAngle(clamp(Number(e.target.value), 0, 360))} />
+            <input
+              className="rounded-md border border-gray-300 px-3 py-2"
+              value={gradA}
+              onChange={(e) => setGradA(e.target.value)}
+            />
+            <input
+              className="rounded-md border border-gray-300 px-3 py-2"
+              value={gradB}
+              onChange={(e) => setGradB(e.target.value)}
+            />
+            <input
+              type="range"
+              min={0}
+              max={360}
+              className="w-full"
+              value={angle}
+              onChange={(e) => setAngle(clamp(Number(e.target.value), 0, 360))}
+            />
           </div>
-          <div className="rounded-md border border-gray-200 h-24" style={{ backgroundImage: `linear-gradient(${angle}deg, ${hexNorm(gradA)}, ${hexNorm(gradB)})` }} />
+          <div
+            className="rounded-md border border-gray-200 h-24"
+            style={{
+              backgroundImage: `linear-gradient(${angle}deg, ${hexNorm(gradA)}, ${hexNorm(gradB)})`,
+            }}
+          />
           <div className="flex items-center gap-2">
-            <button className="inline-flex items-center gap-2 px-3 py-2 bg-fuchsia-600 text-white rounded-md text-sm hover:bg-fuchsia-700" onClick={() => copy(`background-image: linear-gradient(${angle}deg, ${hexNorm(gradA)}, ${hexNorm(gradB)});`)}>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 bg-fuchsia-600 text-white rounded-md text-sm hover:bg-fuchsia-700"
+              onClick={() =>
+                copy(
+                  `background-image: linear-gradient(${angle}deg, ${hexNorm(gradA)}, ${hexNorm(gradB)});`
+                )
+              }
+            >
               <Copy className="h-4 w-4" /> Copy CSS
             </button>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(JSON.stringify({ angle, colors: [hexNorm(gradA), hexNorm(gradB)] }))}>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() =>
+                copy(JSON.stringify({ angle, colors: [hexNorm(gradA), hexNorm(gradB)] }))
+              }
+            >
               <Copy className="h-4 w-4" /> Copy JSON
             </button>
           </div>

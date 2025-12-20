@@ -6,7 +6,14 @@ export default function RegexTester() {
   const [text, setText] = useState("");
   const [flags, setFlags] = useState({ g: true, i: false, m: false, s: false, u: false, y: false });
 
-  const flagsString = useMemo(() => Object.entries(flags).filter(([, v]) => v).map(([k]) => k).join(""), [flags]);
+  const flagsString = useMemo(
+    () =>
+      Object.entries(flags)
+        .filter(([, v]) => v)
+        .map(([k]) => k)
+        .join(""),
+    [flags]
+  );
 
   const { regex, error } = useMemo(() => {
     try {
@@ -58,7 +65,11 @@ export default function RegexTester() {
       const start = m.index;
       const end = start + m[0].length;
       parts.push(text.slice(lastIndex, start));
-      parts.push(<mark key={start} className="bg-yellow-200 px-0.5">{text.slice(start, end)}</mark>);
+      parts.push(
+        <mark key={start} className="bg-yellow-200 px-0.5">
+          {text.slice(start, end)}
+        </mark>
+      );
       lastIndex = end;
       if (m[0].length === 0) {
         re.lastIndex++;
@@ -100,7 +111,9 @@ export default function RegexTester() {
                 <span>{flag}</span>
               </label>
             ))}
-            <span className="text-xs text-gray-500">Flags: /{pattern}/{flagsString}</span>
+            <span className="text-xs text-gray-500">
+              Flags: /{pattern}/{flagsString}
+            </span>
           </div>
 
           <div className="space-y-2">
@@ -134,7 +147,9 @@ export default function RegexTester() {
                     <span className="text-xs text-gray-500 ml-2">@{m.index}</span>
                   </div>
                   {m.groups.length > 0 && (
-                    <div className="text-xs text-gray-500">groups: {m.groups.map((g, i) => `#${i+1}="${g}"`).join(", ")}</div>
+                    <div className="text-xs text-gray-500">
+                      groups: {m.groups.map((g, i) => `#${i + 1}="${g}"`).join(", ")}
+                    </div>
                   )}
                 </div>
               ))}

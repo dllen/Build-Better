@@ -43,7 +43,9 @@ export default function MarkdownHtml() {
           />
           <div className="bg-white rounded-lg border border-gray-200 p-4">
             <div className="font-medium mb-2">HTML (Preview)</div>
-            <pre className="text-xs overflow-auto max-h-52 whitespace-pre-wrap break-words">{htmlFromMarkdown}</pre>
+            <pre className="text-xs overflow-auto max-h-52 whitespace-pre-wrap break-words">
+              {htmlFromMarkdown}
+            </pre>
           </div>
         </div>
 
@@ -65,7 +67,9 @@ export default function MarkdownHtml() {
           />
           <div className="bg-white rounded-lg border border-gray-200 p-4">
             <div className="font-medium mb-2">Markdown (Preview)</div>
-            <pre className="text-xs overflow-auto max-h-52 whitespace-pre-wrap break-words">{markdownFromHtml}</pre>
+            <pre className="text-xs overflow-auto max-h-52 whitespace-pre-wrap break-words">
+              {markdownFromHtml}
+            </pre>
           </div>
         </div>
       </div>

@@ -43,12 +43,22 @@ export async function sha(alg: HashAlg, data: Uint8Array | string): Promise<Uint
   return new Uint8Array(out);
 }
 
-export async function hmac(alg: HashAlg, key: Uint8Array | string, data: Uint8Array | string): Promise<Uint8Array> {
+export async function hmac(
+  alg: HashAlg,
+  key: Uint8Array | string,
+  data: Uint8Array | string
+): Promise<Uint8Array> {
   const k = typeof key === "string" ? te.encode(key) : key;
   const d = typeof data === "string" ? te.encode(data) : data;
   const kbuf = toArrayBuffer(k);
   const dbuf = toArrayBuffer(d);
-  const cryptoKey = await crypto.subtle.importKey("raw", kbuf, { name: "HMAC", hash: { name: alg } }, false, ["sign"]);
+  const cryptoKey = await crypto.subtle.importKey(
+    "raw",
+    kbuf,
+    { name: "HMAC", hash: { name: alg } },
+    false,
+    ["sign"]
+  );
   const sig = await crypto.subtle.sign("HMAC", cryptoKey, dbuf);
   return new Uint8Array(sig);
 }

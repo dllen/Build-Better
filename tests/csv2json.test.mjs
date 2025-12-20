@@ -13,15 +13,15 @@ test("parses simple csv with headers", async () => {
 });
 
 test("supports custom delimiter and quote", async () => {
-  const csv = "name;age;note\n\"Doe;John\";30;\"hello;world\"\n";
-  const { rows } = await parseCsvReadable(Readable.from(csv), { delimiter: ";", quote: "\""});
+  const csv = 'name;age;note\n"Doe;John";30;"hello;world"\n';
+  const { rows } = await parseCsvReadable(Readable.from(csv), { delimiter: ";", quote: '"' });
   assert.deepEqual(rows[0], { name: "Doe;John", age: 30, note: "hello;world" });
 });
 
 test("handles escaped quotes inside quoted field", async () => {
-  const csv = "text\n\"He said \"\"Hi\"\"\"\n";
+  const csv = 'text\n"He said ""Hi"""\n';
   const { rows } = await parseCsvReadable(Readable.from(csv));
-  assert.deepEqual(rows[0], { text: "He said \"Hi\"" });
+  assert.deepEqual(rows[0], { text: 'He said "Hi"' });
 });
 
 test("handles CRLF newlines", async () => {
@@ -42,6 +42,6 @@ test("error on malformed row", async () => {
 });
 
 test("error on unclosed quote", async () => {
-  const csv = "a\n\"oops\n";
+  const csv = 'a\n"oops\n';
   await assert.rejects(() => parseCsvReadable(Readable.from(csv)), /unclosed quoted field/);
 });

@@ -1,12 +1,5 @@
-
 import { describe, it, expect } from "vitest";
-import {
-  Tile,
-  isClearRow,
-  isClearCol,
-  canConnect,
-  genGrid,
-} from "./linkMatchLogic";
+import { Tile, isClearRow, isClearCol, canConnect, genGrid } from "./linkMatchLogic";
 
 // Helper to create a simple grid for testing
 function createGrid(rows: number, cols: number, content: string[][]): Tile[][] {
@@ -161,7 +154,7 @@ describe("LinkMatch Logic", () => {
       // . X .
       // . . A
       // Path: (0,0) -> (0,1) -> (2,1) -> (2,2) -- invalid, (0,1) is adjacent.
-      
+
       // Better Z shape:
       // A . . .
       // . . X .
@@ -187,49 +180,49 @@ describe("LinkMatch Logic", () => {
     });
 
     it("should fail if more than 2 turns needed", () => {
-        // A X .
-        // X X .
-        // . . .
-        // X X A
-        // Snake path needed?
-        // A . X . A
-        // X . X . X
-        // X . . . X
-        const grid = createGrid(3, 5, [
-            ["A", ".", "X", ".", "A"],
-            ["X", ".", "X", ".", "X"],
-            ["X", ".", ".", ".", "X"],
-        ]);
-        // Path: (0,0)->(0,1)->(2,1)->(2,3)->(0,3)->(0,4) = 4 turns.
-        // Direct? Blocked.
-        // 1 turn? Blocked.
-        // 2 turns?
-        // Row 1: (1,0) blocked. (1,4) blocked.
-        // Row 2: (2,0) blocked. (2,4) blocked.
-        // Col 1: (0,1) OK. (0,4) OK. Connect? (0,1)->(2,1)->(2,3)->(0,3)->(0,4).
-        // Wait, canConnect logic:
-        // Check Row bridges:
-        // r=0: blocked (Start/End are on r=0).
-        // r=1: (1,0) blocked.
-        // r=2: (2,0) blocked.
-        // Check Col bridges:
-        // c=0: blocked.
-        // c=1: (0,1) empty. (0,4) is A. Wait.
-        // Bridge from A(0,0) to A(0,4).
-        // Scan cols.
-        // c=1: A(0,0)->(0,1) OK. A(0,4)->(0,1) ?? No, (0,4) is target.
-        // We are checking if we can go A->(r1,c)->(r2,c)->B.
-        // r1=0, r2=0.
-        // (0,c) -> (0,c). This is same point.
-        // If r1==r2, 2 turns logic implies: A->(r, c1)->(r, c2)->B (Bridge Row)
-        // or A->(r1,c)->(r2,c)->B (Bridge Col).
-        // If r1==r2, Bridge Col is: A->(r1,c)->(r1,c)->B. That's just 0 turns (straight line check).
-        // So for r1==r2, only Bridge Row is useful (U-shape).
-        // For our case:
-        // Row 1: (1,0) is X. Blocked.
-        // Row 2: (2,0) is X. Blocked.
-        // So it should return false.
-        expect(canConnect(grid, 0, 0, 0, 4)).toBe(false);
+      // A X .
+      // X X .
+      // . . .
+      // X X A
+      // Snake path needed?
+      // A . X . A
+      // X . X . X
+      // X . . . X
+      const grid = createGrid(3, 5, [
+        ["A", ".", "X", ".", "A"],
+        ["X", ".", "X", ".", "X"],
+        ["X", ".", ".", ".", "X"],
+      ]);
+      // Path: (0,0)->(0,1)->(2,1)->(2,3)->(0,3)->(0,4) = 4 turns.
+      // Direct? Blocked.
+      // 1 turn? Blocked.
+      // 2 turns?
+      // Row 1: (1,0) blocked. (1,4) blocked.
+      // Row 2: (2,0) blocked. (2,4) blocked.
+      // Col 1: (0,1) OK. (0,4) OK. Connect? (0,1)->(2,1)->(2,3)->(0,3)->(0,4).
+      // Wait, canConnect logic:
+      // Check Row bridges:
+      // r=0: blocked (Start/End are on r=0).
+      // r=1: (1,0) blocked.
+      // r=2: (2,0) blocked.
+      // Check Col bridges:
+      // c=0: blocked.
+      // c=1: (0,1) empty. (0,4) is A. Wait.
+      // Bridge from A(0,0) to A(0,4).
+      // Scan cols.
+      // c=1: A(0,0)->(0,1) OK. A(0,4)->(0,1) ?? No, (0,4) is target.
+      // We are checking if we can go A->(r1,c)->(r2,c)->B.
+      // r1=0, r2=0.
+      // (0,c) -> (0,c). This is same point.
+      // If r1==r2, 2 turns logic implies: A->(r, c1)->(r, c2)->B (Bridge Row)
+      // or A->(r1,c)->(r2,c)->B (Bridge Col).
+      // If r1==r2, Bridge Col is: A->(r1,c)->(r1,c)->B. That's just 0 turns (straight line check).
+      // So for r1==r2, only Bridge Row is useful (U-shape).
+      // For our case:
+      // Row 1: (1,0) is X. Blocked.
+      // Row 2: (2,0) is X. Blocked.
+      // So it should return false.
+      expect(canConnect(grid, 0, 0, 0, 4)).toBe(false);
     });
   });
 });

@@ -9,13 +9,13 @@ interface SEOProps {
   type?: "website" | "article" | "application";
 }
 
-export function SEO({ 
-  title, 
-  description = "A suite of essential tools for developers. Fast, reliable, and easy to use.", 
+export function SEO({
+  title,
+  description = "A suite of essential tools for developers. Fast, reliable, and easy to use.",
   keywords = ["developer tools", "online tools", "utility", "formatter", "converter", "generator"],
   image = "/og-image.png",
   url = typeof window !== "undefined" ? window.location.href : "",
-  type = "website"
+  type = "website",
 }: SEOProps) {
   const siteTitle = "BuildBetter Tools";
   const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;

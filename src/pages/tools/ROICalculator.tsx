@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { SEO } from '@/components/SEO';
-import { Percent, TrendingUp, RefreshCw, AlertCircle } from 'lucide-react';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { SEO } from "@/components/SEO";
+import { Percent, TrendingUp, RefreshCw, AlertCircle } from "lucide-react";
 
 interface CalculationResult {
   roi: number;
@@ -11,11 +11,11 @@ interface CalculationResult {
 
 const ROICalculator = () => {
   const { t } = useTranslation();
-  
-  const [investedAmount, setInvestedAmount] = useState<string>('0');
-  const [returnedAmount, setReturnedAmount] = useState<string>('0');
-  const [timePeriod, setTimePeriod] = useState<string>('0');
-  const [timeUnit, setTimeUnit] = useState<'years' | 'months'>('years');
+
+  const [investedAmount, setInvestedAmount] = useState<string>("0");
+  const [returnedAmount, setReturnedAmount] = useState<string>("0");
+  const [timePeriod, setTimePeriod] = useState<string>("0");
+  const [timeUnit, setTimeUnit] = useState<"years" | "months">("years");
 
   const [result, setResult] = useState<CalculationResult | null>(null);
 
@@ -33,23 +33,23 @@ const ROICalculator = () => {
 
     let annualizedRoi = undefined;
     if (time > 0) {
-      const years = timeUnit === 'months' ? time / 12 : time;
+      const years = timeUnit === "months" ? time / 12 : time;
       // Annualized ROI formula: ((Final Value / Initial Value) ^ (1/n)) - 1
       // Only valid if Final Value (returned) is positive
       if (returned > 0) {
-         annualizedRoi = (Math.pow(returned / invested, 1 / years) - 1) * 100;
+        annualizedRoi = (Math.pow(returned / invested, 1 / years) - 1) * 100;
       }
     }
 
     setResult({
       roi,
       netProfit,
-      annualizedRoi
+      annualizedRoi,
     });
   };
 
   const formatCurrency = (val: number) => {
-    return new Intl.NumberFormat('zh-CN', { style: 'currency', currency: 'CNY' }).format(val);
+    return new Intl.NumberFormat("zh-CN", { style: "currency", currency: "CNY" }).format(val);
   };
 
   const formatPercent = (val: number) => {
@@ -58,20 +58,26 @@ const ROICalculator = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <SEO 
-        title={t('roi-calculator.title')}
-        description={t('roi-calculator.desc')}
-        keywords={["roi calculator", "return on investment", "investment return", "ROI计算", "投资回报率"]}
+      <SEO
+        title={t("tools.roi-calculator.title")}
+        description={t("tools.roi-calculator.desc")}
+        keywords={[
+          "roi calculator",
+          "return on investment",
+          "investment return",
+          "ROI计算",
+          "投资回报率",
+        ]}
       />
 
       <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
         <div className="bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-8 text-white">
           <div className="flex items-center gap-3 mb-2">
             <Percent className="h-8 w-8" />
-            <h1 className="text-3xl font-bold">{t('roi-calculator.name')}</h1>
+            <h1 className="text-3xl font-bold">{t("tools.roi-calculator.name")}</h1>
           </div>
           <p className="text-emerald-100 opacity-90 text-lg">
-            {t('roi-calculator.subtitle')}
+            {t("tools.roi-calculator.subtitle")}
           </p>
         </div>
 
@@ -80,7 +86,7 @@ const ROICalculator = () => {
           <div className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t('roi-calculator.invested_amount')}
+                {t("tools.roi-calculator.invested_amount")}
               </label>
               <div className="relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -98,7 +104,7 @@ const ROICalculator = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t('roi-calculator.returned_amount')}
+                {t("tools.roi-calculator.returned_amount")}
               </label>
               <div className="relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -116,7 +122,10 @@ const ROICalculator = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t('roi-calculator.time_period')} <span className="text-gray-400 font-normal">({t('roi-calculator.optional')})</span>
+                {t("tools.roi-calculator.time_period")}{" "}
+                <span className="text-gray-400 font-normal">
+                  ({t("tools.roi-calculator.optional")})
+                </span>
               </label>
               <div className="flex gap-2">
                 <input
@@ -128,14 +137,14 @@ const ROICalculator = () => {
                 />
                 <select
                   value={timeUnit}
-                  onChange={(e) => setTimeUnit(e.target.value as 'years' | 'months')}
+                  onChange={(e) => setTimeUnit(e.target.value as "years" | "months")}
                   className="block w-32 pl-3 pr-10 py-3 border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500 bg-white"
                 >
-                  <option value="years">{t('roi-calculator.unit_years')}</option>
-                  <option value="months">{t('roi-calculator.unit_months')}</option>
+                  <option value="years">{t("tools.roi-calculator.unit_years")}</option>
+                  <option value="months">{t("tools.roi-calculator.unit_months")}</option>
                 </select>
               </div>
-              <p className="mt-1 text-xs text-gray-500">{t('roi-calculator.time_tip')}</p>
+              <p className="mt-1 text-xs text-gray-500">{t("tools.roi-calculator.time_tip")}</p>
             </div>
 
             <button
@@ -143,7 +152,7 @@ const ROICalculator = () => {
               className="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-colors"
             >
               <RefreshCw className="h-4 w-4" />
-              {t('roi-calculator.calculate_btn')}
+              {t("tools.roi-calculator.calculate_btn")}
             </button>
           </div>
 
@@ -151,39 +160,51 @@ const ROICalculator = () => {
           <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
             <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-emerald-500" />
-              {t('roi-calculator.result_title')}
+              {t("tools.roi-calculator.result_title")}
             </h3>
 
             {result ? (
               <div className="space-y-6">
                 <div>
-                  <p className="text-sm text-gray-500 mb-1">{t('roi-calculator.roi')}</p>
-                  <div className={`text-4xl font-bold ${result.roi >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  <p className="text-sm text-gray-500 mb-1">{t("tools.roi-calculator.roi")}</p>
+                  <div
+                    className={`text-4xl font-bold ${result.roi >= 0 ? "text-green-600" : "text-red-600"}`}
+                  >
                     {formatPercent(result.roi)}
                   </div>
                 </div>
 
                 <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-                  <p className="text-sm text-gray-500 mb-1">{t('roi-calculator.net_profit')}</p>
-                  <p className={`text-2xl font-semibold ${result.netProfit >= 0 ? 'text-gray-900' : 'text-red-600'}`}>
+                  <p className="text-sm text-gray-500 mb-1">
+                    {t("tools.roi-calculator.net_profit")}
+                  </p>
+                  <p
+                    className={`text-2xl font-semibold ${result.netProfit >= 0 ? "text-gray-900" : "text-red-600"}`}
+                  >
                     {formatCurrency(result.netProfit)}
                   </p>
                 </div>
 
                 {result.annualizedRoi !== undefined && (
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-                    <p className="text-sm text-gray-500 mb-1">{t('roi-calculator.annualized_roi')}</p>
-                    <p className={`text-xl font-semibold ${result.annualizedRoi >= 0 ? 'text-blue-600' : 'text-red-600'}`}>
+                    <p className="text-sm text-gray-500 mb-1">
+                      {t("tools.roi-calculator.annualized_roi")}
+                    </p>
+                    <p
+                      className={`text-xl font-semibold ${result.annualizedRoi >= 0 ? "text-blue-600" : "text-red-600"}`}
+                    >
                       {formatPercent(result.annualizedRoi)}
                     </p>
-                    <p className="mt-1 text-xs text-gray-400">{t('roi-calculator.annualized_tip')}</p>
+                    <p className="mt-1 text-xs text-gray-400">
+                      {t("tools.roi-calculator.annualized_tip")}
+                    </p>
                   </div>
                 )}
               </div>
             ) : (
               <div className="h-full flex flex-col items-center justify-center text-gray-400">
                 <AlertCircle className="h-12 w-12 mb-2 opacity-20" />
-                <p>{t('roi-calculator.empty_tip')}</p>
+                <p>{t("tools.roi-calculator.empty_tip")}</p>
               </div>
             )}
           </div>

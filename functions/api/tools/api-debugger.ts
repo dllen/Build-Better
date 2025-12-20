@@ -9,7 +9,7 @@ interface RequestBody {
 export async function onRequestPost(context: { request: Request }) {
   try {
     const { request } = context;
-    const { method, url, headers, body } = await request.json() as RequestBody;
+    const { method, url, headers, body } = (await request.json()) as RequestBody;
 
     if (!url) {
       return new Response(JSON.stringify({ error: "URL is required" }), {
@@ -21,7 +21,7 @@ export async function onRequestPost(context: { request: Request }) {
     const response = await fetch(url, {
       method,
       headers,
-      body: (method !== 'GET' && method !== 'HEAD' && body) ? body : undefined,
+      body: method !== "GET" && method !== "HEAD" && body ? body : undefined,
     });
 
     const data = await response.text();
@@ -37,14 +37,17 @@ export async function onRequestPost(context: { request: Request }) {
       resHeaders[key] = value;
     });
 
-    return new Response(JSON.stringify({
-      status: response.status,
-      statusText: response.statusText,
-      headers: resHeaders,
-      data: parsedData,
-    }), {
-      headers: { "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({
+        status: response.status,
+        statusText: response.statusText,
+        headers: resHeaders,
+        data: parsedData,
+      }),
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
     return new Response(JSON.stringify({ error: errorMessage }), {

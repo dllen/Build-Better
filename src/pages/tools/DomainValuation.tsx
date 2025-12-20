@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Globe, DollarSign, CheckCircle, XCircle, AlertTriangle, TrendingUp, Info } from "lucide-react";
+import {
+  Globe,
+  DollarSign,
+  CheckCircle,
+  XCircle,
+  AlertTriangle,
+  TrendingUp,
+  Info,
+} from "lucide-react";
 
 interface ValuationFactor {
   name: string;
@@ -33,22 +41,32 @@ export default function DomainValuation() {
     }
 
     setError("");
-    
+
     // Split domain
-    const parts = domainName.toLowerCase().split('.');
+    const parts = domainName.toLowerCase().split(".");
     const name = parts[0];
-    const tld = parts.slice(1).join('.');
-    
+    const tld = parts.slice(1).join(".");
+
     let baseValue = 0;
     const factors: ValuationFactor[] = [];
 
     // Factor 1: Length (shorter is better)
     if (name.length <= 3) {
       baseValue += 5000;
-      factors.push({ name: "Length", score: 10, description: "Extremely short (3 chars or less)", type: "positive" });
+      factors.push({
+        name: "Length",
+        score: 10,
+        description: "Extremely short (3 chars or less)",
+        type: "positive",
+      });
     } else if (name.length <= 5) {
       baseValue += 1000;
-      factors.push({ name: "Length", score: 8, description: "Short and memorable (4-5 chars)", type: "positive" });
+      factors.push({
+        name: "Length",
+        score: 8,
+        description: "Short and memorable (4-5 chars)",
+        type: "positive",
+      });
     } else if (name.length <= 10) {
       baseValue += 100;
       factors.push({ name: "Length", score: 5, description: "Standard length", type: "neutral" });
@@ -58,31 +76,51 @@ export default function DomainValuation() {
     }
 
     // Factor 2: TLD
-    if (tld === 'com') {
+    if (tld === "com") {
       baseValue *= 3;
-      factors.push({ name: "Extension", score: 10, description: ".com is the king", type: "positive" });
-    } else if (['net', 'org', 'io', 'ai'].includes(tld)) {
+      factors.push({
+        name: "Extension",
+        score: 10,
+        description: ".com is the king",
+        type: "positive",
+      });
+    } else if (["net", "org", "io", "ai"].includes(tld)) {
       baseValue *= 1.5;
       factors.push({ name: "Extension", score: 7, description: "Popular TLD", type: "positive" });
-    } else if (['xyz', 'co', 'me'].includes(tld)) {
+    } else if (["xyz", "co", "me"].includes(tld)) {
       baseValue *= 1.1;
       factors.push({ name: "Extension", score: 5, description: "Standard TLD", type: "neutral" });
     } else {
       baseValue *= 0.8;
-      factors.push({ name: "Extension", score: 3, description: "Niche or less common TLD", type: "negative" });
+      factors.push({
+        name: "Extension",
+        score: 3,
+        description: "Niche or less common TLD",
+        type: "negative",
+      });
     }
 
     // Factor 3: No hyphens/numbers (heuristic)
-    const hasHyphen = name.includes('-');
+    const hasHyphen = name.includes("-");
     const hasNumber = /\d/.test(name);
-    
+
     if (hasHyphen) {
       baseValue *= 0.6;
-      factors.push({ name: "Characters", score: -5, description: "Contains hyphens", type: "negative" });
+      factors.push({
+        name: "Characters",
+        score: -5,
+        description: "Contains hyphens",
+        type: "negative",
+      });
     }
     if (hasNumber) {
       baseValue *= 0.7; // Numbers can be good (e.g. 888.com) but generally lower value for generic names
-      factors.push({ name: "Characters", score: -3, description: "Contains numbers", type: "neutral" });
+      factors.push({
+        name: "Characters",
+        score: -3,
+        description: "Contains numbers",
+        type: "neutral",
+      });
     }
     if (!hasHyphen && !hasNumber) {
       factors.push({ name: "Characters", score: 5, description: "Letters only", type: "positive" });
@@ -97,7 +135,7 @@ export default function DomainValuation() {
       estimatedValue: finalValue,
       currency: "USD",
       factors,
-      summary: finalValue > 1000 ? "Premium Domain" : "Standard Domain"
+      summary: finalValue > 1000 ? "Premium Domain" : "Standard Domain",
     });
   };
 
@@ -108,8 +146,12 @@ export default function DomainValuation() {
           <DollarSign className="h-6 w-6" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t("tools.domain-valuation.title", "Domain Valuation")}</h1>
-          <p className="text-gray-500">{t("tools.domain-valuation.subtitle", "Estimate the market value of your domain name")}</p>
+          <h1 className="text-2xl font-bold text-gray-900">
+            {t("tools.domain-valuation.title", "Domain Valuation")}
+          </h1>
+          <p className="text-gray-500">
+            {t("tools.domain-valuation.subtitle", "Estimate the market value of your domain name")}
+          </p>
         </div>
       </div>
 
@@ -125,7 +167,7 @@ export default function DomainValuation() {
               onChange={(e) => setDomain(e.target.value)}
               placeholder="example.com"
               className="flex-1 rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
-              onKeyDown={(e) => e.key === 'Enter' && calculateValuation(domain)}
+              onKeyDown={(e) => e.key === "Enter" && calculateValuation(domain)}
             />
             <button
               onClick={() => calculateValuation(domain)}
@@ -135,7 +177,11 @@ export default function DomainValuation() {
               {t("tools.domain-valuation.analyze_btn", "Analyze")}
             </button>
           </div>
-          {error && <p className="text-red-500 text-sm flex items-center gap-1"><AlertTriangle className="h-4 w-4" /> {error}</p>}
+          {error && (
+            <p className="text-red-500 text-sm flex items-center gap-1">
+              <AlertTriangle className="h-4 w-4" /> {error}
+            </p>
+          )}
         </div>
 
         {result && (
@@ -155,10 +201,19 @@ export default function DomainValuation() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {result.factors.map((factor, index) => (
-                <div key={index} className="p-4 rounded-lg border border-gray-100 bg-gray-50 flex items-start gap-3">
-                  {factor.type === 'positive' && <CheckCircle className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />}
-                  {factor.type === 'negative' && <XCircle className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />}
-                  {factor.type === 'neutral' && <Info className="h-5 w-5 text-blue-500 shrink-0 mt-0.5" />}
+                <div
+                  key={index}
+                  className="p-4 rounded-lg border border-gray-100 bg-gray-50 flex items-start gap-3"
+                >
+                  {factor.type === "positive" && (
+                    <CheckCircle className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
+                  )}
+                  {factor.type === "negative" && (
+                    <XCircle className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
+                  )}
+                  {factor.type === "neutral" && (
+                    <Info className="h-5 w-5 text-blue-500 shrink-0 mt-0.5" />
+                  )}
                   <div>
                     <div className="font-medium text-gray-900">{factor.name}</div>
                     <div className="text-sm text-gray-500">{factor.description}</div>
@@ -168,7 +223,11 @@ export default function DomainValuation() {
             </div>
 
             <div className="text-xs text-gray-400 text-center mt-4">
-              * {t("tools.domain-valuation.disclaimer", "This valuation is an algorithmic estimation based on public metrics and does not guarantee actual market price.")}
+              *{" "}
+              {t(
+                "tools.domain-valuation.disclaimer",
+                "This valuation is an algorithmic estimation based on public metrics and does not guarantee actual market price."
+              )}
             </div>
           </div>
         )}

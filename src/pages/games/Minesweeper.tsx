@@ -78,36 +78,44 @@ export default function Minesweeper() {
     }
   }, []);
 
-  const reveal = useCallback((r: number, c: number) => {
-    if (gameOver || win) return;
-    setBoard((prev) => {
-      const next = prev.map((row) => row.map((cell) => ({ ...cell })));
-      const cell = next[r][c];
-      if (cell.revealed || cell.flagged) return prev;
-      if (cell.mine) {
-        cell.revealed = true;
-        setGameOver(true);
+  const reveal = useCallback(
+    (r: number, c: number) => {
+      if (gameOver || win) return;
+      setBoard((prev) => {
+        const next = prev.map((row) => row.map((cell) => ({ ...cell })));
+        const cell = next[r][c];
+        if (cell.revealed || cell.flagged) return prev;
+        if (cell.mine) {
+          cell.revealed = true;
+          setGameOver(true);
+          return next;
+        }
+        floodReveal(r, c, next);
         return next;
-      }
-      floodReveal(r, c, next);
-      return next;
-    });
-  }, [gameOver, win, floodReveal]);
+      });
+    },
+    [gameOver, win, floodReveal]
+  );
 
-  const toggleFlag = useCallback((r: number, c: number) => {
-    if (gameOver || win) return;
-    setBoard((prev) => {
-      const next = prev.map((row) => row.map((cell) => ({ ...cell })));
-      const cell = next[r][c];
-      if (cell.revealed) return prev;
-      cell.flagged = !cell.flagged;
-      return next;
-    });
-  }, [gameOver, win]);
+  const toggleFlag = useCallback(
+    (r: number, c: number) => {
+      if (gameOver || win) return;
+      setBoard((prev) => {
+        const next = prev.map((row) => row.map((cell) => ({ ...cell })));
+        const cell = next[r][c];
+        if (cell.revealed) return prev;
+        cell.flagged = !cell.flagged;
+        return next;
+      });
+    },
+    [gameOver, win]
+  );
 
   useEffect(() => {
     if (gameOver) return;
-    const allSafeRevealed = board.every((row) => row.every((cell) => cell.mine ? true : cell.revealed));
+    const allSafeRevealed = board.every((row) =>
+      row.every((cell) => (cell.mine ? true : cell.revealed))
+    );
     if (allSafeRevealed) setWin(true);
   }, [board, gameOver]);
 
@@ -129,31 +137,47 @@ export default function Minesweeper() {
       <div className="flex items-center gap-3">
         <div className="text-sm text-gray-600">Mines: {MINES}</div>
         <div className="text-sm text-gray-600">Hidden: {remaining}</div>
-        <button className="px-3 py-2 bg-blue-600 text-white rounded-md flex items-center gap-2" onClick={reset}>
+        <button
+          className="px-3 py-2 bg-blue-600 text-white rounded-md flex items-center gap-2"
+          onClick={reset}
+        >
           <RotateCcw className="h-4 w-4" /> Reset
         </button>
       </div>
 
       <div
         className="inline-grid bg-gray-100 p-1 rounded-md border border-gray-200"
-        style={{ gridTemplateColumns: `repeat(${COLS}, 28px)`, gridTemplateRows: `repeat(${ROWS}, 28px)` }}
+        style={{
+          gridTemplateColumns: `repeat(${COLS}, 28px)`,
+          gridTemplateRows: `repeat(${ROWS}, 28px)`,
+        }}
       >
         {board.map((row, r) =>
           row.map((cell, c) => {
-            const base = "w-[26px] h-[26px] m-[1px] text-xs font-semibold flex items-center justify-center rounded";
+            const base =
+              "w-[26px] h-[26px] m-[1px] text-xs font-semibold flex items-center justify-center rounded";
             const unrevealed = "bg-gray-300 hover:bg-gray-400 cursor-pointer";
-            const revealed = cell.mine
-              ? "bg-red-600 text-white"
-              : "bg-white text-gray-800";
+            const revealed = cell.mine ? "bg-red-600 text-white" : "bg-white text-gray-800";
             const flagged = "bg-yellow-200 text-yellow-900";
             return (
               <div
                 key={`${r}-${c}`}
-                className={`${base} ${cell.revealed ? revealed : (cell.flagged ? flagged : unrevealed)}`}
+                className={`${base} ${cell.revealed ? revealed : cell.flagged ? flagged : unrevealed}`}
                 onClick={() => reveal(r, c)}
-                onContextMenu={(e) => { e.preventDefault(); toggleFlag(r, c); }}
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  toggleFlag(r, c);
+                }}
               >
-                {cell.revealed ? (cell.mine ? "💣" : (cell.count > 0 ? cell.count : "")) : (cell.flagged ? "⚑" : "")}
+                {cell.revealed
+                  ? cell.mine
+                    ? "💣"
+                    : cell.count > 0
+                      ? cell.count
+                      : ""
+                  : cell.flagged
+                    ? "⚑"
+                    : ""}
               </div>
             );
           })
@@ -168,4 +192,3 @@ export default function Minesweeper() {
     </div>
   );
 }
-

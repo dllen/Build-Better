@@ -19,27 +19,52 @@ function tokenize(input: string): Tok[] {
   let i = 0;
   while (i < input.length) {
     const ch = input[i];
-    if (/\s/.test(ch)) { i++; continue; }
+    if (/\s/.test(ch)) {
+      i++;
+      continue;
+    }
     if (/[0-9.]/.test(ch)) {
-      let s = ch; i++;
-      while (i < input.length && /[0-9.]/.test(input[i])) { s += input[i]; i++; }
+      let s = ch;
+      i++;
+      while (i < input.length && /[0-9.]/.test(input[i])) {
+        s += input[i];
+        i++;
+      }
       const v = Number(s);
       if (!isNaN(v)) out.push({ t: "num", v });
       else return [];
       continue;
     }
     if (/[A-Za-z_]/.test(ch)) {
-      let s = ch; i++;
-      while (i < input.length && /[A-Za-z0-9_]/.test(input[i])) { s += input[i]; i++; }
+      let s = ch;
+      i++;
+      while (i < input.length && /[A-Za-z0-9_]/.test(input[i])) {
+        s += input[i];
+        i++;
+      }
       out.push({ t: "id", v: s.toLowerCase() });
       continue;
     }
     if (ch === "+" || ch === "-" || ch === "*" || ch === "/" || ch === "^") {
-      out.push({ t: "op", v: ch }); i++; continue;
+      out.push({ t: "op", v: ch });
+      i++;
+      continue;
     }
-    if (ch === "(") { out.push({ t: "lpar" }); i++; continue; }
-    if (ch === ")") { out.push({ t: "rpar" }); i++; continue; }
-    if (ch === ",") { out.push({ t: "comma" }); i++; continue; }
+    if (ch === "(") {
+      out.push({ t: "lpar" });
+      i++;
+      continue;
+    }
+    if (ch === ")") {
+      out.push({ t: "rpar" });
+      i++;
+      continue;
+    }
+    if (ch === ",") {
+      out.push({ t: "comma" });
+      i++;
+      continue;
+    }
     return [];
   }
   return out;
@@ -63,8 +88,8 @@ function ops(): Record<string, OpDef> {
 type FnDef = { arity: number; fn: (...args: number[]) => number };
 
 function functions(angle: AngleMode): Record<string, FnDef> {
-  const toRad = (x: number) => angle === "deg" ? x * Math.PI / 180 : x;
-  const fromRad = (x: number) => angle === "deg" ? x * 180 / Math.PI : x;
+  const toRad = (x: number) => (angle === "deg" ? (x * Math.PI) / 180 : x);
+  const fromRad = (x: number) => (angle === "deg" ? (x * 180) / Math.PI : x);
   return {
     sin: { arity: 1, fn: (x) => Math.sin(toRad(x)) },
     cos: { arity: 1, fn: (x) => Math.cos(toRad(x)) },
@@ -114,8 +139,10 @@ function toRpn(tokens: Tok[], angle: AngleMode): Tok[] | null {
       while (st.length && st[st.length - 1].t === "op") {
         const o2 = opDefs[(st[st.length - 1] as Tok & { v: string }).v];
         if (!o2) break;
-        const cond = (o1.assoc === "L" && o1.prec <= o2.prec) || (o1.assoc === "R" && o1.prec < o2.prec);
-        if (cond) out.push(st.pop() as Tok); else break;
+        const cond =
+          (o1.assoc === "L" && o1.prec <= o2.prec) || (o1.assoc === "R" && o1.prec < o2.prec);
+        if (cond) out.push(st.pop() as Tok);
+        else break;
       }
       st.push(t);
     } else if (t.t === "lpar") {
@@ -186,7 +213,7 @@ export default function CalculatorTool() {
 
   const tokens = useMemo(() => tokenize(expr), [expr]);
   const rpn = useMemo(() => toRpn(tokens, angle), [tokens, angle]);
-  const value = useMemo(() => rpn ? evalRpn(rpn, angle) : null, [rpn, angle]);
+  const value = useMemo(() => (rpn ? evalRpn(rpn, angle) : null), [rpn, angle]);
   const result = useMemo(() => formatResult(value), [value]);
 
   function append(s: string) {
@@ -232,7 +259,13 @@ export default function CalculatorTool() {
       <SEO
         title="Calculator Tool"
         description="A powerful calculator supporting basic and scientific operations, functions, and history."
-        keywords={["calculator", "scientific calculator", "math tool", "online calculator", "developer tools"]}
+        keywords={[
+          "calculator",
+          "scientific calculator",
+          "math tool",
+          "online calculator",
+          "developer tools",
+        ]}
       />
       <div className="flex items-center gap-2">
         <div className="inline-flex p-2 rounded-lg bg-lime-100 text-lime-600">
@@ -244,23 +277,48 @@ export default function CalculatorTool() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3 lg:col-span-2">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <input className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2 font-mono" placeholder="输入表达式，如 1+2*(3-4)" value={expr} onChange={(e) => setExpr(e.target.value)} />
+            <input
+              className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2 font-mono"
+              placeholder="输入表达式，如 1+2*(3-4)"
+              value={expr}
+              onChange={(e) => setExpr(e.target.value)}
+            />
             <div className="rounded-md border border-gray-300 px-3 py-2 flex items-center justify-between">
               <span className="text-sm text-gray-700">角度</span>
-              <select className="rounded-md border border-gray-300 px-2 py-1 text-sm" value={angle} onChange={(e) => setAngle(e.target.value as AngleMode)}>
+              <select
+                className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+                value={angle}
+                onChange={(e) => setAngle(e.target.value as AngleMode)}
+              >
                 <option value="rad">弧度</option>
                 <option value="deg">角度</option>
               </select>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="rounded-md border border-gray-300 px-3 py-2 font-mono text-sm">{result || "—"}</div>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(result)} disabled={!result}>
+            <div className="rounded-md border border-gray-300 px-3 py-2 font-mono text-sm">
+              {result || "—"}
+            </div>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => copy(result)}
+              disabled={!result}
+            >
               <ClipboardCopy className="h-4 w-4" /> 复制
             </button>
             <div className="flex items-center gap-2">
-              <button className={`px-3 py-2 rounded-md text-sm border ${mode === "basic" ? "bg-lime-600 text-white border-lime-600" : "border-gray-300"}`} onClick={() => setMode("basic")}>基础</button>
-              <button className={`px-3 py-2 rounded-md text-sm border ${mode === "scientific" ? "bg-lime-600 text-white border-lime-600" : "border-gray-300"}`} onClick={() => setMode("scientific")}>科学</button>
+              <button
+                className={`px-3 py-2 rounded-md text-sm border ${mode === "basic" ? "bg-lime-600 text-white border-lime-600" : "border-gray-300"}`}
+                onClick={() => setMode("basic")}
+              >
+                基础
+              </button>
+              <button
+                className={`px-3 py-2 rounded-md text-sm border ${mode === "scientific" ? "bg-lime-600 text-white border-lime-600" : "border-gray-300"}`}
+                onClick={() => setMode("scientific")}
+              >
+                科学
+              </button>
             </div>
           </div>
           <div className="grid grid-cols-4 gap-3">
@@ -274,7 +332,25 @@ export default function CalculatorTool() {
                   else if (k === "=") commit();
                   else if (k === "pi") append("pi");
                   else if (k === "e") append("e");
-                  else if (["sin","cos","tan","asin","acos","atan","ln","log","sqrt","abs","floor","ceil","round","pow"].includes(k)) append(k + "(");
+                  else if (
+                    [
+                      "sin",
+                      "cos",
+                      "tan",
+                      "asin",
+                      "acos",
+                      "atan",
+                      "ln",
+                      "log",
+                      "sqrt",
+                      "abs",
+                      "floor",
+                      "ceil",
+                      "round",
+                      "pow",
+                    ].includes(k)
+                  )
+                    append(k + "(");
                   else append(k);
                 }}
               >
@@ -287,21 +363,38 @@ export default function CalculatorTool() {
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-medium">历史记录</div>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => setHistory([])} disabled={!history.length}>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => setHistory([])}
+              disabled={!history.length}
+            >
               清空
             </button>
           </div>
           <div className="space-y-2">
-            {history.length ? history.map((h, i) => (
-              <div key={i} className="rounded-md border border-gray-200 p-2 text-sm">
-                <div className="font-mono break-all">{h.e}</div>
-                <div className="font-mono text-gray-600 break-all">{h.r}</div>
-                <div className="mt-1 flex items-center gap-2">
-                  <button className="px-2 py-1 rounded border border-gray-300 text-xs" onClick={() => setExpr(h.e)}>复用</button>
-                  <button className="px-2 py-1 rounded border border-gray-300 text-xs" onClick={() => copy(h.r)} disabled={!h.r}>复制结果</button>
-                </div>
-              </div>
-            )) : "—"}
+            {history.length
+              ? history.map((h, i) => (
+                  <div key={i} className="rounded-md border border-gray-200 p-2 text-sm">
+                    <div className="font-mono break-all">{h.e}</div>
+                    <div className="font-mono text-gray-600 break-all">{h.r}</div>
+                    <div className="mt-1 flex items-center gap-2">
+                      <button
+                        className="px-2 py-1 rounded border border-gray-300 text-xs"
+                        onClick={() => setExpr(h.e)}
+                      >
+                        复用
+                      </button>
+                      <button
+                        className="px-2 py-1 rounded border border-gray-300 text-xs"
+                        onClick={() => copy(h.r)}
+                        disabled={!h.r}
+                      >
+                        复制结果
+                      </button>
+                    </div>
+                  </div>
+                ))
+              : "—"}
           </div>
         </div>
       </div>

@@ -1,5 +1,35 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Box, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield, Key, Keyboard, DollarSign, Server, Network, Landmark, RefreshCw, TrendingUp, Percent } from "lucide-react";
+import {
+  Terminal,
+  Code,
+  QrCode,
+  Search,
+  FileText,
+  Lock,
+  GitCompare,
+  Dice6,
+  Hash,
+  Calendar,
+  Globe,
+  Box,
+  Link2,
+  Palette,
+  Filter,
+  Clock,
+  Calculator,
+  Fingerprint,
+  KeyRound,
+  Shield,
+  Key,
+  Keyboard,
+  DollarSign,
+  Server,
+  Network,
+  Landmark,
+  RefreshCw,
+  TrendingUp,
+  Percent,
+} from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useTranslation } from "react-i18next";
 import { useState, useMemo } from "react";
@@ -12,8 +42,11 @@ export default function Home() {
   const tools = [
     {
       id: "api-debugger",
-      name: t('tools.api-debugger.name', "API Debugger"),
-      description: t('tools.api-debugger.desc', "Test and debug HTTP requests with ease. Support for GET, POST, PUT, DELETE."),
+      name: t("tools.api-debugger.name", "API Debugger"),
+      description: t(
+        "tools.api-debugger.desc",
+        "Test and debug HTTP requests with ease. Support for GET, POST, PUT, DELETE."
+      ),
       icon: Terminal,
       path: "/tools/api-debugger",
       color: "text-blue-600",
@@ -21,8 +54,11 @@ export default function Home() {
     },
     {
       id: "code-formatter",
-      name: t('tools.code-formatter.name', "Code Formatter"),
-      description: t('tools.code-formatter.desc', "Format your code to standard styles. Supports JS, TS, HTML, CSS, JSON."),
+      name: t("tools.code-formatter.name", "Code Formatter"),
+      description: t(
+        "tools.code-formatter.desc",
+        "Format your code to standard styles. Supports JS, TS, HTML, CSS, JSON."
+      ),
       icon: Code,
       path: "/tools/code-formatter",
       color: "text-green-600",
@@ -30,8 +66,11 @@ export default function Home() {
     },
     {
       id: "qr-generator",
-      name: t('tools.qr-generator.name', "QR Code Generator"),
-      description: t('tools.qr-generator.desc', "Generate QR codes for URLs, text, and more. Customizable size and color."),
+      name: t("tools.qr-generator.name", "QR Code Generator"),
+      description: t(
+        "tools.qr-generator.desc",
+        "Generate QR codes for URLs, text, and more. Customizable size and color."
+      ),
       icon: QrCode,
       path: "/tools/qr-generator",
       color: "text-purple-600",
@@ -39,8 +78,11 @@ export default function Home() {
     },
     {
       id: "perpetual-calendar",
-      name: t('tools.perpetual-calendar.name', "Perpetual Calendar"),
-      description: t('tools.perpetual-calendar.desc', "Comprehensive calendar with Chinese Lunar date, Solar terms, and festivals."),
+      name: t("tools.perpetual-calendar.name", "Perpetual Calendar"),
+      description: t(
+        "tools.perpetual-calendar.desc",
+        "Comprehensive calendar with Chinese Lunar date, Solar terms, and festivals."
+      ),
       icon: Calendar,
       path: "/tools/perpetual-calendar",
       color: "text-red-600",
@@ -48,8 +90,11 @@ export default function Home() {
     },
     {
       id: "domain-valuation",
-      name: t('tools.domain-valuation.name', "Domain Valuation"),
-      description: t('tools.domain-valuation.desc', "Estimate domain market value based on length, TLD, and keywords."),
+      name: t("tools.domain-valuation.name", "Domain Valuation"),
+      description: t(
+        "tools.domain-valuation.desc",
+        "Estimate domain market value based on length, TLD, and keywords."
+      ),
       icon: DollarSign,
       path: "/tools/domain-valuation",
       color: "text-emerald-600",
@@ -57,8 +102,11 @@ export default function Home() {
     },
     {
       id: "nginx-config",
-      name: t('tools.nginx-config.name', "Nginx Config"),
-      description: t('tools.nginx-config.desc', "Generate Nginx configuration files online with HTTPS, proxy, Gzip support."),
+      name: t("tools.nginx-config.name", "Nginx Config"),
+      description: t(
+        "tools.nginx-config.desc",
+        "Generate Nginx configuration files online with HTTPS, proxy, Gzip support."
+      ),
       icon: Server,
       path: "/tools/nginx-config",
       color: "text-green-600",
@@ -66,8 +114,11 @@ export default function Home() {
     },
     {
       id: "apache-config",
-      name: t('tools.apache-config.name', "Apache Config"),
-      description: t('tools.apache-config.desc', "Generate Apache VirtualHost configuration files online with HTTPS, redirects, logs."),
+      name: t("tools.apache-config.name", "Apache Config"),
+      description: t(
+        "tools.apache-config.desc",
+        "Generate Apache VirtualHost configuration files online with HTTPS, redirects, logs."
+      ),
       icon: Server,
       path: "/tools/apache-config",
       color: "text-red-600",
@@ -75,8 +126,11 @@ export default function Home() {
     },
     {
       id: "haproxy-config",
-      name: t('tools.haproxy-config.name', "HAProxy Config"),
-      description: t('tools.haproxy-config.desc', "Generate HAProxy load balancer configuration files with algorithms, health checks."),
+      name: t("tools.haproxy-config.name", "HAProxy Config"),
+      description: t(
+        "tools.haproxy-config.desc",
+        "Generate HAProxy load balancer configuration files with algorithms, health checks."
+      ),
       icon: Network,
       path: "/tools/haproxy-config",
       color: "text-blue-600",
@@ -84,8 +138,11 @@ export default function Home() {
     },
     {
       id: "mortgage-calculator",
-      name: t('tools.mortgage-calculator.name', "Mortgage Calculator"),
-      description: t('tools.mortgage-calculator.desc', "Calculate mortgage payments for commercial, provident fund, and combination loans."),
+      name: t("tools.mortgage-calculator.name", "Mortgage Calculator"),
+      description: t(
+        "tools.mortgage-calculator.desc",
+        "Calculate mortgage payments for commercial, provident fund, and combination loans."
+      ),
       icon: Landmark,
       path: "/tools/mortgage-calculator",
       color: "text-indigo-600",
@@ -364,8 +421,8 @@ export default function Home() {
     {
       id: "investment-return",
       icon: TrendingUp,
-      name: t('tools.investment-return.name'),
-      description: t('tools.investment-return.desc'),
+      name: t("tools.investment-return.name"),
+      description: t("tools.investment-return.desc"),
       path: "/tools/investment-return",
       color: "text-blue-600",
       bgColor: "bg-blue-100",
@@ -373,8 +430,8 @@ export default function Home() {
     {
       id: "roi-calculator",
       icon: Percent,
-      name: t('tools.roi-calculator.name'),
-      description: t('tools.roi-calculator.desc'),
+      name: t("tools.roi-calculator.name"),
+      description: t("tools.roi-calculator.desc"),
       path: "/tools/roi-calculator",
       color: "text-emerald-600",
       bgColor: "bg-emerald-100",
@@ -383,32 +440,34 @@ export default function Home() {
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  const fuse = useMemo(() => new Fuse(tools, {
-    keys: ['name', 'description'],
-    threshold: 0.3,
-  }), [tools]);
+  const fuse = useMemo(
+    () =>
+      new Fuse(tools, {
+        keys: ["name", "description"],
+        threshold: 0.3,
+      }),
+    [tools]
+  );
 
   const filteredTools = useMemo(() => {
     if (!searchTerm) return tools;
-    return fuse.search(searchTerm).map(result => result.item);
+    return fuse.search(searchTerm).map((result) => result.item);
   }, [searchTerm, fuse, tools]);
 
   return (
     <div className="space-y-12">
       <SEO />
       <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-gray-900 tracking-tight">
-          {t('home.title')}
-        </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          {t('home.subtitle')}
-        </p>
+        <h1 className="text-4xl font-bold text-gray-900 tracking-tight">{t("home.title")}</h1>
+        <p className="text-xl text-gray-600 max-w-2xl mx-auto">{t("home.subtitle")}</p>
       </div>
 
       <SearchInput value={searchTerm} onChange={setSearchTerm} />
 
       <div className="space-y-6">
-        <h2 className="text-2xl font-bold text-gray-900 border-b pb-2">{t('home.section_tools')}</h2>
+        <h2 className="text-2xl font-bold text-gray-900 border-b pb-2">
+          {t("home.section_tools")}
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTools.map((tool) => (
             <Link
@@ -416,15 +475,15 @@ export default function Home() {
               to={tool.path}
               className="group block p-6 bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md hover:border-blue-300 transition-all duration-200"
             >
-              <div className={`inline-flex p-3 rounded-lg ${tool.bgColor} ${tool.color} mb-4 group-hover:scale-110 transition-transform`}>
+              <div
+                className={`inline-flex p-3 rounded-lg ${tool.bgColor} ${tool.color} mb-4 group-hover:scale-110 transition-transform`}
+              >
                 <tool.icon className="h-6 w-6" />
               </div>
               <h2 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600">
                 {tool.name}
               </h2>
-              <p className="text-gray-600">
-                {tool.description}
-              </p>
+              <p className="text-gray-600">{tool.description}</p>
             </Link>
           ))}
         </div>

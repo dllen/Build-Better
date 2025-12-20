@@ -66,7 +66,9 @@ export function toISO(date: Date): string {
 
 export function dayOfYear(date: Date): number {
   const start = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
-  const diff = (Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()) - start.getTime()) / 86400000;
+  const diff =
+    (Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()) - start.getTime()) /
+    86400000;
   return Math.floor(diff) + 1;
 }
 
@@ -79,7 +81,10 @@ export function isoWeekNumber(date: Date): number {
   return week;
 }
 
-export function add(date: Date, delta: { days?: number; hours?: number; minutes?: number; seconds?: number; ms?: number }): Date {
+export function add(
+  date: Date,
+  delta: { days?: number; hours?: number; minutes?: number; seconds?: number; ms?: number }
+): Date {
   let t = date.getTime();
   if (delta.days) t += delta.days * 86400000;
   if (delta.hours) t += delta.hours * 3600000;
@@ -125,4 +130,3 @@ export function parseDatetimeLocal(value: string): Date | null {
   if (isNaN(d.getTime())) return null;
   return d;
 }
-

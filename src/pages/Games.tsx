@@ -92,33 +92,31 @@ const games = [
 export default function Games() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const fuse = useMemo(() => new Fuse(games, {
-    keys: ['name', 'description'],
-    threshold: 0.3,
-  }), []);
+  const fuse = useMemo(
+    () =>
+      new Fuse(games, {
+        keys: ["name", "description"],
+        threshold: 0.3,
+      }),
+    []
+  );
 
   const filteredGames = useMemo(() => {
     if (!searchTerm) return games;
-    return fuse.search(searchTerm).map(result => result.item);
+    return fuse.search(searchTerm).map((result) => result.item);
   }, [searchTerm, fuse]);
 
   return (
     <div className="space-y-12">
       <SEO title="Games & Relax - BuildBetter" description="Collection of mini games to relax." />
       <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-gray-900 tracking-tight">
-          Games & Relax
-        </h1>
+        <h1 className="text-4xl font-bold text-gray-900 tracking-tight">Games & Relax</h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           Take a break and enjoy some classic mini games.
         </p>
       </div>
 
-      <SearchInput 
-        value={searchTerm} 
-        onChange={setSearchTerm} 
-        placeholder="Search games..."
-      />
+      <SearchInput value={searchTerm} onChange={setSearchTerm} placeholder="Search games..." />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {filteredGames.map((game) => (
@@ -127,15 +125,15 @@ export default function Games() {
             to={game.path}
             className="group block p-6 bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md hover:border-blue-300 transition-all duration-200"
           >
-            <div className={`inline-flex p-3 rounded-lg ${game.bgColor} ${game.color} mb-4 group-hover:scale-110 transition-transform`}>
+            <div
+              className={`inline-flex p-3 rounded-lg ${game.bgColor} ${game.color} mb-4 group-hover:scale-110 transition-transform`}
+            >
               <game.icon className="h-6 w-6" />
             </div>
             <h2 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600">
               {game.name}
             </h2>
-            <p className="text-gray-600 text-sm">
-              {game.description}
-            </p>
+            <p className="text-gray-600 text-sm">{game.description}</p>
           </Link>
         ))}
       </div>

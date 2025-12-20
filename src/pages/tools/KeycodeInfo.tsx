@@ -63,14 +63,17 @@ export default function KeycodeInfo() {
     };
   }, []);
 
-  const json = useMemo(() => last ? JSON.stringify(last, null, 2) : "", [last]);
+  const json = useMemo(() => (last ? JSON.stringify(last, null, 2) : ""), [last]);
 
   function copy(text: string) {
     if (!text) return;
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied("ok");
-      setTimeout(() => setCopied(""), 1000);
-    }).catch(() => {});
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setCopied("ok");
+        setTimeout(() => setCopied(""), 1000);
+      })
+      .catch(() => {});
   }
 
   return (
@@ -93,23 +96,54 @@ export default function KeycodeInfo() {
             按下任意键
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">type: {last?.type || "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">key: {last?.key || "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">code: {last?.code || "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">keyCode: {last?.keyCode ?? "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">which: {last?.which ?? "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">location: {last ? `${last.location} (${locName(last.location)})` : "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">alt: {last?.altKey ? "true" : "false"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">ctrl: {last?.ctrlKey ? "true" : "false"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">shift: {last?.shiftKey ? "true" : "false"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">meta: {last?.metaKey ? "true" : "false"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">repeat: {last?.repeat ? "true" : "false"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">isComposing: {last?.isComposing ? "true" : "false"}</div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              type: {last?.type || "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              key: {last?.key || "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              code: {last?.code || "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              keyCode: {last?.keyCode ?? "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              which: {last?.which ?? "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              location: {last ? `${last.location} (${locName(last.location)})` : "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              alt: {last?.altKey ? "true" : "false"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              ctrl: {last?.ctrlKey ? "true" : "false"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              shift: {last?.shiftKey ? "true" : "false"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              meta: {last?.metaKey ? "true" : "false"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              repeat: {last?.repeat ? "true" : "false"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              isComposing: {last?.isComposing ? "true" : "false"}
+            </div>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-xs break-all">{json || "—"}</div>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(json)} disabled={!json}>
-              <ClipboardCopy className="h-4 w-4" /> 复制 {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-xs break-all">
+              {json || "—"}
+            </div>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => copy(json)}
+              disabled={!json}
+            >
+              <ClipboardCopy className="h-4 w-4" /> 复制{" "}
+              {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
             </button>
           </div>
         </div>
@@ -117,21 +151,28 @@ export default function KeycodeInfo() {
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-medium">历史记录</div>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => setHistory([])} disabled={!history.length}>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => setHistory([])}
+              disabled={!history.length}
+            >
               清空
             </button>
           </div>
           <div className="rounded-md border border-gray-200 p-3 space-y-2">
-            {history.length ? history.map((e, i) => (
-              <div key={i} className="text-xs font-mono grid grid-cols-2 gap-2">
-                <div>{new Date(e.time).toLocaleTimeString()}</div>
-                <div className="truncate">{e.type} {e.key} {e.code} kc={e.keyCode} loc={e.location}</div>
-              </div>
-            )) : "—"}
+            {history.length
+              ? history.map((e, i) => (
+                  <div key={i} className="text-xs font-mono grid grid-cols-2 gap-2">
+                    <div>{new Date(e.time).toLocaleTimeString()}</div>
+                    <div className="truncate">
+                      {e.type} {e.key} {e.code} kc={e.keyCode} loc={e.location}
+                    </div>
+                  </div>
+                ))
+              : "—"}
           </div>
         </div>
       </div>
     </div>
   );
 }
-

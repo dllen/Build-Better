@@ -26,7 +26,10 @@ export default function HashTools() {
 
   useEffect(() => {
     const run = async () => {
-      if (!text) { setTextResult(""); return; }
+      if (!text) {
+        setTextResult("");
+        return;
+      }
       setTextLoading(true);
       try {
         if (alg === "CRC32") {
@@ -45,7 +48,10 @@ export default function HashTools() {
 
   useEffect(() => {
     const run = async () => {
-      if (!hmacMsg) { setHmacResult(""); return; }
+      if (!hmacMsg) {
+        setHmacResult("");
+        return;
+      }
       setHmacLoading(true);
       try {
         const sig = await hmac(hmacAlg, hmacKey, hmacMsg);
@@ -59,7 +65,11 @@ export default function HashTools() {
 
   function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
     const f = e.target.files?.[0];
-    if (!f) { setFileName(""); setFileResult(""); return; }
+    if (!f) {
+      setFileName("");
+      setFileResult("");
+      return;
+    }
     setFileName(f.name);
     setFileLoading(true);
     const reader = new FileReader();
@@ -80,11 +90,15 @@ export default function HashTools() {
     navigator.clipboard.writeText(text).catch(() => {});
   }
 
-  const encOptions = useMemo(() => ([
-    { id: "hex", label: "Hex" },
-    { id: "base64", label: "Base64" },
-    { id: "base64url", label: "Base64 URL" },
-  ] as const), []);
+  const encOptions = useMemo(
+    () =>
+      [
+        { id: "hex", label: "Hex" },
+        { id: "base64", label: "Base64" },
+        { id: "base64url", label: "Base64 URL" },
+      ] as const,
+    []
+  );
 
   return (
     <div className="space-y-8">
@@ -130,7 +144,11 @@ export default function HashTools() {
                 onChange={(e) => setEnc(e.target.value as OutEnc)}
                 disabled={alg === "CRC32"}
               >
-                {encOptions.map((o) => <option key={o.id} value={o.id}>{o.label}</option>)}
+                {encOptions.map((o) => (
+                  <option key={o.id} value={o.id}>
+                    {o.label}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -193,7 +211,11 @@ export default function HashTools() {
                   value={hmacEnc}
                   onChange={(e) => setHmacEnc(e.target.value as OutEnc)}
                 >
-                  {encOptions.map((o) => <option key={o.id} value={o.id}>{o.label}</option>)}
+                  {encOptions.map((o) => (
+                    <option key={o.id} value={o.id}>
+                      {o.label}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -243,7 +265,11 @@ export default function HashTools() {
                   value={fileEnc}
                   onChange={(e) => setFileEnc(e.target.value as OutEnc)}
                 >
-                  {encOptions.map((o) => <option key={o.id} value={o.id}>{o.label}</option>)}
+                  {encOptions.map((o) => (
+                    <option key={o.id} value={o.id}>
+                      {o.label}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -268,4 +294,3 @@ export default function HashTools() {
     </div>
   );
 }
-

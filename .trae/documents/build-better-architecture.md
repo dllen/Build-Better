@@ -7,16 +7,16 @@ graph TD
     B --> D[Cloudflare Workers]
     D --> E[工具处理逻辑]
     D --> F[数据存储]
-    
+
     subgraph "前端层"
         B
     end
-    
+
     subgraph "Cloudflare 服务层"
         C
         D
     end
-    
+
     subgraph "功能模块"
         E
         F
@@ -34,20 +34,21 @@ graph TD
 
 ## 3. 路由定义
 
-| 路由 | 用途 |
-|------|------|
-| / | 首页，展示所有工具入口 |
-| /tools/api-debugger | API调试工具页面 |
-| /tools/code-formatter | 代码格式化工具页面 |
-| /tools/qr-generator | 二维码生成器页面 |
-| /settings | 用户设置页面 |
-| /api/tools/* | 工具API接口路由 |
+| 路由                  | 用途                   |
+| --------------------- | ---------------------- |
+| /                     | 首页，展示所有工具入口 |
+| /tools/api-debugger   | API调试工具页面        |
+| /tools/code-formatter | 代码格式化工具页面     |
+| /tools/qr-generator   | 二维码生成器页面       |
+| /settings             | 用户设置页面           |
+| /api/tools/\*         | 工具API接口路由        |
 
 ## 4. API 定义
 
 ### 4.1 工具API
 
 **API调试工具**
+
 ```
 POST /api/tools/api-debugger
 ```
@@ -69,6 +70,7 @@ POST /api/tools/api-debugger
 | error | string | 错误信息（如果有） |
 
 **代码格式化工具**
+
 ```
 POST /api/tools/code-formatter
 ```
@@ -86,6 +88,7 @@ POST /api/tools/code-formatter
 | error | string | 错误信息（如果有） |
 
 **二维码生成器**
+
 ```
 POST /api/tools/qr-generator
 ```
@@ -112,7 +115,7 @@ graph TD
     C --> D[工具服务层]
     D --> E[工具逻辑处理]
     E --> F[响应返回]
-    
+
     subgraph "Cloudflare Workers"
         B
         C
@@ -156,17 +159,20 @@ build-better/
 ## 8. 开发规范
 
 ### 8.1 代码规范
+
 - 使用 TypeScript 进行开发
 - 遵循 ESLint 和 Prettier 配置
 - 组件采用函数式组件和 Hooks
 - 使用语义化的 HTML 标签
 
 ### 8.2 文件命名
+
 - 组件文件使用 PascalCase (如: ApiDebugger.tsx)
 - 工具函数使用 camelCase (如: formatCode.ts)
 - 路由文件使用 kebab-case (如: api-debugger.tsx)
 
 ### 8.3 性能优化
+
 - 使用 Remix 的 data loading 和 caching 机制
 - 实现组件级别的代码分割
 - 优化图片和资源加载
@@ -175,6 +181,7 @@ build-better/
 ## 9. 部署配置
 
 ### 9.1 Cloudflare Pages 配置
+
 ```toml
 # wrangler.toml
 name = "build-better"
@@ -186,6 +193,7 @@ command = "npm run build"
 ```
 
 ### 9.2 构建脚本
+
 ```json
 {
   "scripts": {
@@ -199,12 +207,14 @@ command = "npm run build"
 ## 10. 监控和扩展
 
 ### 10.1 监控指标
+
 - 页面加载时间
 - API响应时间
 - 错误率统计
 - 用户使用频率
 
 ### 10.2 扩展点
+
 - 支持更多编程语言的代码格式化
 - 添加用户登录和个性化设置
 - 实现工具使用历史记录

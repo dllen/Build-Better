@@ -43,7 +43,10 @@ function tsRelative(ts?: number) {
 
 export default function JwtDecodeTool() {
   const [token, setToken] = useState("");
-  const [copied, setCopied] = useState<{ part?: "header" | "payload" | "signature" | "all"; ok?: boolean }>({});
+  const [copied, setCopied] = useState<{
+    part?: "header" | "payload" | "signature" | "all";
+    ok?: boolean;
+  }>({});
 
   const parts = useMemo(() => token.trim().split("."), [token]);
   const headerStr = useMemo(() => (parts.length >= 2 ? b64urlToString(parts[0]) : ""), [parts]);
@@ -81,10 +84,13 @@ export default function JwtDecodeTool() {
 
   function copy(text: string, part: "header" | "payload" | "signature" | "all") {
     if (!text) return;
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied({ part, ok: true });
-      setTimeout(() => setCopied({}), 1000);
-    }).catch(() => {});
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setCopied({ part, ok: true });
+        setTimeout(() => setCopied({}), 1000);
+      })
+      .catch(() => {});
   }
 
   const summary = useMemo(() => {
@@ -113,15 +119,28 @@ export default function JwtDecodeTool() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700">Token</label>
-          <textarea className="w-full h-28 rounded-md border border-gray-300 px-3 py-2 font-mono" placeholder="eyJhbGciOi...header.payload.signature" value={token} onChange={(e) => setToken(e.target.value)} />
+          <textarea
+            className="w-full h-28 rounded-md border border-gray-300 px-3 py-2 font-mono"
+            placeholder="eyJhbGciOi...header.payload.signature"
+            value={token}
+            onChange={(e) => setToken(e.target.value)}
+          />
         </div>
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">Header</div>
           {headerParsed.ok ? (
             <div className="flex items-center gap-2">
-              <pre className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words">{pretty(headerParsed.value)}</pre>
-              <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(pretty(headerParsed.value), "header")}>
-                <ClipboardCopy className="h-4 w-4" /> Copy {copied.part === "header" && copied.ok ? <Check className="h-4 w-4 text-green-600" /> : null}
+              <pre className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words">
+                {pretty(headerParsed.value)}
+              </pre>
+              <button
+                className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                onClick={() => copy(pretty(headerParsed.value), "header")}
+              >
+                <ClipboardCopy className="h-4 w-4" /> Copy{" "}
+                {copied.part === "header" && copied.ok ? (
+                  <Check className="h-4 w-4 text-green-600" />
+                ) : null}
               </button>
             </div>
           ) : (
@@ -132,9 +151,17 @@ export default function JwtDecodeTool() {
           <div className="font-medium">Payload</div>
           {payloadParsed.ok ? (
             <div className="flex items-center gap-2">
-              <pre className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words">{pretty(payloadParsed.value)}</pre>
-              <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(pretty(payloadParsed.value), "payload")}>
-                <ClipboardCopy className="h-4 w-4" /> Copy {copied.part === "payload" && copied.ok ? <Check className="h-4 w-4 text-green-600" /> : null}
+              <pre className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words">
+                {pretty(payloadParsed.value)}
+              </pre>
+              <button
+                className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                onClick={() => copy(pretty(payloadParsed.value), "payload")}
+              >
+                <ClipboardCopy className="h-4 w-4" /> Copy{" "}
+                {copied.part === "payload" && copied.ok ? (
+                  <Check className="h-4 w-4 text-green-600" />
+                ) : null}
               </button>
             </div>
           ) : (
@@ -148,21 +175,44 @@ export default function JwtDecodeTool() {
           <div className="font-medium">Claims</div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
             <div className="rounded-md border border-gray-200 px-3 py-2">alg: {alg || "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">iss: {claims.iss || "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">sub: {claims.sub || "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">aud: {claims.aud || "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">exp: {tsToDateString(claims.exp)} {tsRelative(claims.exp)}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">nbf: {tsToDateString(claims.nbf)} {tsRelative(claims.nbf)}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">iat: {tsToDateString(claims.iat)} {tsRelative(claims.iat)}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">jti: {claims.jti || "—"}</div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              iss: {claims.iss || "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              sub: {claims.sub || "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              aud: {claims.aud || "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              exp: {tsToDateString(claims.exp)} {tsRelative(claims.exp)}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              nbf: {tsToDateString(claims.nbf)} {tsRelative(claims.nbf)}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              iat: {tsToDateString(claims.iat)} {tsRelative(claims.iat)}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              jti: {claims.jti || "—"}
+            </div>
           </div>
         </div>
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">Signature</div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div className="rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all">{signatureStr || "—"}</div>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(signatureStr, "signature")} disabled={!signatureStr}>
-              <ClipboardCopy className="h-4 w-4" /> Copy {copied.part === "signature" && copied.ok ? <Check className="h-4 w-4 text-green-600" /> : null}
+            <div className="rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all">
+              {signatureStr || "—"}
+            </div>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => copy(signatureStr, "signature")}
+              disabled={!signatureStr}
+            >
+              <ClipboardCopy className="h-4 w-4" /> Copy{" "}
+              {copied.part === "signature" && copied.ok ? (
+                <Check className="h-4 w-4 text-green-600" />
+              ) : null}
             </button>
           </div>
           <div className="text-sm text-gray-600">bytes: {signatureBytes || 0}</div>
@@ -170,9 +220,18 @@ export default function JwtDecodeTool() {
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">Summary</div>
           <div className="flex items-center gap-2">
-            <pre className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words">{summary}</pre>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(summary, "all")} disabled={!summary}>
-              <ClipboardCopy className="h-4 w-4" /> Copy {copied.part === "all" && copied.ok ? <Check className="h-4 w-4 text-green-600" /> : null}
+            <pre className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words">
+              {summary}
+            </pre>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => copy(summary, "all")}
+              disabled={!summary}
+            >
+              <ClipboardCopy className="h-4 w-4" /> Copy{" "}
+              {copied.part === "all" && copied.ok ? (
+                <Check className="h-4 w-4 text-green-600" />
+              ) : null}
             </button>
           </div>
         </div>

@@ -1,7 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link2, ClipboardCopy, Check } from "lucide-react";
 
-type Mapping = { code: string; url: string; createdAt: number; clicks: number; deterministic?: boolean };
+type Mapping = {
+  code: string;
+  url: string;
+  createdAt: number;
+  clicks: number;
+  deterministic?: boolean;
+};
 
 const STORAGE_KEY = "shorturl.mappings";
 const BASE62 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -35,7 +41,9 @@ async function sha256Hex(input: string): Promise<string> {
   const enc = new TextEncoder().encode(input);
   const buf = await crypto.subtle.digest("SHA-256", enc);
   const bytes = new Uint8Array(buf);
-  return Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
+  return Array.from(bytes)
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
 }
 
 function hexToBase62(hex: string, length = 8): string {
@@ -104,10 +112,13 @@ export default function ShortUrlTool() {
 
   function copy(text: string) {
     if (!text) return;
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied("ok");
-      setTimeout(() => setCopied(""), 1000);
-    }).catch(() => {});
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setCopied("ok");
+        setTimeout(() => setCopied(""), 1000);
+      })
+      .catch(() => {});
   }
 
   function resolve() {
@@ -144,39 +155,94 @@ export default function ShortUrlTool() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">Create</div>
-          <input className="w-full rounded-md border border-gray-300 px-3 py-2" placeholder="Enter a long URL" value={url} onChange={(e) => setUrl(e.target.value)} />
+          <input
+            className="w-full rounded-md border border-gray-300 px-3 py-2"
+            placeholder="Enter a long URL"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+          />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <input className="rounded-md border border-gray-300 px-3 py-2" placeholder="Custom code (optional)" value={code} onChange={(e) => setCode(e.target.value)} />
-            <label className="inline-flex items-center gap-2 text-sm"><input type="checkbox" checked={deterministic} onChange={(e) => setDeterministic(e.target.checked)} /> Deterministic from URL</label>
-            <button className="inline-flex items-center gap-2 px-3 py-2 bg-teal-600 text-white rounded-md text-sm hover:bg-teal-700 disabled:opacity-50" onClick={generate} disabled={!isValidUrl(url)}>
+            <input
+              className="rounded-md border border-gray-300 px-3 py-2"
+              placeholder="Custom code (optional)"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+            />
+            <label className="inline-flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                checked={deterministic}
+                onChange={(e) => setDeterministic(e.target.checked)}
+              />{" "}
+              Deterministic from URL
+            </label>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 bg-teal-600 text-white rounded-md text-sm hover:bg-teal-700 disabled:opacity-50"
+              onClick={generate}
+              disabled={!isValidUrl(url)}
+            >
               Generate
             </button>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all">{previewLink || "—"}</div>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(previewLink)} disabled={!previewLink}>
-              <ClipboardCopy className="h-4 w-4" /> Copy {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all">
+              {previewLink || "—"}
+            </div>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => copy(previewLink)}
+              disabled={!previewLink}
+            >
+              <ClipboardCopy className="h-4 w-4" /> Copy{" "}
+              {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
             </button>
           </div>
-          <div className="text-xs text-gray-600">Note: mappings are stored in your browser (localStorage).</div>
+          <div className="text-xs text-gray-600">
+            Note: mappings are stored in your browser (localStorage).
+          </div>
         </div>
 
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">Resolve</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <input className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2" placeholder="Enter short code" value={resolveCode} onChange={(e) => setResolveCode(e.target.value)} />
-            <button className="inline-flex items-center gap-2 px-3 py-2 bg-gray-700 text-white rounded-md text-sm hover:bg-gray-800 disabled:opacity-50" onClick={resolve} disabled={!resolveCode.trim()}>
+            <input
+              className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2"
+              placeholder="Enter short code"
+              value={resolveCode}
+              onChange={(e) => setResolveCode(e.target.value)}
+            />
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 bg-gray-700 text-white rounded-md text-sm hover:bg-gray-800 disabled:opacity-50"
+              onClick={resolve}
+              disabled={!resolveCode.trim()}
+            >
               Resolve
             </button>
           </div>
           {resolved ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-              <div className="rounded-md border border-gray-200 px-3 py-2">Code: {resolved.code}</div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">Clicks: {resolved.clicks}</div>
-              <div className="rounded-md border border-gray-200 px-3 py-2 md:col-span-2 font-mono break-words">{resolved.url}</div>
+              <div className="rounded-md border border-gray-200 px-3 py-2">
+                Code: {resolved.code}
+              </div>
+              <div className="rounded-md border border-gray-200 px-3 py-2">
+                Clicks: {resolved.clicks}
+              </div>
+              <div className="rounded-md border border-gray-200 px-3 py-2 md:col-span-2 font-mono break-words">
+                {resolved.url}
+              </div>
               <div className="md:col-span-2 flex items-center gap-2">
-                <a href={resolved.url} target="_blank" rel="noreferrer" className="inline-flex items-center px-3 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700">Open</a>
-                <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(resolved.url)}>
+                <a
+                  href={resolved.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center px-3 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700"
+                >
+                  Open
+                </a>
+                <button
+                  className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                  onClick={() => copy(resolved.url)}
+                >
                   <ClipboardCopy className="h-4 w-4" /> Copy URL
                 </button>
               </div>
@@ -208,8 +274,22 @@ export default function ShortUrlTool() {
                       <td className="px-3 py-2 font-mono break-all">{m.url}</td>
                       <td className="px-3 py-2">{m.clicks}</td>
                       <td className="px-3 py-2">
-                        <button className="inline-flex items-center px-2 py-1 border border-gray-300 rounded-md text-xs mr-2" onClick={() => copy(`${window.location.origin}/tools/short-url?code=${encodeURIComponent(m.code)}`)}>Copy Link</button>
-                        <button className="inline-flex items-center px-2 py-1 border border-red-300 text-red-600 rounded-md text-xs" onClick={() => remove(m.code)}>Delete</button>
+                        <button
+                          className="inline-flex items-center px-2 py-1 border border-gray-300 rounded-md text-xs mr-2"
+                          onClick={() =>
+                            copy(
+                              `${window.location.origin}/tools/short-url?code=${encodeURIComponent(m.code)}`
+                            )
+                          }
+                        >
+                          Copy Link
+                        </button>
+                        <button
+                          className="inline-flex items-center px-2 py-1 border border-red-300 text-red-600 rounded-md text-xs"
+                          onClick={() => remove(m.code)}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   ))}

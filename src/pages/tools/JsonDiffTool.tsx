@@ -75,8 +75,12 @@ function deepDiff(left: unknown, right: unknown, basePath = ""): ChangeRow[] {
 }
 
 export default function JsonDiffTool() {
-  const [leftText, setLeftText] = useState('{"name":"Alice","age":30,"skills":["js","ts"],"meta":{"active":true}}');
-  const [rightText, setRightText] = useState('{"name":"Alice","age":31,"skills":["js","rust"],"meta":{"active":true,"level":2}}');
+  const [leftText, setLeftText] = useState(
+    '{"name":"Alice","age":30,"skills":["js","ts"],"meta":{"active":true}}'
+  );
+  const [rightText, setRightText] = useState(
+    '{"name":"Alice","age":31,"skills":["js","rust"],"meta":{"active":true,"level":2}}'
+  );
   const [sortKeys, setSortKeys] = useState(true);
 
   const leftParsed = useMemo(() => {
@@ -103,7 +107,9 @@ export default function JsonDiffTool() {
   }, [leftParsed, rightParsed]);
 
   const stats = useMemo(() => {
-    let added = 0, removed = 0, changed = 0;
+    let added = 0,
+      removed = 0,
+      changed = 0;
     for (const r of structRows) {
       if (r.type === "added") added++;
       else if (r.type === "removed") removed++;
@@ -124,7 +130,13 @@ export default function JsonDiffTool() {
       <SEO
         title="JSON Diff Tool"
         description="Compare two JSON objects structurally and visualize differences with pretty printing."
-        keywords={["json diff", "json compare", "json validator", "developer tools", "structural diff"]}
+        keywords={[
+          "json diff",
+          "json compare",
+          "json validator",
+          "developer tools",
+          "structural diff",
+        ]}
       />
       <div className="flex items-center gap-2">
         <div className="inline-flex p-2 rounded-lg bg-orange-100 text-orange-600">
@@ -160,11 +172,16 @@ export default function JsonDiffTool() {
 
       <div className="flex items-center gap-4">
         <label className="inline-flex items-center gap-2 text-sm">
-          <input type="checkbox" checked={sortKeys} onChange={(e) => setSortKeys(e.target.checked)} />
+          <input
+            type="checkbox"
+            checked={sortKeys}
+            onChange={(e) => setSortKeys(e.target.checked)}
+          />
           Sort object keys
         </label>
         <div className="text-xs text-gray-600">
-          Added: {stats.added} · Removed: {stats.removed} · Changed: {stats.changed} · Total: {stats.total}
+          Added: {stats.added} · Removed: {stats.removed} · Changed: {stats.changed} · Total:{" "}
+          {stats.total}
         </div>
       </div>
 
@@ -189,18 +206,36 @@ export default function JsonDiffTool() {
                     <td className="px-3 py-2 font-mono">{row.path}</td>
                     <td className="px-3 py-2">
                       {row.type === "added" ? (
-                        <span className="inline-flex px-2 py-1 rounded-md bg-green-100 text-green-700">added</span>
+                        <span className="inline-flex px-2 py-1 rounded-md bg-green-100 text-green-700">
+                          added
+                        </span>
                       ) : row.type === "removed" ? (
-                        <span className="inline-flex px-2 py-1 rounded-md bg-red-100 text-red-700">removed</span>
+                        <span className="inline-flex px-2 py-1 rounded-md bg-red-100 text-red-700">
+                          removed
+                        </span>
                       ) : (
-                        <span className="inline-flex px-2 py-1 rounded-md bg-yellow-100 text-yellow-700">changed</span>
+                        <span className="inline-flex px-2 py-1 rounded-md bg-yellow-100 text-yellow-700">
+                          changed
+                        </span>
                       )}
                     </td>
                     <td className="px-3 py-2">
-                      {row.type === "added" ? "—" : <pre className="whitespace-pre-wrap break-words font-mono">{stringifyLite(row.left)}</pre>}
+                      {row.type === "added" ? (
+                        "—"
+                      ) : (
+                        <pre className="whitespace-pre-wrap break-words font-mono">
+                          {stringifyLite(row.left)}
+                        </pre>
+                      )}
                     </td>
                     <td className="px-3 py-2">
-                      {row.type === "removed" ? "—" : <pre className="whitespace-pre-wrap break-words font-mono">{stringifyLite(row.right)}</pre>}
+                      {row.type === "removed" ? (
+                        "—"
+                      ) : (
+                        <pre className="whitespace-pre-wrap break-words font-mono">
+                          {stringifyLite(row.right)}
+                        </pre>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -213,15 +248,19 @@ export default function JsonDiffTool() {
       <div className="bg-white rounded-lg border border-gray-200 p-4">
         <div className="font-medium mb-2">Pretty Diff</div>
         <div className="font-mono whitespace-pre-wrap break-words">
-          {jsonParts.map((p, i) => (
+          {jsonParts.map((p, i) =>
             p.added ? (
-              <span key={i} className="bg-green-200 text-green-900">{p.value}</span>
+              <span key={i} className="bg-green-200 text-green-900">
+                {p.value}
+              </span>
             ) : p.removed ? (
-              <span key={i} className="bg-red-200 text-red-900 line-through">{p.value}</span>
+              <span key={i} className="bg-red-200 text-red-900 line-through">
+                {p.value}
+              </span>
             ) : (
               <span key={i}>{p.value}</span>
             )
-          ))}
+          )}
         </div>
       </div>
     </div>

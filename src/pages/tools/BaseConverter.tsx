@@ -26,14 +26,20 @@ function stripPrefix(s: string): string {
   return s;
 }
 
-function parseBaseInt(s: string, base: number): { ok: true; value: bigint } | { ok: false; error: string } {
+function parseBaseInt(
+  s: string,
+  base: number
+): { ok: true; value: bigint } | { ok: false; error: string } {
   if (base < 2 || base > 36) return { ok: false, error: "Base must be between 2 and 36" };
   let v = sanitizeInput(s);
   if (!v) return { ok: false, error: "Empty input" };
   if (v.includes(".")) return { ok: false, error: "Fractional values are not supported" };
   v = stripPrefix(v);
   let sign = 1n;
-  if (v.startsWith("-")) { sign = -1n; v = v.slice(1); }
+  if (v.startsWith("-")) {
+    sign = -1n;
+    v = v.slice(1);
+  }
   if (!v) return { ok: false, error: "Invalid input" };
   const b = BigInt(base);
   let x = 0n;
@@ -87,11 +93,21 @@ export default function BaseConverter() {
   }, [input, srcBase]);
 
   useEffect(() => {
-    if (!input) { setResult(""); setError(null); return; }
+    if (!input) {
+      setResult("");
+      setError(null);
+      return;
+    }
     const p = parseBaseInt(input, srcBase);
-    if (!p.ok) { setError((p as { ok: false; error: string }).error); setResult(""); return; }
+    if (!p.ok) {
+      setError((p as { ok: false; error: string }).error);
+      setResult("");
+      return;
+    }
     setError(null);
-    setResult(formatBaseInt((p as { ok: true; value: bigint }).value, dstBase, uppercase, groupSize));
+    setResult(
+      formatBaseInt((p as { ok: true; value: bigint }).value, dstBase, uppercase, groupSize)
+    );
   }, [input, srcBase, dstBase, uppercase, groupSize]);
 
   const quick = useMemo(() => {
@@ -141,7 +157,11 @@ export default function BaseConverter() {
                 value={srcBase}
                 onChange={(e) => setSrcBase(Number(e.target.value))}
               >
-                {bases.map((b) => <option key={b} value={b}>{b}</option>)}
+                {bases.map((b) => (
+                  <option key={b} value={b}>
+                    {b}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="space-y-1">
@@ -151,21 +171,41 @@ export default function BaseConverter() {
                 value={dstBase}
                 onChange={(e) => setDstBase(Number(e.target.value))}
               >
-                {bases.map((b) => <option key={b} value={b}>{b}</option>)}
+                {bases.map((b) => (
+                  <option key={b} value={b}>
+                    {b}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-3 items-center">
             <label className="inline-flex items-center gap-2 text-sm">
-              <input type="checkbox" checked={uppercase} onChange={(e) => setUppercase(e.target.checked)} />
+              <input
+                type="checkbox"
+                checked={uppercase}
+                onChange={(e) => setUppercase(e.target.checked)}
+              />
               Uppercase
             </label>
             <div className="space-y-1">
               <label className="text-sm font-medium text-gray-700">分组</label>
-              <input type="number" min={0} max={8} className="w-full rounded-md border border-gray-300 px-3 py-2" value={groupSize} onChange={(e) => setGroupSize(Number(e.target.value))} />
+              <input
+                type="number"
+                min={0}
+                max={8}
+                className="w-full rounded-md border border-gray-300 px-3 py-2"
+                value={groupSize}
+                onChange={(e) => setGroupSize(Number(e.target.value))}
+              />
             </div>
-            <button className="px-3 py-2 rounded-md bg-teal-600 text-white text-sm" onClick={() => setInput("")}>清空</button>
+            <button
+              className="px-3 py-2 rounded-md bg-teal-600 text-white text-sm"
+              onClick={() => setInput("")}
+            >
+              清空
+            </button>
           </div>
 
           {error && (
@@ -179,7 +219,11 @@ export default function BaseConverter() {
           <div className="font-medium">结果</div>
           <div className="flex items-center gap-2">
             <div className="flex-1 font-mono text-lg break-all">{result || "—"}</div>
-            <button className="inline-flex items-center gap-2 px-3 py-2 bg-teal-600 text-white rounded-md text-sm hover:bg-teal-700 disabled:opacity-50" disabled={!result} onClick={() => copy(result)}>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 bg-teal-600 text-white rounded-md text-sm hover:bg-teal-700 disabled:opacity-50"
+              disabled={!result}
+              onClick={() => copy(result)}
+            >
               <ClipboardCopy className="h-4 w-4" /> Copy
             </button>
           </div>

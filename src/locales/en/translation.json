@@ -25,6 +25,13 @@
         "dark": "Dark",
         "high_contrast": "High Contrast"
       },
+      "options": {
+        "tab_width": "Tab Width",
+        "print_width": "Print Width",
+        "use_tabs": "Use Tabs",
+        "semi": "Semicolons",
+        "single_quote": "Single Quote"
+      },
       "input_label": "Input Code",
       "input_placeholder": "Paste code here...",
       "output_label": "Formatted Output",

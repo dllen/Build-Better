@@ -46,102 +46,110 @@ export default function Dino() {
     }
   }, []);
 
-  const update = useCallback((time: number) => {
-    if (!lastTimeRef.current) lastTimeRef.current = time;
-    lastTimeRef.current = time;
+  const update = useCallback(
+    (time: number) => {
+      if (!lastTimeRef.current) lastTimeRef.current = time;
+      lastTimeRef.current = time;
 
-    // Physics
-    dinoVelocity.current += GRAVITY;
-    dinoY.current += dinoVelocity.current;
+      // Physics
+      dinoVelocity.current += GRAVITY;
+      dinoY.current += dinoVelocity.current;
 
-    if (dinoY.current > GROUND_Y) {
-      dinoY.current = GROUND_Y;
-      dinoVelocity.current = 0;
-    }
-
-    // Obstacles
-    speedRef.current = 5 + scoreRef.current * 0.005; // Increase speed
-    obstacles.current.forEach((obs) => {
-      obs.x -= speedRef.current;
-    });
-
-    // Remove off-screen obstacles
-    if (obstacles.current.length > 0 && obstacles.current[0].x < -OBSTACLE_WIDTH) {
-      obstacles.current.shift();
-      scoreRef.current += 1;
-      setScore(scoreRef.current);
-    }
-
-    // Add new obstacles
-    if (
-      obstacles.current.length === 0 ||
-      GAME_WIDTH - obstacles.current[obstacles.current.length - 1].x > Math.random() * 300 + 200
-    ) {
-      obstacles.current.push({
-        x: GAME_WIDTH,
-        type: Math.random() > 0.5 ? 1 : 0, // simple variety
-      });
-    }
-
-    // Collision detection
-    const dinoRect = {
-      x: DINO_X + 5, // hitbox adjustment
-      y: dinoY.current + 5,
-      w: DINO_WIDTH - 10,
-      h: DINO_HEIGHT - 10,
-    };
-
-    for (const obs of obstacles.current) {
-      const obsRect = {
-        x: obs.x,
-        y: GROUND_Y + (DINO_HEIGHT - OBSTACLE_HEIGHT), // Aligned to bottom
-        w: OBSTACLE_WIDTH,
-        h: OBSTACLE_HEIGHT,
-      };
-
-      if (
-        dinoRect.x < obsRect.x + obsRect.w &&
-        dinoRect.x + dinoRect.w > obsRect.x &&
-        dinoRect.y < obsRect.y + obsRect.h &&
-        dinoRect.y + dinoRect.h > obsRect.y
-      ) {
-        setGameOver(true);
-        setIsPlaying(false);
-        return; // Stop loop
+      if (dinoY.current > GROUND_Y) {
+        dinoY.current = GROUND_Y;
+        dinoVelocity.current = 0;
       }
-    }
-
-    // Draw
-    const ctx = canvasRef.current?.getContext("2d");
-    if (ctx) {
-      ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-
-      // Ground
-      ctx.beginPath();
-      ctx.moveTo(0, GROUND_Y + DINO_HEIGHT);
-      ctx.lineTo(GAME_WIDTH, GROUND_Y + DINO_HEIGHT);
-      ctx.strokeStyle = "#555";
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
-      // Dino
-      ctx.fillStyle = "#333";
-      ctx.fillRect(DINO_X, dinoY.current, DINO_WIDTH, DINO_HEIGHT);
-      // Eye
-      ctx.fillStyle = "#fff";
-      ctx.fillRect(DINO_X + 25, dinoY.current + 5, 5, 5);
 
       // Obstacles
-      ctx.fillStyle = "#e02424";
+      speedRef.current = 5 + scoreRef.current * 0.005; // Increase speed
       obstacles.current.forEach((obs) => {
-        ctx.fillRect(obs.x, GROUND_Y + (DINO_HEIGHT - OBSTACLE_HEIGHT), OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
+        obs.x -= speedRef.current;
       });
-    }
 
-    if (isPlaying) {
-      animationRef.current = requestAnimationFrame(update);
-    }
-  }, [isPlaying]);
+      // Remove off-screen obstacles
+      if (obstacles.current.length > 0 && obstacles.current[0].x < -OBSTACLE_WIDTH) {
+        obstacles.current.shift();
+        scoreRef.current += 1;
+        setScore(scoreRef.current);
+      }
+
+      // Add new obstacles
+      if (
+        obstacles.current.length === 0 ||
+        GAME_WIDTH - obstacles.current[obstacles.current.length - 1].x > Math.random() * 300 + 200
+      ) {
+        obstacles.current.push({
+          x: GAME_WIDTH,
+          type: Math.random() > 0.5 ? 1 : 0, // simple variety
+        });
+      }
+
+      // Collision detection
+      const dinoRect = {
+        x: DINO_X + 5, // hitbox adjustment
+        y: dinoY.current + 5,
+        w: DINO_WIDTH - 10,
+        h: DINO_HEIGHT - 10,
+      };
+
+      for (const obs of obstacles.current) {
+        const obsRect = {
+          x: obs.x,
+          y: GROUND_Y + (DINO_HEIGHT - OBSTACLE_HEIGHT), // Aligned to bottom
+          w: OBSTACLE_WIDTH,
+          h: OBSTACLE_HEIGHT,
+        };
+
+        if (
+          dinoRect.x < obsRect.x + obsRect.w &&
+          dinoRect.x + dinoRect.w > obsRect.x &&
+          dinoRect.y < obsRect.y + obsRect.h &&
+          dinoRect.y + dinoRect.h > obsRect.y
+        ) {
+          setGameOver(true);
+          setIsPlaying(false);
+          return; // Stop loop
+        }
+      }
+
+      // Draw
+      const ctx = canvasRef.current?.getContext("2d");
+      if (ctx) {
+        ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
+        // Ground
+        ctx.beginPath();
+        ctx.moveTo(0, GROUND_Y + DINO_HEIGHT);
+        ctx.lineTo(GAME_WIDTH, GROUND_Y + DINO_HEIGHT);
+        ctx.strokeStyle = "#555";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Dino
+        ctx.fillStyle = "#333";
+        ctx.fillRect(DINO_X, dinoY.current, DINO_WIDTH, DINO_HEIGHT);
+        // Eye
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(DINO_X + 25, dinoY.current + 5, 5, 5);
+
+        // Obstacles
+        ctx.fillStyle = "#e02424";
+        obstacles.current.forEach((obs) => {
+          ctx.fillRect(
+            obs.x,
+            GROUND_Y + (DINO_HEIGHT - OBSTACLE_HEIGHT),
+            OBSTACLE_WIDTH,
+            OBSTACLE_HEIGHT
+          );
+        });
+      }
+
+      if (isPlaying) {
+        animationRef.current = requestAnimationFrame(update);
+      }
+    },
+    [isPlaying]
+  );
 
   useEffect(() => {
     if (isPlaying && !gameOver) {
@@ -184,7 +192,10 @@ export default function Dino() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] space-y-6 outline-none" tabIndex={0}>
+    <div
+      className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] space-y-6 outline-none"
+      tabIndex={0}
+    >
       <div className="text-center space-y-2">
         <h1 className="text-3xl font-bold text-gray-900">Chrome Dino</h1>
         <p className="text-gray-600">Space or Arrow Up to jump</p>

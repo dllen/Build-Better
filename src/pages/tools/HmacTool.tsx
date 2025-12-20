@@ -11,8 +11,14 @@ export default function HmacTool() {
   const [running, setRunning] = useState(false);
   const [copied, setCopied] = useState("");
 
-  const keyInfo = useMemo(() => key ? `${new TextEncoder().encode(key).length} bytes` : "", [key]);
-  const msgInfo = useMemo(() => msg ? `${new TextEncoder().encode(msg).length} bytes` : "", [msg]);
+  const keyInfo = useMemo(
+    () => (key ? `${new TextEncoder().encode(key).length} bytes` : ""),
+    [key]
+  );
+  const msgInfo = useMemo(
+    () => (msg ? `${new TextEncoder().encode(msg).length} bytes` : ""),
+    [msg]
+  );
 
   async function compute() {
     if (!key || !msg) return;
@@ -27,10 +33,13 @@ export default function HmacTool() {
 
   function copy(text: string) {
     if (!text) return;
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied("ok");
-      setTimeout(() => setCopied(""), 1000);
-    }).catch(() => {});
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setCopied("ok");
+        setTimeout(() => setCopied(""), 1000);
+      })
+      .catch(() => {});
   }
 
   return (
@@ -44,34 +53,62 @@ export default function HmacTool() {
 
       <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <select className="rounded-md border border-gray-300 px-3 py-2" value={alg} onChange={(e) => setAlg(e.target.value as HashAlg)}>
+          <select
+            className="rounded-md border border-gray-300 px-3 py-2"
+            value={alg}
+            onChange={(e) => setAlg(e.target.value as HashAlg)}
+          >
             <option value="SHA-1">SHA-1</option>
             <option value="SHA-256">SHA-256</option>
             <option value="SHA-512">SHA-512</option>
           </select>
-          <select className="rounded-md border border-gray-300 px-3 py-2" value={enc} onChange={(e) => setEnc(e.target.value as OutEnc)}>
+          <select
+            className="rounded-md border border-gray-300 px-3 py-2"
+            value={enc}
+            onChange={(e) => setEnc(e.target.value as OutEnc)}
+          >
             <option value="hex">hex</option>
             <option value="base64">base64</option>
             <option value="base64url">base64url</option>
           </select>
-          <button className="inline-flex items-center gap-2 px-3 py-2 bg-emerald-600 text-white rounded-md text-sm hover:bg-emerald-700 disabled:opacity-50" onClick={compute} disabled={!key || !msg || running}>
+          <button
+            className="inline-flex items-center gap-2 px-3 py-2 bg-emerald-600 text-white rounded-md text-sm hover:bg-emerald-700 disabled:opacity-50"
+            onClick={compute}
+            disabled={!key || !msg || running}
+          >
             计算
           </button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <input className="rounded-md border border-gray-300 px-3 py-2" placeholder="密钥" value={key} onChange={(e) => setKey(e.target.value)} />
+          <input
+            className="rounded-md border border-gray-300 px-3 py-2"
+            placeholder="密钥"
+            value={key}
+            onChange={(e) => setKey(e.target.value)}
+          />
           <div className="text-sm text-gray-600 flex items-center">{keyInfo || "—"}</div>
         </div>
-        <textarea className="w-full h-32 rounded-md border border-gray-300 px-3 py-2 font-mono" placeholder="消息文本" value={msg} onChange={(e) => setMsg(e.target.value)} />
+        <textarea
+          className="w-full h-32 rounded-md border border-gray-300 px-3 py-2 font-mono"
+          placeholder="消息文本"
+          value={msg}
+          onChange={(e) => setMsg(e.target.value)}
+        />
         <div className="text-sm text-gray-600">{msgInfo || "—"}</div>
         <div className="flex items-center gap-2">
-          <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all">{out || "—"}</div>
-          <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(out)} disabled={!out}>
-            <ClipboardCopy className="h-4 w-4" /> 复制 {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+          <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all">
+            {out || "—"}
+          </div>
+          <button
+            className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+            onClick={() => copy(out)}
+            disabled={!out}
+          >
+            <ClipboardCopy className="h-4 w-4" /> 复制{" "}
+            {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
           </button>
         </div>
       </div>
     </div>
   );
 }
-

@@ -188,11 +188,14 @@ export default function Tetris() {
 
   useEffect(() => {
     if (isPlaying && !gameOver) {
-      gameLoopRef.current = window.setInterval(() => {
-        if (!movePiece(0, 1)) {
-          lockPiece();
-        }
-      }, 800 - Math.min(700, Math.floor(score / 500) * 50)); // Speed up
+      gameLoopRef.current = window.setInterval(
+        () => {
+          if (!movePiece(0, 1)) {
+            lockPiece();
+          }
+        },
+        800 - Math.min(700, Math.floor(score / 500) * 50)
+      ); // Speed up
     }
     return () => {
       if (gameLoopRef.current) clearInterval(gameLoopRef.current);
@@ -204,11 +207,20 @@ export default function Tetris() {
       if (!isPlaying || gameOver) return;
 
       switch (e.key) {
-        case "ArrowLeft": movePiece(-1, 0); break;
-        case "ArrowRight": movePiece(1, 0); break;
-        case "ArrowDown": movePiece(0, 1); break;
-        case "ArrowUp": rotatePiece(); break;
-        case " ": { // Hard drop
+        case "ArrowLeft":
+          movePiece(-1, 0);
+          break;
+        case "ArrowRight":
+          movePiece(1, 0);
+          break;
+        case "ArrowDown":
+          movePiece(0, 1);
+          break;
+        case "ArrowUp":
+          rotatePiece();
+          break;
+        case " ": {
+          // Hard drop
           let dropY = 0;
           while (isValidMove(currentPiece!, currentPiece!.x, currentPiece!.y + dropY + 1)) {
             dropY++;
@@ -232,7 +244,10 @@ export default function Tetris() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] space-y-6 outline-none" tabIndex={0}>
+    <div
+      className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] space-y-6 outline-none"
+      tabIndex={0}
+    >
       <div className="text-center space-y-2">
         <h1 className="text-3xl font-bold text-gray-900">Tetris</h1>
         <p className="text-gray-600">Arrows to move/rotate, Space to drop</p>

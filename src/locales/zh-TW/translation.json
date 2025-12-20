@@ -25,6 +25,13 @@
         "dark": "深色",
         "high_contrast": "高對比度"
       },
+      "options": {
+        "tab_width": "縮進寬度",
+        "print_width": "行寬",
+        "use_tabs": "使用 Tab 縮進",
+        "semi": "使用分號",
+        "single_quote": "使用單引號"
+      },
       "input_label": "輸入代碼",
       "input_placeholder": "在此貼上代碼...",
       "output_label": "格式化結果",

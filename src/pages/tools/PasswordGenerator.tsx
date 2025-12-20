@@ -37,7 +37,11 @@ export default function PasswordGenerator() {
     if (includeUpper) p += UPPER;
     if (includeNum) p += NUM;
     if (includeSymbol) p += SYMBOL;
-    if (avoidAmbiguous) p = p.split("").filter((c) => !AMBIGUOUS.includes(c)).join("");
+    if (avoidAmbiguous)
+      p = p
+        .split("")
+        .filter((c) => !AMBIGUOUS.includes(c))
+        .join("");
     return p;
   }, [includeLower, includeUpper, includeNum, includeSymbol, avoidAmbiguous]);
 
@@ -64,9 +68,19 @@ export default function PasswordGenerator() {
       includeSymbol ? SYMBOL : "",
     ].filter(Boolean);
 
-    const safeSets = selectedSets.map((s) => avoidAmbiguous ? s.split("").filter((c) => !AMBIGUOUS.includes(c)).join("") : s);
+    const safeSets = selectedSets.map((s) =>
+      avoidAmbiguous
+        ? s
+            .split("")
+            .filter((c) => !AMBIGUOUS.includes(c))
+            .join("")
+        : s
+    );
     const all = pool;
-    if (!all) { setPassword(""); return; }
+    if (!all) {
+      setPassword("");
+      return;
+    }
 
     const chars: string[] = [];
     // Ensure at least one from each selected set
@@ -102,25 +116,80 @@ export default function PasswordGenerator() {
         <div className="space-y-4 bg-white rounded-lg border border-gray-200 p-4">
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700">Length: {length}</label>
-            <input type="range" min={6} max={64} value={length} onChange={(e) => setLength(parseInt(e.target.value))} />
+            <input
+              type="range"
+              min={6}
+              max={64}
+              value={length}
+              onChange={(e) => setLength(parseInt(e.target.value))}
+            />
           </div>
 
           <div className="grid grid-cols-2 gap-3 text-sm">
-            <label className="inline-flex items-center gap-2"><input type="checkbox" checked={includeLower} onChange={(e) => setIncludeLower(e.target.checked)} /> Lowercase</label>
-            <label className="inline-flex items-center gap-2"><input type="checkbox" checked={includeUpper} onChange={(e) => setIncludeUpper(e.target.checked)} /> Uppercase</label>
-            <label className="inline-flex items-center gap-2"><input type="checkbox" checked={includeNum} onChange={(e) => setIncludeNum(e.target.checked)} /> Numbers</label>
-            <label className="inline-flex items-center gap-2"><input type="checkbox" checked={includeSymbol} onChange={(e) => setIncludeSymbol(e.target.checked)} /> Symbols</label>
-            <label className="inline-flex items-center gap-2 col-span-2"><input type="checkbox" checked={avoidAmbiguous} onChange={(e) => setAvoidAmbiguous(e.target.checked)} /> Avoid ambiguous (Il1O0)</label>
+            <label className="inline-flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={includeLower}
+                onChange={(e) => setIncludeLower(e.target.checked)}
+              />{" "}
+              Lowercase
+            </label>
+            <label className="inline-flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={includeUpper}
+                onChange={(e) => setIncludeUpper(e.target.checked)}
+              />{" "}
+              Uppercase
+            </label>
+            <label className="inline-flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={includeNum}
+                onChange={(e) => setIncludeNum(e.target.checked)}
+              />{" "}
+              Numbers
+            </label>
+            <label className="inline-flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={includeSymbol}
+                onChange={(e) => setIncludeSymbol(e.target.checked)}
+              />{" "}
+              Symbols
+            </label>
+            <label className="inline-flex items-center gap-2 col-span-2">
+              <input
+                type="checkbox"
+                checked={avoidAmbiguous}
+                onChange={(e) => setAvoidAmbiguous(e.target.checked)}
+              />{" "}
+              Avoid ambiguous (Il1O0)
+            </label>
           </div>
 
           <div className="grid grid-cols-2 gap-3 text-xs text-gray-600">
             <div>Pool size: {pool.length}</div>
-            <div>Entropy: {entropyBits} bits ({strength})</div>
+            <div>
+              Entropy: {entropyBits} bits ({strength})
+            </div>
           </div>
 
           <div className="flex gap-3">
-            <button className="px-4 py-2 rounded-md bg-blue-600 text-white disabled:opacity-50" disabled={!pool.length} onClick={generate}>Generate</button>
-            <button className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 disabled:opacity-50" onClick={copy} disabled={!password}>Copy</button>
+            <button
+              className="px-4 py-2 rounded-md bg-blue-600 text-white disabled:opacity-50"
+              disabled={!pool.length}
+              onClick={generate}
+            >
+              Generate
+            </button>
+            <button
+              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 disabled:opacity-50"
+              onClick={copy}
+              disabled={!password}
+            >
+              Copy
+            </button>
           </div>
         </div>
 

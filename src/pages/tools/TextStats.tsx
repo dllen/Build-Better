@@ -16,7 +16,9 @@ type Stats = {
 };
 
 export default function TextStats() {
-  const [text, setText] = useState("Hello world!\n这是一个测试文本，用于统计。\n\nCount words, lines, bytes, and more.");
+  const [text, setText] = useState(
+    "Hello world!\n这是一个测试文本，用于统计。\n\nCount words, lines, bytes, and more."
+  );
   const [copied, setCopied] = useState("");
 
   const words = useMemo(() => {
@@ -31,7 +33,10 @@ export default function TextStats() {
   }, [text]);
 
   const paragraphs = useMemo(() => {
-    const arr = text.trim().split(/\r?\n\s*\r?\n/).filter((p) => p.trim().length > 0);
+    const arr = text
+      .trim()
+      .split(/\r?\n\s*\r?\n/)
+      .filter((p) => p.trim().length > 0);
     return text.trim() ? arr.length : 0;
   }, [text]);
 
@@ -48,7 +53,9 @@ export default function TextStats() {
       if (!ch.trim()) continue;
       map.set(ch, (map.get(ch) || 0) + 1);
     }
-    const arr = Array.from(map.entries()).sort((a, b) => b[1] - a[1]).slice(0, 10);
+    const arr = Array.from(map.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10);
     return arr;
   }, [text]);
 
@@ -77,10 +84,13 @@ export default function TextStats() {
 
   function copy(textToCopy: string) {
     if (!textToCopy) return;
-    navigator.clipboard.writeText(textToCopy).then(() => {
-      setCopied("ok");
-      setTimeout(() => setCopied(""), 1000);
-    }).catch(() => {});
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        setCopied("ok");
+        setTimeout(() => setCopied(""), 1000);
+      })
+      .catch(() => {});
   }
 
   const statsText = useMemo(() => {
@@ -120,22 +130,46 @@ export default function TextStats() {
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">统计信息</div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-            <div className="rounded-md border border-gray-200 px-3 py-2">字符数: {stats.characters}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">非空白字符: {stats.charactersNoWs}</div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              字符数: {stats.characters}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              非空白字符: {stats.charactersNoWs}
+            </div>
             <div className="rounded-md border border-gray-200 px-3 py-2">字数: {stats.words}</div>
             <div className="rounded-md border border-gray-200 px-3 py-2">行数: {stats.lines}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">段落数: {stats.paragraphs}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">UTF-8字节: {stats.bytesUtf8}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">唯一字符: {stats.uniqueChars}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">平均字长: {stats.avgWordLen}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">最长单词: {stats.longestWord || "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">最短单词: {stats.shortestWord || "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">阅读时长(分钟): {stats.readingTimeMin}</div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              段落数: {stats.paragraphs}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              UTF-8字节: {stats.bytesUtf8}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              唯一字符: {stats.uniqueChars}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              平均字长: {stats.avgWordLen}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              最长单词: {stats.longestWord || "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              最短单词: {stats.shortestWord || "—"}
+            </div>
+            <div className="rounded-md border border-gray-200 px-3 py-2">
+              阅读时长(分钟): {stats.readingTimeMin}
+            </div>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-words whitespace-pre-wrap">{statsText}</div>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(statsText)}>
-              <ClipboardCopy className="h-4 w-4" /> 复制 {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-words whitespace-pre-wrap">
+              {statsText}
+            </div>
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => copy(statsText)}
+            >
+              <ClipboardCopy className="h-4 w-4" /> 复制{" "}
+              {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
             </button>
           </div>
         </div>

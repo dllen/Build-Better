@@ -1,11 +1,11 @@
-import { useTranslation } from 'react-i18next';
-import { Globe } from 'lucide-react';
-import { useState, useRef, useEffect } from 'react';
+import { useTranslation } from "react-i18next";
+import { Globe } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 
 const languages = [
-  { code: 'en', name: 'English' },
-  { code: 'zh-CN', name: '简体中文' },
-  { code: 'zh-TW', name: '繁體中文' },
+  { code: "en", name: "English" },
+  { code: "zh-CN", name: "简体中文" },
+  { code: "zh-TW", name: "繁體中文" },
 ];
 
 export function LanguageSelector() {
@@ -38,7 +38,9 @@ export function LanguageSelector() {
         title="Change Language"
       >
         <Globe className="h-5 w-5" />
-        <span className="text-sm font-medium hidden sm:inline">{languages.find(l => l.code === i18n.language)?.name || 'Language'}</span>
+        <span className="text-sm font-medium hidden sm:inline">
+          {languages.find((l) => l.code === i18n.language)?.name || "Language"}
+        </span>
       </button>
 
       {isOpen && (
@@ -48,7 +50,7 @@ export function LanguageSelector() {
               key={lang.code}
               onClick={() => handleLanguageChange(lang.code)}
               className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors
-                ${i18n.language === lang.code ? 'text-blue-600 font-medium bg-blue-50' : 'text-gray-700'}
+                ${i18n.language === lang.code ? "text-blue-600 font-medium bg-blue-50" : "text-gray-700"}
               `}
             >
               {lang.name}

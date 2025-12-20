@@ -3,17 +3,49 @@ import fs from "node:fs";
 import { parseCsvReadable } from "../shared/csv-parser.mjs";
 
 function parseArgs(argv) {
-  const args = { input: "-", delimiter: ",", quote: "\"", pretty: false, compact: false, parseNumber: true, verbose: false };
+  const args = {
+    input: "-",
+    delimiter: ",",
+    quote: '"',
+    pretty: false,
+    compact: false,
+    parseNumber: true,
+    verbose: false,
+  };
   for (let i = 2; i < argv.length; i++) {
     const a = argv[i];
-    if (a === "--input" || a === "-i") { args.input = argv[++i]; continue; }
-    if (a === "--delimiter" || a === "-d") { args.delimiter = argv[++i]; continue; }
-    if (a === "--quote" || a === "-q") { args.quote = argv[++i]; continue; }
-    if (a === "--pretty") { args.pretty = true; continue; }
-    if (a === "--compact") { args.compact = true; continue; }
-    if (a === "--no-parse-number") { args.parseNumber = false; continue; }
-    if (a === "--verbose" || a === "-v") { args.verbose = true; continue; }
-    if (a === "--help" || a === "-h") { printHelp(); process.exit(0); }
+    if (a === "--input" || a === "-i") {
+      args.input = argv[++i];
+      continue;
+    }
+    if (a === "--delimiter" || a === "-d") {
+      args.delimiter = argv[++i];
+      continue;
+    }
+    if (a === "--quote" || a === "-q") {
+      args.quote = argv[++i];
+      continue;
+    }
+    if (a === "--pretty") {
+      args.pretty = true;
+      continue;
+    }
+    if (a === "--compact") {
+      args.compact = true;
+      continue;
+    }
+    if (a === "--no-parse-number") {
+      args.parseNumber = false;
+      continue;
+    }
+    if (a === "--verbose" || a === "-v") {
+      args.verbose = true;
+      continue;
+    }
+    if (a === "--help" || a === "-h") {
+      printHelp();
+      process.exit(0);
+    }
   }
   return args;
 }
@@ -22,11 +54,11 @@ function printHelp() {
   const text = [
     "csv2json — CSV → JSON converter",
     "Usage:",
-    "  csv2json [-i file.csv] [--delimiter ,] [--quote \"] [--pretty|--compact] [--no-parse-number] [-v]",
+    '  csv2json [-i file.csv] [--delimiter ,] [--quote "] [--pretty|--compact] [--no-parse-number] [-v]',
     "Options:",
     "  -i, --input           Input file path (default: stdin)",
     "  -d, --delimiter       Field delimiter (default: ,)",
-    "  -q, --quote           Quote character (default: \")",
+    '  -q, --quote           Quote character (default: ")',
     "      --pretty          Pretty-print JSON",
     "      --compact         Minified JSON (default if not pretty)",
     "      --no-parse-number Do not convert numeric-looking values",

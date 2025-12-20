@@ -124,7 +124,12 @@ export default function QrGenerator() {
         <div className="bg-gray-50 rounded-xl border border-gray-200 p-6 flex flex-col items-center justify-center space-y-6">
           <div className="relative bg-white p-4 rounded-lg shadow-sm border border-gray-200">
             {qrUrl ? (
-              <img src={qrUrl} alt="QR Code" className="max-w-full h-auto" style={{ width: size > 300 ? '100%' : size, maxWidth: '300px' }} />
+              <img
+                src={qrUrl}
+                alt="QR Code"
+                className="max-w-full h-auto"
+                style={{ width: size > 300 ? "100%" : size, maxWidth: "300px" }}
+              />
             ) : (
               <div className="w-[200px] h-[200px] flex items-center justify-center text-gray-400">
                 <Loader2 className="h-8 w-8 animate-spin" />

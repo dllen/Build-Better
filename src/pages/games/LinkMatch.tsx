@@ -23,14 +23,17 @@ export default function LinkMatch() {
     return newGrid;
   });
   const [sel, setSel] = useState<{ r: number; c: number } | null>(null);
-  const [hint, setHint] = useState<[{ r: number; c: number }, { r: number; c: number }] | null>(null);
+  const [hint, setHint] = useState<[{ r: number; c: number }, { r: number; c: number }] | null>(
+    null
+  );
   const [showRules, setShowRules] = useState(false);
 
   const { rows, cols } = LEVELS[difficulty];
 
   const remaining = useMemo(() => {
     let count = 0;
-    for (let r = 1; r < rows - 1; r++) for (let c = 1; c < cols - 1; c++) if (!grid[r][c].removed) count++;
+    for (let r = 1; r < rows - 1; r++)
+      for (let c = 1; c < cols - 1; c++) if (!grid[r][c].removed) count++;
     return count;
   }, [grid, rows, cols]);
 
@@ -38,7 +41,7 @@ export default function LinkMatch() {
     const { rows, cols } = LEVELS[diff];
     let newGrid: Tile[][] = [];
     let attempts = 0;
-    
+
     // Try to generate a solvable grid up to 50 times
     do {
       newGrid = genGrid(rows, cols);
@@ -72,8 +75,14 @@ export default function LinkMatch() {
       setSel({ r, c });
     } else {
       const s = sel;
-      if (s.r === r && s.c === c) { setSel(null); return; }
-      if (grid[s.r][s.c].ch !== cell.ch) { setSel({ r, c }); return; }
+      if (s.r === r && s.c === c) {
+        setSel(null);
+        return;
+      }
+      if (grid[s.r][s.c].ch !== cell.ch) {
+        setSel({ r, c });
+        return;
+      }
       const tempGrid = grid.map((row) => row.map((t) => ({ ...t })));
       if (canConnect(tempGrid, s.r, s.c, r, c)) {
         tempGrid[s.r][s.c].removed = true;
@@ -105,12 +114,17 @@ export default function LinkMatch() {
             onChange={(e) => handleDifficultyChange(e.target.value as Difficulty)}
           >
             {(Object.keys(LEVELS) as Difficulty[]).map((d) => (
-              <option key={d} value={d}>{d}</option>
+              <option key={d} value={d}>
+                {d}
+              </option>
             ))}
           </select>
         </div>
         <div className="text-sm text-gray-600">Remaining: {remaining}</div>
-        <button className="px-3 py-2 bg-blue-600 text-white rounded-md flex items-center gap-2 text-sm" onClick={() => reset()}>
+        <button
+          className="px-3 py-2 bg-blue-600 text-white rounded-md flex items-center gap-2 text-sm"
+          onClick={() => reset()}
+        >
           <RotateCcw className="h-4 w-4" /> Reset
         </button>
         <button
@@ -129,7 +143,7 @@ export default function LinkMatch() {
 
       {showRules && (
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 relative">
-          <button 
+          <button
             onClick={() => setShowRules(false)}
             className="absolute top-2 right-2 text-blue-400 hover:text-blue-600"
           >
@@ -138,7 +152,10 @@ export default function LinkMatch() {
           <h3 className="font-semibold text-blue-900 mb-2">How to Play</h3>
           <ul className="list-disc list-inside space-y-1 text-sm text-blue-800">
             <li>Connect two identical tiles to remove them from the board.</li>
-            <li>The connecting line between two tiles cannot have more than <strong>two turns</strong> (90-degree angles).</li>
+            <li>
+              The connecting line between two tiles cannot have more than <strong>two turns</strong>{" "}
+              (90-degree angles).
+            </li>
             <li>The path cannot pass through other tiles, but can go through empty spaces.</li>
             <li>Clear all tiles to win the game!</li>
           </ul>
@@ -148,16 +165,28 @@ export default function LinkMatch() {
       <div className="overflow-auto pb-4">
         <div
           className="inline-grid bg-gray-100 p-1 rounded-md border border-gray-200"
-          style={{ gridTemplateColumns: `repeat(${cols}, 36px)`, gridTemplateRows: `repeat(${rows}, 36px)` }}
+          style={{
+            gridTemplateColumns: `repeat(${cols}, 36px)`,
+            gridTemplateRows: `repeat(${rows}, 36px)`,
+          }}
         >
           {grid.map((row, r) =>
             row.map((cell, c) => {
-              const base = "w-[34px] h-[34px] m-[1px] rounded text-sm font-bold flex items-center justify-center select-none transition-all duration-200";
+              const base =
+                "w-[34px] h-[34px] m-[1px] rounded text-sm font-bold flex items-center justify-center select-none transition-all duration-200";
               const removed = "bg-transparent";
-              const normal = "bg-white border border-gray-300 cursor-pointer hover:bg-gray-50 hover:scale-105 hover:shadow-sm hover:z-10";
-              const selected = sel && sel.r === r && sel.c === c ? "ring-2 ring-pink-400 bg-pink-50 scale-105 z-10 shadow-sm" : "";
-              const isHint = hint && ((hint[0].r === r && hint[0].c === c) || (hint[1].r === r && hint[1].c === c));
-              const hinted = isHint ? "ring-2 ring-amber-400 bg-amber-50 scale-105 z-10 shadow-sm animate-pulse" : "";
+              const normal =
+                "bg-white border border-gray-300 cursor-pointer hover:bg-gray-50 hover:scale-105 hover:shadow-sm hover:z-10";
+              const selected =
+                sel && sel.r === r && sel.c === c
+                  ? "ring-2 ring-pink-400 bg-pink-50 scale-105 z-10 shadow-sm"
+                  : "";
+              const isHint =
+                hint &&
+                ((hint[0].r === r && hint[0].c === c) || (hint[1].r === r && hint[1].c === c));
+              const hinted = isHint
+                ? "ring-2 ring-amber-400 bg-amber-50 scale-105 z-10 shadow-sm animate-pulse"
+                : "";
               return (
                 <div
                   key={`${r}-${c}`}

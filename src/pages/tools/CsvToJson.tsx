@@ -8,7 +8,7 @@ export default function CsvToJson() {
   const [csvText, setCsvText] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [delimiter, setDelimiter] = useState(",");
-  const [quote, setQuote] = useState("\"");
+  const [quote, setQuote] = useState('"');
   const [parseNumber, setParseNumber] = useState(true);
   const [mode, setMode] = useState<Mode>("pretty");
   const [result, setResult] = useState<string>("");
@@ -113,8 +113,12 @@ export default function CsvToJson() {
             />
             {file && (
               <div className="flex items-center justify-between text-xs text-gray-500">
-                <span>{file.name}（{file.size} 字节）</span>
-                <button className="text-blue-600" onClick={clearFile}>清除</button>
+                <span>
+                  {file.name}（{file.size} 字节）
+                </span>
+                <button className="text-blue-600" onClick={clearFile}>
+                  清除
+                </button>
               </div>
             )}
           </div>
@@ -145,7 +149,7 @@ export default function CsvToJson() {
               <input
                 type="text"
                 value={quote}
-                onChange={(e) => setQuote(e.target.value || "\"")}
+                onChange={(e) => setQuote(e.target.value || '"')}
                 className="rounded-md border border-gray-300 px-3 py-2 w-full"
                 maxLength={2}
               />
@@ -205,9 +209,7 @@ export default function CsvToJson() {
 
         <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200 p-4">
           <div className="font-medium mb-2">结果</div>
-          <pre className="font-mono text-sm whitespace-pre-wrap break-words">
-            {result}
-          </pre>
+          <pre className="font-mono text-sm whitespace-pre-wrap break-words">{result}</pre>
           {!result && !loading && (
             <div className="text-sm text-gray-500">选择文件或粘贴文本后点击“转换”</div>
           )}

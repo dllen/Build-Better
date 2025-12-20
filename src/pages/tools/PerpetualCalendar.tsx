@@ -1,5 +1,11 @@
 import { useState, useMemo } from "react";
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
+import {
+  Calendar as CalendarIcon,
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from "lucide-react";
 import { Solar, Lunar, HolidayUtil } from "lunar-javascript";
 import { SEO } from "@/components/SEO";
 
@@ -14,7 +20,7 @@ export default function PerpetualCalendar() {
     const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfMonth = new Date(year, month + 1, 0);
     const startDayOfWeek = firstDayOfMonth.getDay(); // 0 (Sun) - 6 (Sat)
-    
+
     const daysArr = [];
 
     // Previous month padding
@@ -56,12 +62,19 @@ export default function PerpetualCalendar() {
 
   return (
     <div className="space-y-6">
-      <SEO 
-        title="Perpetual Calendar & Lunar Date" 
-        description="A comprehensive calendar with Chinese Lunar date, Solar terms, and festivals." 
-        keywords={["calendar", "lunar calendar", "chinese calendar", "perpetual calendar", "solar terms", "festivals"]}
+      <SEO
+        title="Perpetual Calendar & Lunar Date"
+        description="A comprehensive calendar with Chinese Lunar date, Solar terms, and festivals."
+        keywords={[
+          "calendar",
+          "lunar calendar",
+          "chinese calendar",
+          "perpetual calendar",
+          "solar terms",
+          "festivals",
+        ]}
       />
-      
+
       <div className="flex items-center gap-2">
         <div className="inline-flex p-2 rounded-lg bg-red-100 text-red-600">
           <CalendarIcon className="h-5 w-5" />
@@ -75,26 +88,47 @@ export default function PerpetualCalendar() {
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
-              <button onClick={handlePrevYear} className="p-1 hover:bg-gray-100 rounded text-gray-500" title="Previous Year">
+              <button
+                onClick={handlePrevYear}
+                className="p-1 hover:bg-gray-100 rounded text-gray-500"
+                title="Previous Year"
+              >
                 <ChevronsLeft className="h-5 w-5" />
               </button>
-              <button onClick={handlePrevMonth} className="p-1 hover:bg-gray-100 rounded text-gray-500" title="Previous Month">
+              <button
+                onClick={handlePrevMonth}
+                className="p-1 hover:bg-gray-100 rounded text-gray-500"
+                title="Previous Month"
+              >
                 <ChevronLeft className="h-5 w-5" />
               </button>
             </div>
-            
+
             <div className="text-lg font-semibold flex items-center gap-2">
-              <span>{year}年 {month + 1}月</span>
-              <button onClick={handleToday} className="text-sm font-normal px-2 py-0.5 bg-red-50 text-red-600 rounded hover:bg-red-100 transition-colors">
+              <span>
+                {year}年 {month + 1}月
+              </span>
+              <button
+                onClick={handleToday}
+                className="text-sm font-normal px-2 py-0.5 bg-red-50 text-red-600 rounded hover:bg-red-100 transition-colors"
+              >
                 今
               </button>
             </div>
 
             <div className="flex items-center gap-2">
-              <button onClick={handleNextMonth} className="p-1 hover:bg-gray-100 rounded text-gray-500" title="Next Month">
+              <button
+                onClick={handleNextMonth}
+                className="p-1 hover:bg-gray-100 rounded text-gray-500"
+                title="Next Month"
+              >
                 <ChevronRight className="h-5 w-5" />
               </button>
-              <button onClick={handleNextYear} className="p-1 hover:bg-gray-100 rounded text-gray-500" title="Next Year">
+              <button
+                onClick={handleNextYear}
+                className="p-1 hover:bg-gray-100 rounded text-gray-500"
+                title="Next Year"
+              >
                 <ChevronsRight className="h-5 w-5" />
               </button>
             </div>
@@ -103,7 +137,10 @@ export default function PerpetualCalendar() {
           {/* Week Headers */}
           <div className="grid grid-cols-7 mb-2">
             {weekDays.map((d, i) => (
-              <div key={i} className={`text-center text-sm font-medium py-2 ${i === 0 || i === 6 ? "text-red-500" : "text-gray-500"}`}>
+              <div
+                key={i}
+                className={`text-center text-sm font-medium py-2 ${i === 0 || i === 6 ? "text-red-500" : "text-gray-500"}`}
+              >
                 {d}
               </div>
             ))}
@@ -116,25 +153,25 @@ export default function PerpetualCalendar() {
               const lunar = solar.getLunar();
               const isToday = item.date.toDateString() === new Date().toDateString();
               const isSelected = item.date.toDateString() === selectedDate.toDateString();
-              
+
               // Determine display text for lunar date (Term > Festival > Day)
               let lunarText = lunar.getDayInChinese();
               const solarTerm = lunar.getJieQi();
               const festivals = lunar.getFestivals();
               const solarFestivals = solar.getFestivals();
-              
+
               let specialColor = "";
 
               if (lunar.getDay() === 1) {
                 lunarText = lunar.getMonthInChinese() + "月";
                 specialColor = "text-red-500 font-medium";
               }
-              
+
               if (solarTerm) {
                 lunarText = solarTerm;
                 specialColor = "text-blue-600 font-medium";
               }
-              
+
               // Priority: Solar Festival > Lunar Festival > Solar Term > Lunar Day
               if (festivals.length > 0) {
                 lunarText = festivals[0];
@@ -147,7 +184,11 @@ export default function PerpetualCalendar() {
               }
 
               // Check for official holiday (simplified)
-              const holiday = HolidayUtil.getHoliday(item.date.getFullYear(), item.date.getMonth() + 1, item.date.getDate());
+              const holiday = HolidayUtil.getHoliday(
+                item.date.getFullYear(),
+                item.date.getMonth() + 1,
+                item.date.getDate()
+              );
               const isHoliday = !!holiday;
               const isWork = holiday ? holiday.isWork() : false;
 
@@ -164,7 +205,9 @@ export default function PerpetualCalendar() {
                 >
                   {/* Holiday/Work badge */}
                   {isHoliday && (
-                    <div className={`absolute top-0.5 left-0.5 text-[10px] px-1 rounded ${isWork ? "bg-gray-200 text-gray-600" : "bg-red-100 text-red-600"}`}>
+                    <div
+                      className={`absolute top-0.5 left-0.5 text-[10px] px-1 rounded ${isWork ? "bg-gray-200 text-gray-600" : "bg-red-100 text-red-600"}`}
+                    >
                       {isWork ? "班" : "休"}
                     </div>
                   )}
@@ -172,7 +215,9 @@ export default function PerpetualCalendar() {
                   <span className={`text-lg font-medium ${isToday ? "text-red-600" : ""}`}>
                     {item.date.getDate()}
                   </span>
-                  <span className={`text-xs truncate max-w-full px-1 ${specialColor || "text-gray-500"}`}>
+                  <span
+                    className={`text-xs truncate max-w-full px-1 ${specialColor || "text-gray-500"}`}
+                  >
                     {lunarText}
                   </span>
                 </button>
@@ -191,36 +236,39 @@ export default function PerpetualCalendar() {
               <div className="text-xl text-gray-700 font-medium">
                 {selectedDate.getFullYear()}年 {selectedDate.getMonth() + 1}月
               </div>
-              <div className="text-lg text-gray-500">
-                星期{weekDays[selectedDate.getDay()]}
-              </div>
-              
+              <div className="text-lg text-gray-500">星期{weekDays[selectedDate.getDay()]}</div>
+
               <div className="w-full h-px bg-gray-200 my-4" />
-              
+
               <div className="space-y-2 w-full">
                 <div className="flex justify-between">
                   <span className="text-gray-500">农历</span>
-                  <span className="font-medium text-gray-900">{selectedLunar.getMonthInChinese()}月{selectedLunar.getDayInChinese()}</span>
+                  <span className="font-medium text-gray-900">
+                    {selectedLunar.getMonthInChinese()}月{selectedLunar.getDayInChinese()}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">干支</span>
                   <span className="font-medium text-gray-900">
-                    {selectedLunar.getYearInGanZhi()}年 {selectedLunar.getMonthInGanZhi()}月 {selectedLunar.getDayInGanZhi()}日
+                    {selectedLunar.getYearInGanZhi()}年 {selectedLunar.getMonthInGanZhi()}月{" "}
+                    {selectedLunar.getDayInGanZhi()}日
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">生肖</span>
-                  <span className="font-medium text-gray-900">{selectedLunar.getYearShengXiao()}</span>
+                  <span className="font-medium text-gray-900">
+                    {selectedLunar.getYearShengXiao()}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">星座</span>
                   <span className="font-medium text-gray-900">{selectedSolar.getXingZuo()}座</span>
                 </div>
                 {selectedLunar.getJieQi() && (
-                   <div className="flex justify-between">
-                   <span className="text-gray-500">节气</span>
-                   <span className="font-medium text-blue-600">{selectedLunar.getJieQi()}</span>
-                 </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">节气</span>
+                    <span className="font-medium text-blue-600">{selectedLunar.getJieQi()}</span>
+                  </div>
                 )}
               </div>
 
@@ -228,29 +276,32 @@ export default function PerpetualCalendar() {
 
               <div className="w-full text-left space-y-3">
                 <div className="flex gap-3">
-                  <div className="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold shrink-0">宜</div>
+                  <div className="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold shrink-0">
+                    宜
+                  </div>
                   <div className="text-sm text-gray-600 leading-6">
                     {selectedLunar.getDayYi().join("、") || "诸事不宜"}
                   </div>
                 </div>
                 <div className="flex gap-3">
-                  <div className="w-8 h-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center font-bold shrink-0">忌</div>
+                  <div className="w-8 h-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center font-bold shrink-0">
+                    忌
+                  </div>
                   <div className="text-sm text-gray-600 leading-6">
                     {selectedLunar.getDayJi().join("、") || "诸事无忌"}
                   </div>
                 </div>
               </div>
 
-               <div className="w-full h-px bg-gray-200 my-4" />
+              <div className="w-full h-px bg-gray-200 my-4" />
 
-               <div className="w-full text-left">
-                  <div className="text-sm font-medium text-gray-500 mb-1">彭祖百忌</div>
-                  <div className="text-sm text-gray-700">
-                    {selectedLunar.getPengZuGan()} <br/>
-                    {selectedLunar.getPengZuZhi()}
-                  </div>
-               </div>
-
+              <div className="w-full text-left">
+                <div className="text-sm font-medium text-gray-500 mb-1">彭祖百忌</div>
+                <div className="text-sm text-gray-700">
+                  {selectedLunar.getPengZuGan()} <br />
+                  {selectedLunar.getPengZuZhi()}
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 const defaultOptions = {
   delimiter: ",",
-  quote: "\"",
+  quote: '"',
   parseNumber: true,
   logger: null,
 };

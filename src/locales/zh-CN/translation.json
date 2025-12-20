@@ -25,6 +25,13 @@
         "dark": "深色",
         "high_contrast": "高对比度"
       },
+      "options": {
+        "tab_width": "缩进宽度",
+        "print_width": "行宽",
+        "use_tabs": "使用 Tab 缩进",
+        "semi": "使用分号",
+        "single_quote": "使用单引号"
+      },
       "input_label": "输入代码",
       "input_placeholder": "在此粘贴代码...",
       "output_label": "格式化结果",

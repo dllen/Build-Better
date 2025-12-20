@@ -62,19 +62,22 @@ export default function Snake() {
       const newHead = { ...head };
 
       switch (directionRef.current) {
-        case "UP": newHead.y -= 1; break;
-        case "DOWN": newHead.y += 1; break;
-        case "LEFT": newHead.x -= 1; break;
-        case "RIGHT": newHead.x += 1; break;
+        case "UP":
+          newHead.y -= 1;
+          break;
+        case "DOWN":
+          newHead.y += 1;
+          break;
+        case "LEFT":
+          newHead.x -= 1;
+          break;
+        case "RIGHT":
+          newHead.x += 1;
+          break;
       }
 
       // Check collision with walls
-      if (
-        newHead.x < 0 ||
-        newHead.x >= GRID_SIZE ||
-        newHead.y < 0 ||
-        newHead.y >= GRID_SIZE
-      ) {
+      if (newHead.x < 0 || newHead.x >= GRID_SIZE || newHead.y < 0 || newHead.y >= GRID_SIZE) {
         setGameOver(true);
         setIsPlaying(false);
         return prevSnake;
@@ -145,7 +148,10 @@ export default function Snake() {
   }, [isPlaying]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] space-y-6 outline-none" tabIndex={0}>
+    <div
+      className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] space-y-6 outline-none"
+      tabIndex={0}
+    >
       <div className="text-center space-y-2">
         <h1 className="text-3xl font-bold text-gray-900">Snake Game</h1>
         <p className="text-gray-600">Use arrow keys to control the snake</p>

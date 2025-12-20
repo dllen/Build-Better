@@ -118,9 +118,7 @@ export default function LotterySsq() {
               复制全部
             </button>
           </div>
-          <div className="text-xs text-gray-500">
-            规则: 6个红球(1-33), 1个蓝球(1-16)
-          </div>
+          <div className="text-xs text-gray-500">规则: 6个红球(1-33), 1个蓝球(1-16)</div>
         </div>
 
         <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200 p-4">

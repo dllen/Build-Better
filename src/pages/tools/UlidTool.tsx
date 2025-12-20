@@ -76,10 +76,13 @@ export default function UlidTool() {
 
   function copy(text: string) {
     if (!text) return;
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied("ok");
-      setTimeout(() => setCopied(""), 1000);
-    }).catch(() => {});
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setCopied("ok");
+        setTimeout(() => setCopied(""), 1000);
+      })
+      .catch(() => {});
   }
 
   const joined = useMemo(() => list.join("\n"), [list]);
@@ -97,36 +100,59 @@ export default function UlidTool() {
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">生成</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <input type="number" min={1} max={100} className="rounded-md border border-gray-300 px-3 py-2" value={count} onChange={(e) => setCount(Number(e.target.value))} />
-            <button className="inline-flex items-center gap-2 px-3 py-2 bg-violet-600 text-white rounded-md text-sm hover:bg-violet-700" onClick={generate}>
+            <input
+              type="number"
+              min={1}
+              max={100}
+              className="rounded-md border border-gray-300 px-3 py-2"
+              value={count}
+              onChange={(e) => setCount(Number(e.target.value))}
+            />
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 bg-violet-600 text-white rounded-md text-sm hover:bg-violet-700"
+              onClick={generate}
+            >
               生成
             </button>
-            <button className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm" onClick={() => copy(joined)} disabled={!joined}>
-              <ClipboardCopy className="h-4 w-4" /> 复制全部 {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+            <button
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              onClick={() => copy(joined)}
+              disabled={!joined}
+            >
+              <ClipboardCopy className="h-4 w-4" /> 复制全部{" "}
+              {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
             </button>
           </div>
           <div className="rounded-md border border-gray-200 p-3 space-y-2">
-            {list.length ? list.map((u, i) => {
-              const ts = decodeTime(u);
-              const show = ts !== null ? format(new Date(ts), "YYYY-MM-DD HH:mm:ss Z") : "—";
-              return (
-                <div key={i} className="flex items-center justify-between text-sm">
-                  <span className="font-mono break-all">{u}</span>
-                  <span className="text-gray-600">{show}</span>
-                </div>
-              );
-            }) : "—"}
+            {list.length
+              ? list.map((u, i) => {
+                  const ts = decodeTime(u);
+                  const show = ts !== null ? format(new Date(ts), "YYYY-MM-DD HH:mm:ss Z") : "—";
+                  return (
+                    <div key={i} className="flex items-center justify-between text-sm">
+                      <span className="font-mono break-all">{u}</span>
+                      <span className="text-gray-600">{show}</span>
+                    </div>
+                  );
+                })
+              : "—"}
           </div>
         </div>
 
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">解析时间戳</div>
-          <input className="rounded-md border border-gray-300 px-3 py-2 w-full font-mono" placeholder="输入 ULID" value={decodeInput} onChange={(e) => setDecodeInput(e.target.value)} />
-          <div className="rounded-md border border-gray-200 px-3 py-2 text-sm font-mono">{decodedTs || "—"}</div>
+          <input
+            className="rounded-md border border-gray-300 px-3 py-2 w-full font-mono"
+            placeholder="输入 ULID"
+            value={decodeInput}
+            onChange={(e) => setDecodeInput(e.target.value)}
+          />
+          <div className="rounded-md border border-gray-200 px-3 py-2 text-sm font-mono">
+            {decodedTs || "—"}
+          </div>
           <div className="text-xs text-gray-600">ULID 前 10 位表示毫秒时间戳，后 16 位为随机。</div>
         </div>
       </div>
     </div>
   );
 }
-

@@ -6,7 +6,7 @@ export async function onRequestPost(context: { request: Request }) {
     const contentType = request.headers.get("content-type") || "";
     const url = new URL(request.url);
     const delimiter = url.searchParams.get("delimiter") || ",";
-    const quote = url.searchParams.get("quote") || "\"";
+    const quote = url.searchParams.get("quote") || '"';
     const mode = url.searchParams.get("mode") || "compact";
     const parseNumberParam = url.searchParams.get("parseNumber");
     const parseNumber = parseNumberParam === null ? true : parseNumberParam !== "false";
@@ -17,7 +17,7 @@ export async function onRequestPost(context: { request: Request }) {
     if (contentType.startsWith("text/csv")) {
       csvStream = request.body;
     } else if (contentType.startsWith("application/json")) {
-      const body = await request.json() as { csv?: string };
+      const body = (await request.json()) as { csv?: string };
       if (!body.csv || typeof body.csv !== "string") {
         return new Response(JSON.stringify({ error: "Missing 'csv' in JSON body" }), {
           status: 400,
@@ -49,7 +49,8 @@ export async function onRequestPost(context: { request: Request }) {
       });
     }
 
-    const payload = mode === "pretty" ? JSON.stringify(result.rows, null, 2) : JSON.stringify(result.rows);
+    const payload =
+      mode === "pretty" ? JSON.stringify(result.rows, null, 2) : JSON.stringify(result.rows);
     return new Response(payload, {
       headers: { "Content-Type": "application/json; charset=utf-8" },
     });
