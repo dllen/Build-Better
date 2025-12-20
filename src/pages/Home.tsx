@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Box, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield, Key, Keyboard, DollarSign, Server, Network, Landmark } from "lucide-react";
+import { Terminal, Code, QrCode, Search, FileText, Lock, GitCompare, Dice6, Hash, Calendar, Globe, Box, Link2, Palette, Filter, Clock, Calculator, Fingerprint, KeyRound, Shield, Key, Keyboard, DollarSign, Server, Network, Landmark, RefreshCw, TrendingUp, Percent } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useTranslation } from "react-i18next";
 import { useState, useMemo } from "react";
@@ -358,6 +358,24 @@ export default function Home() {
       description: "计算chmod权限与命令：r/w/x 与 setuid/setgid/sticky。",
       icon: Shield,
       path: "/tools/chmod",
+      color: "text-emerald-600",
+      bgColor: "bg-emerald-100",
+    },
+    {
+      id: "investment-return",
+      icon: TrendingUp,
+      name: t('tools.investment-return.name'),
+      description: t('tools.investment-return.desc'),
+      path: "/tools/investment-return",
+      color: "text-blue-600",
+      bgColor: "bg-blue-100",
+    },
+    {
+      id: "roi-calculator",
+      icon: Percent,
+      name: t('tools.roi-calculator.name'),
+      description: t('tools.roi-calculator.desc'),
+      path: "/tools/roi-calculator",
       color: "text-emerald-600",
       bgColor: "bg-emerald-100",
     },

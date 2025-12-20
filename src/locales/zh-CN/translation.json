@@ -19,7 +19,20 @@
     },
     "code-formatter": {
       "name": "代码格式化",
-      "desc": "将代码格式化为标准风格。支持 JS, TS, HTML, CSS, JSON。"
+      "desc": "将代码格式化为标准风格。支持 JS, TS, HTML, CSS, JSON 等。",
+      "themes": {
+        "light": "浅色",
+        "dark": "深色",
+        "high_contrast": "高对比度"
+      },
+      "input_label": "输入代码",
+      "input_placeholder": "在此粘贴代码...",
+      "output_label": "格式化结果",
+      "format_btn": "格式化",
+      "copy_btn": "复制",
+      "copied": "已复制!",
+      "error_format": "格式化失败",
+      "error_title": "格式化错误"
     },
     "qr-generator": {
       "name": "二维码生成器",
@@ -124,6 +137,50 @@
       "total_payment": "还款总额",
       "tip_interest": "等额本息：每月还款额固定，其中本金逐月增加、利息逐月减少。",
       "tip_principal": "等额本金：每月还款本金固定，利息逐月减少，因此每月还款额逐月减少。"
+    },
+    "investment-return": {
+      "name": "投资收益计算器",
+      "desc": "计算复利投资收益，支持定投、不同复利频率等设置。",
+      "title": "投资收益计算器",
+      "subtitle": "规划您的财富增长",
+      "initial_amount": "初始本金",
+      "rate": "年收益率",
+      "years": "投资年限",
+      "year_unit": "年",
+      "monthly_contribution": "每月定投金额",
+      "compound_freq": "复利频率",
+      "freq_monthly": "按月复利",
+      "freq_yearly": "按年复利",
+      "calculate_btn": "开始计算",
+      "result_title": "计算结果",
+      "total_amount": "期末总资产",
+      "total_principal": "投入本金",
+      "total_interest": "收益总额",
+      "schedule_title": "年度资产表",
+      "year_col": "年份",
+      "amount_col": "总资产",
+      "interest_col": "累计收益",
+      "empty_tip": "输入参数并点击计算查看结果"
+    },
+    "roi-calculator": {
+      "name": "ROI 计算器",
+      "desc": "计算投资回报率 (ROI) 和年化回报率。",
+      "title": "ROI 投资回报率计算器",
+      "subtitle": "评估投资项目的盈利能力",
+      "invested_amount": "投入成本",
+      "returned_amount": "回收金额",
+      "time_period": "投资时长",
+      "optional": "选填",
+      "unit_years": "年",
+      "unit_months": "月",
+      "time_tip": "填写时长可计算年化回报率",
+      "calculate_btn": "计算回报率",
+      "result_title": "分析结果",
+      "roi": "投资回报率 (ROI)",
+      "net_profit": "净利润",
+      "annualized_roi": "年化回报率",
+      "annualized_tip": "假设收益按复利再投资",
+      "empty_tip": "输入成本和回收金额进行计算"
     }
   }
 }

@@ -47,6 +47,8 @@ const routes = [
   '/tools/apache-config',
   '/tools/haproxy-config',
   '/tools/mortgage-calculator',
+  '/tools/investment-return',
+  '/tools/roi-calculator',
   '/tools/jwt-decode',
   '/tools/short-url',
   '/tools/chmod',
