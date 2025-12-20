@@ -1,16 +1,16 @@
 {
   "app": {
     "title": "Build Better",
-    "description": "开发者必备工具箱，快速、可靠、易用。",
+    "description": "必备工具箱，快速、可靠、易用。",
     "tools": "工具",
     "games": "游戏",
     "settings": "设置",
     "search_placeholder": "搜索工具..."
   },
   "home": {
-    "title": "开发者微工具集合",
-    "subtitle": "开发者必备工具箱，快速、可靠、易用。",
-    "section_tools": "开发工具"
+    "title": "小工具集合",
+    "subtitle": "必备工具箱，快速、可靠、易用。",
+    "section_tools": "小工具"
   },
   "tools": {
     "api-debugger": {
