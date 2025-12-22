@@ -6,6 +6,8 @@ import Settings from "@/pages/Settings";
 import Games from "@/pages/Games";
 import ApiDebugger from "@/pages/tools/ApiDebugger";
 import CodeFormatter from "@/pages/tools/CodeFormatter";
+import HtmlToText from "@/pages/tools/HtmlToText";
+import TokenGenerator from "@/pages/tools/TokenGenerator";
 import QrGenerator from "@/pages/tools/QrGenerator";
 import RegexTester from "@/pages/tools/RegexTester";
 import MarkdownHtml from "@/pages/tools/MarkdownHtml";
@@ -66,6 +68,8 @@ export default function App() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/tools/api-debugger" element={<ApiDebugger />} />
           <Route path="/tools/code-formatter" element={<CodeFormatter />} />
+          <Route path="/tools/html-to-text" element={<HtmlToText />} />
+          <Route path="/tools/token-generator" element={<TokenGenerator />} />
           <Route path="/tools/qr-generator" element={<QrGenerator />} />
           <Route path="/tools/regex-tester" element={<RegexTester />} />
           <Route path="/tools/markdown-html" element={<MarkdownHtml />} />

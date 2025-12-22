@@ -13,6 +13,33 @@
     "section_tools": "Developer Tools"
   },
   "tools": {
+    "token-generator": {
+      "name": "Token Generator",
+      "desc": "Generate random strings using custom characters, letters, numbers, and symbols.",
+      "settings": "Settings",
+      "characters": "Characters",
+      "uppercase": "Uppercase (A-Z)",
+      "lowercase": "Lowercase (a-z)",
+      "numbers": "Numbers (0-9)",
+      "symbols": "Symbols (!@#...)",
+      "custom": "Custom Characters",
+      "length": "Token Length",
+      "quantity": "Quantity",
+      "generate_btn": "Generate Tokens",
+      "copy_btn": "Copy All",
+      "copied": "Copied!",
+      "result_label": "Generated Tokens",
+      "no_chars_error": "Please select at least one character set or enter custom characters."
+    },
+    "html-to-text": {
+      "name": "HTML to Text",
+      "desc": "Extract text content from HTML, removing tags and scripts.",
+      "input_label": "HTML Input",
+      "output_label": "Extracted Text",
+      "convert_btn": "Extract Text",
+      "copy_btn": "Copy Text",
+      "copied": "Copied!"
+    },
     "api-debugger": {
       "name": "API Debugger",
       "desc": "Test and debug HTTP requests with ease. Support for GET, POST, PUT, DELETE."

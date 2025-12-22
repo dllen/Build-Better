@@ -13,6 +13,33 @@
     "section_tools": "小工具"
   },
   "tools": {
+    "token-generator": {
+      "name": "Token 生成器",
+      "desc": "使用自定義字符、字母、數字和符號生成隨機字符串。",
+      "settings": "設置",
+      "characters": "字符集",
+      "uppercase": "大寫字母 (A-Z)",
+      "lowercase": "小寫字母 (a-z)",
+      "numbers": "數字 (0-9)",
+      "symbols": "符號 (!@#...)",
+      "custom": "自定義字符",
+      "length": "Token 長度",
+      "quantity": "生成數量",
+      "generate_btn": "生成 Token",
+      "copy_btn": "複製全部",
+      "copied": "已複製!",
+      "result_label": "生成的 Token",
+      "no_chars_error": "請至少選擇一種字符集或輸入自定義字符。"
+    },
+    "html-to-text": {
+      "name": "HTML 文本提取",
+      "desc": "從 HTML 中提取純文本內容，去除標籤和腳本。",
+      "input_label": "HTML 輸入",
+      "output_label": "提取結果",
+      "convert_btn": "提取文本",
+      "copy_btn": "複製文本",
+      "copied": "已複製!"
+    },
     "api-debugger": {
       "name": "API 調試器",
       "desc": "輕鬆測試和調試 HTTP 請求。支持 GET, POST, PUT, DELETE。"
