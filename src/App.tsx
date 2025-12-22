@@ -60,6 +60,7 @@ import Game2048 from "@/pages/games/Game2048";
 import LinkMatch from "@/pages/games/LinkMatch";
 import Sudoku from "@/pages/games/Sudoku";
 import PacVim from "@/pages/games/PacVim";
+import WifiQrGenerator from "./pages/tools/WifiQrGenerator";
 
 export default function App() {
   return (
