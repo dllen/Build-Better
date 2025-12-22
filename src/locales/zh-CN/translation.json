@@ -31,6 +31,34 @@
       "result_label": "生成的 Token",
       "no_chars_error": "请至少选择一种字符集或输入自定义字符。"
     },
+    "format-converter": {
+      "name": "格式转换器",
+      "desc": "支持 JSON, YAML, TOML, XML 格式互转。",
+      "title": "格式转换器",
+      "description": "支持 JSON, YAML, TOML, XML 格式互转。",
+      "input_label": "输入",
+      "output_label": "输出",
+      "copy_btn": "复制",
+      "copied": "已复制!"
+    },
+    "device-info": {
+      "name": "设备信息",
+      "desc": "获取当前设备、屏幕和浏览器的详细信息。",
+      "title": "设备信息",
+      "description": "获取当前设备、屏幕和浏览器的详细信息。",
+      "screen_resolution": "屏幕分辨率",
+      "available_resolution": "可用分辨率",
+      "pixel_ratio": "像素比率",
+      "color_depth": "色彩深度",
+      "user_agent": "用户代理 (User Agent)",
+      "platform": "操作系统平台",
+      "language": "语言",
+      "cores": "CPU 核心数",
+      "touch_points": "最大触控点数",
+      "online": "网络状态",
+      "unknown": "未知",
+      "copy": "复制"
+    },
     "html-to-text": {
       "name": "HTML 文本提取",
       "desc": "从 HTML 中提取纯文本内容，去除标签和脚本。",
@@ -215,6 +243,41 @@
       "annualized_roi": "年化回报率",
       "annualized_tip": "假设收益按复利再投资",
       "empty_tip": "输入成本和回收金额进行计算"
+    },
+    "otp-generator": {
+      "name": "OTP代码生成器",
+      "desc": "为多因素身份验证生成和验证基于时间的OTP（一次性密码）。",
+      "title": "OTP代码生成器",
+      "subtitle": "安全的两步验证令牌生成与验证工具",
+      "config": "配置",
+      "secret": "密钥 (Base32)",
+      "generate_new": "生成新密钥",
+      "account": "账户",
+      "issuer": "发行者",
+      "digits": "位数",
+      "period": "周期 (秒)",
+      "algo": "算法",
+      "current_code": "当前代码",
+      "qr_code": "二维码",
+      "scan_desc": "使用您的身份验证器应用（如 Google Authenticator, Authy 等）扫描此二维码",
+      "verify": "验证令牌",
+      "enter_code": "输入代码",
+      "check": "检查",
+      "valid": "代码有效",
+      "invalid": "代码无效"
+    },
+    "wifi-qr": {
+      "title": "WiFi二维码生成器",
+      "desc": "生成并下载二维码以快速连接到WiFi网络。",
+      "subtitle": "创建二维码，让您的访客即时连接WiFi",
+      "ssid": "网络名称 (SSID)",
+      "encryption": "加密方式",
+      "password": "密码",
+      "hidden": "隐藏网络",
+      "none": "无密码",
+      "preview": "预览",
+      "download": "下载",
+      "print": "打印"
     }
   }
 }

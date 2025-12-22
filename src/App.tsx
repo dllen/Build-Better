@@ -8,6 +8,8 @@ import ApiDebugger from "@/pages/tools/ApiDebugger";
 import CodeFormatter from "@/pages/tools/CodeFormatter";
 import HtmlToText from "@/pages/tools/HtmlToText";
 import TokenGenerator from "@/pages/tools/TokenGenerator";
+import FormatConverter from "@/pages/tools/FormatConverter";
+import DeviceInfo from "@/pages/tools/DeviceInfo";
 import QrGenerator from "@/pages/tools/QrGenerator";
 import RegexTester from "@/pages/tools/RegexTester";
 import MarkdownHtml from "@/pages/tools/MarkdownHtml";
@@ -46,6 +48,7 @@ import HAProxyConfigGenerator from "@/pages/tools/HAProxyConfigGenerator";
 import MortgageCalculator from "@/pages/tools/MortgageCalculator";
 import InvestmentReturnCalculator from "@/pages/tools/InvestmentReturnCalculator";
 import ROICalculator from "@/pages/tools/ROICalculator";
+import OtpGenerator from "@/pages/tools/OtpGenerator";
 import JwtDecodeTool from "@/pages/tools/JwtDecodeTool";
 import ShortUrlTool from "@/pages/tools/ShortUrlTool";
 import Snake from "@/pages/games/Snake";
@@ -70,6 +73,10 @@ export default function App() {
           <Route path="/tools/code-formatter" element={<CodeFormatter />} />
           <Route path="/tools/html-to-text" element={<HtmlToText />} />
           <Route path="/tools/token-generator" element={<TokenGenerator />} />
+          <Route path="/tools/format-converter" element={<FormatConverter />} />
+          <Route path="/tools/device-info" element={<DeviceInfo />} />
+          <Route path="/tools/otp-generator" element={<OtpGenerator />} />
+          <Route path="/tools/wifi-qr-generator" element={<WifiQrGenerator />} />
           <Route path="/tools/qr-generator" element={<QrGenerator />} />
           <Route path="/tools/regex-tester" element={<RegexTester />} />
           <Route path="/tools/markdown-html" element={<MarkdownHtml />} />

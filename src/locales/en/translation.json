@@ -31,6 +31,34 @@
       "result_label": "Generated Tokens",
       "no_chars_error": "Please select at least one character set or enter custom characters."
     },
+    "format-converter": {
+      "name": "Format Converter",
+      "desc": "Convert between JSON, YAML, TOML, and XML formats.",
+      "title": "Format Converter",
+      "description": "Convert between JSON, YAML, TOML, and XML formats.",
+      "input_label": "Input",
+      "output_label": "Output",
+      "copy_btn": "Copy",
+      "copied": "Copied!"
+    },
+    "device-info": {
+      "name": "Device Information",
+      "desc": "Get detailed information about your current device, screen, and browser.",
+      "title": "Device Information",
+      "description": "Get detailed information about your current device, screen, and browser.",
+      "screen_resolution": "Screen Resolution",
+      "available_resolution": "Available Resolution",
+      "pixel_ratio": "Pixel Ratio",
+      "color_depth": "Color Depth",
+      "user_agent": "User Agent",
+      "platform": "Platform",
+      "language": "Language",
+      "cores": "CPU Cores",
+      "touch_points": "Max Touch Points",
+      "online": "Online Status",
+      "unknown": "Unknown",
+      "copy": "Copy"
+    },
     "html-to-text": {
       "name": "HTML to Text",
       "desc": "Extract text content from HTML, removing tags and scripts.",
@@ -242,6 +270,41 @@
       "annualized_roi": "Annualized ROI",
       "annualized_tip": "Assumes returns are reinvested",
       "empty_tip": "Enter investment and return amounts to calculate"
+    },
+    "otp-generator": {
+      "name": "OTP Generator",
+      "desc": "Generate and verify Time-based One-Time Passwords (TOTP) for Multi-Factor Authentication.",
+      "title": "OTP Generator",
+      "subtitle": "Secure 2FA token generator and validator",
+      "config": "Configuration",
+      "secret": "Secret Key (Base32)",
+      "generate_new": "Generate New",
+      "account": "Account",
+      "issuer": "Issuer",
+      "digits": "Digits",
+      "period": "Period (s)",
+      "algo": "Algorithm",
+      "current_code": "Current Code",
+      "qr_code": "QR Code",
+      "scan_desc": "Scan this with your authenticator app (Google Authenticator, Authy, etc.)",
+      "verify": "Verify Token",
+      "enter_code": "Enter Code",
+      "check": "Check",
+      "valid": "Valid Code",
+      "invalid": "Invalid Code"
+    },
+    "wifi-qr": {
+      "title": "WiFi QR Code Generator",
+      "desc": "Generate and download QR codes for quick WiFi connection.",
+      "subtitle": "Create a QR code for your guests to connect to WiFi instantly",
+      "ssid": "Network Name (SSID)",
+      "encryption": "Encryption",
+      "password": "Password",
+      "hidden": "Hidden Network",
+      "none": "None",
+      "preview": "Preview",
+      "download": "Download",
+      "print": "Print"
     }
   }
 }
