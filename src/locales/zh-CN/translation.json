@@ -278,6 +278,26 @@
       "preview": "预览",
       "download": "下载",
       "print": "打印"
+    },
+    "english-name": {
+      "title": "英文名生成器",
+      "desc": "根据您的中文名字生成合适的英文名。",
+      "subtitle": "找到与您中文名最匹配的完美英文名",
+      "input_label": "您的中文名",
+      "placeholder": "例如：李明",
+      "gender_label": "性别",
+      "gender_male": "男",
+      "gender_female": "女",
+      "gender_neutral": "中性/通用",
+      "generate_btn": "生成英文名",
+      "results_title": "推荐名字",
+      "refresh": "刷新",
+      "meaning": "含义",
+      "origin": "来源",
+      "no_results": "未找到合适的名字，请尝试不同的输入。",
+      "reason_start": "首字母相同",
+      "reason_sound": "发音相似",
+      "reason_random": "热门推荐"
     }
   }
 }

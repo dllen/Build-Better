@@ -305,6 +305,26 @@
       "preview": "Preview",
       "download": "Download",
       "print": "Print"
+    },
+    "english-name": {
+      "title": "English Name Generator",
+      "desc": "Generate English names based on your Chinese name.",
+      "subtitle": "Find the perfect English name that matches your Chinese name",
+      "input_label": "Your Chinese Name",
+      "placeholder": "e.g. Li Ming",
+      "gender_label": "Gender",
+      "gender_male": "Male",
+      "gender_female": "Female",
+      "gender_neutral": "Neutral",
+      "generate_btn": "Generate Names",
+      "results_title": "Suggested Names",
+      "refresh": "Refresh",
+      "meaning": "Meaning",
+      "origin": "Origin",
+      "no_results": "No suitable names found based on current criteria. Try different inputs.",
+      "reason_start": "Starts with same letter",
+      "reason_sound": "Sounds similar",
+      "reason_random": "Popular choice"
     }
   }
 }

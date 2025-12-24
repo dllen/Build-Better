@@ -32,6 +32,7 @@ import {
   Terminal,
   TrendingUp,
   Wifi,
+  User,
 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useTranslation } from "react-i18next";
@@ -102,6 +103,15 @@ export default function Home() {
       path: "/tools/wifi-qr-generator",
       color: "text-sky-600",
       bgColor: "bg-sky-100",
+    },
+    {
+      id: "english-name",
+      name: t("tools.english-name.title", "English Name Generator"),
+      description: t("tools.english-name.desc", "Generate English names based on your Chinese name."),
+      icon: User,
+      path: "/tools/english-name",
+      color: "text-pink-600",
+      bgColor: "bg-pink-100",
     },
     {
       id: "html-to-text",

@@ -61,6 +61,7 @@ import LinkMatch from "@/pages/games/LinkMatch";
 import Sudoku from "@/pages/games/Sudoku";
 import PacVim from "@/pages/games/PacVim";
 import WifiQrGenerator from "./pages/tools/WifiQrGenerator";
+import EnglishNameGenerator from "./pages/tools/EnglishNameGenerator";
 
 export default function App() {
   return (
@@ -78,6 +79,7 @@ export default function App() {
           <Route path="/tools/device-info" element={<DeviceInfo />} />
           <Route path="/tools/otp-generator" element={<OtpGenerator />} />
           <Route path="/tools/wifi-qr-generator" element={<WifiQrGenerator />} />
+          <Route path="/tools/english-name" element={<EnglishNameGenerator />} />
           <Route path="/tools/qr-generator" element={<QrGenerator />} />
           <Route path="/tools/regex-tester" element={<RegexTester />} />
           <Route path="/tools/markdown-html" element={<MarkdownHtml />} />
