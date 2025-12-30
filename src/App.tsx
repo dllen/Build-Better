@@ -62,6 +62,11 @@ import Sudoku from "@/pages/games/Sudoku";
 import PacVim from "@/pages/games/PacVim";
 import WifiQrGenerator from "./pages/tools/WifiQrGenerator";
 import EnglishNameGenerator from "./pages/tools/EnglishNameGenerator";
+import ImageCompressor from "./pages/tools/ImageCompressor";
+import ImageResizer from "./pages/tools/ImageResizer";
+import ImageConverter from "./pages/tools/ImageConverter";
+import ImageWatermark from "./pages/tools/ImageWatermark";
+import ImageJoiner from "./pages/tools/ImageJoiner";
 
 export default function App() {
   return (
@@ -80,6 +85,11 @@ export default function App() {
           <Route path="/tools/otp-generator" element={<OtpGenerator />} />
           <Route path="/tools/wifi-qr-generator" element={<WifiQrGenerator />} />
           <Route path="/tools/english-name" element={<EnglishNameGenerator />} />
+          <Route path="/tools/image-compressor" element={<ImageCompressor />} />
+          <Route path="/tools/image-resizer" element={<ImageResizer />} />
+          <Route path="/tools/image-converter" element={<ImageConverter />} />
+          <Route path="/tools/image-watermark" element={<ImageWatermark />} />
+          <Route path="/tools/image-joiner" element={<ImageJoiner />} />
           <Route path="/tools/qr-generator" element={<QrGenerator />} />
           <Route path="/tools/regex-tester" element={<RegexTester />} />
           <Route path="/tools/markdown-html" element={<MarkdownHtml />} />
