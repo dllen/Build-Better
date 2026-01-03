@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Keyboard, CircleDot } from "lucide-react";
+import { Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Keyboard, CircleDot, PawPrint, Plane, Hexagon } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useState, useMemo } from "react";
 import Fuse from "fuse.js";
@@ -50,6 +50,33 @@ const games = [
     path: "/games/go",
     color: "text-slate-700",
     bgColor: "bg-slate-200",
+  },
+  {
+    id: "jungle",
+    name: "Jungle Chess (AI)",
+    description: "Dou Shou Qi - Classic animal battle strategy game.",
+    icon: PawPrint,
+    path: "/games/jungle",
+    color: "text-amber-700",
+    bgColor: "bg-amber-200",
+  },
+  {
+    id: "flying-chess",
+    name: "Flying Chess (AI)",
+    description: "Classic Aeroplane Chess (Ludo Variant) with 3 AI opponents.",
+    icon: Plane,
+    path: "/games/flying-chess",
+    color: "text-sky-600",
+    bgColor: "bg-sky-100",
+  },
+  {
+    id: "chinese-checkers",
+    name: "Chinese Checkers (AI)",
+    description: "Classic Sternhalma. Move pieces to the opposite star point.",
+    icon: Hexagon,
+    path: "/games/chinese-checkers",
+    color: "text-emerald-600",
+    bgColor: "bg-emerald-100",
   },
   {
     id: "dino",

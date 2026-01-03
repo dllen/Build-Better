@@ -62,6 +62,9 @@ import Sudoku from "@/pages/games/Sudoku";
 import PacVim from "@/pages/games/PacVim";
 import ChineseChess from "@/pages/games/ChineseChess";
 import GoGame from "@/pages/games/GoGame";
+import Jungle from "@/pages/games/Jungle";
+import FlyingChess from "@/pages/games/FlyingChess";
+import ChineseCheckers from "@/pages/games/ChineseCheckers";
 import WifiQrGenerator from "./pages/tools/WifiQrGenerator";
 import EnglishNameGenerator from "./pages/tools/EnglishNameGenerator";
 import ImageCompressor from "./pages/tools/ImageCompressor";
@@ -143,6 +146,9 @@ export default function App() {
           <Route path="/games/pacvim" element={<PacVim />} />
           <Route path="/games/chinese-chess" element={<ChineseChess />} />
           <Route path="/games/go" element={<GoGame />} />
+          <Route path="/games/jungle" element={<Jungle />} />
+          <Route path="/games/flying-chess" element={<FlyingChess />} />
+          <Route path="/games/chinese-checkers" element={<ChineseCheckers />} />
         </Route>
       </Routes>
     </Router>
