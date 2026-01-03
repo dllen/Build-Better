@@ -60,6 +60,8 @@ import Game2048 from "@/pages/games/Game2048";
 import LinkMatch from "@/pages/games/LinkMatch";
 import Sudoku from "@/pages/games/Sudoku";
 import PacVim from "@/pages/games/PacVim";
+import ChineseChess from "@/pages/games/ChineseChess";
+import GoGame from "@/pages/games/GoGame";
 import WifiQrGenerator from "./pages/tools/WifiQrGenerator";
 import EnglishNameGenerator from "./pages/tools/EnglishNameGenerator";
 import ImageCompressor from "./pages/tools/ImageCompressor";
@@ -139,6 +141,8 @@ export default function App() {
           <Route path="/games/link-match" element={<LinkMatch />} />
           <Route path="/games/sudoku" element={<Sudoku />} />
           <Route path="/games/pacvim" element={<PacVim />} />
+          <Route path="/games/chinese-chess" element={<ChineseChess />} />
+          <Route path="/games/go" element={<GoGame />} />
         </Route>
       </Routes>
     </Router>

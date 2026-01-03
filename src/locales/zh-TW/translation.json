@@ -418,5 +418,37 @@
       "reason_sound": "發音相似",
       "reason_random": "熱門推薦"
     }
+  },
+  "games": {
+    "chinese-chess": {
+      "title": "中國象棋",
+      "desc": "與 AI 對戰中國象棋。",
+      "subtitle": "在經典策略遊戲中挑戰 AI。",
+      "settings": "遊戲設置",
+      "difficulty": "難度",
+      "easy": "簡單",
+      "medium": "中等",
+      "hard": "困難",
+      "red_turn": "紅方走棋",
+      "black_turn": "黑方走棋 (AI)",
+      "red_win": "紅方勝！",
+      "black_win": "黑方勝！"
+    },
+    "go": {
+      "title": "圍棋",
+      "desc": "與 AI 對戰圍棋。",
+      "subtitle": "經典的黑白棋子策略遊戲。",
+      "settings": "遊戲設置",
+      "difficulty": "難度",
+      "easy": "簡單",
+      "medium": "中等",
+      "hard": "困難",
+      "black": "黑棋 (你)",
+      "white": "白棋 (AI)",
+      "captured": "提子",
+      "your_turn": "輪到你了",
+      "ai_turn": "AI 思考中...",
+      "game_over": "遊戲結束"
+    }
   }
 }

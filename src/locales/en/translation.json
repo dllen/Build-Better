@@ -418,5 +418,37 @@
       "reason_sound": "Sounds similar",
       "reason_random": "Popular choice"
     }
+  },
+  "games": {
+    "chinese-chess": {
+      "title": "Chinese Chess",
+      "desc": "Play Chinese Chess (Xiangqi) against AI.",
+      "subtitle": "Challenge the AI in this classic strategy game.",
+      "settings": "Game Settings",
+      "difficulty": "Difficulty",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard",
+      "red_turn": "Red's Turn",
+      "black_turn": "Black's Turn (AI)",
+      "red_win": "Red Wins!",
+      "black_win": "Black Wins!"
+    },
+    "go": {
+      "title": "Go (Weiqi)",
+      "desc": "Play Go (Weiqi) against AI.",
+      "subtitle": "Ancient strategy board game of territory.",
+      "settings": "Game Settings",
+      "difficulty": "Difficulty",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard",
+      "black": "Black (You)",
+      "white": "White (AI)",
+      "captured": "captured",
+      "your_turn": "Your Turn",
+      "ai_turn": "AI Thinking...",
+      "game_over": "Game Over"
+    }
   }
 }

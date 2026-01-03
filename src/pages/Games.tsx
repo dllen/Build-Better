@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Keyboard } from "lucide-react";
+import { Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Keyboard, CircleDot } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useState, useMemo } from "react";
 import Fuse from "fuse.js";
@@ -32,6 +32,24 @@ const games = [
     path: "/games/gomoku",
     color: "text-purple-600",
     bgColor: "bg-purple-100",
+  },
+  {
+    id: "chinese-chess",
+    name: "Chinese Chess (AI)",
+    description: "Classic Chinese Chess (Xiangqi) against AI. Challenge different difficulty levels.",
+    icon: User,
+    path: "/games/chinese-chess",
+    color: "text-red-600",
+    bgColor: "bg-red-100",
+  },
+  {
+    id: "go",
+    name: "Go (Weiqi)",
+    description: "Classic strategy board game. Surround territory to win.",
+    icon: CircleDot,
+    path: "/games/go",
+    color: "text-slate-700",
+    bgColor: "bg-slate-200",
   },
   {
     id: "dino",
