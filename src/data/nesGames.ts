@@ -1,5 +1,3 @@
-import { NesGame } from './nesGames';
-
 export interface NesGame {
   id: string;
   title: string;
@@ -162,32 +160,8 @@ export const nesGames: NesGame[] = [
     description: 'Bomb your way through mazes and enemies.',
     genre: 'Strategy',
   },
-  {
-    id: 'drmario',
-    title: 'Dr. Mario',
-    romUrl: '/roms/dr_mario.nes',
-    coverUrl: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1x76.jpg',
-    description: 'Match colors to destroy viruses.',
-    genre: 'Puzzle',
-  },
 
   // 4. 体育/竞速类
-  {
-    id: 'excitebike',
-    title: 'Excitebike',
-    romUrl: '/roms/excitebike.nes',
-    coverUrl: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co20b9.jpg',
-    description: 'Motocross racing with a track editor.',
-    genre: 'Racing',
-  },
-  {
-    id: 'baseball',
-    title: 'Baseball',
-    romUrl: '/roms/baseball.nes',
-    coverUrl: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co20a2.jpg',
-    description: 'Simple but fun baseball simulation.',
-    genre: 'Sports',
-  },
   {
     id: 'punchout',
     title: 'Punch-Out!!',
