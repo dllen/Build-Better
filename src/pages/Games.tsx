@@ -7,6 +7,15 @@ import { SearchInput } from "@/components/common/SearchInput";
 
 const games = [
   {
+    id: "nes",
+    name: "NES Arcade",
+    description: "Classic NES games collection with emulator. Mario, Contra, Zelda and more!",
+    icon: Gamepad2,
+    path: "/games/nes",
+    color: "text-red-600",
+    bgColor: "bg-red-100",
+  },
+  {
     id: "snake",
     name: "Snake",
     description: "Classic snake game. Eat food, grow longer, don't hit the wall!",

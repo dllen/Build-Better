@@ -65,6 +65,7 @@ import GoGame from "@/pages/games/GoGame";
 import Jungle from "@/pages/games/Jungle";
 import FlyingChess from "@/pages/games/FlyingChess";
 import ChineseCheckers from "@/pages/games/ChineseCheckers";
+import NesEmulatorPage from "@/pages/games/NesEmulator";
 import WifiQrGenerator from "./pages/tools/WifiQrGenerator";
 import EnglishNameGenerator from "./pages/tools/EnglishNameGenerator";
 import ImageCompressor from "./pages/tools/ImageCompressor";
@@ -149,6 +150,7 @@ export default function App() {
           <Route path="/games/jungle" element={<Jungle />} />
           <Route path="/games/flying-chess" element={<FlyingChess />} />
           <Route path="/games/chinese-checkers" element={<ChineseCheckers />} />
+          <Route path="/games/nes" element={<NesEmulatorPage />} />
         </Route>
       </Routes>
     </Router>
