@@ -9,16 +9,7 @@ export interface NesGame {
 }
 
 export const nesGames: NesGame[] = [
-  // Utilities
-  {
-    id: 'nestest',
-    title: 'NES Test (CPU Test)',
-    romUrl: '/roms/nestest.nes',
-    coverUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES_Console_Set.png/1200px-NES_Console_Set.png',
-    description: 'Kevtris NES CPU Test. Use this to verify the emulator core is working correctly.',
-    genre: 'Utility',
-  },
-  
+  // Utilities  
   // 1. 平台/动作类
   {
     id: 'mario1',

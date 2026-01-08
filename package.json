@@ -13,6 +13,7 @@
     "test": "node --test tests/**/*.mjs",
     "bench:csv": "node scripts/bench-csv.mjs",
     "csv2json": "node bin/csv2json.mjs",
+    "format:json": "node bin/format-json.mjs",
     "pages:dev": "wrangler pages dev dist",
     "pages:create": "wrangler pages project create build-better",
     "pages:deploy": "npm run build && wrangler pages deploy dist --project-name build-better"
@@ -29,6 +30,7 @@
     "crypto-js": "^4.2.0",
     "diff": "^5.2.0",
     "fast-xml-parser": "^5.3.3",
+    "fracturedjsonjs": "^5.0.1",
     "fuse.js": "^7.1.0",
     "i18next": "^25.7.3",
     "i18next-browser-languagedetector": "^8.2.0",
