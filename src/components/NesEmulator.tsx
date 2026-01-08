@@ -29,9 +29,15 @@ export const NesEmulator: React.FC<NesEmulatorProps> = ({ romUrl, core = 'fceumm
         // Note: For this to work without a real backend, we might need a way to verify the ROM exists.
         // For now, we assume it tries to fetch.
 
+        // Fix: Nostalgist treats relative paths with .nes extension as retrobrews repo paths.
+        // We need to convert local paths to absolute URLs to bypass this behavior.
+        const fullRomUrl = romUrl.startsWith('/') 
+          ? window.location.origin + romUrl 
+          : romUrl;
+
         const nost = await Nostalgist.launch({
           element: canvasRef.current,
-          rom: romUrl,
+          rom: fullRomUrl,
           core: core,
         });
 
