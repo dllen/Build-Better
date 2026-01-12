@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Generated PDF Tools
+public/pdf-tools
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

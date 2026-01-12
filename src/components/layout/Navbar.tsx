@@ -21,6 +21,12 @@ export function Navbar() {
             <Link to="/" className="text-gray-600 hover:text-blue-600 transition-colors">
               {t("app.tools")}
             </Link>
+            <a href="/pdf-tools/" className="text-gray-600 hover:text-blue-600 transition-colors">
+              {t("app.pdf_tools")}
+            </a>
+            <Link to="/tools/text" className="text-gray-600 hover:text-blue-600 transition-colors">
+              Text Suite
+            </Link>
             <Link to="/games" className="text-gray-600 hover:text-blue-600 transition-colors">
               {t("app.games")}
             </Link>
@@ -53,6 +59,20 @@ export function Navbar() {
               onClick={() => setIsMenuOpen(false)}
             >
               {t("app.tools")}
+            </Link>
+            <a
+              href="/pdf-tools/"
+              className="py-2 text-gray-600 hover:text-blue-600"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {t("app.pdf_tools")}
+            </a>
+            <Link
+              to="/tools/text"
+              className="py-2 text-gray-600 hover:text-blue-600"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Text Suite
             </Link>
             <Link
               to="/games"

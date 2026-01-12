@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/generate-sitemap.mjs",
+    "build": "npm run build:pdf && tsc -b && vite build && node scripts/generate-sitemap.mjs",
+    "build:pdf": "cd libs/pdfcraft && npm install --legacy-peer-deps && npm run build && mkdir -p ../../public/pdf-tools && cp -r out/* ../../public/pdf-tools/",
     "format": "prettier --write .",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -57,6 +58,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@types/diff": "^7.0.2",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.15.30",
     "@types/prettier": "^2.7.3",

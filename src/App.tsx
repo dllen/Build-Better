@@ -73,6 +73,18 @@ import ImageResizer from "./pages/tools/ImageResizer";
 import ImageConverter from "./pages/tools/ImageConverter";
 import ImageWatermark from "./pages/tools/ImageWatermark";
 import ImageJoiner from "./pages/tools/ImageJoiner";
+import TextTools from "./pages/tools/text/TextTools";
+import TextCaseConverter from "./pages/tools/text/TextCaseConverter";
+import TextReplacer from "./pages/tools/text/TextReplacer";
+import TextSorter from "./pages/tools/text/TextSorter";
+import TextLineNumber from "./pages/tools/text/TextLineNumber";
+import TextToHtml from "./pages/tools/text/TextToHtml";
+import SymbolPicker from "./pages/tools/text/SymbolPicker";
+import EmojiPicker from "./pages/tools/text/EmojiPicker";
+import FancyTextGenerator from "./pages/tools/text/FancyTextGenerator";
+import TextTypesetter from "./pages/tools/text/TextTypesetter";
+import TextSimilarity from "./pages/tools/text/TextSimilarity";
+import TextWorkflow from "./pages/tools/text/TextWorkflow";
 
 export default function App() {
   return (
@@ -96,6 +108,25 @@ export default function App() {
           <Route path="/tools/image-converter" element={<ImageConverter />} />
           <Route path="/tools/image-watermark" element={<ImageWatermark />} />
           <Route path="/tools/image-joiner" element={<ImageJoiner />} />
+
+          {/* Text Tools Suite */}
+          <Route path="/tools/text" element={<TextTools />} />
+          <Route path="/tools/text/case" element={<TextCaseConverter />} />
+          <Route path="/tools/text/replace" element={<TextReplacer />} />
+          <Route path="/tools/text/sort" element={<TextSorter />} />
+          <Route path="/tools/text/numbers" element={<TextLineNumber />} />
+          <Route path="/tools/text/html" element={<TextToHtml />} />
+          <Route path="/tools/text/symbols" element={<SymbolPicker />} />
+          <Route path="/tools/text/emojis" element={<EmojiPicker />} />
+          <Route path="/tools/text/fancy" element={<FancyTextGenerator />} />
+          <Route path="/tools/text/typesetter" element={<TextTypesetter />} />
+          <Route path="/tools/text/similarity" element={<TextSimilarity />} />
+          <Route path="/tools/text/workflow" element={<TextWorkflow />} />
+          {/* Re-routing existing text tools to suite paths if needed, or keeping them accessible directly */}
+          <Route path="/tools/text/stats" element={<TextStats />} />
+          <Route path="/tools/text/deduplicate" element={<TextDeduper />} />
+          <Route path="/tools/text/diff" element={<DedupSortDiff />} />
+
           <Route path="/tools/qr-generator" element={<QrGenerator />} />
           <Route path="/tools/regex-tester" element={<RegexTester />} />
           <Route path="/tools/markdown-html" element={<MarkdownHtml />} />

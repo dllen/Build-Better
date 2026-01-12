@@ -12,6 +12,20 @@
 - 仅前端：`npm run dev` → `http://localhost:5173/`
 - 前端 + Pages Functions：`npm run pages:dev`（使用 `dist` 目录模式）
 
+## PDF 工具子模块集成
+
+本项目集成了 `pdfcraft` 作为 PDF 处理工具。
+
+- **源码位置**: `libs/pdfcraft` (Git Submodule)
+- **构建方式**: 运行 `npm run build` 会自动触发 `npm run build:pdf`。
+- **构建流程**:
+  1. 进入 `libs/pdfcraft`
+  2. 安装依赖并构建静态站点
+  3. 将构建产物 (`libs/pdfcraft/out`) 复制到 `public/pdf-tools`
+  4. 主项目构建时会将 `public` 目录包含在内。
+
+注意：首次拉取项目后，请运行 `git submodule update --init --recursive` 以获取子模块代码。
+
 ## Cloudflare Pages 部署（CLI）
 
 1. 登录 Cloudflare：`npx wrangler login`
