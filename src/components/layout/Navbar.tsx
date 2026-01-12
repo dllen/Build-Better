@@ -30,6 +30,24 @@ export function Navbar() {
             <Link to="/games" className="text-gray-600 hover:text-blue-600 transition-colors">
               {t("app.games")}
             </Link>
+            <a
+              href="https://www.aitmpl.com/skills"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-blue-600 transition-colors"
+              aria-label="Agent Skills"
+            >
+              Agent Skills
+            </a>
+            <a
+              href="https://glama.ai/mcp/servers"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-blue-600 transition-colors"
+              aria-label="MCP Servers"
+            >
+              MCP
+            </a>
             <Link
               to="/settings"
               className="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-1"
@@ -81,6 +99,26 @@ export function Navbar() {
             >
               {t("app.games")}
             </Link>
+            <a
+              href="https://www.aitmpl.com/skills"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-2 text-gray-600 hover:text-blue-600"
+              onClick={() => setIsMenuOpen(false)}
+              aria-label="Agent Skills"
+            >
+              Agent Skills
+            </a>
+            <a
+              href="https://glama.ai/mcp/servers"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-2 text-gray-600 hover:text-blue-600"
+              onClick={() => setIsMenuOpen(false)}
+              aria-label="MCP Servers"
+            >
+              MCP
+            </a>
             <Link
               to="/settings"
               className="py-2 text-gray-600 hover:text-blue-600 flex items-center gap-2"
