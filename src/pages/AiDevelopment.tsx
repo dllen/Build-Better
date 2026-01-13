@@ -36,6 +36,13 @@ const resources: Resource[] = [
     url: "https://www.aitmpl.com/skills",
     category: "agent-skills",
   },
+  {
+    id: "skills-mp",
+    title: "SkillsMP",
+    description: "Discover 58,925+ open-source agent skills for Claude, Codex & ChatGPT.",
+    url: "https://skillsmp.com/",
+    category: "agent-skills",
+  },
   // LLM Development
   {
     id: "openai-platform",
