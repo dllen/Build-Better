@@ -86,6 +86,8 @@ import TextTypesetter from "./pages/tools/text/TextTypesetter";
 import TextSimilarity from "./pages/tools/text/TextSimilarity";
 import TextWorkflow from "./pages/tools/text/TextWorkflow";
 
+import AiDevelopment from "@/pages/AiDevelopment";
+
 export default function App() {
   return (
     <Router>
@@ -93,6 +95,7 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/games" element={<Games />} />
+          <Route path="/ai-development" element={<AiDevelopment />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/tools/api-debugger" element={<ApiDebugger />} />
           <Route path="/tools/code-formatter" element={<CodeFormatter />} />
