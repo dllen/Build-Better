@@ -63,10 +63,12 @@ export class RemoveAnnotationsProcessor extends BasePDFProcessor {
 
         if (annots) {
           if (removeOptions.removeAll) {
+            removedCount++;
             // Remove all annotations
             page.node.delete(pdfLib.PDFName.of('Annots'));
             removedCount++;
           } else {
+            removedCount++;
             // Selective removal would require parsing annotation types
             // This is a simplified implementation
             page.node.delete(pdfLib.PDFName.of('Annots'));

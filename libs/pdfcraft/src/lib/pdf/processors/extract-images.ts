@@ -6,7 +6,6 @@
  * Supports filtering small images and batch downloads as ZIP.
  */
 
-
 import type {
     ProcessInput,
     ProcessOutput,
@@ -190,7 +189,6 @@ export class ExtractImagesPDFProcessor extends BasePDFProcessor {
 
                         const handleMessage = (event: MessageEvent) => {
                             const { type, id, result, error, message } = event.data;
-
                             if (type === 'status') {
                                 // Optional: update progress with detailed message
                                 return;

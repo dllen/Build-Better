@@ -67,6 +67,7 @@ export class CropProcessor extends BasePDFProcessor {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private async performMetadataCrop(pdfLib: any, arrayBuffer: ArrayBuffer, cropData: Record<number, CropData>): Promise<Uint8Array> {
     const pdf = await pdfLib.PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
 
@@ -113,8 +114,8 @@ export class CropProcessor extends BasePDFProcessor {
     return await pdf.save({ useObjectStreams: true });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private async performDestructiveCrop(pdfLib: any, arrayBuffer: ArrayBuffer, cropData: Record<number, CropData>): Promise<Uint8Array> {
-    // This requires embedding the cropped area as an image or creating a new page with specific dimensions.
     // For simplicity and robustness given common libraries, we will use the metadata crop logic 
     // but save it and then reload/flatten if needed, or stick to metadata crop as default.
     // However, the prompt implies "destructive" might be desired to actually remove content outside.

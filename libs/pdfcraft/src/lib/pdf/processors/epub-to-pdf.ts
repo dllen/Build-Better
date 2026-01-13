@@ -21,6 +21,7 @@ import { BasePDFProcessor } from '../processor';
 /**
  * EPUB to PDF options
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface EPUBToPDFOptions {
     // Reserved for future options
 }

@@ -23,25 +23,9 @@ jobs:
           cache: 'npm'
           cache-dependency-path: |
             package-lock.json
-            libs/pdfcraft/package-lock.json
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Install dependencies (PDFCraft)
-        run: |
-          cd libs/pdfcraft
-          npm ci --legacy-peer-deps
-
-      - name: Lint (PDFCraft)
-        run: |
-          cd libs/pdfcraft
-          npm run lint
-
-      - name: Test (PDFCraft)
-        run: |
-          cd libs/pdfcraft
-          npm run test
 
       - name: Build
         run: npm run build

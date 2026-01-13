@@ -198,7 +198,6 @@ export class PDFToExcelProcessor extends BasePDFProcessor {
             }
 
             this.updateProgress(100, 'Conversion complete!');
-
             const baseName = file.name.replace(/\.pdf$/i, '');
             const outputName = `${baseName}.xlsx`;
 

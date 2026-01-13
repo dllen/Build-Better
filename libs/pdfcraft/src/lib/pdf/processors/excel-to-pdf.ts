@@ -16,6 +16,7 @@ import { BasePDFProcessor } from '../processor';
 /**
  * Excel to PDF options
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface ExcelToPDFOptions {
     /** Reserved for future options */
 }

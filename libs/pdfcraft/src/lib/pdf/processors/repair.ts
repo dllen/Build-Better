@@ -157,7 +157,7 @@ export class RepairPDFProcessor extends BasePDFProcessor {
 
     const file = files[0];
     const inputPath = '/input.pdf';
-    const outputPath = '/output.pdf';// QPDF instance singleton
+    const outputPath = '/output.pdf';
     let qpdf: { FS: { writeFile: (path: string, data: Uint8Array) => void; readFile: (path: string, options: { encoding: string }) => Uint8Array; unlink: (path: string) => void }; callMain: (args: string[]) => void } | null = null;
 
     try {
