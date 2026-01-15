@@ -43,6 +43,34 @@ const resources: Resource[] = [
     url: "https://skillsmp.com/",
     category: "agent-skills",
   },
+  {
+    id: "claude-skills-lib",
+    title: "Claude Skills Library",
+    description: "Production-Ready skill packages for Claude AI & Claude Code.",
+    url: "https://github.com/alirezarezvani/claude-skills",
+    category: "agent-skills",
+  },
+  {
+    id: "vercel-agent-skills",
+    title: "Vercel Agent Skills",
+    description: "A collection of skills for AI coding agents by Vercel Engineering.",
+    url: "https://github.com/vercel-labs/agent-skills",
+    category: "agent-skills",
+  },
+  {
+    id: "awesome-claude-skills",
+    title: "Awesome Claude Skills",
+    description: "The awesome collection of Claude Skills and resources.",
+    url: "https://github.com/VoltAgent/awesome-claude-skills",
+    category: "agent-skills",
+  },
+  {
+    id: "ui-ux-benchmark-skill",
+    title: "UI/UX Benchmark Skill",
+    description: "Benchmark skill for UI/UX design.",
+    url: "https://github.com/hylarucoder/benchmark-skill-ui-ux-pro-max",
+    category: "agent-skills",
+  },
   // LLM Development
   {
     id: "openai-platform",
