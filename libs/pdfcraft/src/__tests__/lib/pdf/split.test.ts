@@ -10,7 +10,6 @@ import {
   SplitPDFProcessor,
   createSplitProcessor,
   splitPDF,
-  splitPDF,
   parsePageRanges,
   createSplitEveryNPages,
   createSplitEveryPage,
@@ -26,7 +25,7 @@ async function createRealPDFFile(name: string, pageCount: number = 1): Promise<F
     pdfDoc.addPage([612, 792]); // Letter size
   }
   
-  const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+  const pdfBytes = await pdfDoc.save();
   const blob = new Blob([pdfBytes], { type: 'application/pdf' });
   return new File([blob], name, { type: 'application/pdf' });
 }
@@ -97,17 +96,17 @@ describe('SplitPDFProcessor', () => {
 });
 
 describe('parsePageRanges', () => {
-    const ranges = parsePageRanges('5', 10);
+  it('should parse single page number', () => {
     const ranges = parsePageRanges('5', 10);
     expect(ranges).toEqual([{ start: 5, end: 5 }]);
   });
 
-    const ranges = parsePageRanges('1-5', 10);
+  it('should parse page range with dash', () => {
     const ranges = parsePageRanges('1-5', 10);
     expect(ranges).toEqual([{ start: 1, end: 5 }]);
   });
 
-    const ranges = parsePageRanges('1,3,5', 10);
+  it('should parse multiple comma-separated pages', () => {
     const ranges = parsePageRanges('1,3,5', 10);
     expect(ranges).toEqual([
       { start: 1, end: 1 },
@@ -116,7 +115,7 @@ describe('parsePageRanges', () => {
     ]);
   });
 
-    const ranges = parsePageRanges('1-3,5,7-10', 10);
+  it('should parse mixed ranges and single pages', () => {
     const ranges = parsePageRanges('1-3,5,7-10', 10);
     expect(ranges).toEqual([
       { start: 1, end: 3 },
@@ -125,7 +124,7 @@ describe('parsePageRanges', () => {
     ]);
   });
 
-    const ranges = parsePageRanges(' 1 - 3 , 5 , 7 - 10 ', 10);
+  it('should handle whitespace in input', () => {
     const ranges = parsePageRanges(' 1 - 3 , 5 , 7 - 10 ', 10);
     expect(ranges).toEqual([
       { start: 1, end: 3 },
@@ -134,12 +133,12 @@ describe('parsePageRanges', () => {
     ]);
   });
 
-    const ranges = parsePageRanges('', 10);
+  it('should return empty array for empty string', () => {
     const ranges = parsePageRanges('', 10);
     expect(ranges).toEqual([]);
   });
 
-    const ranges = parsePageRanges('1,abc,3', 10);
+  it('should ignore invalid entries', () => {
     const ranges = parsePageRanges('1,abc,3', 10);
     expect(ranges).toEqual([
       { start: 1, end: 1 },
@@ -147,12 +146,12 @@ describe('parsePageRanges', () => {
     ]);
   });
 
-    const ranges = parsePageRanges('1-2', 5);
+  it('should handle single digit ranges', () => {
     const ranges = parsePageRanges('1-2', 5);
     expect(ranges).toEqual([{ start: 1, end: 2 }]);
   });
 
-    const ranges = parsePageRanges('1-10', 10);
+  it('should handle ranges at document boundaries', () => {
     const ranges = parsePageRanges('1-10', 10);
     expect(ranges).toEqual([{ start: 1, end: 10 }]);
   });

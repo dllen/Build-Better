@@ -16,6 +16,7 @@ import { BasePDFProcessor } from '../processor';
 /**
  * PDF to Excel options
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface PDFToExcelOptions {
     // Add options if needed later (e.g., merge sheets)
 }
@@ -52,7 +53,7 @@ export class PDFToExcelProcessor extends BasePDFProcessor {
                 };
 
                 this.worker.addEventListener('message', handleMessage);
-                this.worker.addEventListener('error', (err) => {
+                this.worker.addEventListener('error', () => {
                     reject(new Error('Worker connection failed'));
                 });
 
@@ -153,7 +154,7 @@ export class PDFToExcelProcessor extends BasePDFProcessor {
                 }
 
                 const handleMessage = (event: MessageEvent) => {
-                    const { type, data, error, message } = event.data;
+                    const { type, data, message } = event.data;
 
                     if (type === 'status') {
                         this.updateProgress(this.progress, message);
@@ -198,6 +199,7 @@ export class PDFToExcelProcessor extends BasePDFProcessor {
             }
 
             this.updateProgress(100, 'Conversion complete!');
+
             const baseName = file.name.replace(/\.pdf$/i, '');
             const outputName = `${baseName}.xlsx`;
 

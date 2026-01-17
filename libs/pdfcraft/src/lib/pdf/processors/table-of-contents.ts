@@ -48,8 +48,8 @@ export class TableOfContentsProcessor extends BasePDFProcessor {
       console.log('[TOC Processor] Worker returned result:', {
         status: result.status,
         hasPdfBytes: 'pdfBytes' in result,
-        pdfBytesType: (result as { pdfBytes?: ArrayBuffer }).pdfBytes ? ((result as { pdfBytes?: ArrayBuffer }).pdfBytes?.constructor.name) : 'N/A',
-        byteLength: (result as { pdfBytes?: ArrayBuffer }).pdfBytes ? (result as { pdfBytes?: ArrayBuffer }).pdfBytes?.byteLength : 0
+        pdfBytesType: (result as any).pdfBytes ? (result as any).pdfBytes.constructor.name : 'N/A',
+        byteLength: (result as any).pdfBytes ? (result as any).pdfBytes.byteLength : 0
       });
 
       if (result.status === 'error') {
@@ -59,8 +59,8 @@ export class TableOfContentsProcessor extends BasePDFProcessor {
         );
       }
 
-      const blobResult = (result as { pdfBlob?: Blob }).pdfBlob;
-      const bytesResult = (result as { pdfBytes?: ArrayBuffer }).pdfBytes;
+      const blobResult = (result as any).pdfBlob;
+      const bytesResult = (result as any).pdfBytes;
 
       let finalBlob: Blob;
 

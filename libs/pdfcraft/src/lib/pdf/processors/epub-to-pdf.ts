@@ -58,7 +58,7 @@ export class EPUBToPDFProcessor extends BasePDFProcessor {
                 };
 
                 this.worker.addEventListener('message', handleMessage);
-                this.worker.addEventListener('error', (err) => {
+                this.worker.addEventListener('error', () => {
                     reject(new Error('Worker connection failed'));
                 });
 

@@ -7,7 +7,7 @@ import { ProcessingProgress, ProcessingStatus } from '../ProcessingProgress';
 import { DownloadButton } from '../DownloadButton';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { imagesToPDF, PAGE_SIZES, type PageSizeType, type ImageToPDFOptions } from '@/lib/pdf/processors/image-to-pdf';
+import { imagesToPDF, imagesToPDFBatch, PAGE_SIZES, type PageSizeType, type ImageToPDFOptions, type BatchExportResult } from '@/lib/pdf/processors/image-to-pdf';
 import type { UploadedFile, ProcessOutput } from '@/types/pdf';
 
 /**
@@ -33,7 +33,7 @@ export interface ImageToPDFToolProps {
 export function ImageToPDFTool({ className = '', imageType }: ImageToPDFToolProps) {
   const t = useTranslations('common');
   const tTools = useTranslations('tools');
-  
+
   // State
   const [files, setFiles] = useState<UploadedFile[]>([]);
   const [status, setStatus] = useState<ProcessingStatus>('idle');
@@ -41,7 +41,7 @@ export function ImageToPDFTool({ className = '', imageType }: ImageToPDFToolProp
   const [progressMessage, setProgressMessage] = useState('');
   const [result, setResult] = useState<Blob | null>(null);
   const [error, setError] = useState<string | null>(null);
-  
+
   // Options state
   const [pageSize, setPageSize] = useState<PageSizeType>('A4');
   const [orientation, setOrientation] = useState<'portrait' | 'landscape' | 'auto'>('auto');
@@ -49,11 +49,16 @@ export function ImageToPDFTool({ className = '', imageType }: ImageToPDFToolProp
   const [centerImage, setCenterImage] = useState(true);
   const [scaleToFit, setScaleToFit] = useState(true);
   const [svgScale, setSvgScale] = useState(2); // SVG render scale for quality
-  
+
+  // Batch mode options
+  const [batchMode, setBatchMode] = useState(false);
+  const [imagesPerPdf, setImagesPerPdf] = useState(10);
+  const [batchResult, setBatchResult] = useState<BatchExportResult | null>(null);
+
   // Drag state for reordering
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
-  
+
   // Ref for cancellation
   const cancelledRef = useRef(false);
 
@@ -103,7 +108,7 @@ export function ImageToPDFTool({ className = '', imageType }: ImageToPDFToolProp
       status: 'pending' as const,
       preview: URL.createObjectURL(file),
     }));
-    
+
     setFiles(prev => [...prev, ...uploadedFiles]);
     setError(null);
     setResult(null);
@@ -139,6 +144,7 @@ export function ImageToPDFTool({ className = '', imageType }: ImageToPDFToolProp
     });
     setFiles([]);
     setResult(null);
+    setBatchResult(null);
     setError(null);
     setStatus('idle');
     setProgress(0);
@@ -191,6 +197,7 @@ export function ImageToPDFTool({ className = '', imageType }: ImageToPDFToolProp
     setProgress(0);
     setError(null);
     setResult(null);
+    setBatchResult(null);
 
     const options: Partial<ImageToPDFOptions> = {
       pageSize,
@@ -202,28 +209,58 @@ export function ImageToPDFTool({ className = '', imageType }: ImageToPDFToolProp
     };
 
     try {
-      const output: ProcessOutput = await imagesToPDF(
-        files.map(f => f.file),
-        options,
-        (prog, message) => {
-          if (!cancelledRef.current) {
-            setProgress(prog);
-            setProgressMessage(message || '');
+      // Check if batch mode is enabled and there are enough images
+      if (batchMode && files.length > imagesPerPdf) {
+        // Batch export mode
+        const output = await imagesToPDFBatch(
+          files.map(f => f.file),
+          imagesPerPdf,
+          options,
+          (prog, message) => {
+            if (!cancelledRef.current) {
+              setProgress(prog);
+              setProgressMessage(message || '');
+            }
           }
+        );
+
+        if (cancelledRef.current) {
+          setStatus('idle');
+          return;
         }
-      );
 
-      if (cancelledRef.current) {
-        setStatus('idle');
-        return;
-      }
-
-      if (output.success && output.result) {
-        setResult(output.result as Blob);
-        setStatus('complete');
+        if (output.success && output.result) {
+          setBatchResult(output.result);
+          setStatus('complete');
+        } else {
+          setError(output.error?.message || 'Failed to create batch PDFs.');
+          setStatus('error');
+        }
       } else {
-        setError(output.error?.message || 'Failed to convert images to PDF.');
-        setStatus('error');
+        // Single PDF mode
+        const output: ProcessOutput = await imagesToPDF(
+          files.map(f => f.file),
+          options,
+          (prog, message) => {
+            if (!cancelledRef.current) {
+              setProgress(prog);
+              setProgressMessage(message || '');
+            }
+          }
+        );
+
+        if (cancelledRef.current) {
+          setStatus('idle');
+          return;
+        }
+
+        if (output.success && output.result) {
+          setResult(output.result as Blob);
+          setStatus('complete');
+        } else {
+          setError(output.error?.message || 'Failed to convert images to PDF.');
+          setStatus('error');
+        }
       }
     } catch (err) {
       if (!cancelledRef.current) {
@@ -231,7 +268,7 @@ export function ImageToPDFTool({ className = '', imageType }: ImageToPDFToolProp
         setStatus('error');
       }
     }
-  }, [files, pageSize, orientation, margin, centerImage, scaleToFit]);
+  }, [files, pageSize, orientation, margin, centerImage, scaleToFit, svgScale, batchMode, imagesPerPdf]);
 
   /**
    * Handle cancel operation
@@ -270,7 +307,7 @@ export function ImageToPDFTool({ className = '', imageType }: ImageToPDFToolProp
 
       {/* Error Message */}
       {error && (
-        <div 
+        <div
           className="p-4 rounded-[var(--radius-md)] bg-red-50 border border-red-200 text-red-700"
           role="alert"
         >
@@ -366,7 +403,7 @@ export function ImageToPDFTool({ className = '', imageType }: ImageToPDFToolProp
           <h3 className="text-lg font-medium text-[hsl(var(--color-foreground))] mb-4">
             {tTools('imageToPdf.optionsTitle') || 'PDF Options'}
           </h3>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {/* Page Size */}
             <div>
@@ -452,6 +489,45 @@ export function ImageToPDFTool({ className = '', imageType }: ImageToPDFToolProp
             </label>
           </div>
 
+          {/* Batch Export Options */}
+          {files.length > 1 && (
+            <div className="mt-4 pt-4 border-t border-[hsl(var(--color-border))]">
+              <label className="flex items-center gap-3 cursor-pointer mb-3">
+                <input
+                  type="checkbox"
+                  checked={batchMode}
+                  onChange={(e) => setBatchMode(e.target.checked)}
+                  disabled={isProcessing}
+                  className="w-4 h-4 rounded border-[hsl(var(--color-border))] text-[hsl(var(--color-primary))] focus:ring-[hsl(var(--color-primary))]"
+                />
+                <span className="text-sm font-medium text-[hsl(var(--color-foreground))]">
+                  {tTools('imageToPdf.batchMode') || 'Split into multiple PDFs'}
+                </span>
+              </label>
+
+              {batchMode && (
+                <div className="ml-7 space-y-2">
+                  <label className="block text-sm text-[hsl(var(--color-foreground))]">
+                    {tTools('imageToPdf.imagesPerPdf') || 'Images per PDF'}
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    max={files.length}
+                    value={imagesPerPdf}
+                    onChange={(e) => setImagesPerPdf(Math.max(1, Math.min(files.length, parseInt(e.target.value) || 1)))}
+                    disabled={isProcessing}
+                    className="w-24 px-3 py-2 rounded-[var(--radius-md)] border border-[hsl(var(--color-border))] bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-primary))]"
+                  />
+                  <p className="text-xs text-[hsl(var(--color-muted-foreground))]">
+                    {tTools('imageToPdf.batchModeHint', { pdfCount: Math.ceil(files.length / imagesPerPdf) }) ||
+                      `Will create ${Math.ceil(files.length / imagesPerPdf)} PDF file(s), packaged as a ZIP archive.`}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* SVG Quality Option - only show for SVG files */}
           {(imageType === 'svg' || files.some(f => f.file.name.toLowerCase().endsWith('.svg') || f.file.type === 'image/svg+xml')) && (
             <div className="mt-4 pt-4 border-t border-[hsl(var(--color-border))]">
@@ -497,8 +573,8 @@ export function ImageToPDFTool({ className = '', imageType }: ImageToPDFToolProp
           disabled={!canConvert}
           loading={isProcessing}
         >
-          {isProcessing 
-            ? (t('status.processing') || 'Processing...') 
+          {isProcessing
+            ? (t('status.processing') || 'Processing...')
             : (tTools('imageToPdf.convertButton') || 'Convert to PDF')
           }
         </Button>
@@ -512,16 +588,39 @@ export function ImageToPDFTool({ className = '', imageType }: ImageToPDFToolProp
             showFileSize
           />
         )}
+
+        {batchResult && (
+          <DownloadButton
+            file={batchResult.zipBlob}
+            filename={`images_${batchResult.pdfCount}_pdfs.zip`}
+            variant="secondary"
+            size="lg"
+            showFileSize
+          />
+        )}
       </div>
 
       {/* Success Message */}
       {status === 'complete' && result && (
-        <div 
+        <div
           className="p-4 rounded-[var(--radius-md)] bg-green-50 border border-green-200 text-green-700"
           role="status"
         >
           <p className="text-sm font-medium">
             {tTools('imageToPdf.successMessage') || 'Images converted to PDF successfully! Click the download button to save your file.'}
+          </p>
+        </div>
+      )}
+
+      {/* Batch Success Message */}
+      {status === 'complete' && batchResult && (
+        <div
+          className="p-4 rounded-[var(--radius-md)] bg-green-50 border border-green-200 text-green-700"
+          role="status"
+        >
+          <p className="text-sm font-medium">
+            {tTools('imageToPdf.batchSuccessMessage', { pdfCount: batchResult.pdfCount, imageCount: batchResult.imageCount }) ||
+              `Successfully created ${batchResult.pdfCount} PDF files from ${batchResult.imageCount} images! Click the download button to save your ZIP archive.`}
           </p>
         </div>
       )}

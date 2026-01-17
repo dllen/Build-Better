@@ -16,9 +16,9 @@ import { BasePDFProcessor } from '../processor';
 /**
  * XPS to PDF options
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface XPSToPDFOptions {
     /** Reserved for future options */
-    [key: string]: never;
 }
 
 /**

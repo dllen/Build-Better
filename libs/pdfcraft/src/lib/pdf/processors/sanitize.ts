@@ -158,13 +158,13 @@ export class SanitizePDFProcessor extends BasePDFProcessor {
         } catch {
           // Try to remove AcroForm if flatten fails
           try {
-            const catalogDict = (pdfDoc.catalog as unknown as { dict: Map<unknown, unknown> }).dict;
+            const catalogDict = (pdfDoc.catalog as any).dict;
             if (catalogDict.has(PDFName.of('AcroForm'))) {
               catalogDict.delete(PDFName.of('AcroForm'));
               removedItems.push('form fields');
             }
-          } catch (removeError) {
-            console.warn('Could not remove AcroForm:', removeError);
+          } catch {
+            console.warn('Could not remove AcroForm:');
           }
         }
       }
@@ -175,11 +175,11 @@ export class SanitizePDFProcessor extends BasePDFProcessor {
       if (sanitizeOptions.removeMetadata) {
         try {
           // Clear info dict
-          const infoDict = (pdfDoc as unknown as { getInfoDict: () => Map<unknown, unknown> }).getInfoDict();
+          const infoDict = (pdfDoc as any).getInfoDict();
           const allKeys = infoDict.keys();
-          for (const key of allKeys) {
+          allKeys.forEach((key: any) => {
             infoDict.delete(key);
-          }
+          });
 
           pdfDoc.setTitle('');
           pdfDoc.setAuthor('');
@@ -190,7 +190,7 @@ export class SanitizePDFProcessor extends BasePDFProcessor {
 
           // Remove XMP metadata
           try {
-            const catalogDict = (pdfDoc.catalog as unknown as { dict: Map<unknown, unknown> }).dict;
+            const catalogDict = (pdfDoc.catalog as any).dict;
             if (catalogDict.has(PDFName.of('Metadata'))) {
               catalogDict.delete(PDFName.of('Metadata'));
             }
@@ -224,14 +224,13 @@ export class SanitizePDFProcessor extends BasePDFProcessor {
       // Remove JavaScript
       if (sanitizeOptions.removeJavaScript) {
         try {
-          const catalogDict = (pdfDoc.catalog as unknown as { dict: Map<unknown, unknown> }).dict;
+          const catalogDict = (pdfDoc.catalog as any).dict;
 
           // Remove from Names/JavaScript
           const namesRef = catalogDict.get(PDFName.of('Names'));
           if (namesRef) {
             try {
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              const namesDict = pdfDoc.context.lookup(namesRef as any) as unknown as Map<unknown, unknown>;
+              const namesDict = pdfDoc.context.lookup(namesRef) as any;
               if (namesDict.has(PDFName.of('JavaScript'))) {
                 namesDict.delete(PDFName.of('JavaScript'));
               }
@@ -274,14 +273,13 @@ export class SanitizePDFProcessor extends BasePDFProcessor {
       // Remove embedded files/attachments
       if (sanitizeOptions.removeAttachments) {
         try {
-          const catalogDict = (pdfDoc.catalog as unknown as { dict: Map<unknown, unknown> }).dict;
+          const catalogDict = (pdfDoc.catalog as any).dict;
 
           // Remove from Names/EmbeddedFiles
           const namesRef = catalogDict.get(PDFName.of('Names'));
           if (namesRef) {
             try {
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              const namesDict = pdfDoc.context.lookup(namesRef as any) as unknown as Map<unknown, unknown>;
+              const namesDict = pdfDoc.context.lookup(namesRef) as any;
               if (namesDict.has(PDFName.of('EmbeddedFiles'))) {
                 namesDict.delete(PDFName.of('EmbeddedFiles'));
               }
@@ -311,16 +309,14 @@ export class SanitizePDFProcessor extends BasePDFProcessor {
               const annotsRef = pageDict.get(PDFName.of('Annots'));
               if (!annotsRef) continue;
 
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              const annotsArray = pdfDoc.context.lookup(annotsRef as any) as unknown as { asArray: () => unknown[] };
+              const annotsArray = pdfDoc.context.lookup(annotsRef) as any;
               const annotRefs = annotsArray.asArray();
               const annotsToKeep = [];
 
               for (const ref of annotRefs) {
                 try {
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  const annot = pdfDoc.context.lookup(ref as any) as unknown as Map<unknown, unknown>;
-                  const subtype = (annot.get(PDFName.of('Subtype')) as { toString: () => string })?.toString().substring(1);
+                  const annot = pdfDoc.context.lookup(ref) as any;
+                  const subtype = annot.get(PDFName.of('Subtype'))?.toString().substring(1);
 
                   // Keep non-link annotations
                   if (subtype !== 'Link') {
@@ -333,8 +329,7 @@ export class SanitizePDFProcessor extends BasePDFProcessor {
 
               if (annotsToKeep.length !== annotRefs.length) {
                 if (annotsToKeep.length > 0) {
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  const newAnnotsArray = pdfDoc.context.obj(annotsToKeep as any);
+                  const newAnnotsArray = pdfDoc.context.obj(annotsToKeep);
                   pageDict.set(PDFName.of('Annots'), newAnnotsArray);
                 } else {
                   pageDict.delete(PDFName.of('Annots'));

@@ -1,4 +1,3 @@
-import '@/lib/polyfills';
 import type { Metadata } from 'next';
 import '@/app/globals.css';
 

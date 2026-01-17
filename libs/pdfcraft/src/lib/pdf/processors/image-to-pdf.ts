@@ -47,6 +47,22 @@ export interface ImageToPDFOptions {
   scaleToFit: boolean;
   /** SVG render scale for quality (1-4) */
   svgScale: number;
+  /** Whether to enable batch mode (split into multiple PDFs) */
+  batchMode?: boolean;
+  /** Number of images per PDF file in batch mode */
+  imagesPerPdf?: number;
+}
+
+/**
+ * Batch export result
+ */
+export interface BatchExportResult {
+  /** The ZIP file containing all PDFs */
+  zipBlob: Blob;
+  /** Number of PDF files created */
+  pdfCount: number;
+  /** Total number of images processed */
+  imageCount: number;
 }
 
 /**
@@ -60,6 +76,8 @@ const DEFAULT_OPTIONS: ImageToPDFOptions = {
   centerImage: true,
   scaleToFit: true,
   svgScale: 2,
+  batchMode: false,
+  imagesPerPdf: 10,
 };
 
 /**
@@ -455,4 +473,93 @@ export async function imagesToPDF(
     },
     onProgress
   );
+}
+
+/**
+ * Convert images to multiple PDFs based on batch size and package as ZIP
+ */
+export async function imagesToPDFBatch(
+  files: File[],
+  imagesPerPdf: number,
+  options?: Partial<ImageToPDFOptions>,
+  onProgress?: ProgressCallback
+): Promise<{ success: boolean; result?: BatchExportResult; error?: { message: string } }> {
+  try {
+    // Dynamically import JSZip
+    const JSZip = (await import('jszip')).default;
+
+    const totalImages = files.length;
+    const batchCount = Math.ceil(totalImages / imagesPerPdf);
+    const zip = new JSZip();
+
+    onProgress?.(5, 'Creating batch PDFs...');
+
+    const processor = createImageToPDFProcessor();
+
+    for (let i = 0; i < batchCount; i++) {
+      const startIndex = i * imagesPerPdf;
+      const endIndex = Math.min(startIndex + imagesPerPdf, totalImages);
+      const batchFiles = files.slice(startIndex, endIndex);
+
+      const progressStart = 5 + (i / batchCount) * 85;
+      const progressEnd = 5 + ((i + 1) / batchCount) * 85;
+
+      onProgress?.(
+        progressStart,
+        `Processing batch ${i + 1} of ${batchCount} (images ${startIndex + 1}-${endIndex})...`
+      );
+
+      const result = await processor.process(
+        {
+          files: batchFiles,
+          options: options || {},
+        },
+        (prog, message) => {
+          // Map the individual progress to the batch range
+          const mappedProgress = progressStart + (prog / 100) * (progressEnd - progressStart);
+          onProgress?.(mappedProgress, message);
+        }
+      );
+
+      if (!result.success || !result.result) {
+        return {
+          success: false,
+          error: { message: result.error?.message || `Failed to create PDF for batch ${i + 1}` },
+        };
+      }
+
+      // Add PDF to ZIP
+      const pdfBlob = result.result as Blob;
+      const pdfArrayBuffer = await pdfBlob.arrayBuffer();
+      const paddedIndex = String(i + 1).padStart(String(batchCount).length, '0');
+      zip.file(`images_part_${paddedIndex}.pdf`, pdfArrayBuffer);
+    }
+
+    onProgress?.(92, 'Creating ZIP archive...');
+
+    // Generate ZIP file
+    const zipBlob = await zip.generateAsync(
+      { type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } },
+      (metadata) => {
+        const zipProgress = 92 + (metadata.percent / 100) * 8;
+        onProgress?.(zipProgress, `Compressing: ${Math.round(metadata.percent)}%`);
+      }
+    );
+
+    onProgress?.(100, 'Complete!');
+
+    return {
+      success: true,
+      result: {
+        zipBlob,
+        pdfCount: batchCount,
+        imageCount: totalImages,
+      },
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: { message: error instanceof Error ? error.message : 'Failed to create batch PDFs' },
+    };
+  }
 }

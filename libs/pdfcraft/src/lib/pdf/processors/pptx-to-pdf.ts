@@ -16,6 +16,7 @@ import { BasePDFProcessor } from '../processor';
 /**
  * PowerPoint to PDF options
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface PPTXToPDFOptions {
     /** Reserved for future options */
 }
@@ -52,7 +53,7 @@ export class PPTXToPDFProcessor extends BasePDFProcessor {
                 };
 
                 this.worker.addEventListener('message', handleMessage);
-                this.worker.addEventListener('error', (err) => {
+                this.worker.addEventListener('error', () => {
                     reject(new Error('Worker connection failed'));
                 });
 

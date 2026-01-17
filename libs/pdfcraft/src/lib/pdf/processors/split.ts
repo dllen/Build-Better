@@ -168,7 +168,7 @@ export class SplitPDFProcessor extends BasePDFProcessor {
       this.updateProgress(95, 'Finalizing...');
 
       // Return based on output format
-      if (splitOptions.outputFormat === 'single' && outputBlobs.length === 1) {
+      if (outputBlobs.length === 1) {
         this.updateProgress(100, 'Complete!');
         return this.createSuccessOutput(outputBlobs[0], outputFilenames[0], {
           pageCount: splitOptions.ranges[0].end - splitOptions.ranges[0].start + 1,

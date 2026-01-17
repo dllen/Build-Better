@@ -6,13 +6,13 @@
  */
 
 // QPDF instance singleton
-let qpdfInstance: unknown = null;
-let loadingPromise: Promise<unknown> | null = null;
+let qpdfInstance: any = null;
+let loadingPromise: Promise<any> | null = null;
 
 /**
  * Load the QPDF WASM module dynamically
  */
-export async function loadQpdf(): Promise<unknown> {
+export async function loadQpdf(): Promise<any> {
   // Return cached instance if available
   if (qpdfInstance) {
     return qpdfInstance;
@@ -28,62 +28,57 @@ export async function loadQpdf(): Promise<unknown> {
     throw new Error('QPDF can only be initialized in browser environment');
   }
 
-  loadingPromise = new Promise((resolve, reject) => {
-    (async () => {
+  loadingPromise = (async () => {
+    // Check if createModule is already available (script already loaded)
+    if ((window as any).createQpdfModule) {
+      qpdfInstance = await (window as any).createQpdfModule({
+        locateFile: (path: string) => {
+          if (path.endsWith('.wasm')) {
+            return '/qpdf.wasm';
+          }
+          return path;
+        },
+      });
+      return qpdfInstance;
+    }
+
+    // Load the script dynamically
+    return new Promise<any>((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = '/qpdf.js';
+      script.async = true;
+
+      script.onload = async () => {
         try {
-            // Check if createModule is already available (script already loaded)
-            if ((window as unknown as { createQpdfModule: (config: unknown) => Promise<unknown> }).createQpdfModule) {
-                qpdfInstance = await (window as unknown as { createQpdfModule: (config: unknown) => Promise<unknown> }).createQpdfModule({
-                locateFile: (path: string) => {
-                    if (path.endsWith('.wasm')) {
-                    return '/qpdf.wasm';
-                    }
-                    return path;
-                },
-                });
-                resolve(qpdfInstance);
-                return;
-            }
+          // The script should expose createModule or similar
+          const createModule = (window as any).createQpdfModule || (window as any).Module;
+          
+          if (!createModule) {
+            throw new Error('QPDF module not found after script load');
+          }
 
-            // Load the script dynamically
-            const script = document.createElement('script');
-            script.src = '/qpdf.js';
-            script.async = true;
+          qpdfInstance = await createModule({
+            locateFile: (path: string) => {
+              if (path.endsWith('.wasm')) {
+                return '/qpdf.wasm';
+              }
+              return path;
+            },
+          });
 
-            script.onload = async () => {
-                try {
-                // The script should expose createModule or similar
-                const createModule = (window as unknown as { createQpdfModule?: (config: unknown) => Promise<unknown>, Module?: (config: unknown) => Promise<unknown> }).createQpdfModule || (window as unknown as { createQpdfModule?: (config: unknown) => Promise<unknown>, Module?: (config: unknown) => Promise<unknown> }).Module;
-                
-                if (!createModule) {
-                    throw new Error('QPDF module not found after script load');
-                }
-
-                qpdfInstance = await createModule({
-                    locateFile: (path: string) => {
-                    if (path.endsWith('.wasm')) {
-                        return '/qpdf.wasm';
-                    }
-                    return path;
-                    },
-                });
-
-                resolve(qpdfInstance);
-                } catch (err) {
-                reject(err);
-                }
-            };
-
-            script.onerror = () => {
-                reject(new Error('Failed to load QPDF script'));
-            };
-
-            document.head.appendChild(script);
+          resolve(qpdfInstance);
         } catch (err) {
-            reject(err);
+          reject(err);
         }
-    })();
-  });
+      };
+
+      script.onerror = () => {
+        reject(new Error('Failed to load QPDF script'));
+      };
+
+      document.head.appendChild(script);
+    });
+  })();
 
   return loadingPromise;
 }

@@ -29,26 +29,17 @@ export interface RepairPDFOptions {
   removeCorruptedObjects: boolean;
 }
 
-/**
- * Default repair options
- */
-const DEFAULT_REPAIR_OPTIONS: RepairPDFOptions = {
-  ignoreEncryption: true,
-  rebuildXref: true,
-  removeCorruptedObjects: true,
-};
+
+
 
 // QPDF instance singleton
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let qpdfInstance: any = null;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let qpdfLoadPromise: Promise<any> | null = null;
 
 /**
  * Initialize qpdf-wasm singleton
  * Uses script tag loading to avoid Next.js SSR bundling issues
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function initializeQpdf(): Promise<any> {
   // Return cached instance if available
   if (qpdfInstance) {
@@ -67,7 +58,7 @@ async function initializeQpdf(): Promise<any> {
 
   qpdfLoadPromise = new Promise((resolve, reject) => {
     // Check if Module is already available
-    if ((window as unknown as { Module: unknown }).Module && typeof (window as unknown as { Module: unknown }).Module === 'function') {
+    if ((window as any).Module && typeof (window as any).Module === 'function') {
       initQpdfModule(resolve, reject);
       return;
     }
@@ -95,9 +86,9 @@ async function initializeQpdf(): Promise<any> {
 /**
  * Initialize the QPDF module after script is loaded
  */
-function initQpdfModule(resolve: (value: unknown) => void, reject: (reason: unknown) => void) {
+function initQpdfModule(resolve: (value: any) => void, reject: (reason: any) => void) {
   try {
-    const createModule = (window as unknown as { Module?: (config: unknown) => Promise<unknown> }).Module;
+    const createModule = (window as any).Module;
     
     if (!createModule || typeof createModule !== 'function') {
       reject(new Error('QPDF module not found after script load'));
@@ -111,10 +102,10 @@ function initQpdfModule(resolve: (value: unknown) => void, reject: (reason: unkn
         }
         return path;
       },
-    }).then((instance: unknown) => {
+    }).then((instance: any) => {
       qpdfInstance = instance;
       resolve(instance);
-    }).catch((err: unknown) => {
+    }).catch((err: any) => {
       qpdfLoadPromise = null;
       reject(err);
     });
@@ -140,11 +131,8 @@ export class RepairPDFProcessor extends BasePDFProcessor {
     this.onProgress = onProgress;
 
     const { files } = input;
-    // Repair options are available in input.options but currently hardcoded defaults are used
-    // const repairOptions: RepairPDFOptions = {
-    //   ...DEFAULT_REPAIR_OPTIONS,
-    //   ...(options as Partial<RepairPDFOptions>),
-    // };
+    // Options are currently unused as we default to a standard repair strategy
+    // const repairOptions = { ...DEFAULT_REPAIR_OPTIONS, ...options };
 
     // Validate we have exactly 1 file
     if (files.length !== 1) {
@@ -158,13 +146,13 @@ export class RepairPDFProcessor extends BasePDFProcessor {
     const file = files[0];
     const inputPath = '/input.pdf';
     const outputPath = '/output.pdf';
-    let qpdf: { FS: { writeFile: (path: string, data: Uint8Array) => void; readFile: (path: string, options: { encoding: string }) => Uint8Array; unlink: (path: string) => void }; callMain: (args: string[]) => void } | null = null;
+    let qpdf: any;
 
     try {
       this.updateProgress(5, 'Initializing repair engine...');
 
       // Initialize qpdf-wasm
-      qpdf = await initializeQpdf() as { FS: { writeFile: (path: string, data: Uint8Array) => void; readFile: (path: string, options: { encoding: string }) => Uint8Array; unlink: (path: string) => void }; callMain: (args: string[]) => void };
+      qpdf = await initializeQpdf();
       
       if (this.checkCancelled()) {
         return this.createErrorOutput(
@@ -201,7 +189,7 @@ export class RepairPDFProcessor extends BasePDFProcessor {
       // Execute qpdf repair
       try {
         qpdf.callMain(args);
-      } catch (err) {
+      } catch (err: any) {
         // qpdf may throw warnings but still produce output
         console.warn('QPDF execution warning:', err);
       }
@@ -212,7 +200,7 @@ export class RepairPDFProcessor extends BasePDFProcessor {
       try {
         outputFile = qpdf.FS.readFile(outputPath, { encoding: 'binary' });
         outputFileExists = !!(outputFile && outputFile.length > 0);
-      } catch {
+      } catch (e) {
         outputFileExists = false;
       }
 
@@ -240,13 +228,13 @@ export class RepairPDFProcessor extends BasePDFProcessor {
       // Cleanup WASM filesystem
       try {
         qpdf.FS.unlink(inputPath);
-      } catch {
-        // Ignore cleanup errors
+      } catch (e) {
+        console.warn('Failed to unlink input file:', e);
       }
       try {
         qpdf.FS.unlink(outputPath);
-      } catch {
-        // Ignore cleanup errors
+      } catch (e) {
+        console.warn('Failed to unlink output file:', e);
       }
 
       this.updateProgress(100, 'Complete!');

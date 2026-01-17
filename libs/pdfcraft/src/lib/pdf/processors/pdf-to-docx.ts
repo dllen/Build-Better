@@ -16,6 +16,7 @@ import { BasePDFProcessor } from '../processor';
 /**
  * PDF to DOCX options
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface PDFToDocxOptions {
     /** Unused options for consistency */
 }
@@ -52,7 +53,7 @@ export class PDFToDocxProcessor extends BasePDFProcessor {
                 };
 
                 this.worker.addEventListener('message', handleMessage);
-                this.worker.addEventListener('error', (err) => {
+                this.worker.addEventListener('error', () => {
                     reject(new Error('Worker connection failed'));
                 });
 

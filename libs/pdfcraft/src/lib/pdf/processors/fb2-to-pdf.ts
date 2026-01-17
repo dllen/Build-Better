@@ -21,6 +21,7 @@ import { BasePDFProcessor } from '../processor';
 /**
  * FB2 to PDF options
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface FB2ToPDFOptions {
     // Reserved for future options
 }
@@ -57,7 +58,7 @@ export class FB2ToPDFProcessor extends BasePDFProcessor {
                 };
 
                 this.worker.addEventListener('message', handleMessage);
-                this.worker.addEventListener('error', (err) => {
+                this.worker.addEventListener('error', () => {
                     reject(new Error('Worker connection failed'));
                 });
 

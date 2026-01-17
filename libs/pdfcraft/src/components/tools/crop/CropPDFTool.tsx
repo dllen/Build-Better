@@ -255,7 +255,7 @@ export function CropPDFTool({ className = '' }: CropPDFToolProps) {
     // Let's grab the LATEST crops including the current page manually here to be safe.
 
     const cropper = cropperRef.current?.cropper;
-    const currentCrops = { ...state.crops };
+    let currentCrops = { ...state.crops };
 
     if (cropper) {
       const data = cropper.getData(true);

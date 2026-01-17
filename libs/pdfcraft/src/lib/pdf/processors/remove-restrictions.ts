@@ -34,9 +34,7 @@ const DEFAULT_OPTIONS: RemoveRestrictionsOptions = {
 };
 
 // QPDF instance singleton
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let qpdfInstance: any = null;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let qpdfLoadPromise: Promise<any> | null = null;
 
 // Store captured stderr output
@@ -46,7 +44,6 @@ let capturedStderr: string[] = [];
  * Initialize qpdf-wasm singleton
  * Uses script tag loading to avoid Next.js SSR bundling issues
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function initializeQpdf(): Promise<any> {
   // Return cached instance if available
   if (qpdfInstance) {
@@ -65,7 +62,7 @@ async function initializeQpdf(): Promise<any> {
 
   qpdfLoadPromise = new Promise((resolve, reject) => {
     // Check if Module is already available
-    if ((window as unknown as { Module: unknown }).Module && typeof (window as unknown as { Module: unknown }).Module === 'function') {
+    if ((window as any).Module && typeof (window as any).Module === 'function') {
       initQpdfModule(resolve, reject);
       return;
     }
@@ -93,10 +90,8 @@ async function initializeQpdf(): Promise<any> {
 /**
  * Initialize the QPDF module after script is loaded
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function initQpdfModule(resolve: (value: any) => void, reject: (reason: any) => void) {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const createModule = (window as any).Module;
     
     if (!createModule || typeof createModule !== 'function') {
@@ -111,11 +106,9 @@ function initQpdfModule(resolve: (value: any) => void, reject: (reason: any) => 
         }
         return path;
       },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }).then((instance: any) => {
       qpdfInstance = instance;
       resolve(instance);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }).catch((err: any) => {
       qpdfLoadPromise = null;
       reject(err);
@@ -159,7 +152,6 @@ export class RemoveRestrictionsProcessor extends BasePDFProcessor {
     const file = files[0];
     const inputPath = '/input.pdf';
     const outputPath = '/output.pdf';
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let qpdf: any;
 
     try {
@@ -210,7 +202,6 @@ export class RemoveRestrictionsProcessor extends BasePDFProcessor {
       // Capture stderr by temporarily overriding console.error
       capturedStderr = [];
       const originalConsoleError = console.error;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       console.error = (...errorArgs: any[]) => {
         const message = errorArgs.map(a => String(a)).join(' ');
         capturedStderr.push(message);
@@ -221,7 +212,6 @@ export class RemoveRestrictionsProcessor extends BasePDFProcessor {
       let qpdfError: Error | null = null;
       try {
         qpdf.callMain(args);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
         qpdfError = err;
       } finally {
@@ -291,13 +281,13 @@ export class RemoveRestrictionsProcessor extends BasePDFProcessor {
       // Cleanup WASM filesystem
       try {
         qpdf.FS.unlink(inputPath);
-      } catch {
-        console.warn('Failed to unlink input file');
+      } catch (e) {
+        console.warn('Failed to unlink input file:', e);
       }
       try {
         qpdf.FS.unlink(outputPath);
-      } catch {
-        console.warn('Failed to unlink output file');
+      } catch (e) {
+        console.warn('Failed to unlink output file:', e);
       }
 
       this.updateProgress(100, 'Complete!');

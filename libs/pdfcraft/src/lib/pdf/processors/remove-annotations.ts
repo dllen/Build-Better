@@ -48,8 +48,6 @@ export class RemoveAnnotationsProcessor extends BasePDFProcessor {
 
       this.updateProgress(30, 'Removing annotations...');
 
-      let removedCount = 0;
-
       for (let i = 0; i < pagesToProcess.length; i++) {
         if (this.checkCancelled()) {
           return this.createErrorOutput(PDFErrorCode.PROCESSING_CANCELLED, 'Processing was cancelled.');
@@ -63,16 +61,12 @@ export class RemoveAnnotationsProcessor extends BasePDFProcessor {
 
         if (annots) {
           if (removeOptions.removeAll) {
-            removedCount++;
             // Remove all annotations
             page.node.delete(pdfLib.PDFName.of('Annots'));
-            removedCount++;
           } else {
-            removedCount++;
             // Selective removal would require parsing annotation types
             // This is a simplified implementation
             page.node.delete(pdfLib.PDFName.of('Annots'));
-            removedCount++;
           }
         }
 

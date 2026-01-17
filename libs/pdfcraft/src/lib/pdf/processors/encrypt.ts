@@ -70,16 +70,13 @@ const DEFAULT_ENCRYPT_OPTIONS: EncryptPDFOptions = {
 };
 
 // QPDF instance singleton
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let qpdfInstance: any = null;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let qpdfLoadPromise: Promise<any> | null = null;
 
 /**
  * Initialize qpdf-wasm singleton
  * Uses script tag loading to avoid Next.js SSR bundling issues
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function initializeQpdf(): Promise<any> {
   // Return cached instance if available
   if (qpdfInstance) {
@@ -98,7 +95,6 @@ async function initializeQpdf(): Promise<any> {
 
   qpdfLoadPromise = new Promise((resolve, reject) => {
     // Check if Module is already available
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if ((window as any).Module && typeof (window as any).Module === 'function') {
       initQpdfModule(resolve, reject);
       return;
@@ -127,10 +123,8 @@ async function initializeQpdf(): Promise<any> {
 /**
  * Initialize the QPDF module after script is loaded
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function initQpdfModule(resolve: (value: any) => void, reject: (reason: any) => void) {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const createModule = (window as any).Module;
     
     if (!createModule || typeof createModule !== 'function') {
@@ -145,10 +139,10 @@ function initQpdfModule(resolve: (value: any) => void, reject: (reason: any) => 
         }
         return path;
       },
-    }).then((instance: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+    }).then((instance: any) => {
       qpdfInstance = instance;
       resolve(instance);
-    }).catch((err: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+    }).catch((err: any) => {
       qpdfLoadPromise = null;
       reject(err);
     });
@@ -204,7 +198,6 @@ export class EncryptPDFProcessor extends BasePDFProcessor {
     const file = files[0];
     const inputPath = '/input.pdf';
     const outputPath = '/output.pdf';
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let qpdf: any;
 
     try {
@@ -293,7 +286,6 @@ export class EncryptPDFProcessor extends BasePDFProcessor {
       // Execute qpdf encryption
       try {
         qpdf.callMain(args);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (qpdfError: any) {
         console.error('qpdf execution error:', qpdfError);
         throw new Error(
@@ -324,13 +316,13 @@ export class EncryptPDFProcessor extends BasePDFProcessor {
       // Cleanup WASM filesystem
       try {
         qpdf.FS.unlink(inputPath);
-      } catch {
-        // Ignore cleanup errors
+      } catch (e) {
+        console.warn('Failed to unlink input file:', e);
       }
       try {
         qpdf.FS.unlink(outputPath);
-      } catch {
-        // Ignore cleanup errors
+      } catch (e) {
+        console.warn('Failed to unlink output file:', e);
       }
 
       this.updateProgress(100, 'Complete!');
@@ -352,12 +344,12 @@ export class EncryptPDFProcessor extends BasePDFProcessor {
       if (qpdf?.FS) {
         try {
           qpdf.FS.unlink(inputPath);
-        } catch {
+        } catch (e) {
           // Ignore cleanup errors
         }
         try {
           qpdf.FS.unlink(outputPath);
-        } catch {
+        } catch (e) {
           // Ignore cleanup errors
         }
       }

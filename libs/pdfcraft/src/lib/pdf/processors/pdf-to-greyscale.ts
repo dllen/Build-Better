@@ -183,8 +183,7 @@ export class PDFToGreyscaleProcessor extends BasePDFProcessor {
     sourcePdf: Awaited<ReturnType<Awaited<ReturnType<typeof loadPdfjs>>['getDocument']>['promise']>,
     newPdfDoc: Awaited<ReturnType<Awaited<ReturnType<typeof loadPdfLib>>['PDFDocument']['create']>>,
     pageNum: number,
-    options: PDFToGreyscaleOptions,
-    pdfLib: Awaited<ReturnType<typeof loadPdfLib>>
+    options: PDFToGreyscaleOptions
   ): Promise<void> {
     const page = await sourcePdf.getPage(pageNum);
     const viewport = page.getViewport({ scale: options.scale });

@@ -4,25 +4,13 @@
  */
 
 // Singleton instance
-let pymupdfInstance: unknown = null;
-let loadingPromise: Promise<unknown> | null = null;
-
-interface PyodideFS {
-  writeFile: (path: string, data: Uint8Array) => void;
-  unlink: (path: string) => void;
-}
-
-interface PyodideInterface {
-  loadPackage: (pkg: string) => Promise<void>;
-  pyimport: (pkg: string) => { install: (pkg: string) => Promise<void> };
-  runPythonAsync: (code: string) => Promise<string>;
-  FS: PyodideFS;
-}
+let pymupdfInstance: any = null;
+let loadingPromise: Promise<any> | null = null;
 
 // Declare global type
 declare global {
   interface Window {
-    loadPyodide?: (config: Record<string, unknown>) => Promise<PyodideInterface>;
+    loadPyodide?: (config: any) => Promise<any>;
   }
 }
 
@@ -30,7 +18,7 @@ declare global {
  * Load PyMuPDF using Pyodide directly
  * This avoids the ES module import issues with @bentopdf/pymupdf-wasm
  */
-export async function loadPyMuPDF(): Promise<unknown> {
+export async function loadPyMuPDF(): Promise<any> {
   if (pymupdfInstance) {
     return pymupdfInstance;
   }
@@ -101,7 +89,7 @@ base64.b64encode(docx_data).decode('ascii')
           }
 
           // Convert base64 to Blob
-          const binary = atob(result as string);
+          const binary = atob(result);
           const bytes = new Uint8Array(binary.length);
           for (let i = 0; i < binary.length; i++) {
             bytes[i] = binary.charCodeAt(i);

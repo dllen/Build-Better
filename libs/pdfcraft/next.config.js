@@ -4,9 +4,6 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Base path for the submodule integration
-  basePath: '/pdf-tools',
-  
   // Enable static export for deployment flexibility
   output: 'export',
 
@@ -77,7 +74,7 @@ const nextConfig = {
   // ESLint configuration
   eslint: {
     // Run ESLint during builds
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
 
   // Compiler options for performance

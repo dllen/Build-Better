@@ -193,7 +193,7 @@ export function SplitPDFTool({ className = '' }: SplitPDFToolProps) {
     switch (splitMode) {
       case 'ranges':
         if (rangeInput.trim()) {
-          return parsePageRanges(rangeInput);
+          return parsePageRanges(rangeInput, totalPages);
         }
         // If no input but pages selected, create ranges from selection
         if (selectedPages.size > 0) {

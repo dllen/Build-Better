@@ -16,9 +16,9 @@ import { BasePDFProcessor } from '../processor';
 /**
  * RTF to PDF options
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface RTFToPDFOptions {
     /** Reserved for future options */
-    [key: string]: never;
 }
 
 /**

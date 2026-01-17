@@ -21,6 +21,7 @@ import { BasePDFProcessor } from '../processor';
 /**
  * MOBI to PDF options
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface MOBIToPDFOptions {
     // Reserved for future options
 }
@@ -57,7 +58,7 @@ export class MOBIToPDFProcessor extends BasePDFProcessor {
                 };
 
                 this.worker.addEventListener('message', handleMessage);
-                this.worker.addEventListener('error', (err) => {
+                this.worker.addEventListener('error', () => {
                     reject(new Error('Worker connection failed'));
                 });
 
