@@ -9,6 +9,20 @@
     "settings": "Settings",
     "search_placeholder": "Search tools..."
   },
+  "settings": {
+    "title": "User Settings",
+    "preferences": "Preferences",
+    "theme": {
+      "label": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "history": {
+      "title": "History",
+      "desc": "Tool usage history will appear here."
+    }
+  },
   "home": {
     "title": "Developer Micro-Tools Collection",
     "subtitle": "A suite of essential tools for developers, Fast, reliable, and easy to use.",

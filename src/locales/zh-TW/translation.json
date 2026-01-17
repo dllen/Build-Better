@@ -3,10 +3,25 @@
     "title": "Build Better",
     "description": "必備工具箱，快速、可靠、易用。",
     "tools": "工具",
+    "pdf_tools": "PDF 工具",
     "games": "遊戲",
     "ai_navigation": "AI 開發導航",
     "settings": "設置",
     "search_placeholder": "搜索工具..."
+  },
+  "settings": {
+    "title": "用戶設置",
+    "preferences": "偏好設置",
+    "theme": {
+      "label": "主題",
+      "light": "淺色",
+      "dark": "深色",
+      "system": "跟隨系統"
+    },
+    "history": {
+      "title": "歷史記錄",
+      "desc": "工具使用記錄將顯示在這裡。"
+    }
   },
   "home": {
     "title": "小工具集合",

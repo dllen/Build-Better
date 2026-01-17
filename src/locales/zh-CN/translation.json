@@ -9,6 +9,20 @@
     "settings": "设置",
     "search_placeholder": "搜索工具..."
   },
+  "settings": {
+    "title": "用户设置",
+    "preferences": "偏好设置",
+    "theme": {
+      "label": "主题",
+      "light": "浅色",
+      "dark": "深色",
+      "system": "跟随系统"
+    },
+    "history": {
+      "title": "历史记录",
+      "desc": "工具使用记录将显示在这里。"
+    }
+  },
   "home": {
     "title": "小工具集合",
     "subtitle": "必备工具箱，快速、可靠、易用。",
