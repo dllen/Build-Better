@@ -137,8 +137,7 @@ export class PDFToGreyscaleProcessor extends BasePDFProcessor {
             sourcePdf,
             newPdfDoc,
             pageNum,
-            greyscaleOptions,
-            pdfLib
+            greyscaleOptions
           );
         } catch (error) {
           return this.createErrorOutput(

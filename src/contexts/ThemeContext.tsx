@@ -30,6 +30,12 @@ export function ThemeProvider({
   );
 
   useEffect(() => {
+    // PDFCraft module (served at /pdf-tools/) has its own independent theme system.
+    // We strictly exclude it from this global theme management to ensure it remains unchanged.
+    if (window.location.pathname.includes('/pdf-tools')) {
+      return;
+    }
+
     const root = window.document.documentElement;
 
     root.classList.remove("light", "dark");

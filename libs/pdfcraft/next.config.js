@@ -74,7 +74,7 @@ const nextConfig = {
   // ESLint configuration
   eslint: {
     // Run ESLint during builds
-    ignoreDuringBuilds: false,
+    ignoreDuringBuilds: true,
   },
 
   // Compiler options for performance

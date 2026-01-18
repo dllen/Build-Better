@@ -71,6 +71,34 @@ const resources: Resource[] = [
     url: "https://github.com/hylarucoder/benchmark-skill-ui-ux-pro-max",
     category: "agent-skills",
   },
+  {
+    id: "baoyu-skills",
+    title: "Baoyu Skills",
+    description: "A collection of practical Claude and AI agent skills.",
+    url: "https://github.com/JimLiu/baoyu-skills",
+    category: "agent-skills",
+  },
+  {
+    id: "agent-skills-react-best-practices",
+    title: "Agent Skills: React Best Practices",
+    description: "Best-practice React skills from the Vercel Agent Skills repository.",
+    url: "https://github.com/vercel-labs/agent-skills/tree/react-best-practices",
+    category: "agent-skills",
+  },
+  {
+    id: "agent-skills-guard",
+    title: "Agent Skills Guard",
+    description: "Guardrails and safety patterns for AI agent skills.",
+    url: "https://github.com/brucevanfdm/agent-skills-guard",
+    category: "agent-skills",
+  },
+  {
+    id: "awesome-agent-skills",
+    title: "Awesome Agent Skills",
+    description: "Curated list of open-source agent skills and resources.",
+    url: "https://github.com/libukai/awesome-agent-skills",
+    category: "agent-skills",
+  },
   // LLM Development
   {
     id: "openai-platform",
@@ -93,6 +121,20 @@ const resources: Resource[] = [
     url: "https://www.langchain.com/",
     category: "llm-dev",
   },
+  {
+    id: "microsoft-ai-agents-for-beginners",
+    title: "AI Agents for Beginners",
+    description: "Microsoft's hands-on curriculum for building AI agents step by step.",
+    url: "https://github.com/microsoft/ai-agents-for-beginners",
+    category: "llm-dev",
+  },
+  {
+    id: "speed-comparison",
+    title: "AI Speed Comparison",
+    description: "Compare response speed across different AI models and providers.",
+    url: "https://github.com/niklas-heer/speed-comparison",
+    category: "llm-dev",
+  },
   // Prompts
   {
     id: "flowgpt",
@@ -101,12 +143,33 @@ const resources: Resource[] = [
     url: "https://flowgpt.com/",
     category: "prompts",
   },
+  {
+    id: "prompt-manager",
+    title: "Prompt Manager",
+    description: "Manage and organize reusable prompts for AI workflows.",
+    url: "https://github.com/n-WN/prompt-manager",
+    category: "prompts",
+  },
   // Tools
   {
     id: "vercel-ai-sdk",
     title: "Vercel AI SDK",
     description: "The TypeScript Toolkit for AI-powered applications.",
     url: "https://sdk.vercel.ai/docs",
+    category: "tools",
+  },
+  {
+    id: "zlibrary-to-notebooklm",
+    title: "ZLibrary to NotebookLM",
+    description: "Convert Z-Library books into sources for NotebookLM.",
+    url: "https://github.com/zstmfhy/zlibrary-to-notebooklm",
+    category: "tools",
+  },
+  {
+    id: "superpowers",
+    title: "Superpowers",
+    description: "Command-line superpowers for working with AI and automation.",
+    url: "https://github.com/obra/superpowers",
     category: "tools",
   },
 ];
