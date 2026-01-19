@@ -54,6 +54,12 @@ export default function KinshipCalculator() {
     }
   };
 
+  useEffect(() => {
+    if (result.length > 0 && relationChain.length > 0) {
+      // Auto save logic can go here if needed in the future
+    }
+  }, [result, relationChain]);
+
   const handleAddRelation = (value: string) => {
     setRelationChain([...relationChain, value]);
   };
@@ -249,16 +255,6 @@ export default function KinshipCalculator() {
                                 <Share2 size={20} />
                              </button>
                         </div>
-                         {/* Auto-save to history when result changes and is valid */}
-                         {useEffect(() => {
-                            if (result.length > 0 && relationChain.length > 0) {
-                                // Simple debounce or check to avoid duplicates could be added here
-                                // For now, we rely on the user manually saving or just simple auto-add
-                                // Actually, let's not auto-save on every keystroke, but maybe when calculation is stable?
-                                // Let's add a "Save" button or just save when result is finalized?
-                                // "Real-time" calculation is nice. Let's save only distinct new queries.
-                            }
-                         }, [result]) as any}
                    </>
                ) : (
                    <span className="text-gray-400 dark:text-gray-500 italic">
