@@ -85,65 +85,8 @@ const nextConfig = {
     } : false,
   },
 
-  // Headers configuration for caching
-  // Note: These headers are applied when running with `next start`
-  // For static export, configure headers in your hosting platform
-  async headers() {
-    return [
-      {
-        // Static assets - long cache
-        source: '/:path*.(ico|jpg|jpeg|png|gif|svg|webp|avif|woff|woff2|ttf|eot)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        // JavaScript and CSS - cache with revalidation
-        source: '/:path*.(js|css)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        // HTML pages - short cache with revalidation
-        source: '/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=0, must-revalidate',
-          },
-        ],
-      },
-      {
-        // Security headers for all routes
-        source: '/:path*',
-        headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-        ],
-      },
-    ];
-  },
+  // Base path for the application
+  basePath: '/pdf-tools',
 };
 
 export default withNextIntl(nextConfig);
