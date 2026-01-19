@@ -85,6 +85,7 @@ import FancyTextGenerator from "./pages/tools/text/FancyTextGenerator";
 import TextTypesetter from "./pages/tools/text/TextTypesetter";
 import TextSimilarity from "./pages/tools/text/TextSimilarity";
 import TextWorkflow from "./pages/tools/text/TextWorkflow";
+import KinshipCalculator from "./pages/tools/KinshipCalculator";
 
 import AiDevelopment from "@/pages/AiDevelopment";
 
@@ -185,6 +186,7 @@ export default function App() {
           <Route path="/games/flying-chess" element={<FlyingChess />} />
           <Route path="/games/chinese-checkers" element={<ChineseCheckers />} />
           <Route path="/games/nes" element={<NesEmulatorPage />} />
+          <Route path="/tools/kinship-calculator" element={<KinshipCalculator />} />
         </Route>
       </Routes>
     </Router>

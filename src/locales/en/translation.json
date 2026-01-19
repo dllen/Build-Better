@@ -29,6 +29,22 @@
     "section_tools": "Developer Tools"
   },
   "tools": {
+    "kinship": {
+      "title": "Chinese Kinship Calculator",
+      "desc": "Calculate Chinese relative titles and relations.",
+      "male": "I am Male",
+      "female": "I am Female",
+      "current_relation": "Current Relation",
+      "placeholder": "Select relation...",
+      "reverse_lookup": "Reverse Lookup (e.g., Uncle)",
+      "result": "Result",
+      "waiting": "Waiting for calculation...",
+      "tips_title": "Tips",
+      "tip1": "Click buttons to add relations.",
+      "tip2": "Supports reverse lookup.",
+      "tip3": "Regional differences may exist.",
+      "share_text": "I am checking kinship titles"
+    },
     "image-joiner": {
       "title": "Image Joiner",
       "desc": "Join multiple images vertically or horizontally. Supports drag sorting and auto alignment.",

@@ -38,6 +38,7 @@ import {
   RefreshCw,
   Stamp,
   Merge,
+  Users,
 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useTranslation } from "react-i18next";
@@ -49,6 +50,15 @@ export default function Home() {
   const { t } = useTranslation();
 
   const tools = [
+    {
+      id: "kinship-calculator",
+      name: t("tools.kinship.title", "Chinese Kinship Calculator"),
+      description: t("tools.kinship.desc", "Calculate Chinese relative titles and relations."),
+      icon: Users,
+      path: "/tools/kinship-calculator",
+      color: "text-red-600",
+      bgColor: "bg-red-100",
+    },
     {
       id: "api-debugger",
       name: t("tools.api-debugger.name", "API Debugger"),
