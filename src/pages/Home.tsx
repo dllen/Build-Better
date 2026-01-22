@@ -174,6 +174,15 @@ export default function Home() {
       bgColor: "bg-purple-100",
     },
     {
+      id: "image-ascii",
+      name: t("tools.image-ascii.title", "Image to ASCII Art"),
+      description: t("tools.image-ascii.desc", "Convert images to ASCII art with customizable options."),
+      icon: FileText,
+      path: "/tools/image-ascii",
+      color: "text-emerald-600",
+      bgColor: "bg-emerald-100",
+    },
+    {
       id: "html-to-text",
       name: t("tools.html-to-text.name", "HTML to Text"),
       description: t("tools.html-to-text.desc", "Extract text content from HTML, removing tags and scripts."),

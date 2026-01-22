@@ -73,6 +73,7 @@ import ImageResizer from "./pages/tools/ImageResizer";
 import ImageConverter from "./pages/tools/ImageConverter";
 import ImageWatermark from "./pages/tools/ImageWatermark";
 import ImageJoiner from "./pages/tools/ImageJoiner";
+import ImageAsciiArt from "./pages/tools/ImageAsciiArt";
 import TextTools from "./pages/tools/text/TextTools";
 import TextCaseConverter from "./pages/tools/text/TextCaseConverter";
 import TextReplacer from "./pages/tools/text/TextReplacer";
@@ -112,6 +113,7 @@ export default function App() {
           <Route path="/tools/image-converter" element={<ImageConverter />} />
           <Route path="/tools/image-watermark" element={<ImageWatermark />} />
           <Route path="/tools/image-joiner" element={<ImageJoiner />} />
+          <Route path="/tools/image-ascii" element={<ImageAsciiArt />} />
 
           {/* Text Tools Suite */}
           <Route path="/tools/text" element={<TextTools />} />

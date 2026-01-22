@@ -137,6 +137,22 @@
       "original": "Original",
       "compressed": "Compressed"
     },
+    "image-ascii": {
+      "title": "Image to ASCII Art",
+      "desc": "Convert images to ASCII art with customizable options.",
+      "drag_drop": "Click or drag image here",
+      "settings": "Settings",
+      "width": "Width (chars)",
+      "mode": "Color Mode",
+      "mode_bw": "Black & White",
+      "mode_gray": "Grayscale",
+      "mode_color": "True Color",
+      "charset": "Character Set",
+      "inverted": "Inverted",
+      "original": "Original Image",
+      "preview": "ASCII Preview",
+      "placeholder": "Upload an image to see the magic"
+    },
     "token-generator": {
       "name": "Token Generator",
       "desc": "Generate random strings using custom characters, letters, numbers, and symbols.",

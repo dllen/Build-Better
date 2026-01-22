@@ -137,6 +137,22 @@
       "original": "原大小",
       "compressed": "压缩后"
     },
+    "image-ascii": {
+      "title": "图片转 ASCII 艺术",
+      "desc": "将图片转换为 ASCII 字符画。支持自定义字符集和颜色模式。",
+      "drag_drop": "点击或拖拽图片到这里",
+      "settings": "设置",
+      "width": "宽度 (字符)",
+      "mode": "颜色模式",
+      "mode_bw": "黑白",
+      "mode_gray": "灰度",
+      "mode_color": "彩色",
+      "charset": "字符集",
+      "inverted": "反转颜色",
+      "original": "原始图片",
+      "preview": "ASCII 预览",
+      "placeholder": "上传图片以查看效果"
+    },
     "token-generator": {
       "name": "Token 生成器",
       "desc": "使用自定义字符、字母、数字和符号生成随机字符串。",

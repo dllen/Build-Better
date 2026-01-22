@@ -135,6 +135,20 @@ const resources: Resource[] = [
     url: "https://github.com/niklas-heer/speed-comparison",
     category: "llm-dev",
   },
+  {
+    id: "opensource-projects",
+    title: "Open-source Projects",
+    description: "Discover the best open-source projects and hidden gems in the developer community.",
+    url: "https://www.opensourceprojects.dev/",
+    category: "llm-dev",
+  },
+  {
+    id: "agents-md",
+    title: "AGENTS.md",
+    description: "A simple, open format for guiding coding agents.",
+    url: "https://agents.md/",
+    category: "llm-dev",
+  },
   // Prompts
   {
     id: "flowgpt",
@@ -148,6 +162,13 @@ const resources: Resource[] = [
     title: "Prompt Manager",
     description: "Manage and organize reusable prompts for AI workflows.",
     url: "https://github.com/n-WN/prompt-manager",
+    category: "prompts",
+  },
+  {
+    id: "lijigang-2025",
+    title: "2025李继刚提示词库",
+    description: "2025年李继刚提示词库，包含107条提示词结构推文。",
+    url: "https://www.geekjourney.dev/docs/prompt-guides/lijigang-2025",
     category: "prompts",
   },
   // Tools
@@ -170,6 +191,13 @@ const resources: Resource[] = [
     title: "Superpowers",
     description: "Command-line superpowers for working with AI and automation.",
     url: "https://github.com/obra/superpowers",
+    category: "tools",
+  },
+  {
+    id: "shell-ai",
+    title: "ShellAI",
+    description: "A delightfully minimal, yet remarkably powerful AI Shell Assistant.",
+    url: "https://github.com/ibigio/shell-ai",
     category: "tools",
   },
 ];
