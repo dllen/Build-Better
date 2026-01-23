@@ -21,6 +21,9 @@ export function Navbar() {
             <Link to="/" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
               {t("app.tools")}
             </Link>
+            <a href="/office/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
+              {t("app.office_apps")}
+            </a>
             <a href="/pdf-tools/" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
               {t("app.pdf_tools")}
             </a>
@@ -63,6 +66,15 @@ export function Navbar() {
             >
               {t("app.tools")}
             </Link>
+            <a
+              href="/office/"
+              target="_blank"
+              rel="noreferrer"
+              className="py-2 text-muted-foreground hover:text-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {t("app.office_apps")}
+            </a>
             <a
               href="/pdf-tools/"
               className="py-2 text-muted-foreground hover:text-primary"

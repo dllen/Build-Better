@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[45323,["/_next/static/chunks/baa6cdf2e4b51bfd.js","/_next/static/chunks/c4c238606202583c.js"],"ViewportBoundary"]
+3:I[45323,["/_next/static/chunks/baa6cdf2e4b51bfd.js","/_next/static/chunks/c4c238606202583c.js"],"MetadataBoundary"]
+4:"$Sreact.suspense"
+5:I[34994,["/_next/static/chunks/baa6cdf2e4b51bfd.js","/_next/static/chunks/c4c238606202583c.js"],"IconMark"]
+0:{"buildId":"Ed7XXJ0xNLlD-OI3q9uCh","rsc":["$","$1","h",{"children":[null,["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Web Office - Preview & Edit Office Documents"}],["$","meta","1",{"name":"description","content":"A local Office file preview and editing application. Open, view, and edit Word, Excel, and PowerPoint documents directly in your browser."}],["$","link","2",{"rel":"icon","href":"/favicon.ico?favicon.98971a59.ico","sizes":"256x256","type":"image/x-icon"}],["$","$L5","3",{}]]}]}]}],null]}],"loading":null,"isPartial":false}
