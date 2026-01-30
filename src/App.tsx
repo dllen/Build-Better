@@ -191,6 +191,7 @@ export default function App() {
           <Route path="/games/nes" element={<NesEmulatorPage />} />
           <Route path="/tools/kinship-calculator" element={<KinshipCalculator />} />
           <Route path="/tools/json-editor" element={<JsonEditorTool />} />
+          <Route path="/tools/data-converter" element={<DataConverter />} />
         </Route>
       </Routes>
     </Router>

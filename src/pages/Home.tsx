@@ -52,6 +52,15 @@ export default function Home() {
 
   const tools = [
     {
+      id: "data-converter",
+      name: "Mr. Data Converter",
+      description: "Convert CSV/Excel to JSON, XML, MySQL, PHP, Python, Ruby, and more.",
+      icon: RefreshCw,
+      path: "/tools/data-converter",
+      color: "text-cyan-600",
+      bgColor: "bg-cyan-100",
+    },
+    {
       id: "kinship-calculator",
       name: t("tools.kinship.title", "Chinese Kinship Calculator"),
       description: t("tools.kinship.desc", "Calculate Chinese relative titles and relations."),
