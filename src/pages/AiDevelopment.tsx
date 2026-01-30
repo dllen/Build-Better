@@ -150,6 +150,13 @@ const resources: Resource[] = [
     category: "llm-dev",
   },
   {
+    id: "github-trending",
+    title: "GitHub Trending",
+    description: "See what the GitHub community is most excited about today.",
+    url: "https://github.com/trending",
+    category: "llm-dev",
+  },
+  {
     id: "agents-md",
     title: "AGENTS.md",
     description: "A simple, open format for guiding coding agents.",
