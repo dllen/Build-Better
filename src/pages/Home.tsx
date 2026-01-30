@@ -9,6 +9,7 @@ import {
   Dice6,
   DollarSign,
   FileText,
+  FileJson,
   Filter,
   Fingerprint,
   GitCompare,
@@ -82,6 +83,15 @@ export default function Home() {
       path: "/tools/code-formatter",
       color: "text-green-600",
       bgColor: "bg-green-100",
+    },
+    {
+      id: "json-editor",
+      name: t("tools.json-editor.name", "JSON Editor"),
+      description: t("tools.json-editor.desc", "View, edit, format, and validate JSON data."),
+      icon: FileJson,
+      path: "/tools/json-editor",
+      color: "text-yellow-600",
+      bgColor: "bg-yellow-100",
     },
     {
       id: "format-converter",

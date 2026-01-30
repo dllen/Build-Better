@@ -46,6 +46,10 @@
       "tip3": "Regional differences may exist.",
       "share_text": "I am checking kinship titles"
     },
+    "json-editor": {
+      "name": "JSON Editor",
+      "desc": "View, edit, format, and validate JSON data."
+    },
     "image-joiner": {
       "title": "Image Joiner",
       "desc": "Join multiple images vertically or horizontally. Supports drag sorting and auto alignment.",

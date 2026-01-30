@@ -30,6 +30,10 @@
     "section_tools": "小工具"
   },
   "tools": {
+    "json-editor": {
+      "name": "JSON 編輯器",
+      "desc": "查看、編輯、格式化和校驗 JSON 數據。"
+    },
     "image-joiner": {
       "title": "圖片拼接工具",
       "desc": "多圖縱向或橫向拼接。支持拖拽排序、自動對齊寬度。",
