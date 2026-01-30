@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RotateCcw, ArrowLeft, Copy, Share2, History, Volume2 } from 'lucide-react';
-// @ts-ignore
-import relationship from 'relationship.js';
+import relationship from 'relationship-ts';
 
 interface HistoryItem {
   id: string;
