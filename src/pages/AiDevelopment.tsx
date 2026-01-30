@@ -143,6 +143,13 @@ const resources: Resource[] = [
     category: "llm-dev",
   },
   {
+    id: "build-your-own-x",
+    title: "Build your own x",
+    description: "Build your own (insert technology here)",
+    url: "https://github.com/kjj6198/build-your-own-x",
+    category: "llm-dev",
+  },
+  {
     id: "agents-md",
     title: "AGENTS.md",
     description: "A simple, open format for guiding coding agents.",
