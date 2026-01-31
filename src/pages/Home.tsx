@@ -61,6 +61,15 @@ export default function Home() {
       bgColor: "bg-cyan-100",
     },
     {
+      id: "mermaid-renderer",
+      name: "Mermaid Renderer",
+      description: "Render Mermaid diagrams as beautiful SVGs or ASCII art.",
+      icon: Network,
+      path: "/tools/mermaid-renderer",
+      color: "text-pink-600",
+      bgColor: "bg-pink-100",
+    },
+    {
       id: "kinship-calculator",
       name: t("tools.kinship.title", "Chinese Kinship Calculator"),
       description: t("tools.kinship.desc", "Calculate Chinese relative titles and relations."),

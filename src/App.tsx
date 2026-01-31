@@ -88,6 +88,8 @@ import TextSimilarity from "./pages/tools/text/TextSimilarity";
 import TextWorkflow from "./pages/tools/text/TextWorkflow";
 import KinshipCalculator from "./pages/tools/KinshipCalculator";
 import JsonEditorTool from "./pages/tools/JsonEditor";
+import DataConverter from "./pages/tools/DataConverter";
+import MermaidRenderer from "./pages/tools/MermaidRenderer";
 
 import AiDevelopment from "@/pages/AiDevelopment";
 
@@ -192,6 +194,7 @@ export default function App() {
           <Route path="/tools/kinship-calculator" element={<KinshipCalculator />} />
           <Route path="/tools/json-editor" element={<JsonEditorTool />} />
           <Route path="/tools/data-converter" element={<DataConverter />} />
+          <Route path="/tools/mermaid-renderer" element={<MermaidRenderer />} />
         </Route>
       </Routes>
     </Router>
