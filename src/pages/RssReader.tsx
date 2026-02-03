@@ -161,7 +161,14 @@ export default function RssReader() {
     for (const feed of feedSources) {
       try {
         // Use a CORS proxy to fetch the RSS feed
-        const response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(feed.xmlUrl)}`);
+        let response;
+        try {
+          response = await fetch(`https://corsproxy.io/?${encodeURIComponent(feed.xmlUrl)}`);
+          if (!response.ok) throw new Error('CORS Proxy IO failed');
+        } catch (e) {
+          // Fallback to allorigins
+          response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(feed.xmlUrl)}`);
+        }
         const text = await response.text();
         const feedData = parser.parse(text);
         
@@ -177,13 +184,23 @@ export default function RssReader() {
             : [feedData.feed.entry];
         }
 
-        const normalizedItems = channelItems.map((item: any) => ({
-          title: item.title,
-          link: item.link?.href || item.link, // Atom uses link.href
-          pubDate: item.pubDate || item.published || item.updated,
-          contentSnippet: item.description || item.summary || item.content?.["#text"] || "",
-          source: feed.title
-        })).slice(0, 5); // Limit to 5 items per feed
+        const normalizedItems = channelItems.map((item: any) => {
+          const ensureString = (val: any): string => {
+            if (typeof val === 'string') return val;
+            if (val === null || val === undefined) return "";
+            if (typeof val === 'object' && val['#text']) return String(val['#text']);
+            if (typeof val === 'number') return String(val);
+            return "";
+          };
+
+          return {
+            title: ensureString(item.title),
+            link: item.link?.href || item.link, // Atom uses link.href
+            pubDate: item.pubDate || item.published || item.updated,
+            contentSnippet: ensureString(item.description || item.summary || item.content?.["#text"]),
+            source: feed.title
+          };
+        }).slice(0, 5); // Limit to 5 items per feed
 
         allItems.push(...normalizedItems);
       } catch (error) {
@@ -329,7 +346,7 @@ export default function RssReader() {
                         </a>
                       </h3>
                       
-                      {item.contentSnippet && (
+                      {item.contentSnippet && typeof item.contentSnippet === 'string' && (
                         <div 
                           className="text-sm text-slate-400 line-clamp-2"
                           dangerouslySetInnerHTML={{ __html: item.contentSnippet.replace(/<[^>]*>/g, '').substring(0, 300) + '...' }}
