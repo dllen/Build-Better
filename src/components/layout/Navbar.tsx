@@ -36,6 +36,9 @@ export function Navbar() {
             <Link to="/rss-read" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
               RSS Read
             </Link>
+            <Link to="/indie-developer" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
+              独立开发者
+            </Link>
             <Link to="/ai-development" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
               {t("app.ai_navigation")}
             </Link>
@@ -105,6 +108,13 @@ export function Navbar() {
               onClick={() => setIsMenuOpen(false)}
             >
               RSS Read
+            </Link>
+            <Link
+              to="/indie-developer"
+              className="py-2 text-muted-foreground hover:text-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              独立开发者
             </Link>
             <Link
               to="/ai-development"
