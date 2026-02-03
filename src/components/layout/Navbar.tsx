@@ -33,6 +33,9 @@ export function Navbar() {
             <Link to="/games" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
               {t("app.games")}
             </Link>
+            <Link to="/rss-read" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
+              RSS Read
+            </Link>
             <Link to="/ai-development" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
               {t("app.ai_navigation")}
             </Link>
@@ -95,6 +98,13 @@ export function Navbar() {
               onClick={() => setIsMenuOpen(false)}
             >
               {t("app.games")}
+            </Link>
+            <Link
+              to="/rss-read"
+              className="py-2 text-muted-foreground hover:text-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              RSS Read
             </Link>
             <Link
               to="/ai-development"
