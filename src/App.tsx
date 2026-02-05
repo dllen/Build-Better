@@ -92,6 +92,7 @@ import DataConverter from "./pages/tools/DataConverter";
 import MermaidRenderer from "./pages/tools/MermaidRenderer";
 import RssReader from "./pages/RssReader";
 import IndieDeveloper from "./pages/IndieDeveloper";
+import DataDeveloper from "@/pages/DataDeveloper";
 
 import AiDevelopment from "@/pages/AiDevelopment";
 
@@ -104,6 +105,7 @@ export default function App() {
           <Route path="/games" element={<Games />} />
           <Route path="/rss-read" element={<RssReader />} />
           <Route path="/indie-developer" element={<IndieDeveloper />} />
+          <Route path="/data-developer" element={<DataDeveloper />} />
           <Route path="/ai-development" element={<AiDevelopment />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/tools/api-debugger" element={<ApiDebugger />} />
