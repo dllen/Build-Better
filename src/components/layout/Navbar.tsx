@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Settings, Menu } from "lucide-react";
+import { Settings, Menu, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LanguageSelector } from "../LanguageSelector";
@@ -36,15 +36,37 @@ export function Navbar() {
             <Link to="/rss-read" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
               RSS Read
             </Link>
-            <Link to="/indie-developer" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
-              独立开发者
-            </Link>
-            <Link to="/data-developer" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
-              数据开发者
-            </Link>
-            <Link to="/ai-development" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
-              {t("app.ai_navigation")}
-            </Link>
+            
+            {/* Website Navigation Dropdown */}
+            <div className="relative group">
+              <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors font-medium text-sm focus:outline-none">
+                网站导航
+                <ChevronDown className="h-3 w-3" />
+              </button>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="bg-popover border border-border rounded-md shadow-lg overflow-hidden">
+                  <Link 
+                    to="/indie-developer" 
+                    className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
+                  >
+                    独立开发者
+                  </Link>
+                  <Link 
+                    to="/ai-development" 
+                    className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
+                  >
+                    {t("app.ai_navigation")}
+                  </Link>
+                  <Link 
+                    to="/data-developer" 
+                    className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
+                  >
+                    数据开发者
+                  </Link>
+                </div>
+              </div>
+            </div>
+
             <Link
               to="/settings"
               className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 font-medium text-sm"
@@ -112,27 +134,34 @@ export function Navbar() {
             >
               RSS Read
             </Link>
-            <Link
-              to="/indie-developer"
-              className="py-2 text-muted-foreground hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              独立开发者
-            </Link>
-            <Link
-              to="/data-developer"
-              className="py-2 text-muted-foreground hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              数据开发者
-            </Link>
-            <Link
-              to="/ai-development"
-              className="py-2 text-muted-foreground hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {t("app.ai_navigation")}
-            </Link>
+            
+            <div className="py-2">
+              <div className="text-sm font-semibold text-foreground mb-2">网站导航</div>
+              <div className="pl-4 flex flex-col gap-2 border-l-2 border-border ml-1">
+                <Link
+                  to="/indie-developer"
+                  className="text-muted-foreground hover:text-primary py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  独立开发者
+                </Link>
+                <Link
+                  to="/ai-development"
+                  className="text-muted-foreground hover:text-primary py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t("app.ai_navigation")}
+                </Link>
+                <Link
+                  to="/data-developer"
+                  className="text-muted-foreground hover:text-primary py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  数据开发者
+                </Link>
+              </div>
+            </div>
+
             <Link
               to="/settings"
               className="py-2 text-muted-foreground hover:text-primary flex items-center gap-2"
