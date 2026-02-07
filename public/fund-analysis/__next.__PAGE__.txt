@@ -1,0 +1,9 @@
+1:"$Sreact.fragment"
+2:I[65625,["/fund-analysis/_next/static/chunks/a7dd0a41c5c35b31.js"],"ClientPageRoot"]
+3:I[60392,["/fund-analysis/_next/static/chunks/17a56920df43aaca.js","/fund-analysis/_next/static/chunks/af7d95ef5e5f3884.js","/fund-analysis/_next/static/chunks/f74075c4318b3499.js"],"default"]
+6:I[24952,["/fund-analysis/_next/static/chunks/a7dd0a41c5c35b31.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+0:{"buildId":"a0VYzpf_ev7w6BpSj0BsB","rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/fund-analysis/_next/static/chunks/af7d95ef5e5f3884.js","async":true}],["$","script","script-1",{"src":"/fund-analysis/_next/static/chunks/f74075c4318b3499.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"loading":null,"isPartial":false}
+4:{}
+5:"$0:rsc:props:children:0:props:serverProvidedParams:params"
+8:null

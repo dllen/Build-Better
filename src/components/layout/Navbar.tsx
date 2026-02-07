@@ -36,6 +36,24 @@ export function Navbar() {
             <Link to="/rss-read" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
               RSS Read
             </Link>
+
+            {/* Investment & Finance Dropdown */}
+            <div className="relative group">
+              <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors font-medium text-sm focus:outline-none">
+                投资理财
+                <ChevronDown className="h-3 w-3" />
+              </button>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="bg-popover border border-border rounded-md shadow-lg overflow-hidden">
+                  <a 
+                    href="/fund-analysis/" 
+                    className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
+                  >
+                    基金分析
+                  </a>
+                </div>
+              </div>
+            </div>
             
             {/* Website Navigation Dropdown */}
             <div className="relative group">
@@ -134,6 +152,19 @@ export function Navbar() {
             >
               RSS Read
             </Link>
+
+            <div className="py-2">
+              <div className="text-sm font-semibold text-foreground mb-2">投资理财</div>
+              <div className="pl-4 flex flex-col gap-2 border-l-2 border-border ml-1">
+                <a
+                  href="/fund-analysis/"
+                  className="text-muted-foreground hover:text-primary py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  基金分析
+                </a>
+              </div>
+            </div>
             
             <div className="py-2">
               <div className="text-sm font-semibold text-foreground mb-2">网站导航</div>
