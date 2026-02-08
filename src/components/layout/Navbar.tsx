@@ -112,6 +112,14 @@ export function Navbar() {
                   >
                     非独立开发者
                   </Link>
+                  <a 
+                    href="/algorithm-visualizer/" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
+                  >
+                    算法可视化
+                  </a>
                 </div>
               </div>
             </div>
@@ -233,6 +241,15 @@ export function Navbar() {
                 >
                   非独立开发者
                 </Link>
+                <a
+                  href="/algorithm-visualizer/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground hover:text-primary py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  算法可视化
+                </a>
               </div>
             </div>
 
