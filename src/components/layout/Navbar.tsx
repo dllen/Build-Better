@@ -18,18 +18,43 @@ export function Navbar() {
           </Link>
 
           <div className="hidden md:flex items-center gap-6">
-            <Link to="/" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
-              {t("app.tools")}
-            </Link>
-            <a href="/office/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
-              {t("app.office_apps")}
-            </a>
-            <a href="/pdf-tools/" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
-              {t("app.pdf_tools")}
-            </a>
-            <Link to="/tools/text" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
-              Text Suite
-            </Link>
+            {/* Common Tools Dropdown */}
+            <div className="relative group">
+              <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors font-medium text-sm focus:outline-none">
+                常用工具
+                <ChevronDown className="h-3 w-3" />
+              </button>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="bg-popover border border-border rounded-md shadow-lg overflow-hidden">
+                  <Link 
+                    to="/" 
+                    className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
+                  >
+                    {t("app.tools")}
+                  </Link>
+                  <a 
+                    href="/office/" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
+                  >
+                    {t("app.office_apps")}
+                  </a>
+                  <a 
+                    href="/pdf-tools/" 
+                    className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
+                  >
+                    {t("app.pdf_tools")}
+                  </a>
+                  <Link 
+                    to="/tools/text" 
+                    className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
+                  >
+                    Text Suite
+                  </Link>
+                </div>
+              </div>
+            </div>
             <Link to="/games" className="text-muted-foreground hover:text-primary transition-colors font-medium text-sm">
               {t("app.games")}
             </Link>
@@ -108,36 +133,41 @@ export function Navbar() {
       {isMenuOpen && (
         <div className="md:hidden border-t border-border py-2 bg-background">
           <div className="container mx-auto px-4 flex flex-col gap-2">
-            <Link
-              to="/"
-              className="py-2 text-muted-foreground hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {t("app.tools")}
-            </Link>
-            <a
-              href="/office/"
-              target="_blank"
-              rel="noreferrer"
-              className="py-2 text-muted-foreground hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {t("app.office_apps")}
-            </a>
-            <a
-              href="/pdf-tools/"
-              className="py-2 text-muted-foreground hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {t("app.pdf_tools")}
-            </a>
-            <Link
-              to="/tools/text"
-              className="py-2 text-muted-foreground hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Text Suite
-            </Link>
+            <div className="py-2">
+              <div className="text-sm font-semibold text-foreground mb-2">常用工具</div>
+              <div className="pl-4 flex flex-col gap-2 border-l-2 border-border ml-1">
+                <Link
+                  to="/"
+                  className="text-muted-foreground hover:text-primary py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t("app.tools")}
+                </Link>
+                <a
+                  href="/office/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground hover:text-primary py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t("app.office_apps")}
+                </a>
+                <a
+                  href="/pdf-tools/"
+                  className="text-muted-foreground hover:text-primary py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t("app.pdf_tools")}
+                </a>
+                <Link
+                  to="/tools/text"
+                  className="text-muted-foreground hover:text-primary py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Text Suite
+                </Link>
+              </div>
+            </div>
             <Link
               to="/games"
               className="py-2 text-muted-foreground hover:text-primary"
