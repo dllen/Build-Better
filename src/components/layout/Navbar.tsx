@@ -113,7 +113,7 @@ export function Navbar() {
                     非独立开发者
                   </Link>
                   <a 
-                    href="/algorithm-visualizer/" 
+                    href="/algorithm-visualizer/index.html" 
                     target="_blank" 
                     rel="noreferrer"
                     className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
