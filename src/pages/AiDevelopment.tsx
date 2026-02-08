@@ -99,6 +99,34 @@ const resources: Resource[] = [
     url: "https://github.com/libukai/awesome-agent-skills",
     category: "agent-skills",
   },
+  {
+    id: "superpowers",
+    title: "Superpowers",
+    description: "内置14个skill覆盖完整开发流程，一句话开发'KPI续命器'。",
+    url: "https://github.com/obra/superpowers",
+    category: "agent-skills",
+  },
+  {
+    id: "humanizer",
+    title: "Humanizer",
+    description: "去AI痕迹写作，24种AI痕迹检查清单，让AI写的内容真正像人写的。",
+    url: "https://github.com/blader/humanizer",
+    category: "agent-skills",
+  },
+  {
+    id: "ui-ux-pro-max-skill",
+    title: "UI/UX Pro Max",
+    description: "提升AI审美，告别AI模板，接近成熟产品质感。",
+    url: "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+    category: "agent-skills",
+  },
+  {
+    id: "find-skills",
+    title: "Find-Skills",
+    description: "Vercel官方技能搜索助手，10万skill生态精准搜索。",
+    url: "https://github.com/vercel-labs/skills",
+    category: "agent-skills",
+  },
   // LLM Development
   {
     id: "openai-platform",
@@ -198,13 +226,6 @@ const resources: Resource[] = [
     title: "ZLibrary to NotebookLM",
     description: "Convert Z-Library books into sources for NotebookLM.",
     url: "https://github.com/zstmfhy/zlibrary-to-notebooklm",
-    category: "tools",
-  },
-  {
-    id: "superpowers",
-    title: "Superpowers",
-    description: "Command-line superpowers for working with AI and automation.",
-    url: "https://github.com/obra/superpowers",
     category: "tools",
   },
   {
