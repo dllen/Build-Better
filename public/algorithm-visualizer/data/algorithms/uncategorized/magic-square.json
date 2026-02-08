@@ -1,0 +1,47 @@
+{
+  "algorithm": {
+    "categoryKey": "uncategorized",
+    "categoryName": "Uncategorized",
+    "algorithmKey": "magic-square",
+    "algorithmName": "Magic Square",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Magic Square\nIn recreational mathematics, a magic square is an arrangement of distinct numbers (i.e., each number is used once), usually integers, in a square grid, where the numbers in each row, and in each column, and the numbers in the main and secondary diagonals, all add up to the same number, called the magic constant. A magic square has the same number of rows as it has columns, and in conventional math notation, 'n' stands for the number of rows (and columns) it has. Thus, a magic square always contains n2 numbers, and its size (the number of rows [and columns] it has) is described as being of order n. A magic square that contains the integers from 1 to n2 is called a normal magic square. (The term magic square is also sometimes used to refer to any of various types of word squares.)\n\n## Complexity\n* **Time**:  ![](https://latex.codecogs.com/svg.latex?O(N^2))\n* **Space**: ![](https://latex.codecogs.com/svg.latex?O(N^2))\n\n## References\n* [Wikipedia](https://en.wikipedia.org/wiki/Magic_square)",
+        "contributors": [
+          {
+            "login": "archie94",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12955150?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\nconst n = 7;\nconst A = new Array(n);\nfor (let i = n - 1; i >= 0; i--) {\n  A[i] = new Array(n);\n}\n\nfor (let i = n - 1; i >= 0; i--) {\n  for (let j = n - 1; j >= 0; j--) {\n    A[i][j] = 0;\n  }\n}\n\n// define tracer variables {\nconst tracer = new Array2DTracer('Magic Square');\nconst logTracer = new LogTracer('Console');\nLayout.setRoot(new VerticalLayout([tracer, logTracer]));\ntracer.set(A);\nTracer.delay();\n// }\n\nlet i = Math.floor(n / 2);\nlet j = n - 1;\n\nfor (let num = 1; num <= n * n;) {\n  // logger {\n  logTracer.println(`i = ${i}`);\n  logTracer.println(`j = ${j}`);\n  // }\n\n  if (i === -1 && j === n) {\n    j = n - 2;\n    i = 0;\n\n    // logger {\n    logTracer.println('Changing : ');\n    logTracer.println(`i = ${i}`);\n    logTracer.println(`j = ${j}`);\n    // }\n  } else {\n    if (j === n) {\n      j = 0;\n      // logger {\n      logTracer.println(`Changing : j = ${j}`);\n      // }\n    }\n    if (i < 0) {\n      i = n - 1;\n      // logger {\n      logTracer.println(`Changing : i = ${i}`);\n      // }\n    }\n  }\n\n  if (A[i][j] > 0) {\n    // logger {\n    logTracer.println(`Cell already filled : Changing i = ${i} j = ${j}`);\n    // }\n    j -= 2;\n    i++;\n  } else {\n    A[i][j] = num++;\n    // visualize {\n    tracer.patch(i, j, A[i][j]);\n    Tracer.delay();\n    tracer.depatch(i, j);\n    tracer.select(i, j);\n    Tracer.delay();\n    // }\n    j++;\n    i--;\n  }\n}\n\n// logger {\nlogTracer.println(`Magic Constant is ${n * (n * n + 1) / 2}`);\n// }\n",
+        "contributors": [
+          {
+            "login": "archie94",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12955150?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "In recreational mathematics, a magic square is an arrangement of distinct numbers (i.e., each number is used once), usually integers, in a square grid, where the numbers in each row, and in each column, and the numbers in the main and secondary diagonals, all add up to the same number, called the magic constant. A magic square has the same number of rows as it has columns, and in conventional math notation, 'n' stands for the number of rows (and columns) it has. Thus, a magic square always contains n2 numbers, and its size (the number of rows [and columns] it has) is described as being of order n. A magic square that contains the integers from 1 to n2 is called a normal magic square. (The term magic square is also sometimes used to refer to any of various types of word squares.)"
+  }
+}

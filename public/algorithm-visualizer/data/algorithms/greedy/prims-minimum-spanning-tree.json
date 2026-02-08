@@ -1,0 +1,47 @@
+{
+  "algorithm": {
+    "categoryKey": "greedy",
+    "categoryName": "Greedy",
+    "algorithmKey": "prims-minimum-spanning-tree",
+    "algorithmName": "Prim's Minimum Spanning Tree",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Prim's Minimum Spanning Tree\n\nIn computer science, **Prim's algorithm** is a greedy algorithm that\nfinds a minimum spanning tree for a weighted undirected graph.\n\nThe algorithm operates by building this tree one vertex at a\ntime, from an arbitrary starting vertex, at each step adding\nthe cheapest possible connection from the tree to another vertex.\n\n![Prim's Algorithm](https://upload.wikimedia.org/wikipedia/commons/f/f7/Prim%27s_algorithm.svg)\n\nPrim's algorithm starting at vertex `A`. In the third step, edges\n`BD` and `AB` both have weight `2`, so `BD` is chosen arbitrarily.\nAfter that step, `AB` is no longer a candidate for addition\nto the tree because it links two nodes that are already\nin the tree.\n\n## Minimum Spanning Tree\n\nA **minimum spanning tree** (MST) or minimum weight spanning tree\nis a subset of the edges of a connected, edge-weighted\n(un)directed graph that connects all the vertices together,\nwithout any cycles and with the minimum possible total edge\nweight. That is, it is a spanning tree whose sum of edge weights\nis as small as possible. More generally, any edge-weighted\nundirected graph (not necessarily connected) has a minimum\nspanning forest, which is a union of the minimum spanning\ntrees for its connected components.\n\n![Minimum Spanning Tree](https://upload.wikimedia.org/wikipedia/commons/d/d2/Minimum_spanning_tree.svg)\n\nA planar graph and its minimum spanning tree. Each edge is\nlabeled with its weight, which here is roughly proportional\nto its length.\n\n![Minimum Spanning Tree](https://upload.wikimedia.org/wikipedia/commons/c/c9/Multiple_minimum_spanning_trees.svg)\n\nThis figure shows there may be more than one minimum spanning\ntree in a graph. In the figure, the two trees below the graph\nare two possibilities of minimum spanning tree of the given graph.\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/graph/prim)\n- [Minimum Spanning Tree on Wikipedia](https://en.wikipedia.org/wiki/Minimum_spanning_tree)\n- [Prim's Algorithm on Wikipedia](https://en.wikipedia.org/wiki/Prim%27s_algorithm)\n- [Prim's Algorithm on YouTube by Tushar Roy](https://www.youtube.com/watch?v=oP2-8ysT3QQ&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)\n- [Prim's Algorithm on YouTube by Michael Sambol](https://www.youtube.com/watch?v=cplfcGZmX7I&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)\n",
+        "contributors": [
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst tracer = new GraphTracer().directed(false).weighted();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([tracer, logger]));\ntracer.log(logger);\n/* let G = [ // G[i][j] indicates the weight of the path from the i-th node to the j-th node\n [0, 3, 0, 1, 0],\n [5, 0, 1, 2, 4],\n [1, 0, 0, 2, 0],\n [0, 2, 0, 0, 1],\n [0, 1, 3, 0, 0]\n ]; */\nconst G = Randomize.Graph({ N: 10, ratio: .4, directed: false, weighted: true });\ntracer.set(G);\nTracer.delay();\n// }\n\nfunction prim() {\n  // Finds a tree so that there exists a path between\n  // every two nodes while keeping the cost minimal\n  let minD;\n\n  let minI;\n  let minJ;\n  let sum = 0;\n  const D = [];\n  for (let i = 0; i < G.length; i++) D.push(0);\n  D[0] = 1; // First node is visited\n  for (let k = 0; k < G.length - 1; k++) { // Searching for k edges\n    minD = Infinity;\n    for (let i = 0; i < G.length; i++) {\n      if (D[i]) // First node in an edge must be visited\n      {\n        for (let j = 0; j < G.length; j++) {\n          if (!D[j] && G[i][j]) {\n            // visualize {\n            tracer.visit(i, j);\n            Tracer.delay();\n            // }\n            // Second node must not be visited and must be connected to first node\n            if (G[i][j] < minD) {\n              // Searching for cheapest edge which satisfies requirements\n              minD = G[i][j];\n              minI = i;\n              minJ = j;\n            }\n            // visualize {\n            tracer.leave(i, j);\n            Tracer.delay();\n            // }\n          }\n        }\n      }\n    }\n    // visualize {\n    tracer.visit(minI, minJ);\n    Tracer.delay();\n    // }\n    D[minJ] = 1; // Visit second node and insert it into or tree\n    sum += G[minI][minJ];\n  }\n  // logger {\n  logger.println(`The sum of all edges is: ${sum}`);\n  // }\n}\n\n// logger {\nlogger.println('nodes that belong to minimum spanning tree are: ');\n// }\nprim();\n",
+        "contributors": [
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "In computer science, Prim's algorithm is a greedy algorithm that finds a minimum spanning tree for a weighted undirected graph."
+  }
+}

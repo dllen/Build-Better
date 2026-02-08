@@ -1,0 +1,51 @@
+{
+  "algorithm": {
+    "categoryKey": "dynamic-programming",
+    "categoryName": "Dynamic Programming",
+    "algorithmKey": "longest-increasing-subsequence",
+    "algorithmName": "Longest Increasing Subsequence",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Longest Increasing Subsequence\n\nThe longest increasing subsequence problem is to find a subsequence of a\ngiven sequence in which the subsequence's elements are in sorted order,\nlowest to highest, and in which the subsequence is as long as possible.\nThis subsequence is not necessarily contiguous, or unique.\n\n## Complexity\n\nThe longest increasing subsequence problem is solvable in\ntime `O(n log n)`, where `n` denotes the length of the input sequence.\n\nDynamic programming approach has complexity `O(n * n)`.\n\n## Example\n\nIn the first 16 terms of the binary Van der Corput sequence\n\n```\n0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15\n```\n\na longest increasing subsequence is\n\n```\n0, 2, 6, 9, 11, 15.\n```\n\nThis subsequence has length six;\nthe input sequence has no seven-member increasing subsequences.\nThe longest increasing subsequence in this example is not unique: for\ninstance,\n\n```\n0, 4, 6, 9, 11, 15 or\n0, 2, 6, 9, 13, 15 or\n0, 4, 6, 9, 13, 15\n```\n\nare other increasing subsequences of equal length in the same\ninput sequence.\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sets/longest-increasing-subsequence)\n- [Wikipedia](https://en.wikipedia.org/wiki/Longest_increasing_subsequence)\n- [Dynamic Programming Approach on YouTube](https://www.youtube.com/watch?v=CE2b_-XfVDk&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)\n",
+        "contributors": [
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst tracer = new Array1DTracer();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([tracer, logger]));\nconst A = Randomize.Array1D({ N: 10, value: () => Randomize.Integer({ min: 0, max: 10 }) });\nconst LIS = new Array(A.length);\ntracer.set(A);\nTracer.delay();\n// }\n\n// Initialize LIS values for all indexes\nfor (let i = 0; i < A.length; i++) {\n  LIS[i] = 1;\n}\n\n// logger {\nlogger.println('Calculating Longest Increasing Subsequence values in bottom up manner ');\n// }\n// Compute optimized LIS values in bottom up manner\nfor (let i = 1; i < A.length; i++) {\n  // visualize {\n  tracer.select(i);\n  logger.println(` LIS[${i}] = ${LIS[i]}`);\n  // }\n  for (let j = 0; j < i; j++) {\n    // visualize {\n    tracer.patch(j);\n    Tracer.delay();\n    tracer.depatch(j);\n    // }\n    if (A[i] > A[j] && LIS[i] < LIS[j] + 1) {\n      LIS[i] = LIS[j] + 1;\n      // logger {\n      logger.println(` LIS[${i}] = ${LIS[i]}`);\n      // }\n    }\n  }\n  // visualize {\n  tracer.deselect(i);\n  // }\n}\n\n// Pick maximum of all LIS values\n// logger {\nlogger.println('Now calculate maximum of all LIS values ');\n// }\nlet max = LIS[0];\nfor (let i = 1; i < A.length; i++) {\n  if (max < LIS[i]) {\n    max = LIS[i];\n  }\n}\n// logger {\nlogger.println(`Longest Increasing Subsequence = max of all LIS = ${max}`);\n// }\n",
+        "contributors": [
+          {
+            "login": "archie94",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12955150?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "The longest increasing subsequence problem is to find a subsequence of a given sequence in which the subsequence's elements are in sorted order, lowest to highest, and in which the subsequence is as long as possible. This subsequence is not necessarily contiguous, or unique."
+  }
+}

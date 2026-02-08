@@ -1,0 +1,47 @@
+{
+  "algorithm": {
+    "categoryKey": "dynamic-programming",
+    "categoryName": "Dynamic Programming",
+    "algorithmKey": "fibonacci-sequence",
+    "algorithmName": "Fibonacci Sequence",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Fibonacci Sequence\n\nIn mathematics, the Fibonacci numbers are the numbers in the following\ninteger sequence, called the Fibonacci sequence, and characterized by\nthe fact that every number after the first two is the sum of the two\npreceding ones:\n\n`0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...`\n\nA tiling with squares whose side lengths are successive Fibonacci numbers\n\n![Fibonacci](https://upload.wikimedia.org/wikipedia/commons/d/db/34%2A21-FibonacciBlocks.png)\n\nThe Fibonacci spiral: an approximation of the golden spiral created by drawing circular arcs connecting the opposite corners of squares in the Fibonacci tiling;[4] this one uses squares of sizes 1, 1, 2, 3, 5, 8, 13 and 21.\n\n![Fibonacci Spiral](https://upload.wikimedia.org/wikipedia/commons/2/2e/FibonacciSpiral.svg)\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/math/fibonacci)\n- [Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_number)\n",
+        "contributors": [
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst tracer = new Array1DTracer('Sequence');\nLayout.setRoot(new VerticalLayout([tracer]));\nconst index = 15;\nconst D = [1, 1];\nfor (let i = 2; i < index; i++) {\n  D.push(0);\n}\ntracer.set(D);\nTracer.delay();\n// }\n\nfor (let i = 2; i < index; i++) {\n  D[i] = D[i - 2] + D[i - 1];\n  // visualize {\n  tracer.select(i - 2, i - 1);\n  Tracer.delay();\n  tracer.patch(i, D[i]);\n  Tracer.delay();\n  tracer.depatch(i);\n  tracer.deselect(i - 2, i - 1);\n  // }\n}\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "In mathematics, the Fibonacci numbers are the numbers in the following integer sequence, called the Fibonacci sequence, and characterized by the fact that every number after the first two is the sum of the two preceding ones:"
+  }
+}

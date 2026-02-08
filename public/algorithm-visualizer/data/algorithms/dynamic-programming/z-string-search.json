@@ -1,0 +1,47 @@
+{
+  "algorithm": {
+    "categoryKey": "dynamic-programming",
+    "categoryName": "Dynamic Programming",
+    "algorithmKey": "z-string-search",
+    "algorithmName": "Z String Search",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Z String Search\n\nThe Z-algorithm finds occurrences of a \"word\" `W`\nwithin a main \"text string\" `T` in linear time `O(|W| + |T|)`.\n\nGiven a string `S` of length `n`, the algorithm produces\nan array, `Z` where `Z[i]` represents the longest substring\nstarting from `S[i]` which is also a prefix of `S`. Finding\n`Z` for the string obtained by concatenating the word, `W`\nwith a nonce character, say `$` followed by the text, `T`,\nhelps with pattern matching, for if there is some index `i`\nsuch that `Z[i]` equals the pattern length, then the pattern\nmust be present at that point.\n\nWhile the `Z` array can be computed with two nested loops in `O(|W| * |T|)` time, the\nfollowing strategy shows how to obtain it in linear time, based\non the idea that as we iterate over the letters in the string\n(index `i` from `1` to `n - 1`), we maintain an interval `[L, R]`\nwhich is the interval with maximum `R` such that `1 ≤ L ≤ i ≤ R`\nand `S[L...R]` is a prefix that is also a substring (if no such\ninterval exists, just let `L = R =  - 1`). For `i = 1`, we can\nsimply compute `L` and `R` by comparing `S[0...]` to `S[1...]`.\n\n**Example of Z array**\n\n```\nIndex            0   1   2   3   4   5   6   7   8   9  10  11\nText             a   a   b   c   a   a   b   x   a   a   a   z\nZ values         X   1   0   0   3   1   0   0   2   2   1   0\n```\n\nOther examples\n\n```\nstr =  a a a a a a\nZ[] =  x 5 4 3 2 1\n```\n\n```\nstr =  a a b a a c d\nZ[] =  x 1 0 2 1 0 0\n```\n\n```\nstr =  a b a b a b a b\nZ[] =  x 0 6 0 4 0 2 0\n```\n\n**Example of Z box**\n\n![z-box](https://ivanyu.me/wp-content/uploads/2014/09/zalg1.png)\n\n## Complexity\n\n- **Time:** `O(|W| + |T|)`\n- **Space:** `O(|W|)`\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/string/z-algorithm)\n- [GeeksForGeeks](https://www.geeksforgeeks.org/z-algorithm-linear-time-pattern-searching-algorithm/)\n- [YouTube](https://www.youtube.com/watch?v=CpZh4eF8QBw&t=0s&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8&index=70)\n- [Z Algorithm by Ivan Yurchenko](https://ivanyu.me/blog/2013/10/15/z-algorithm/)\n",
+        "contributors": [
+          {
+            "login": "RudraNilBasu",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12744655?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// let pattern = \"aab\";\n// let text = \"aabxaabxcaabxaabxay\";\nconst pattern = 'abc';\nconst text = 'xabcabzabc';\n\nconst len = pattern.length + text.length + 1;\n\nconst z = new Array(len);\nz[0] = 0;\n\n// define tracer variables {\nconst textTracer = new Array1DTracer('text');\nconst pattTracer = new Array1DTracer('pattern');\nconst concatTracer = new Array1DTracer('concatenated string');\nconst tracer = new Array1DTracer('zArray');\npattTracer.set(pattern);\ntextTracer.set(text);\ntracer.set(z);\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([textTracer, pattTracer, concatTracer, tracer, logger]));\nTracer.delay();\n// }\n\nfunction createZarr(concat) {\n  let left;\n  let right;\n  let N;\n  N = concat.length;\n  left = 0;\n  right = 0;\n  for (let i = 1; i < N; i++) {\n    // visualize {\n    tracer.select(i);\n    Tracer.delay();\n    // }\n    if (i > right) {\n      left = right = i;\n      while (right < N && concat[right] === concat[right - left]) {\n        // visualize {\n        concatTracer.patch(right);\n        concatTracer.select(right - left);\n        logger.println(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`);\n        Tracer.delay();\n        concatTracer.depatch(right);\n        concatTracer.deselect(right - left);\n        // }\n        right++;\n      }\n      // visualize {\n      if (right < N) {\n        concatTracer.patch(right);\n        concatTracer.select(right - left);\n        logger.println(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`);\n        Tracer.delay();\n        concatTracer.depatch(right);\n        concatTracer.deselect(right - left);\n      }\n      // }\n      z[i] = (right - left);\n      // logger {\n      logger.println('--------------------------------');\n      logger.println(`Value of z[${i}] = the length of the substring starting from ${i} which is also the prefix of the concatinated string(=${right - left})`);\n      logger.println('--------------------------------');\n      // }\n      right--;\n    } else if (z[i - left] < (right - i + 1)) {\n      // visualize {\n      logger.println(`The substring from index ${i - left} will not cross the right end.`);\n      concatTracer.patch(right - i + 1);\n      concatTracer.select(i - left);\n      Tracer.delay();\n      // }\n      z[i] = z[i - left];\n      // visualize {\n      concatTracer.depatch(right - i + 1);\n      concatTracer.deselect(i - left);\n      // }\n    } else {\n      // logger {\n      logger.println(`The substring from index ${i - left} will cross the right end.`);\n      // }\n      left = i;\n      while (right < N && concat[right] === concat[right - left]) {\n        // visualize {\n        concatTracer.patch(right);\n        concatTracer.select(right - left);\n        logger.println(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`);\n        Tracer.delay();\n        concatTracer.depatch(right);\n        concatTracer.deselect(right - left);\n        // }\n        right++;\n      }\n      // visualize {\n      if (right < N) {\n        concatTracer.patch(right);\n        concatTracer.select(right - left);\n        logger.println(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`);\n        Tracer.delay();\n        concatTracer.depatch(right);\n        concatTracer.deselect(right - left);\n      }\n      // }\n      z[i] = (right - left);\n      right--;\n      // logger {\n      logger.println('--------------------------------');\n      logger.println(`Value of z[${i}] = the length of the substring starting from ${i} which is also the prefix of the concatinated string(=${right - left})`);\n      logger.println('--------------------------------');\n      // }\n    }\n    // visualize {\n    tracer.deselect(i);\n    tracer.set(z);\n    // }\n  }\n}\n\nconst concat = `${pattern}$${text}`;\n// visualize {\nconcatTracer.set(concat);\n// }\nconst patLen = pattern.length;\ncreateZarr(concat);\n// visualize {\ntracer.set(z);\n// }\n// logger {\nlogger.println('The Values in Z array equal to the length of the pattern indicates the index at which the pattern is present');\nlogger.println('===================================');\nfor (let i = 0; i < len; i++) {\n  if (z[i] === patLen) {\n    const pos = i - (patLen + 1);\n    logger.println(`Pattern Found at index ${pos}`);\n  }\n}\nlogger.println('===================================');\n// }\n",
+        "contributors": [
+          {
+            "login": "RudraNilBasu",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12744655?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "The Z-algorithm finds occurrences of a \"word\" W within a main \"text string\" T in linear time O(|W| + |T|)."
+  }
+}

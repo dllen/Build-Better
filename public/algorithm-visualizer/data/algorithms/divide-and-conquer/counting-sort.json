@@ -1,0 +1,47 @@
+{
+  "algorithm": {
+    "categoryKey": "divide-and-conquer",
+    "categoryName": "Divide and Conquer",
+    "algorithmKey": "counting-sort",
+    "algorithmName": "Counting Sort",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Counting Sort\n\nIn computer science, **counting sort** is an algorithm for sorting\na collection of objects according to keys that are small integers;\nthat is, it is an integer sorting algorithm. It operates by\ncounting the number of objects that have each distinct key value,\nand using arithmetic on those counts to determine the positions\nof each key value in the output sequence. Its running time is\nlinear in the number of items and the difference between the\nmaximum and minimum key values, so it is only suitable for direct\nuse in situations where the variation in keys is not significantly\ngreater than the number of items. However, it is often used as a\nsubroutine in another sorting algorithm, radix sort, that can\nhandle larger keys more efficiently.\n\nBecause counting sort uses key values as indexes into an array,\nit is not a comparison sort, and the `Ω(n log n)` lower bound for\ncomparison sorting does not apply to it. Bucket sort may be used\nfor many of the same tasks as counting sort, with a similar time\nanalysis; however, compared to counting sort, bucket sort requires\nlinked lists, dynamic arrays or a large amount of preallocated\nmemory to hold the sets of items within each bucket, whereas\ncounting sort instead stores a single number (the count of items)\nper bucket.\n\nCounting sorting works best when the range of numbers for each array\nelement is very small.\n\n## Algorithm\n\n**Step I**\n\nIn first step we calculate the count of all the elements of the\ninput array `A`. Then Store the result in the count array `C`.\nThe way we count is depicted below.\n\n![Counting Sort](https://3.bp.blogspot.com/-jJchly1BkTc/WLGqCFDdvCI/AAAAAAAAAHA/luljAlz2ptMndIZNH0KLTTuQMNsfzDeFQCLcB/s1600/CSortUpdatedStepI.gif)\n\n**Step II**\n\nIn second step we calculate how many elements exist in the input\narray `A` which are less than or equals for the given index.\n`Ci` = numbers of elements less than or equals to `i` in input array.\n\n![Counting Sort](https://1.bp.blogspot.com/-1vFu-VIRa9Y/WLHGuZkdF3I/AAAAAAAAAHs/8jKu2dbQee4ap9xlVcNsILrclqw0UxAVACLcB/s1600/Step-II.png)\n\n**Step III**\n\nIn this step we place the input array `A` element at sorted\nposition by taking help of constructed count array `C` ,i.e what\nwe constructed in step two. We used the result array `B` to store\nthe sorted elements. Here we handled the index of `B` start from\nzero.\n\n![Counting Sort](https://1.bp.blogspot.com/-xPqylngqASY/WLGq3p9n9vI/AAAAAAAAAHM/JHdtXAkJY8wYzDMBXxqarjmhpPhM0u8MACLcB/s1600/ResultArrayCS.gif)\n\n## Complexity\n\n| Name                  | Best            | Average             | Worst               | Memory    | Stable    | Comments  |\n| --------------------- | :-------------: | :-----------------: | :-----------------: | :-------: | :-------: | :-------- |\n| **Counting sort**     | n + r           | n + r               | n + r               | n + r     | Yes       | r - biggest number in array |\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sorting/counting-sort)\n- [Wikipedia](https://en.wikipedia.org/wiki/Counting_sort)\n- [YouTube](https://www.youtube.com/watch?v=OKd534EWcdk&index=61&t=0s&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)\n- [EfficientAlgorithms](https://efficientalgorithms.blogspot.com/2016/09/lenear-sorting-counting-sort.html)\n",
+        "contributors": [
+          {
+            "login": "jarettgross",
+            "avatar_url": "https://avatars.githubusercontent.com/u/15134536?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst arrayTracer = new Array1DTracer('Array');\nconst countsTracer = new Array1DTracer('Counts');\nconst sortedArrayTracer = new Array1DTracer('Sorted Array');\nLayout.setRoot(new VerticalLayout([arrayTracer, countsTracer, sortedArrayTracer]));\n// }\n\n// define input variables\nconst N = 20; // the size of an array\nconst array = Randomize.Array1D({ N, value: () => Randomize.Integer({ min: 0, max: 9 }) });\n\n(function main() {\n  // find the maximum value that will decide the size of counts array\n  const max = Math.max(...array);\n  const counts = new Array(max + 1).fill(0);\n  // visualize {\n  arrayTracer.set(array);\n  countsTracer.set(counts);\n  Tracer.delay();\n  // }\n\n  // store counts of each number\n  for (let i = 0; i < N; i++) {\n    const number = array[i];\n    counts[number]++;\n    // visualize {\n    arrayTracer.select(i);\n    countsTracer.patch(number, counts[number]);\n    Tracer.delay();\n    countsTracer.depatch(number);\n    arrayTracer.deselect(i);\n    // }\n  }\n\n  // calculate the prefix sums\n  for (let i = 1; i <= max; i++) {\n    counts[i] += counts[i - 1];\n    // visualize {\n    countsTracer;\n    countsTracer.select(i - 1);\n    countsTracer.patch(i, counts[i]);\n    Tracer.delay();\n    countsTracer.depatch(i);\n    countsTracer.deselect(i - 1);\n    // }\n  }\n\n  // create a sorted array based on the prefix sums\n  const sortedArray = new Array(N);\n  // visualize {\n  sortedArrayTracer.set(sortedArray);\n  // }\n  for (let i = N - 1; i >= 0; i--) {\n    const number = array[i];\n    const count = counts[number];\n    sortedArray[count - 1] = number;\n    counts[number]--;\n    // visualize {\n    arrayTracer.select(i);\n    countsTracer.select(number);\n    sortedArrayTracer.patch(count - 1, sortedArray[count - 1]);\n    countsTracer.patch(number, counts[number]);\n    Tracer.delay();\n    sortedArrayTracer.depatch(count - 1);\n    countsTracer.depatch(number);\n    countsTracer.deselect(number);\n    arrayTracer.deselect(i);\n    // }\n  }\n})();\n",
+        "contributors": [
+          {
+            "login": "jarettgross",
+            "avatar_url": "https://avatars.githubusercontent.com/u/15134536?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "webthethird",
+            "avatar_url": "https://avatars.githubusercontent.com/u/6509209?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "In computer science, counting sort is an algorithm for sorting a collection of objects according to keys that are small integers; that is, it is an integer sorting algorithm. It operates by counting the number of objects that have each distinct key value, and using arithmetic on those counts to determine the positions of each key value in the output sequence. Its running time is linear in the number of items and the difference between the maximum and minimum key values, so it is only suitable for direct use in situations where the variation in keys is not significantly greater than the number of items. However, it is often used as a subroutine in another sorting algorithm, radix sort, that can handle larger keys more efficiently."
+  }
+}

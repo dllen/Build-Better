@@ -1,0 +1,43 @@
+{
+  "algorithm": {
+    "categoryKey": "branch-and-bound",
+    "categoryName": "Branch and Bound",
+    "algorithmKey": "depth-limited-search",
+    "algorithmName": "Depth-Limited Search",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Depth-Limited Search\nDepth-Limited search (DLS) is an algorithm for traversing or searching tree or graph data structures. It's actually specific type of DFS where the search is limited to some depth from start node (root). One starts at the root (selecting some arbitrary node as the root in the case of a graph) and explores as far as possible (within some limit) along each branch before backtracking.\n\n## Complexity\n* **Time**: worst ![](https://latex.codecogs.com/svg.latex?O(b^l))\n* **Space**: worst ![](https://latex.codecogs.com/svg.latex?O(b\\cdot\\,l))\n* **Notes**:\n  * b is branching factor, for example binary tree has branching factor 2\n  * l is limit that we define\n\n## References\n* [Colorado State University Lecture Notes](http://www.cs.colostate.edu/~anderson/cs440/index.html/doku.php?id=notes:week2b)\n",
+        "contributors": [
+          {
+            "login": "AdhityaRamadhanus",
+            "avatar_url": "https://avatars.githubusercontent.com/u/5761975?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\nconst G = [ // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not\n  [0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n];\n\n// define tracer variables {\nconst tracer = new GraphTracer();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([tracer, logger]));\ntracer.log(logger);\ntracer.set(G);\ntracer.layoutTree(0);\nTracer.delay();\n// }\n\n// This is a sample DLS applications where\n// we try to find number of descendant of root within some depth\nfunction DLSCount(limit, node, parent) { // node = current node, parent = previous node\n  // visualize {\n  tracer.visit(node, parent);\n  Tracer.delay();\n  // }\n  let child = 0;\n  if (limit > 0) { // cut off the search\n    for (let i = 0; i < G[node].length; i++) {\n      if (G[node][i]) { // if current node has the i-th node as a child\n        child += 1 + DLSCount(limit - 1, i, node); // recursively call DLS\n      }\n    }\n    return child;\n  }\n  return child;\n}\n\n// logger {\nlogger.println(`Number of descendant is ${DLSCount(2, 0)}`);\n// }\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "AdhityaRamadhanus",
+            "avatar_url": "https://avatars.githubusercontent.com/u/5761975?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "Depth-Limited search (DLS) is an algorithm for traversing or searching tree or graph data structures. It's actually specific type of DFS where the search is limited to some depth from start node (root). One starts at the root (selecting some arbitrary node as the root in the case of a graph) and explores as far as possible (within some limit) along each branch before backtracking."
+  }
+}

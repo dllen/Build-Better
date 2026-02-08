@@ -1,0 +1,336 @@
+{
+  "categories": [
+    {
+      "key": "backtracking",
+      "name": "Backtracking",
+      "algorithms": [
+        {
+          "key": "hamiltonean-cycles",
+          "name": "Hamiltonean Cycles"
+        },
+        {
+          "key": "knights-tour-problem",
+          "name": "Knight's Tour Problem"
+        },
+        {
+          "key": "n-queens-problem",
+          "name": "N-Queens Problem"
+        },
+        {
+          "key": "sum-of-subsets",
+          "name": "Sum of subsets"
+        }
+      ]
+    },
+    {
+      "key": "branch-and-bound",
+      "name": "Branch and Bound",
+      "algorithms": [
+        {
+          "key": "binary-search",
+          "name": "Binary Search"
+        },
+        {
+          "key": "binary-search-tree",
+          "name": "Binary Search Tree"
+        },
+        {
+          "key": "depth-limited-search",
+          "name": "Depth-Limited Search"
+        },
+        {
+          "key": "topological-sort",
+          "name": "Topological Sort"
+        }
+      ]
+    },
+    {
+      "key": "brute-force",
+      "name": "Brute Force",
+      "algorithms": [
+        {
+          "key": "binary-tree-traversal",
+          "name": "Binary Tree Traversal"
+        },
+        {
+          "key": "bipartiteness-test",
+          "name": "Bipartiteness Test"
+        },
+        {
+          "key": "breadth-first-search",
+          "name": "Breadth-First Search"
+        },
+        {
+          "key": "bridge-finding",
+          "name": "Bridge Finding"
+        },
+        {
+          "key": "bubble-sort",
+          "name": "Bubble Sort"
+        },
+        {
+          "key": "comb-sort",
+          "name": "Comb Sort"
+        },
+        {
+          "key": "cycle-sort",
+          "name": "Cycle Sort"
+        },
+        {
+          "key": "depth-first-search",
+          "name": "Depth-First Search"
+        },
+        {
+          "key": "flood-fill",
+          "name": "Flood Fill"
+        },
+        {
+          "key": "heapsort",
+          "name": "Heapsort"
+        },
+        {
+          "key": "insertion-sort",
+          "name": "Insertion Sort"
+        },
+        {
+          "key": "lowest-common-ancestor",
+          "name": "Lowest Common Ancestor"
+        },
+        {
+          "key": "pagerank",
+          "name": "PageRank"
+        },
+        {
+          "key": "pancake-sort",
+          "name": "Pancake Sort"
+        },
+        {
+          "key": "rabin-karps-string-search",
+          "name": "Rabin-Karp's String Search"
+        },
+        {
+          "key": "selection-sort",
+          "name": "Selection Sort"
+        },
+        {
+          "key": "shellsort",
+          "name": "Shellsort"
+        },
+        {
+          "key": "tarjans-strongly-connected-components",
+          "name": "Tarjan's Strongly Connected Components"
+        }
+      ]
+    },
+    {
+      "key": "divide-and-conquer",
+      "name": "Divide and Conquer",
+      "algorithms": [
+        {
+          "key": "bucket-sort",
+          "name": "Bucket Sort"
+        },
+        {
+          "key": "counting-sort",
+          "name": "Counting Sort"
+        },
+        {
+          "key": "merge-sort",
+          "name": "Merge Sort"
+        },
+        {
+          "key": "pigeonhole-sort",
+          "name": "Pigeonhole Sort"
+        },
+        {
+          "key": "quicksort",
+          "name": "Quicksort"
+        },
+        {
+          "key": "radix-sort",
+          "name": "Radix Sort"
+        }
+      ]
+    },
+    {
+      "key": "dynamic-programming",
+      "name": "Dynamic Programming",
+      "algorithms": [
+        {
+          "key": "bellman-fords-shortest-path",
+          "name": "Bellman-Ford's Shortest Path"
+        },
+        {
+          "key": "catalan-number",
+          "name": "Catalan Number"
+        },
+        {
+          "key": "fibonacci-sequence",
+          "name": "Fibonacci Sequence"
+        },
+        {
+          "key": "floyd-warshalls-shortest-path",
+          "name": "Floyd-Warshall's Shortest Path"
+        },
+        {
+          "key": "integer-partition",
+          "name": "Integer Partition"
+        },
+        {
+          "key": "knapsack-problem",
+          "name": "Knapsack Problem"
+        },
+        {
+          "key": "knuth-morris-pratts-string-search",
+          "name": "Knuth-Morris-Pratt's String Search"
+        },
+        {
+          "key": "levenshteins-edit-distance",
+          "name": "Levenshtein's Edit Distance"
+        },
+        {
+          "key": "longest-common-subsequence",
+          "name": "Longest Common Subsequence"
+        },
+        {
+          "key": "longest-increasing-subsequence",
+          "name": "Longest Increasing Subsequence"
+        },
+        {
+          "key": "longest-palindromic-subsequence",
+          "name": "Longest Palindromic Subsequence"
+        },
+        {
+          "key": "maximum-subarray",
+          "name": "Maximum Subarray"
+        },
+        {
+          "key": "maximum-sum-path",
+          "name": "Maximum Sum Path"
+        },
+        {
+          "key": "nth-factorial",
+          "name": "Nth Factorial"
+        },
+        {
+          "key": "pascals-triangle",
+          "name": "Pascal's Triangle"
+        },
+        {
+          "key": "shortest-common-supersequence",
+          "name": "Shortest Common Supersequence"
+        },
+        {
+          "key": "sieve-of-eratosthenes",
+          "name": "Sieve of Eratosthenes"
+        },
+        {
+          "key": "sliding-window",
+          "name": "Sliding Window"
+        },
+        {
+          "key": "ugly-numbers",
+          "name": "Ugly Numbers"
+        },
+        {
+          "key": "z-string-search",
+          "name": "Z String Search"
+        }
+      ]
+    },
+    {
+      "key": "greedy",
+      "name": "Greedy",
+      "algorithms": [
+        {
+          "key": "boyermoores-majority-vote",
+          "name": "Boyer–Moore's Majority Vote"
+        },
+        {
+          "key": "dijkstras-shortest-path",
+          "name": "Dijkstra's Shortest Path"
+        },
+        {
+          "key": "job-scheduling-problem",
+          "name": "Job Scheduling Problem"
+        },
+        {
+          "key": "kruskals-minimum-spanning-tree",
+          "name": "Kruskal's Minimum Spanning Tree"
+        },
+        {
+          "key": "prims-minimum-spanning-tree",
+          "name": "Prim's Minimum Spanning Tree"
+        },
+        {
+          "key": "stable-matching",
+          "name": "Stable Matching"
+        }
+      ]
+    },
+    {
+      "key": "simple-recursive",
+      "name": "Simple Recursive",
+      "algorithms": [
+        {
+          "key": "cellular-automata",
+          "name": "Cellular Automata"
+        },
+        {
+          "key": "cycle-detection",
+          "name": "Cycle Detection"
+        },
+        {
+          "key": "euclidean-greatest-common-divisor",
+          "name": "Euclidean Greatest Common Divisor"
+        },
+        {
+          "key": "nth-factorial",
+          "name": "Nth Factorial"
+        },
+        {
+          "key": "suffix-array",
+          "name": "Suffix Array"
+        }
+      ]
+    },
+    {
+      "key": "uncategorized",
+      "name": "Uncategorized",
+      "algorithms": [
+        {
+          "key": "affine-cipher",
+          "name": "Affine Cipher"
+        },
+        {
+          "key": "caesar-cipher",
+          "name": "Caesar Cipher"
+        },
+        {
+          "key": "freivalds-matrix-multiplication-verification",
+          "name": "Freivalds' Matrix-Multiplication Verification"
+        },
+        {
+          "key": "k-means-clustering",
+          "name": "K-Means Clustering"
+        },
+        {
+          "key": "magic-square",
+          "name": "Magic Square"
+        },
+        {
+          "key": "maze-generation",
+          "name": "Maze Generation"
+        },
+        {
+          "key": "miller-rabins-primality-test",
+          "name": "Miller-Rabin's Primality Test"
+        },
+        {
+          "key": "shortest-unsorted-continuous-subarray",
+          "name": "Shortest Unsorted Continuous Subarray"
+        }
+      ]
+    }
+  ]
+}

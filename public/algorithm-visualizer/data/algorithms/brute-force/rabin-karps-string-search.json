@@ -1,0 +1,47 @@
+{
+  "algorithm": {
+    "categoryKey": "brute-force",
+    "categoryName": "Brute Force",
+    "algorithmKey": "rabin-karps-string-search",
+    "algorithmName": "Rabin-Karp's String Search",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Rabin-Karp's String Search\n\nIn computer science, the Rabin–Karp algorithm or Karp–Rabin algorithm\nis a string searching algorithm created by Richard M. Karp and\nMichael O. Rabin (1987) that uses hashing to find any one of a set\nof pattern strings in a text.\n\n## Algorithm\n\nThe Rabin–Karp algorithm seeks to speed up the testing of equality of\nthe pattern to the substrings in the text by using a hash function. A\nhash function is a function which converts every string into a numeric\nvalue, called its hash value; for example, we might\nhave `hash('hello') = 5`. The algorithm exploits the fact\nthat if two strings are equal, their hash values are also equal. Thus,\nstring matching is reduced (almost) to computing the hash value of the\nsearch pattern and then looking for substrings of the input string with\nthat hash value.\n\nHowever, there are two problems with this approach. First, because there\nare so many different strings and so few hash values, some differing\nstrings will have the same hash value. If the hash values match, the\npattern and the substring may not match; consequently, the potential\nmatch of search pattern and the substring must be confirmed by comparing\nthem; that comparison can take a long time for long substrings.\nLuckily, a good hash function on reasonable strings usually does not\nhave many collisions, so the expected search time will be acceptable.\n\n## Hash Function Used\n\nThe key to the Rabin–Karp algorithm's performance is the efficient computation\nof hash values of the successive substrings of the text.\nThe **Rabin fingerprint** is a popular and effective rolling hash function.\n\nThe **polynomial hash function** described in this example is not a Rabin\nfingerprint, but it works equally well. It treats every substring as a\nnumber in some base, the base being usually a large prime.\n\n## Complexity\n\nFor text of length `n` and `p` patterns of combined length `m`, its average\nand best case running time is `O(n + m)` in space `O(p)`, but its\nworst-case time is `O(n * m)`.\n\n## Application\n\nA practical application of the algorithm is detecting plagiarism.\nGiven source material, the algorithm can rapidly search through a paper\nfor instances of sentences from the source material, ignoring details\nsuch as case and punctuation. Because of the abundance of the sought\nstrings, single-string searching algorithms are impractical.\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/string/rabin-karp)\n- [Wikipedia](https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm)\n- [YouTube](https://www.youtube.com/watch?v=H4VrKHVG5qI&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)\n",
+        "contributors": [
+          {
+            "login": "archie94",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12955150?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\nconst text = ['h', 'e', 'l', 'l', 'o', ' ', 's', 'i', 'r', ' ', 'h', 'e', 'l', 'l', 'o'];\nconst pattern = ['h', 'e', 'l', 'l', 'o'];\n\nconst Q = 101; // A prime number\nconst D = 256; // number of characters in the input alphabet\n\n// define tracer variables {\nconst logger = new LogTracer();\nconst tracer1 = new Array1DTracer('Text');\nconst tracer2 = new Array1DTracer('Pattern');\nLayout.setRoot(new VerticalLayout([logger, tracer1, tracer2]));\ntracer1.set(text);\ntracer2.set(pattern);\nTracer.delay();\n// }\n\nconst N = text.length;\nconst M = pattern.length;\n\nlet hashText = 0; // hash value for text\nlet hashPattern = 0; // hash value for pattern\nlet h = 1;\n\nfor (let i = 0; i < (M - 1); i++) {\n  h = (h * D) % Q;\n}\n\nfor (let i = 0; i < M; i++) {\n  hashPattern = (D * hashPattern + pattern[i].charCodeAt(0)) % Q;\n  hashText = (D * hashText + text[i].charCodeAt(0)) % Q;\n}\n\nfor (let i = 0; i <= N - M; i++) {\n  /*\n  Check if hash values of current window of text matches\n  with hash values of pattern. If match is found then\n  check for characters one by one\n  */\n  if (hashPattern === hashText) {\n    let f = 0;\n    // visualize {\n    tracer1.select(i, i + M - 1);\n    Tracer.delay();\n    tracer2.select(0, M - 1);\n    Tracer.delay();\n    // }\n    for (let j = 0; j < M; j++) {\n      // visualize {\n      tracer1.patch(i + j);\n      Tracer.delay();\n      tracer2.patch(j);\n      Tracer.delay();\n      // }\n      if (text[i + j] !== pattern[j]) {\n        f++;\n      }\n      // visualize {\n      tracer1.depatch(i + j);\n      tracer2.depatch(j);\n      // }\n    }\n\n    // visualize {\n    if (f === 0) {\n      logger.println(` Pattern found at index ${i}`);\n    }\n    tracer1.deselect(i, i + M);\n    tracer2.deselect(0, M - 1);\n    // }\n  }\n\n  /*\n  Calculate hash value for next window of text :\n  */\n  if (i < N - M) {\n    hashText = (D * (hashText - text[i].charCodeAt(0) * h) + text[i + M].charCodeAt(0)) % Q;\n\n    // Convert negative value of hashText (if found) to positive\n    if (hashText < 0) {\n      hashText += Q;\n    }\n  }\n}\n",
+        "contributors": [
+          {
+            "login": "archie94",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12955150?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "In computer science, the Rabin–Karp algorithm or Karp–Rabin algorithm is a string searching algorithm created by Richard M. Karp and Michael O. Rabin (1987) that uses hashing to find any one of a set of pattern strings in a text."
+  }
+}

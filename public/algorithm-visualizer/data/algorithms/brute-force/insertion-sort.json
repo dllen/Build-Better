@@ -1,0 +1,44 @@
+{
+  "algorithm": {
+    "categoryKey": "brute-force",
+    "categoryName": "Brute Force",
+    "algorithmKey": "insertion-sort",
+    "algorithmName": "Insertion Sort",
+    "files": [
+      {
+        "name": "Code.java",
+        "content": "import org.algorithm_visualizer.*;\nimport java.util.Arrays;\n\nclass Main {\n\n    private static ChartTracer chartTracer = new ChartTracer();\n\n    private static LogTracer logTracer = new LogTracer(\"Console\");\n\n    private static Integer[] array = (Integer[]) new Randomize.Array1D(15, new Randomize.Integer(1, 20)).create();\n\n    public static void main(String[] args) {\n        int length = array.length;\n        Layout.setRoot(new VerticalLayout(new Commander[]{chartTracer, logTracer}));\n        logTracer.printf(\"original array = %s\\n\", Arrays.toString(array));\n        chartTracer.set(array);\n        Tracer.delay();\n\n        for (int i = 1; i < length; i++) {\n            int j = i - 1;\n            int temp = array[i];\n            chartTracer.select(i);\n            Tracer.delay();\n            logTracer.printf(\"insert %s\\n\",temp);\n            while (j >= 0 && array[j] > temp) {\n                array[j + 1] = array[j];\n                chartTracer.patch(j + 1, array[j + 1]);\n                Tracer.delay();\n                chartTracer.depatch(j + 1);\n                j--;\n            }\n            array[j + 1] = temp;\n            chartTracer.patch(j + 1, temp);\n            Tracer.delay();\n            chartTracer.depatch(j + 1);\n            chartTracer.deselect(i);\n        }\n\n        logTracer.printf(\"sorted array = %s\\n\",Arrays.toString(array));\n    }\n}\n",
+        "contributors": []
+      },
+      {
+        "name": "README.md",
+        "content": "# Insertion Sort\n\nInsertion sort is a simple sorting algorithm that builds\nthe final sorted array (or list) one item at a time.\nIt is much less efficient on large lists than more\nadvanced algorithms such as quicksort, heapsort, or merge\nsort.\n\n![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/4/42/Insertion_sort.gif)\n\n![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif)\n\n## Complexity\n\n| Name                  | Best            | Average             | Worst               | Memory    | Stable    | Comments  |\n| --------------------- | :-------------: | :-----------------: | :-----------------: | :-------: | :-------: | :-------- |\n| **Insertion sort**    | n               | n<sup>2</sup>       | n<sup>2</sup>       | 1         | Yes       |           |\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sorting/insertion-sort)\n- [Wikipedia](https://en.wikipedia.org/wiki/Insertion_sort)\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst chart = new ChartTracer();\nconst tracer = new Array1DTracer();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([chart, tracer, logger]));\nconst D = Randomize.Array1D({ N: 15 });\ntracer.set(D);\ntracer.chart(chart);\nTracer.delay();\n// }\n\n// logger {\nlogger.println(`original array = [${D.join(', ')}]`);\n// }\nfor (let i = 1; i < D.length; i++) {\n  const key = D[i];\n  // visualize {\n  logger.println(`insert ${key}`);\n  tracer.select(i);\n  Tracer.delay();\n  // }\n  let j;\n  for (j = i - 1; (j >= 0) && (D[j] > key); j--) {\n    D[j + 1] = D[j];\n    // visualize {\n    tracer.patch(j + 1, D[j + 1]);\n    Tracer.delay();\n    tracer.depatch(j + 1);\n    // }\n  }\n  D[j + 1] = key;\n  // visualize {\n  tracer.patch(j + 1, D[j + 1]);\n  Tracer.delay();\n  tracer.depatch(j + 1);\n  tracer.deselect(i);\n  // }\n}\n// logger {\nlogger.println(`sorted array = [${D.join(', ')}]`);\n// }\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "Insertion sort is a simple sorting algorithm that builds the final sorted array (or list) one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort."
+  }
+}

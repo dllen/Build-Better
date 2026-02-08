@@ -1,0 +1,51 @@
+{
+  "algorithm": {
+    "categoryKey": "dynamic-programming",
+    "categoryName": "Dynamic Programming",
+    "algorithmKey": "maximum-sum-path",
+    "algorithmName": "Maximum Sum Path",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Maximum Sum Path\nFinding the maximum sum in a path from (0, 0) to (N-1, M-1) when can only move to right or down\n\n## Complexity\n* **Time**: ![](https://latex.codecogs.com/svg.latex?O(n))\n* **Space**: ![](https://latex.codecogs.com/svg.latex?O(n))\n\n## References",
+        "contributors": [
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst D = Randomize.Array2D({ N: 5, M: 5, value: () => Randomize.Integer({ min: 1, max: 5 }) });\nconst dataViewer = new Array2DTracer();\nconst tracer = new Array2DTracer('Results Table');\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([dataViewer, tracer, logger]));\ndataViewer.set(D);\nconst DP = [];\nfor (let i = 0; i < D.length; i++) {\n  DP.push([]);\n  for (let j = 0; j < D[i].length; j++) {\n    DP[i].push(Infinity);\n  }\n}\ntracer.set(DP);\nTracer.delay();\n// }\n\nconst N = DP.length;\nconst M = DP[0].length;\n\nfunction update(i, j, value) {\n  DP[i][j] = value;\n  // visualize {\n  dataViewer.select(i, j);\n  Tracer.delay();\n  tracer.patch(i, j, DP[i][j]);\n  Tracer.delay();\n  tracer.depatch(i, j);\n  dataViewer.deselect(i, j);\n  // }\n}\n\nfor (let i = 0; i < N; i++) {\n  for (let j = 0; j < M; j++) {\n    if (i === 0 && j === 0) {\n      update(i, j, D[i][j]);\n    } else if (i === 0) {\n      // visualize {\n      tracer.select(i, j - 1);\n      // }\n      update(i, j, DP[i][j - 1] + D[i][j]);\n      // visualize {\n      tracer.deselect(i, j - 1);\n      // }\n    } else if (j === 0) {\n      // visualize {\n      tracer.select(i - 1, j);\n      // }\n      update(i, j, DP[i - 1][j] + D[i][j]);\n      // visualize {\n      tracer.deselect(i - 1, j);\n      // }\n    } else {\n      // visualize {\n      tracer.select(i, j - 1);\n      tracer.select(i - 1, j);\n      // }\n      update(i, j, Math.max(DP[i][j - 1], DP[i - 1][j]) + D[i][j]);\n      // visualize {\n      tracer.deselect(i, j - 1);\n      tracer.deselect(i - 1, j);\n      // }\n    }\n  }\n}\n// logger {\nlogger.println(`max = ${DP[N - 1][M - 1]}`);\n// }\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "Howon",
+            "avatar_url": "https://avatars.githubusercontent.com/u/8075728?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "Finding the maximum sum in a path from (0, 0) to (N-1, M-1) when can only move to right or down"
+  }
+}

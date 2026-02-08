@@ -1,0 +1,39 @@
+{
+  "algorithm": {
+    "categoryKey": "brute-force",
+    "categoryName": "Brute Force",
+    "algorithmKey": "bipartiteness-test",
+    "algorithmName": "Bipartiteness Test",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Bipartiteness Test\n\nIn the mathematical field of graph theory, a **bipartite graph** (or **bigraph**) is a graph whose vertices can be divided into two disjoint and independent sets `U` and `V` such that every edge connects a vertex in `U` to one in `V`. Vertex sets `U` and `V` are usually called the parts of the graph. Equivalently, a bipartite graph is a graph that does not contain any odd-length cycles.\n\nIt is possible to test whether a graph is bipartite, and to return either a two-coloring (if it is bipartite) or an odd cycle (if it is not) in linear time, using depth-first search. The main idea is to assign to each vertex the color that differs from the color of its parent in the depth-first search forest, assigning colors in a preorder traversal of the depth-first-search forest. This will necessarily provide a two-coloring of the spanning forest consisting of the edges connecting vertices to their parents, but it may not properly color some of the non-forest edges. In a depth-first search forest, one of the two endpoints of every non-forest edge is an ancestor of the other endpoint, and when the depth first search discovers an edge of this type it should check that these two vertices have different colors. If they do not, then the path in the forest from ancestor to descendant, together with the miscolored edge, form an odd cycle, which is returned from the algorithm together with the result that the graph is not bipartite. However, if the algorithm terminates without detecting an odd cycle of this type, then every edge must be properly colored, and the algorithm returns the coloring together with the result that the graph is bipartite.\n\nAlternatively, a similar procedure may be used with breadth-first search in place of depth-first search. Again, each node is given the opposite color to its parent in the search forest, in breadth-first order. If, when a vertex is colored, there exists an edge connecting it to a previously-colored vertex with the same color, then this edge together with the paths in the breadth-first search forest connecting its two endpoints to their lowest common ancestor forms an odd cycle. If the algorithm terminates without finding an odd cycle in this way, then it must have found a proper coloring, and can safely conclude that the graph is bipartite.\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Bipartite_graph)\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\nconst G = [\n  [0, 1, 0, 1, 1],\n  [1, 0, 1, 0, 0],\n  [0, 1, 0, 1, 0],\n  [1, 0, 1, 0, 0], // <-- replace latest 0 with 1 to make G not biparted\n  [1, 0, 0, 0, 0],\n];\n\n// define tracer variables {\nconst tracer = new GraphTracer().directed(false);\nconst logger = new LogTracer();\ntracer.log(logger);\ntracer.set(G);\nconst colorsTracer = new Array1DTracer('Colors');\nLayout.setRoot(new VerticalLayout([tracer, logger, colorsTracer]));\nTracer.delay();\n// }\n\nfunction BFSCheckBipartiteness(s) {\n  const Q = [];\n\n  // Create a new matrix to set colors (0,1)\n  const Colors = [];\n  for (let _i = 0; _i < G.length; _i++) Colors[_i] = -1;\n  // visualize {\n  colorsTracer.set(Colors);\n  // }\n\n  Colors[s] = 1;\n  // visualize {\n  colorsTracer.patch(s, 1);\n  // }\n\n  Q.push(s); // add start node to queue\n\n  while (Q.length > 0) {\n    const node = Q.shift(); // dequeue\n    // visualize {\n    tracer.visit(node);\n    Tracer.delay();\n    // }\n\n    for (let i = 0; i < G[node].length; i++) {\n      if (G[node][i]) {\n        if (Colors[i] === -1) {\n          Colors[i] = 1 - Colors[node];\n          // visualize {\n          colorsTracer.patch(i, 1 - Colors[node]);\n          // }\n\n          Q.push(i);\n          // visualize {\n          tracer.visit(i, node);\n          Tracer.delay();\n          // }\n        } else if (Colors[i] === Colors[node]) {\n          // logger {\n          logger.println('Graph is not biparted');\n          // }\n          return false;\n        }\n      }\n    }\n  }\n\n  // logger {\n  logger.println('Graph is biparted');\n  // }\n  return true;\n}\n\nBFSCheckBipartiteness(0);\n",
+        "contributors": [
+          {
+            "login": "kopiro",
+            "avatar_url": "https://avatars.githubusercontent.com/u/839700?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "In the mathematical field of graph theory, a bipartite graph (or bigraph) is a graph whose vertices can be divided into two disjoint and independent sets U and V such that every edge connects a vertex in U to one in V. Vertex sets U and V are usually called the parts of the graph. Equivalently, a bipartite graph is a graph that does not contain any odd-length cycles."
+  }
+}

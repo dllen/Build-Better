@@ -1,0 +1,58 @@
+{
+  "algorithm": {
+    "categoryKey": "brute-force",
+    "categoryName": "Brute Force",
+    "algorithmKey": "bubble-sort",
+    "algorithmName": "Bubble Sort",
+    "files": [
+      {
+        "name": "Code.java",
+        "content": "import org.algorithm_visualizer.*;\n\nimport java.util.Arrays;\n\npublic class Main {\n\n    private static ChartTracer chartTracer = new ChartTracer();\n\n    private static LogTracer logTracer = new LogTracer(\"Console\");\n\n    private static Integer [] array = (Integer[]) new Randomize.Array1D(15, new Randomize.Integer(1, 20)).create();\n\n    public static void main(String[] args) {\n\n        int length = array.length;\n\n        logTracer.printf(\"original array = %s\\n\",Arrays.toString(array));\n        chartTracer.set(array);\n        Layout.setRoot(new VerticalLayout(new Commander[]{chartTracer, logTracer}));\n        Tracer.delay();\n\n        boolean flag;\n\n        for (int i = length - 1; i > 0; i--) {\n            flag = true;\n            for (int j = 0; j < i; j++) {\n                chartTracer.select(j);\n                chartTracer.select(j + 1);\n                Tracer.delay();\n                if (array[j] > array[j + 1]) {\n                    logTracer.printf(\"swap %s and %s\\n\",array[j],array[j + 1]);\n                    swap(j, j + 1, array);\n                    flag = false;\n                }\n                chartTracer.deselect(j);\n                chartTracer.deselect(j + 1);\n            }\n            if (flag) {\n                break;\n            }\n        }\n\n\n        logTracer.printf(\"sorted array = %s\\n\",Arrays.toString(array));\n\n    }\n\n    private static void swap(int x, int y, Integer [] array) {\n        int temp = array[x];\n        array[x] = array[y];\n        array[y] = temp;\n        chartTracer.patch(x, array[x]);\n        chartTracer.patch(y, array[y]);\n        Tracer.delay();\n        chartTracer.depatch(x);\n        chartTracer.depatch(y);\n    }\n\n}\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "README.md",
+        "content": "# Bubble Sort\n\nBubble sort, sometimes referred to as sinking sort, is a\nsimple sorting algorithm that repeatedly steps through\nthe list to be sorted, compares each pair of adjacent\nitems and swaps them if they are in the wrong order\n(ascending or descending arrangement). The pass through\nthe list is repeated until no swaps are needed, which\nindicates that the list is sorted.\n\n![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/c/c8/Bubble-sort-example-300px.gif)\n\n## Complexity\n\n| Name                  | Best            | Average             | Worst               | Memory    | Stable    | Comments  |\n| --------------------- | :-------------: | :-----------------: | :-----------------: | :-------: | :-------: | :-------- |\n| **Bubble sort**       | n               | n<sup>2</sup>       | n<sup>2</sup>       | 1         | Yes       |           |\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sorting/bubble-sort)\n- [Wikipedia](https://en.wikipedia.org/wiki/Bubble_sort)\n- [YouTube](https://www.youtube.com/watch?v=6Gv8vg0kcHc&index=27&t=0s&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst chart = new ChartTracer();\nconst tracer = new Array1DTracer();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([chart, tracer, logger]));\nconst D = Randomize.Array1D({ N: 15 });\ntracer.set(D);\ntracer.chart(chart);\nTracer.delay();\n// }\n\n// logger {\nlogger.println(`original array = [${D.join(', ')}]`);\n// }\nlet N = D.length;\nlet swapped;\ndo {\n  swapped = false;\n  // visualize {\n  tracer.select(N - 1);\n  Tracer.delay();\n  // }\n  for (let i = 1; i < N; i++) {\n    // visualize {\n    tracer.select(i);\n    Tracer.delay();\n    // }\n    if (D[i - 1] > D[i]) {\n      // logger {\n      logger.println(`swap ${D[i - 1]} and ${D[i]}`);\n      // }\n      const temp = D[i - 1];\n      D[i - 1] = D[i];\n      D[i] = temp;\n      swapped = true;\n      // visualize {\n      tracer.patch(i - 1, D[i - 1]);\n      tracer.patch(i, D[i]);\n      Tracer.delay();\n      tracer.depatch(i - 1);\n      tracer.depatch(i);\n      // }\n    }\n    // visualize {\n    tracer.deselect(i);\n    // }\n  }\n  // visualize {\n  tracer.deselect(N - 1);\n  // }\n  N--;\n} while (swapped);\n// logger {\nlogger.println(`sorted array = [${D.join(', ')}]`);\n// }\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      },
+      {
+        "name": "main.cpp",
+        "content": "#include \"algorithm-visualizer.h\"\n\n#define N   15\n#define MIN 1\n#define MAX 20\n\nvoid BubbleSort(int start, int end, int array[]);\n\nChartTracer chartTracer(\"Chart\");\n\nint main() {\n    int array[N];\n    Randomize::Array1D<int>(N, *(new Randomize::Integer(MIN, MAX))).fill(&array[0]);\n    chartTracer.set(array);\n    Layout::setRoot(VerticalLayout({ chartTracer }));\n\n    BubbleSort(0, N - 1, array);\n\n    return 0;\n}\n\nvoid BubbleSort(int start, int end, int array[])\n{\n    chartTracer.select(end);\n\n    int newEnd = start;\n    for(int i = start; i < end; ++i)\n    {\n        chartTracer.select(i);\n        chartTracer.select(i + 1);\n        Tracer::delay();\n        if(array[i] > array[i + 1])\n        {\n            std::swap(array[i], array[i + 1]);\n            chartTracer.patch(i, array[i]);\n            chartTracer.patch(i + 1, array[i + 1]);\n            Tracer::delay();\n            chartTracer.depatch(i);\n            chartTracer.depatch(i + 1);\n            newEnd = i;\n        }\n\n        chartTracer.deselect(i);\n        chartTracer.deselect(i + 1);\n    }\n\n    if(newEnd == start)\n    {\n        return;\n    }\n    else\n    {\n        BubbleSort(start, newEnd, array);\n    }\n}\n",
+        "contributors": []
+      }
+    ],
+    "description": "Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order (ascending or descending arrangement). The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted."
+  }
+}

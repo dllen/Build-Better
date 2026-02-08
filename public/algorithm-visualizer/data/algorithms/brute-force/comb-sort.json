@@ -1,0 +1,44 @@
+{
+  "algorithm": {
+    "categoryKey": "brute-force",
+    "categoryName": "Brute Force",
+    "algorithmKey": "comb-sort",
+    "algorithmName": "Comb Sort",
+    "files": [
+      {
+        "name": "Code.java",
+        "content": "import org.algorithm_visualizer.*;\n\nimport java.util.Arrays;\n\nclass Main {\n\n    private static ChartTracer chartTracer = new ChartTracer();\n\n    private static LogTracer logTracer = new LogTracer(\"Console\");\n\n    private static Array1DTracer tracer = new Array1DTracer();\n\n    private static Integer[] array = (Integer[]) new Randomize.Array1D(15, new Randomize.Integer(1, 20)).create();\n\n    public static void main(String[] args) {\n        tracer.set(array);\n        tracer.chart(chartTracer);\n        Layout.setRoot(new VerticalLayout(new Commander[]{chartTracer, tracer, logTracer}));\n        logTracer.printf(\"original array = %s\\n\", Arrays.toString(array));\n\n        Tracer.delay();\n\n        int length = array.length;\n\n        int gap = length;\n\n        boolean swapped;\n\n        float shrink = 1.3f;\n\n        do {\n            swapped = false;\n\n            gap = (int) Math.floor(gap / shrink);\n\n            if(gap < 1){\n                gap = 1;\n            }\n\n            for (int i = 0; i + gap < length; i++) {\n                tracer.select(i);\n                tracer.select(i + gap);\n                Tracer.delay();\n                if (array[i] > array[i + gap]) {\n                    swap(i, i + gap, array);\n                    swapped = true;\n                }\n                tracer.deselect(i);\n                tracer.deselect(i + gap);\n            }\n\n        } while (gap != 1 || swapped);\n\n\n        logTracer.printf(\"sorted array = %s\\n\", Arrays.toString(array));\n    }\n\n    private static void swap(int x, int y, Integer[] array) {\n        int temp = array[x];\n        array[x] = array[y];\n        array[y] = temp;\n        tracer.patch(x, array[x]);\n        tracer.patch(y, array[y]);\n        Tracer.delay();\n        tracer.depatch(x);\n        tracer.depatch(y);\n    }\n\n}\n",
+        "contributors": []
+      },
+      {
+        "name": "README.md",
+        "content": "# Comb Sort\nComb sort is a relatively simple sorting algorithm originally designed by Włodzimierz Dobosiewicz in 1980. Later it was rediscovered by Stephen Lacey and Richard Box in 1991. Comb sort improves on bubble sort. <br /><br />The basic idea is to eliminate turtles, or small values near the end of the list, since in a bubble sort these slow the sorting down tremendously. Rabbits, large values around the beginning of the list, do not pose a problem in bubble sort.\n\n## Complexity\n* **Time**: worst ![](https://latex.codecogs.com/svg.latex?O(n^2)), best ![](https://latex.codecogs.com/svg.latex?O(n\\,log\\,n)), average ![](https://latex.codecogs.com/svg.latex?O(n^2/2^p)), where ![](https://latex.codecogs.com/svg.latex?p) is the number of increment)\n* **Space**: worst ![](https://latex.codecogs.com/svg.latex?O(1)) auxiliary\n\n## References\n* [Wikipedia](https://en.wikipedia.org/wiki/Comb_sort)",
+        "contributors": [
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst chart = new ChartTracer();\nconst tracer = new Array1DTracer();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([chart, tracer, logger]));\nconst D = Randomize.Array1D({ N: 15 });\ntracer.set(D);\ntracer.chart(chart);\nTracer.delay();\n// }\n\n// logger {\nlogger.println(`original array = [${D.join(', ')}]`);\n// }\nconst N = D.length;\nlet swapped;\nlet gap = N; // initialize gap size\nconst shrink = 1.3; // set the gap shrink factor\n\ndo {\n  // update the gap value for the next comb.\n  gap = Math.floor(gap / shrink);\n  if (gap < 1) {\n    // minimum gap is 1\n    gap = 1;\n  }\n\n  swapped = false; // initialize swapped\n  // a single comb over the input list\n  for (let i = 0; i + gap < N; i++) {\n    // visualize {\n    tracer.select(i);\n    tracer.select(i + gap);\n    Tracer.delay();\n    // }\n\n    if (D[i] > D[i + gap]) {\n      // logger {\n      logger.println(`swap ${D[i]} and ${D[i + gap]}`); // log swap event\n      // }\n      \n      const temp = D[i];\n      D[i] = D[i + gap];\n      D[i + gap] = temp;\n\n      // visualize {\n      tracer.patch(i, D[i]);\n      tracer.patch(i + gap, D[i + gap]);\n      Tracer.delay();\n      tracer.depatch(i);\n      tracer.depatch(i + gap);\n      // }\n\n      swapped = true; // Flag swapped has happened and list is not guaranteed sorted\n    }\n    // visualize {\n    tracer.deselect(i);\n    tracer.deselect(i + gap);\n    // }\n  } // End of combing\n} while (gap !== 1 || swapped);\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "Comb sort is a relatively simple sorting algorithm originally designed by Włodzimierz Dobosiewicz in 1980. Later it was rediscovered by Stephen Lacey and Richard Box in 1991. Comb sort improves on bubble sort. The basic idea is to eliminate turtles, or small values near the end of the list, since in a bubble sort these slow the sorting down tremendously. Rabbits, large values around the beginning of the list, do not pose a problem in bubble sort."
+  }
+}
