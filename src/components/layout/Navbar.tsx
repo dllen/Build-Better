@@ -106,6 +106,12 @@ export function Navbar() {
                   >
                     数据开发者
                   </Link>
+                  <Link 
+                    to="/non-indie-developer" 
+                    className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
+                  >
+                    非独立开发者
+                  </Link>
                 </div>
               </div>
             </div>
@@ -219,6 +225,13 @@ export function Navbar() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   数据开发者
+                </Link>
+                <Link
+                  to="/non-indie-developer"
+                  className="text-muted-foreground hover:text-primary py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  非独立开发者
                 </Link>
               </div>
             </div>
