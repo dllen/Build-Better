@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:pdf && npm run build:algo && tsc -b && vite build && node scripts/generate-sitemap.mjs",
+    "build": "npm run build:pdf && tsc -b && vite build && node scripts/generate-sitemap.mjs",
     "build:pdf": "cd libs/pdfcraft && npm install --legacy-peer-deps && npm run build && mkdir -p ../../public/pdf-tools && cp -r out/* ../../public/pdf-tools/",
     "build:algo": "cd libs/algorithm-visualizer && npm install --legacy-peer-deps && npm run build && mkdir -p ../../public/algorithm-visualizer && cp -r build/* ../../public/algorithm-visualizer/",
     "build:fund": "cd libs/real-time-fund && npm install && npm run build && mkdir -p ../../public/fund-analysis && cp -r out/* ../../public/fund-analysis/",
