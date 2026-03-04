@@ -11,6 +11,7 @@ import * as parserGraphql from "prettier/plugins/graphql";
 import * as parserAngular from "prettier/plugins/angular";
 import * as parserFlow from "prettier/plugins/flow";
 import * as estree from "prettier/plugins/estree";
+import { format as formatSql } from "sql-formatter";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
 
@@ -27,7 +28,8 @@ type Language =
   | "graphql"
   | "angular"
   | "flow"
-  | "vue";
+  | "vue"
+  | "sql";
 
 type Theme = "vs-light" | "vs-dark" | "hc-black";
 
@@ -117,6 +119,12 @@ const LANGUAGES: Record<Language, LanguageConfig> = {
     plugins: [parserGraphql],
     monacoId: "graphql",
   },
+  sql: {
+    name: "SQL",
+    parser: "sql",
+    plugins: [],
+    monacoId: "sql",
+  },
 };
 
 const THEMES: Record<Theme, string> = {
@@ -146,18 +154,29 @@ export default function CodeFormatter() {
     setError(null);
 
     try {
-      const config = LANGUAGES[language];
-      const formatted = await prettier.format(input, {
-        parser: config.parser,
-        plugins: config.plugins,
-        useTabs,
-        tabWidth,
-        semi,
-        singleQuote,
-        printWidth,
-      });
+      if (language === "sql") {
+        const formatted = formatSql(input, {
+          language: "sql",
+          tabWidth,
+          useTabs,
+          keywordCase: "upper",
+          linesBetweenQueries: 2,
+        });
+        setOutput(formatted);
+      } else {
+        const config = LANGUAGES[language];
+        const formatted = await prettier.format(input, {
+          parser: config.parser,
+          plugins: config.plugins,
+          useTabs,
+          tabWidth,
+          semi,
+          singleQuote,
+          printWidth,
+        });
 
-      setOutput(formatted);
+        setOutput(formatted);
+      }
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message || t("tools.code-formatter.error_format"));
