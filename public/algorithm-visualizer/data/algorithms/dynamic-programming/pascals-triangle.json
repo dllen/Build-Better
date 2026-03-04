@@ -1,0 +1,47 @@
+{
+  "algorithm": {
+    "categoryKey": "dynamic-programming",
+    "categoryName": "Dynamic Programming",
+    "algorithmKey": "pascals-triangle",
+    "algorithmName": "Pascal's Triangle",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Pascal's Triangle\n\nIn mathematics, **Pascal's triangle** is a triangular array of\nthe [binomial coefficients](https://en.wikipedia.org/wiki/Binomial_coefficient).\n\nThe rows of Pascal's triangle are conventionally enumerated\nstarting with row `n = 0` at the top (the `0th` row). The\nentries in each row are numbered from the left beginning\nwith `k = 0` and are usually staggered relative to the\nnumbers in the adjacent rows. The triangle may be constructed\nin the following manner: In row `0` (the topmost row), there\nis a unique nonzero entry `1`. Each entry of each subsequent\nrow is constructed by adding the number above and to the\nleft with the number above and to the right, treating blank\nentries as `0`. For example, the initial number in the\nfirst (or any other) row is `1` (the sum of `0` and `1`),\nwhereas the numbers `1` and `3` in the third row are added\nto produce the number `4` in the fourth row.\n\n![Pascal's Triangle](https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif)\n\n## Formula\n\nThe entry in the `nth` row and `kth` column of Pascal's\ntriangle is denoted ![Formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/206415d3742167e319b2e52c2ca7563b799abad7).\nFor example, the unique nonzero entry in the topmost\nrow is ![Formula example](https://wikimedia.org/api/rest_v1/media/math/render/svg/b7e35f86368d5978b46c07fd6dddca86bd6e635c).\n\nWith this notation, the construction of the previous\nparagraph may be written as follows:\n\n![Formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/203b128a098e18cbb8cf36d004bd7282b28461bf)\n\nfor any non-negative integer `n` and any\ninteger `k` between `0` and `n`, inclusive.\n\n![Binomial Coefficient](https://wikimedia.org/api/rest_v1/media/math/render/svg/a2457a7ef3c77831e34e06a1fe17a80b84a03181)\n\n## Calculating triangle entries in O(n) time\n\nWe know that `i`-th entry in a line number `lineNumber` is\nBinomial Coefficient `C(lineNumber, i)` and all lines start\nwith value `1`. The idea is to\ncalculate `C(lineNumber, i)` using `C(lineNumber, i-1)`. It\ncan be calculated in `O(1)` time using the following:\n\n```\nC(lineNumber, i)   = lineNumber! / ((lineNumber - i)! * i!)\nC(lineNumber, i - 1) = lineNumber! / ((lineNumber - i + 1)! * (i - 1)!)\n```\n\nWe can derive following expression from above two expressions:\n\n```\nC(lineNumber, i) = C(lineNumber, i - 1) * (lineNumber - i + 1) / i\n```\n\nSo `C(lineNumber, i)` can be calculated\nfrom `C(lineNumber, i - 1)` in `O(1)` time.\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/math/pascal-triangle)\n- [Wikipedia](https://en.wikipedia.org/wiki/Pascal%27s_triangle)\n- [GeeksForGeeks](https://www.geeksforgeeks.org/pascal-triangle/)\n",
+        "contributors": [
+          {
+            "login": "archie94",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12955150?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array2DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\nconst N = 9;\nconst A = new Array(N);\nfor (let i = N - 1; i >= 0; i--) {\n  A[i] = new Array(N);\n}\n\n// define tracer variables {\nconst tracer = new Array2DTracer('Pascal\\'s Triangle');\nLayout.setRoot(new VerticalLayout([tracer]));\ntracer.set(A);\nTracer.delay();\n// }\n\nfor (let i = 0; i < N; i++) {\n  for (let j = 0; j <= i; j++) {\n    if (j === i || j === 0) { // First and last values in every row are 1\n      A[i][j] = 1;\n\n      // visualize {\n      tracer.patch(i, j, A[i][j]);\n      Tracer.delay();\n      tracer.depatch(i, j);\n      // }\n    } else { // Other values are sum of values just above and left of above\n      // visualize {\n      tracer.select(i - 1, j - 1);\n      Tracer.delay();\n      tracer.select(i - 1, j);\n      Tracer.delay();\n      // }\n\n      A[i][j] = A[i - 1][j - 1] + A[i - 1][j];\n\n      // visualize {\n      tracer.patch(i, j, A[i][j]);\n      Tracer.delay();\n      tracer.depatch(i, j);\n      tracer.deselect(i - 1, j - 1);\n      tracer.deselect(i - 1, j);\n      // }\n    }\n  }\n}\n",
+        "contributors": [
+          {
+            "login": "archie94",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12955150?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "In mathematics, Pascal's triangle is a triangular array of the binomial coefficients."
+  }
+}

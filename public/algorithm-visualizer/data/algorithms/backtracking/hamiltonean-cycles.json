@@ -1,0 +1,25 @@
+{
+  "algorithm": {
+    "categoryKey": "backtracking",
+    "categoryName": "Backtracking",
+    "algorithmKey": "hamiltonean-cycles",
+    "algorithmName": "Hamiltonean Cycles",
+    "files": [
+      {
+        "name": "Code.java",
+        "content": "//A Hamiltonian cycle is a cycle in an undirected or directed graph that visits each vertex exactly once.\n// import visualization libraries {\nimport org.algorithm_visualizer.*;\nimport java.util.Random;\n// }\n\nclass Main {\n    // define tracer variables {\n    GraphTracer graphTracer=new GraphTracer(\"GraphTracer\");\n    LogTracer logTracer = new LogTracer(\"Console\");\n    // }\n    int n=8;\n    int x[];\n    int found=0;\n    int vis[];\n    int[][] adjacencyMatrix;\n    void ham(int k) {\n\t\twhile(true)\n\t\t{\n\t\t\tnextVal(k);\n\t\t\tif(x[k]==-1)\n\t\t\t\treturn;\n\t\t\tif(k==n-1)\n\t\t\t{\n\t\t\t    graphTracer.visit(x[0],x[k]);\n\t\t\t\tgraphTracer.delay();\n\t\t\t\tfound=1;\n\t\t\t\t//Printint the cycle{\n\t\t\t\tfor(int i=0;i<n;i++)\n\t\t\t\t\tlogTracer.print((x[i])+\"  \");\n\t\t\t\tlogTracer.println(0);\n\t\t\t\t//}\n\t\t\t\tgraphTracer.leave(x[0],x[k]);\n\t\t\t}\n\t\t\telse\n\t\t\t\tham(k+1);\n\t\t}\n\t}\n\tvoid nextVal(int k)\n\t{\n\t\twhile(true) {\n\t\t\tint i=0;\n\t\t\tif(vis[k]==1)\n\t\t\t    graphTracer.leave(x[k],x[k-1]);\n\t\t\tvis[k]=0;\n\t\t\tx[k]=(x[k]+1)%(n+1);\n\t\t\tif(x[k]==n)\n\t\t\t{\n\t\t\t\tx[k]=-1;\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tgraphTracer.visit(x[k],x[k-1]);\n\t\t    graphTracer.delay();\n\t\t    vis[k]=1;\n\t\t\tif (adjacencyMatrix[x[k-1]][x[k]]==1)\n\t\t\t{\n\t\t\t\tfor(i=0;i<k;i++)\n\t\t\t\t\tif(x[i]==x[k])\n\t\t\t\t\t\tbreak;\n\t\t\t\tif(i==k)\n\t\t\t\t\tif(k<n-1 || k==n-1 && adjacencyMatrix[x[k]][x[0]]==1)\n\t\t\t\t\t\treturn;\n\t\t\t}\n\t\t}\n\t}\n\n    Main() {\n        //initializing{\n        adjacencyMatrix=new int[n][n];\n        x=new int[n];\n        vis=new int[n];\n        Random r=new Random();\n        for(int i=1;i<n;i++)\n\t\t\tx[i]=-1;\n        //}\n        \n        //Randomizing adjacancy matrix and displaying on log screen{\n        logTracer.println(\"The adjacancy matrix is\");\n        for(int i=0;i<n;i++){\n            for(int j=0;j<n;j++){\n                adjacencyMatrix[i][j]=r.nextInt(2);\n                logTracer.print(adjacencyMatrix[i][j]+\"  \");\n            }\n            logTracer.println(\"\");\n        }\n        //}\n        \n        // visualize {\n        Layout.setRoot(new VerticalLayout(new Commander[]{graphTracer, logTracer}));\n        graphTracer.set(adjacencyMatrix);\n        // }\n        \n        logTracer.println(\"The possible solutions are\");\n        ham(1);\n        if(found==0)\n            logTracer.println(\"No cycles are found Try with a different graph \");\n    }\n\n    public static void main(String[] args) {\n        new Main();\n    }\n}\n",
+        "contributors": [
+          {
+            "login": "sandeepsj",
+            "avatar_url": "https://avatars.githubusercontent.com/u/36895341?v=4"
+          },
+          {
+            "login": "HenryRLee",
+            "avatar_url": "https://avatars.githubusercontent.com/u/4635853?v=4"
+          }
+        ]
+      }
+    ],
+    "description": ""
+  }
+}

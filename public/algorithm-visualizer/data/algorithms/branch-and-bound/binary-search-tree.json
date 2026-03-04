@@ -1,0 +1,69 @@
+{
+  "algorithm": {
+    "categoryKey": "branch-and-bound",
+    "categoryName": "Branch and Bound",
+    "algorithmKey": "binary-search-tree",
+    "algorithmName": "Binary Search Tree",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Binary Search Tree\n\nIn computer science, **binary search trees** (BST), sometimes called\nordered or sorted binary trees, are a particular type of container:\ndata structures that store \"items\" (such as numbers, names etc.)\nin memory. They allow fast lookup, addition and removal of\nitems, and can be used to implement either dynamic sets of\nitems, or lookup tables that allow finding an item by its key\n(e.g., finding the phone number of a person by name).\n\nBinary search trees keep their keys in sorted order, so that lookup\nand other operations can use the principle of binary search:\nwhen looking for a key in a tree (or a place to insert a new key),\nthey traverse the tree from root to leaf, making comparisons to\nkeys stored in the nodes of the tree and deciding, on the basis\nof the comparison, to continue searching in the left or right\nsubtrees. On average, this means that each comparison allows\nthe operations to skip about half of the tree, so that each\nlookup, insertion or deletion takes time proportional to the\nlogarithm of the number of items stored in the tree. This is\nmuch better than the linear time required to find items by key\nin an (unsorted) array, but slower than the corresponding\noperations on hash tables.\n\nA binary search tree of size 9 and depth 3, with 8 at the root.\nThe leaves are not drawn.\n\n![Binary Search Tree](https://upload.wikimedia.org/wikipedia/commons/d/da/Binary_search_tree.svg)\n\n## Pseudocode for Basic Operations\n\n### Insertion\n\n```text\ninsert(value)\n  Pre: value has passed custom type checks for type T\n  Post: value has been placed in the correct location in the tree\n  if root = ø\n    root ← node(value)\n  else\n    insertNode(root, value)\n  end if\nend insert\n```\n\n```text\ninsertNode(current, value)\n  Pre: current is the node to start from\n  Post: value has been placed in the correct location in the tree\n  if value < current.value\n    if current.left = ø\n      current.left ← node(value)\n    else\n      InsertNode(current.left, value)\n    end if\n  else\n    if current.right = ø\n      current.right ← node(value)\n    else\n      InsertNode(current.right, value)\n    end if\n  end if\nend insertNode\n```\n\n### Searching\n\n```text\ncontains(root, value)\n  Pre: root is the root node of the tree, value is what we would like to locate\n  Post: value is either located or not\n  if root = ø\n    return false\n  end if\n  if root.value = value\n    return true\n  else if value < root.value\n    return contains(root.left, value)\n  else\n    return contains(root.right, value)\n  end if\nend contains\n```\n\n\n### Deletion\n\n```text\nremove(value)\n  Pre: value is the value of the node to remove, root is the node of the BST\n      count is the number of items in the BST\n  Post: node with value is removed if found in which case yields true, otherwise false\n  nodeToRemove ← findNode(value)\n  if nodeToRemove = ø\n    return false\n  end if\n  parent ← findParent(value)\n  if count = 1\n    root ← ø\n  else if nodeToRemove.left = ø and nodeToRemove.right = ø\n    if nodeToRemove.value < parent.value\n      parent.left ←  nodeToRemove.right\n    else\n      parent.right ← nodeToRemove.right\n    end if\n  else if nodeToRemove.left = ø and nodeToRemove.right = ø\n   if nodeToRemove.value < parent.value\n     parent.left ←  nodeToRemove.left\n   else\n     parent.right ← nodeToRemove.left\n   end if\n  else\n   largestValue ← nodeToRemove.left\n   while largestValue.right = ø\n     largestValue ← largestValue.right\n   end while\n   findParent(largestValue.value).right ← ø\n   nodeToRemove.value ← largestValue.value\n  end if\n  count ← count - 1\n  return true\nend remove\n```\n\n### Find Parent of Node\n\n```text\nfindParent(value, root)\n  Pre: value is the value of the node we want to find the parent of\n       root is the root node of the BST and is != ø\n  Post: a reference to the prent node of value if found; otherwise ø\n  if value = root.value\n    return ø\n  end if\n  if value < root.value\n    if root.left = ø\n      return ø\n    else if root.left.value = value\n      return root\n    else\n      return findParent(value, root.left)\n    end if\n  else\n    if root.right = ø\n      return ø\n    else if root.right.value = value\n      return root\n    else\n      return findParent(value, root.right)\n    end if\n  end if\nend findParent\n```\n\n### Find Node\n\n```text\nfindNode(root, value)\n  Pre: value is the value of the node we want to find the parent of\n       root is the root node of the BST\n  Post: a reference to the node of value if found; otherwise ø\n  if root = ø\n    return ø\n  end if\n  if root.value = value\n    return root\n  else if value < root.value\n    return findNode(root.left, value)\n  else\n    return findNode(root.right, value)\n  end if\nend findNode\n```\n\n### Find Minimum\n\n```text\nfindMin(root)\n  Pre: root is the root node of the BST\n    root = ø\n  Post: the smallest value in the BST is located\n  if root.left = ø\n    return root.value\n  end if\n  findMin(root.left)\nend findMin\n```\n\n### Find Maximum\n\n```text\nfindMax(root)\n  Pre: root is the root node of the BST\n    root = ø\n  Post: the largest value in the BST is located\n  if root.right = ø\n    return root.value\n  end if\n  findMax(root.right)\nend findMax\n```\n\n### Traversal\n\n#### InOrder Traversal\n\n```text\ninorder(root)\n  Pre: root is the root node of the BST\n  Post: the nodes in the BST have been visited in inorder\n  if root = ø\n    inorder(root.left)\n    yield root.value\n    inorder(root.right)\n  end if\nend inorder\n```\n\n#### PreOrder Traversal\n\n```text\npreorder(root)\n  Pre: root is the root node of the BST\n  Post: the nodes in the BST have been visited in preorder\n  if root = ø\n    yield root.value\n    preorder(root.left)\n    preorder(root.right)\n  end if\nend preorder\n```\n\n#### PostOrder Traversal\n\n```text\npostorder(root)\n  Pre: root is the root node of the BST\n  Post: the nodes in the BST have been visited in postorder\n  if root = ø\n    postorder(root.left)\n    postorder(root.right)\n    yield root.value\n  end if\nend postorder\n```\n\n## Complexities\n\n### Time Complexity\n\n| Access    | Search    | Insertion | Deletion  |\n| :-------: | :-------: | :-------: | :-------: |\n| O(log(n)) | O(log(n)) | O(log(n)) | O(log(n)) |\n\n### Space Complexity\n\nO(n)\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/tree/binary-search-tree)\n- [Wikipedia](https://en.wikipedia.org/wiki/Binary_search_tree)\n- [Inserting to BST on YouTube](https://www.youtube.com/watch?v=wcIRPqTR3Kc&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8&index=9&t=0s)\n- [BST Interactive Visualisations](https://www.cs.usfca.edu/~galles/visualization/BST.html)\n",
+        "contributors": [
+          {
+            "login": "archie94",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12955150?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "insertion.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\nconst T = {};\n\nconst elements = [5, 8, 10, 3, 1, 6, 9, 7, 2, 0, 4]; // item to be inserted\n\n// define tracer variables {\nconst graphTracer = new GraphTracer(' BST - Elements marked red indicates the current status of tree ');\nconst elemTracer = new Array1DTracer(' Elements ');\nconst logger = new LogTracer(' Log ');\nLayout.setRoot(new VerticalLayout([graphTracer, elemTracer, logger]));\nelemTracer.set(elements);\ngraphTracer.log(logger);\nTracer.delay();\n// }\n\nfunction bstInsert(root, element, parent) { // root = current node , parent = previous node\n  // visualize {\n  graphTracer.visit(root, parent);\n  Tracer.delay();\n  // }\n  const treeNode = T[root];\n  let propName = '';\n  if (element < root) {\n    propName = 'left';\n  } else if (element > root) {\n    propName = 'right';\n  }\n  if (propName !== '') {\n    if (!(propName in treeNode)) { // insert as left child of root\n      treeNode[propName] = element;\n      T[element] = {};\n      // visualize {\n      graphTracer.addNode(element);\n      graphTracer.addEdge(root, element);\n      graphTracer.select(element, root);\n      Tracer.delay();\n      graphTracer.deselect(element, root);\n      logger.println(`${element} Inserted`);\n      // }\n    } else {\n      bstInsert(treeNode[propName], element, root);\n    }\n  }\n  // visualize {\n  graphTracer.leave(root, parent);\n  Tracer.delay();\n  // }\n}\n\nconst Root = elements[0]; // take first element as root\nT[Root] = {};\n// visualize {\ngraphTracer.addNode(Root);\ngraphTracer.layoutTree(Root, true);\nlogger.println(`${Root} Inserted as root of tree `);\n// }\n\nfor (let i = 1; i < elements.length; i++) {\n  // visualize {\n  elemTracer.select(i);\n  Tracer.delay();\n  // }\n  bstInsert(Root, elements[i]); // insert ith element\n  // visualize {\n  elemTracer.deselect(i);\n  Tracer.delay();\n  // }\n}\n",
+        "contributors": [
+          {
+            "login": "archie94",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12955150?v=4"
+          },
+          {
+            "login": "rajraku",
+            "avatar_url": "https://avatars.githubusercontent.com/u/8248751?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      },
+      {
+        "name": "search.js",
+        "content": "// import visualization libraries {\nconst { Tracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\nconst G = [ // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],\n];\n\nconst T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][1] indicates right child\n  [-1, -1],\n  [0, 2],\n  [-1, -1],\n  [1, 4],\n  [-1, -1],\n  [3, 8],\n  [-1, 7],\n  [-1, -1],\n  [6, 10],\n  [-1, -1],\n  [9, -1],\n];\n\nconst key = Randomize.Integer({ min: 0, max: G.length - 1 }); // item to be searched\n// define tracer variables {\nconst tracer = new GraphTracer(' Binary Search Tree ');\nconst logger = new LogTracer(' Log ');\nLayout.setRoot(new VerticalLayout([tracer, logger]));\ntracer.set(G);\ntracer.layoutTree(5);\ntracer.log(logger);\nTracer.delay();\n// }\n\nfunction bst(item, node, parent) { // node = current node , parent = previous node\n  // visualize {\n  tracer.visit(node, parent);\n  Tracer.delay();\n  // }\n  if (item === node) { // key found\n    // logger {\n    logger.println(' Match Found ');\n    // }\n  } else if (item < node) { // key less than value of current node\n    if (T[node][0] === -1) {\n      // logger {\n      logger.println(' Not Found ');\n      // }\n    } else {\n      bst(item, T[node][0], node);\n    }\n  } else { // key greater than value of current node\n    if (T[node][1] === -1) {\n      // logger {\n      logger.println(' Not Found ');\n      // }\n    } else {\n      bst(item, T[node][1], node);\n    }\n  }\n}\n\n// logger {\nlogger.println(`Finding number ${key}`);\n// }\nbst(key, 5); // node with key 5 is the root\n",
+        "contributors": [
+          {
+            "login": "archie94",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12955150?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "In computer science, binary search trees (BST), sometimes called ordered or sorted binary trees, are a particular type of container: data structures that store \"items\" (such as numbers, names etc.) in memory. They allow fast lookup, addition and removal of items, and can be used to implement either dynamic sets of items, or lookup tables that allow finding an item by its key (e.g., finding the phone number of a person by name)."
+  }
+}

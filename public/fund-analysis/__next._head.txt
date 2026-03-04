@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[24952,["/fund-analysis/_next/static/chunks/a7dd0a41c5c35b31.js"],"ViewportBoundary"]
+3:I[24952,["/fund-analysis/_next/static/chunks/a7dd0a41c5c35b31.js"],"MetadataBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"a0VYzpf_ev7w6BpSj0BsB","rsc":["$","$1","h",{"children":[null,["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"基估宝 V0.1.2"}],["$","meta","1",{"name":"description","content":"输入基金编号添加基金，实时显示估值与前10重仓"}]]}]}]}],null]}],"loading":null,"isPartial":false}

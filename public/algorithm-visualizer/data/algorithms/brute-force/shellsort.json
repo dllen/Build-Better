@@ -1,0 +1,47 @@
+{
+  "algorithm": {
+    "categoryKey": "brute-force",
+    "categoryName": "Brute Force",
+    "algorithmKey": "shellsort",
+    "algorithmName": "Shellsort",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Shellsort\n\nShellsort, also known as Shell sort or Shell's method,\nis an in-place comparison sort. It can be seen as either a\ngeneralization of sorting by exchange (bubble sort) or sorting\nby insertion (insertion sort). The method starts by sorting\npairs of elements far apart from each other, then progressively\nreducing the gap between elements to be compared. Starting\nwith far apart elements, it can move some out-of-place\nelements into position faster than a simple nearest neighbor\nexchange\n\n![Shellsort](https://upload.wikimedia.org/wikipedia/commons/d/d8/Sorting_shellsort_anim.gif)\n\n## How Shell Sort Works\n\nFor our example and ease of understanding, we take the interval\nof `4`. Make a virtual sub-list of all values located at the\ninterval of 4 positions. Here these values are\n`{35, 14}`, `{33, 19}`, `{42, 27}` and `{10, 44}`\n\n![Shellsort](https://www.tutorialspoint.com/data_structures_algorithms/images/shell_sort_gap_4.jpg)\n\nWe compare values in each sub-list and swap them (if necessary)\nin the original array. After this step, the new array should\nlook like this\n\n![Shellsort](https://www.tutorialspoint.com/data_structures_algorithms/images/shell_sort_step_1.jpg)\n\nThen, we take interval of 2 and this gap generates two sub-lists\n- `{14, 27, 35, 42}`, `{19, 10, 33, 44}`\n\n![Shellsort](https://www.tutorialspoint.com/data_structures_algorithms/images/shell_sort_gap_2.jpg)\n\nWe compare and swap the values, if required, in the original array.\nAfter this step, the array should look like this\n\n![Shellsort](https://www.tutorialspoint.com/data_structures_algorithms/images/shell_sort_step_2.jpg)\n\n> UPD: On the picture below there is a typo and result array is supposed to be `[14, 10, 27, 19, 35, 33, 42, 44]`.\n\nFinally, we sort the rest of the array using interval of value 1.\nShell sort uses insertion sort to sort the array.\n\n![Shellsort](https://www.tutorialspoint.com/data_structures_algorithms/images/shell_sort.jpg)\n\n## Complexity\n\n| Name                  | Best            | Average             | Worst               | Memory    | Stable    | Comments  |\n| --------------------- | :-------------: | :-----------------: | :-----------------: | :-------: | :-------: | :-------- |\n| **Shell sort**        | n&nbsp;log(n)   | depends on gap sequence   | n&nbsp;(log(n))<sup>2</sup>  | 1         | No         |           |\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sorting/shell-sort)\n- [Tutorials Point](https://www.tutorialspoint.com/data_structures_algorithms/shell_sort_algorithm.htm)\n- [Wikipedia](https://en.wikipedia.org/wiki/Shellsort)\n- [YouTube by Rob Edwards](https://www.youtube.com/watch?v=ddeLSDsYVp8&index=79&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)\n",
+        "contributors": [
+          {
+            "login": "makintunde",
+            "avatar_url": "https://avatars.githubusercontent.com/u/10343956?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst chart = new ChartTracer();\nconst tracer = new Array1DTracer();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([chart, tracer, logger]));\nconst D = Randomize.Array1D({ N: 15 });\ntracer.set(D);\ntracer.chart(chart);\nTracer.delay();\n// }\n\n// logger {\nlogger.println(`Original array = [${D.join(', ')}]`);\n// }\nconst N = D.length;\n\nfor (let gap = N; gap = parseInt(gap / 2);) {\n  // logger {\n  logger.println('');\n  logger.println(`Gap of ${gap}`);\n  // }\n  for (let i = gap; i < N; i++) {\n    // visualize {\n    tracer.select(i);\n    tracer.select(i - gap);\n    Tracer.delay();\n    // }\n    const k = D[i];\n    // logger {\n    logger.println(`Holding: ${k}`);\n    // }\n    let j;\n    for (j = i; j >= gap && k < D[j - gap]; j -= gap) {\n      // logger {\n      logger.println(`${k} < ${D[j - gap]}`);\n      // }\n      D[j] = D[j - gap];\n      // visualize {\n      tracer.patch(j, D[j]);\n      Tracer.delay();\n      tracer.depatch(j);\n      // }\n    }\n    const old = D[j];\n    D[j] = k;\n    // visualize {\n    if (old !== k) {\n      tracer.patch(j, D[j]);\n      Tracer.delay();\n      tracer.depatch(j);\n      logger.println(`Swapped ${D[j]} with ${old}`);\n    }\n\n    tracer.deselect(i);\n    tracer.deselect(i - gap);\n    // }\n  }\n}\n// logger {\nlogger.println('');\nlogger.println(`Sorted array = [${D.join(', ')}]`);\n// }\n",
+        "contributors": [
+          {
+            "login": "makintunde",
+            "avatar_url": "https://avatars.githubusercontent.com/u/10343956?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "Shellsort, also known as Shell sort or Shell's method, is an in-place comparison sort. It can be seen as either a generalization of sorting by exchange (bubble sort) or sorting by insertion (insertion sort). The method starts by sorting pairs of elements far apart from each other, then progressively reducing the gap between elements to be compared. Starting with far apart elements, it can move some out-of-place elements into position faster than a simple nearest neighbor exchange"
+  }
+}

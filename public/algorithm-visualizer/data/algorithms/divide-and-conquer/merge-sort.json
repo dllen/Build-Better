@@ -1,0 +1,73 @@
+{
+  "algorithm": {
+    "categoryKey": "divide-and-conquer",
+    "categoryName": "Divide and Conquer",
+    "algorithmKey": "merge-sort",
+    "algorithmName": "Merge Sort",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Merge Sort\n\nIn computer science, merge sort (also commonly spelled\nmergesort) is an efficient, general-purpose,\ncomparison-based sorting algorithm. Most implementations\nproduce a stable sort, which means that the implementation\npreserves the input order of equal elements in the sorted\noutput. Mergesort is a divide and conquer algorithm that\nwas invented by John von Neumann in 1945.\n\nAn example of merge sort. First divide the list into\nthe smallest unit (1 element), then compare each\nelement with the adjacent list to sort and merge the\ntwo adjacent lists. Finally all the elements are sorted\nand merged.\n\n![Merge Sort](https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif)\n\nA recursive merge sort algorithm used to sort an array of 7\ninteger values. These are the steps a human would take to\nemulate merge sort (top-down).\n\n![Merge Sort](https://upload.wikimedia.org/wikipedia/commons/e/e6/Merge_sort_algorithm_diagram.svg)\n\n## Complexity\n\n| Name                  | Best            | Average             | Worst               | Memory    | Stable    | Comments  |\n| --------------------- | :-------------: | :-----------------: | :-----------------: | :-------: | :-------: | :-------- |\n| **Merge sort**        | n&nbsp;log(n)   | n&nbsp;log(n)       | n&nbsp;log(n)       | n         | Yes       |           |\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sorting/merge-sort)\n- [Wikipedia](https://en.wikipedia.org/wiki/Merge_sort)\n- [YouTube](https://www.youtube.com/watch?v=KF2j-9iSf4Q&index=27&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)\n",
+        "contributors": [
+          {
+            "login": "kciter",
+            "avatar_url": "https://avatars.githubusercontent.com/u/3623695?v=4"
+          },
+          {
+            "login": "PFischbeck",
+            "avatar_url": "https://avatars.githubusercontent.com/u/2820802?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          }
+        ]
+      },
+      {
+        "name": "bottomUp.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst tracer = new Array2DTracer();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([tracer, logger]));\nconst D = [\n  Randomize.Array1D({ N: 20, value: () => Randomize.Integer({ min: 0, max: 50 }) }),\n  Randomize.Array1D({ N: 20, value: () => Randomize.Integer({ min: 0, max: 0 }) }),\n];\n\ntracer.set(D);\nTracer.delay();\n// }\n\n// logger {\nlogger.println(`original array = [${D[0].join(', ')}]`);\n// }\n\nfunction mergeSort(start, end) {\n  if (Math.abs(end - start) <= 1) return;\n\n  let mergeFrom = 0;\n  let mergeTo = 1;\n  let width;\n  let i;\n  for (width = 1; width < end; width *= 2) {\n    // visualize {\n    logger.println(`merging arrays of width: ${width}`);\n    // }\n    for (i = 0; i < end; i += 2 * width) {\n      merge(mergeFrom, i, Math.min(i + width, end), Math.min(i + 2 * width, end), mergeTo);\n    }\n    // this could be copy(mergeTo, mergeFrom, start, end);\n    // but it is more effecient to swap the input arrays\n    // if you did copy here, you wouldn't need the copy at the end\n    mergeFrom = (mergeFrom === 0 ? 1 : 0);\n    mergeTo = 1 - mergeFrom;\n  }\n  if (mergeFrom !== 0) {\n    // visualize {\n    logger.println('final copy to original');\n    // }\n    copy(mergeFrom, mergeTo, start, end);\n  }\n}\n\nfunction merge(mergeFrom, start, middle, end, mergeTo) {\n  let i = start;\n  let j = middle;\n  let k;\n  // in an actual merge implementation, mergeFrom and mergeTo would be arrays\n  // here for the ability to trace what is going on better, the arrays are D[mergeFrom] and D[mergeTo]\n  // visualize {\n  logger.println(`merging segments [${start}..${middle}] and [${middle}..${end}]`);\n  tracer.selectRow(mergeFrom, start, end - 1);\n  Tracer.delay();\n  tracer.deselectRow(mergeFrom, start, end - 1);\n  // }\n\n  for (k = start; k < end; k++) {\n    // visualize {\n    if (j < end) {\n      tracer.select(mergeFrom, j);\n    }\n    if (i < middle) {\n      tracer.select(mergeFrom, i);\n    }\n    if (i < middle && j < end) {\n      logger.println(`compare index ${i} and ${j}, values: ${D[mergeFrom][i]} and ${D[mergeFrom][j]}`);\n      Tracer.delay();\n    }\n    // }\n\n    if (i < middle && (j >= end || D[mergeFrom][i] <= D[mergeFrom][j])) {\n      // visualize {\n      if (j < end) {\n        logger.println('writing smaller value to output');\n      } else {\n        logger.println(`copying index ${i} to output`);\n      }\n      tracer.patch(mergeTo, k, D[mergeFrom][i]);\n      Tracer.delay();\n      tracer.depatch(mergeTo, k);\n      tracer.deselect(mergeFrom, i);\n      // }\n\n      D[mergeTo][k] = D[mergeFrom][i];\n      i += 1;\n    } else {\n      // visualize {\n      if (i < middle) {\n        logger.println('writing smaller value to output');\n      } else {\n        logger.println(`copying index ${j} to output`);\n      }\n      tracer.patch(mergeTo, k, D[mergeFrom][j]);\n      Tracer.delay();\n      tracer.depatch(mergeTo, k);\n      tracer.deselect(mergeFrom, j);\n      // }\n\n      D[mergeTo][k] = D[mergeFrom][j];\n      j += 1;\n    }\n  }\n}\n\nfunction copy(mergeFrom, mergeTo, start, end) {\n  let i;\n  for (i = start; i < end; i++) {\n    // visualize {\n    tracer.select(mergeFrom, i);\n    tracer.patch(mergeTo, i, D[mergeFrom][i]);\n    Tracer.delay();\n    // }\n\n    D[mergeTo][i] = D[mergeFrom][i];\n\n    // visualize {\n    tracer.deselect(mergeFrom, i);\n    tracer.depatch(mergeTo, i);\n    // }\n  }\n}\n\nmergeSort(0, D[0].length);\n// logger {\nlogger.println(`sorted array = [${D[0].join(', ')}]`);\n// }\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "bbarry",
+            "avatar_url": "https://avatars.githubusercontent.com/u/84951?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      },
+      {
+        "name": "topDown.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst chart = new ChartTracer();\nconst tracer = new Array1DTracer();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([chart, tracer, logger]));\nconst D = Randomize.Array1D({ N: 15 });\ntracer.set(D);\ntracer.chart(chart);\nTracer.delay();\n// }\n\n// logger {\nlogger.println(`original array = [${D.join(', ')}]`);\n// }\n\nfunction mergeSort(start, end) {\n  if (Math.abs(end - start) <= 1) return [];\n  const middle = Math.ceil((start + end) / 2);\n\n  mergeSort(start, middle);\n  mergeSort(middle, end);\n\n  // logger {\n  logger.println(`divide left[${start}, ${middle - 1}], right[${middle}, ${end - 1}]`);\n  // }\n  return mergeSort.merge(start, middle, end);\n}\n\nmergeSort.merge = (start, middle, end) => {\n  const leftSize = middle - start;\n  const rightSize = end - middle;\n  const maxSize = Math.max(leftSize, rightSize);\n  const size = end - start;\n  const left = [];\n  const right = [];\n  let i;\n\n  for (i = 0; i < maxSize; i++) {\n    if (i < leftSize) {\n      left.push(D[start + i]);\n      // visualize {\n      tracer.select(start + i);\n      logger.println(`insert value into left array[${i}] = ${D[start + i]}`);\n      Tracer.delay();\n      // }\n    }\n    if (i < rightSize) {\n      right.push(D[middle + i]);\n      // visualize {\n      tracer.select(middle + i);\n      logger.println(`insert value into right array[${i}] = ${D[middle + i]}`);\n      Tracer.delay();\n      // }\n    }\n  }\n  // logger {\n  logger.println(`left array = [${left.join(', ')}], ` + `right array = [${right.join(', ')}]`);\n  // }\n\n  i = 0;\n  while (i < size) {\n    if (left[0] && right[0]) {\n      if (left[0] > right[0]) {\n        D[start + i] = right.shift();\n        // logger {\n        logger.println(`rewrite from right array[${i}] = ${D[start + i]}`);\n        // }\n      } else {\n        D[start + i] = left.shift();\n        // logger {\n        logger.println(`rewrite from left array[${i}] = ${D[start + i]}`);\n        // }\n      }\n    } else if (left[0]) {\n      D[start + i] = left.shift();\n      // logger {\n      logger.println(`rewrite from left array[${i}] = ${D[start + i]}`);\n      // }\n    } else {\n      D[start + i] = right.shift();\n      // logger {\n      logger.println(`rewrite from right array[${i}] = ${D[start + i]}`);\n      // }\n    }\n\n    // visualize {\n    tracer.deselect(start + i);\n    tracer.patch(start + i, D[start + i]);\n    Tracer.delay();\n    tracer.depatch(start + i);\n    // }\n    i++;\n  }\n\n  const tempArray = [];\n  for (i = start; i < end; i++) tempArray.push(D[i]);\n  // logger {\n  logger.println(`merged array = [${tempArray.join(', ')}]`);\n  // }\n};\n\nmergeSort(0, D.length);\n// logger {\nlogger.println(`sorted array = [${D.join(', ')}]`);\n// }\n",
+        "contributors": [
+          {
+            "login": "kciter",
+            "avatar_url": "https://avatars.githubusercontent.com/u/3623695?v=4"
+          },
+          {
+            "login": "imkimchi",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13452168?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "In computer science, merge sort (also commonly spelled mergesort) is an efficient, general-purpose, comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the implementation preserves the input order of equal elements in the sorted output. Mergesort is a divide and conquer algorithm that was invented by John von Neumann in 1945."
+  }
+}

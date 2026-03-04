@@ -1,0 +1,43 @@
+{
+  "algorithm": {
+    "categoryKey": "dynamic-programming",
+    "categoryName": "Dynamic Programming",
+    "algorithmKey": "nth-factorial",
+    "algorithmName": "Nth Factorial",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Nth Factorial\nFinding the nth Factorial using dynamic programming.\n\n## Complexity\n* **Time**: ![](https://latex.codecogs.com/svg.latex?O(n))\n* **Space**: ![](https://latex.codecogs.com/svg.latex?O(n))\n\n## References\n* [TutorialsPoint](https://www.tutorialspoint.com/cplusplus-program-to-find-factorial-of-a-number-using-dynamic-programming)",
+        "contributors": [
+          {
+            "login": "frankymacster",
+            "avatar_url": "https://avatars.githubusercontent.com/u/10590239?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst tracer = new Array1DTracer('Sequence');\nLayout.setRoot(new VerticalLayout([tracer]));\nconst index = 15;\nconst D = [1];\nfor (let i = 1; i < index; i++) {\n  D.push(0);\n}\ntracer.set(D);\nTracer.delay();\n// }\n\nfor (let i = 1; i < index; i++) {\n  D[i] = D[i - 1] * i;\n  // visualize {\n  tracer.select(i - 1);\n  Tracer.delay();\n  tracer.patch(i, D[i]);\n  Tracer.delay();\n  tracer.depatch(i);\n  tracer.deselect(i - 1);\n  // }\n}\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          },
+          {
+            "login": "frankymacster",
+            "avatar_url": "https://avatars.githubusercontent.com/u/10590239?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "Finding the nth Factorial using dynamic programming."
+  }
+}

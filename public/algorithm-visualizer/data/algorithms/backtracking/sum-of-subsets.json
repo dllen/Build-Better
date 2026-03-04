@@ -1,0 +1,31 @@
+{
+  "algorithm": {
+    "categoryKey": "backtracking",
+    "categoryName": "Backtracking",
+    "algorithmKey": "sum-of-subsets",
+    "algorithmName": "Sum of subsets",
+    "files": [
+      {
+        "name": "Code.java",
+        "content": "// import visualization libraries {\nimport org.algorithm_visualizer.*;\nimport java.util.Random;\n// }\n\nclass Main {\n    // define tracer variables {\n    Array1DTracer array1dTracer = new Array1DTracer(\"Set\");\n    LogTracer logTracer = new LogTracer(\"Console\");\n    // }\n\n    // define input variables\n    int n;\n    int s[];\n    int d;\n    \n    void solve()\n\t{\n\t\tint[] sel=new int[n+1];\n\t\tint k=0,sum=0,found=0;\n\t\tsel[0]=1;\n\t\tarray1dTracer.select(k);\n\t\tTracer.delay();\n\t\twhile(true) {\n\t\t\tif(k<n && sel[k]==1) {\n\t\t\t\tif(sum+s[k]==d)\n\t\t\t\t{\n\t\t\t\t\tfound=1;\n\t\t\t\t\tlogTracer.print(\"{\");\n\t\t\t\t\tfor(int i=0;i<n;i++)\n\t\t\t\t\t\tif(sel[i]==1)\n\t\t\t\t\t\t\tlogTracer.print(s[i]+\"  \");\n\t\t\t\t\tlogTracer.println(\"}\");\n\t\t\t\t\tsel[k]=0;\n\t\t\t\t\tTracer.delay();\n\t\t\t\t\tarray1dTracer.deselect(k);\n\t\t\t\t\tTracer.delay();\n\t\t\t\t}\n\t\t\t\telse if(sum+s[k]<d)\n\t\t\t\t\tsum+=s[k];\n\t\t\t\telse{\n\t\t\t\t\tsel[k]=0;\n\t\t\t\t\tarray1dTracer.deselect(k);\n\t\t\t\t\tTracer.delay();\n\t\t\t\t}\n\t\t\t}\n\t\t\telse\n\t\t\t{\n\t\t\t\tk--;\n\t\t\t\twhile(k>=0 && sel[k]==0)\n\t\t\t\t\tk--;\n\t\t\t\tif(k<0)\n\t\t\t\t\tbreak;\n\t\t\t\tsel[k]=0;\n\t\t\t\tarray1dTracer.deselect(k);\n\t\t\t\tTracer.delay();\n\t\t\t\tsum-=s[k];\n\t\t\t}\n\t\t\tk++;\n\t\t\tif(k<n){\n\t\t\t    sel[k]=1;\n\t\t\t    array1dTracer.select(k);\n\t\t\t    Tracer.delay();\n\t\t\t}\n\t\t}\n\t\tif(found==0)\n\t\t\tlogTracer.println(\"Not possible subsets\");\n\t}\n\n    Main() {\n        // visualize {\n        Layout.setRoot(new VerticalLayout(new Commander[]{array1dTracer, logTracer}));\n        Tracer.delay();\n        // }\n\t\tn=10;\n\t\t//Randomizing the array{\n\t\ts=new int[n];\n\t\tRandom r=new Random();\n\t\tfor(int i=0;i<n;i++)\n\t\t    s[i]=r.nextInt(30);\n\t\td=r.nextInt(100);\n\t\t//}\n\t\t\n\t\tlogTracer.print(\"The Given set is: \");\n\t\tfor(int x:s)\n\t\t    logTracer.print(x+\",\");\n\t\tlogTracer.println(\"\\nDesired sum is:\"+d);\n\t\tlogTracer.println(\"The possible subsets of sum \"+d+\" are: \");\n\t\tarray1dTracer.set(s);\n\t\tTracer.delay();\n\t\tsolve();\n    }\n\n    public static void main(String[] args) {\n        new Main();\n    }\n}\n",
+        "contributors": [
+          {
+            "login": "sandeepsj",
+            "avatar_url": "https://avatars.githubusercontent.com/u/36895341?v=4"
+          }
+        ]
+      },
+      {
+        "name": "README.md",
+        "content": "\n# Sum of Subset using  BackTracking\n\n\n\n\n\n\n## References\n-[Geeksforgeeks](https://www.geeksforgeeks.org/subset-sum-problem-dp-25/)\n",
+        "contributors": [
+          {
+            "login": "sandeepsj",
+            "avatar_url": "https://avatars.githubusercontent.com/u/36895341?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "Sum of Subset using  BackTracking"
+  }
+}

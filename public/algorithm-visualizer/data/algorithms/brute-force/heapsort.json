@@ -1,0 +1,55 @@
+{
+  "algorithm": {
+    "categoryKey": "brute-force",
+    "categoryName": "Brute Force",
+    "algorithmKey": "heapsort",
+    "algorithmName": "Heapsort",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Heap Sort\n\nHeapsort is a comparison-based sorting algorithm.\nHeapsort can be thought of as an improved selection\nsort: like that algorithm, it divides its input into\na sorted and an unsorted region, and it iteratively\nshrinks the unsorted region by extracting the largest\nelement and moving that to the sorted region. The\nimprovement consists of the use of a heap data structure\nrather than a linear-time search to find the maximum.\n\n![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/1/1b/Sorting_heapsort_anim.gif)\n\n![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/4/4d/Heapsort-example.gif)\n\n## Complexity\n\n| Name                  | Best            | Average             | Worst               | Memory    | Stable    | Comments  |\n| --------------------- | :-------------: | :-----------------: | :-----------------: | :-------: | :-------: | :-------- |\n| **Heap sort**         | n&nbsp;log(n)   | n&nbsp;log(n)       | n&nbsp;log(n)       | 1         | No        |           |\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sorting/heap-sort)\n- [Wikipedia](https://en.wikipedia.org/wiki/Heapsort)\n",
+        "contributors": [
+          {
+            "login": "thinker3197",
+            "avatar_url": "https://avatars.githubusercontent.com/u/14997260?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst chart = new ChartTracer();\nconst tracer = new Array1DTracer();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([chart, tracer, logger]));\nconst D = Randomize.Array1D({ N: 10 });\ntracer.set(D);\ntracer.chart(chart);\nTracer.delay();\n// }\n\n// logger {\nlogger.println(`Original array = [${D.join(', ')}]`);\n// }\n\nfunction heapSort(array, size) {\n  let i;\n  let j;\n  let temp;\n\n  for (i = Math.floor(size / 2) - 1; i >= 0; i--) {\n    heapify(array, size, i);\n  }\n\n  for (j = size - 1; j >= 0; j--) {\n    temp = array[0];\n    array[0] = array[j];\n    array[j] = temp;\n\n    // visualize {\n    tracer.patch(0, array[0]);\n    tracer.patch(j, array[j]);\n    logger.println(`Swapping elements : ${array[0]} & ${array[j]}`);\n    Tracer.delay();\n    tracer.depatch(0);\n    tracer.depatch(j);\n    tracer.select(j);\n    Tracer.delay();\n    // }\n\n    heapify(array, j, 0);\n\n    // visualize {\n    tracer.deselect(j);\n    // }\n  }\n}\n\nfunction heapify(array, size, root) {\n  let largest = root;\n  const left = 2 * root + 1;\n  const right = 2 * root + 2;\n  let temp;\n\n  if (left < size && array[left] > array[largest]) {\n    largest = left;\n  }\n\n  if (right < size && array[right] > array[largest]) {\n    largest = right;\n  }\n\n  if (largest !== root) {\n    temp = array[root];\n    array[root] = array[largest];\n    array[largest] = temp;\n\n    // visualize {\n    tracer.patch(root, array[root]);\n    tracer.patch(largest, array[largest]);\n    logger.println(`Swapping elements : ${array[root]} & ${array[largest]}`);\n    Tracer.delay();\n    tracer.depatch(root);\n    tracer.depatch(largest);\n    // }\n\n    heapify(array, size, largest);\n  }\n}\n\nheapSort(D, D.length);\n\n// logger {\nlogger.println(`Final array = [${D.join(', ')}]`);\n// }\n",
+        "contributors": [
+          {
+            "login": "thinker3197",
+            "avatar_url": "https://avatars.githubusercontent.com/u/14997260?v=4"
+          },
+          {
+            "login": "makintunde",
+            "avatar_url": "https://avatars.githubusercontent.com/u/10343956?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "fsx950223",
+            "avatar_url": "https://avatars.githubusercontent.com/u/17592563?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "Heapsort is a comparison-based sorting algorithm. Heapsort can be thought of as an improved selection sort: like that algorithm, it divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region. The improvement consists of the use of a heap data structure rather than a linear-time search to find the maximum."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "algorithm": {
+    "categoryKey": "greedy",
+    "categoryName": "Greedy",
+    "algorithmKey": "stable-matching",
+    "algorithmName": "Stable Matching",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Stable Matching\nIn mathematics, economics, and computer science, the stable marriage problem (also stable matching problem or SMP) is the problem of finding a stable matching between two equally sized sets of elements given an ordering of preferences for each element. A matching is a mapping from the elements of one set to the elements of the other set. A matching is not stable if: There is an element A of the first matched set which prefers some given element B of the second matched set over the element to which A is already matched, and also prefers A over the element to which B is already matched. In other words, a matching is stable when there does not exist any match (A, B) by which both A and B would be individually better off than they are with the element to which they are currently matched.\n\n## Complexity\n* **Time**:  ![](https://latex.codecogs.com/svg.latex?O(N^2))\n\n## References\n* [Wikipedia](https://en.wikipedia.org/wiki/Stable_marriage_problem)",
+        "contributors": [
+          {
+            "login": "kopiro",
+            "avatar_url": "https://avatars.githubusercontent.com/u/839700?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\nconst ARank = {\n  Flavio: ['Valentine', 'July', 'Summer', 'Violet'],\n  Stephen: ['Summer', 'July', 'Valentine', 'Violet'],\n  Albert: ['July', 'Violet', 'Valentine', 'Summer'],\n  Jack: ['July', 'Violet', 'Valentine', 'Summer'],\n};\n\nconst BRank = {\n  July: ['Jack', 'Stephen', 'Albert', 'Flavio'],\n  Valentine: ['Flavio', 'Jack', 'Stephen', 'Albert'],\n  Violet: ['Jack', 'Stephen', 'Flavio', 'Albert'],\n  Summer: ['Stephen', 'Flavio', 'Albert', 'Jack'],\n};\n\n// define tracer variables {\nconst tracerA = new Array1DTracer('A');\nconst tracerB = new Array1DTracer('B');\n\nconst _aKeys = Object.keys(ARank);\nconst _bKeys = Object.keys(BRank);\ntracerA.set(_aKeys);\ntracerB.set(_bKeys);\n\nconst logTracer = new LogTracer('Console');\nLayout.setRoot(new VerticalLayout([tracerA, tracerB, logTracer]));\nTracer.delay();\n// }\n\nfunction init(rank) {\n  const o = {};\n  for (const k in rank) {\n    o[k] = {\n      key: k,\n      stable: false,\n      rankKeys: rank[k],\n    };\n  }\n  return o;\n}\n\nfunction extractUnstable(Q) {\n  for (const k in Q) {\n    if (Q[k].stable === false) {\n      return Q[k];\n    }\n  }\n}\n\nconst A = init(ARank);\nconst B = init(BRank);\nlet a;\n\nwhile ((a = extractUnstable(A))) {\n  // logger {\n  logTracer.println(`Selecting ${a.key}`);\n  Tracer.delay();\n  // }\n\n  const bKey = a.rankKeys.shift();\n  const b = B[bKey];\n\n  // logger {\n  logTracer.println(`--> Choicing ${b.key}`);\n  Tracer.delay();\n  // }\n\n  if (b.stable === false) {\n    // logger {\n    logTracer.println(`--> ${b.key} is not stable, stabilizing with ${a.key}`);\n    Tracer.delay();\n    // }\n\n    a.stable = b;\n    b.stable = a;\n\n    // visualize {\n    tracerA.select(_aKeys.indexOf(a.key));\n    Tracer.delay();\n    tracerB.select(_bKeys.indexOf(b.key));\n    Tracer.delay();\n    // }\n  } else {\n    const rankAinB = b.rankKeys.indexOf(a.key);\n    const rankPrevAinB = b.rankKeys.indexOf(b.stable.key);\n    if (rankAinB < rankPrevAinB) {\n      // logger {\n      logTracer.println(`--> ${bKey} is more stable with ${a.key} rather than ${b.stable.key} - stabilizing again`);\n      Tracer.delay();\n      // }\n\n      A[b.stable.key].stable = false;\n      // visualize {\n      tracerA.deselect(_aKeys.indexOf(b.stable.key));\n      Tracer.delay();\n      // }\n\n      a.stable = b;\n      b.stable = a;\n\n      // visualize {\n      tracerA.select(_aKeys.indexOf(a.key));\n      Tracer.delay();\n      tracerB.select(_bKeys.indexOf(b.key));\n      Tracer.delay();\n      // }\n    }\n  }\n}\n",
+        "contributors": [
+          {
+            "login": "kopiro",
+            "avatar_url": "https://avatars.githubusercontent.com/u/839700?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "In mathematics, economics, and computer science, the stable marriage problem (also stable matching problem or SMP) is the problem of finding a stable matching between two equally sized sets of elements given an ordering of preferences for each element. A matching is a mapping from the elements of one set to the elements of the other set. A matching is not stable if: There is an element A of the first matched set which prefers some given element B of the second matched set over the element to which A is already matched, and also prefers A over the element to which B is already matched. In other words, a matching is stable when there does not exist any match (A, B) by which both A and B would be individually better off than they are with the element to which they are currently matched."
+  }
+}

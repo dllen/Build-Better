@@ -1,0 +1,51 @@
+{
+  "algorithm": {
+    "categoryKey": "dynamic-programming",
+    "categoryName": "Dynamic Programming",
+    "algorithmKey": "floyd-warshalls-shortest-path",
+    "algorithmName": "Floyd-Warshall's Shortest Path",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Floyd-Warshall's Shortest Path\n\nIn computer science, the **Floyd–Warshall algorithm** is an algorithm for finding\nshortest paths in a weighted graph with positive or negative edge weights (but\nwith no negative cycles). A single execution of the algorithm will find the\nlengths (summed weights) of shortest paths between all pairs of vertices. Although\nit does not return details of the paths themselves, it is possible to reconstruct\nthe paths with simple modifications to the algorithm.\n\n## Algorithm\n\nThe Floyd–Warshall algorithm compares all possible paths through the graph between\neach pair of vertices. It is able to do this with `O(|V|^3)` comparisons in a graph.\nThis is remarkable considering that there may be up to `|V|^2` edges in the graph,\nand every combination of edges is tested. It does so by incrementally improving an\nestimate on the shortest path between two vertices, until the estimate is optimal.\n\nConsider a graph `G` with vertices `V` numbered `1` through `N`. Further consider\na function `shortestPath(i, j, k)` that returns the shortest possible path\nfrom `i` to `j` using vertices only from the set `{1, 2, ..., k}` as\nintermediate points along the way. Now, given this function, our goal is to\nfind the shortest path from each `i` to each `j` using only vertices\nin `{1, 2, ..., N}`.\n\n![Recursive Formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/f9b75e25063384ccca499c56f9a279abf661ad3b)\n\n![Recursive Formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/34ac7c89bbb18df3fd660225fd38997079e5e513)\n![Recursive Formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/0326d6c14def89269c029da59eba012d0f2edc9d)\n\nThis formula is the heart of the Floyd–Warshall algorithm.\n\n## Example\n\nThe algorithm above is executed on the graph on the left below:\n\n![Example](https://upload.wikimedia.org/wikipedia/commons/2/2e/Floyd-Warshall_example.svg)\n\nIn the tables below `i` is row numbers and `j` is column numbers.\n\n\n**k = 0**\n\n|       | 1   | 2   | 3   | 4   |\n|:-----:|:---:|:---:|:---:|:---:|\n| **1** |\t0   |\t∞   |\t−2  | ∞   |\n| **2** |\t4   |\t0   |\t3\t  | ∞   |\n| **3** |\t∞   |\t∞   |\t0\t  | 2   |\n| **4** |\t∞   |\t−1  | ∞   | 0   |\n\n\n**k = 1**\n\n|       | 1   | 2   | 3   | 4   |\n|:-----:|:---:|:---:|:---:|:---:|\n| **1** | 0   | ∞   | −2  | ∞   |\n| **2** | 4   | 0   |  2  | ∞   |\n| **3** | ∞   | ∞   |  0  | 2   |\n| **4** | ∞   | −   |  ∞  | 0   |\n\n\n**k = 2**\n\n|       | 1   | 2   | 3   | 4   |\n|:-----:|:---:|:---:|:---:|:---:|\n| **1** |\t0   |\t∞   |\t−2  | ∞   |\n| **2** |\t4   |\t0   | 2\t  | ∞   |\n| **3** |\t∞   |\t∞\t  | 0\t  | 2   |\n| **4** |\t3   |\t−1  | 1   | 0   |\n\n\n**k = 3**\n\n|       | 1   | 2   | 3   | 4   |\n|:-----:|:---:|:---:|:---:|:---:|\n| **1** |\t0   |\t∞   |\t−2  | 0   |\n| **2** |\t4   |\t0   |\t2\t  | 4   |\n| **3** |\t∞   |\t∞   |\t0\t  | 2   |\n| **4** |\t3   |\t−1  | 1   | 0   |\n\n\n**k = 4**\n\n|       | 1   | 2   | 3   | 4   |\n|:-----:|:---:|:---:|:---:|:---:|\n| **1** |\t0   |\t−1  | −2  | 0   |\n| **2** |\t4   |\t0\t  | 2\t  | 4   |\n| **3** |\t5   |\t1\t  | 0\t  | 2   |\n| **4** |\t3   |\t−1  | 1   | 0   |\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/graph/floyd-warshall)\n- [Wikipedia](https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm)\n- [YouTube (by Abdul Bari)](https://www.youtube.com/watch?v=oNI0rf2P9gE&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8&index=74)\n- [YouTube (by Tushar Roy)](https://www.youtube.com/watch?v=LwJdNfdLF9s&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8&index=75)\n",
+        "contributors": [
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst tracer = new GraphTracer().weighted();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([tracer, logger]));\ntracer.log(logger);\nconst G = Randomize.Graph({ N: 5, ratio: 1, weighted: true });\ntracer.set(G);\nTracer.delay();\n// }\n\nfunction FloydWarshall() {\n  // Finds the shortest path between all nodes\n  const S = new Array(G.length);\n  for (let i = 0; i < G.length; i++) S[i] = new Array(G.length);\n  for (let i = 0; i < G.length; i++) {\n    for (let j = 0; j < G.length; j++) {\n      // Distance to self is always 0\n      if (i === j) S[i][i] = 0;\n      // Distance between connected nodes is their weight\n      else if (G[i][j] > 0) {\n        S[i][j] = G[i][j];\n      }// Else we don't know the distance and we set it to infinity\n      else S[i][j] = MAX_VALUE;\n    }\n  }\n  // If there is a shorter path using k, use it instead\n  for (let k = 0; k < G.length; k++) {\n    for (let i = 0; i < G.length; i++) {\n      if (k === i) continue;\n      // visualize {\n      tracer.visit(k, i);\n      Tracer.delay();\n      // }\n      for (let j = 0; j < G.length; j++) {\n        if (i === j || j === k) continue;\n        // visualize {\n        tracer.visit(j, k);\n        Tracer.delay();\n        // }\n        if (S[i][j] > S[i][k] + S[k][j]) {\n          // visualize {\n          tracer.visit(j, i, S[i][j]);\n          Tracer.delay();\n          // }\n          S[i][j] = S[i][k] + S[k][j];\n          // visualize {\n          tracer.leave(j, i, S[i][j]);\n          // }\n        }\n        // visualize {\n        tracer.leave(j, k);\n        // }\n      }\n      // visualize {\n      tracer.leave(k, i);\n      Tracer.delay();\n      // }\n    }\n  }\n  // logger {\n  for (let i = 0; i < G.length; i++) {\n    for (let j = 0; j < G.length; j++) {\n      if (S[i][j] === MAX_VALUE) logger.println(`there is no path from ${i} to ${j}`);\n      else logger.println(`the shortest path from ${i} to ${j} is ${S[i][j]}`);\n    }\n  }\n  // }\n}\n\nlet MAX_VALUE = Infinity;\n// logger {\nlogger.println('finding the shortest paths from and to all nodes');\n// }\nFloydWarshall();\n",
+        "contributors": [
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Howon",
+            "avatar_url": "https://avatars.githubusercontent.com/u/8075728?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "In computer science, the Floyd–Warshall algorithm is an algorithm for finding shortest paths in a weighted graph with positive or negative edge weights (but with no negative cycles). A single execution of the algorithm will find the lengths (summed weights) of shortest paths between all pairs of vertices. Although it does not return details of the paths themselves, it is possible to reconstruct the paths with simple modifications to the algorithm."
+  }
+}

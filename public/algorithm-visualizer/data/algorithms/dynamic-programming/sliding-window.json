@@ -1,0 +1,47 @@
+{
+  "algorithm": {
+    "categoryKey": "dynamic-programming",
+    "categoryName": "Dynamic Programming",
+    "algorithmKey": "sliding-window",
+    "algorithmName": "Sliding Window",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Sliding Window\nFinding the largest sum of three contiguous number\n\n## Complexity\n* **Time**: ![](https://latex.codecogs.com/svg.latex?O(n))\n* **Space**: ![](https://latex.codecogs.com/svg.latex?O(n))\n\n## References",
+        "contributors": [
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst tracer = new Array1DTracer();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([tracer, logger]));\nconst D = Randomize.Array1D({ N: 20, value: () => Randomize.Integer({ min: -5, max: 5 }) });\ntracer.set(D);\nTracer.delay();\n// }\n\nlet sum = D[0] + D[1] + D[2];\nlet max = sum;\n// visualize {\ntracer.select(0, 2);\nlogger.println(`sum = ${sum}`);\nTracer.delay();\n// }\nfor (let i = 3; i < D.length; i++) {\n  sum += D[i] - D[i - 3];\n  if (max < sum) max = sum;\n  // visualize {\n  tracer.deselect(i - 3);\n  tracer.select(i);\n  logger.println(`sum = ${sum}`);\n  Tracer.delay();\n  // }\n}\n// visualize {\ntracer.deselect(D.length - 3, D.length - 1);\nlogger.println(`max = ${max}`);\n// }\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "Finding the largest sum of three contiguous number"
+  }
+}

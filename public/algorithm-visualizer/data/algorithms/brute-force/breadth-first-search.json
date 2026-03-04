@@ -1,0 +1,61 @@
+{
+  "algorithm": {
+    "categoryKey": "brute-force",
+    "categoryName": "Brute Force",
+    "algorithmKey": "breadth-first-search",
+    "algorithmName": "Breadth-First Search",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Breadth-First Search\n\nBreadth-first search (BFS) is an algorithm for traversing\nor searching tree or graph data structures. It starts at\nthe tree root (or some arbitrary node of a graph, sometimes\nreferred to as a 'search key') and explores the neighbor\nnodes first, before moving to the next level neighbors.\n\n![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/5/5d/Breadth-First-Search-Algorithm.gif)\n\n## Pseudocode\n\n```text\nBFS(root)\n  Pre: root is the node of the BST\n  Post: the nodes in the BST have been visited in breadth first order\n  q ← queue\n  while root = ø\n    yield root.value\n    if root.left = ø\n      q.enqueue(root.left)\n    end if\n    if root.right = ø\n      q.enqueue(root.right)\n    end if\n    if !q.isEmpty()\n      root ← q.dequeue()\n    else\n      root ← ø\n    end if\n  end while\nend BFS\n```\n\n## Applications\n* Copying garbage collection, Cheney's algorithm\n* Finding the shortest path between two nodes u and v, with path length measured by number of edges (an advantage over depth-first search)\n* (Reverse) Cuthill–McKee mesh numbering\n* Ford–Fulkerson method for computing the maximum flow in a flow network\n* Serialization/Deserialization of a binary tree vs serialization in sorted order, allows the tree to be re-constructed in an efficient manner.\n* Construction of the failure function of the Aho-Corasick pattern matcher.\n* Testing bipartiteness of a graph.\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/tree/breadth-first-search)\n- [Wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search)\n- [Tree Traversals (Inorder, Preorder and Postorder)](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)\n- [BFS vs DFS](https://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/)\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          },
+          {
+            "login": "kopiro",
+            "avatar_url": "https://avatars.githubusercontent.com/u/839700?v=4"
+          }
+        ]
+      },
+      {
+        "name": "shortestPath.js",
+        "content": "// import visualization libraries {\nconst { Tracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst tracer = new GraphTracer().directed(false).weighted();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([tracer, logger]));\ntracer.log(logger);\nconst G = Randomize.Graph({ N: 5, ratio: 1, directed: false, weighted: true });\ntracer.set(G);\nTracer.delay();\n// }\n\nfunction BFS() {\n  const W = []; // W[i] indicates the length of the shortest path from start node to the i-th node\n  const Q = [];\n  let i;\n  for (i = 0; i < G.length; i++) {\n    W.push(MAX_VALUE);\n    // visualize {\n    tracer.updateNode(i, MAX_VALUE);\n    // }\n  }\n  W[s] = 0;\n  Q.push(s); // add start node to queue\n  // visualize {\n  tracer.visit(s, undefined, 0);\n  Tracer.delay();\n  // }\n  while (Q.length > 0) {\n    const node = Q.shift(); // dequeue\n    for (i = 0; i < G[node].length; i++) {\n      if (G[node][i]) { // if the edge from current node to the i-th node exists\n        if (W[i] > W[node] + G[node][i]) { // if current path is shorter than the previously shortest path\n          W[i] = W[node] + G[node][i]; // update the length of the shortest path\n          Q.push(i); // add child node to queue\n          // visualize {\n          tracer.visit(i, node, W[i]);\n          Tracer.delay();\n          // }\n        }\n      }\n    }\n  }\n  return W[e];\n}\n\nlet s = Randomize.Integer({ min: 0, max: G.length - 1 }); // s = start node\nlet e; // e = start node\ndo {\n  e = Randomize.Integer({ min: 0, max: G.length - 1 });\n} while (s === e);\nlet MAX_VALUE = 0x7fffffff;\n// logger {\nlogger.println(`finding the shortest path from ${s} to ${e}`);\n// }\nconst minWeight = BFS(s);\n// logger {\nif (minWeight === MAX_VALUE) {\n  logger.println(`there is no path from ${s} to ${e}`);\n} else {\n  logger.println(`the shortest path from ${s} to ${e} is ${minWeight}`);\n}\n// }\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Howon",
+            "avatar_url": "https://avatars.githubusercontent.com/u/8075728?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      },
+      {
+        "name": "tree.js",
+        "content": "// import visualization libraries {\nconst { Tracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\nconst G = [ // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not\n  [0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n];\n\n// define tracer variables {\nconst tracer = new GraphTracer();\nconst logger = new LogTracer();\ntracer.log(logger);\nLayout.setRoot(new VerticalLayout([tracer, logger]));\ntracer.set(G);\ntracer.layoutTree(0);\nTracer.delay();\n// }\n\nfunction BFS(s) { // s = start node\n  const Q = [];\n  Q.push(s); // add start node to queue\n  // visualize {\n  tracer.visit(s);\n  Tracer.delay();\n  // }\n  while (Q.length > 0) {\n    const node = Q.shift(); // dequeue\n    for (let i = 0; i < G[node].length; i++) {\n      if (G[node][i]) { // if current node has the i-th node as a child\n        Q.push(i); // add child node to queue\n        // visualize {\n        tracer.visit(i, node);\n        Tracer.delay();\n        // }\n      }\n    }\n  }\n}\n\nBFS(0);\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "Breadth-first search (BFS) is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root (or some arbitrary node of a graph, sometimes referred to as a 'search key') and explores the neighbor nodes first, before moving to the next level neighbors."
+  }
+}

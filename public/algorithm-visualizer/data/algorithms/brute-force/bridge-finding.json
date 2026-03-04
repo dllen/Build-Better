@@ -1,0 +1,65 @@
+{
+  "algorithm": {
+    "categoryKey": "brute-force",
+    "categoryName": "Brute Force",
+    "algorithmKey": "bridge-finding",
+    "algorithmName": "Bridge Finding",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Bridge Finding\nAn edge in an undirected connected graph is a bridge iff removing it disconnects the graph. A naive solution to finding bridges in a graph is to:<br /> 1.Delete an edge E<br /> 2.Perform DFS Exploration to check if the Graph is still connected<br /> 3.Restore Edge E. E is a bridge only if DFS exploration determines that the graph is disconnected without E. <br /> <br /> A more efficient solution, which can find bridges in linear time, is to perform a DFS (depth-first-search) on the graph. At each step: <br /> 1. Number the vertex with a counter. The first vertex visited should be labelled 0, the second vertex labelled 1, etc. <br /> 2. Each vertex should also keep track of the lowest numbered vertex that can be reached with the DFS. This can be done recursively by looking at the smallest \"low\" of its children <br /> 3. If the lowest vertex that can be reached with the DFS is greater than its own label, that means the edge with its parent is a bridge. This is because the vertex cannot reach its parent with the DFS, implying that the edge is not part of a cycle.\n\n## Applications\n* Finding vulnerabilities in Graphs and Electrical Circuits\n\n## Complexity\n* **Time**: worst Naive: ![](https://latex.codecogs.com/svg.latex?O(|E|\\cdot(|V|+|E|))), Efficient: ![](https://latex.codecogs.com/svg.latex?O(|V|+|E|))\n* **Space**: worst ![](https://latex.codecogs.com/svg.latex?O(|V|\\cdot|E|))\n\n## References\n* [Wikipedia](https://en.wikipedia.org/wiki/Bridge_(graph_theory))\n",
+        "contributors": [
+          {
+            "login": "jonathanxia",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12770420?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "efficient.js",
+        "content": "// import visualization libraries {\nconst { Tracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\nconst G = [\n  [0, 1, 0, 0, 1, 0],\n  [1, 0, 0, 0, 1, 0],\n  [0, 0, 0, 1, 0, 0],\n  [0, 0, 1, 0, 1, 1],\n  [1, 1, 0, 1, 0, 0],\n  [0, 0, 0, 1, 0, 0],\n];\n\n// define tracer variables {\nconst graphTracer = new GraphTracer().directed(false);\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([graphTracer, logger]));\ngraphTracer.set(G);\nTracer.delay();\n// }\n\n/*\n  NOTE: Code assumes NO parallel edges\n*/\n\nlet timer = 0; // adj keeps track of the neighbors of each node\n\nconst bridges = [];\nconst adj = [];\n\nconst util = (u, disc, low, parent) => {\n  // u is the node that is currently being processed in the DFS (depth-first search)\n  // disc is the numbering of the vertices in the DFS, starting at 0\n  // low[v] is the lowest numbered vertex that can be reached from vertex v along the DFS\n  // parent is the node that u came from\n  // visualize {\n  logger.println('');\n  logger.println(`Visiting node ${u}`);\n  graphTracer.visit(u);\n  Tracer.delay();\n  graphTracer.leave(u);\n  Tracer.delay();\n  // }\n\n  // visited [u] = true;\n  disc[u] = low[u] = timer++;\n\n  // logger {\n  logger.println(`Nodes adjacent to ${u} are: [ ${adj[u]} ]`);\n  // }\n  /* adj [u].forEach (function (v) {\n    graphTracer.visit (v, u).delay ();\n    graphTracer.leave (v, u).delay ();\n  }); */\n  const trace = (v) => {\n    // visualize {\n    graphTracer.visit(v, u);\n    Tracer.delay();\n    graphTracer.leave(v, u);\n    Tracer.delay();\n    // }\n  };\n\n  adj[u].forEach((v) => {\n    if (disc[v] > -1 && v === parent) {\n      trace(v);\n      // logger {\n      logger.println(`${u}'s neighbor ${v} is u's parent. Not visiting it.`);\n      // }\n    } else if (disc[v] > -1 && v !== parent) {\n      trace(v);\n      // logger {\n      logger.println(`${u}'s neighbor ${v} is not u's parent. Comparing low[u] with disc[v]`);\n      // }\n      if (low[u] > disc[v]) {\n        // logger {\n        logger.println(`low[${u}] is greater than disc[${v}]. Setting low[${u}] to disc[${v}]`);\n        // }\n        low[u] = disc[v];\n      }\n    }\n\n    if (disc[v] === -1) {\n      trace(v);\n      // logger {\n      logger.println(`${u}'s neighbor ${v} has not been visited yet`);\n\n      logger.println(`recursively calling util (${v}, [${disc}], [${low}],${u})`);\n      // }\n      util(v, disc, low, u);\n\n      // logger {\n      logger.println('--------------------------------------------------------------------');\n\n      logger.println(`Setting low [${u}] to ${Math.min(low[u], low[v])}`);\n      // }\n      low[u] = Math.min(low[u], low[v]);\n\n      if (low[v] === disc[v]) {\n        // logger {\n        logger.println(`low [${v}] === disc [${v}], low[${v}]=${low[v]}, disc[${v}]=${disc[v]}`);\n        logger.println(`${u} -> ${v} is a bridge. Adding ${u}->${v}to the set of bridges found`);\n        // }\n        bridges.push([u, v]);\n      }\n    }\n  });\n};\n\n(function findBridges(graph) {\n  const disc = filledArray(graph.length, -1);\n  const low = filledArray(graph.length, -1);\n\n  function filledArray(length, value) {\n    return Array(...Array(length)).map(Number.prototype.valueOf, value);\n  }\n\n  // PRECOMPUTATION: store every node's neighbor info in auxiliary array for efficient retrieval later\n  (function computeAdj() {\n    graph.forEach((config) => {\n      const temp = [];\n      config.forEach((isEdge, i) => {\n        isEdge && temp.push(i);\n      });\n      adj.push(temp);\n    });\n  }());\n\n  // logger {\n  logger.println(`Initializing: <b>disc</b>: ${disc} <b>low</b>: ${low}`);\n  logger.println('');\n  logger.println('Beginning efficient Bridge Finding');\n  logger.println('NOTE: call to util () follows pattern: util (nodeToVisit, disc, low, parent). See code for clarity');\n  logger.println('');\n\n  logger.println('Starting the main for loop (for each node)');\n  // }\n  for (let v = 0; v < graph.length; v++) {\n    if (disc[v] === -1) {\n      // logger {\n      logger.println(`${v} has not been visited yet. Calling util (${v},  [${disc}], [${low}],${v}) from the for loop`);\n      // }\n      util(v, disc, low, v);\n      // logger {\n      logger.println(`Returned in for loop after util (${v}, [${disc}], [${low}], [${v}])`);\n      // }\n    }\n  }\n}(G));\n\n// logger {\nlogger.println(`There are ${bridges.length} bridges in the Graph`);\nfor (let i = 0; i < bridges.length; i++) {\n  logger.println(`${bridges[i][0]}-->${bridges[i][1]}`);\n}\nlogger.println('NOTE: All bridges are both ways (just like in the Naive Algorithm) because the Graph is undirected. So, edge A->B and B->A, both are bridges');\n// }\n",
+        "contributors": [
+          {
+            "login": "jonathanxia",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12770420?v=4"
+          },
+          {
+            "login": "Howon",
+            "avatar_url": "https://avatars.githubusercontent.com/u/8075728?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      },
+      {
+        "name": "naive.js",
+        "content": "// import visualization libraries {\nconst { Tracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\nconst G = [\n  [0, 1, 0, 0, 0, 0],\n  [1, 0, 0, 1, 1, 0],\n  [0, 0, 0, 1, 0, 0],\n  [0, 1, 1, 0, 1, 1],\n  [0, 1, 0, 1, 0, 0],\n  [0, 0, 0, 1, 0, 0],\n];\n\n// define tracer variables {\nconst tracer = new GraphTracer().directed(false);\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([tracer, logger]));\ntracer.set(G);\nTracer.delay();\n// }\n\n// Depth First Search Exploration Algorithm to test connectedness of the Graph (see Graph Algorithms/DFS/exploration), without the tracer & logger commands\nfunction DFSExplore(graph, source) {\n  const stack = [[source, null]];\n  const visited = {};\n  let node;\n  let prev;\n  let i;\n  let temp;\n\n  while (stack.length > 0) {\n    temp = stack.pop();\n    node = temp[0];\n    prev = temp[1];\n\n    if (!visited[node]) {\n      visited[node] = true;\n\n      for (i = 0; i < graph.length; i++) {\n        if (graph[node][i]) {\n          stack.push([i, node]);\n        }\n      }\n    }\n  }\n\n  return visited;\n}\n\nfunction findBridges(graph) {\n  let tempGraph;\n  const bridges = [];\n  let visited;\n\n  for (let i = 0; i < graph.length; i++) {\n    for (let j = 0; j < graph.length; j++) {\n      if (graph[i][j]) { // check if an edge exists\n        // visualize {\n        logger.println(`Deleting edge ${i}->${j} and calling DFSExplore ()`);\n        tracer.visit(j, i);\n        Tracer.delay();\n        tracer.leave(j, i);\n        Tracer.delay();\n        // }\n\n        tempGraph = JSON.parse(JSON.stringify(graph));\n        tempGraph[i][j] = 0;\n        tempGraph[j][i] = 0;\n        visited = DFSExplore(tempGraph, 0);\n\n        if (Object.keys(visited).length === graph.length) {\n          // logger {\n          logger.println('Graph is CONNECTED. Edge is NOT a bridge');\n          // }\n        } else {\n          // logger {\n          logger.println('Graph is DISCONNECTED. Edge IS a bridge');\n          // }\n          bridges.push([i, j]);\n        }\n      }\n    }\n  }\n\n  return bridges;\n}\n\nconst bridges = findBridges(G);\n\n// logger {\nlogger.println('The bridges are: ');\nfor (const i in bridges) {\n  logger.println(`${bridges[i][0]} to ${bridges[i][1]}`);\n}\nlogger.println('NOTE: A bridge is both ways, i.e., from A to B and from B to A, because this is an Undirected Graph');\n// }\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "An edge in an undirected connected graph is a bridge iff removing it disconnects the graph. A naive solution to finding bridges in a graph is to: 1.Delete an edge E 2.Perform DFS Exploration to check if the Graph is still connected 3.Restore Edge E. E is a bridge only if DFS exploration determines that the graph is disconnected without E.   A more efficient solution, which can find bridges in linear time, is to perform a DFS (depth-first-search) on the graph. At each step:  1. Number the vertex with a counter. The first vertex visited should be labelled 0, the second vertex labelled 1, etc.  2. Each vertex should also keep track of the lowest numbered vertex that can be reached with the DFS. This can be done recursively by looking at the smallest \"low\" of its children  3. If the lowest vertex that can be reached with the DFS is greater than its own label, that means the edge with its parent is a bridge. This is because the vertex cannot reach its parent with the DFS, implying that the edge is not part of a cycle."
+  }
+}

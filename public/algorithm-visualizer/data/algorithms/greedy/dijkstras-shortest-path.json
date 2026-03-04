@@ -1,0 +1,51 @@
+{
+  "algorithm": {
+    "categoryKey": "greedy",
+    "categoryName": "Greedy",
+    "algorithmKey": "dijkstras-shortest-path",
+    "algorithmName": "Dijkstra's Shortest Path",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Dijkstra's Shortest Path\n\nDijkstra's algorithm is an algorithm for finding the shortest\npaths between nodes in a graph, which may represent, for example,\nroad networks.\n\nThe algorithm exists in many variants; Dijkstra's original variant\nfound the shortest path between two nodes, but a more common\nvariant fixes a single node as the \"source\" node and finds\nshortest paths from the source to all other nodes in the graph,\nproducing a shortest-path tree.\n\n![Dijkstra](https://upload.wikimedia.org/wikipedia/commons/5/57/Dijkstra_Animation.gif)\n\nDijkstra's algorithm to find the shortest path between `a` and `b`.\nIt picks the unvisited vertex with the lowest distance,\ncalculates the distance through it to each unvisited neighbor,\nand updates the neighbor's distance if smaller. Mark visited\n(set to red) when done with neighbors.\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/graph/dijkstra)\n- [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)\n- [On YouTube by Nathaniel Fan](https://www.youtube.com/watch?v=gdmfOwyQlcI&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)\n- [On YouTube by Tushar Roy](https://www.youtube.com/watch?v=lAXZGERcDf4&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)\n",
+        "contributors": [
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\nconst G = Randomize.Graph({ N: 5, ratio: 1, directed: false, weighted: true });\nconst MAX_VALUE = Infinity;\nconst S = []; // S[end] returns the distance from start node to end node\nfor (let i = 0; i < G.length; i++) S[i] = MAX_VALUE;\n\n// define tracer variables {\nconst tracer = new GraphTracer().directed(false).weighted();\nconst tracerS = new Array1DTracer();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([tracer, tracerS, logger]));\ntracer.log(logger);\ntracer.set(G);\ntracerS.set(S);\nTracer.delay();\n// }\n\nfunction Dijkstra(start, end) {\n  let minIndex;\n  let minDistance;\n  const D = []; // D[i] indicates whether the i-th node is discovered or not\n  for (let i = 0; i < G.length; i++) D.push(false);\n  S[start] = 0; // Starting node is at distance 0 from itself\n  // visualize {\n  tracerS.patch(start, S[start]);\n  Tracer.delay();\n  tracerS.depatch(start);\n  tracerS.select(start);\n  // }\n  let k = G.length;\n  while (k--) {\n    // Finding a node with the shortest distance from S[minIndex]\n    minDistance = MAX_VALUE;\n    for (let i = 0; i < G.length; i++) {\n      if (S[i] < minDistance && !D[i]) {\n        minDistance = S[i];\n        minIndex = i;\n      }\n    }\n    if (minDistance === MAX_VALUE) break; // If there is no edge from current node, jump out of loop\n    D[minIndex] = true;\n    // visualize {\n    tracerS.select(minIndex);\n    tracer.visit(minIndex);\n    Tracer.delay();\n    // }\n    // For every unvisited neighbour of current node, we check\n    // whether the path to it is shorter if going over the current node\n    for (let i = 0; i < G.length; i++) {\n      if (G[minIndex][i] && S[i] > S[minIndex] + G[minIndex][i]) {\n        S[i] = S[minIndex] + G[minIndex][i];\n        // visualize {\n        tracerS.patch(i, S[i]);\n        tracer.visit(i, minIndex, S[i]);\n        Tracer.delay();\n        tracerS.depatch(i);\n        tracer.leave(i, minIndex);\n        Tracer.delay();\n        // }\n      }\n    }\n    // visualize {\n    tracer.leave(minIndex);\n    Tracer.delay();\n    // }\n  }\n  // logger {\n  if (S[end] === MAX_VALUE) {\n    logger.println(`there is no path from ${start} to ${end}`);\n  } else {\n    logger.println(`the shortest path from ${start} to ${end} is ${S[end]}`);\n  }\n  // }\n}\n\nconst s = Randomize.Integer({ min: 0, max: G.length - 1 }); // s = start node\nlet e; // e = end node\ndo {\n  e = Randomize.Integer({ min: 0, max: G.length - 1 });\n} while (s === e);\n// logger {\nlogger.println(`finding the shortest path from ${s} to ${e}`);\nTracer.delay();\n// }\nDijkstra(s, e);\n",
+        "contributors": [
+          {
+            "login": "TornjV",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13820300?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Howon",
+            "avatar_url": "https://avatars.githubusercontent.com/u/8075728?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph, which may represent, for example, road networks."
+  }
+}

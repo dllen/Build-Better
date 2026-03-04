@@ -1,0 +1,47 @@
+{
+  "algorithm": {
+    "categoryKey": "dynamic-programming",
+    "categoryName": "Dynamic Programming",
+    "algorithmKey": "catalan-number",
+    "algorithmName": "Catalan Number",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Catalan Number\n In combinatorial mathematics, the Catalan numbers form a sequence of natural numbers that occur in various counting problems, often involving recursively-defined objects.The Catalan numbers on nonnegative integers n are a set of numbers that arise in tree enumeration problems of the type, 'In how many ways can a regular n-gon be divided into n-2 triangles if different orientations are counted separately?' (Euler's polygon division problem).\n\n## Applications\n* The number of ways to stack coins on a bottom row that consists of n consecutive coins in a plane, such that no coins are allowed to be put on the two sides of the bottom coins and every additional coin must be above two other coins, is the nth Catalan number\n* The number of ways to group a string of n pairs of parentheses, such that each open parenthesis has a matching closed parenthesis, is the nth Catalan number\n* The number of ways to cut an n+2-sided convex polygon in a plane into triangles by connecting vertices with straight, non-intersecting lines is the nth Catalan number. This is the application in which Euler was interested.\n\n## Complexity\n* **Time**:  ![](https://latex.codecogs.com/svg.latex?O(N^2))\n* **Space**: ![](https://latex.codecogs.com/svg.latex?O(N))\n\n## References\n* [Wikipedia](https://en.wikipedia.org/wiki/Catalan_number)\n* <a href='http://oldweb.sbc.edu/sites/default/files/Honors/XiaotongJiang.July20_0.pdf'>Sweet Briar College",
+        "contributors": [
+          {
+            "login": "archie94",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12955150?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          }
+        ]
+      },
+      {
+        "name": "code.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\nconst N = 10;\nconst A = new Array(N + 1);\nfor (let i = N; i >= 0; i--) {\n  A[i] = 0;\n}\n\n// define tracer variables {\nconst tracer = new Array1DTracer(' Catalan Numbers ');\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([tracer, logger]));\ntracer.set(A);\nTracer.delay();\n// }\n\nA[0] = 1;\n// visualize {\ntracer.patch(0, A[0]);\nTracer.delay();\ntracer.depatch(0);\n// }\nA[1] = 1;\n// visualize {\ntracer.patch(1, A[1]);\nTracer.delay();\ntracer.depatch(1);\n// }\n\nfor (let i = 2; i <= N; i++) {\n  for (let j = 0; j < i; j++) {\n    A[i] += A[j] * A[i - j - 1];\n    // visualize {\n    tracer.select(j);\n    Tracer.delay();\n    tracer.select(i - j - 1);\n    Tracer.delay();\n    tracer.patch(i, A[i]);\n    Tracer.delay();\n    tracer.deselect(j);\n    tracer.deselect(i - j - 1);\n    tracer.depatch(i);\n    // }\n  }\n}\n\n// visualize {\nlogger.println(` The ${N}th Catalan Number is ${A[N]}`);\ntracer.select(N);\nTracer.delay();\n// }\n",
+        "contributors": [
+          {
+            "login": "archie94",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12955150?v=4"
+          },
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": " In combinatorial mathematics, the Catalan numbers form a sequence of natural numbers that occur in various counting problems, often involving recursively-defined objects.The Catalan numbers on nonnegative integers n are a set of numbers that arise in tree enumeration problems of the type, 'In how many ways can a regular n-gon be divided into n-2 triangles if different orientations are counted separately?' (Euler's polygon division problem)."
+  }
+}

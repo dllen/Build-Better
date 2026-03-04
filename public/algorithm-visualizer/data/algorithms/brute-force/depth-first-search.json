@@ -1,0 +1,89 @@
+{
+  "algorithm": {
+    "categoryKey": "brute-force",
+    "categoryName": "Brute Force",
+    "algorithmKey": "depth-first-search",
+    "algorithmName": "Depth-First Search",
+    "files": [
+      {
+        "name": "README.md",
+        "content": "# Depth-First Search\n\nDepth-first search (DFS) is an algorithm for traversing or\nsearching tree or graph data structures. One starts at\nthe root (selecting some arbitrary node as the root in\nthe case of a graph) and explores as far as possible\nalong each branch before backtracking.\n\n![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif)\n\n## Applications\n* Finding connected components.\n* Topological sorting.\n* Finding 2-(edge or vertex)-connected components.\n* Finding 3-(edge or vertex)-connected components.\n* Finding the bridges of a graph.\n* Generating words in order to plot the Limit Set of a Group.\n* Finding strongly connected components.\n* Planarity testing\n* Solving puzzles with only one solution, such as mazes. (DFS can be adapted to find all solutions to a maze by only including nodes on the current path in the visited set.)\n* Maze generation may use a randomized depth-first search.\n* Finding biconnectivity in graphs.\n\n## References\n\n- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/tree/depth-first-search)\n- [Wikipedia](https://en.wikipedia.org/wiki/Depth-first_search)\n- [Tree Traversals (Inorder, Preorder and Postorder)](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)\n- [BFS vs DFS](https://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/)\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "nadr0",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1581329?v=4"
+          },
+          {
+            "login": "kopiro",
+            "avatar_url": "https://avatars.githubusercontent.com/u/839700?v=4"
+          }
+        ]
+      },
+      {
+        "name": "graph.js",
+        "content": "// import visualization libraries {\nconst { Tracer, Array1DTracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst graphTracer = new GraphTracer().directed(false);\nconst visitedTracer = new Array1DTracer('visited');\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([graphTracer, visitedTracer, logger]));\ngraphTracer.log(logger);\nconst G = Randomize.Graph({ N: 8, ratio: .3, directed: false });\ngraphTracer.set(G);\nTracer.delay();\n// }\n\nfunction DFSExplore(graph, source) {\n  const stack = [[source, null]];\n  const visited = [];\n  let node;\n  let prev;\n  let i;\n  let temp;\n  for (i = 0; i < graph.length; i++) {\n    visited.push(false);\n  }\n  // visualize {\n  visitedTracer.set(visited);\n  // }\n\n  while (stack.length > 0) {\n    temp = stack.pop();\n    node = temp[0];\n    prev = temp[1];\n\n    if (!visited[node]) {\n      visited[node] = true;\n      // visualize {\n      visitedTracer.patch(node, visited[node]);\n\n      if (prev !== undefined && graph[node][prev]) {\n        graphTracer.visit(node, prev);\n        Tracer.delay();\n      } else {\n        graphTracer.visit(node);\n        Tracer.delay();\n      }\n      // }\n\n      for (i = 0; i < graph.length; i++) {\n        if (graph[node][i]) {\n          stack.push([i, node]);\n        }\n      }\n    }\n  }\n\n  return visited;\n}\n\nconst visited = DFSExplore(G, 0);\nlet check = true;\nfor (let i = 0; i < visited.length; i++) check &= visited[i];\n// logger {\nif (check) {\n  logger.println('The Graph is CONNECTED');\n} else {\n  logger.println('The Graph is NOT CONNECTED');\n}\n// }\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      },
+      {
+        "name": "shortestPath.js",
+        "content": "// import visualization libraries {\nconst { Tracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst tracer = new GraphTracer().directed(false).weighted();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([tracer, logger]));\ntracer.log(logger);\nconst G = Randomize.Graph({ N: 5, ratio: 1, directed: false, weighted: true });\ntracer.set(G);\nTracer.delay();\n// }\n\nfunction DFS(node, parent, weight) { // node = current node, parent = previous node\n  if (minWeight < weight) return;\n  if (node === e) {\n    // visualize {\n    tracer.visit(node, parent, weight);\n    Tracer.delay();\n    // }\n    if (minWeight > weight) {\n      minWeight = weight;\n    }\n    // visualize {\n    tracer.leave(node, parent, minWeight);\n    Tracer.delay();\n    // }\n    return;\n  }\n  D[node] = true; // label current node as discovered\n  // visualize {\n  tracer.visit(node, parent, weight);\n  Tracer.delay();\n  // }\n  for (let i = 0; i < G[node].length; i++) {\n    if (G[node][i]) { // if the path from current node to the i-th node exists\n      if (!D[i]) { // if the i-th node is not labeled as discovered\n        DFS(i, node, weight + G[node][i]); // recursively call DFS\n      }\n    }\n  }\n  D[node] = false; // label current node as undiscovered\n  // visualize {\n  tracer.leave(node, parent, 0);\n  Tracer.delay();\n  // }\n}\n\nconst s = Randomize.Integer({ min: 0, max: G.length - 1 }); // s = start node\nlet e; // e = end node\ndo {\n  e = Randomize.Integer({ min: 0, max: G.length - 1 });\n} while (s === e);\nconst MAX_VALUE = Infinity;\nlet minWeight = MAX_VALUE;\n// logger {\nlogger.println(`finding the shortest path from ${s} to ${e}`);\n// }\nlet D = []; // D[i] indicates whether the i-th node is discovered or not\nfor (let i = 0; i < G.length; i++) D.push(false);\nDFS(s, undefined, 0);\n// logger {\nif (minWeight === MAX_VALUE) {\n  logger.println(`there is no path from ${s} to ${e}`);\n} else {\n  logger.println(`the shortest path from ${s} to ${e} is ${minWeight}`);\n}\n// }\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Howon",
+            "avatar_url": "https://avatars.githubusercontent.com/u/8075728?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      },
+      {
+        "name": "tree.js",
+        "content": "// import visualization libraries {\nconst { Tracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\nconst G = [ // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not\n  [0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n];\n\n// define tracer variables {\nconst tracer = new GraphTracer();\nconst logger = new LogTracer();\ntracer.log(logger);\nLayout.setRoot(new VerticalLayout([tracer, logger]));\ntracer.set(G);\ntracer.layoutTree(0);\nTracer.delay();\n// }\n\nfunction DFS(node, parent) { // node = current node, parent = previous node\n  // visualize {\n  tracer.visit(node, parent);\n  Tracer.delay();\n  // }\n  for (let i = 0; i < G[node].length; i++) {\n    if (G[node][i]) { // if current node has the i-th node as a child\n      DFS(i, node); // recursively call DFS\n    }\n  }\n}\n\nDFS(0);\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      },
+      {
+        "name": "weightedGraph.js",
+        "content": "// import visualization libraries {\nconst { Tracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');\n// }\n\n// define tracer variables {\nconst tracer = new GraphTracer().directed(false).weighted();\nconst logger = new LogTracer();\nLayout.setRoot(new VerticalLayout([tracer, logger]));\ntracer.log(logger);\nconst G = Randomize.Graph({ N: 5, ratio: 1, directed: false, weighted: true });\ntracer.set(G);\nTracer.delay();\n// }\n\nlet D; // D[i] indicates whether the i-th node is discovered or not\n\nfunction DFS(node, parent, weight) { // node = current node, parent = previous node\n  // visualize {\n  tracer.visit(node, parent, weight);\n  Tracer.delay();\n  // }\n  D[node] = true; // label current node as discovered\n  for (let i = 0; i < G[node].length; i++) {\n    if (G[node][i]) { // if the edge from current node to the i-th node exists\n      if (!D[i]) { // if the i-th node is not labeled as discovered\n        DFS(i, node, weight + G[node][i]); // recursively call DFS\n      }\n    }\n  }\n  D[node] = false; // label current node as undiscovered\n  // visualize {\n  tracer.leave(node, parent, 0);\n  Tracer.delay();\n  // }\n}\n\nfor (let i = 0; i < G.length; i++) { // start from every node\n  // logger {\n  logger.println(`start from ${i}`);\n  // }\n  D = [];\n  for (let j = 0; j < G.length; j++) D.push(false);\n  DFS(i, undefined, 0);\n}\n",
+        "contributors": [
+          {
+            "login": "64json",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1618732?v=4"
+          },
+          {
+            "login": "Yee172",
+            "avatar_url": "https://avatars.githubusercontent.com/u/29087644?v=4"
+          }
+        ]
+      }
+    ],
+    "description": "Depth-first search (DFS) is an algorithm for traversing or searching tree or graph data structures. One starts at the root (selecting some arbitrary node as the root in the case of a graph) and explores as far as possible along each branch before backtracking."
+  }
+}

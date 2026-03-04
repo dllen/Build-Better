@@ -1,0 +1,2 @@
+:HL["/fund-analysis/_next/static/chunks/8d15e328db7859a2.css","style"]
+0:{"buildId":"a0VYzpf_ev7w6BpSj0BsB","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
