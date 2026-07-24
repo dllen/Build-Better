@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, RefreshCw, Undo, Settings } from "lucide-react";
+import { ArrowLeft, RefreshCw, Undo } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 

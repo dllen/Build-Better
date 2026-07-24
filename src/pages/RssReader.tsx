@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { XMLParser } from 'fast-xml-parser';
-import { ExternalLink, RefreshCw, Rss, Search, LayoutTemplate, List } from 'lucide-react';
+import { ExternalLink, RefreshCw, Rss, Search, List } from 'lucide-react';
 
 const OPML_CONTENT = `<?xml version="1.0" encoding="UTF-8"?>
 <opml version="2.0">

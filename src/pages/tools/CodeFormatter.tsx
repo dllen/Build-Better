@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { Copy, Check, Loader2, Play, Settings2 } from "lucide-react";
 import Editor, { OnMount } from "@monaco-editor/react";
 import * as prettier from "prettier/standalone";

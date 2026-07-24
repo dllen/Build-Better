@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ExternalLink, Code, User, Tag, Search, Filter } from 'lucide-react';
+import { ExternalLink, User, Search, Filter } from 'lucide-react';
 
 const README_CONTENT = `
 | 类别 | 开发者 | 项目名称 | 链接 | 简介 |

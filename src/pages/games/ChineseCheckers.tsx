@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft, RefreshCw, Play, Trophy, Hexagon } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -377,7 +377,7 @@ const ChineseCheckers: React.FC = () => {
   const makeAiMove = () => {
     // Find all possible moves for AI
     const aiPieces = pieces.filter(p => p.owner === "ai");
-    let allMoves: { pieceId: number, dest: Point, score: number }[] = [];
+    const allMoves: { pieceId: number, dest: Point, score: number }[] = [];
 
     aiPieces.forEach(p => {
       const moves = getReachablePositions(pieces, p.q, p.r);

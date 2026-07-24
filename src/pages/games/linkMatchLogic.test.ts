@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { Tile, isClearRow, isClearCol, canConnect, genGrid } from "./linkMatchLogic";
+import { Tile, isClearRow, isClearCol, canConnect } from "./linkMatchLogic";
 
 // Helper to create a simple grid for testing
 function createGrid(rows: number, cols: number, content: string[][]): Tile[][] {

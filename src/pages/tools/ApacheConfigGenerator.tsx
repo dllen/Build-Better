@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Server, Shield, Globe, FileText, Copy, Settings, Folder } from "lucide-react";
+import { Server, Shield, Globe, Copy, Folder } from "lucide-react";
 
 export default function ApacheConfigGenerator() {
   const { t } = useTranslation();
