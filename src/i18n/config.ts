@@ -1,10 +1,9 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-import Backend from "i18next-http-backend";
 
 // Import translation files statically for now to avoid async loading issues in simple setup
-// In a larger app, Backend plugin with dynamic imports is better
+// In a larger app plugin with dynamic imports is better
 import enTranslation from "../locales/en/translation.json";
 import zhCNTranslation from "../locales/zh-CN/translation.json";
 import zhTWTranslation from "../locales/zh-TW/translation.json";

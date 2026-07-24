@@ -246,7 +246,6 @@ const categories = [
 ];
 
 export default function AiDevelopment() {
-  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [favorites, setFavorites] = useState<string[]>(() => {
     const saved = localStorage.getItem("ai-dev-favorites");

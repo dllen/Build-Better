@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Server, Shield, Globe, FileText, Download, Copy, RefreshCw, Settings } from "lucide-react";
+import { Server, Shield, Globe, Copy, RefreshCw, Settings } from "lucide-react";
 
 interface ProxyLocation {
   path: string;

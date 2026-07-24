@@ -433,7 +433,6 @@ const parseHandbookContent = (markdown: string): Project[] => {
       
       if (linkMatch) {
         // It's a project/resource
-        const name = linkMatch[1];
         const link = linkMatch[2];
         let description = '';
         
@@ -483,7 +482,6 @@ const parseHandbookContent = (markdown: string): Project[] => {
       if (parts[0] === 'Name' || parts[0].includes('-----')) continue;
       
       if (parts.length >= 2) {
-         const name = parts[0];
          // Second column usually has link: [Name](url)
          const linkMatch = parts[1].match(/\[(.*?)\]\((.*?)\)/);
          const link = linkMatch ? linkMatch[2] : '';

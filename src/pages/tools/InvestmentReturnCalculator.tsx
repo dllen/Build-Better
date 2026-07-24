@@ -5,9 +5,7 @@ import { TrendingUp, DollarSign, Calendar, Percent, RefreshCw } from "lucide-rea
 
 interface CalculationResult {
   totalAmount: number;
-  totalPrincipal: number;
   totalInterest: number;
-  yearlyData: Array<{
     year: number;
     amount: number;
     principal: number;
@@ -35,8 +33,6 @@ const InvestmentReturnCalculator = () => {
     if (time <= 0) return;
 
     let currentAmount = principal;
-    let totalPrincipal = principal;
-    const yearlyData = [];
 
     const monthlyRate = r / 100 / 12;
     const yearlyRate = r / 100;
@@ -48,7 +44,6 @@ const InvestmentReturnCalculator = () => {
         // Monthly compounding with monthly contributions
         for (let m = 0; m < 12; m++) {
           currentAmount = (currentAmount + contribution) * (1 + monthlyRate);
-          totalPrincipal += contribution;
         }
       } else {
         // Yearly compounding
@@ -65,7 +60,6 @@ const InvestmentReturnCalculator = () => {
         // Let's stick to: Monthly contribution -> Compounded Monthly is best for most people.
         // If they select Yearly, we treat it as: Interest applied once a year.
 
-        const yearlyContribution = contribution * 12;
         // Simple approximation for yearly compounding with monthly deposits:
         // Interest = (StartBalance + YearlyContribution/2) * rate? No.
         // Let's iterate months for contribution addition, but apply interest at end.
@@ -75,7 +69,6 @@ const InvestmentReturnCalculator = () => {
         for (let m = 0; m < 12; m++) {
           // Add contribution
           currentAmount += contribution;
-          totalPrincipal += contribution;
         }
         // Apply interest on the start balance
         interest = balanceForInterest * yearlyRate;
@@ -100,7 +93,6 @@ const InvestmentReturnCalculator = () => {
         // Re-do loop for year i
         currentAmount = yearStartAmount; // Reset to start of year
         // We need to track principal separately from amount to get accurate total principal
-        // Actually totalPrincipal is global accumulator.
 
         // Let's use a month loop for everything to be safe
       }
@@ -150,9 +142,7 @@ const InvestmentReturnCalculator = () => {
 
     setResult({
       totalAmount: balance,
-      totalPrincipal: totalContributed,
       totalInterest: balance - totalContributed,
-      yearlyData: data,
     });
   };
 
@@ -329,7 +319,6 @@ const InvestmentReturnCalculator = () => {
                       {t("tools.investment-return.total_principal")}
                     </p>
                     <p className="text-xl font-semibold text-gray-900">
-                      {formatCurrency(result.totalPrincipal)}
                     </p>
                   </div>
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
@@ -362,7 +351,6 @@ const InvestmentReturnCalculator = () => {
                         </tr>
                       </thead>
                       <tbody className="bg-white divide-y divide-gray-200">
-                        {result.yearlyData.map((row) => (
                           <tr key={row.year} className="hover:bg-gray-50">
                             <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-900">
                               {row.year}

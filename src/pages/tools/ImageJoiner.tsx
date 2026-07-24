@@ -101,14 +101,12 @@ function SortableItem({
 }
 
 export default function ImageJoiner() {
-  const { t } = useTranslation();
   const [images, setImages] = useState<ImageItem[]>([]);
   const [direction, setDirection] = useState<"vertical" | "horizontal">("vertical");
   const [spacing, setSpacing] = useState(0);
   const [backgroundColor, setBackgroundColor] = useState("#ffffff");
   const [autoScale, setAutoScale] = useState(true);
   const [outputFormat, setOutputFormat] = useState<"png" | "jpeg">("png");
-  const [isProcessing, setIsProcessing] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 

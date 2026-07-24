@@ -19,7 +19,6 @@ function createGrid(rows: number, cols: number, content: string[][]): Tile[][] {
 describe("LinkMatch Logic", () => {
   describe("isClearRow", () => {
     it("should return true for adjacent cells", () => {
-      const grid = createGrid(3, 3, [
         ["A", "B", "C"],
         ["D", "E", "F"],
         ["G", "H", "I"],
@@ -28,7 +27,6 @@ describe("LinkMatch Logic", () => {
     });
 
     it("should return true if path is clear", () => {
-      const grid = createGrid(3, 3, [
         ["A", ".", "C"],
         [".", ".", "."],
         [".", ".", "."],
@@ -37,7 +35,6 @@ describe("LinkMatch Logic", () => {
     });
 
     it("should return false if path is blocked", () => {
-      const grid = createGrid(3, 3, [
         ["A", "X", "C"],
         [".", ".", "."],
         [".", ".", "."],
@@ -48,7 +45,6 @@ describe("LinkMatch Logic", () => {
 
   describe("isClearCol", () => {
     it("should return true for adjacent cells", () => {
-      const grid = createGrid(3, 3, [
         ["A", ".", "."],
         ["B", ".", "."],
         ["C", ".", "."],
@@ -57,7 +53,6 @@ describe("LinkMatch Logic", () => {
     });
 
     it("should return true if path is clear", () => {
-      const grid = createGrid(3, 3, [
         ["A", ".", "."],
         [".", ".", "."],
         ["C", ".", "."],
@@ -66,7 +61,6 @@ describe("LinkMatch Logic", () => {
     });
 
     it("should return false if path is blocked", () => {
-      const grid = createGrid(3, 3, [
         ["A", ".", "."],
         ["X", ".", "."],
         ["C", ".", "."],
@@ -84,24 +78,20 @@ describe("LinkMatch Logic", () => {
     // . . . . .
 
     it("0 turns: Horizontal", () => {
-      const grid = createGrid(1, 4, [["A", ".", ".", "A"]]);
       expect(canConnect(grid, 0, 0, 0, 3)).toBe(true);
     });
 
     it("0 turns: Horizontal Blocked", () => {
-      const grid = createGrid(1, 4, [["A", "X", ".", "A"]]);
       expect(canConnect(grid, 0, 0, 0, 3)).toBe(false);
     });
 
     it("0 turns: Vertical", () => {
-      const grid = createGrid(4, 1, [["A"], ["."], ["."], ["A"]]);
       expect(canConnect(grid, 0, 0, 3, 0)).toBe(true);
     });
 
     it("1 turn: L-shape", () => {
       // A .
       // . A
-      const grid = createGrid(2, 2, [
         ["A", "."],
         [".", "A"],
       ]);
@@ -111,7 +101,6 @@ describe("LinkMatch Logic", () => {
     it("1 turn: L-shape Blocked", () => {
       // A X
       // X A
-      const grid = createGrid(2, 2, [
         ["A", "X"],
         ["X", "A"],
       ]);
@@ -121,7 +110,6 @@ describe("LinkMatch Logic", () => {
     it("2 turns: U-shape (Bottom Bridge)", () => {
       // A X A
       // . . .
-      const grid = createGrid(2, 3, [
         ["A", "X", "A"],
         [".", ".", "."],
       ]);
@@ -131,7 +119,6 @@ describe("LinkMatch Logic", () => {
     it("2 turns: U-shape (Top Bridge)", () => {
       // . . .
       // A X A
-      const grid = createGrid(2, 3, [
         [".", ".", "."],
         ["A", "X", "A"],
       ]);
@@ -142,7 +129,6 @@ describe("LinkMatch Logic", () => {
       // A . .
       // X X .
       // . . A
-      const grid = createGrid(3, 3, [
         ["A", ".", "."],
         ["X", "X", "."],
         [".", ".", "A"],
@@ -188,7 +174,6 @@ describe("LinkMatch Logic", () => {
       // A . X . A
       // X . X . X
       // X . . . X
-      const grid = createGrid(3, 5, [
         ["A", ".", "X", ".", "A"],
         ["X", ".", "X", ".", "X"],
         ["X", ".", ".", ".", "X"],

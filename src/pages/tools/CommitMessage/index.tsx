@@ -22,8 +22,7 @@ const SCOPES = [
 ];
 
 export default function CommitMessageGenerator() {
-  const { t } = useTranslation();
-  const [type, setType] = useState("feat");
+    const [type, setType] = useState("feat");
   const [scope, setScope] = useState("");
   const [desc, setDesc] = useState("");
   const [body, setBody] = useState("");

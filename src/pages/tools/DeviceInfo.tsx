@@ -7,7 +7,7 @@ interface DeviceInfoItem {
   key: string;
   label: string;
   value: string | number | boolean;
-  icon?: any;
+  icon?: unknown;
 }
 
 export default function DeviceInfo() {

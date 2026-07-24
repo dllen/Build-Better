@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
-import { Upload, X, Download, Image as ImageIcon, Check, Crop as CropIcon, Sliders, Layers } from "lucide-react";
+import { Upload, X, Download, Image as Check, Crop as CropIcon, Sliders, Layers } from "lucide-react";
 import ReactCrop, { Crop, PixelCrop, centerCrop, makeAspectCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import JSZip from "jszip";
@@ -115,13 +115,11 @@ export default function ImageResizer() {
     
     let targetW = customWidth;
     let targetH = customHeight;
-    let targetAspect = maintainAspect ? undefined : targetW / targetH;
 
     if (resizeType === "preset") {
       const p = presets[preset as keyof typeof presets];
       targetW = p.w;
       targetH = p.h;
-      targetAspect = p.aspect;
     }
 
     const processItem = async (item: ImageItem): Promise<ImageItem> => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Smile, Search, Check } from 'lucide-react';
+import { Smile, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 // Reduced set for demo - normally would use a full dataset library or json
@@ -12,8 +12,6 @@ const EMOJI_CATEGORIES = {
 };
 
 export default function EmojiPicker() {
-  const { t } = useTranslation();
-  const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -26,9 +24,7 @@ export default function EmojiPicker() {
   const filteredEmojis = Object.entries(EMOJI_CATEGORIES).flatMap(([cat, emojis]) => 
     emojis.map(e => ({ emoji: e, category: cat }))
   ).filter(({ emoji, category }) => {
-    // Very basic search since we don't have keywords mapped. 
     // In a real app, we'd map '😀' to ['smile', 'happy'] etc.
-    // For now, search only filters if we had metadata, or by category.
     const matchesCategory = activeCategory === 'All' || activeCategory === category;
     return matchesCategory;
   });

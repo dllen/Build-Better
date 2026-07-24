@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Save, Copy, Check, Globe } from "lucide-react";
+import { Copy, Check, Globe } from "lucide-react";
 import { SEO } from "@/components/SEO";
 
 // In a real app with backend, we would fetch these from an API

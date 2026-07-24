@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
-import { Upload, X, Download, Stamp, RefreshCw, Archive, Settings, Type } from "lucide-react";
+import { Upload, X, Download, Stamp, Archive, Settings, Type } from "lucide-react";
 import JSZip from "jszip";
 
 interface ImageItem {

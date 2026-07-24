@@ -373,8 +373,7 @@ const LANGUAGES = Object.entries(GITIGNORE_TEMPLATES).map(([key, val]) => ({
 }));
 
 export default function GitignoreGenerator() {
-  const { t } = useTranslation();
-  const [selected, setSelected] = useState<string[]>([]);
+    const [selected, setSelected] = useState<string[]>([]);
   const [copied, setCopied] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 

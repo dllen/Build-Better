@@ -36,7 +36,7 @@ type Theme = "vs-light" | "vs-dark" | "hc-black";
 interface LanguageConfig {
   name: string;
   parser: string;
-  plugins: any[];
+  plugins: unknown[];
   monacoId: string;
 }
 
@@ -195,7 +195,7 @@ export default function CodeFormatter() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleEditorDidMount: OnMount = (editor, monaco) => {
+  const handleEditorDidMount: OnMount = (editor) => {
     // You can configure the editor here
     editor.updateOptions({
       minimap: { enabled: false },

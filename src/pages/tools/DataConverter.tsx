@@ -22,7 +22,7 @@ export default function DataConverter() {
   const [loading, setLoading] = useState(false);
   const [tableName, setTableName] = useState("my_table");
 
-  const formats: { id: OutputFormat; name: string; icon: any }[] = [
+  const formats: { id: OutputFormat; name: string; icon: unknown }[] = [
     { id: "json_array", name: "JSON - Array of Objects", icon: Code },
     { id: "json_object", name: "JSON - Rows as Arrays", icon: Code },
     { id: "json_column", name: "JSON - Columns as Arrays", icon: Code },
@@ -86,23 +86,29 @@ export default function DataConverter() {
         case "json_array":
           result = JSON.stringify(rows, null, 2);
           break;
+        }
         case "json_object":
           // rows are currently objects, we need array of values
-          const arrayRows = rows.map((row: any) => headers.map((h: string) => row[h]));
+        {
+          const arrayRows = rows.map((row: Record<string, unknown>) => headers.map((h: string) => row[h]));
           result = JSON.stringify(arrayRows, null, 2);
           break;
+        }
         case "json_column":
-          const columns: any = {};
+        {
+          const columns: Record<string, unknown> = {};
           headers.forEach((h: string) => {
-            columns[h] = rows.map((row: any) => row[h]);
+            columns[h] = rows.map((row: Record<string, unknown>) => row[h]);
           });
           result = JSON.stringify(columns, null, 2);
           break;
+        }
         case "xml":
           result = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
-          rows.forEach((row: any) => {
+          rows.forEach((row: Record<string, unknown>) => {
             result += `  <row>\n`;
             headers.forEach((h: string) => {
+        {
               const tag = h.replace(/[^a-zA-Z0-9_-]/g, "_");
               result += `    <${tag}>${row[h]}</${tag}>\n`;
             });
@@ -110,12 +116,15 @@ export default function DataConverter() {
           });
           result += `</rows>`;
           break;
+        }
         case "mysql":
           result = `CREATE TABLE IF NOT EXISTS ${tableName} (\n`;
           result += headers.map((h: string) => `  \`${h}\` VARCHAR(255)`).join(",\n");
           result += `\n);\n\nINSERT INTO ${tableName} (${headers.map((h: string) => `\`${h}\``).join(", ")}) VALUES\n`;
-          result += rows.map((row: any) => {
+          result += rows.map((row: Record<string, unknown>) => {
+        {
             const values = headers.map((h: string) => {
+        {
               const val = row[h];
               if (typeof val === "number") return val;
               return `'${String(val).replace(/'/g, "\\'")}'`;
@@ -123,13 +132,14 @@ export default function DataConverter() {
             return `(${values})`;
           }).join(",\n") + ";";
           break;
+        }
         case "html":
           result = `<table>\n  <thead>\n    <tr>\n`;
           headers.forEach((h: string) => {
             result += `      <th>${h}</th>\n`;
           });
           result += `    </tr>\n  </thead>\n  <tbody>\n`;
-          rows.forEach((row: any) => {
+          rows.forEach((row: Record<string, unknown>) => {
             result += `    <tr>\n`;
             headers.forEach((h: string) => {
               result += `      <td>${row[h]}</td>\n`;
@@ -138,12 +148,15 @@ export default function DataConverter() {
           });
           result += `  </tbody>\n</table>`;
           break;
+        }
         case "php":
           result = `$data = array(\n`;
-          rows.forEach((row: any) => {
+          rows.forEach((row: Record<string, unknown>) => {
             result += `  array(\n`;
             headers.forEach((h: string) => {
+        {
               const val = row[h];
+        {
               const valStr = typeof val === "number" ? val : `"${String(val).replace(/"/g, '\\"')}"`;
               result += `    "${h}" => ${valStr},\n`;
             });
@@ -151,12 +164,15 @@ export default function DataConverter() {
           });
           result += `);`;
           break;
+        }
         case "python":
           result = `data = [\n`;
-          rows.forEach((row: any) => {
+          rows.forEach((row: Record<string, unknown>) => {
             result += `    {\n`;
             headers.forEach((h: string) => {
+        {
               const val = row[h];
+        {
               const valStr = typeof val === "number" ? val : `"${String(val).replace(/"/g, '\\"')}"`;
               result += `        "${h}": ${valStr},\n`;
             });
@@ -164,12 +180,15 @@ export default function DataConverter() {
           });
           result += `]`;
           break;
+        }
         case "ruby":
           result = `data = [\n`;
-          rows.forEach((row: any) => {
+          rows.forEach((row: Record<string, unknown>) => {
             result += `  {\n`;
             headers.forEach((h: string) => {
+        {
               const val = row[h];
+        {
               const valStr = typeof val === "number" ? val : `"${String(val).replace(/"/g, '\\"')}"`;
               result += `    "${h}" => ${valStr},\n`;
             });
@@ -177,6 +196,7 @@ export default function DataConverter() {
           });
           result += `]`;
           break;
+        }
       }
 
       setOutputText(result);

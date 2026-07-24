@@ -95,8 +95,7 @@ const maturityColors: Record<string, string> = {
 type TabType = "overview" | "templates" | "tools" | "guides" | "skills";
 
 export default function LoopEngineering() {
-  const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<TabType>("overview");
+    const [activeTab, setActiveTab] = useState<TabType>("overview");
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("All");
 

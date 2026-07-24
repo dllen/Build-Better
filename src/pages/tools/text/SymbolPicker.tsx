@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Search, Copy, Check } from 'lucide-react';
+import { Sparkles, Search, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const CATEGORIES = {
@@ -14,8 +14,7 @@ const CATEGORIES = {
 };
 
 export default function SymbolPicker() {
-  const { t } = useTranslation();
-  const [search, setSearch] = useState('');
+    const [search, setSearch] = useState('');
   const [copied, setCopied] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState('All');
 

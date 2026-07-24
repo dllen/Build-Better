@@ -5,8 +5,7 @@ import { Search, Heart, Clock, ArrowLeft, Gamepad, Filter } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 export default function NesEmulatorPage() {
-  const { t } = useTranslation();
-  const [selectedGame, setSelectedGame] = useState<NesGame | null>(null);
+    const [selectedGame, setSelectedGame] = useState<NesGame | null>(null);
   const [filter, setFilter] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [favorites, setFavorites] = useState<string[]>([]);
