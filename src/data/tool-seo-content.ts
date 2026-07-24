@@ -314,7 +314,31 @@ export const toolSEOContent: Record<string, ToolSEOData> = {
       { q: "What's an amortization schedule?", a: "It shows how each payment is split between principal and interest over the life of the loan." },
     ],
   },
-};
+,
+  "commit-message": {
+    title: "Git Commit Message Generator - Free Conventional Commits Builder",
+    description: "Generate Conventional Commits formatted git commit messages instantly. Free online commit message generator with type selection, scope, and breaking change support.",
+    slug: "commit-message",
+    features: [
+      "12 commit types (feat, fix, docs, refactor, etc.)",
+      "Scope suggestions",
+      "Breaking change indicator",
+      "Body and footer support",
+      "Copy to clipboard",
+      "Example messages",
+    ],
+    howToSteps: [
+      { title: "Select type", body: "Choose the type that best describes your change (feat, fix, docs, etc.)." },
+      { title: "Add scope", body: "Optionally add a scope to specify the affected area." },
+      { title: "Write description", body: "Write a short imperative description of the change." },
+      { title: "Copy message", body: "Copy the generated commit message to use in your terminal." },
+    ],
+    faqs: [
+      { q: "What is Conventional Commits?", a: "A lightweight convention that provides an easy set of rules for creating clear commit messages." },
+      { q: "Is the message automatically copied?", a: "Click the Copy button to copy the formatted message." },
+      { q: "What does Breaking Change mean?", a: "A ! after the type/scope indicates breaking API changes." },
+    ],
+  },};
 
 export function getToolSEO(slug: string): ToolSEOData | null {
   return toolSEOContent[slug] || null;
@@ -674,7 +698,31 @@ export function getToolSEO(slug: string): ToolSEOData | null {
       { q: "Is JSON validated?", a: "Yes. Invalid JSON shows validation errors." },
     ],
   },
-};
+,
+  "commit-message": {
+    title: "Git Commit Message Generator - Free Conventional Commits Builder",
+    description: "Generate Conventional Commits formatted git commit messages instantly. Free online commit message generator with type selection, scope, and breaking change support.",
+    slug: "commit-message",
+    features: [
+      "12 commit types (feat, fix, docs, refactor, etc.)",
+      "Scope suggestions",
+      "Breaking change indicator",
+      "Body and footer support",
+      "Copy to clipboard",
+      "Example messages",
+    ],
+    howToSteps: [
+      { title: "Select type", body: "Choose the type that best describes your change (feat, fix, docs, etc.)." },
+      { title: "Add scope", body: "Optionally add a scope to specify the affected area." },
+      { title: "Write description", body: "Write a short imperative description of the change." },
+      { title: "Copy message", body: "Copy the generated commit message to use in your terminal." },
+    ],
+    faqs: [
+      { q: "What is Conventional Commits?", a: "A lightweight convention that provides an easy set of rules for creating clear commit messages." },
+      { q: "Is the message automatically copied?", a: "Click the Copy button to copy the formatted message." },
+      { q: "What does Breaking Change mean?", a: "A ! after the type/scope indicates breaking API changes." },
+    ],
+  },};
   "markdown-html": {
     title: "Markdown to HTML Converter - Free Online Markdown Preview",
     description: "Convert Markdown to HTML instantly. Free online markdown converter with live preview. Support for GFM, tables, and code blocks.",
@@ -883,4 +931,28 @@ export function getToolSEO(slug: string): ToolSEOData | null {
       { q: "Is annualized ROI calculated?", a: "Yes. Adjust for different time periods." },
     ],
   },
-};
+,
+  "commit-message": {
+    title: "Git Commit Message Generator - Free Conventional Commits Builder",
+    description: "Generate Conventional Commits formatted git commit messages instantly. Free online commit message generator with type selection, scope, and breaking change support.",
+    slug: "commit-message",
+    features: [
+      "12 commit types (feat, fix, docs, refactor, etc.)",
+      "Scope suggestions",
+      "Breaking change indicator",
+      "Body and footer support",
+      "Copy to clipboard",
+      "Example messages",
+    ],
+    howToSteps: [
+      { title: "Select type", body: "Choose the type that best describes your change (feat, fix, docs, etc.)." },
+      { title: "Add scope", body: "Optionally add a scope to specify the affected area." },
+      { title: "Write description", body: "Write a short imperative description of the change." },
+      { title: "Copy message", body: "Copy the generated commit message to use in your terminal." },
+    ],
+    faqs: [
+      { q: "What is Conventional Commits?", a: "A lightweight convention that provides an easy set of rules for creating clear commit messages." },
+      { q: "Is the message automatically copied?", a: "Click the Copy button to copy the formatted message." },
+      { q: "What does Breaking Change mean?", a: "A ! after the type/scope indicates breaking API changes." },
+    ],
+  },};
