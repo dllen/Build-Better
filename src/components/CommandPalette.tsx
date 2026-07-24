@@ -48,6 +48,7 @@ const allCommands = [
   { id: "calculator", name: "Calculator", description: "Calculator tool", path: "/calculator", category: "utils", icon: Wrench },
   { id: "cron-quartz", name: "Cron Quartz", description: "Cron expression builder", path: "/cron-quartz", category: "utils", icon: Wrench },
   { id: "date-time", name: "Date Time Wrenchs", description: "Date and time utilities", path: "/date-time", category: "utils", icon: Wrench },
+  { id: "commit-message", name: "Commit Message", description: "Generate git commit messages", path: "/commit-message", category: "dev", icon: Wrench },
   
   // Finance
   { id: "mortgage-calculator", name: "Mortgage Calculator", description: "Calculate mortgage payments", path: "/mortgage-calculator", category: "finance", icon: Wrench },
