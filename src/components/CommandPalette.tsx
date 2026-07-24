@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, Command, Wrench, Gamepad2, Settings, X, ArrowRight, Clock, Star, Heart } from "lucide-react";
+import { Search, CommandIcon, Wrench, Gamepad2, Settings, X, ArrowRight, Clock, Star, Heart } from "lucide-react";
 import Fuse from "fuse.js";
 import { useHistory } from "@/hooks/useHistory";
 import { useFavorites } from "@/hooks/useFavorites";
@@ -351,7 +351,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
             </span>
           </div>
           <span className="flex items-center gap-1">
-            <Command className="w-3 h-3" />
+            <CommandIcon className="w-3 h-3" />
             <kbd className="px-1.5 py-0.5 bg-muted rounded border border-border">K</kbd>
             to toggle
           </span>
