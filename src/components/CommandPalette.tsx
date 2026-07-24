@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, CommandIcon, Wrench, Gamepad2, Settings, X, ArrowRight, Clock, Star, Heart } from "lucide-react";
+import { Search, CommandIcon, Wrench, Gamepad2, Settings, X, ArrowRight, Clock, Star, Heart, type LucideIcon } from "lucide-react";
 import Fuse from "fuse.js";
 import { useHistory } from "@/hooks/useHistory";
 import { useFavorites } from "@/hooks/useFavorites";
@@ -83,7 +83,7 @@ interface Command {
   description: string;
   path: string;
   category: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
 }
 
 interface CommandPaletteProps {

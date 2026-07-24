@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import JSONEditor, { JSONEditorOptions } from "jsoneditor";
 import "jsoneditor/dist/jsoneditor.css";
 import { SEO } from "@/components/SEO";
+import { ToolPageSEO } from "@/components/seo/ToolPageSEO";
+import { TrustBanner } from "@/components/seo/TrustBanner";
 import { useTranslation } from "react-i18next";
-import { ToolPageSEO, TrustBanner } from "@/components/SEO";
 import { toolSEOContent } from "@/data/tool-seo-content";
 import { 
   Copy, Check, AlignLeft, FileCode2, TreeDeciduous, 
