@@ -1,12 +1,28 @@
 import { Link } from "react-router-dom";
-import { Settings, Menu, ChevronDown } from "lucide-react";
+import { Settings, Menu, ChevronDown, Search, Command, Sun, Moon, Monitor } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LanguageSelector } from "../LanguageSelector";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t } = useTranslation();
+  const { theme, setTheme } = useTheme();
+
+  const openCommandPalette = () => {
+    window.dispatchEvent(new CustomEvent("toggle-command-palette"));
+  };
+
+  const cycleTheme = () => {
+    const themes: ("light" | "dark" | "system")[] = ["light", "dark", "system"];
+    const currentIndex = themes.indexOf(theme);
+    const nextIndex = (currentIndex + 1) % themes.length;
+    setTheme(themes[nextIndex]);
+  };
+
+  const ThemeIcon = theme === "dark" ? Moon : theme === "light" ? Sun : Monitor;
+  const themeLabel = theme === "dark" ? "Dark" : theme === "light" ? "Light" : "System";
 
   return (
     <nav className="bg-background/80 backdrop-blur-md sticky top-0 z-50 border-b border-border shadow-sm supports-[backdrop-filter]:bg-background/60">
@@ -17,7 +33,28 @@ export function Navbar() {
             <span>{t("app.title")}</span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-4">
+            {/* Search Button */}
+            <button
+              onClick={openCommandPalette}
+              className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground bg-muted/50 hover:bg-muted rounded-lg border border-border/50 transition-colors"
+            >
+              <Search className="h-4 w-4" />
+              <span className="hidden lg:inline">Search...</span>
+              <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-xs bg-background rounded border border-border/50">
+                <Command className="h-3 w-3" />K
+              </kbd>
+            </button>
+
+            {/* Theme Toggle */}
+            <button
+              onClick={cycleTheme}
+              className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+              title={`Theme: ${themeLabel} (click to cycle)`}
+            >
+              <ThemeIcon className="h-5 w-5" />
+            </button>
+
             {/* Common Tools Dropdown */}
             <div className="relative group">
               <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors font-medium text-sm focus:outline-none">
@@ -134,7 +171,7 @@ export function Navbar() {
             <LanguageSelector />
           </div>
 
-          <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center gap-2 md:hidden">
             <LanguageSelector />
             <button className="p-2 text-muted-foreground hover:text-foreground" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               <Menu className="h-6 w-6" />
@@ -147,6 +184,33 @@ export function Navbar() {
       {isMenuOpen && (
         <div className="md:hidden border-t border-border py-2 bg-background">
           <div className="container mx-auto px-4 flex flex-col gap-2">
+            {/* Search Button */}
+            <button
+              onClick={() => {
+                openCommandPalette();
+                setIsMenuOpen(false);
+              }}
+              className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground bg-muted/50 rounded-lg border border-border/50"
+            >
+              <Search className="h-4 w-4" />
+              <span>Search...</span>
+              <kbd className="ml-auto flex items-center gap-0.5 px-1.5 py-0.5 text-xs bg-background rounded border border-border/50">
+                <Command className="h-3 w-3" />K
+              </kbd>
+            </button>
+            
+            {/* Theme Toggle */}
+            <button
+              onClick={() => {
+                cycleTheme();
+                setIsMenuOpen(false);
+              }}
+              className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground bg-muted/50 rounded-lg border border-border/50"
+            >
+              <ThemeIcon className="h-4 w-4" />
+              <span>Theme: {themeLabel}</span>
+            </button>
+            
             <div className="py-2">
               <div className="text-sm font-semibold text-foreground mb-2">常用工具</div>
               <div className="pl-4 flex flex-col gap-2 border-l-2 border-border ml-1">
