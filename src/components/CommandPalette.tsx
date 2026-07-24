@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, CommandIcon, Wrench, Gamepad2, Settings, X, ArrowRight, Clock, Star, Heart } from "lucide-react";
@@ -80,7 +81,7 @@ interface Command {
   description: string;
   path: string;
   category: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ElementType;
 }
 
 interface CommandPaletteProps {

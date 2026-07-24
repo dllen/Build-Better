@@ -182,6 +182,16 @@
   to { transform: translateY(0); opacity: 1; }
 }
 
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(199 89% 48% / 0.4); }
+  50% { box-shadow: 0 0 0 8px hsl(199 89% 48% / 0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
 @layer utilities {
   .animate-fade-in {
     animation: fade-in 0.2s ease-out;
@@ -193,6 +203,21 @@
   
   .animate-slide-down {
     animation: slide-down 0.3s ease-out;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(217 33% 20% / 0.4) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
   }
   
   /* Theme-aware transitions */
@@ -214,6 +239,49 @@
   .dark .hover-glow:hover {
     box-shadow: 0 0 20px var(--glow-primary);
   }
+  
+  /* Glass morphism effect */
+  .dark .glass {
+    background: hsl(222 47% 10% / 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsl(217 33% 17% / 0.5);
+  }
+  
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(199 89% 48%), hsl(160 84% 39%));
+  }
+  
+  /* Dark theme specific card styles */
+  .dark .card-premium {
+    background: linear-gradient(180deg, hsl(222 47% 10%), hsl(222 47% 8%));
+    border: 1px solid hsl(217 33% 17%);
+  }
+  
+  .dark .card-hover:hover {
+    border-color: hsl(199 89% 48% / 0.3);
+  }
+  
+  /* Premium button styles */
+  .dark .btn-glow {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .dark .btn-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, hsl(199 89% 48% / 0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  .dark .btn-glow:hover::before {
+    opacity: 1;
+  }
 }
 
 /* Dark theme specific form enhancements */
@@ -223,7 +291,6 @@
   @apply bg-background text-foreground;
 }
 
-/* Improved focus states */
 .dark input:focus,
 .dark select:focus,
 .dark textarea:focus {
@@ -254,14 +321,6 @@
   );
 }
 
-/* Glass morphism for elevated surfaces */
-.dark .glass {
-  background: hsl(222 47% 10% / 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid hsl(217 33% 17% / 0.5);
-}
-
 /* Enhanced borders for depth */
 .dark .border-emphasis {
   border-color: hsl(217 33% 20%);
@@ -278,4 +337,123 @@
 
 .dark .text-contrast-low {
   color: hsl(215 20% 55%);
+}
+
+/* Premium dark theme inner shadow for inset elements */
+.dark .shadow-inner {
+  box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.3);
+}
+
+/* Dark theme glow effect for primary elements */
+.dark .glow-primary {
+  box-shadow: 0 0 20px hsl(199 89% 48% / 0.2);
+}
+
+.dark .glow-primary-sm {
+  box-shadow: 0 0 10px hsl(199 89% 48% / 0.15);
+}
+
+/* Premium border gradient */
+.dark .border-gradient {
+  border: 1px solid;
+  border-image: linear-gradient(135deg, hsl(199 89% 48%), hsl(160 84% 39%)) 1;
+}
+
+/* Tailwind animation integration */
+@layer utilities {
+  .animate-in {
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+  }
+  
+  .fade-in-0 {
+    animation-name: fadeIn;
+  }
+  
+  .zoom-in-95 {
+    animation-name: zoomIn95;
+  }
+  
+  .slide-in-from-top-1 {
+    animation-name: slideInFromTop1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn95 {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideInFromTop1 {
+  from { transform: translateY(-4px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* JSON Editor dark theme overrides */
+.dark .jsoneditor {
+  background-color: hsl(222 47% 10%) !important;
+  border-color: hsl(217 33% 17%) !important;
+}
+
+.dark .jsoneditor-menu {
+  background-color: hsl(222 47% 12%) !important;
+  border-bottom-color: hsl(217 33% 17%) !important;
+}
+
+.dark .jsoneditor-tree {
+  background-color: transparent !important;
+}
+
+.dark .jsoneditor-field,
+.dark .jsoneditor-value {
+  color: hsl(210 40% 98%) !important;
+}
+
+.dark .jsoneditor-string {
+  color: hsl(142 71% 60%) !important;
+}
+
+.dark .jsoneditor-number {
+  color: hsl(199 89% 60%) !important;
+}
+
+.dark .jsoneditor-boolean {
+  color: hsl(280 65% 60%) !important;
+}
+
+.dark .jsoneditor-readonly {
+  color: hsl(215 20% 55%) !important;
+}
+
+.dark .jsoneditor td {
+  color: hsl(210 40% 98%) !important;
+}
+
+.dark .jsoneditor-container {
+  background-color: hsl(222 47% 10%) !important;
+}
+
+.dark .jsoneditor-status {
+  color: hsl(215 20% 65%) !important;
+  border-top-color: hsl(217 33% 17%) !important;
+}
+
+.dark .jsoneditor-search {
+  background-color: hsl(222 47% 12%) !important;
+  border-bottom-color: hsl(217 33% 17%) !important;
+}
+
+.dark .jsoneditor textarea {
+  background-color: hsl(222 47% 8%) !important;
+  color: hsl(210 40% 98%) !important;
+  caret-color: hsl(199 89% 48%) !important;
+}
+
+.dark .jsoneditor-frame {
+  border-color: hsl(217 33% 17%) !important;
 }
