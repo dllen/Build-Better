@@ -6,7 +6,7 @@ import {
   ChevronsLeft,
   ChevronsRight,
 } from "lucide-react";
-import { Solar, Lunar, HolidayUtil } from "lunar-javascript";
+import { Solar, HolidayUtil } from "lunar-javascript";
 import { SEO } from "@/components/SEO";
 
 export default function PerpetualCalendar() {

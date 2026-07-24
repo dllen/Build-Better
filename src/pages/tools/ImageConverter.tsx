@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
 import { Upload, X, Download, FileImage, RefreshCw, Archive, Settings } from "lucide-react";

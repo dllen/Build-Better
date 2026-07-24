@@ -53,7 +53,6 @@ export default function TextStats() {
     return m ? m.length : 0;
   }, [text]);
 
-  const freqTopChars = useMemo(() => {
     const map = new Map<string, number>();
     for (const ch of text) {
       if (!ch.trim()) continue;

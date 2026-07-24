@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { XMLParser } from 'fast-xml-parser';
 import { ExternalLink, RefreshCw, Rss, Search, List } from 'lucide-react';
 
@@ -137,7 +137,7 @@ export default function RssReader() {
     // Extract feeds from OPML structure
     // Structure: opml -> body -> outline -> outline (array)
     const outlines = result.opml?.body?.outline?.outline || [];
-    const extractedFeeds: FeedSource[] = outlines.map((outline: any) => ({
+    const extractedFeeds: FeedSource[] = outlines.map((outline: unknown) => ({
       title: outline.text || outline.title,
       xmlUrl: outline.xmlUrl,
       htmlUrl: outline.htmlUrl
@@ -184,8 +184,8 @@ export default function RssReader() {
             : [feedData.feed.entry];
         }
 
-        const normalizedItems = channelItems.map((item: any) => {
-          const ensureString = (val: any): string => {
+        const normalizedItems = channelItems.map((item: unknown) => {
+          const ensureString = (val: unknown): string => {
             if (typeof val === 'string') return val;
             if (val === null || val === undefined) return "";
             if (typeof val === 'object' && val['#text']) return String(val['#text']);

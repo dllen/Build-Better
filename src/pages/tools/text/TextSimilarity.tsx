@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { GitCompare, Copy, Check } from 'lucide-react';
+import { GitCompare } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import * as Diff from 'diff';
 
 export default function TextSimilarity() {
-  const { t } = useTranslation();
-  const [text1, setText1] = useState('');
+    const [text1, setText1] = useState('');
   const [text2, setText2] = useState('');
   const [similarity, setSimilarity] = useState(0);
   

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, RefreshCw, Plane, RotateCcw, Play } from "lucide-react";
+import { ArrowLeft, RefreshCw, Plane, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Game Constants
@@ -41,7 +41,7 @@ const FlyingChess: React.FC = () => {
   
   // Initial State
   const createInitialState = (): GameState => {
-    const pieces: any = {};
+    const pieces: unknown = {};
     PLAYERS.forEach(p => {
       pieces[p] = Array(4).fill(0).map((_, i) => ({
         id: i,

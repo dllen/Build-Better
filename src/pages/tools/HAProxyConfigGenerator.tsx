@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Server, Network, Activity, Copy, Settings, Layers, Plus, Trash2 } from "lucide-react";
+import { Server, Network, Copy, Settings, Layers, Plus, Trash2 } from "lucide-react";
 
 interface BackendServer {
   name: string;
@@ -118,9 +118,9 @@ backend app_backend
     setServers(newServers);
   };
 
-  const updateServer = (index: number, field: keyof BackendServer, value: any) => {
+  const updateServer = (index: number, field: keyof BackendServer, value: unknown) => {
     const newServers = [...servers];
-    (newServers[index] as any)[field] = value;
+    (newServers[index] as unknown)[field] = value;
     setServers(newServers);
   };
 
@@ -303,7 +303,7 @@ backend app_backend
               </label>
               <select
                 value={balanceAlgorithm}
-                onChange={(e) => setBalanceAlgorithm(e.target.value as any)}
+                onChange={(e) => setBalanceAlgorithm(e.target.value as unknown)}
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none bg-white"
               >
                 <option value="roundrobin">Round Robin</option>

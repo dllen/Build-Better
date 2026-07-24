@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Calculator, DollarSign, PieChart, Info } from "lucide-react";
+import { Calculator, Info } from "lucide-react";
 import { SEO } from "@/components/SEO";
 
 type LoanType = "commercial" | "provident" | "combination";

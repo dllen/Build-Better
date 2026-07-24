@@ -21,7 +21,6 @@ export function Navbar() {
     setTheme(themes[nextIndex]);
   };
 
-  const ThemeIcon = theme === "dark" ? Moon : theme === "light" ? Sun : Monitor;
   const themeLabel = theme === "dark" ? "Dark" : theme === "light" ? "Light" : "System";
 
   return (

@@ -22,7 +22,6 @@ const STYLES = [
 // Helper to map chars
 const NORMAL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-const convert = (text: string, styleIndex: number) => {
   const target = STYLES[styleIndex].map;
   return text.split('').map(char => {
     const idx = NORMAL.indexOf(char);
@@ -32,7 +31,6 @@ const convert = (text: string, styleIndex: number) => {
   }).join('');
 };
 
-const convertSafe = (text: string, styleIndex: number) => {
   const targetStr = STYLES[styleIndex].map;
   // Convert string to array of code points (strings)
   const target = [...targetStr]; 
@@ -45,7 +43,6 @@ const convertSafe = (text: string, styleIndex: number) => {
 };
 
 export default function FancyTextGenerator() {
-  const { t } = useTranslation();
   const [text, setText] = useState('Hello World 123');
   const [copied, setCopied] = useState<number | null>(null);
 
@@ -78,7 +75,6 @@ export default function FancyTextGenerator() {
 
         <div className="grid gap-4">
           {STYLES.map((style, index) => {
-            const result = convertSafe(text, index);
             return (
               <div key={style.name} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg border border-gray-100 hover:border-purple-200 transition-colors group">
                 <div className="w-32 text-xs text-gray-500 font-medium">{style.name}</div>

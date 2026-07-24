@@ -41,7 +41,6 @@ const modeConfig: Record<EditorMode, { icon: React.ElementType; label: string }>
 };
 
 export default function JsonEditorTool() {
-  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const editorRef = useRef<JSONEditor | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -53,7 +52,6 @@ export default function JsonEditorTool() {
   const [isValidJson, setIsValidJson] = useState(true);
   const [showModeMenu, setShowModeMenu] = useState(false);
   const [isPanelOpen, setIsPanelOpen] = useState(true);
-  const [isFormatted, setIsFormatted] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Validate JSON
@@ -191,7 +189,6 @@ export default function JsonEditorTool() {
   };
 
   // Clear editor
-  const handleClear = () => {
     if (editorRef.current) {
       editorRef.current.set({});
       setJsonContent("{}");

@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
+ 'react-i18next';
 import { Upload, Download, RefreshCw, Image as ImageIcon, Copy, Check } from 'lucide-react';
 import { processImage, DENSITY_SETS, AsciiResult } from '@/utils/asciiArt';
 import { SEO } from '@/components/SEO';
@@ -169,7 +169,7 @@ export default function ImageAsciiArt() {
                     </label>
                     <select 
                       value={colorMode} 
-                      onChange={(e) => setColorMode(e.target.value as any)}
+                      onChange={(e) => setColorMode(e.target.value as string)}
                       className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600"
                     >
                       <option value="black-white">{t('tools.image-ascii.mode_bw', 'Black & White')}</option>
@@ -184,7 +184,7 @@ export default function ImageAsciiArt() {
                     </label>
                     <select 
                       value={charSet} 
-                      onChange={(e) => setCharSet(e.target.value as any)}
+                      onChange={(e) => setCharSet(e.target.value as string)}
                       className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600"
                     >
                       <option value="standard">Standard (@%#*+=-:. )</option>
@@ -296,7 +296,7 @@ export default function ImageAsciiArt() {
 }
 
 // Helper icon component since FileText is used in imports
-function FileText(props: any) {
+function FileText(props: unknown) {
   return (
     <svg
       {...props}

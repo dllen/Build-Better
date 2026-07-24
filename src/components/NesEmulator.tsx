@@ -48,7 +48,7 @@ export const NesEmulator: React.FC<NesEmulatorProps> = ({ romUrl, core = 'fceumm
         } else {
           nost.exit();
         }
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Failed to launch emulator:", err);
         if (active) {
           setIsLoading(false);

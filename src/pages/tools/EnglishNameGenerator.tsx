@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
 import { pinyin } from "pinyin-pro";
-import { User, Search, RefreshCw, Copy, Check } from "lucide-react";
+import { User, Search, RefreshCw, Copy } from "lucide-react";
 
 // Mock database of names - in a real app this might be a larger JSON or API
 // Structure: { name: string, gender: 'male'|'female'|'neutral', meaning: string, tags: string[] }

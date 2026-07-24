@@ -105,7 +105,7 @@ const getPieceMoves = (board: (Piece | null)[][], pos: Position, piece: Piece): 
   switch (piece.type) {
     case "k": // General
       // Palace bounds: cols 3-5. Red rows 7-9, Black rows 0-2.
-      const rMin = isRed ? 7 : 0;
+      { const rMin = isRed ? 7 : 0;
       const rMax = isRed ? 9 : 2;
       const cMin = 3;
       const cMax = 5;
@@ -116,11 +116,12 @@ const getPieceMoves = (board: (Piece | null)[][], pos: Position, piece: Piece): 
         }
       });
       // Flying General rule is checked in `willCauseCheck` or globally
+      }
       break;
 
     case "a": // Advisor
       // Palace diagonal
-      const arMin = isRed ? 7 : 0;
+      { const arMin = isRed ? 7 : 0;
       const arMax = isRed ? 9 : 2;
       [[1, 1], [1, -1], [-1, 1], [-1, -1]].forEach(([dr, dc]) => {
         const nr = r + dr, nc = c + dc;
@@ -128,12 +129,13 @@ const getPieceMoves = (board: (Piece | null)[][], pos: Position, piece: Piece): 
           addMove(nr, nc);
         }
       });
+      }
       break;
 
     case "b": // Elephant (Bishop)
       // 2 steps diagonal, cannot cross river
       // River: Red side 5-9, Black side 0-4.
-      const brMin = isRed ? 5 : 0;
+      { const brMin = isRed ? 5 : 0;
       const brMax = isRed ? 9 : 4;
       [[2, 2], [2, -2], [-2, 2], [-2, -2]].forEach(([dr, dc]) => {
         const nr = r + dr, nc = c + dc;
@@ -144,11 +146,12 @@ const getPieceMoves = (board: (Piece | null)[][], pos: Position, piece: Piece): 
           }
         }
       });
+      }
       break;
 
     case "n": // Horse (Knight)
       // L-shape, check leg
-      [[1, 2], [1, -2], [-1, 2], [-1, -2], [2, 1], [2, -1], [-2, 1], [-2, -1]].forEach(([dr, dc]) => {
+      { [[1, 2], [1, -2], [-1, 2], [-1, -2], [2, 1], [2, -1], [-2, 1], [-2, -1]].forEach(([dr, dc]) => {
         const nr = r + dr, nc = c + dc;
         const legR = r + (Math.abs(dr) === 2 ? Math.sign(dr) : 0);
         const legC = c + (Math.abs(dc) === 2 ? Math.sign(dc) : 0);
@@ -156,10 +159,11 @@ const getPieceMoves = (board: (Piece | null)[][], pos: Position, piece: Piece): 
           addMove(nr, nc);
         }
       });
+      }
       break;
 
     case "r": // Rook (Chariot)
-      [[0, 1], [0, -1], [1, 0], [-1, 0]].forEach(([dr, dc]) => {
+      { [[0, 1], [0, -1], [1, 0], [-1, 0]].forEach(([dr, dc]) => {
         let nr = r + dr, nc = c + dc;
         while (isValidPos(nr, nc)) {
           const target = board[nr][nc];
@@ -167,15 +171,17 @@ const getPieceMoves = (board: (Piece | null)[][], pos: Position, piece: Piece): 
             addMove(nr, nc);
           } else {
             if (target.color !== piece.color) addMove(nr, nc);
+            }
             break;
           }
           nr += dr; nc += dc;
         }
       });
+      }
       break;
 
     case "c": // Cannon
-      [[0, 1], [0, -1], [1, 0], [-1, 0]].forEach(([dr, dc]) => {
+      { [[0, 1], [0, -1], [1, 0], [-1, 0]].forEach(([dr, dc]) => {
         let nr = r + dr, nc = c + dc;
         let platform = false;
         while (isValidPos(nr, nc)) {
@@ -187,18 +193,20 @@ const getPieceMoves = (board: (Piece | null)[][], pos: Position, piece: Piece): 
               platform = true;
             } else {
               if (target.color !== piece.color) addMove(nr, nc);
+              }
               break;
             }
           }
           nr += dr; nc += dc;
         }
       });
+      }
       break;
 
     case "p": // Pawn (Soldier)
       // Forward 1. After river, side 1.
       // Red moves -1 row, Black moves +1 row.
-      const forward = isRed ? -1 : 1;
+      { const forward = isRed ? -1 : 1;
       const crossedRiver = isRed ? r <= 4 : r >= 5;
       
       // Forward
@@ -208,6 +216,7 @@ const getPieceMoves = (board: (Piece | null)[][], pos: Position, piece: Piece): 
       if (crossedRiver) {
         addMove(r, c - 1);
         addMove(r, c + 1);
+      }
       }
       break;
   }
@@ -244,6 +253,7 @@ const willCauseCheck = (board: (Piece | null)[][], move: Move, turn: Color): boo
     for (let r = Math.min(redK.r, blackK.r) + 1; r < Math.max(redK.r, blackK.r); r++) {
       if (tempBoard[r][redK.c]) {
         hasBlocker = true;
+        }
         break;
       }
     }

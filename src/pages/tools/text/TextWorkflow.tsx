@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Workflow, Plus, Trash2, ArrowDown, Play, Save, RotateCcw, Copy, Check } from 'lucide-react';
+import React, { useState } from 'react';
+import { Workflow, Plus, Trash2, ArrowDown, Play, RotateCcw, Copy, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 type OperationType = 'uppercase' | 'lowercase' | 'trim' | 'replace' | 'sort' | 'reverse' | 'lines';
@@ -7,7 +7,7 @@ type OperationType = 'uppercase' | 'lowercase' | 'trim' | 'replace' | 'sort' | '
 type Step = {
   id: string;
   type: OperationType;
-  params: Record<string, any>;
+  params: Record<string, unknown>;
 };
 
 const OPERATIONS: { value: OperationType; label: string }[] = [
@@ -21,8 +21,7 @@ const OPERATIONS: { value: OperationType; label: string }[] = [
 ];
 
 export default function TextWorkflow() {
-  const { t } = useTranslation();
-  const [input, setInput] = useState('');
+    const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [steps, setSteps] = useState<Step[]>([]);
   const [copied, setCopied] = useState(false);
@@ -35,7 +34,7 @@ export default function TextWorkflow() {
     setSteps(steps.filter(s => s.id !== id));
   };
 
-  const updateStepParam = (id: string, key: string, value: any) => {
+  const updateStepParam = (id: string, key: string, value: unknown) => {
     setSteps(steps.map(s => s.id === id ? { ...s, params: { ...s.params, [key]: value } } : s));
   };
 
@@ -73,6 +72,7 @@ export default function TextWorkflow() {
           }
           break;
         case 'sort':
+          {
           const lines = result.split('\n');
           if (step.params.desc) {
             lines.sort((a, b) => b.localeCompare(a));
@@ -80,6 +80,7 @@ export default function TextWorkflow() {
             lines.sort((a, b) => a.localeCompare(b));
           }
           result = lines.join('\n');
+          }
           break;
         case 'reverse':
           if (step.params.mode === 'lines') {

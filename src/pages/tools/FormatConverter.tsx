@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { Copy, Check, ArrowRightLeft, AlertCircle } from "lucide-react";
+import { Copy, Check, AlertCircle } from "lucide-react";
 import Editor from "@monaco-editor/react";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
@@ -44,7 +44,7 @@ export default function FormatConverter() {
     }
 
     try {
-      let parsedData: any;
+      let parsedData: unknown;
 
       // Parse input
       switch (inputFormat) {
@@ -89,7 +89,7 @@ export default function FormatConverter() {
       }
 
       setOutputContent(result);
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(err.message || "Conversion failed");
       setOutputContent("");
     }

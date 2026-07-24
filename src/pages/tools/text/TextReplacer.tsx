@@ -36,7 +36,7 @@ export default function TextReplacer() {
     setPairs(pairs.filter((_, i) => i !== index));
   };
 
-  const updatePair = (index: number, field: keyof ReplacementPair, value: any) => {
+  const updatePair = (index: number, field: keyof ReplacementPair, value: unknown) => {
     const newPairs = [...pairs];
     newPairs[index] = { ...newPairs[index], [field]: value };
     setPairs(newPairs);
