@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, RefreshCw, Plane, Trophy, RotateCcw, Play } from "lucide-react";
+import { ArrowLeft, RefreshCw, Plane, RotateCcw, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Game Constants
@@ -260,7 +260,7 @@ const FlyingChess: React.FC = () => {
     else if (color === "blue") offset = 26;
     else if (color === "green") offset = 39;
     
-    let globalIdx = (dist + offset) % 52;
+    const globalIdx = (dist + offset) % 52;
     let msg = "";
 
     const colorIdx = PLAYERS.indexOf(color); 

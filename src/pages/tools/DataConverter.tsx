@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Copy, Download, RefreshCw, FileText, Code, Database, Terminal, Table as TableIcon } from "lucide-react";
+import { Copy, RefreshCw, FileText, Code, Database, Terminal, Table as TableIcon } from "lucide-react";
 import { parseCsvWebStream } from "../../../shared/csv-parser.mjs";
 
 type OutputFormat = 

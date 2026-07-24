@@ -22,7 +22,7 @@ export default function TextLineNumber() {
   };
 
   const processText = () => {
-    let lines = text.split(/\r?\n/);
+    const lines = text.split(/\r?\n/);
     let counter = start;
 
     if (mode === 'line') {

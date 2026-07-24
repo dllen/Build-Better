@@ -214,7 +214,7 @@ export default function EnglishNameGenerator() {
     const firstLetter = lastNamePinyin ? lastNamePinyin[0].toUpperCase() : "";
     
     // Filter logic
-    let matches = nameDatabase.filter((n) => {
+    const matches = nameDatabase.filter((n) => {
       // Gender filter
       if (gender !== "neutral" && n.gender !== "neutral" && n.gender !== gender) {
         return false;

@@ -42,7 +42,7 @@ const InvestmentReturnCalculator = () => {
     const yearlyRate = r / 100;
 
     for (let i = 1; i <= time; i++) {
-      let yearStartAmount = currentAmount;
+      const yearStartAmount = currentAmount;
 
       if (compoundFreq === "monthly") {
         // Monthly compounding with monthly contributions
@@ -65,13 +65,13 @@ const InvestmentReturnCalculator = () => {
         // Let's stick to: Monthly contribution -> Compounded Monthly is best for most people.
         // If they select Yearly, we treat it as: Interest applied once a year.
 
-        let yearlyContribution = contribution * 12;
+        const yearlyContribution = contribution * 12;
         // Simple approximation for yearly compounding with monthly deposits:
         // Interest = (StartBalance + YearlyContribution/2) * rate? No.
         // Let's iterate months for contribution addition, but apply interest at end.
 
         let interest = 0;
-        let balanceForInterest = currentAmount;
+        const balanceForInterest = currentAmount;
         for (let m = 0; m < 12; m++) {
           // Add contribution
           currentAmount += contribution;

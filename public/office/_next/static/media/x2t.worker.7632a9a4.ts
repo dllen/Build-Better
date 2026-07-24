@@ -9,7 +9,7 @@ import { AvsFileType, X2tConvertParams, X2tConvertResult } from "./types";
  * off the main thread to prevent UI blocking.
  */
 
-/* eslint-disable no-restricted-globals */
+ 
 
 // Base URL for x2t files - hardcoded since blob URL workers can't determine origin
 const BASE_URL = self.location.origin + "/office/x2t-1/";
