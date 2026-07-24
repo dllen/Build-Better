@@ -3,7 +3,7 @@ import JSONEditor, { JSONEditorOptions } from "jsoneditor";
 import "jsoneditor/dist/jsoneditor.css";
 import { SEO } from "@/components/SEO";
 import { useTranslation } from "react-i18next";
-import { ToolPageSEO, TrustBanner } from "@/components/seo";
+import { ToolPageSEO, TrustBanner } from "@/components/SEO";
 import { toolSEOContent } from "@/data/tool-seo-content";
 import { 
   Copy, Check, AlignLeft, FileCode2, TreeDeciduous, 
