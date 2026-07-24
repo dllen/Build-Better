@@ -99,250 +99,6 @@ export const toolSEOContent: Record<string, ToolSEOData> = {
       { q: "Can I customize colors?", a: "Yes. You can change the foreground and background colors of your QR code." },
     ],
   },
-  "jwt-decode": {
-    title: "JWT Decoder - Free Online JSON Web Token Decoder",
-    description: "Decode and inspect JWT tokens instantly. View header, payload, and signature. Validate JWT structure and expiration. 100% client-side processing.",
-    slug: "jwt-decode",
-    features: [
-      "Instant JWT decoding",
-      "Header and payload viewer",
-      "Expiration check with timestamp",
-      "Signature verification status",
-      "Copy decoded sections",
-      "Dark mode support",
-    ],
-    howToSteps: [
-      { title: "Paste JWT token", body: "Paste your JWT token into the input field." },
-      { title: "View decoded data", body: "The header and payload are decoded and displayed instantly." },
-      { title: "Check expiration", body: "See if the token is expired or when it will expire." },
-      { title: "Copy sections", body: "Copy individual sections (header, payload) or the full decoded JSON." },
-    ],
-    faqs: [
-      { q: "Is my JWT token transmitted anywhere?", a: "No. All decoding happens locally in your browser. Your tokens never leave your device." },
-      { q: "Can I verify JWT signatures?", a: "We show the signature section but cannot verify it without the secret key." },
-      { q: "What does the expiration check show?", a: "It shows the 'exp' claim as a human-readable date and whether the token has expired." },
-    ],
-  },
-  "password-generator": {
-    title: "Password Generator - Free Secure Password Creator",
-    description: "Generate strong, secure passwords instantly. Customize length and character types. Copy to clipboard or generate multiple passwords at once.",
-    slug: "password-generator",
-    features: [
-      "Customizable password length",
-      "Character type options (uppercase, lowercase, numbers, symbols)",
-      "Exclude ambiguous characters option",
-      "Generate multiple passwords",
-      "Password strength indicator",
-      "One-click copy to clipboard",
-    ],
-    howToSteps: [
-      { title: "Set password options", body: "Choose password length and which character types to include." },
-      { title: "Generate", body: "Click Generate to create one or multiple passwords." },
-      { title: "Check strength", body: "View the strength indicator for each generated password." },
-      { title: "Copy", body: "Click Copy to copy the password to your clipboard." },
-    ],
-    faqs: [
-      { q: "Are passwords generated server-side?", a: "No. Passwords are generated locally using cryptographically secure random number generators." },
-      { q: "What length is recommended?", a: "For most purposes, 16-20 characters is sufficient. For high-security accounts, use 24+ characters." },
-      { q: "Can I exclude ambiguous characters?", a: "Yes. The option to exclude 0, O, l, 1, I helps prevent confusion in printed passwords." },
-    ],
-  },
-  "hash-tools": {
-    title: "Hash Generator - Free Online MD5, SHA, and More",
-    description: "Generate cryptographic hashes in your browser. Supports MD5, SHA-1, SHA-256, SHA-512, and more. 100% client-side processing.",
-    slug: "hash-tools",
-    features: [
-      "Multiple hash algorithms",
-      "Supports MD5, SHA-1, SHA-256, SHA-512, SHA-3",
-      "Batch hashing",
-      "File hashing",
-      "Compare hash values",
-      "Dark mode support",
-    ],
-    howToSteps: [
-      { title: "Enter text or file", body: "Type text directly or upload a file to generate its hash." },
-      { title: "Select algorithm", body: "Choose the hash algorithm you need (MD5, SHA-256, etc.)." },
-      { title: "View hash", body: "The hash value is generated and displayed instantly." },
-      { title: "Compare or copy", body: "Compare with another hash or copy the result to your clipboard." },
-    ],
-    faqs: [
-      { q: "Is this secure?", a: "Hashes are generated locally in your browser. No data is transmitted." },
-      { q: "What's the difference between hash algorithms?", a: "Different algorithms have different security properties and output lengths. SHA-256 is recommended for most uses." },
-      { q: "Can I hash files?", a: "Yes. You can drag and drop or upload files to hash them." },
-    ],
-  },
-  "csv-to-json": {
-    title: "CSV to JSON Converter - Free Online Tool",
-    description: "Convert CSV data to JSON format instantly. Upload CSV files or paste data directly. Custom delimiter support and column selection.",
-    slug: "csv-to-json",
-    features: [
-      "Upload CSV files",
-      "Paste CSV data directly",
-      "Custom delimiter support (comma, tab, semicolon)",
-      "Select specific columns",
-      "Preview before conversion",
-      "Download JSON file",
-    ],
-    howToSteps: [
-      { title: "Upload or paste CSV", body: "Drag and drop a CSV file or paste CSV data directly into the input area." },
-      { title: "Configure options", body: "Select delimiter, header row, and columns to include." },
-      { title: "Preview", body: "See a preview of the conversion before downloading." },
-      { title: "Download JSON", body: "Download the converted JSON file or copy it to your clipboard." },
-    ],
-    faqs: [
-      { q: "Is there a file size limit?", a: "Files up to 10MB work well. Larger files may be slower." },
-      { q: "Can I select specific columns?", a: "Yes. You can choose which columns to include in the JSON output." },
-      { q: "What delimiters are supported?", a: "Common delimiters like comma, tab, semicolon, and pipe are supported." },
-    ],
-  },
-  "text-deduper": {
-    title: "Text Deduper - Free Duplicate Line Remover",
-    description: "Remove duplicate lines from text instantly. Sort and deduplicate in one click. Supports case-sensitive and case-insensitive modes.",
-    slug: "text-deduper",
-    features: [
-      "Remove duplicate lines",
-      "Sort alphabetically or by occurrence",
-      "Case-sensitive and insensitive modes",
-      "Line number display",
-      "Count occurrences",
-      "Copy or download results",
-    ],
-    howToSteps: [
-      { title: "Paste text", body: "Paste or type the text containing duplicates into the input area." },
-      { title: "Choose options", body: "Select case sensitivity and sorting preference." },
-      { title: "Remove duplicates", body: "Click Remove Duplicates to process your text." },
-      { title: "Copy results", body: "Copy the deduplicated text or download as a file." },
-    ],
-    faqs: [
-      { q: "Does this preserve order?", a: "Yes. By default, the first occurrence of each line is preserved in its original position." },
-      { q: "Is it case-sensitive?", a: "You can choose between case-sensitive and case-insensitive modes." },
-      { q: "Can I sort the results?", a: "Yes. You can sort alphabetically or by the number of occurrences." },
-    ],
-  },
-  "bcrypt": {
-    title: "Bcrypt Hash Generator - Free Online Tool",
-    description: "Generate bcrypt hashes instantly in your browser. Compare hash speed and strength. 100% client-side processing, no server calls.",
-    slug: "bcrypt",
-    features: [
-      "Generate bcrypt hashes",
-      "Compare plain text with hash",
-      "Adjustable work factor (cost)",
-      "Hash verification",
-      "Dark mode support",
-    ],
-    howToSteps: [
-      { title: "Enter password", body: "Type or paste the password you want to hash." },
-      { title: "Set work factor", body: "Choose the bcrypt cost factor (higher = stronger but slower)." },
-      { title: "Generate hash", body: "Click Generate to create the bcrypt hash." },
-      { title: "Verify", body: "Use the verify tab to compare a password with a known hash." },
-    ],
-    faqs: [
-      { q: "Is bcrypt processing done locally?", a: "Yes. All hashing is performed in your browser using WebAssembly." },
-      { q: "What's the best work factor?", a: "For most web applications, a work factor of 10-12 is recommended. Higher values increase security but take longer." },
-      { q: "Can I verify passwords?", a: "Yes. Use the verify tab to check if a password matches a bcrypt hash." },
-    ],
-  },
-  "image-compressor": {
-    title: "Image Compressor - Free Online Photo Compressor",
-    description: "Compress images in your browser. Reduce file size while maintaining quality. Supports JPEG, PNG, WebP. No upload required.",
-    slug: "image-compressor",
-    features: [
-      "Compress JPEG, PNG, WebP images",
-      "Adjustable quality level",
-      "Preview before and after",
-      "Preserve or resize dimensions",
-      "Batch compression",
-      "Download compressed images",
-    ],
-    howToSteps: [
-      { title: "Upload images", body: "Drag and drop images or click to select files." },
-      { title: "Adjust settings", body: "Set quality level and choose whether to resize images." },
-      { title: "Preview", body: "See a preview of the compressed image and file size reduction." },
-      { title: "Download", body: "Download individual images or all compressed images as a ZIP." },
-    ],
-    faqs: [
-      { q: "Is image compression done locally?", a: "Yes. All compression happens in your browser using Canvas API." },
-      { q: "What's the quality setting?", a: "Higher quality means larger file size but better image quality. 80% is usually a good balance." },
-      { q: "Are original images uploaded?", a: "No. All processing happens locally. Your images never leave your device." },
-    ],
-  },
-  "cron-quartz": {
-    title: "Cron Expression Generator - Free Quartz & Unix Cron Tester",
-    description: "Generate and test cron expressions. Supports both Quartz (Java) and Unix/Linux formats. Human-readable description of schedules.",
-    slug: "cron-quartz",
-    features: [
-      "Generate cron expressions visually",
-      "Quartz and Unix format support",
-      "Human-readable schedule descriptions",
-      "Next execution times",
-      "Test existing cron expressions",
-      "Common presets library",
-    ],
-    howToSteps: [
-      { title: "Select format", body: "Choose between Quartz (Java) or Unix cron format." },
-      { title: "Configure schedule", body: "Use the visual builder or type the expression directly." },
-      { title: "View description", body: "See a human-readable description of the schedule." },
-      { title: "Check next runs", body: "View the next 10 scheduled execution times." },
-    ],
-    faqs: [
-      { q: "What's the difference between Quartz and Unix cron?", a: "Quartz supports seconds and has different field ordering. Unix cron typically has 5 fields for minute through year." },
-      { q: "Can I test existing expressions?", a: "Yes. Paste an existing expression to see its description and next run times." },
-      { q: "What do the fields mean?", a: "They represent second/minute, hour, day of month, month, and day of week (in that order for Quartz)." },
-    ],
-  },
-  "mortgage-calculator": {
-    title: "Mortgage Calculator - Free Online Home Loan Calculator",
-    description: "Calculate monthly mortgage payments instantly. See amortization schedule with principal and interest breakdown. Compare different loan scenarios.",
-    slug: "mortgage-calculator",
-    features: [
-      "Monthly payment calculation",
-      "Amortization schedule",
-      "Principal vs interest breakdown",
-      "Compare loan scenarios",
-      "Tax and insurance estimates",
-      "Interactive charts",
-    ],
-    howToSteps: [
-      { title: "Enter loan details", body: "Input home price, down payment, interest rate, and loan term." },
-      { title: "Add extras", body: "Include property tax, insurance, and PMI if applicable." },
-      { title: "View results", body: "See monthly payment and total cost breakdown." },
-      { title: "Amortization", body: "View the full payment schedule with principal and interest for each month." },
-    ],
-    faqs: [
-      { q: "Is this calculation accurate?", a: "This provides estimates. Actual payments may vary based on your lender's specific terms." },
-      { q: "What is PMI?", a: "Private Mortgage Insurance is required when down payment is less than 20%. It protects the lender." },
-      { q: "What's an amortization schedule?", a: "It shows how each payment is split between principal and interest over the life of the loan." },
-    ],
-  },
-,
-  "commit-message": {
-    title: "Git Commit Message Generator - Free Conventional Commits Builder",
-    description: "Generate Conventional Commits formatted git commit messages instantly. Free online commit message generator with type selection, scope, and breaking change support.",
-    slug: "commit-message",
-    features: [
-      "12 commit types (feat, fix, docs, refactor, etc.)",
-      "Scope suggestions",
-      "Breaking change indicator",
-      "Body and footer support",
-      "Copy to clipboard",
-      "Example messages",
-    ],
-    howToSteps: [
-      { title: "Select type", body: "Choose the type that best describes your change (feat, fix, docs, etc.)." },
-      { title: "Add scope", body: "Optionally add a scope to specify the affected area." },
-      { title: "Write description", body: "Write a short imperative description of the change." },
-      { title: "Copy message", body: "Copy the generated commit message to use in your terminal." },
-    ],
-    faqs: [
-      { q: "What is Conventional Commits?", a: "A lightweight convention that provides an easy set of rules for creating clear commit messages." },
-      { q: "Is the message automatically copied?", a: "Click the Copy button to copy the formatted message." },
-      { q: "What does Breaking Change mean?", a: "A ! after the type/scope indicates breaking API changes." },
-    ],
-  },};
-
-export function getToolSEO(slug: string): ToolSEOData | null {
-  return toolSEOContent[slug] || null;
-}
   "text-deduper": {
     title: "Text Deduper - Free Online Duplicate Line Remover",
     description: "Remove duplicate lines from text instantly. Sort and deduplicate text online. Support for case-sensitive and whole word matching. 100% free.",
@@ -698,7 +454,6 @@ export function getToolSEO(slug: string): ToolSEOData | null {
       { q: "Is JSON validated?", a: "Yes. Invalid JSON shows validation errors." },
     ],
   },
-,
   "commit-message": {
     title: "Git Commit Message Generator - Free Conventional Commits Builder",
     description: "Generate Conventional Commits formatted git commit messages instantly. Free online commit message generator with type selection, scope, and breaking change support.",
@@ -722,7 +477,7 @@ export function getToolSEO(slug: string): ToolSEOData | null {
       { q: "Is the message automatically copied?", a: "Click the Copy button to copy the formatted message." },
       { q: "What does Breaking Change mean?", a: "A ! after the type/scope indicates breaking API changes." },
     ],
-  },};
+  },
   "markdown-html": {
     title: "Markdown to HTML Converter - Free Online Markdown Preview",
     description: "Convert Markdown to HTML instantly. Free online markdown converter with live preview. Support for GFM, tables, and code blocks.",
@@ -931,28 +686,9 @@ export function getToolSEO(slug: string): ToolSEOData | null {
       { q: "Is annualized ROI calculated?", a: "Yes. Adjust for different time periods." },
     ],
   },
-,
-  "commit-message": {
-    title: "Git Commit Message Generator - Free Conventional Commits Builder",
-    description: "Generate Conventional Commits formatted git commit messages instantly. Free online commit message generator with type selection, scope, and breaking change support.",
-    slug: "commit-message",
-    features: [
-      "12 commit types (feat, fix, docs, refactor, etc.)",
-      "Scope suggestions",
-      "Breaking change indicator",
-      "Body and footer support",
-      "Copy to clipboard",
-      "Example messages",
-    ],
-    howToSteps: [
-      { title: "Select type", body: "Choose the type that best describes your change (feat, fix, docs, etc.)." },
-      { title: "Add scope", body: "Optionally add a scope to specify the affected area." },
-      { title: "Write description", body: "Write a short imperative description of the change." },
-      { title: "Copy message", body: "Copy the generated commit message to use in your terminal." },
-    ],
-    faqs: [
-      { q: "What is Conventional Commits?", a: "A lightweight convention that provides an easy set of rules for creating clear commit messages." },
-      { q: "Is the message automatically copied?", a: "Click the Copy button to copy the formatted message." },
-      { q: "What does Breaking Change mean?", a: "A ! after the type/scope indicates breaking API changes." },
-    ],
-  },};
+
+};
+
+export function getToolSEO(slug: string): ToolSEOData | null {
+  return toolSEOContent[slug] || null;
+}
