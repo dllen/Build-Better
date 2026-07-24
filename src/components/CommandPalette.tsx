@@ -16,6 +16,7 @@ const allCommands = [
   
   // Dev Wrenchs
   { id: "api-debugger", name: "API Debugger", description: "Test HTTP requests", path: "/api-debugger", category: "dev", icon: Wrench },
+  { id: "gitignore", name: ".gitignore Generator", description: "Generate .gitignore files", path: "/gitignore", category: "dev", icon: Wrench },
   { id: "code-formatter", name: "Code Formatter", description: "Format code", path: "/code-formatter", category: "dev", icon: Wrench },
   { id: "json-diff", name: "JSON Diff", description: "Compare JSON files", path: "/json-diff", category: "dev", icon: Wrench },
   { id: "json-editor", name: "JSON Editor", description: "Edit JSON visually", path: "/json-editor", category: "dev", icon: Wrench },
