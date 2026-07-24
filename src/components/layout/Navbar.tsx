@@ -49,10 +49,15 @@ export function Navbar() {
             {/* Theme Toggle */}
             <button
               onClick={cycleTheme}
-              className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/50 hover:bg-secondary border border-transparent hover:border-border/50 transition-all duration-200 group"
               title={`Theme: ${themeLabel} (click to cycle)`}
             >
-              <ThemeIcon className="h-5 w-5" />
+              <span className="relative flex h-5 w-5">
+                <Sun className={`h-4 w-4 text-amber-500 transition-all duration-300 ${theme === 'light' ? 'opacity-100 scale-100' : 'opacity-0 scale-75 absolute inset-0'} dark:opacity-0`} />
+                <Moon className={`h-4 w-4 text-slate-400 transition-all duration-300 ${theme === 'dark' ? 'opacity-100 scale-100' : 'opacity-0 scale-75 absolute inset-0'} hidden dark:block`} />
+                <Monitor className={`h-4 w-4 text-slate-500 transition-all duration-300 ${theme === 'system' ? 'opacity-100 scale-100' : 'opacity-0 scale-75 absolute inset-0'}`} />
+              </span>
+              <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors hidden lg:inline">{themeLabel}</span>
             </button>
 
             {/* Common Tools Dropdown */}
@@ -138,6 +143,12 @@ export function Navbar() {
                     {t("app.ai_navigation")}
                   </Link>
                   <Link 
+                    to="/loop-engineering" 
+                    className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
+                  >
+                    Loop Engineering
+                  </Link>
+                  <Link 
                     to="/data-developer" 
                     className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
                   >
@@ -205,10 +216,15 @@ export function Navbar() {
                 cycleTheme();
                 setIsMenuOpen(false);
               }}
-              className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground bg-muted/50 rounded-lg border border-border/50"
+              className="flex items-center gap-3 px-4 py-3 text-sm bg-secondary/50 rounded-lg border border-border/50 hover:bg-secondary transition-colors w-full"
             >
-              <ThemeIcon className="h-4 w-4" />
-              <span>Theme: {themeLabel}</span>
+              <span className="relative flex h-5 w-5">
+                <Sun className={`h-4 w-4 text-amber-500 transition-all duration-300 ${theme === 'light' ? 'opacity-100 scale-100' : 'opacity-0 scale-75 absolute inset-0'} dark:opacity-0`} />
+                <Moon className={`h-4 w-4 text-slate-400 transition-all duration-300 ${theme === 'dark' ? 'opacity-100 scale-100' : 'opacity-0 scale-75 absolute inset-0'} hidden dark:block`} />
+                <Monitor className={`h-4 w-4 text-slate-500 transition-all duration-300 ${theme === 'system' ? 'opacity-100 scale-100' : 'opacity-0 scale-75 absolute inset-0'}`} />
+              </span>
+              <span className="text-muted-foreground">Theme</span>
+              <span className="ml-auto text-foreground font-medium">{themeLabel}</span>
             </button>
             
             <div className="py-2">
