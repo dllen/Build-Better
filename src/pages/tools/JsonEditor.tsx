@@ -3,6 +3,8 @@ import JSONEditor, { JSONEditorOptions } from "jsoneditor";
 import "jsoneditor/dist/jsoneditor.css";
 import { SEO } from "@/components/SEO";
 import { useTranslation } from "react-i18next";
+import { ToolPageSEO, TrustBanner } from "@/components/seo";
+import { toolSEOContent } from "@/data/tool-seo-content";
 import { 
   Copy, Check, AlignLeft, FileCode2, TreeDeciduous, 
   Eye, FileText, PanelRightClose, PanelRight, 
@@ -244,12 +246,13 @@ export default function JsonEditorTool() {
   return (
     <div className="flex flex-col h-[calc(100vh-8rem)]">
       <SEO
-        title={t("tools.json-editor.name", "JSON Editor")}
-        description={t("tools.json-editor.desc", "A web-based tool to view, edit, format, and validate JSON.")}
+        title={toolSEOContent["json-editor"]?.title || t("tools.json-editor.name", "JSON Editor")}
+        description={toolSEOContent["json-editor"]?.description || t("tools.json-editor.desc", "A web-based tool to view, edit, format, and validate JSON.")}
         keywords={["json", "editor", "viewer", "formatter", "validator"]}
       />
 
       {/* Header */}
+      <TrustBanner />
       <div className="flex-shrink-0 mb-4">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-primary/10">
@@ -414,6 +417,11 @@ export default function JsonEditorTool() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* ToolPageSEO */}
+      {toolSEOContent["json-editor"] && (
+        <ToolPageSEO data={toolSEOContent["json-editor"]} />
       )}
 
       {/* Editor Container */}
