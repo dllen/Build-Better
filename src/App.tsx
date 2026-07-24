@@ -96,6 +96,7 @@ import NonIndieDeveloper from "./pages/NonIndieDeveloper";
 import DataDeveloper from "@/pages/DataDeveloper";
 
 import AiDevelopment from "@/pages/AiDevelopment";
+import LoopEngineering from "./pages/loop-engineering/LoopEngineering";
 
 export default function App() {
   return (
@@ -109,6 +110,7 @@ export default function App() {
           <Route path="/non-indie-developer" element={<NonIndieDeveloper />} />
           <Route path="/data-developer" element={<DataDeveloper />} />
           <Route path="/ai-development" element={<AiDevelopment />} />
+          <Route path="/loop-engineering" element={<LoopEngineering />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/tools/api-debugger" element={<ApiDebugger />} />
           <Route path="/tools/code-formatter" element={<CodeFormatter />} />
