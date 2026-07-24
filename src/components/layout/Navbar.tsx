@@ -89,7 +89,7 @@ export function Navbar() {
                     {t("app.pdf_tools")}
                   </a>
                   <Link 
-                    to="/tools/text" 
+                    to="/text" 
                     className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
                   >
                     Text Suite
@@ -254,7 +254,7 @@ export function Navbar() {
                   {t("app.pdf_tools")}
                 </a>
                 <Link
-                  to="/tools/text"
+                  to="/text"
                   className="text-muted-foreground hover:text-primary py-1"
                   onClick={() => setIsMenuOpen(false)}
                 >
