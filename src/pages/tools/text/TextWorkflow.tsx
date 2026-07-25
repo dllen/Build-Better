@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import { Workflow, Plus, Trash2, ArrowDown, Play, RotateCcw, Copy, Check } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 
 type OperationType = 'uppercase' | 'lowercase' | 'trim' | 'replace' | 'sort' | 'reverse' | 'lines';
 
-type Step = {
-  id: string;
-  type: OperationType;
-  params: Record<string, unknown>;
-};
+ type StepParams = {
+   find?: string;
+   replace?: string;
+   regex?: boolean;
+   case?: boolean;
+   desc?: boolean;
+   mode?: string;
+ };
+
+ type Step = {
+   id: string;
+   type: OperationType;
+   params: StepParams;
+ };
 
 const OPERATIONS: { value: OperationType; label: string }[] = [
   { value: 'uppercase', label: 'To Uppercase' },

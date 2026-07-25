@@ -431,10 +431,11 @@ const parseHandbookContent = (markdown: string): Project[] => {
       // Check if it contains a link
       const linkMatch = content.match(/\[(.*?)\]\((.*?)\)/);
       
-      if (linkMatch) {
-        // It's a project/resource
-        const link = linkMatch[2];
-        let description = '';
+       if (linkMatch) {
+         // It's a project/resource
+         const link = linkMatch[2] || '';
+         const name = linkMatch[1] || '';
+         let description = '';
         
         // Check for description after link " - description"
         const afterLink = content.replace(linkMatch[0], '').trim();

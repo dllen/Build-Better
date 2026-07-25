@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
-import {
-  Wifi,
-  Download,
-  Printer,
-  Eye,
-  EyeOff,
-  Copy,
-  Check,
-} from "lucide-react";
+ import {
+   Wifi,
+   Download,
+   Printer,
+   Eye,
+   EyeOff,
+ } from "lucide-react";
 import QRCode from "qrcode";
 
 export default function WifiQrGenerator() {
@@ -21,11 +19,7 @@ export default function WifiQrGenerator() {
   const [qrCodeUrl, setQrCodeUrl] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  useEffect(() => {
-    generateQrCode();
-  }, [ssid, password, encryption, hidden]);
-
-  const generateQrCode = () => {
+  const generateQrCode = useCallback(() => {
     if (!ssid) {
       setQrCodeUrl("");
       return;
@@ -67,7 +61,11 @@ export default function WifiQrGenerator() {
         if (!err) setQrCodeUrl(url);
       }
     );
-  };
+  }, [ssid, password, encryption, hidden]);
+
+  useEffect(() => {
+    generateQrCode();
+  }, [generateQrCode]);
 
   const handleDownload = () => {
     if (!qrCodeUrl) return;

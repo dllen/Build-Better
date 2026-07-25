@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { Copy, RefreshCw, FileText, Code, Database, Terminal, Table as TableIcon } from "lucide-react";
+ import React, { useState, useEffect } from "react";
+ import { Copy, RefreshCw, FileText, Code, Database, Terminal, Table as TableIcon } from "lucide-react";
 import { parseCsvWebStream } from "../../../shared/csv-parser.mjs";
 
 type OutputFormat = 
@@ -22,7 +22,7 @@ export default function DataConverter() {
   const [loading, setLoading] = useState(false);
   const [tableName, setTableName] = useState("my_table");
 
-  const formats: { id: OutputFormat; name: string; icon: unknown }[] = [
+   const formats: { id: OutputFormat; name: string; icon: React.ElementType }[] = [
     { id: "json_array", name: "JSON - Array of Objects", icon: Code },
     { id: "json_object", name: "JSON - Rows as Arrays", icon: Code },
     { id: "json_column", name: "JSON - Columns as Arrays", icon: Code },
@@ -86,122 +86,110 @@ export default function DataConverter() {
         case "json_array":
           result = JSON.stringify(rows, null, 2);
           break;
-        }
-        case "json_object":
-          // rows are currently objects, we need array of values
-        {
-          const arrayRows = rows.map((row: Record<string, unknown>) => headers.map((h: string) => row[h]));
-          result = JSON.stringify(arrayRows, null, 2);
-          break;
-        }
-        case "json_column":
-        {
-          const columns: Record<string, unknown> = {};
-          headers.forEach((h: string) => {
-            columns[h] = rows.map((row: Record<string, unknown>) => row[h]);
-          });
-          result = JSON.stringify(columns, null, 2);
-          break;
-        }
-        case "xml":
-          result = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
-          rows.forEach((row: Record<string, unknown>) => {
-            result += `  <row>\n`;
-            headers.forEach((h: string) => {
-        {
-              const tag = h.replace(/[^a-zA-Z0-9_-]/g, "_");
-              result += `    <${tag}>${row[h]}</${tag}>\n`;
-            });
-            result += `  </row>\n`;
-          });
-          result += `</rows>`;
-          break;
-        }
-        case "mysql":
-          result = `CREATE TABLE IF NOT EXISTS ${tableName} (\n`;
-          result += headers.map((h: string) => `  \`${h}\` VARCHAR(255)`).join(",\n");
-          result += `\n);\n\nINSERT INTO ${tableName} (${headers.map((h: string) => `\`${h}\``).join(", ")}) VALUES\n`;
-          result += rows.map((row: Record<string, unknown>) => {
-        {
-            const values = headers.map((h: string) => {
-        {
-              const val = row[h];
-              if (typeof val === "number") return val;
-              return `'${String(val).replace(/'/g, "\\'")}'`;
-            }).join(", ");
-            return `(${values})`;
-          }).join(",\n") + ";";
-          break;
-        }
-        case "html":
-          result = `<table>\n  <thead>\n    <tr>\n`;
-          headers.forEach((h: string) => {
-            result += `      <th>${h}</th>\n`;
-          });
-          result += `    </tr>\n  </thead>\n  <tbody>\n`;
-          rows.forEach((row: Record<string, unknown>) => {
-            result += `    <tr>\n`;
-            headers.forEach((h: string) => {
-              result += `      <td>${row[h]}</td>\n`;
-            });
-            result += `    </tr>\n`;
-          });
-          result += `  </tbody>\n</table>`;
-          break;
-        }
-        case "php":
-          result = `$data = array(\n`;
-          rows.forEach((row: Record<string, unknown>) => {
-            result += `  array(\n`;
-            headers.forEach((h: string) => {
-        {
-              const val = row[h];
-        {
-              const valStr = typeof val === "number" ? val : `"${String(val).replace(/"/g, '\\"')}"`;
-              result += `    "${h}" => ${valStr},\n`;
-            });
-            result += `  ),\n`;
-          });
-          result += `);`;
-          break;
-        }
-        case "python":
-          result = `data = [\n`;
-          rows.forEach((row: Record<string, unknown>) => {
-            result += `    {\n`;
-            headers.forEach((h: string) => {
-        {
-              const val = row[h];
-        {
-              const valStr = typeof val === "number" ? val : `"${String(val).replace(/"/g, '\\"')}"`;
-              result += `        "${h}": ${valStr},\n`;
-            });
-            result += `    },\n`;
-          });
-          result += `]`;
-          break;
-        }
-        case "ruby":
-          result = `data = [\n`;
-          rows.forEach((row: Record<string, unknown>) => {
-            result += `  {\n`;
-            headers.forEach((h: string) => {
-        {
-              const val = row[h];
-        {
-              const valStr = typeof val === "number" ? val : `"${String(val).replace(/"/g, '\\"')}"`;
-              result += `    "${h}" => ${valStr},\n`;
-            });
-            result += `  },\n`;
-          });
-          result += `]`;
-          break;
-        }
+         case "json_object": {
+           // rows are currently objects, we need array of values
+           const arrayRows = rows.map((row: Record<string, unknown>) => headers.map((h: string) => row[h]));
+           result = JSON.stringify(arrayRows, null, 2);
+           break;
+         }
+         case "json_column": {
+           const columns: Record<string, unknown[]> = {};
+           headers.forEach((h: string) => {
+             columns[h] = rows.map((row: Record<string, unknown>) => row[h]);
+           });
+           result = JSON.stringify(columns, null, 2);
+           break;
+         }
+         case "xml": {
+           result = `<?xml version="1.0" encoding="UTF-8"?>\n<rows>\n`;
+           rows.forEach((row: Record<string, unknown>) => {
+             result += `  <row>\n`;
+             headers.forEach((h: string) => {
+               const tag = h.replace(/[^a-zA-Z0-9_-]/g, "_");
+               result += `    <${tag}>${row[h]}</${tag}>\n`;
+             });
+             result += `  </row>\n`;
+           });
+           result += `</rows>`;
+           break;
+         }
+         case "mysql": {
+           result = `CREATE TABLE IF NOT EXISTS ${tableName} (\n`;
+           result += headers.map((h: string) => `  \`${h}\` VARCHAR(255)`).join(",\n");
+           result += `\n);\n\nINSERT INTO ${tableName} (${headers.map((h: string) => `\`${h}\``).join(", ")}) VALUES\n`;
+           result += rows.map((row: Record<string, unknown>) => {
+             const values = headers.map((h: string) => {
+               const val = row[h];
+               if (typeof val === "number") return val;
+               return `'${String(val).replace(/'/g, "\\'")}'`;
+             }).join(", ");
+             return `(${values})`;
+           }).join(",\n") + ";";
+           break;
+         }
+         case "html": {
+           result = `<table>\n  <thead>\n    <tr>\n`;
+           headers.forEach((h: string) => {
+             result += `      <th>${h}</th>\n`;
+           });
+           result += `    </tr>\n  </thead>\n  <tbody>\n`;
+           rows.forEach((row: Record<string, unknown>) => {
+             result += `    <tr>\n`;
+             headers.forEach((h: string) => {
+               result += `      <td>${row[h]}</td>\n`;
+             });
+             result += `    </tr>\n`;
+           });
+           result += `  </tbody>\n</table>`;
+           break;
+         }
+         case "php": {
+           result = `$data = array(\n`;
+           rows.forEach((row: Record<string, unknown>) => {
+             result += `  array(\n`;
+             headers.forEach((h: string) => {
+               const val = row[h];
+               const valStr = typeof val === "number" ? val : `"${String(val).replace(/"/g, '\\"')}"`;
+               result += `    "${h}" => ${valStr},\n`;
+             });
+             result += `  ),\n`;
+           });
+           result += `);`;
+           break;
+         }
+         case "python": {
+           result = `data = [\n`;
+           rows.forEach((row: Record<string, unknown>) => {
+             result += `    {\n`;
+             headers.forEach((h: string) => {
+               const val = row[h];
+               const valStr = typeof val === "number" ? val : `"${String(val).replace(/"/g, '\\"')}"`;
+               result += `        "${h}": ${valStr},\n`;
+             });
+             result += `    },\n`;
+           });
+           result += `]`;
+           break;
+         }
+         case "ruby": {
+           result = `data = [\n`;
+           rows.forEach((row: Record<string, unknown>) => {
+             result += `  {\n`;
+             headers.forEach((h: string) => {
+               const val = row[h];
+               const valStr = typeof val === "number" ? val : `"${String(val).replace(/"/g, '\\"')}"`;
+               result += `    "${h}" => ${valStr},\n`;
+             });
+             result += `  },\n`;
+           });
+           result += `]`;
+           break;
+         }
       }
 
       setOutputText(result);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : String(e));
+       } catch (err) {
+         setError(err instanceof Error ? err.message : String(err));
     } finally {
       setLoading(false);
     }
@@ -235,14 +223,14 @@ export default function DataConverter() {
                 INPUT_DATA (CSV/Excel)
               </label>
               <div className="flex items-center gap-2">
-                <select 
-                  value={delimiter}
-                  onChange={(e) => setDelimiter(e.target.value)}
-                  className="bg-slate-950 border border-cyan-800 text-cyan-400 text-xs rounded px-2 py-1 focus:ring-1 focus:ring-cyan-500 outline-none"
-                >
-                  <option value="auto">AUTO_DETECT</option>
-                  <option value=",">COMMA</option>
-                  <option value="	">TAB</option>
+     <select
+       value={delimiter}
+       onChange={(e) => setDelimiter(e.target.value)}
+       className="bg-slate-950 border border-cyan-800 text-cyan-400 text-xs rounded px-2 py-1 focus:ring-1 focus:ring-cyan-500 outline-none"
+     >
+       <option value="auto">AUTO_DETECT</option>
+       <option value=",">COMMA</option>
+       <option value="	">TAB</option>
                 </select>
               </div>
             </div>

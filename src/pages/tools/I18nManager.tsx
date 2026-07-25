@@ -27,26 +27,28 @@ export default function I18nManager() {
     }
   }, [selectedLang, i18n]);
 
-  const handleCopy = () => {
-    try {
-      // Validate JSON first
-      JSON.parse(jsonContent);
-      navigator.clipboard.writeText(jsonContent).then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-        setError(null);
-      });
-    } catch (e) {
-      setError("Invalid JSON format. Please check your syntax.");
-    }
-  };
+   const handleCopy = () => {
+     try {
+       // Validate JSON first
+       JSON.parse(jsonContent);
+       navigator.clipboard.writeText(jsonContent).then(() => {
+         setCopied(true);
+         setTimeout(() => setCopied(false), 2000);
+         setError(null);
+       }).catch(() => {
+         setError("Failed to copy to clipboard.");
+       });
+     } catch {
+       setError("Invalid JSON format. Please check your syntax.");
+     }
+   };
 
   const handleJsonChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setJsonContent(e.target.value);
     try {
       JSON.parse(e.target.value);
       setError(null);
-    } catch (e) {
+     } catch {
       // Don't set error immediately while typing, but maybe on blur or specific validation action
       // For now, we just clear error if it becomes valid
     }

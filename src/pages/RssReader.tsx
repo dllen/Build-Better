@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+ import React, { useState, useEffect } from 'react';
 import { XMLParser } from 'fast-xml-parser';
 import { ExternalLink, RefreshCw, Rss, Search, List } from 'lucide-react';
 
@@ -132,16 +132,17 @@ export default function RssReader() {
       ignoreAttributes: false,
       attributeNamePrefix: ""
     });
-    const result = parser.parse(OPML_CONTENT);
-    
-    // Extract feeds from OPML structure
-    // Structure: opml -> body -> outline -> outline (array)
-    const outlines = result.opml?.body?.outline?.outline || [];
-    const extractedFeeds: FeedSource[] = outlines.map((outline: unknown) => ({
-      title: outline.text || outline.title,
-      xmlUrl: outline.xmlUrl,
-      htmlUrl: outline.htmlUrl
-    }));
+     const result = parser.parse(OPML_CONTENT);
+     
+     // Extract feeds from OPML structure
+     // Structure: opml -> body -> outline -> outline (array)
+     interface OpmlOutline { text?: string; title?: string; xmlUrl?: string; htmlUrl?: string }
+     const outlines: OpmlOutline[] = result.opml?.body?.outline?.outline || [];
+     const extractedFeeds: FeedSource[] = outlines.map((outline) => ({
+       title: outline.text || outline.title || '',
+       xmlUrl: outline.xmlUrl || '',
+       htmlUrl: outline.htmlUrl || ''
+     }));
     
     setFeeds(extractedFeeds);
     
@@ -165,7 +166,7 @@ export default function RssReader() {
         try {
           response = await fetch(`https://corsproxy.io/?${encodeURIComponent(feed.xmlUrl)}`);
           if (!response.ok) throw new Error('CORS Proxy IO failed');
-        } catch (e) {
+         } catch {
           // Fallback to allorigins
           response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(feed.xmlUrl)}`);
         }
@@ -184,7 +185,8 @@ export default function RssReader() {
             : [feedData.feed.entry];
         }
 
-        const normalizedItems = channelItems.map((item: unknown) => {
+        interface RssItemType { title?: unknown; link?: unknown; pubDate?: unknown; published?: unknown; updated?: unknown; description?: unknown; summary?: unknown; content?: unknown; href?: unknown; '#text'?: unknown }
+        const normalizedItems = channelItems.map((item: RssItemType) => {
           const ensureString = (val: unknown): string => {
             if (typeof val === 'string') return val;
             if (val === null || val === undefined) return "";
@@ -192,12 +194,13 @@ export default function RssReader() {
             if (typeof val === 'number') return String(val);
             return "";
           };
-
+          const linkVal = item.link;
+          const resolvedLink = typeof linkVal === 'object' && linkVal && 'href' in linkVal ? String(linkVal.href) : ensureString(linkVal);
           return {
             title: ensureString(item.title),
-            link: item.link?.href || item.link, // Atom uses link.href
-            pubDate: item.pubDate || item.published || item.updated,
-            contentSnippet: ensureString(item.description || item.summary || item.content?.["#text"]),
+            link: resolvedLink,
+            pubDate: ensureString(item.pubDate || item.published || item.updated),
+            contentSnippet: ensureString(item.description || item.summary || (item.content && typeof item.content === 'object' ? (item.content as RssItemType)['#text'] : item.content)),
             source: feed.title
           };
         }).slice(0, 5); // Limit to 5 items per feed

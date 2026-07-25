@@ -81,18 +81,20 @@ export default function FormatConverter() {
              // @iarna/toml might handle it or throw.
              // If it fails, we catch the error.
           }
-          result = toml.stringify(parsedData);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          result = toml.stringify(parsedData as any);
           break;
         case "xml":
-          result = xmlBuilder.build(parsedData);
+         result = xmlBuilder.build(parsedData as Record<string, unknown>);
           break;
       }
 
       setOutputContent(result);
-    } catch (err: unknown) {
-      setError(err.message || "Conversion failed");
-      setOutputContent("");
-    }
+     } catch (err: unknown) {
+       const errorObj = err as Error;
+       setError(errorObj?.message || "Conversion failed");
+       setOutputContent("");
+     }
   }, [inputContent, inputFormat, outputFormat]);
 
   // Auto-convert when input or formats change

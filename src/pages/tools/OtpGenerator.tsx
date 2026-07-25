@@ -53,10 +53,10 @@ export default function OtpGenerator() {
         digits: digits,
         period: period,
         secret: OTPAuth.Secret.fromBase32(secret),
-      });
-    } catch (e) {
-      return null;
-    }
+       });
+     } catch {
+       return null;
+     }
   }, [secret, issuer, account, algorithm, digits, period]);
 
   useEffect(() => {

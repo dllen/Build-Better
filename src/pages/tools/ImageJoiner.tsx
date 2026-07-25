@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
-import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
-import {
-  Upload,
-  Download,
-  X,
-  GripVertical,
-  ArrowDown,
-  ArrowRight,
-  Settings,
+ import React, { useState, useRef, useEffect, useCallback } from "react";
+ import { useTranslation } from "react-i18next";
+ import { SEO } from "@/components/SEO";
+ import {
+   Upload,
+   Download,
+   X,
+   GripVertical,
+   ArrowDown,
+   ArrowRight,
+   Settings,
   Trash2,
 } from "lucide-react";
 import {
@@ -100,13 +100,14 @@ function SortableItem({
   );
 }
 
-export default function ImageJoiner() {
-  const [images, setImages] = useState<ImageItem[]>([]);
-  const [direction, setDirection] = useState<"vertical" | "horizontal">("vertical");
-  const [spacing, setSpacing] = useState(0);
-  const [backgroundColor, setBackgroundColor] = useState("#ffffff");
-  const [autoScale, setAutoScale] = useState(true);
-  const [outputFormat, setOutputFormat] = useState<"png" | "jpeg">("png");
+ export default function ImageJoiner() {
+   const { t } = useTranslation();
+   const [images, setImages] = useState<ImageItem[]>([]);
+   const [direction, setDirection] = useState<"vertical" | "horizontal">("vertical");
+   const [spacing, setSpacing] = useState(0);
+   const [backgroundColor, setBackgroundColor] = useState("#ffffff");
+   const [autoScale, setAutoScale] = useState(true);
+   const [outputFormat, setOutputFormat] = useState<"png" | "jpeg">("png");
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -130,7 +131,6 @@ export default function ImageJoiner() {
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files?.length) return;
-    setIsProcessing(true);
 
     const newImages: ImageItem[] = [];
     const files = Array.from(e.target.files);
@@ -164,7 +164,6 @@ export default function ImageJoiner() {
     }
 
     setImages((prev) => [...prev, ...newImages]);
-    setIsProcessing(false);
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
@@ -230,7 +229,7 @@ export default function ImageJoiner() {
     let currentX = 0;
     let currentY = 0;
 
-    loadedImages.forEach((img, index) => {
+     loadedImages.forEach((img) => {
       let drawW = img.width;
       let drawH = img.height;
 
@@ -464,7 +463,7 @@ export default function ImageJoiner() {
                   strategy={verticalListSortingStrategy}
                 >
                   <div className="space-y-2">
-                    {images.map((image) => (
+                 {images.map((image) => (
                       <SortableItem
                         key={image.id}
                         id={image.id}

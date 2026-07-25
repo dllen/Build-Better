@@ -1,16 +1,14 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
-import JSONEditor, { JSONEditorOptions } from "jsoneditor";
-import "jsoneditor/dist/jsoneditor.css";
-import { SEO } from "@/components/SEO";
-import { ToolPageSEO } from "@/components/seo/ToolPageSEO";
-import { TrustBanner } from "@/components/seo/TrustBanner";
-import { useTranslation } from "react-i18next";
+ import React, { useEffect, useRef, useState, useCallback } from "react";
+ import JSONEditor, { JSONEditorOptions } from "jsoneditor";
+ import "jsoneditor/dist/jsoneditor.css";
+ import { SEO } from "@/components/SEO";
+ import { useTranslation } from "react-i18next";
 import { toolSEOContent } from "@/data/tool-seo-content";
 import { 
   Copy, Check, AlignLeft, FileCode2, TreeDeciduous, 
   Eye, FileText, PanelRightClose, PanelRight, 
   ClipboardPaste, Trash2, Upload, Download, ChevronDown,
-  AlertCircle, Sparkles, Settings2, Minimize2, Maximize2
+  AlertCircle, Sparkles
 } from "lucide-react";
 
 const defaultJson = {
@@ -40,7 +38,8 @@ const modeConfig: Record<EditorMode, { icon: React.ElementType; label: string }>
   preview: { icon: PanelRightClose, label: "预览" },
 };
 
-export default function JsonEditorTool() {
+ export default function JsonEditorTool() {
+   const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const editorRef = useRef<JSONEditor | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -52,7 +51,6 @@ export default function JsonEditorTool() {
   const [isValidJson, setIsValidJson] = useState(true);
   const [showModeMenu, setShowModeMenu] = useState(false);
   const [isPanelOpen, setIsPanelOpen] = useState(true);
-  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Validate JSON
   const validateJson = useCallback((text: string): boolean => {
@@ -170,7 +168,7 @@ export default function JsonEditorTool() {
       if (editorRef.current) {
         editorRef.current.set(parsed);
         setJsonContent(formatted);
-        setIsFormatted(true);
+        ;
       }
     }
   };
@@ -183,19 +181,12 @@ export default function JsonEditorTool() {
       if (editorRef.current) {
         editorRef.current.set(parsed);
         setJsonContent(minified);
-        setIsFormatted(false);
+        ;
       }
     }
   };
 
   // Clear editor
-    if (editorRef.current) {
-      editorRef.current.set({});
-      setJsonContent("{}");
-      setParseError(null);
-      setIsValidJson(true);
-    }
-  };
 
   // Load file
   const handleFileLoad = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -238,17 +229,12 @@ export default function JsonEditorTool() {
       setJsonContent(JSON.stringify(defaultJson, null, 2));
       setParseError(null);
       setIsValidJson(true);
-      setIsFormatted(true);
+      ;
     }
   };
 
-  // Toggle fullscreen
-  const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
-  };
-
   return (
-    <div className={`flex flex-col ${isFullscreen ? 'fixed inset-0 z-50 bg-background' : 'h-[calc(100vh-8rem)]'}`}>
+    <div className="flex flex-col h-[calc(100vh-8rem)]">
       <SEO
         title={toolSEOContent["json-editor"]?.title || t("tools.json-editor.name", "JSON Editor")}
         description={toolSEOContent["json-editor"]?.description || t("tools.json-editor.desc", "A web-based tool to view, edit, format, and validate JSON.")}
@@ -256,52 +242,34 @@ export default function JsonEditorTool() {
       />
 
       {/* Header */}
-      <TrustBanner />
-      <div className="flex-shrink-0 mb-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-lg bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 border border-cyan-500/30">
-              <FileCode2 className="w-5 h-5 text-cyan-400" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold">
-                {t("tools.json-editor.name", "JSON Editor")}
-              </h1>
-              <p className="text-sm text-muted-foreground">
-                {t("tools.json-editor.desc", "查看、编辑、格式化、验证 JSON")}
-              </p>
-            </div>
-          </div>
-          
-          {/* Fullscreen Toggle */}
-          <button
-            onClick={toggleFullscreen}
-            className="p-2 rounded-lg border border-border hover:bg-secondary transition-colors"
-            title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-          >
-            {isFullscreen ? (
-              <Minimize2 className="w-4 h-4" />
-            ) : (
-              <Maximize2 className="w-4 h-4" />
-            )}
-          </button>
-        </div>
-      </div>
+       <div className="flex-shrink-0 mb-4">
+         <div className="flex items-center gap-3 mb-2">
+           <div className="p-2 rounded-lg bg-primary/10">
+             <FileCode2 className="w-5 h-5 text-primary" />
+           </div>
+           <h1 className="text-2xl font-bold">
+             JSON Editor
+           </h1>
+         </div>
+         <p className="text-sm text-muted-foreground">
+           查看、编辑、格式化、验证 JSON
+         </p>
+       </div>
 
       {/* Toolbar */}
-      <div className="flex-shrink-0 flex flex-wrap items-center gap-2 mb-3 pb-3 border-b border-border/50">
+      <div className="flex-shrink-0 flex flex-wrap items-center gap-2 mb-3 pb-3 border-b border-border">
         {/* Mode Selector */}
         <div className="relative">
           <button
             onClick={() => setShowModeMenu(!showModeMenu)}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border bg-card hover:bg-secondary/80 transition-colors text-sm font-medium"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border bg-secondary/50 hover:bg-secondary transition-colors text-sm"
           >
-            {React.createElement(modeConfig[currentMode].icon, { className: "w-4 h-4 text-cyan-400" })}
+            {React.createElement(modeConfig[currentMode].icon, { className: "w-4 h-4" })}
             <span>{modeConfig[currentMode].label}</span>
-            <ChevronDown className="w-3 h-3 text-muted-foreground" />
+            <ChevronDown className="w-3 h-3" />
           </button>
           {showModeMenu && (
-            <div className="absolute top-full left-0 mt-1 py-1 bg-popover border border-border rounded-lg shadow-xl z-20 min-w-[140px] animate-in fade-in-0 zoom-in-95">
+            <div className="absolute top-full left-0 mt-1 py-1 bg-popover border border-border rounded-lg shadow-lg z-10 min-w-[120px]">
               {(Object.keys(modeConfig) as EditorMode[]).map((mode) => (
                 <button
                   key={mode}
@@ -309,8 +277,8 @@ export default function JsonEditorTool() {
                     setCurrentMode(mode);
                     setShowModeMenu(false);
                   }}
-                  className={`flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-muted/80 transition-colors ${
-                    currentMode === mode ? "bg-cyan-500/10 text-cyan-400" : ""
+                  className={`flex items-center gap-2 w-full px-3 py-2 text-sm hover:bg-muted transition-colors ${
+                    currentMode === mode ? "bg-primary/10 text-primary" : ""
                   }`}
                 >
                   {React.createElement(modeConfig[mode].icon, { className: "w-4 h-4" })}
@@ -328,19 +296,19 @@ export default function JsonEditorTool() {
           <button
             onClick={handleFormat}
             disabled={!isValidJson}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border bg-card hover:bg-secondary/80 disabled:opacity-40 disabled:cursor-not-allowed transition-colors text-sm"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border bg-secondary/50 hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-xs"
             title="格式化 (Ctrl+Shift+F)"
           >
-            <Sparkles className="w-4 h-4 text-emerald-400" />
+            <Sparkles className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">格式化</span>
           </button>
           <button
             onClick={handleMinify}
             disabled={!isValidJson}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border bg-card hover:bg-secondary/80 disabled:opacity-40 disabled:cursor-not-allowed transition-colors text-sm"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border bg-secondary/50 hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-xs"
             title="压缩"
           >
-            <PanelRightClose className="w-4 h-4 text-amber-400" />
+            <PanelRightClose className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">压缩</span>
           </button>
         </div>
@@ -351,22 +319,22 @@ export default function JsonEditorTool() {
         <div className="flex items-center gap-1">
           <button
             onClick={handleCopy}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border bg-card hover:bg-secondary/80 transition-colors text-sm"
-            title="复制"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border bg-secondary/50 hover:bg-secondary transition-colors text-xs"
+            title="复制 (Ctrl+C)"
           >
             {isCopied ? (
-              <Check className="w-4 h-4 text-emerald-400" />
+              <Check className="w-3.5 h-3.5 text-green-500" />
             ) : (
-              <Copy className="w-4 h-4" />
+              <Copy className="w-3.5 h-3.5" />
             )}
             <span className="hidden sm:inline">{isCopied ? "已复制" : "复制"}</span>
           </button>
           <button
             onClick={handlePaste}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border bg-card hover:bg-secondary/80 transition-colors text-sm"
-            title="粘贴"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border bg-secondary/50 hover:bg-secondary transition-colors text-xs"
+            title="粘贴 (Ctrl+V)"
           >
-            <ClipboardPaste className="w-4 h-4" />
+            <ClipboardPaste className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">粘贴</span>
           </button>
         </div>
@@ -384,19 +352,19 @@ export default function JsonEditorTool() {
           />
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border bg-card hover:bg-secondary/80 transition-colors text-sm"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border bg-secondary/50 hover:bg-secondary transition-colors text-xs"
             title="打开文件"
           >
-            <Upload className="w-4 h-4" />
+            <Upload className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">打开</span>
           </button>
           <button
             onClick={handleDownload}
             disabled={!isValidJson}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border bg-card hover:bg-secondary/80 disabled:opacity-40 disabled:cursor-not-allowed transition-colors text-sm"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border bg-secondary/50 hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-xs"
             title="下载 JSON"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">下载</span>
           </button>
         </div>
@@ -406,49 +374,46 @@ export default function JsonEditorTool() {
         {/* Status & Actions */}
         <div className="flex items-center gap-2">
           {parseError ? (
-            <span className="text-sm text-red-400 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-red-500/10 border border-red-500/20">
-              <AlertCircle className="w-4 h-4" />
+            <span className="text-xs text-destructive flex items-center gap-1">
+              <AlertCircle className="w-3.5 h-3.5" />
               <span className="hidden md:inline">无效 JSON</span>
             </span>
           ) : isValidJson ? (
-            <span className="text-sm text-emerald-400 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-              <Check className="w-4 h-4" />
+            <span className="text-xs text-green-500 flex items-center gap-1">
+              <Check className="w-3.5 h-3.5" />
               <span className="hidden md:inline">有效 JSON</span>
             </span>
           ) : null}
           
           <button
             onClick={handleReset}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border bg-card hover:bg-secondary/80 text-muted-foreground hover:text-foreground transition-colors text-sm"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border bg-secondary/50 hover:bg-secondary transition-colors text-xs text-muted-foreground hover:text-foreground"
             title="重置"
           >
-            <Trash2 className="w-4 h-4" />
+            <Trash2 className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>
 
       {/* Error Message */}
       {parseError && (
-        <div className="flex-shrink-0 mb-3 p-3 rounded-lg bg-red-500/10 border border-red-500/20 animate-in fade-in-0 slide-in-from-top-1">
+        <div className="flex-shrink-0 mb-3 p-3 rounded-lg bg-destructive/10 border border-destructive/20">
           <div className="flex items-start gap-2">
-            <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+            <AlertCircle className="w-4 h-4 text-destructive shrink-0 mt-0.5" />
             <div>
-              <p className="text-sm font-medium text-red-400">JSON 解析错误</p>
-              <p className="text-xs text-muted-foreground mt-1 font-mono bg-muted/50 p-2 rounded">{parseError}</p>
+              <p className="text-sm font-medium text-destructive">JSON 解析错误</p>
+              <p className="text-xs text-muted-foreground mt-1 font-mono">{parseError}</p>
             </div>
           </div>
         </div>
       )}
 
-      {/* ToolPageSEO */}
-      {toolSEOContent["json-editor"] && (
-        <ToolPageSEO data={toolSEOContent["json-editor"]} />
-      )}
+       {/* SEO Content */}
 
       {/* Editor Container */}
       <div className="flex-1 flex gap-3 min-h-0">
         {/* Main Editor */}
-        <div className="flex-1 rounded-lg border border-border overflow-hidden bg-card shadow-inner">
+        <div className="flex-1 rounded-lg border border-border overflow-hidden bg-card">
           <div 
             ref={containerRef} 
             className="w-full h-full"
@@ -457,33 +422,25 @@ export default function JsonEditorTool() {
 
         {/* Side Panel - JSON Preview */}
         {isPanelOpen && (
-          <div className="w-80 flex-shrink-0 flex flex-col rounded-lg border border-border bg-card overflow-hidden shadow-inner">
-            <div className="flex items-center justify-between px-3 py-2.5 border-b border-border/50 bg-gradient-to-r from-muted/30 to-transparent">
-              <div className="flex items-center gap-2">
-                <Settings2 className="w-3.5 h-3.5 text-muted-foreground" />
-                <span className="text-xs font-medium">JSON 预览</span>
-              </div>
+          <div className="w-80 flex-shrink-0 flex flex-col rounded-lg border border-border bg-card overflow-hidden">
+            <div className="flex items-center justify-between px-3 py-2 border-b border-border bg-secondary/30">
+              <span className="text-xs font-medium">JSON 预览</span>
               <button
                 onClick={() => setIsPanelOpen(false)}
                 className="p-1 rounded hover:bg-secondary transition-colors"
               >
-                <PanelRightClose className="w-4 h-4 text-muted-foreground" />
+                <PanelRightClose className="w-4 h-4" />
               </button>
             </div>
-            <div className="flex-1 overflow-auto p-3 bg-muted/10">
-              <pre className="text-xs font-mono whitespace-pre-wrap break-all text-muted-foreground/80 leading-relaxed">
+            <div className="flex-1 overflow-auto p-3">
+              <pre className="text-xs font-mono whitespace-pre-wrap break-all text-muted-foreground">
                 {isValidJson 
                   ? jsonContent.length > 2000 
-                    ? jsonContent.slice(0, 2000) + "\n\n... (已截断)"
+                    ? jsonContent.slice(0, 2000) + "\n\n... (truncated)"
                     : jsonContent
                   : "// 无效 JSON"
                 }
               </pre>
-            </div>
-            <div className="px-3 py-2 border-t border-border/50 bg-muted/20">
-              <div className="text-[10px] text-muted-foreground">
-                {isValidJson ? `${jsonContent.length} 字符` : '解析失败'}
-              </div>
             </div>
           </div>
         )}
@@ -492,8 +449,7 @@ export default function JsonEditorTool() {
         {!isPanelOpen && (
           <button
             onClick={() => setIsPanelOpen(true)}
-            className="flex-shrink-0 w-10 flex items-center justify-center rounded-lg border border-border bg-card hover:bg-secondary transition-colors"
-            title="显示预览面板"
+            className="flex-shrink-0 w-8 flex items-center justify-center rounded-lg border border-border bg-card hover:bg-secondary transition-colors"
           >
             <PanelRight className="w-4 h-4" />
           </button>
@@ -501,31 +457,19 @@ export default function JsonEditorTool() {
       </div>
 
       {/* Footer */}
-      <div className="flex-shrink-0 mt-3 pt-3 border-t border-border/50">
-        <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-              多种编辑模式
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              实时验证
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-              快捷操作
-            </span>
-          </div>
+      <div className="flex-shrink-0 mt-3 pt-3 border-t border-border">
+        <p className="text-xs text-muted-foreground">
+          支持多种编辑模式 · 实时验证 · 快捷键操作
+          {" · "}
           <a 
-            href="https://github.com/jdorn/json-editor" 
+            href="https://github.com/josdejong/jsoneditor" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="text-cyan-400 hover:text-cyan-300 hover:underline"
+            className="text-primary hover:underline"
           >
             基于 jsoneditor
           </a>
-        </div>
+        </p>
       </div>
     </div>
   );

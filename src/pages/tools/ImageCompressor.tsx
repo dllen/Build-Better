@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
-import { Upload, X, Download, RefreshCw, Trash2, Archive } from "lucide-react";
+ import React, { useState, useRef } from "react";
+ import { useTranslation } from "react-i18next";
+ import { SEO } from "@/components/SEO";
+ import { Upload, X, Download, RefreshCw, Trash2, Archive } from "lucide-react";
 import JSZip from "jszip";
 
 interface CompressedImage {
@@ -64,11 +64,11 @@ export default function ImageCompressor() {
 
         let outputFormat = format;
         if (format === "original") {
-          if (img.originalFile.type === "image/png" || img.originalFile.type === "image/webp") {
-            outputFormat = img.originalFile.type as any;
-          } else {
-            outputFormat = "image/jpeg";
-          }
+         if (img.originalFile.type === "image/png" || img.originalFile.type === "image/webp") {
+           outputFormat = img.originalFile.type as "image/png" | "image/webp";
+         } else {
+           outputFormat = "image/jpeg";
+         }
         }
 
         canvas.toBlob(
@@ -93,72 +93,15 @@ export default function ImageCompressor() {
       };
     });
   };
-
   const processAll = async () => {
     setIsProcessing(true);
-    const updatedImages = [...images];
-    
-    // Process strictly sequentially or use Promise.all. 
-    // Promise.all is better for performance but UI updates might feel jumpy.
-    // Let's use map and Promise.all to update state once or incrementally.
-    // For better UX, let's update state as we go, but we can process in parallel.
-    
-      if (img.status === "done") {
-         // Re-process if settings changed? Yes, let's assume "Process All" means re-run everything that is pending or done but with new settings.
-         // Actually, usually user wants to apply settings to everything.
-      }
-      // Let's mark all as processing first
-      return img;
-    });
-
-    // Actually, simpler approach: Filter out already processing ones? 
-    // Let's just re-process everything that matches the current list.
-    
-    // First, set all to processing visually (optional, but good feedback)
+    // First, set all to processing visually
     setImages(prev => prev.map(img => ({ ...img, status: "processing" })));
-
     const results = await Promise.all(
       images.map(img => processImage(img))
     );
-    
     setImages(results);
     setIsProcessing(false);
-  };
-  
-  // Auto-process new images or on setting change? 
-  // Usually explicit "Start" or auto. Let's make it manual "Compress" button or auto? 
-  // The requirement says "Batch processing". 
-  // Let's adding a "Compress All" button. But also maybe auto-compress on add?
-  // Let's stick to a "Compress" button for clarity, especially since settings might change.
-  // Actually, reactive is cooler. Let's try to make it reactive to settings changes with a debounce?
-  // Or just a big "Compress" button. "Compress" button is safer for performance with many large images.
-  
-  const removeImage = (id: string) => {
-    setImages((prev) => {
-      const target = prev.find(i => i.id === id);
-      if (target) {
-        URL.revokeObjectURL(target.originalPreview);
-        if (target.compressedPreview) URL.revokeObjectURL(target.compressedPreview);
-      }
-      return prev.filter((i) => i.id !== id);
-    });
-  };
-
-  const downloadImage = (img: CompressedImage) => {
-    if (!img.compressedBlob) return;
-    const link = document.createElement("a");
-    link.href = img.compressedPreview!;
-    
-    // Determine extension
-    let ext = "jpg";
-    if (img.compressedBlob.type === "image/png") ext = "png";
-    if (img.compressedBlob.type === "image/webp") ext = "webp";
-    
-    const originalName = img.originalFile.name.substring(0, img.originalFile.name.lastIndexOf("."));
-    link.download = `${originalName}_compressed.${ext}`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   const downloadAll = async () => {
@@ -182,6 +125,34 @@ export default function ImageCompressor() {
     const link = document.createElement("a");
     link.href = URL.createObjectURL(content);
     link.download = "compressed_images.zip";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const removeImage = (id: string) => {
+    setImages((prev) => {
+      const target = prev.find(i => i.id === id);
+      if (target) {
+        URL.revokeObjectURL(target.originalPreview);
+        if (target.compressedPreview) URL.revokeObjectURL(target.compressedPreview);
+      }
+      return prev.filter((i) => i.id !== id);
+    });
+  };
+
+  const downloadImage = (img: CompressedImage) => {
+    if (!img.compressedBlob) return;
+    const link = document.createElement("a");
+    link.href = img.compressedPreview!;
+    
+    // Determine extension
+    let ext = "jpg";
+    if (img.compressedBlob.type === "image/png") ext = "png";
+    if (img.compressedBlob.type === "image/webp") ext = "webp";
+    
+    const originalName = img.originalFile.name.substring(0, img.originalFile.name.lastIndexOf("."));
+    link.download = `${originalName}_compressed.${ext}`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -221,7 +192,7 @@ export default function ImageCompressor() {
             </label>
             <select
               value={format}
-              onChange={(e) => setFormat(e.target.value as any)}
+             onChange={(e) => setFormat(e.target.value as "original" | "image/jpeg" | "image/png" | "image/webp")}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="original">{t("tools.image-compressor.keep_original", "Keep Original")}</option>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+ import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RotateCcw, ArrowLeft, Copy, Share2, History, Volume2 } from 'lucide-react';
 import relationship from 'relationship-ts';
@@ -35,23 +35,23 @@ export default function KinshipCalculator() {
     { label: '妹', value: '妹妹' },
   ];
 
-  useEffect(() => {
-    calculate();
-  }, [relationChain, gender]);
+   const calculate = useCallback(() => {
+     if (relationChain.length === 0) {
+       setResult([]);
+       return;
+     }
+     const text = relationChain.join('的');
+     try {
+       const res = relationship({ text, sex: gender });
+       setResult(res || []);
+     } catch {
+       setResult([]);
+     }
+   }, [relationChain, gender]);
 
-  const calculate = () => {
-    if (relationChain.length === 0) {
-      setResult([]);
-      return;
-    }
-    const text = relationChain.join('的');
-    try {
-      const res = relationship({ text, sex: gender });
-      setResult(res || []);
-    } catch (e) {
-      setResult([]);
-    }
-  };
+   useEffect(() => {
+     calculate();
+   }, [calculate]);
 
   useEffect(() => {
     if (result.length > 0 && relationChain.length > 0) {
@@ -73,36 +73,38 @@ export default function KinshipCalculator() {
     setInputValue('');
   };
 
-    if (result.length > 0) {
-      const newItem: HistoryItem = {
-        id: Date.now().toString(),
-        relation: relationChain.join('的'),
-        result,
-        gender,
-        timestamp: Date.now(),
-      };
-      const newHistory = [newItem, ...history].slice(0, 50); // Keep last 50
-      setHistory(newHistory);
-      localStorage.setItem('kinship-history', JSON.stringify(newHistory));
-    }
-  };
+   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   const _handleSaveToHistory = () => {
+     if (result.length > 0) {
+       const newItem: HistoryItem = {
+         id: Date.now().toString(),
+         relation: relationChain.join('的'),
+         result,
+         gender,
+         timestamp: Date.now(),
+       };
+       const newHistory = [newItem, ...history].slice(0, 50); // Keep last 50
+       setHistory(newHistory);
+       localStorage.setItem('kinship-history', JSON.stringify(newHistory));
+     }
+   };
 
-  const handleShare = async () => {
-    const text = `${t('tools.kinship.share_text', '我正在查询亲戚称呼')}：${relationChain.join('的')} -> ${result.join('/')}`;
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: t('tools.kinship.title'),
-          text: text,
-        });
-      } catch (err) {
-        console.error('Share failed:', err);
-      }
-    } else {
-      navigator.clipboard.writeText(text);
-      // Ideally show a toast here
-    }
-  };
+   const handleShare = async () => {
+     const text = `${t('tools.kinship.share_text', '我正在查询亲戚称呼')}：${relationChain.join('的')} -> ${result.join('/')}`;
+     if (navigator.share) {
+       try {
+         await navigator.share({
+           title: t('tools.kinship.title'),
+           text: text,
+         });
+       } catch (err) {
+         console.error('Share failed:', err);
+       }
+     } else {
+       navigator.clipboard.writeText(text);
+       // Ideally show a toast here
+     }
+   };
   
   const handleCopy = () => {
      if (result.length > 0) {
@@ -119,17 +121,17 @@ export default function KinshipCalculator() {
   };
   
   // Reverse lookup
-  const handleReverseLookup = () => {
-      if(!inputValue) return;
-      try {
-          // relationship.js supports finding relation from title?
-          // Documentation says: relationship({text:'舅舅',reverse:true,sex:1})
-          const res = relationship({ text: inputValue, reverse: true, sex: gender });
-          setResult(res || []);
-      } catch (e) {
-          setResult([]);
-      }
-  }
+   const handleReverseLookup = () => {
+       if(!inputValue) return;
+       try {
+           // relationship.js supports finding relation from title?
+           // Documentation says: relationship({text:'舅舅',reverse:true,sex:1})
+           const res = relationship({ text: inputValue, reverse: true, sex: gender });
+           setResult(res || []);
+       } catch {
+           setResult([]);
+       }
+   };
 
   return (
     <div className="container mx-auto p-4 max-w-4xl">

@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, RefreshCw, Undo } from "lucide-react";
+import { ArrowLeft, RefreshCw, Undo, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 
@@ -30,10 +30,12 @@ const GoGame: React.FC = () => {
   );
   const [currentPlayer, setCurrentPlayer] = useState<Player>(BLACK);
   const [gameStatus, setGameStatus] = useState<"playing" | "finished">("playing");
+  const [winner, setWinner] = useState<Player | null>(null);
   const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard">("medium");
   const [captures, setCaptures] = useState({ [BLACK]: 0, [WHITE]: 0 });
   const [history, setHistory] = useState<BoardState[]>([]);
   const [lastMove, setLastMove] = useState<{ x: number; y: number } | null>(null);
+  const isAiThinking = useRef(false);
 
   // Initialize game
   const resetGame = () => {
@@ -48,6 +50,7 @@ const GoGame: React.FC = () => {
     setCaptures({ [BLACK]: 0, [WHITE]: 0 });
     setHistory([]);
     setLastMove(null);
+    isAiThinking.current = false;
   };
 
   // Helper: Deep copy board
@@ -105,11 +108,13 @@ const GoGame: React.FC = () => {
   };
 
   // Helper: Count liberties
+  const countLiberties = (b: BoardState, x: number, y: number) => {
       const groupInfo = getGroup(b, x, y);
       return groupInfo ? groupInfo.liberties.length : 0;
   };
 
   // Move logic
+  const makeMove = (x: number, y: number, player: Player, isAi: boolean = false) => {
     if (board[y][x] !== EMPTY) return false;
 
     const newBoard = copyBoard(board);
@@ -170,11 +175,14 @@ const GoGame: React.FC = () => {
   };
 
   const handleBoardClick = (x: number, y: number) => {
+    if (gameStatus !== "playing" || isAiThinking.current) return;
     if (currentPlayer !== BLACK) return; 
 
     if (makeMove(x, y, BLACK)) {
+      isAiThinking.current = true;
       setTimeout(() => {
         makeAiMove();
+        isAiThinking.current = false;
       }, 500);
     }
   };

@@ -27,11 +27,11 @@ export default function TextStats() {
   const [copied, setCopied] = useState("");
   const [ignoreStopWords, setIgnoreStopWords] = useState(true);
 
-  const words = useMemo(() => {
-    const trimmed = text.trim();
-    if (!trimmed) return [];
-    return trimmed.split(/[\s,.!?;:"'(){}\[\]<>]+/ ).filter(Boolean);
-  }, [text]);
+   const words = useMemo(() => {
+     const trimmed = text.trim();
+     if (!trimmed) return [];
+     return trimmed.split(/[\s,.!?;:"'(){}[\\]<>]+/).filter(Boolean);
+   }, [text]);
 
   const lines = useMemo(() => {
     if (!text) return 0;
@@ -53,16 +53,17 @@ export default function TextStats() {
     return m ? m.length : 0;
   }, [text]);
 
-    const map = new Map<string, number>();
-    for (const ch of text) {
-      if (!ch.trim()) continue;
-      map.set(ch, (map.get(ch) || 0) + 1);
-    }
-    const arr = Array.from(map.entries())
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 10);
-    return arr;
-  }, [text]);
+   useMemo(() => {
+     const map = new Map<string, number>();
+     for (const ch of text) {
+       if (!ch.trim()) continue;
+       map.set(ch, (map.get(ch) || 0) + 1);
+     }
+     const arr = Array.from(map.entries())
+       .sort((a, b) => b[1] - a[1])
+       .slice(0, 10);
+     return arr;
+   }, [text]);
 
   const freqTopWords = useMemo(() => {
     const map = new Map<string, number>();

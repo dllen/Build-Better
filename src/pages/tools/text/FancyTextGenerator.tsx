@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Wand2, Copy, Check } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 
 const STYLES = [
   { name: 'Bold', map: '𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗' },
@@ -22,15 +21,7 @@ const STYLES = [
 // Helper to map chars
 const NORMAL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-  const target = STYLES[styleIndex].map;
-  return text.split('').map(char => {
-    const idx = NORMAL.indexOf(char);
-    return idx !== -1 && target[idx*2] ? target.substring(idx*2, idx*2+2) : (idx !== -1 ? target[idx] : char); 
-    // The above logic is flawed because unicode surrogates can be 1 or 2 chars. 
-    // We need real array indexing for unicode strings.
-  }).join('');
-};
-
+const convertSafe = (text: string, styleIndex: number) => {
   const targetStr = STYLES[styleIndex].map;
   // Convert string to array of code points (strings)
   const target = [...targetStr]; 
@@ -43,6 +34,7 @@ const NORMAL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 };
 
 export default function FancyTextGenerator() {
+  
   const [text, setText] = useState('Hello World 123');
   const [copied, setCopied] = useState<number | null>(null);
 
@@ -75,6 +67,7 @@ export default function FancyTextGenerator() {
 
         <div className="grid gap-4">
           {STYLES.map((style, index) => {
+            const result = convertSafe(text, index);
             return (
               <div key={style.name} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg border border-gray-100 hover:border-purple-200 transition-colors group">
                 <div className="w-32 text-xs text-gray-500 font-medium">{style.name}</div>

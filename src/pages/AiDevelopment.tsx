@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { SearchInput } from "@/components/common/SearchInput";
-import { useTranslation } from "react-i18next";
 import { ExternalLink, Star } from "lucide-react";
 
 interface Resource {

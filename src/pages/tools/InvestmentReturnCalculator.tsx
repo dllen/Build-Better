@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
-import { TrendingUp, DollarSign, Calendar, Percent, RefreshCw } from "lucide-react";
+ import React, { useState } from "react";
+ import { useTranslation } from "react-i18next";
+ import { SEO } from "@/components/SEO";
+ import { TrendingUp, Calendar, RefreshCw } from "lucide-react";
 
 interface CalculationResult {
   totalAmount: number;
+  totalPrincipal: number;
   totalInterest: number;
+  yearlyData: Array<{
     year: number;
     amount: number;
     principal: number;
@@ -22,7 +24,7 @@ const InvestmentReturnCalculator = () => {
   const [monthlyContribution, setMonthlyContribution] = useState<string>("0");
   const [compoundFreq, setCompoundFreq] = useState<"monthly" | "yearly">("yearly");
 
-  const [result, setResult] = useState<CalculationResult | null>(null);
+   const [result, setResult] = useState<CalculationResult | null>(null);
 
   const calculate = () => {
     const principal = parseFloat(initialAmount) || 0;
@@ -32,7 +34,7 @@ const InvestmentReturnCalculator = () => {
 
     if (time <= 0) return;
 
-    let currentAmount = principal;
+         let currentAmount = principal;
 
     const monthlyRate = r / 100 / 12;
     const yearlyRate = r / 100;
@@ -44,6 +46,7 @@ const InvestmentReturnCalculator = () => {
         // Monthly compounding with monthly contributions
         for (let m = 0; m < 12; m++) {
           currentAmount = (currentAmount + contribution) * (1 + monthlyRate);
+           // contribution added to currentAmount
         }
       } else {
         // Yearly compounding
@@ -69,6 +72,7 @@ const InvestmentReturnCalculator = () => {
         for (let m = 0; m < 12; m++) {
           // Add contribution
           currentAmount += contribution;
+           // contribution added to currentAmount
         }
         // Apply interest on the start balance
         interest = balanceForInterest * yearlyRate;
@@ -93,6 +97,7 @@ const InvestmentReturnCalculator = () => {
         // Re-do loop for year i
         currentAmount = yearStartAmount; // Reset to start of year
         // We need to track principal separately from amount to get accurate total principal
+        // Actually totalPrincipal is global accumulator.
 
         // Let's use a month loop for everything to be safe
       }
@@ -142,7 +147,9 @@ const InvestmentReturnCalculator = () => {
 
     setResult({
       totalAmount: balance,
+      totalPrincipal: totalContributed,
       totalInterest: balance - totalContributed,
+      yearlyData: data,
     });
   };
 
@@ -319,6 +326,7 @@ const InvestmentReturnCalculator = () => {
                       {t("tools.investment-return.total_principal")}
                     </p>
                     <p className="text-xl font-semibold text-gray-900">
+                      {formatCurrency(result.totalPrincipal)}
                     </p>
                   </div>
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
@@ -351,6 +359,7 @@ const InvestmentReturnCalculator = () => {
                         </tr>
                       </thead>
                       <tbody className="bg-white divide-y divide-gray-200">
+                        {result.yearlyData.map((row) => (
                           <tr key={row.year} className="hover:bg-gray-50">
                             <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-900">
                               {row.year}

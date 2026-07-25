@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Copy, RefreshCw, Image as ImageIcon, Terminal, Code, Palette } from "lucide-react";
-// @ts-ignore
-import { renderMermaid, renderMermaidAscii, THEMES } from "beautiful-mermaid";
+ import React, { useState, useEffect } from "react";
+ import { Copy, RefreshCw, Image as ImageIcon, Terminal, Code, Palette } from "lucide-react";
+ import { renderMermaid, renderMermaidAscii, THEMES } from "beautiful-mermaid";
 
 type OutputMode = "svg" | "ascii";
 
@@ -20,12 +19,12 @@ export default function MermaidRenderer() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      render();
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [inputCode, outputMode, theme]);
+   useEffect(() => {
+     const timer = setTimeout(() => {
+       render();
+     }, 500);
+     return () => clearTimeout(timer);
+   }, [inputCode, outputMode, theme, render]);
 
   async function render() {
     if (!inputCode.trim()) {
