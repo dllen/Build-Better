@@ -37,6 +37,7 @@ export default function KinshipCalculator() {
 
   useEffect(() => {
     calculate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [relationChain, gender]);
 
   const calculate = () => {
@@ -48,7 +49,7 @@ export default function KinshipCalculator() {
     try {
       const res = relationship({ text, sex: gender });
       setResult(res || []);
-    } catch (e) {
+    } catch {
       setResult([]);
     }
   };
@@ -73,7 +74,7 @@ export default function KinshipCalculator() {
     setInputValue('');
   };
 
-  const handleSaveToHistory = () => {
+  const _handleSaveToHistory = () => {
     if (result.length > 0) {
       const newItem: HistoryItem = {
         id: Date.now().toString(),
@@ -104,7 +105,7 @@ export default function KinshipCalculator() {
       // Ideally show a toast here
     }
   };
-  
+
   const handleCopy = () => {
      if (result.length > 0) {
         navigator.clipboard.writeText(result.join(' / '));
@@ -118,7 +119,7 @@ export default function KinshipCalculator() {
           window.speechSynthesis.speak(utterance);
       }
   };
-  
+
   // Reverse lookup
   const handleReverseLookup = () => {
       if(!inputValue) return;
@@ -127,7 +128,7 @@ export default function KinshipCalculator() {
           // Documentation says: relationship({text:'舅舅',reverse:true,sex:1})
           const res = relationship({ text: inputValue, reverse: true, sex: gender });
           setResult(res || []);
-      } catch (e) {
+      } catch {
           setResult([]);
       }
   }

@@ -95,6 +95,7 @@ const FlyingChess: React.FC = () => {
       }, 1000);
       return () => clearTimeout(timer);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState, gameStarted]);
 
   const addLog = (msg: string) => {
@@ -141,6 +142,7 @@ const FlyingChess: React.FC = () => {
         setTimeout(() => nextTurn(), 1000);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState.waitingForMove, gameState.diceValue]);
 
   const nextTurn = () => {

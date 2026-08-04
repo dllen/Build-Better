@@ -53,7 +53,7 @@ export default function JsonEditorTool() {
   const [isValidJson, setIsValidJson] = useState(true);
   const [showModeMenu, setShowModeMenu] = useState(false);
   const [isPanelOpen, setIsPanelOpen] = useState(true);
-  const [isFormatted, setIsFormatted] = useState(true);
+  const [_isFormatted, setIsFormatted] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Validate JSON
@@ -128,6 +128,7 @@ export default function JsonEditorTool() {
         editorRef.current = null;
       }
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Update editor mode
@@ -191,7 +192,7 @@ export default function JsonEditorTool() {
   };
 
   // Clear editor
-  const handleClear = () => {
+  const _handleClear = () => {
     if (editorRef.current) {
       editorRef.current.set({});
       setJsonContent("{}");

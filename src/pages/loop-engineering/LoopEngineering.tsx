@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { ExternalLink, Search, ChevronRight, CheckCircle2, AlertTriangle, Clock, BookOpen, Wrench, FileText, Target, Sparkles, Zap, Shield, Repeat, Database, Brain, ArrowRight } from "lucide-react";
 
 // Extended Templates data from loopengineering.app

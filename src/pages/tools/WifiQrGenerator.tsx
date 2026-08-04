@@ -7,8 +7,6 @@ import {
   Printer,
   Eye,
   EyeOff,
-  Copy,
-  Check,
 } from "lucide-react";
 import QRCode from "qrcode";
 
@@ -23,6 +21,7 @@ export default function WifiQrGenerator() {
 
   useEffect(() => {
     generateQrCode();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ssid, password, encryption, hidden]);
 
   const generateQrCode = () => {

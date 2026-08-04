@@ -142,7 +142,7 @@ describe("LinkMatch Logic", () => {
       // A . .
       // X X .
       // . . A
-      const grid = createGrid(3, 3, [
+      const _grid = createGrid(3, 3, [
         ["A", ".", "."],
         ["X", "X", "."],
         [".", ".", "A"],
@@ -160,7 +160,7 @@ describe("LinkMatch Logic", () => {
       // . . X .
       // . X . A
       // Path: (0,0)->(0,1)->(2,1)->(2,3) -- 2 turns
-      const gridZ = createGrid(3, 4, [
+      const _gridZ = createGrid(3, 4, [
         ["A", ".", ".", "."],
         [".", ".", "X", "."],
         [".", "X", ".", "A"],

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
-import { TrendingUp, DollarSign, Calendar, Percent, RefreshCw } from "lucide-react";
+import { TrendingUp, Calendar, RefreshCw } from "lucide-react";
 
 interface CalculationResult {
   totalAmount: number;
@@ -35,8 +35,8 @@ const InvestmentReturnCalculator = () => {
     if (time <= 0) return;
 
     let currentAmount = principal;
-    let totalPrincipal = principal;
-    const yearlyData = [];
+    let _totalPrincipal = principal;
+    const _yearlyData = [];
 
     const monthlyRate = r / 100 / 12;
     const yearlyRate = r / 100;
@@ -48,7 +48,7 @@ const InvestmentReturnCalculator = () => {
         // Monthly compounding with monthly contributions
         for (let m = 0; m < 12; m++) {
           currentAmount = (currentAmount + contribution) * (1 + monthlyRate);
-          totalPrincipal += contribution;
+          _totalPrincipal += contribution;
         }
       } else {
         // Yearly compounding
@@ -65,7 +65,7 @@ const InvestmentReturnCalculator = () => {
         // Let's stick to: Monthly contribution -> Compounded Monthly is best for most people.
         // If they select Yearly, we treat it as: Interest applied once a year.
 
-        const yearlyContribution = contribution * 12;
+        const _yearlyContribution = contribution * 12;
         // Simple approximation for yearly compounding with monthly deposits:
         // Interest = (StartBalance + YearlyContribution/2) * rate? No.
         // Let's iterate months for contribution addition, but apply interest at end.
@@ -75,7 +75,7 @@ const InvestmentReturnCalculator = () => {
         for (let m = 0; m < 12; m++) {
           // Add contribution
           currentAmount += contribution;
-          totalPrincipal += contribution;
+          _totalPrincipal += contribution;
         }
         // Apply interest on the start balance
         interest = balanceForInterest * yearlyRate;

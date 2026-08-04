@@ -22,16 +22,6 @@ const STYLES = [
 // Helper to map chars
 const NORMAL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-const convert = (text: string, styleIndex: number) => {
-  const target = STYLES[styleIndex].map;
-  return text.split('').map(char => {
-    const idx = NORMAL.indexOf(char);
-    return idx !== -1 && target[idx*2] ? target.substring(idx*2, idx*2+2) : (idx !== -1 ? target[idx] : char); 
-    // The above logic is flawed because unicode surrogates can be 1 or 2 chars. 
-    // We need real array indexing for unicode strings.
-  }).join('');
-};
-
 const convertSafe = (text: string, styleIndex: number) => {
   const targetStr = STYLES[styleIndex].map;
   // Convert string to array of code points (strings)
@@ -45,7 +35,7 @@ const convertSafe = (text: string, styleIndex: number) => {
 };
 
 export default function FancyTextGenerator() {
-  const { t } = useTranslation();
+  useTranslation();
   const [text, setText] = useState('Hello World 123');
   const [copied, setCopied] = useState<number | null>(null);
 

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Smile, Check } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 
 // Reduced set for demo - normally would use a full dataset library or json
 const EMOJI_CATEGORIES = {
@@ -23,7 +22,7 @@ export default function EmojiPicker() {
 
   const filteredEmojis = Object.entries(EMOJI_CATEGORIES).flatMap(([cat, emojis]) => 
     emojis.map(e => ({ emoji: e, category: cat }))
-  ).filter(({ emoji, category }) => {
+  ).filter(({ category }) => {
     // In a real app, we'd map '😀' to ['smile', 'happy'] etc.
     const matchesCategory = activeCategory === 'All' || activeCategory === category;
     return matchesCategory;
