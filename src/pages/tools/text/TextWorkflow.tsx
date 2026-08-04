@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Workflow, Plus, Trash2, ArrowDown, Play, RotateCcw, Copy, Check } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 
 type OperationType = 'uppercase' | 'lowercase' | 'trim' | 'replace' | 'sort' | 'reverse' | 'lines';
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { GitCompare } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 import * as Diff from 'diff';
 
 export default function TextSimilarity() {

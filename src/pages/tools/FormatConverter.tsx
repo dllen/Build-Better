@@ -71,7 +71,7 @@ export default function FormatConverter() {
         case "yaml":
           result = yaml.dump(parsedData);
           break;
-        case "toml":
+        case "toml": {
           // TOML requires root table to be an object
           if (typeof parsedData !== "object" || parsedData === null || Array.isArray(parsedData)) {
              // If parsed data is not an object (e.g. simple value or array), TOML cannot represent it at root easily without a key.
@@ -84,6 +84,7 @@ export default function FormatConverter() {
           const tomlData = parsedData as JsonMap;
           result = toml.stringify(tomlData);
           break;
+        }
         case "xml":
           result = xmlBuilder.build(parsedData);
           break;

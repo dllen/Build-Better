@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
-import { Upload, X, Download, FileImage, RefreshCw, Trash2, Archive } from "lucide-react";
+import { Upload, X, Download, RefreshCw, Trash2, Archive } from "lucide-react";
 import JSZip from "jszip";
 
 interface CompressedImage {
@@ -65,7 +65,7 @@ export default function ImageCompressor() {
         let outputFormat = format;
         if (format === "original") {
           if (img.originalFile.type === "image/png" || img.originalFile.type === "image/webp") {
-            outputFormat = img.originalFile.type as any;
+            outputFormat = img.originalFile.type as "image/jpeg" | "image/webp" | "image/png" | "original";
           } else {
             outputFormat = "image/jpeg";
           }
@@ -103,7 +103,7 @@ export default function ImageCompressor() {
     // Let's use map and Promise.all to update state once or incrementally.
     // For better UX, let's update state as we go, but we can process in parallel.
     
-    const promises = updatedImages.map(async (img) => {
+    const _promises = updatedImages.map(async (img) => {
       if (img.status === "done") {
          // Re-process if settings changed? Yes, let's assume "Process All" means re-run everything that is pending or done but with new settings.
          // Actually, usually user wants to apply settings to everything.
@@ -222,7 +222,7 @@ export default function ImageCompressor() {
             </label>
             <select
               value={format}
-              onChange={(e) => setFormat(e.target.value as any)}
+              onChange={(e) => setFormat(e.target.value as "image/jpeg" | "image/webp" | "image/png" | "original")}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="original">{t("tools.image-compressor.keep_original", "Keep Original")}</option>

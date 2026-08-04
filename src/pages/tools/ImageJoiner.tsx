@@ -229,7 +229,7 @@ export default function ImageJoiner() {
     let currentX = 0;
     let currentY = 0;
 
-    loadedImages.forEach((img, index) => {
+    loadedImages.forEach((img) => {
       let drawW = img.width;
       let drawH = img.height;
 

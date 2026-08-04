@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { nesGames, NesGame } from '../../data/nesGames';
 import { NesEmulator } from '../../components/NesEmulator';
 import { Search, Heart, Clock, ArrowLeft, Gamepad, Filter } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 
 export default function NesEmulatorPage() {
     const [selectedGame, setSelectedGame] = useState<NesGame | null>(null);

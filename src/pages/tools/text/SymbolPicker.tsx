@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Sparkles, Search, Check } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 
 const CATEGORIES = {
   'Common': ['©', '®', '™', '•', '€', '£', '¥', '¢', '§', '¶', '°', '∞', '≠', '≈', '±'],

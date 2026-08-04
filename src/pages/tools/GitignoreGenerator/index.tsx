@@ -1,5 +1,4 @@
-import { useState, useCallback } from "react";
-import { useTranslation } from "react-i18next";
+import { useState } from "react";
 import { Copy, Check, Download, FileText, Sparkles, Search } from "lucide-react";
 
 const GITIGNORE_TEMPLATES: Record<string, { name: string; content: string }> = {

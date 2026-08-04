@@ -35,6 +35,7 @@ export default function OtpGenerator() {
     if (!secret) {
       generateRandomSecret();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const generateRandomSecret = () => {
@@ -54,7 +55,7 @@ export default function OtpGenerator() {
         period: period,
         secret: OTPAuth.Secret.fromBase32(secret),
       });
-    } catch (e) {
+    } catch {
       return null;
     }
   }, [secret, issuer, account, algorithm, digits, period]);

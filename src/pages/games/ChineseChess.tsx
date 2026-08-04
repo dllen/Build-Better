@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
-import { RefreshCw, Trophy, AlertCircle, Settings } from "lucide-react";
+import { RefreshCw, AlertCircle, Settings } from "lucide-react";
 
 // --- Types ---
 
@@ -103,7 +103,7 @@ const getPieceMoves = (board: (Piece | null)[][], pos: Position, piece: Piece): 
   };
 
   switch (piece.type) {
-    case "k": // General
+    case "k": { // General
       // Palace bounds: cols 3-5. Red rows 7-9, Black rows 0-2.
       const rMin = isRed ? 7 : 0;
       const rMax = isRed ? 9 : 2;
@@ -117,8 +117,9 @@ const getPieceMoves = (board: (Piece | null)[][], pos: Position, piece: Piece): 
       });
       // Flying General rule is checked in `willCauseCheck` or globally
       break;
+    }
 
-    case "a": // Advisor
+    case "a": { // Advisor
       // Palace diagonal
       const arMin = isRed ? 7 : 0;
       const arMax = isRed ? 9 : 2;
@@ -129,8 +130,9 @@ const getPieceMoves = (board: (Piece | null)[][], pos: Position, piece: Piece): 
         }
       });
       break;
+    }
 
-    case "b": // Elephant (Bishop)
+    case "b": { // Elephant (Bishop)
       // 2 steps diagonal, cannot cross river
       // River: Red side 5-9, Black side 0-4.
       const brMin = isRed ? 5 : 0;
@@ -145,6 +147,7 @@ const getPieceMoves = (board: (Piece | null)[][], pos: Position, piece: Piece): 
         }
       });
       break;
+    }
 
     case "n": // Horse (Knight)
       // L-shape, check leg
@@ -195,21 +198,22 @@ const getPieceMoves = (board: (Piece | null)[][], pos: Position, piece: Piece): 
       });
       break;
 
-    case "p": // Pawn (Soldier)
+    case "p": { // Pawn (Soldier)
       // Forward 1. After river, side 1.
       // Red moves -1 row, Black moves +1 row.
       const forward = isRed ? -1 : 1;
       const crossedRiver = isRed ? r <= 4 : r >= 5;
-      
+
       // Forward
       addMove(r + forward, c);
-      
+
       // Sideways if crossed
       if (crossedRiver) {
         addMove(r, c - 1);
         addMove(r, c + 1);
       }
       break;
+    }
   }
 
   return moves;
@@ -445,6 +449,7 @@ export default function ChineseChess() {
     };
 
     makeAiMove();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [turn, gameStatus, difficulty]);
 
   const applyMove = (move: Move) => {

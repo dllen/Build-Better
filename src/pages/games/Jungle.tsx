@@ -289,9 +289,9 @@ const Jungle: React.FC = () => {
     isAiThinking.current = false;
   };
 
-  const evaluateMove = (b: { [key: string]: Piece }, from: Position, to: Position, diff: string) => {
+  const evaluateMove = (b: { [key: string]: Piece }, from: Position, to: Position, _diff: string) => {
     let score = 0;
-    const piece = getPiece(b, from.r, from.c);
+    const _piece = getPiece(b, from.r, from.c);
     const targetPiece = getPiece(b, to.r, to.c);
     const targetTerrain = getTerrain(to.r, to.c);
 
@@ -330,7 +330,7 @@ const Jungle: React.FC = () => {
   const undoMove = () => {
       if (history.length === 0) return;
       // Undo 2 moves (AI and User)
-      const prevBoard = history.length >= 2 ? history[history.length - 2] : history[0]; 
+      const _prevBoard = history.length >= 2 ? history[history.length - 2] : history[0]; 
       // Actually if history has 1, it means User moved once. If we undo, we go back to start.
       // But usually AI responds immediately. So we undo pairs.
       
@@ -474,7 +474,7 @@ const Jungle: React.FC = () => {
                 </label>
                 <select
                   value={difficulty}
-                  onChange={(e) => setDifficulty(e.target.value as any)}
+                  onChange={(e) => setDifficulty(e.target.value as unknown as "easy" | "medium" | "hard")}
                   className="w-full p-2 border rounded-md bg-transparent dark:bg-gray-700"
                 >
                   <option value="easy">{t("games.jungle.easy", "Easy")}</option>

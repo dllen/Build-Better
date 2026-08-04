@@ -1,5 +1,4 @@
 import { useState, useCallback } from "react";
-import { useTranslation } from "react-i18next";
 import { Copy, Check, RefreshCw, Sparkles, FileText, Zap } from "lucide-react";
 
 const COMMIT_TYPES = [

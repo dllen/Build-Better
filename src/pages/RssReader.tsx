@@ -165,7 +165,7 @@ export default function RssReader() {
         try {
           response = await fetch(`https://corsproxy.io/?${encodeURIComponent(feed.xmlUrl)}`);
           if (!response.ok) throw new Error('CORS Proxy IO failed');
-        } catch (e) {
+        } catch {
           // Fallback to allorigins
           response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(feed.xmlUrl)}`);
         }

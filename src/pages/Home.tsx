@@ -50,7 +50,7 @@ import { SearchInput } from "@/components/common/SearchInput";
 export default function Home() {
   const { t } = useTranslation();
 
-  const tools = [
+  const tools = useMemo(() => [
     {
       id: "data-converter",
       name: "Mr. Data Converter",
@@ -591,7 +591,7 @@ export default function Home() {
       color: "text-emerald-600",
       bgColor: "bg-emerald-100",
     },
-  ];
+  ], [t]);
 
   const [searchTerm, setSearchTerm] = useState("");
 

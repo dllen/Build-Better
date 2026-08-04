@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Copy, RefreshCw, Image as ImageIcon, Terminal, Code, Palette } from "lucide-react";
-// @ts-ignore
 import { renderMermaid, renderMermaidAscii, THEMES } from "beautiful-mermaid";
 
 type OutputMode = "svg" | "ascii";
@@ -25,6 +24,7 @@ export default function MermaidRenderer() {
       render();
     }, 500);
     return () => clearTimeout(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputCode, outputMode, theme]);
 
   async function render() {

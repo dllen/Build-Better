@@ -30,7 +30,7 @@ export default function TextStats() {
   const words = useMemo(() => {
     const trimmed = text.trim();
     if (!trimmed) return [];
-    return trimmed.split(/[\s,.!?;:"'(){}\[\]<>]+/ ).filter(Boolean);
+    return trimmed.split(/[\s,.!?;:"'(){}[\]<>]+/ ).filter(Boolean);
   }, [text]);
 
   const lines = useMemo(() => {
@@ -53,7 +53,7 @@ export default function TextStats() {
     return m ? m.length : 0;
   }, [text]);
 
-  const freqTopChars = useMemo(() => {
+  const _freqTopChars = useMemo(() => {
     const map = new Map<string, number>();
     for (const ch of text) {
       if (!ch.trim()) continue;

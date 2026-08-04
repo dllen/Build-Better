@@ -28,8 +28,8 @@ import { Link } from "react-router-dom";
 // Center 0,0.
 // Valid if distance from center <= 4 OR (distance from center <= 8 AND in one of the 6 points).
 
-const BOARD_RADIUS = 4; // The inner hexagon radius
-const TRIANGLE_SIZE = 4; // The points
+const _BOARD_RADIUS = 4; // The inner hexagon radius
+const _TRIANGLE_SIZE = 4; // The points
 
 const DIRECTIONS = [
   { q: 1, r: 0 }, { q: 1, r: -1 }, { q: 0, r: -1 },
@@ -54,7 +54,7 @@ const generateBoard = (): Point[] => {
   // We scan a large area and filter.
   for (let q = -8; q <= 8; q++) {
     for (let r = -8; r <= 8; r++) {
-      const s = -q - r;
+      const _s = -q - r;
       // Check if inside the star
       // Condition for Star:
       // (|q| <= 4 AND |r| <= 4 AND |s| <= 4) is the inner hexagon? No.
@@ -202,9 +202,9 @@ const getPieceAt = (pieces: Piece[], q: number, r: number) =>
 // - Adjacent empty spots (distance 1).
 // - Jump reachable spots (distance > 1 via chain).
 const getReachablePositions = (pieces: Piece[], startQ: number, startR: number): Point[] => {
-  const visited = new Set<string>();
+  const _visited = new Set<string>();
   const reachable: Point[] = [];
-  const queue: Point[] = [];
+  const _queue: Point[] = [];
   
   const posKey = (q: number, r: number) => `${q},${r}`;
   
@@ -273,7 +273,7 @@ const getReachablePositions = (pieces: Piece[], startQ: number, startR: number):
 // Player Score = Sum(-p.r). (Since they want to go to -8).
 // Or just Distance to Target Point (0, 8) for AI.
 
-const getHeuristicScore = (pieces: Piece[], owner: "ai" | "player") => {
+const _getHeuristicScore = (pieces: Piece[], owner: "ai" | "player") => {
   let score = 0;
   const targetR = owner === "ai" ? 8 : -8; // AI aims for Bottom (8), Player aims for Top (-8)
   
@@ -372,6 +372,7 @@ const ChineseCheckers: React.FC = () => {
       }, 500); // Small delay for visual
       return () => clearTimeout(timer);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [turn, gameStarted, winner]);
 
   const makeAiMove = () => {
@@ -384,7 +385,7 @@ const ChineseCheckers: React.FC = () => {
       moves.forEach(m => {
         // Evaluate Move
         // Create temp state
-        const tempPieces = pieces.map(tp => tp.id === p.id ? { ...tp, q: m.q, r: m.r } : tp);
+        const _tempPieces = pieces.map(tp => tp.id === p.id ? { ...tp, q: m.q, r: m.r } : tp);
         
         let score = 0;
         
@@ -459,7 +460,7 @@ const ChineseCheckers: React.FC = () => {
   // Hex to Pixel
   // x = size * (3/2 * q)
   // y = size * (sqrt(3)/2 * q  +  sqrt(3) * r)
-  const hexSize = 14; // Radius of a single hex
+  const _hexSize = 14; // Radius of a single hex
   const xOffset = 50; // Center %
   const yOffset = 50; // Center %
   const scale = 2.2; // Scaling factor for % coordinates
@@ -490,7 +491,7 @@ const ChineseCheckers: React.FC = () => {
           <div className="lg:col-span-2 aspect-square relative bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden border-4 border-slate-200 dark:border-slate-700 flex items-center justify-center">
             <svg viewBox="0 0 100 100" className="w-full h-full select-none">
               {/* Board Holes */}
-              {boardPoints.map((pt, i) => {
+              {boardPoints.map((pt, _i) => {
                 const { x, y } = hexToPixel(pt.q, pt.r);
                 const isReachable = reachable.some(r => r.q === pt.q && r.r === pt.r);
                 

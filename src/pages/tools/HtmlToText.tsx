@@ -25,6 +25,7 @@ export default function HtmlToText() {
       console.error("Extraction error:", e);
       return "";
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getText = (node: Node): string => {

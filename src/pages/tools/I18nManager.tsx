@@ -36,7 +36,7 @@ export default function I18nManager() {
         setTimeout(() => setCopied(false), 2000);
         setError(null);
       });
-    } catch (e) {
+    } catch {
       setError("Invalid JSON format. Please check your syntax.");
     }
   };
@@ -46,7 +46,7 @@ export default function I18nManager() {
     try {
       JSON.parse(e.target.value);
       setError(null);
-    } catch (e) {
+    } catch {
       // Don't set error immediately while typing, but maybe on blur or specific validation action
       // For now, we just clear error if it becomes valid
     }
