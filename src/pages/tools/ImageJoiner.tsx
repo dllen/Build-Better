@@ -101,6 +101,7 @@ function SortableItem({
 }
 
 export default function ImageJoiner() {
+  const { t } = useTranslation();
   const [images, setImages] = useState<ImageItem[]>([]);
   const [direction, setDirection] = useState<"vertical" | "horizontal">("vertical");
   const [spacing, setSpacing] = useState(0);
@@ -130,7 +131,6 @@ export default function ImageJoiner() {
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files?.length) return;
-    setIsProcessing(true);
 
     const newImages: ImageItem[] = [];
     const files = Array.from(e.target.files);
@@ -164,7 +164,6 @@ export default function ImageJoiner() {
     }
 
     setImages((prev) => [...prev, ...newImages]);
-    setIsProcessing(false);
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 

@@ -52,9 +52,9 @@ export const NesEmulator: React.FC<NesEmulatorProps> = ({ romUrl, core = 'fceumm
         console.error("Failed to launch emulator:", err);
         if (active) {
           setIsLoading(false);
-          const msg = err.message || "Failed to load ROM";
+          const msg = err instanceof Error ? err.message : "Failed to load ROM";
           setError(msg);
-          if (onError) onError(err);
+          if (onError) onError(err instanceof Error ? err : new Error(String(err)));
         }
       }
     };

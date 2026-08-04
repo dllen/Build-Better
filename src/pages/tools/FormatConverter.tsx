@@ -4,7 +4,7 @@ import Editor from "@monaco-editor/react";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
 import yaml from "js-yaml";
-import toml from "@iarna/toml";
+import toml, { JsonMap } from "@iarna/toml";
 import { XMLParser, XMLBuilder } from "fast-xml-parser";
 
 type Format = "json" | "yaml" | "toml" | "xml";
@@ -81,7 +81,8 @@ export default function FormatConverter() {
              // @iarna/toml might handle it or throw.
              // If it fails, we catch the error.
           }
-          result = toml.stringify(parsedData);
+          const tomlData = parsedData as JsonMap;
+          result = toml.stringify(tomlData);
           break;
         case "xml":
           result = xmlBuilder.build(parsedData);
@@ -90,7 +91,7 @@ export default function FormatConverter() {
 
       setOutputContent(result);
     } catch (err: unknown) {
-      setError(err.message || "Conversion failed");
+      setError(err instanceof Error ? err.message : "Conversion failed");
       setOutputContent("");
     }
   }, [inputContent, inputFormat, outputFormat]);
