@@ -73,6 +73,7 @@ export default function KinshipCalculator() {
     setInputValue('');
   };
 
+  const handleSaveToHistory = () => {
     if (result.length > 0) {
       const newItem: HistoryItem = {
         id: Date.now().toString(),

@@ -96,6 +96,8 @@ const Jungle: React.FC = () => {
 
   // Helper: Is Valid Move
   const getValidMoves = (b: { [key: string]: Piece }, r: number, c: number) => {
+    const piece = getPiece(b, r, c);
+    if (!piece) return [];
 
     const moves: Position[] = [];
     const directions = [[0, 1], [0, -1], [1, 0], [-1, 0]];
@@ -111,10 +113,13 @@ const Jungle: React.FC = () => {
       const targetTerrain = getTerrain(nr, nc);
       
       // Cannot enter own Den
+      if (targetTerrain.type === TYPE_DEN && targetTerrain.owner === piece.player) return;
 
       // River Logic
       if (targetTerrain.type === TYPE_RIVER) {
+        if (piece.rank === RAT) {
           // Rat can enter river
+        } else if (piece.rank === LION || piece.rank === TIGER) {
           // Jump over river
           while (getTerrain(nr, nc).type === TYPE_RIVER) {
             // Check if rat blocks jump
@@ -136,23 +141,30 @@ const Jungle: React.FC = () => {
       const targetPiece = getPiece(b, nr, nc);
       
       if (targetPiece) {
+        if (targetPiece.player === piece.player) return; // Cannot capture own piece
 
         // Capture Rules
         // Traps: Opponent in trap -> rank becomes 0 (effectively) for capture check
         const isTargetInTrap = getTerrain(nr, nc).type === TYPE_TRAP && getTerrain(nr, nc).owner !== targetPiece.player;
         
         if (isTargetInTrap) {
+          // Can capture any piece in trap
         } else {
           // Normal Capture Rules
+          if (piece.rank === ELEPHANT && targetPiece.rank === RAT) return; // Elephant cannot eat Rat
+          if (piece.rank === RAT && targetPiece.rank === ELEPHANT) {
              // Rat can eat Elephant
              // Special case: Rat in river cannot eat Elephant on land
              const isRatInRiver = getTerrain(r, c).type === TYPE_RIVER;
              if (isRatInRiver) return;
+          } else if (piece.rank < targetPiece.rank) {
             return; // Lower rank cannot eat higher
           }
         }
         
         // Rat special: Rat in water cannot eat Rat on land? Rules vary.
+        // Common rule: Rat in river cannot attack piece on land.
+        if (piece.rank === RAT && getTerrain(r, c).type === TYPE_RIVER && getTerrain(nr, nc).type !== TYPE_RIVER) {
             return;
         }
       }
@@ -168,6 +180,7 @@ const Jungle: React.FC = () => {
 
     const clickedPiece = getPiece(board, r, c);
 
+    // If selecting own piece
     if (clickedPiece && clickedPiece.player === PLAYER_RED) {
       setSelectedPos({ r, c });
       setValidMoves(getValidMoves(board, r, c));
@@ -201,6 +214,7 @@ const Jungle: React.FC = () => {
     delete newBoard[`${fr},${fc}`];
     newBoard[`${tr},${tc}`] = movingPiece;
 
+    // Check if opponent has no pieces left
     const opponent = movingPiece.player === PLAYER_RED ? PLAYER_BLUE : PLAYER_RED;
     const opponentPieces = Object.values(newBoard).filter(p => p.player === opponent);
     if (opponentPieces.length === 0) {
@@ -232,6 +246,8 @@ const Jungle: React.FC = () => {
     
     for (let r = 0; r < ROWS; r++) {
       for (let c = 0; c < COLS; c++) {
+        const piece = getPiece(currentBoard, r, c);
+        if (piece && piece.player === aiPlayer) {
           const moves = getValidMoves(currentBoard, r, c);
           moves.forEach(to => {
             allMoves.push({
@@ -275,6 +291,7 @@ const Jungle: React.FC = () => {
 
   const evaluateMove = (b: { [key: string]: Piece }, from: Position, to: Position, diff: string) => {
     let score = 0;
+    const piece = getPiece(b, from.r, from.c);
     const targetPiece = getPiece(b, to.r, to.c);
     const targetTerrain = getTerrain(to.r, to.c);
 
@@ -313,6 +330,7 @@ const Jungle: React.FC = () => {
   const undoMove = () => {
       if (history.length === 0) return;
       // Undo 2 moves (AI and User)
+      const prevBoard = history.length >= 2 ? history[history.length - 2] : history[0]; 
       // Actually if history has 1, it means User moved once. If we undo, we go back to start.
       // But usually AI responds immediately. So we undo pairs.
       
@@ -341,6 +359,7 @@ const Jungle: React.FC = () => {
   // Rendering
   const renderCell = (r: number, c: number) => {
     const terrain = getTerrain(r, c);
+    const piece = getPiece(board, r, c);
     const isSelected = selectedPos?.r === r && selectedPos?.c === c;
     const isValid = validMoves.some(m => m.r === r && m.c === c);
 
@@ -367,10 +386,13 @@ const Jungle: React.FC = () => {
             <span className="absolute text-xs font-bold opacity-30">{t("games.jungle.trap", "TRAP")}</span>
         )}
         
+        {piece && (
           <div className={`
             text-3xl md:text-4xl transition-transform
+            ${piece.player === PLAYER_RED ? "drop-shadow-[0_2px_2px_rgba(220,38,38,0.8)]" : "drop-shadow-[0_2px_2px_rgba(37,99,235,0.8)]"}
             ${isSelected ? "scale-125" : "hover:scale-110"}
           `}>
+            {piece.label}
           </div>
         )}
       </div>

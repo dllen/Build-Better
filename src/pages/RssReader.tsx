@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { XMLParser } from 'fast-xml-parser';
 import { ExternalLink, RefreshCw, Rss, Search, List } from 'lucide-react';
 
@@ -137,7 +137,7 @@ export default function RssReader() {
     // Extract feeds from OPML structure
     // Structure: opml -> body -> outline -> outline (array)
     const outlines = result.opml?.body?.outline?.outline || [];
-    const extractedFeeds: FeedSource[] = outlines.map((outline: unknown) => ({
+    const extractedFeeds: FeedSource[] = outlines.map((outline: Record<string, string>) => ({
       title: outline.text || outline.title,
       xmlUrl: outline.xmlUrl,
       htmlUrl: outline.htmlUrl
@@ -184,7 +184,7 @@ export default function RssReader() {
             : [feedData.feed.entry];
         }
 
-        const normalizedItems = channelItems.map((item: unknown) => {
+        const normalizedItems = channelItems.map((item: Record<string, unknown>) => {
           const ensureString = (val: unknown): string => {
             if (typeof val === 'string') return val;
             if (val === null || val === undefined) return "";
@@ -195,9 +195,9 @@ export default function RssReader() {
 
           return {
             title: ensureString(item.title),
-            link: item.link?.href || item.link, // Atom uses link.href
-            pubDate: item.pubDate || item.published || item.updated,
-            contentSnippet: ensureString(item.description || item.summary || item.content?.["#text"]),
+            link: String((item.link as Record<string, string>)?.href || item.link || ""), // Atom uses link.href
+            pubDate: String(item.pubDate || item.published || item.updated || ""),
+            contentSnippet: ensureString(item.description || item.summary || (item.content as Record<string, unknown>)?.["#text"]),
             source: feed.title
           };
         }).slice(0, 5); // Limit to 5 items per feed

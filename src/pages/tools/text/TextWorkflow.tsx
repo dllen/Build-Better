@@ -7,7 +7,7 @@ type OperationType = 'uppercase' | 'lowercase' | 'trim' | 'replace' | 'sort' | '
 type Step = {
   id: string;
   type: OperationType;
-  params: Record<string, unknown>;
+  params: Record<string, string | boolean>;
 };
 
 const OPERATIONS: { value: OperationType; label: string }[] = [
@@ -34,7 +34,7 @@ export default function TextWorkflow() {
     setSteps(steps.filter(s => s.id !== id));
   };
 
-  const updateStepParam = (id: string, key: string, value: unknown) => {
+  const updateStepParam = (id: string, key: string, value: string | boolean) => {
     setSteps(steps.map(s => s.id === id ? { ...s, params: { ...s.params, [key]: value } } : s));
   };
 
@@ -56,15 +56,15 @@ export default function TextWorkflow() {
           if (step.params.find) {
             const flags = step.params.regex ? (step.params.case ? 'g' : 'gi') : 'g';
             try {
-              const search = step.params.regex 
-                ? new RegExp(step.params.find, flags)
-                : step.params.find.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Escape if not regex
-              
+              const search = step.params.regex
+                ? new RegExp(String(step.params.find), flags)
+                : String(step.params.find).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Escape if not regex
+
               // Simple string replaceAll if not regex
               if (!step.params.regex) {
-                 result = result.split(step.params.find).join(step.params.replace || '');
+                 result = result.split(String(step.params.find)).join(String(step.params.replace || ''));
               } else {
-                 result = result.replace(search, step.params.replace || '');
+                 result = result.replace(search, String(step.params.replace || ''));
               }
             } catch (e) {
               console.error('Invalid regex', e);
@@ -137,21 +137,21 @@ export default function TextWorkflow() {
                         <input
                           type="text"
                           placeholder="Find"
-                          value={step.params.find || ''}
+                          value={String(step.params.find || '')}
                           onChange={e => updateStepParam(step.id, 'find', e.target.value)}
                           className="w-full px-2 py-1 text-xs border rounded"
                         />
                         <input
                           type="text"
                           placeholder="Replace"
-                          value={step.params.replace || ''}
+                          value={String(step.params.replace || '')}
                           onChange={e => updateStepParam(step.id, 'replace', e.target.value)}
                           className="w-full px-2 py-1 text-xs border rounded"
                         />
                         <label className="flex items-center gap-1 text-xs text-slate-600">
                           <input 
                             type="checkbox" 
-                            checked={step.params.regex || false}
+                            checked={Boolean(step.params.regex || false)}
                             onChange={e => updateStepParam(step.id, 'regex', e.target.checked)}
                           /> Regex
                         </label>
@@ -162,7 +162,7 @@ export default function TextWorkflow() {
                       <label className="flex items-center gap-1 text-xs text-slate-600">
                         <input 
                           type="checkbox" 
-                          checked={step.params.desc || false}
+                          checked={Boolean(step.params.desc || false)}
                           onChange={e => updateStepParam(step.id, 'desc', e.target.checked)}
                         /> Descending
                       </label>
@@ -170,7 +170,7 @@ export default function TextWorkflow() {
 
                     {step.type === 'reverse' && (
                       <select 
-                        value={step.params.mode || 'text'}
+                        value={String(step.params.mode || 'text')}
                         onChange={e => updateStepParam(step.id, 'mode', e.target.value)}
                         className="w-full px-2 py-1 text-xs border rounded"
                       >

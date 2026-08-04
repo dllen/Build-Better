@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
- 'react-i18next';
-import { Upload, Download, RefreshCw, Image as ImageIcon, Copy, Check } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Upload, Download, RefreshCw, Image as ImageIcon, Copy, Check, FileText } from 'lucide-react';
 import { processImage, DENSITY_SETS, AsciiResult } from '@/utils/asciiArt';
 import { SEO } from '@/components/SEO';
 
@@ -169,7 +169,7 @@ export default function ImageAsciiArt() {
                     </label>
                     <select 
                       value={colorMode} 
-                      onChange={(e) => setColorMode(e.target.value as string)}
+                      onChange={(e) => setColorMode(e.target.value as 'black-white' | 'gray' | 'color')}
                       className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600"
                     >
                       <option value="black-white">{t('tools.image-ascii.mode_bw', 'Black & White')}</option>
@@ -184,7 +184,7 @@ export default function ImageAsciiArt() {
                     </label>
                     <select 
                       value={charSet} 
-                      onChange={(e) => setCharSet(e.target.value as string)}
+                      onChange={(e) => setCharSet(e.target.value as keyof typeof DENSITY_SETS | 'custom')}
                       className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600"
                     >
                       <option value="standard">Standard (@%#*+=-:. )</option>
@@ -292,26 +292,5 @@ export default function ImageAsciiArt() {
       {/* Hidden Canvas for Processing */}
       <canvas ref={canvasRef} className="hidden" />
     </div>
-  );
-}
-
-// Helper icon component since FileText is used in imports
-function FileText(props: unknown) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-      <polyline points="14 2 14 8 20 8" />
-    </svg>
   );
 }

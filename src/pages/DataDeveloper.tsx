@@ -433,6 +433,7 @@ const parseHandbookContent = (markdown: string): Project[] => {
       
       if (linkMatch) {
         // It's a project/resource
+        const name = linkMatch[1];
         const link = linkMatch[2];
         let description = '';
         

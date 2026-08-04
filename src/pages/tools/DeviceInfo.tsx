@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Monitor, Smartphone, Cpu, Globe, Maximize, Copy, Check } from "lucide-react";
+import { Monitor, Smartphone, Cpu, Globe, Maximize, Copy, Check, LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
 
@@ -7,7 +7,7 @@ interface DeviceInfoItem {
   key: string;
   label: string;
   value: string | number | boolean;
-  icon?: unknown;
+  icon?: LucideIcon;
 }
 
 export default function DeviceInfo() {
