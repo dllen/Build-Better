@@ -24,3 +24,5 @@ dist-ssr
 *.sln
 *.sw?
 libs
+.worktrees
+.superpowers
