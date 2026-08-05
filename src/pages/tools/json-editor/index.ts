@@ -7,6 +7,7 @@ export { EditorToolbar } from "./components/EditorToolbar";
 export { RightPanel } from "./components/RightPanel";
 export { StatusBar } from "./components/StatusBar";
 export { ShortcutModal } from "./components/ShortcutModal";
-export { ContextMenu, buildContextMenuItems } from "./components/ContextMenu";
+export { ContextMenu } from "./components/ContextMenu";
+export { buildContextMenuItems } from "./utils/context-menu-items";
 export type { EditorMode, PanelTab, JsonNodeInfo, JsonStatsData, ShortcutItem, ContextMenuState, ContextMenuItem, ContextMenuActions } from "./types";
 export { MODE_CONFIG, MODE_ORDER, DEFAULT_JSON } from "./types";

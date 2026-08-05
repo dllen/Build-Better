@@ -37,7 +37,7 @@ export default function JsonEditorTool() {
   const { isValid, parseError, wasFixed, validate, structureTree, stats } = useJsonValidation();
 
   const {
-    containerRef, editorRef, setMode, getContent, getEditor,
+    containerRef, editorRef, setMode, getContent,
   } = useJsonEditor({
     initialMode: "tree" as EditorMode,
     onContentChange: (text) => { validate(text); },
