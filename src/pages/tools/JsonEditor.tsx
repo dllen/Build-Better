@@ -1,6 +1,7 @@
 // src/pages/tools/JsonEditor.tsx
 import React, { useState, useCallback } from "react";
 import "jsoneditor/dist/jsoneditor.css";
+import "./json-editor/editor-theme.css";
 import { SEO } from "@/components/SEO";
 import { ToolPageSEO } from "@/components/seo/ToolPageSEO";
 import { TrustBanner } from "@/components/seo/TrustBanner";
