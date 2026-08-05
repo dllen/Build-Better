@@ -27,7 +27,7 @@ export function ToolPageSEO({ data }: ToolPageSEOProps) {
   const { title, description, features, howToSteps, faqs } = data;
 
   return (
-    <section className="max-w-3xl mx-auto px-4 py-6">
+    <section className="hidden">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold tracking-tight mb-3">
