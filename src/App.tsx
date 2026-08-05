@@ -86,6 +86,7 @@ import FancyTextGenerator from "./pages/tools/text/FancyTextGenerator";
 import TextTypesetter from "./pages/tools/text/TextTypesetter";
 import TextSimilarity from "./pages/tools/text/TextSimilarity";
 import TextWorkflow from "./pages/tools/text/TextWorkflow";
+import TextRandomGenerator from "./pages/tools/text/TextRandomGenerator";
 import KinshipCalculator from "./pages/tools/KinshipCalculator";
 import JsonEditorTool from "./pages/tools/JsonEditor";
 import DataConverter from "./pages/tools/DataConverter";
@@ -154,6 +155,7 @@ export default function App() {
           <Route path="/text/typesetter" element={<TextTypesetter />} />
           <Route path="/text/similarity" element={<TextSimilarity />} />
           <Route path="/text/workflow" element={<TextWorkflow />} />
+          <Route path="/text/random" element={<TextRandomGenerator />} />
           <Route path="/text/stats" element={<TextStats />} />
           <Route path="/text/deduplicate" element={<TextDeduper />} />
           <Route path="/text/diff" element={<DedupSortDiff />} />
