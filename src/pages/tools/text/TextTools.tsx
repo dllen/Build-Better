@@ -32,7 +32,7 @@ const TOOLS = [
   { path: '/tools/text/similarity', icon: GitCompare, title: 'Similarity', desc: 'Compare two texts and calculate similarity percentage.' },
   { path: '/tools/text/diff', icon: GitCompare, title: 'Text Diff', desc: 'Compare two texts line by line or character by character.' },
   { path: '/tools/text/workflow', icon: Workflow, title: 'Workflow', desc: 'Chain multiple operations into a custom pipeline.' },
-  { path: '/tools/text/random', icon: Dices, title: 'Random Generator', desc: 'Generate random strings with custom character sets.' },
+  { path: '/text/random', icon: Dices, title: 'Random Generator', desc: 'Generate random strings with custom character sets.' },
 ];
 
 export default function TextTools() {

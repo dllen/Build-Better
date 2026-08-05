@@ -264,6 +264,7 @@ export default function App() {
           <Route path="/tools/text/typesetter" element={<Navigate to="/text/typesetter" replace />} />
           <Route path="/tools/text/similarity" element={<Navigate to="/text/similarity" replace />} />
           <Route path="/tools/text/workflow" element={<Navigate to="/text/workflow" replace />} />
+          <Route path="/tools/text/random" element={<Navigate to="/text/random" replace />} />
           <Route path="/tools/text/stats" element={<Navigate to="/text/stats" replace />} />
           <Route path="/tools/text/deduplicate" element={<Navigate to="/text/deduplicate" replace />} />
           <Route path="/tools/text/diff" element={<Navigate to="/text/diff" replace />} />
