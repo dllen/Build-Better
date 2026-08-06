@@ -18,7 +18,7 @@
 
 | 依赖 | 大小 | 用途 |
 |---|---|---|
-| `trystero` | ~30KB | 工具 A：无服务器 P2P 配对（torrent 策略） |
+| `trystero` | ~30KB | 工具 A：无服务器 P2P 配对（0.25.x 默认 nostr 策略，公共 Nostr relay 信令） |
 | `fflate` | ~8KB | 工具 C：连接码 gzip 压缩/解压 |
 
 UUID 使用浏览器原生 `crypto.randomUUID()`，无额外依赖。
