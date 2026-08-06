@@ -26,3 +26,4 @@ dist-ssr
 libs
 .worktrees
 .superpowers
+.pi-subagents
