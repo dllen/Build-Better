@@ -233,6 +233,19 @@ export default function Home() {
       color: "text-purple-600",
       bgColor: "bg-purple-100",
     },
+
+    {
+      id: "mini-qr",
+      name: t("tools.mini-qr.name", "Mini QR Code"),
+      description: t(
+        "tools.mini-qr.desc",
+        "简洁小巧的二维码生成工具，适合嵌入或分享。"
+      ),
+      icon: QrCode,
+      path: "/mini-qr/",
+      color: "text-sky-600",
+      bgColor: "bg-sky-100",
+    },
     {
       id: "p2p-chat",
       name: t("tools.p2p-chat.name", "P2P 聊天"),
