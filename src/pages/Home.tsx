@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import {
   Box,
+  Cable,
   Calculator,
   Calendar,
   Clock,
@@ -21,6 +22,7 @@ import {
   Landmark,
   Link2,
   Lock,
+  MessagesSquare,
   Monitor,
   Network,
   Palette,
@@ -230,6 +232,30 @@ export default function Home() {
       path: "/qr-generator",
       color: "text-purple-600",
       bgColor: "bg-purple-100",
+    },
+    {
+      id: "p2p-chat",
+      name: t("tools.p2p-chat.name", "P2P 聊天"),
+      description: t(
+        "tools.p2p-chat.desc",
+        "输入相同 UUID 即可端到端直连聊天，消息不经过服务器。"
+      ),
+      icon: MessagesSquare,
+      path: "/p2p-chat",
+      color: "text-indigo-600",
+      bgColor: "bg-indigo-100",
+    },
+    {
+      id: "manual-chat",
+      name: t("tools.manual-chat.name", "手动连接聊天"),
+      description: t(
+        "tools.manual-chat.desc",
+        "手动交换连接码建立 P2P 连接，完全不依赖任何服务器。"
+      ),
+      icon: Cable,
+      path: "/manual-chat",
+      color: "text-teal-600",
+      bgColor: "bg-teal-100",
     },
     {
       id: "perpetual-calendar",
