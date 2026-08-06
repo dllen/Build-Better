@@ -87,12 +87,20 @@ export function Navbar() {
                   >
                     {t("app.pdf_tools")}
                   </a>
-                  <Link 
-                    to="/text" 
+                  <Link
+                    to="/text"
                     className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
                   >
                     Text Suite
                   </Link>
+                  <a
+                    href="/bento/Bento_Slides.bento.html"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
+                  >
+                    PPT 演示
+                  </a>
                 </div>
               </div>
             </div>
@@ -241,6 +249,15 @@ export function Navbar() {
                 >
                   Text Suite
                 </Link>
+                <a
+                  href="/bento/Bento_Slides.bento.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground hover:text-primary py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  PPT 演示
+                </a>
               </div>
             </div>
             <Link
