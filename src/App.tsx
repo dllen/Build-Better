@@ -67,6 +67,8 @@ import FlyingChess from "@/pages/games/FlyingChess";
 import ChineseCheckers from "@/pages/games/ChineseCheckers";
 import NesEmulatorPage from "@/pages/games/NesEmulator";
 import WifiQrGenerator from "./pages/tools/WifiQrGenerator";
+import P2pChat from "@/pages/tools/chat/P2pChat";
+import ManualChat from "@/pages/tools/chat/ManualChat";
 import EnglishNameGenerator from "./pages/tools/EnglishNameGenerator";
 import ImageCompressor from "./pages/tools/ImageCompressor";
 import ImageResizer from "./pages/tools/ImageResizer";
@@ -134,6 +136,8 @@ export default function App() {
           <Route path="/qr-generator" element={<QrGenerator />} />
           <Route path="/otp-generator" element={<OtpGenerator />} />
           <Route path="/wifi-qr-generator" element={<WifiQrGenerator />} />
+          <Route path="/p2p-chat" element={<P2pChat />} />
+          <Route path="/manual-chat" element={<ManualChat />} />
           <Route path="/english-name" element={<EnglishNameGenerator />} />
           <Route path="/image-compressor" element={<ImageCompressor />} />
           <Route path="/image-resizer" element={<ImageResizer />} />
@@ -243,6 +247,8 @@ export default function App() {
           <Route path="/tools/qr-generator" element={<Navigate to="/qr-generator" replace />} />
           <Route path="/tools/otp-generator" element={<Navigate to="/otp-generator" replace />} />
           <Route path="/tools/wifi-qr-generator" element={<Navigate to="/wifi-qr-generator" replace />} />
+          <Route path="/tools/p2p-chat" element={<Navigate to="/p2p-chat" replace />} />
+          <Route path="/tools/manual-chat" element={<Navigate to="/manual-chat" replace />} />
           <Route path="/tools/english-name" element={<Navigate to="/english-name" replace />} />
           <Route path="/tools/image-compressor" element={<Navigate to="/image-compressor" replace />} />
           <Route path="/tools/image-resizer" element={<Navigate to="/image-resizer" replace />} />
