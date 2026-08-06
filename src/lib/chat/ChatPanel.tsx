@@ -83,6 +83,8 @@ export function ChatPanel({ messages, connectionState, onSend, header }: ChatPan
     <div className="flex h-[70vh] flex-col rounded-lg border border-gray-200 bg-white shadow-sm">
       <div className="flex items-center justify-between gap-2 border-b border-gray-200 px-4 py-2">
         <span
+          role="status"
+          aria-live="polite"
           className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${STATE_STYLE[connectionState]}`}
         >
           {STATE_LABEL[connectionState]}
@@ -139,6 +141,7 @@ export function ChatPanel({ messages, connectionState, onSend, header }: ChatPan
             onClick={() => setShowEmoji((v) => !v)}
             disabled={!connected}
             className="rounded p-2 text-gray-500 hover:bg-gray-100 disabled:opacity-40"
+            aria-label="表情"
             title="表情"
           >
             <Smile size={20} />
@@ -163,6 +166,7 @@ export function ChatPanel({ messages, connectionState, onSend, header }: ChatPan
             onClick={submit}
             disabled={!canSend}
             className="rounded-lg bg-blue-600 p-2 text-white hover:bg-blue-700 disabled:opacity-40"
+            aria-label="发送"
             title="发送"
           >
             <SendHorizonal size={20} />
