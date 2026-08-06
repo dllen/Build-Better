@@ -72,9 +72,16 @@ export default function ManualChat() {
 
   const attachChannel = useCallback(
     (dc: RTCDataChannel) => {
-      dc.onopen = () => setConnState("connected");
-      dc.onclose = () => setConnState((prev) => (prev === "connected" ? "disconnected" : prev));
+      dc.onopen = () => {
+        if (dc !== dcRef.current) return; // stale instance
+        setConnState("connected");
+      };
+      dc.onclose = () => {
+        if (dc !== dcRef.current) return; // stale instance
+        setConnState((prev) => (prev === "connected" ? "disconnected" : prev));
+      };
       dc.onmessage = (event) => {
+        if (dc !== dcRef.current) return; // stale instance
         try {
           const data = JSON.parse(String(event.data)) as WireMessage;
           if (
@@ -94,6 +101,7 @@ export default function ManualChat() {
 
   const attachPeerConnection = useCallback((pc: RTCPeerConnection) => {
     pc.oniceconnectionstatechange = () => {
+      if (pc !== pcRef.current) return; // stale instance
       switch (pc.iceConnectionState) {
         case "connected":
         case "completed":
@@ -159,7 +167,12 @@ export default function ManualChat() {
     setMessages(loadMessages(storageKey(sessionId)));
     setConnState("connecting");
 
-    await pc.setLocalDescription(await pc.createOffer());
+    try {
+      await pc.setLocalDescription(await pc.createOffer());
+    } catch {
+      setConnState("failed");
+      return;
+    }
     await waitIceGathering(pc);
     const sdp = pc.localDescription;
     if (!sdp) {
@@ -180,8 +193,12 @@ export default function ManualChat() {
       return;
     }
     setCodeError(false);
-    await pc.setRemoteDescription(result.value.sdp);
-    setPhase("chat");
+    try {
+      await pc.setRemoteDescription(result.value.sdp);
+      setPhase("chat");
+    } catch {
+      setCodeError(true);
+    }
   }, [inCode]);
 
   // ---- 接收方：粘贴邀请码，生成应答码 ----
@@ -207,8 +224,13 @@ export default function ManualChat() {
     setMessages(loadMessages(storageKey(payload.sessionId)));
     setConnState("connecting");
 
-    await pc.setRemoteDescription(payload.sdp);
-    await pc.setLocalDescription(await pc.createAnswer());
+    try {
+      await pc.setRemoteDescription(payload.sdp);
+      await pc.setLocalDescription(await pc.createAnswer());
+    } catch {
+      setCodeError(true);
+      return;
+    }
     await waitIceGathering(pc);
     const sdp = pc.localDescription;
     if (!sdp) {
@@ -313,14 +335,23 @@ export default function ManualChat() {
           {codeError && (
             <p className="mb-3 text-sm text-red-600">连接码无效或已损坏，请检查后重试。</p>
           )}
-          <button
-            type="button"
-            onClick={acceptAnswer}
-            disabled={!inCode.trim()}
-            className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 disabled:opacity-40"
-          >
-            确认应答码，建立连接
-          </button>
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={acceptAnswer}
+              disabled={!inCode.trim()}
+              className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 disabled:opacity-40"
+            >
+              确认应答码，建立连接
+            </button>
+            <button
+              type="button"
+              onClick={resetAll}
+              className="rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+            >
+              返回
+            </button>
+          </div>
         </div>
       )}
 
