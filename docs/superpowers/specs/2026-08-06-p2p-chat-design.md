@@ -7,7 +7,7 @@
 
 在 Build-Better 中新增两个**纯前端** P2P 单聊工具，消息通过 WebRTC DataChannel 点对点传输，不经过任何自有服务器：
 
-- **工具 A（`/p2p-chat`）**：UUID 自动配对版。双方输入相同 UUID 字符串即可聊天，使用 Trystero 库以公共 BitTorrent tracker 作为信令通道。
+- **工具 A（`/p2p-chat`）**：UUID 自动配对版。双方输入相同 UUID 字符串即可聊天，使用 Trystero 库（0.25.x，默认 nostr 策略）以公共 Nostr relay 作为信令通道。
 - **工具 C（`/manual-chat`）**：手动连接版。双方通过复制粘贴压缩后的 SDP 连接码完成握手，不依赖任何第三方服务。
 
 功能范围（两个工具一致）：文本消息、时间戳、发送状态、连接状态提示、localStorage 消息持久化（刷新不丢）、内嵌表情选择器。
@@ -71,7 +71,7 @@ src/lib/chat/
 
 - 页面提供"生成新房间"按钮（`crypto.randomUUID()`）+ 手动粘贴 UUID 输入框 + 复制按钮。
 - 消息持久化 key：`chat:p2p:<uuid>`，同一 UUID 刷新后历史自动恢复。
-- 信令走公共 BitTorrent tracker；消息本体走 WebRTC DataChannel，不过任何服务器。
+- 信令走公共 Nostr relay；消息本体走 WebRTC DataChannel，不过任何服务器。
 
 ### 工具 C（手动握手）
 
