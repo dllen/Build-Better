@@ -96,6 +96,7 @@ import MermaidRenderer from "./pages/tools/MermaidRenderer";
 import RssReader from "./pages/RssReader";
 import CommitMessageGenerator from "./pages/tools/CommitMessage";
 import GitignoreGenerator from "./pages/tools/GitignoreGenerator";
+import DrawingTool from "./pages/tools/DrawingTool";
 import IndieDeveloper from "./pages/IndieDeveloper";
 import NonIndieDeveloper from "./pages/NonIndieDeveloper";
 import DataDeveloper from "@/pages/DataDeveloper";
@@ -201,7 +202,10 @@ export default function App() {
           <Route path="/short-url" element={<ShortUrlTool />} />
           <Route path="/commit-message" element={<CommitMessageGenerator />} />
           <Route path="/gitignore" element={<GitignoreGenerator />} />
-          
+
+          {/* Drawing */}
+          <Route path="/drawing-tool" element={<DrawingTool />} />
+
           {/* Config Generators */}
           <Route path="/nginx-config" element={<NginxConfigGenerator />} />
           <Route path="/apache-config" element={<ApacheConfigGenerator />} />
@@ -312,7 +316,8 @@ export default function App() {
           <Route path="/tools/short-url" element={<Navigate to="/short-url" replace />} />
           <Route path="/tools/commit-message" element={<Navigate to="/commit-message" replace />} />
           <Route path="/tools/gitignore" element={<Navigate to="/gitignore" replace />} />
-          
+          <Route path="/tools/drawing-tool" element={<Navigate to="/drawing-tool" replace />} />
+
           {/* Config Generators - Legacy */}
           <Route path="/tools/nginx-config" element={<Navigate to="/nginx-config" replace />} />
           <Route path="/tools/apache-config" element={<Navigate to="/apache-config" replace />} />

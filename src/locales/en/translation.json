@@ -568,6 +568,14 @@
       "rule2": "Jump over adjacent piece to empty hole.",
       "rule3": "Chain jumps are allowed.",
       "rule4": "First to fill opposite triangle wins."
+    },
+    "drawing-tool": {
+      "pageTitle": "Drawing Board - Build Better",
+      "pageDescription": "An infinite-canvas drawing board with pressure-sensitive ink, shapes, arrows, and more. Powered by QuickDraw.",
+      "name": "Drawing Board",
+      "desc": "Infinite-canvas drawing board with pen, shapes, arrows, sticky notes, and more.",
+      "title": "Drawing Board",
+      "subtitle": "Sketch, diagram, and brainstorm on an infinite canvas — pressure ink, shapes, arrows, images, and more."
     }
   }
 }

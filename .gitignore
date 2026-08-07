@@ -24,6 +24,8 @@ dist-ssr
 *.sln
 *.sw?
 libs
+.loopx
+.codex/goals
 .worktrees
 .superpowers
 .pi-subagents

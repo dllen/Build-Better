@@ -75,6 +75,7 @@ const allCommands = [
   { id: "chinese-chess", name: "Chinese Chess", description: "Xiangqi", path: "/games/chinese-chess", category: "games", icon: Gamepad2 },
   { id: "gomoku", name: "Gomoku", description: "Five in a row", path: "/games/gomoku", category: "games", icon: Gamepad2 },
   { id: "go", name: "Go Game", description: "Weiqi/Baduk", path: "/games/go", category: "games", icon: Gamepad2 },
+  { id: "drawing-tool", name: "Drawing Board", description: "Infinite-canvas whiteboard with pen, shapes, arrows, images", path: "/drawing-tool", category: "tools", icon: Wrench },
 ];
 
 interface Command {

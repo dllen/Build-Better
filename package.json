@@ -31,6 +31,8 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@iarna/toml": "^2.2.5",
     "@monaco-editor/react": "^4.7.0",
+    "@quickdrawjs/core": "^0.2.0",
+    "@quickdrawjs/react": "^0.2.0",
     "@scure/bip39": "^2.0.1",
     "bcryptjs": "^3.0.3",
     "beautiful-mermaid": "^0.1.3",

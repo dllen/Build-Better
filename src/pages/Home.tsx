@@ -26,6 +26,7 @@ import {
   Monitor,
   Network,
   Palette,
+  PenTool,
   Percent,
   QrCode,
   Search,
@@ -629,6 +630,15 @@ export default function Home() {
       path: "/roi-calculator",
       color: "text-emerald-600",
       bgColor: "bg-emerald-100",
+    },
+    {
+      id: "drawing-tool",
+      icon: PenTool,
+      name: t("drawing-tool.name"),
+      description: t("drawing-tool.desc"),
+      path: "/drawing-tool",
+      color: "text-indigo-600",
+      bgColor: "bg-indigo-100",
     },
   ], [t]);
 
