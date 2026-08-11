@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Keyboard, CircleDot, PawPrint, Plane, Hexagon } from "lucide-react";
+import { Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Keyboard, CircleDot, PawPrint, Plane, Hexagon, ExternalLink } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useState, useMemo } from "react";
 import Fuse from "fuse.js";
@@ -143,6 +143,27 @@ const games = [
   },
 ];
 
+const externalGameLinks = [
+  {
+    id: "yikm",
+    name: "小霸王，其乐无穷",
+    description: "在线畅玩经典 FC、街机、掌机等复古游戏。",
+    url: "https://www.yikm.net/",
+    icon: ExternalLink,
+    color: "text-amber-600",
+    bgColor: "bg-amber-100",
+  },
+  {
+    id: "wxiu",
+    name: "在线玩",
+    description: "无需下载，直接在浏览器中玩各种小游戏。",
+    url: "https://www.wxiu.com/",
+    icon: ExternalLink,
+    color: "text-sky-600",
+    bgColor: "bg-sky-100",
+  },
+];
+
 export default function Games() {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -190,6 +211,34 @@ export default function Games() {
             <p className="text-gray-600 text-sm">{game.description}</p>
           </Link>
         ))}
+      </div>
+
+      <div className="space-y-6">
+        <h2 className="text-2xl font-bold text-gray-900 border-b pb-2">更多游戏</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {externalGameLinks.map((link) => (
+            <a
+              key={link.id}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block p-6 bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md hover:border-blue-300 transition-all duration-200"
+            >
+              <div
+                className={`inline-flex p-3 rounded-lg ${link.bgColor} ${link.color} mb-4 group-hover:scale-110 transition-transform`}
+              >
+                <link.icon className="h-6 w-6" />
+              </div>
+              <div className="flex items-center gap-2 mb-2">
+                <h2 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600">
+                  {link.name}
+                </h2>
+                <ExternalLink className="h-4 w-4 text-gray-400 group-hover:text-blue-600 transition-colors" />
+              </div>
+              <p className="text-gray-600 text-sm">{link.description}</p>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );
