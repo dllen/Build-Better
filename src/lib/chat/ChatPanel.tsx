@@ -3,36 +3,9 @@ import { SendHorizonal, Smile } from "lucide-react";
 import type { ChatMessage, ConnectionState } from "./types";
 
 const EMOJIS = [
-  "😀",
-  "😄",
-  "😁",
-  "🤣",
-  "😊",
-  "😍",
-  "🤔",
-  "😅",
-  "😭",
-  "😤",
-  "🥳",
-  "😴",
-  "🤝",
-  "👍",
-  "👎",
-  "🙏",
-  "👏",
-  "💪",
-  "🎉",
-  "🔥",
-  "✨",
-  "❤️",
-  "💯",
-  "⭐",
-  "✅",
-  "❌",
-  "⚡",
-  "🌟",
-  "🍀",
-  "🎂",
+  "😀", "😄", "😁", "🤣", "😊", "😍", "🤔", "😅", "😭", "😤",
+  "🥳", "😴", "🤝", "👍", "👎", "🙏", "👏", "💪", "🎉", "🔥",
+  "✨", "❤️", "💯", "⭐", "✅", "❌", "⚡", "🌟", "🍀", "🎂",
 ];
 
 const STATE_LABEL: Record<ConnectionState, string> = {
@@ -98,20 +71,40 @@ export function ChatPanel({ messages, connectionState, onSend, header }: ChatPan
         )}
         {messages.map((m) => (
           <div key={m.id} className={`flex ${m.from === "me" ? "justify-end" : "justify-start"}`}>
-            <div
-              className={`max-w-[75%] whitespace-pre-wrap break-words rounded-2xl px-3 py-2 text-sm ${
-                m.from === "me" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-900"
-              }`}
-            >
-              <p>{m.text}</p>
-              <p
-                className={`mt-1 text-[10px] ${
-                  m.from === "me" ? "text-blue-200" : "text-gray-400"
-                }`}
-              >
-                {new Date(m.ts).toLocaleTimeString()}
-                {m.from === "me" && " · 已发送"}
-              </p>
+            <div className={`flex ${m.from === "me" ? "flex-row-reverse" : "flex-row"} items-end gap-2 max-w-[80%]`}>
+              {/* Avatar */}
+              {m.from === "peer" && m.senderAvatar ? (
+                <div
+                  className="h-8 w-8 flex-shrink-0 rounded-full overflow-hidden bg-gray-100"
+                  dangerouslySetInnerHTML={{ __html: m.senderAvatar }}
+                />
+              ) : m.from === "peer" ? (
+                <div className="h-8 w-8 flex-shrink-0 rounded-full bg-gradient-to-br from-violet-400 to-purple-500" />
+              ) : null}
+
+              <div className="flex flex-col">
+                {/* Sender name for peer messages */}
+                {m.from === "peer" && m.senderName && (
+                  <span className="mb-0.5 text-xs text-gray-500">{m.senderName}</span>
+                )}
+
+                {/* Message bubble */}
+                <div
+                  className={`whitespace-pre-wrap break-words rounded-2xl px-3 py-2 text-sm ${
+                    m.from === "me" ? "bg-blue-600 text-white rounded-br-md" : "bg-gray-100 text-gray-900 rounded-bl-md"
+                  }`}
+                >
+                  <p>{m.text}</p>
+                  <p
+                    className={`mt-1 text-[10px] ${
+                      m.from === "me" ? "text-blue-200" : "text-gray-400"
+                    }`}
+                  >
+                    {new Date(m.ts).toLocaleTimeString()}
+                    {m.from === "me" && " · 已发送"}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         ))}
@@ -150,7 +143,6 @@ export function ChatPanel({ messages, connectionState, onSend, header }: ChatPan
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             onKeyDown={(e) => {
-              // 中文输入法组词期间不按发送处理
               if (e.nativeEvent.isComposing) return;
               if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();

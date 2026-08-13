@@ -5,11 +5,12 @@
  * 消息通过 WebRTC DataChannel 点对点传输，信令走公共 Nostr relay。
  */
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Globe, Copy, Check, LogOut, Users } from "lucide-react";
+import { Globe, Copy, Check, LogOut, Users, RefreshCw, Pencil } from "lucide-react";
 import { joinRoom, type Room } from "trystero";
 import { ChatPanel } from "@/lib/chat/ChatPanel";
 import { loadMessages, saveMessages } from "@/lib/chat/storage";
-import type { ChatMessage, ConnectionState, WireMessage } from "@/lib/chat/types";
+import { getLocalProfile, updateProfile, refreshAvatar, refreshNickname } from "@/lib/chat/profile";
+import type { ChatMessage, ConnectionState, WireMessage, UserProfile } from "@/lib/chat/types";
 
 const APP_ID = "build-better-webchat";
 const PAIR_TIMEOUT_MS = 30_000;
@@ -28,10 +29,18 @@ export default function WebChat() {
   const [timedOut, setTimedOut] = useState(false);
   const [copied, setCopied] = useState(false);
   const [pageUrl] = useState(() => window.location.pathname);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [editingName, setEditingName] = useState(false);
+  const [nameInput, setNameInput] = useState("");
 
   const roomRef = useRef<Room | null>(null);
   const sendRef = useRef<((data: WireMessage) => Promise<void>) | null>(null);
   const peerCountRef = useRef(0);
+
+  // Load profile on mount
+  useEffect(() => {
+    setProfile(getLocalProfile());
+  }, []);
 
   const teardown = useCallback(() => {
     sendRef.current = null;
@@ -104,7 +113,13 @@ export default function WebChat() {
       const send = sendRef.current;
       if (!send) return;
       const roomId = roomIdFromUrl();
-      const wire: WireMessage = { id: crypto.randomUUID(), text, ts: Date.now() };
+      const wire: WireMessage = {
+        id: crypto.randomUUID(),
+        text,
+        ts: Date.now(),
+        senderName: profile?.name,
+        senderAvatar: profile?.avatar,
+      };
       void send(wire).catch(() => {});
       setMessages((prev) => {
         const next = [...prev, { ...wire, from: "me" as const }];
@@ -112,7 +127,7 @@ export default function WebChat() {
         return next;
       });
     },
-    []
+    [profile]
   );
 
   const handleLeave = () => {
@@ -137,6 +152,39 @@ export default function WebChat() {
     join(roomId);
   };
 
+  const handleRefreshAvatar = () => {
+    const newAvatar = refreshAvatar();
+    setProfile((prev) => prev ? { ...prev, avatar: newAvatar } : prev);
+  };
+
+  const handleRefreshNickname = () => {
+    const newName = refreshNickname();
+    setProfile((prev) => prev ? { ...prev, name: newName } : prev);
+  };
+
+  const handleEditName = () => {
+    setNameInput(profile?.name || "");
+    setEditingName(true);
+  };
+
+  const handleSaveName = () => {
+    const trimmed = nameInput.trim();
+    if (trimmed && profile) {
+      const newProfile = { ...profile, name: trimmed };
+      updateProfile(newProfile);
+      setProfile(newProfile);
+    }
+    setEditingName(false);
+  };
+
+  const handleNameKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleSaveName();
+    } else if (e.key === "Escape") {
+      setEditingName(false);
+    }
+  };
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
       <div className="mb-2 flex items-center gap-3">
@@ -147,6 +195,63 @@ export default function WebChat() {
           <h1 className="text-2xl font-bold text-gray-900">WebChat</h1>
           <p className="text-sm text-gray-500">同页匿名 P2P 聊天</p>
         </div>
+      </div>
+
+      {/* User Profile Section */}
+      <div className="mb-4 flex items-center gap-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+        {profile && (
+          <>
+            <div className="relative group">
+              <div
+                className="h-16 w-16 rounded-full overflow-hidden bg-gray-100"
+                dangerouslySetInnerHTML={{ __html: profile.avatar }}
+              />
+              <button
+                type="button"
+                onClick={handleRefreshAvatar}
+                className="absolute -bottom-1 -right-1 rounded-full bg-white p-1 shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+                title="换头像"
+              >
+                <RefreshCw size={14} className="text-gray-600" />
+              </button>
+            </div>
+            <div className="flex-1">
+              {editingName ? (
+                <input
+                  type="text"
+                  value={nameInput}
+                  onChange={(e) => setNameInput(e.target.value)}
+                  onBlur={handleSaveName}
+                  onKeyDown={handleNameKeyDown}
+                  className="w-full rounded border border-violet-300 px-2 py-1 text-lg font-medium outline-none focus:border-violet-500"
+                  autoFocus
+                  maxLength={20}
+                />
+              ) : (
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-medium text-gray-900">{profile.name}</span>
+                  <button
+                    type="button"
+                    onClick={handleEditName}
+                    className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+                    title="修改昵称"
+                  >
+                    <Pencil size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleRefreshNickname}
+                    className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+                    title="随机昵称"
+                  >
+                    <RefreshCw size={14} />
+                  </button>
+                </div>
+              )}
+              <p className="text-xs text-gray-500">你的匿名身份</p>
+            </div>
+          </>
+        )}
       </div>
 
       <p className="mb-4 text-sm text-gray-500">

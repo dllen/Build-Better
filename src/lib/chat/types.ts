@@ -3,6 +3,8 @@ export interface ChatMessage {
   text: string;
   ts: number;
   from: "me" | "peer";
+  senderName?: string;
+  senderAvatar?: string;
 }
 
 export type ConnectionState = "idle" | "connecting" | "connected" | "disconnected" | "failed";
@@ -13,4 +15,11 @@ export type WireMessage = {
   id: string;
   text: string;
   ts: number;
+  senderName?: string;
+  senderAvatar?: string;
 };
+
+export interface UserProfile {
+  name: string;
+  avatar: string;
+}
