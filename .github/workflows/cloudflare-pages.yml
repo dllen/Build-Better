@@ -25,6 +25,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Download sensitive words
+        run: node scripts/download-sensitive-words.mjs
+
       - name: Type check
         run: npm run check
 
@@ -48,6 +51,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Download sensitive words
+        run: node scripts/download-sensitive-words.mjs
 
       - name: Run tests
         run: npm run test
@@ -73,6 +79,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Download sensitive words
+        run: node scripts/download-sensitive-words.mjs
 
       - name: Build
         run: npm run build
