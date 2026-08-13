@@ -1,4 +1,3 @@
-import { GenerateUglyAvatar } from "ugly-avatar";
 import type { UserProfile } from "./types";
 
 const FIRST_NAMES = [
@@ -22,9 +21,13 @@ function generateNickname(): string {
   return `${randomItem(FIRST_NAMES)} ${randomItem(LAST_NAMES)}`;
 }
 
-function generateAvatar(): string {
-  const avatar = new GenerateUglyAvatar();
-  return avatar.generateFace();
+function generateAvatar(seed: string): string {
+  // DiceBear Adventurer style - consistent avatar based on seed
+  return `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(seed)}`;
+}
+
+function generateSeed(): string {
+  return crypto.randomUUID();
 }
 
 let cachedProfile: UserProfile | null = null;
@@ -43,8 +46,13 @@ export function getLocalProfile(): UserProfile {
     // ignore parse errors
   }
 
-  // Generate new profile
-  cachedProfile = { name: generateNickname(), avatar: generateAvatar() };
+  // Generate new profile with unique seed for avatar
+  const seed = generateSeed();
+  cachedProfile = {
+    name: generateNickname(),
+    avatar: generateAvatar(seed),
+    avatarSeed: seed,
+  };
 
   try {
     localStorage.setItem(storageKey, JSON.stringify(cachedProfile));
@@ -66,9 +74,11 @@ export function updateProfile(profile: UserProfile): void {
 }
 
 export function refreshAvatar(): string {
-  const avatar = generateAvatar();
+  const seed = generateSeed();
+  const avatar = generateAvatar(seed);
   if (cachedProfile) {
     cachedProfile.avatar = avatar;
+    cachedProfile.avatarSeed = seed;
     updateProfile(cachedProfile);
   }
   return avatar;

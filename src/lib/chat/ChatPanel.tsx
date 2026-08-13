@@ -82,9 +82,10 @@ export function ChatPanel({ messages, connectionState, onSend, header }: ChatPan
             <div className={`flex ${m.from === "me" ? "flex-row-reverse" : "flex-row"} items-end gap-2 max-w-[80%]`}>
               {/* Avatar */}
               {m.from === "peer" && m.senderAvatar ? (
-                <div
-                  className="h-8 w-8 flex-shrink-0 rounded-full overflow-hidden bg-gray-100"
-                  dangerouslySetInnerHTML={{ __html: m.senderAvatar }}
+                <img
+                  src={m.senderAvatar}
+                  alt=""
+                  className="h-8 w-8 flex-shrink-0 rounded-full bg-gray-100"
                 />
               ) : m.from === "peer" ? (
                 <div className="h-8 w-8 flex-shrink-0 rounded-full bg-gradient-to-br from-violet-400 to-purple-500" />

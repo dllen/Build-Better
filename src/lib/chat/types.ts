@@ -22,4 +22,5 @@ export type WireMessage = {
 export interface UserProfile {
   name: string;
   avatar: string;
+  avatarSeed?: string;
 }

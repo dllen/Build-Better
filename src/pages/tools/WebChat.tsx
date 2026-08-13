@@ -202,9 +202,10 @@ export default function WebChat() {
         {profile && (
           <>
             <div className="relative group">
-              <div
-                className="h-16 w-16 rounded-full overflow-hidden bg-gray-100"
-                dangerouslySetInnerHTML={{ __html: profile.avatar }}
+              <img
+                src={profile.avatar}
+                alt="Avatar"
+                className="h-16 w-16 rounded-full bg-gray-100"
               />
               <button
                 type="button"
