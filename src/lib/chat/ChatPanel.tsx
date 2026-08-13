@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { SendHorizonal, Smile } from "lucide-react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { SendHorizonal, Smile, AlertTriangle } from "lucide-react";
 import type { ChatMessage, ConnectionState } from "./types";
+import { useSensitiveFilter } from "@/hooks/useSensitiveFilter";
 
 const EMOJIS = [
   "😀", "😄", "😁", "🤣", "😊", "😍", "🤔", "😅", "😭", "😤",
@@ -37,7 +38,14 @@ export function ChatPanel({ messages, connectionState, onSend, header }: ChatPan
   const [showEmoji, setShowEmoji] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const connected = connectionState === "connected";
-  const canSend = connected && draft.trim().length > 0;
+
+  const { detect, sanitize } = useSensitiveFilter();
+
+  // Detection
+  const detection = useMemo(() => detect(draft), [draft, detect]);
+  const hasSensitiveWords = detection.contains;
+  const sanitizedPreview = useMemo(() => sanitize(draft), [draft, sanitize]);
+  const canSend = connected && draft.trim().length > 0 && !hasSensitiveWords;
 
   useEffect(() => {
     const el = listRef.current;
@@ -110,6 +118,20 @@ export function ChatPanel({ messages, connectionState, onSend, header }: ChatPan
         ))}
       </div>
 
+      {hasSensitiveWords && (
+        <div className="mx-3 mb-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm">
+          <div className="flex items-start gap-2">
+            <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-500" />
+            <div>
+              <p className="font-medium text-red-700">检测到敏感词</p>
+              <p className="text-red-600">
+                预览: {sanitizedPreview}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="relative border-t border-gray-200 px-3 py-2">
         {showEmoji && connected && (
           <div className="absolute bottom-full left-3 mb-2 grid w-64 grid-cols-6 gap-1 rounded-lg border border-gray-200 bg-white p-2 shadow-lg">
@@ -156,10 +178,14 @@ export function ChatPanel({ messages, connectionState, onSend, header }: ChatPan
           <button
             type="button"
             onClick={submit}
-            disabled={!canSend}
-            className="rounded-lg bg-blue-600 p-2 text-white hover:bg-blue-700 disabled:opacity-40"
+            disabled={!canSend || hasSensitiveWords}
+            className={`rounded-lg p-2 text-white transition-colors ${
+              hasSensitiveWords
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-blue-600 hover:bg-blue-700 disabled:opacity-40'
+            }`}
             aria-label="发送"
-            title="发送"
+            title={hasSensitiveWords ? '请先移除敏感词' : '发送'}
           >
             <SendHorizonal size={20} />
           </button>
