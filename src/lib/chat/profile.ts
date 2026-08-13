@@ -1,14 +1,17 @@
 import { GenerateUglyAvatar } from "ugly-avatar";
 import type { UserProfile } from "./types";
 
-const ADJECTIVES = [
-  "可爱", "聪明", "快乐", "勇敢", "安静", "活泼", "温柔", "调皮",
-  "神秘", "酷炫", "温暖", "阳光", "月亮", "星星", "彩虹", "云朵",
+const FIRST_NAMES = [
+  "Alex", "Jordan", "Taylor", "Morgan", "Casey", "Riley", "Quinn", "Avery",
+  "Blake", "Cameron", "Charlie", "Dakota", "Drew", "Ellis", "Finley", "Harper",
+  "Jamie", "Jesse", "Kelly", "Logan", "Madison", "Max", "Nico", "Parker",
+  "Reese", "Robin", "Sam", "Sydney", "Tatum", "Skyler",
 ];
 
-const NOUNS = [
-  "小猫", "小狗", "小熊", "小兔", "小鹿", "小鱼", "小鸟", "小猪",
-  "熊猫", "狐狸", "松鼠", "刺猬", "企鹅", "海豚", "章鱼", "蝴蝶",
+const LAST_NAMES = [
+  "Smith", "Johnson", "Brown", "Jones", "Miller", "Davis", "Garcia", "Wilson",
+  "Anderson", "Taylor", "Thomas", "Moore", "Jackson", "Martin", "Lee", "Thompson",
+  "White", "Harris", "Clark", "Lewis", "Walker", "Hall", "Young", "King", "Wright",
 ];
 
 function randomItem<T>(arr: T[]): T {
@@ -16,7 +19,7 @@ function randomItem<T>(arr: T[]): T {
 }
 
 function generateNickname(): string {
-  return `${randomItem(ADJECTIVES)}${randomItem(NOUNS)}`;
+  return `${randomItem(FIRST_NAMES)} ${randomItem(LAST_NAMES)}`;
 }
 
 function generateAvatar(): string {

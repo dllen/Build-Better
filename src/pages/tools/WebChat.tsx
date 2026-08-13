@@ -248,14 +248,14 @@ export default function WebChat() {
                   </button>
                 </div>
               )}
-              <p className="text-xs text-gray-500">你的匿名身份</p>
+              <p className="text-xs text-gray-500">Your anonymous identity</p>
             </div>
           </>
         )}
       </div>
 
       <p className="mb-4 text-sm text-gray-500">
-        在当前页面与同站访客匿名聊天，无需注册、无服务器存储。分享本页链接，他人打开后自动加入同一聊天室。
+        Chat anonymously with visitors on this page. No registration, no server storage. Share this link to invite others.
       </p>
 
       <div className="mb-4 flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm shadow-sm">
