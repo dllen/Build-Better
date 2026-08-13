@@ -248,6 +248,15 @@ export default function Home() {
       bgColor: "bg-sky-100",
     },
     {
+      id: "webchat",
+      name: "WebChat",
+      description: "同页匿名 P2P 聊天，基于 URL 自动发现访客，无需手动配对。",
+      icon: Globe,
+      path: "/webchat",
+      color: "text-violet-600",
+      bgColor: "bg-violet-100",
+    },
+    {
       id: "p2p-chat",
       name: t("tools.p2p-chat.name", "P2P 聊天"),
       description: t(

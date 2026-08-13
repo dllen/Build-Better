@@ -97,6 +97,7 @@ import RssReader from "./pages/RssReader";
 import CommitMessageGenerator from "./pages/tools/CommitMessage";
 import GitignoreGenerator from "./pages/tools/GitignoreGenerator";
 import DrawingTool from "./pages/tools/DrawingTool";
+import WebChat from "./pages/tools/WebChat";
 import IndieDeveloper from "./pages/IndieDeveloper";
 import NonIndieDeveloper from "./pages/NonIndieDeveloper";
 import DataDeveloper from "@/pages/DataDeveloper";
@@ -137,6 +138,8 @@ export default function App() {
           <Route path="/qr-generator" element={<QrGenerator />} />
           <Route path="/otp-generator" element={<OtpGenerator />} />
           <Route path="/wifi-qr-generator" element={<WifiQrGenerator />} />
+          {/* Chat */}
+          <Route path="/webchat" element={<WebChat />} />
           <Route path="/p2p-chat" element={<P2pChat />} />
           <Route path="/manual-chat" element={<ManualChat />} />
           <Route path="/english-name" element={<EnglishNameGenerator />} />
