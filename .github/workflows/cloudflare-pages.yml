@@ -86,12 +86,12 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: build-better
-          directory: dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          # wrangler-action reads wrangler.toml, so [[kv_namespaces]] SHORT_URLS binding is applied automatically.
+          # Push to main → production (uses `id`). Pull request → preview (uses `preview_id`).
+          command: pages deploy dist --project-name=build-better --commit-dirty=true
         if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false)
