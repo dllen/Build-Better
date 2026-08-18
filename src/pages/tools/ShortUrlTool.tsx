@@ -121,6 +121,7 @@ export default function ShortUrlTool() {
       </div>
       <p className="text-sm text-gray-600 -mt-6">
         Backed by Cloudflare KV (free tier). Short links at <code className="font-mono">/s/&lt;code&gt;</code>.
+        Links <span className="font-medium text-amber-700">expire after 7 days</span>.
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

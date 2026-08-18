@@ -61,7 +61,7 @@ export async function onRequestPost(context: {
   }
 
   // ponytail: TTL 1y; no analytics, no auth — abuse-resistant via code regex + http(s) scheme check
-  await env.SHORT_URLS.put(code, url, { expirationTtl: 60 * 60 * 24 * 365 });
+  await env.SHORT_URLS.put(code, url, { expirationTtl: 60 * 60 * 24 * 7 });
   return json({ code, url, shortUrl: `${origin}/s/${code}` });
 }
 
