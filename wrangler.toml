@@ -1,3 +1,9 @@
 name = "build-better"
 pages_build_output_dir = "dist"
 compatibility_date = "2024-04-01"
+
+# Short URL KV (free tier: 100k reads/day, 1k writes/day)
+[[kv_namespaces]]
+binding = "SHORT_URLS"
+id = "32125ac318d34b39b7a44c3cb0c0bb82"
+preview_id = "32125ac318d34b39b7a44c3cb0c0bb82"

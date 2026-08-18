@@ -1,78 +1,48 @@
-import { useEffect, useMemo, useState } from "react";
-import { Link2, ClipboardCopy, Check } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link2, ClipboardCopy, Check, ExternalLink, Trash2 } from "lucide-react";
 
-type Mapping = {
-  code: string;
-  url: string;
-  createdAt: number;
-  clicks: number;
-  deterministic?: boolean;
-};
+type Mapping = { code: string; url: string; createdAt: number };
 
-const STORAGE_KEY = "shorturl.mappings";
-const BASE62 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+const CACHE_KEY = "shorturl.recent";
+const CACHE_LIMIT = 50;
 
-function loadMappings(): Mapping[] {
+function loadCache(): Mapping[] {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(CACHE_KEY);
     if (!raw) return [];
     const arr = JSON.parse(raw);
-    if (!Array.isArray(arr)) return [];
-    return arr.filter((x) => x && typeof x.code === "string" && typeof x.url === "string");
+    return Array.isArray(arr)
+      ? arr.filter((x) => x && typeof x.code === "string" && typeof x.url === "string")
+      : [];
   } catch {
     return [];
   }
 }
 
-function saveMappings(m: Mapping[]) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(m));
+function saveCache(items: Mapping[]) {
+  localStorage.setItem(CACHE_KEY, JSON.stringify(items.slice(0, CACHE_LIMIT)));
 }
 
 function isValidUrl(s: string) {
   try {
     const u = new URL(s);
-    return Boolean(u.protocol && u.host);
+    return u.protocol === "http:" || u.protocol === "https:";
   } catch {
     return false;
   }
 }
 
-async function sha256Hex(input: string): Promise<string> {
-  const enc = new TextEncoder().encode(input);
-  const buf = await crypto.subtle.digest("SHA-256", enc);
-  const bytes = new Uint8Array(buf);
-  return Array.from(bytes)
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
-}
-
-function hexToBase62(hex: string, length = 8): string {
-  let big = BigInt("0x" + hex.slice(0, 16)); // take first 8 bytes
-  let out = "";
-  while (out.length < length) {
-    const idx = Number(big % BigInt(62));
-    out = BASE62[idx] + out;
-    big = big / BigInt(62);
-  }
-  return out;
-}
-
-function randomCode(length = 8) {
-  let out = "";
-  const arr = new Uint8Array(length);
-  crypto.getRandomValues(arr);
-  for (let i = 0; i < length; i++) out += BASE62[arr[i] % 62];
-  return out;
-}
-
 export default function ShortUrlTool() {
   const [url, setUrl] = useState("https://example.com/docs/very/long/path?a=1&b=2#section");
-  const [code, setCode] = useState("");
-  const [deterministic, setDeterministic] = useState(true);
-  const [mappings, setMappings] = useState<Mapping[]>(() => loadMappings());
+  const [customCode, setCustomCode] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const [created, setCreated] = useState<Mapping | null>(null);
+  const [recent, setRecent] = useState<Mapping[]>(() => loadCache());
   const [resolveCode, setResolveCode] = useState("");
-  const [resolved, setResolved] = useState<Mapping | null>(null);
-  const [copied, setCopied] = useState("");
+  const [resolved, setResolved] = useState<{ url: string } | null>(null);
+  const [resolvedErr, setResolvedErr] = useState("");
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -81,67 +51,65 @@ export default function ShortUrlTool() {
   }, []);
 
   useEffect(() => {
-    saveMappings(mappings);
-  }, [mappings]);
+    saveCache(recent);
+  }, [recent]);
 
-  const exists = useMemo(() => new Set(mappings.map((m) => m.code)), [mappings]);
-
-  async function generate() {
-    if (!isValidUrl(url)) return;
-    let c = code.trim();
-    if (!c) {
-      if (deterministic) {
-        const hex = await sha256Hex(url);
-        c = hexToBase62(hex, 8);
-      } else {
-        c = randomCode(8);
-      }
+  async function create() {
+    if (!isValidUrl(url)) {
+      setError("Enter a valid http(s) URL");
+      return;
     }
-    if (exists.has(c)) {
-      const same = mappings.find((m) => m.code === c && m.url === url);
-      if (same) {
-        setCode(c);
-        return;
-      }
-      c = randomCode(8);
+    setBusy(true);
+    setError("");
+    try {
+      const res = await fetch("/api/tools/short-url", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, customCode: customCode.trim() || undefined }),
+      });
+      const data = (await res.json()) as { code?: string; url?: string; error?: string };
+      if (!res.ok || !data.code || !data.url) throw new Error(data.error || `HTTP ${res.status}`);
+      const item: Mapping = { code: data.code, url: data.url, createdAt: Date.now() };
+      setCreated(item);
+      setRecent([item, ...recent.filter((m) => m.code !== item.code)].slice(0, CACHE_LIMIT));
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to create");
+    } finally {
+      setBusy(false);
     }
-    const item: Mapping = { code: c, url, createdAt: Date.now(), clicks: 0, deterministic };
-    setMappings([item, ...mappings]);
-    setCode(c);
   }
 
-  function copy(text: string) {
+  async function resolve() {
+    const c = resolveCode.trim();
+    if (!c) return;
+    setResolvedErr("");
+    setResolved(null);
+    try {
+      const res = await fetch(`/api/tools/short-url?code=${encodeURIComponent(c)}`);
+      const data = (await res.json()) as { url?: string; error?: string };
+      if (!res.ok || !data.url) throw new Error(data.error || `HTTP ${res.status}`);
+      setResolved({ url: data.url });
+    } catch (e) {
+      setResolvedErr(e instanceof Error ? e.message : "Failed to resolve");
+    }
+  }
+
+  async function copy(text: string) {
     if (!text) return;
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        setCopied("ok");
-        setTimeout(() => setCopied(""), 1000);
-      })
-      .catch(() => {});
-  }
-
-  function resolve() {
-    const m = mappings.find((x) => x.code === resolveCode.trim());
-    setResolved(m || null);
-    if (m) {
-      m.clicks += 1;
-      setMappings([...mappings]);
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1000);
+    } catch {
+      /* clipboard blocked */
     }
   }
 
-  function remove(codeToRemove: string) {
-    setMappings(mappings.filter((m) => m.code !== codeToRemove));
-    if (resolved?.code === codeToRemove) setResolved(null);
-    if (code === codeToRemove) setCode("");
+  function removeCache(code: string) {
+    setRecent(recent.filter((m) => m.code !== code));
   }
 
-  const previewLink = useMemo(() => {
-    if (!code) return "";
-    const origin = window.location.origin;
-    const path = "/tools/short-url?code=" + encodeURIComponent(code);
-    return origin + path;
-  }, [code]);
+  const shortLink = created ? `${window.location.origin}/s/${created.code}` : "";
 
   return (
     <div className="space-y-8">
@@ -151,8 +119,12 @@ export default function ShortUrlTool() {
         </div>
         <h1 className="text-2xl font-semibold">Short URL</h1>
       </div>
+      <p className="text-sm text-gray-600 -mt-6">
+        Backed by Cloudflare KV (free tier). Short links at <code className="font-mono">/s/&lt;code&gt;</code>.
+      </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Create */}
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">Create</div>
           <input
@@ -161,83 +133,70 @@ export default function ShortUrlTool() {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <input
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-gray-300 px-3 py-2 font-mono"
               placeholder="Custom code (optional)"
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
+              value={customCode}
+              onChange={(e) => setCustomCode(e.target.value)}
+              maxLength={32}
             />
-            <label className="inline-flex items-center gap-2 text-sm">
-              <input
-                type="checkbox"
-                checked={deterministic}
-                onChange={(e) => setDeterministic(e.target.checked)}
-              />{" "}
-              Deterministic from URL
-            </label>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 bg-teal-600 text-white rounded-md text-sm hover:bg-teal-700 disabled:opacity-50"
-              onClick={generate}
-              disabled={!isValidUrl(url)}
+              className="inline-flex items-center justify-center gap-2 px-3 py-2 bg-teal-600 text-white rounded-md text-sm hover:bg-teal-700 disabled:opacity-50"
+              onClick={create}
+              disabled={busy || !isValidUrl(url)}
             >
-              Generate
+              {busy ? "Creating…" : "Generate"}
             </button>
           </div>
+          {error ? <div className="text-sm text-red-600">{error}</div> : null}
           <div className="flex items-center gap-2">
-            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all">
-              {previewLink || "—"}
+            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all bg-gray-50">
+              {shortLink || "—"}
             </div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
-              onClick={() => copy(previewLink)}
-              disabled={!previewLink}
+              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm disabled:opacity-50"
+              onClick={() => copy(shortLink)}
+              disabled={!shortLink}
             >
-              <ClipboardCopy className="h-4 w-4" /> Copy{" "}
-              {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+              {copied ? <Check className="h-4 w-4 text-green-600" /> : <ClipboardCopy className="h-4 w-4" />}
+              {copied ? "Copied" : "Copy"}
             </button>
-          </div>
-          <div className="text-xs text-gray-600">
-            Note: mappings are stored in your browser (localStorage).
           </div>
         </div>
 
+        {/* Resolve */}
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <div className="font-medium">Resolve</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <input
-              className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2"
+              className="rounded-md border border-gray-300 px-3 py-2 font-mono md:col-span-2"
               placeholder="Enter short code"
               value={resolveCode}
               onChange={(e) => setResolveCode(e.target.value)}
             />
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 bg-gray-700 text-white rounded-md text-sm hover:bg-gray-800 disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-2 px-3 py-2 bg-gray-700 text-white rounded-md text-sm hover:bg-gray-800 disabled:opacity-50"
               onClick={resolve}
               disabled={!resolveCode.trim()}
             >
               Resolve
             </button>
           </div>
+          {resolvedErr ? <div className="text-sm text-red-600">{resolvedErr}</div> : null}
           {resolved ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-              <div className="rounded-md border border-gray-200 px-3 py-2">
-                Code: {resolved.code}
-              </div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">
-                Clicks: {resolved.clicks}
-              </div>
-              <div className="rounded-md border border-gray-200 px-3 py-2 md:col-span-2 font-mono break-words">
+            <div className="space-y-2 text-sm">
+              <div className="rounded-md border border-gray-200 px-3 py-2 font-mono break-all bg-gray-50">
                 {resolved.url}
               </div>
-              <div className="md:col-span-2 flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 <a
                   href={resolved.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center px-3 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700"
+                  className="inline-flex items-center gap-1 px-3 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700"
                 >
-                  Open
+                  <ExternalLink className="h-4 w-4" /> Open
                 </a>
                 <button
                   className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
@@ -248,14 +207,15 @@ export default function ShortUrlTool() {
               </div>
             </div>
           ) : (
-            <div className="text-sm text-gray-600">Enter code to resolve</div>
+            <div className="text-sm text-gray-600">Enter a code to resolve</div>
           )}
         </div>
 
+        {/* Recent (local cache only) */}
         <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
-          <div className="font-medium">Saved Mappings</div>
-          {mappings.length === 0 ? (
-            <div className="text-sm text-gray-600">None</div>
+          <div className="font-medium">Recently created (this browser)</div>
+          {recent.length === 0 ? (
+            <div className="text-sm text-gray-600">None yet — create one to start.</div>
           ) : (
             <div className="rounded-md border border-gray-200 overflow-x-auto">
               <table className="min-w-full text-sm">
@@ -263,32 +223,32 @@ export default function ShortUrlTool() {
                   <tr>
                     <th className="text-left px-3 py-2 font-medium text-gray-700">Code</th>
                     <th className="text-left px-3 py-2 font-medium text-gray-700">URL</th>
-                    <th className="text-left px-3 py-2 font-medium text-gray-700">Clicks</th>
-                    <th className="text-left px-3 py-2 font-medium text-gray-700">Actions</th>
+                    <th className="px-3 py-2"></th>
                   </tr>
                 </thead>
                 <tbody>
-                  {mappings.map((m) => (
+                  {recent.map((m) => (
                     <tr key={m.code} className="border-t">
-                      <td className="px-3 py-2 font-mono">{m.code}</td>
-                      <td className="px-3 py-2 font-mono break-all">{m.url}</td>
-                      <td className="px-3 py-2">{m.clicks}</td>
+                      <td className="px-3 py-2 font-mono">
+                        <a
+                          href={`/s/${m.code}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-teal-700 hover:underline"
+                        >
+                          {m.code}
+                        </a>
+                      </td>
+                      <td className="px-3 py-2 font-mono break-all max-w-xs truncate" title={m.url}>
+                        {m.url}
+                      </td>
                       <td className="px-3 py-2">
                         <button
-                          className="inline-flex items-center px-2 py-1 border border-gray-300 rounded-md text-xs mr-2"
-                          onClick={() =>
-                            copy(
-                              `${window.location.origin}/tools/short-url?code=${encodeURIComponent(m.code)}`
-                            )
-                          }
+                          className="inline-flex items-center p-1 border border-red-200 text-red-600 rounded-md text-xs hover:bg-red-50"
+                          onClick={() => removeCache(m.code)}
+                          title="Remove from local cache"
                         >
-                          Copy Link
-                        </button>
-                        <button
-                          className="inline-flex items-center px-2 py-1 border border-red-300 text-red-600 rounded-md text-xs"
-                          onClick={() => remove(m.code)}
-                        >
-                          Delete
+                          <Trash2 className="h-3 w-3" />
                         </button>
                       </td>
                     </tr>
