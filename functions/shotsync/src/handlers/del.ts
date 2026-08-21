@@ -1,4 +1,5 @@
-import { Env, err, json } from "../responses";
+import type { Env } from "../types";
+import { err, json } from "../responses";
 import { isAuthed } from "../auth";
 import { FULL_EXTS, thumbKey } from "../ids";
 
@@ -7,7 +8,7 @@ export async function handleDelete(request: Request, env: Env, id: string): Prom
 
   const keys = FULL_EXTS.map((ext) => `full/${id}.${ext}`);
   keys.push(thumbKey(id));
-  await env.BUCKET.delete(keys);
+  await env.SHARE_POOL_BUCKET.delete(keys);
 
   return json({ deleted: true });
 }

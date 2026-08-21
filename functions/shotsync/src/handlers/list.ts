@@ -1,4 +1,5 @@
-import { Env, err, json } from "../responses";
+import type { Env } from "../types";
+import { err, json } from "../responses";
 import { canRead } from "../auth";
 import { epochMsFromId, idFromFullKey } from "../ids";
 
@@ -9,7 +10,7 @@ export async function handleList(request: Request, env: Env): Promise<Response> 
   const limit = Math.min(Number(url.searchParams.get("limit")) || 50, 100);
   const cursor = url.searchParams.get("cursor") || undefined;
 
-  const res = await env.BUCKET.list({
+  const res = await env.SHARE_POOL_BUCKET.list({
     prefix: "full/",
     limit,
     cursor,

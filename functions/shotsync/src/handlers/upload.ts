@@ -1,4 +1,5 @@
-import { Env, err, json } from "../responses";
+import type { Env } from "../types";
+import { err, json } from "../responses";
 import { isAuthed } from "../auth";
 import { EXT_BY_TYPE, fullKey, makeId, randSuffix, thumbKey } from "../ids";
 
@@ -36,14 +37,14 @@ export async function handleUpload(request: Request, env: Env): Promise<Response
     hasThumb: String(hasThumb),
   };
 
-  await env.BUCKET.put(fullKey(id, ext), full.stream(), {
+  await env.SHARE_POOL_BUCKET.put(fullKey(id, ext), full.stream(), {
     httpMetadata: { contentType: full.type },
     customMetadata: meta,
   });
 
   if (hasThumb) {
     const thumb = thumbEntry as Blob;
-    await env.BUCKET.put(thumbKey(id), thumb.stream(), {
+    await env.SHARE_POOL_BUCKET.put(thumbKey(id), thumb.stream(), {
       httpMetadata: { contentType: "image/jpeg" },
     });
   }

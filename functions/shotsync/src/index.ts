@@ -1,4 +1,5 @@
-import { Env, err } from "./responses";
+import type { Env } from "./types";
+import { err } from "./responses";
 import { handleUpload } from "./handlers/upload";
 import { handleList } from "./handlers/list";
 import { handleImage } from "./handlers/image";

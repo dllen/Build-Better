@@ -1,10 +1,11 @@
-import { Env, err } from "../responses";
+import type { Env } from "../types";
+import { err } from "../responses";
 import { canRead } from "../auth";
 import { FULL_EXTS, thumbKey } from "../ids";
 
 export async function getFull(env: Env, id: string): Promise<R2ObjectBody | null> {
   for (const ext of FULL_EXTS) {
-    const obj = await env.BUCKET.get(`full/${id}.${ext}`);
+    const obj = await env.SHARE_POOL_BUCKET.get(`full/${id}.${ext}`);
     if (obj) return obj;
   }
   return null;
@@ -17,7 +18,7 @@ export async function handleImage(request: Request, env: Env, id: string): Promi
 
   let obj: R2ObjectBody | null = null;
 
-  if (size === "thumb") obj = await env.BUCKET.get(thumbKey(id));
+  if (size === "thumb") obj = await env.SHARE_POOL_BUCKET.get(thumbKey(id));
 
   if (!obj) obj = await getFull(env, id);
 

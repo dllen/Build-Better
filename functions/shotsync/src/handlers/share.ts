@@ -1,4 +1,5 @@
-import { Env, err, json } from "../responses";
+import type { Env } from "../types";
+import { err, json } from "../responses";
 import { isAuthed } from "../auth";
 import { signShare, verifyShare } from "../share";
 import { getFull } from "./image";
