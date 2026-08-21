@@ -2,25 +2,59 @@
 
 ## 概述
 
-SharePool 是一个跨设备图片和文本分享工具，基于 Cloudflare Workers 和 R2 存储。
+SharePool 是一个跨设备图片和文本分享工具，基于 Cloudflare Workers 和 D1 数据库。
 
 ## 前置要求
 
 - Cloudflare 账号
 - Node.js 18+
-- 已创建 R2 Bucket
+- 已创建 D1 Database
 
 ## 部署步骤
 
-### 1. 创建 R2 Bucket
+### 1. 创建 D1 Database
 
 ```bash
 cd /Users/shichaopeng/Work/self-dir/projects/Build-Better
 npx wrangler login
-npx wrangler r2 bucket create share-pool
+npx wrangler d1 create share-pool
 ```
 
-### 2. 生成 AUTH_TOKEN
+记下输出的 `database_id`。
+
+### 2. 初始化 Schema
+
+```bash
+npx wrangler d1 execute share-pool --file=functions/shotsync/src/db/schema.sql
+```
+
+或创建 schema.sql 文件，包含以下 CREATE TABLE 语句：
+
+```sql
+CREATE TABLE IF NOT EXISTS share_pool (
+  id TEXT PRIMARY KEY,
+  type TEXT NOT NULL,
+  content TEXT NOT NULL,
+  content_type TEXT,
+  source TEXT,
+  orig_name TEXT,
+  created_at INTEGER NOT NULL,
+  has_thumb INTEGER DEFAULT 0
+);
+```
+
+### 3. 更新 wrangler.toml
+
+添加 D1 binding：
+
+```toml
+[[d1_databases]]
+binding = "SHARE_POOL_DB"
+database_name = "share-pool"
+database_id = "<your-database-id>"
+```
+
+### 4. 生成 AUTH_TOKEN
 
 ```bash
 openssl rand -hex 24
@@ -28,20 +62,26 @@ openssl rand -hex 24
 
 记下生成的 token，后续步骤需要用到。
 
-### 3. 配置 Secrets
+### 5. 配置 Secrets
 
 ```bash
 npx wrangler secret put AUTH_TOKEN
 # 输入上一步生成的 token
 ```
 
-### 4. 部署
+### 6. 部署
 
 ```bash
 npm run deploy
 ```
 
 部署完成后，Worker 会通过 Pages Functions 提供服务。
+
+## 数据库说明
+
+D1 Database 存储：
+- 所有数据（文本内容和 Base64 编码的图片）存储在单一表中
+- 每条记录包含：id, type, content, content_type, source, orig_name, created_at, has_thumb
 
 ## 使用方法
 
