@@ -34,14 +34,14 @@ export function useSharePool() {
       }
     };
     checkAuth();
-  }, []);
+  }, [refresh]);
 
   // Auto-refresh every 20 seconds
   useEffect(() => {
     if (!authenticated) return;
-    const timer = setInterval(refresh, 20000);
+    const timer = setInterval(() => refresh(), 20000);
     return () => clearInterval(timer);
-  }, [authenticated]);
+  }, [authenticated, refresh]);
 
   const refresh = useCallback(async () => {
     if (!authenticated) return;

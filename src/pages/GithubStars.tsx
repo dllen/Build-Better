@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ExternalLink, Star, GitFork, Search, Filter, Github, Languages, Tag, Calendar } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { ExternalLink, Star, GitFork, Search, Filter, Github, Languages, Calendar } from 'lucide-react';
 
 // 导入 GitHub Stars 数据
 import githubStarsData from '@/data/github-stars.json';
@@ -32,7 +31,6 @@ interface GithubStarsData {
 const data = githubStarsData as GithubStarsData;
 
 const GithubStars = () => {
-  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState<string>('All');
   const [sortBy, setSortBy] = useState<'stars' | 'updated' | 'name'>('stars');
@@ -172,7 +170,7 @@ const GithubStars = () => {
               <select
                 className="border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm py-1.5 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as any)}
+                onChange={(e) => setSortBy(e.target.value as 'stars' | 'updated' | 'name')}
               >
                 <option value="stars">按 Stars 数</option>
                 <option value="updated">按更新时间</option>

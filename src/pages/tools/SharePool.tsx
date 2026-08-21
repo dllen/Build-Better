@@ -7,18 +7,13 @@ import {
   X,
   Trash2,
   Share2,
-  Copy,
   Check,
   Plus,
-  ChevronLeft,
-  ChevronRight,
   Loader2,
-  Eye,
   RefreshCw,
 } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { useSharePool } from "@/hooks/useSharePool";
-import { SharePoolItem, getImageUrl, getTextContent } from "@/lib/sharepool";
+import { SharePoolItem, getImageUrl } from "@/lib/sharepool";
 import { SEO } from "@/components/SEO";
 
 // ============================================================================
@@ -236,7 +231,6 @@ function ViewerModal({ item, onClose, onShare, onDelete, getText, showToast }: V
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
   const [sharing, setSharing] = useState(false);
-  const [imgIndex, setImgIndex] = useState(0);
 
   useEffect(() => {
     if (item && !item.contentType.startsWith("image/")) {
@@ -410,7 +404,6 @@ function TextComposeModal({ open, onClose, onSubmit }: TextComposeModalProps) {
 // Main SharePool Component
 // ============================================================================
 export default function SharePool() {
-  const { t } = useTranslation();
   const {
     items,
     loading,
@@ -479,7 +472,7 @@ export default function SharePool() {
         } else {
           showToast("Unsupported file type", "error");
         }
-      } catch (err) {
+      } catch {
         showToast(`Upload failed: ${file.name}`, "error");
       }
     }
