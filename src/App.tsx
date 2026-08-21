@@ -51,6 +51,7 @@ import ROICalculator from "@/pages/tools/ROICalculator";
 import OtpGenerator from "@/pages/tools/OtpGenerator";
 import JwtDecodeTool from "@/pages/tools/JwtDecodeTool";
 import ShortUrlTool from "@/pages/tools/ShortUrlTool";
+import SharePool from "@/pages/tools/SharePool";
 import Snake from "@/pages/games/Snake";
 import Tetris from "@/pages/games/Tetris";
 import Gomoku from "@/pages/games/Gomoku";
@@ -104,6 +105,7 @@ import DataDeveloper from "@/pages/DataDeveloper";
 
 import AiDevelopment from "@/pages/AiDevelopment";
 import LoopEngineering from "./pages/loop-engineering/LoopEngineering";
+import GithubStars from "./pages/GithubStars";
 
 export default function App() {
   return (
@@ -118,6 +120,7 @@ export default function App() {
           <Route path="/data-developer" element={<DataDeveloper />} />
           <Route path="/ai-development" element={<AiDevelopment />} />
           <Route path="/loop-engineering" element={<LoopEngineering />} />
+          <Route path="/github-stars" element={<GithubStars />} />
           <Route path="/settings" element={<Settings />} />
           
           {/* ========== NEW TOP-LEVEL ROUTES (Week 2) ========== */}
@@ -203,6 +206,7 @@ export default function App() {
           <Route path="/lottery-ssq" element={<LotterySsq />} />
           <Route path="/mermaid-renderer" element={<MermaidRenderer />} />
           <Route path="/short-url" element={<ShortUrlTool />} />
+          <Route path="/sharepool" element={<SharePool />} />
           <Route path="/commit-message" element={<CommitMessageGenerator />} />
           <Route path="/gitignore" element={<GitignoreGenerator />} />
 
