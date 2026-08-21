@@ -1,14 +1,15 @@
 import type { Env } from "../types";
 import { err, json } from "../responses";
 import { isAuthed } from "../auth";
-import { FULL_EXTS, thumbKey } from "../ids";
 
-export async function handleDelete(request: Request, env: Env, id: string): Promise<Response> {
+export async function handleDelete(
+  request: Request,
+  env: Env,
+  id: string
+): Promise<Response> {
   if (!isAuthed(request, env)) return err(401, "unauthorized");
 
-  const keys = FULL_EXTS.map((ext) => `full/${id}.${ext}`);
-  keys.push(thumbKey(id));
-  await env.SHARE_POOL_BUCKET.delete(keys);
+  await env.DB.prepare("DELETE FROM items WHERE id = ?").bind(id).run();
 
   return json({ deleted: true });
 }

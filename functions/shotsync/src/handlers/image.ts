@@ -1,33 +1,53 @@
 import type { Env } from "../types";
 import { err } from "../responses";
 import { canRead } from "../auth";
-import { FULL_EXTS, thumbKey } from "../ids";
 
-export async function getFull(env: Env, id: string): Promise<R2ObjectBody | null> {
-  for (const ext of FULL_EXTS) {
-    const obj = await env.SHARE_POOL_BUCKET.get(`full/${id}.${ext}`);
-    if (obj) return obj;
-  }
-  return null;
+export async function getItem(
+  env: Env,
+  id: string
+): Promise<{ type: string; content: string; contentType: string } | null> {
+  const result = await env.DB.prepare(
+    "SELECT type, content, content_type FROM items WHERE id = ?"
+  )
+    .bind(id)
+    .first();
+  if (!result) return null;
+  return {
+    type: result.type as string,
+    content: result.content as string,
+    contentType: result.content_type as string,
+  };
 }
 
-export async function handleImage(request: Request, env: Env, id: string): Promise<Response> {
+export async function handleImage(
+  request: Request,
+  env: Env,
+  id: string
+): Promise<Response> {
   if (!canRead(request, env)) return err(401, "unauthorized");
 
-  const size = new URL(request.url).searchParams.get("size");
+  const item = await getItem(env, id);
+  if (!item) return err(404, "not found");
 
-  let obj: R2ObjectBody | null = null;
+  if (item.type === "text") {
+    return new Response(item.content, {
+      headers: { "content-type": "text/plain" },
+    });
+  }
 
-  if (size === "thumb") obj = await env.SHARE_POOL_BUCKET.get(thumbKey(id));
-
-  if (!obj) obj = await getFull(env, id);
-
-  if (!obj) return err(404, "not found");
-
-  return new Response(obj.body, {
-    headers: {
-      "content-type": obj.httpMetadata?.contentType || "application/octet-stream",
-      "cache-control": "private, max-age=31536000, immutable",
-    },
-  });
+  try {
+    const binary = atob(item.content);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    return new Response(bytes, {
+      headers: {
+        "content-type": item.contentType,
+        "cache-control": "private, max-age=31536000, immutable",
+      },
+    });
+  } catch {
+    return err(500, "failed to decode image");
+  }
 }

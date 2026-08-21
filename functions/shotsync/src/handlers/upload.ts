@@ -1,9 +1,7 @@
 import type { Env } from "../types";
 import { err, json } from "../responses";
 import { isAuthed } from "../auth";
-import { EXT_BY_TYPE, fullKey, makeId, randSuffix, thumbKey } from "../ids";
-
-const MAX_FULL_BYTES = 25 * 1024 * 1024;
+import { makeId, randSuffix } from "../ids";
 
 export async function handleUpload(request: Request, env: Env): Promise<Response> {
   if (!isAuthed(request, env)) return err(401, "unauthorized");
@@ -16,38 +14,47 @@ export async function handleUpload(request: Request, env: Env): Promise<Response
   }
 
   const fullEntry = form.get("full");
-  if (!fullEntry || typeof fullEntry !== "object" || !("stream" in fullEntry) || !("name" in fullEntry)) {
+  if (!fullEntry || typeof fullEntry !== "object" || !("stream" in fullEntry)) {
     return err(400, "missing full");
   }
   const full = fullEntry as File;
 
   const mimeType = full.type.split(";")[0].trim().toLowerCase();
-  const ext = EXT_BY_TYPE[mimeType];
-  if (!ext) return err(415, `unsupported type: ${full.type}`);
-  if (full.size > MAX_FULL_BYTES) return err(413, "full too large");
-
-  const thumbEntry = form.get("thumb");
-  const hasThumb = !!(thumbEntry && typeof thumbEntry === "object" && "stream" in thumbEntry && "name" in thumbEntry);
-
-  const id = makeId(Date.now(), randSuffix());
-  const meta = {
-    source: request.headers.get("x-source") || "unknown",
-    origName: request.headers.get("x-filename") || full.name || "",
-    uploadedAt: new Date().toISOString(),
-    hasThumb: String(hasThumb),
+  const validTypes: Record<string, string> = {
+    "image/png": "image",
+    "image/jpeg": "image",
+    "image/webp": "image",
+    "text/plain": "text",
   };
 
-  await env.SHARE_POOL_BUCKET.put(fullKey(id, ext), full.stream(), {
-    httpMetadata: { contentType: full.type },
-    customMetadata: meta,
-  });
+  const itemType = validTypes[mimeType];
+  if (!itemType) return err(415, `unsupported type: ${full.type}`);
 
-  if (hasThumb) {
-    const thumb = thumbEntry as Blob;
-    await env.SHARE_POOL_BUCKET.put(thumbKey(id), thumb.stream(), {
-      httpMetadata: { contentType: "image/jpeg" },
-    });
-  }
+  const id = makeId(Date.now(), randSuffix());
+  const content =
+    mimeType.startsWith("text/") ? await full.text() : await blobToBase64(full);
+
+  await env.DB.prepare(`
+    INSERT INTO items (id, type, content, content_type, source, orig_name, created_at, has_thumb)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `)
+    .bind(
+      id,
+      itemType,
+      content,
+      mimeType,
+      request.headers.get("x-source") || "unknown",
+      full.name || "",
+      new Date().toISOString(),
+      0
+    )
+    .run();
 
   return json({ id });
+}
+
+async function blobToBase64(blob: Blob): Promise<string> {
+  const buffer = await blob.arrayBuffer();
+  const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+  return base64;
 }

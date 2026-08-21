@@ -117,41 +117,47 @@ export function Navbar() {
                 网站导航
                 <ChevronDown className="h-3 w-3" />
               </button>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="bg-popover border border-border rounded-md shadow-lg overflow-hidden">
-                  <Link 
-                    to="/indie-developer" 
+                  <Link
+                    to="/indie-developer"
                     className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
                   >
                     独立开发者
                   </Link>
-                  <Link 
-                    to="/ai-development" 
+                  <Link
+                    to="/ai-development"
                     className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
                   >
                     {t("app.ai_navigation")}
                   </Link>
-                  <Link 
-                    to="/loop-engineering" 
+                  <Link
+                    to="/github-stars"
+                    className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
+                  >
+                    开源项目
+                  </Link>
+                  <Link
+                    to="/loop-engineering"
                     className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
                   >
                     Loop Engineering
                   </Link>
-                  <Link 
-                    to="/data-developer" 
+                  <Link
+                    to="/data-developer"
                     className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
                   >
                     数据开发者
                   </Link>
-                  <Link 
-                    to="/non-indie-developer" 
+                  <Link
+                    to="/non-indie-developer"
                     className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
                   >
                     非独立开发者
                   </Link>
-                  <a 
-                    href="/algorithm-visualizer/index.html" 
-                    target="_blank" 
+                  <a
+                    href="/algorithm-visualizer/index.html"
+                    target="_blank"
                     rel="noreferrer"
                     className="block px-4 py-2 text-sm text-popover-foreground hover:bg-muted hover:text-primary transition-colors text-center"
                   >
@@ -291,6 +297,13 @@ export function Navbar() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {t("app.ai_navigation")}
+                </Link>
+                <Link
+                  to="/github-stars"
+                  className="text-muted-foreground hover:text-primary py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  开源项目
                 </Link>
                 <Link
                   to="/data-developer"

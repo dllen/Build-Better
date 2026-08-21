@@ -8,7 +8,8 @@ binding = "SHORT_URLS"
 id = "32125ac318d34b39b7a44c3cb0c0bb82"
 preview_id = "32125ac318d34b39b7a44c3cb0c0bb82"
 
-# SharePool R2 (create bucket: wrangler r2 bucket create share-pool)
-[[r2_buckets]]
-binding = "SHARE_POOL_BUCKET"
-bucket_name = "share-pool"
+# SharePool D1 (create: wrangler d1 create share-pool)
+[[d1_databases]]
+binding = "SHARE_POOL_DB"
+database_name = "share-pool"
+database_id = "<your-database-id>"

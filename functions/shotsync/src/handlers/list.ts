@@ -1,32 +1,29 @@
 import type { Env } from "../types";
 import { err, json } from "../responses";
 import { canRead } from "../auth";
-import { epochMsFromId, idFromFullKey } from "../ids";
 
 export async function handleList(request: Request, env: Env): Promise<Response> {
   if (!canRead(request, env)) return err(401, "unauthorized");
 
   const url = new URL(request.url);
   const limit = Math.min(Number(url.searchParams.get("limit")) || 50, 100);
-  const cursor = url.searchParams.get("cursor") || undefined;
 
-  const res = await env.SHARE_POOL_BUCKET.list({
-    prefix: "full/",
-    limit,
-    cursor,
-    include: ["customMetadata", "httpMetadata"],
-  } as R2ListOptions & { include: ("httpMetadata" | "customMetadata")[] });
+  const result = await env.DB.prepare(`
+    SELECT id, type, content_type, source, created_at, has_thumb
+    FROM items
+    ORDER BY created_at DESC
+    LIMIT ?
+  `)
+    .bind(limit)
+    .all();
 
-  const items = res.objects.map((o) => {
-    const id = idFromFullKey(o.key);
-    return {
-      id,
-      time: epochMsFromId(id),
-      contentType: o.httpMetadata?.contentType || "application/octet-stream",
-      hasThumb: o.customMetadata?.hasThumb === "true",
-      source: o.customMetadata?.source || "unknown",
-    };
-  });
+  const items = result.results.map((row: Record<string, unknown>) => ({
+    id: row.id as string,
+    time: new Date(row.created_at as string).getTime(),
+    contentType: row.content_type as string,
+    hasThumb: Boolean(row.has_thumb),
+    source: row.source as string,
+  }));
 
-  return json({ items, cursor: res.truncated ? res.cursor : null });
+  return json({ items, cursor: null });
 }

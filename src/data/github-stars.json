@@ -1,0 +1,230 @@
+{
+  "username": "dllen",
+  "fetched_at": "2026-08-21T10:30:00",
+  "total_count": 8,
+  "stars": [
+    {
+      "name": "react",
+      "full_name": "facebook/react",
+      "description": "The library for web and native user interfaces.",
+      "url": "https://github.com/facebook/react",
+      "stars": 225000,
+      "forks": 46000,
+      "language": "JavaScript",
+      "topics": ["react", "javascript", "frontend", "ui", "declarative"],
+      "updated_at": "2026-08-20T15:30:00Z",
+      "owner_avatar": "https://avatars.githubusercontent.com/u/69631",
+      "license": "MIT License"
+    },
+    {
+      "name": "vue",
+      "full_name": "vuejs/vue",
+      "description": "An approachable, performant, and versatile framework for building web user interfaces.",
+      "url": "https://github.com/vuejs/vue",
+      "stars": 208000,
+      "forks": 33500,
+      "language": "TypeScript",
+      "topics": ["vue", "javascript", "frontend", "framework"],
+      "updated_at": "2026-08-19T12:00:00Z",
+      "owner_avatar": "https://avatars.githubusercontent.com/u/6128107",
+      "license": "MIT License"
+    },
+    {
+      "name": "rust",
+      "full_name": "rust-lang/rust",
+      "description": "A language empowering everyone to build reliable and efficient software.",
+      "url": "https://github.com/rust-lang/rust",
+      "stars": 102000,
+      "forks": 16800,
+      "language": "Rust",
+      "topics": ["rust", "systems-programming", "language", "安全"],
+      "updated_at": "2026-08-18T09:00:00Z",
+      "owner_avatar": "https://avatars.githubusercontent.com/u/5430905",
+      "license": "MIT License"
+    },
+    {
+      "name": "python",
+      "full_name": "python/cpython",
+      "description": "The Python programming language",
+      "url": "https://github.com/python/cpython",
+      "stars": 175000,
+      "forks": 52000,
+      "language": "Python",
+      "topics": ["python", "programming-language", "interpreter"],
+      "updated_at": "2026-08-17T14:20:00Z",
+      "owner_avatar": "https://avatars.githubusercontent.com/u/1526981",
+      "license": "Python Software Foundation License"
+    },
+    {
+      "name": "next.js",
+      "full_name": "vercel/next.js",
+      "description": "The React Framework for the Web",
+      "url": "https://github.com/vercel/next.js",
+      "stars": 125000,
+      "forks": 27500,
+      "language": "TypeScript",
+      "topics": ["nextjs", "react", "ssr", "framework", "web"],
+      "updated_at": "2026-08-20T18:45:00Z",
+      "owner_avatar": "https://avatars.githubusercontent.com/u/14985020",
+      "license": "MIT License"
+    },
+    {
+      "name": "go",
+      "full_name": "golang/go",
+      "description": "The Go programming language",
+      "url": "https://github.com/golang/go",
+      "stars": 118000,
+      "forks": 17300,
+      "language": "Go",
+      "topics": ["go", "golang", "language", "programming-language"],
+      "updated_at": "2026-08-21T08:00:00Z",
+      "owner_avatar": "https://avatars.githubusercontent.com/u/4314092",
+      "license": "BSD 3-Clause \"New\" or \"Revised\" License"
+    },
+    {
+      "name": "tailwindcss",
+      "full_name": "tailwindlabs/tailwindcss",
+      "description": "A utility-first CSS framework for rapid UI development.",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "stars": 82000,
+      "forks": 4500,
+      "language": "JavaScript",
+      "topics": ["tailwindcss", "css", "utility-classes", "frontend"],
+      "updated_at": "2026-08-19T16:30:00Z",
+      "owner_avatar": "https://avatars.githubusercontent.com/u/30218810",
+      "license": "MIT License"
+    },
+    {
+      "name": "vlang",
+      "full_name": "vlang/v",
+      "description": "Simple, fast, safe, compiled language for developing maintainable software.",
+      "url": "https://github.com/vlang/v",
+      "stars": 28000,
+      "forks": 1900,
+      "language": "V",
+      "topics": ["vlang", "v", "language", "compiler"],
+      "updated_at": "2026-08-15T11:00:00Z",
+      "owner_avatar": "https://avatars.githubusercontent.com/u/10271490",
+      "license": "GPL-3.0 license"
+    }
+  ],
+  "by_language": {
+    "JavaScript": [
+      {
+        "name": "react",
+        "full_name": "facebook/react",
+        "description": "The library for web and native user interfaces.",
+        "url": "https://github.com/facebook/react",
+        "stars": 225000,
+        "forks": 46000,
+        "language": "JavaScript",
+        "topics": ["react", "javascript", "frontend", "ui", "declarative"],
+        "updated_at": "2026-08-20T15:30:00Z",
+        "owner_avatar": "https://avatars.githubusercontent.com/u/69631",
+        "license": "MIT License"
+      },
+      {
+        "name": "tailwindcss",
+        "full_name": "tailwindlabs/tailwindcss",
+        "description": "A utility-first CSS framework for rapid UI development.",
+        "url": "https://github.com/tailwindlabs/tailwindcss",
+        "stars": 82000,
+        "forks": 4500,
+        "language": "JavaScript",
+        "topics": ["tailwindcss", "css", "utility-classes", "frontend"],
+        "updated_at": "2026-08-19T16:30:00Z",
+        "owner_avatar": "https://avatars.githubusercontent.com/u/30218810",
+        "license": "MIT License"
+      }
+    ],
+    "TypeScript": [
+      {
+        "name": "vue",
+        "full_name": "vuejs/vue",
+        "description": "An approachable, performant, and versatile framework for building web user interfaces.",
+        "url": "https://github.com/vuejs/vue",
+        "stars": 208000,
+        "forks": 33500,
+        "language": "TypeScript",
+        "topics": ["vue", "javascript", "frontend", "framework"],
+        "updated_at": "2026-08-19T12:00:00Z",
+        "owner_avatar": "https://avatars.githubusercontent.com/u/6128107",
+        "license": "MIT License"
+      },
+      {
+        "name": "next.js",
+        "full_name": "vercel/next.js",
+        "description": "The React Framework for the Web",
+        "url": "https://github.com/vercel/next.js",
+        "stars": 125000,
+        "forks": 27500,
+        "language": "TypeScript",
+        "topics": ["nextjs", "react", "ssr", "framework", "web"],
+        "updated_at": "2026-08-20T18:45:00Z",
+        "owner_avatar": "https://avatars.githubusercontent.com/u/14985020",
+        "license": "MIT License"
+      }
+    ],
+    "Python": [
+      {
+        "name": "python",
+        "full_name": "python/cpython",
+        "description": "The Python programming language",
+        "url": "https://github.com/python/cpython",
+        "stars": 175000,
+        "forks": 52000,
+        "language": "Python",
+        "topics": ["python", "programming-language", "interpreter"],
+        "updated_at": "2026-08-17T14:20:00Z",
+        "owner_avatar": "https://avatars.githubusercontent.com/u/1526981",
+        "license": "Python Software Foundation License"
+      }
+    ],
+    "Go": [
+      {
+        "name": "go",
+        "full_name": "golang/go",
+        "description": "The Go programming language",
+        "url": "https://github.com/golang/go",
+        "stars": 118000,
+        "forks": 17300,
+        "language": "Go",
+        "topics": ["go", "golang", "language", "programming-language"],
+        "updated_at": "2026-08-21T08:00:00Z",
+        "owner_avatar": "https://avatars.githubusercontent.com/u/4314092",
+        "license": "BSD 3-Clause \"New\" or \"Revised\" License"
+      }
+    ],
+    "Rust": [
+      {
+        "name": "rust",
+        "full_name": "rust-lang/rust",
+        "description": "A language empowering everyone to build reliable and efficient software.",
+        "url": "https://github.com/rust-lang/rust",
+        "stars": 102000,
+        "forks": 16800,
+        "language": "Rust",
+        "topics": ["rust", "systems-programming", "language", "安全"],
+        "updated_at": "2026-08-18T09:00:00Z",
+        "owner_avatar": "https://avatars.githubusercontent.com/u/5430905",
+        "license": "MIT License"
+      }
+    ],
+    "V": [
+      {
+        "name": "vlang",
+        "full_name": "vlang/v",
+        "description": "Simple, fast, safe, compiled language for developing maintainable software.",
+        "url": "https://github.com/vlang/v",
+        "stars": 28000,
+        "forks": 1900,
+        "language": "V",
+        "topics": ["vlang", "v", "language", "compiler"],
+        "updated_at": "2026-08-15T11:00:00Z",
+        "owner_avatar": "https://avatars.githubusercontent.com/u/10271490",
+        "license": "GPL-3.0 license"
+      }
+    ]
+  },
+  "by_topic": {}
+}
