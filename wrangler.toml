@@ -7,3 +7,8 @@ compatibility_date = "2024-04-01"
 binding = "SHORT_URLS"
 id = "32125ac318d34b39b7a44c3cb0c0bb82"
 preview_id = "32125ac318d34b39b7a44c3cb0c0bb82"
+
+# SharePool R2 (create bucket: wrangler r2 bucket create share-pool)
+[[r2_buckets]]
+binding = "SHARE_POOL_BUCKET"
+bucket_name = "share-pool"
