@@ -23,9 +23,14 @@ export function useSharePool() {
   useEffect(() => {
     const checkAuth = async () => {
       if (isLoggedIn()) {
-        const valid = await validateToken();
-        setAuthenticated(valid);
-        if (valid) await refresh();
+        try {
+          const valid = await validateToken();
+          setAuthenticated(valid);
+          if (valid) await refresh();
+        } catch (e) {
+          setError(e instanceof Error ? e.message : "Authentication check failed");
+          setAuthenticated(false);
+        }
       }
     };
     checkAuth();

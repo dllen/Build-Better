@@ -83,7 +83,7 @@ export async function uploadText(text: string): Promise<string> {
   return data.id;
 }
 
-export async function getImageUrl(id: string, size: "full" | "thumb" = "full"): Promise<string> {
+export function getImageUrl(id: string, size: "full" | "thumb" = "full"): string {
   return `${API_BASE}/i/${id}?size=${size}`;
 }
 
