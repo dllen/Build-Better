@@ -12,4 +12,4 @@ preview_id = "32125ac318d34b39b7a44c3cb0c0bb82"
 [[d1_databases]]
 binding = "SHARE_POOL_DB"
 database_name = "share-pool"
-database_id = "<your-database-id>"
+database_id = "eb9155e0-73e2-44dc-b702-e737512319ad"
