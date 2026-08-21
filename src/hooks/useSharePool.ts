@@ -19,6 +19,20 @@ export function useSharePool() {
   const [authenticated, setAuthenticated] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const refresh = useCallback(async () => {
+    if (!authenticated) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await listItems(100);
+      setItems(data.items);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to load items");
+    } finally {
+      setLoading(false);
+    }
+  }, [authenticated]);
+
   // Check initial auth state
   useEffect(() => {
     const checkAuth = async () => {
@@ -42,20 +56,6 @@ export function useSharePool() {
     const timer = setInterval(() => refresh(), 20000);
     return () => clearInterval(timer);
   }, [authenticated, refresh]);
-
-  const refresh = useCallback(async () => {
-    if (!authenticated) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const data = await listItems(100);
-      setItems(data.items);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Failed to load items");
-    } finally {
-      setLoading(false);
-    }
-  }, [authenticated]);
 
   const handleLogin = useCallback(async (token: string): Promise<boolean> => {
     const ok = await login(token);
