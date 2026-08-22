@@ -43,6 +43,7 @@ import {
   Stamp,
   Merge,
   Users,
+  Image as ImageIcon,
 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useTranslation } from "react-i18next";
@@ -531,6 +532,15 @@ export default function Home() {
       path: "/short-url",
       color: "text-teal-600",
       bgColor: "bg-teal-100",
+    },
+    {
+      id: "sharepool",
+      name: "SharePool",
+      description: "跨设备分享图片和文本，即时同步。",
+      icon: ImageIcon,
+      path: "/sharepool",
+      color: "text-blue-600",
+      bgColor: "bg-blue-100",
     },
     {
       id: "color-hunt",
