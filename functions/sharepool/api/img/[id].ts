@@ -9,7 +9,7 @@ export async function onRequestDelete(context: {
 }): Promise<Response> {
   const { request, env, params } = context;
 
-  if (!isAuthed(request, env)) return err(401, "unauthorized");
+  if (!(await isAuthed(request, env))) return err(401, "unauthorized");
 
   await env.SHARE_POOL_DB.prepare("DELETE FROM items WHERE id = ?").bind(params.id).run();
 

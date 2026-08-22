@@ -8,7 +8,7 @@ export async function onRequestGet(context: {
 }): Promise<Response> {
   const { request, env } = context;
 
-  if (!isAuthed(request, env)) return err(401, "unauthorized");
+  if (!(await isAuthed(request, env))) return err(401, "unauthorized");
 
   const url = new URL(request.url);
   const limit = Math.min(parseInt(url.searchParams.get("limit") || "50"), 100);

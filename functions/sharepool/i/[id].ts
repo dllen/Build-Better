@@ -9,7 +9,7 @@ export async function onRequestGet(context: {
 }): Promise<Response> {
   const { request, env, params } = context;
 
-  if (!canRead(request, env)) return err(401, "unauthorized");
+  if (!(await canRead(request, env))) return err(401, "unauthorized");
 
   const item = await env.SHARE_POOL_DB.prepare(
     "SELECT type, content, content_type FROM items WHERE id = ?"

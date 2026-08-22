@@ -11,7 +11,7 @@ export async function onRequestPost(context: {
 }): Promise<Response> {
   const { request, env } = context;
 
-  if (!isAuthed(request, env)) return err(401, "unauthorized");
+  if (!(await isAuthed(request, env))) return err(401, "unauthorized");
 
   let form: FormData;
   try {

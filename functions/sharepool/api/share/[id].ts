@@ -12,7 +12,7 @@ export async function onRequestPost(context: {
 }): Promise<Response> {
   const { request, env, params } = context;
 
-  if (!isAuthed(request, env)) return err(401, "unauthorized");
+  if (!(await isAuthed(request, env))) return err(401, "unauthorized");
 
   const exp = Date.now() + SHARE_TTL_MS;
   const sig = await signShare(params.id, exp, env.AUTH_TOKEN);
