@@ -11,9 +11,10 @@ import {
   Plus,
   Loader2,
   RefreshCw,
+  KeyRound,
 } from "lucide-react";
 import { useSharePool } from "@/hooks/useSharePool";
-import { SharePoolItem, getImageUrl } from "@/lib/sharepool";
+import { SharePoolItem, getImageUrl, formatTokenExpiry } from "@/lib/sharepool";
 import { SEO } from "@/components/SEO";
 
 // ============================================================================
@@ -49,7 +50,7 @@ function ToastContainer({ toasts, removeToast }: { toasts: Toast[]; removeToast:
 // ============================================================================
 // Login Gate
 // ============================================================================
-function LoginGate({ onLogin, loading, error }: { onLogin: (token: string) => void; loading: boolean; error: string }) {
+function LoginGate({ onLogin, loading, error, expired }: { onLogin: (token: string) => void; loading: boolean; error: string; expired: boolean }) {
   const [token, setToken] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -70,6 +71,12 @@ function LoginGate({ onLogin, loading, error }: { onLogin: (token: string) => vo
           </div>
         </div>
 
+        {expired && (
+          <p className="mb-4 text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+            Your token has expired. Enter your AUTH_TOKEN to initialize a new 48-hour token.
+          </p>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="token" className="block text-sm font-medium text-gray-700 mb-1">
@@ -80,7 +87,7 @@ function LoginGate({ onLogin, loading, error }: { onLogin: (token: string) => vo
               type="password"
               value={token}
               onChange={(e) => setToken(e.target.value)}
-              placeholder="Enter your SharePool token"
+              placeholder="Access token, or AUTH_TOKEN to initialize"
               className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
               autoFocus
             />
@@ -97,7 +104,7 @@ function LoginGate({ onLogin, loading, error }: { onLogin: (token: string) => vo
         </form>
 
         <p className="mt-6 text-xs text-gray-500 text-center">
-          No account? Get your token from the SharePool dashboard.
+          Tokens expire after 48 hours. Reset anytime from the header.
         </p>
       </div>
     </div>
@@ -401,6 +408,58 @@ function TextComposeModal({ open, onClose, onSubmit }: TextComposeModalProps) {
 }
 
 // ============================================================================
+// Token Reset Result Modal
+// ============================================================================
+function TokenResetModal({ result, onClose, showToast }: { result: { token: string; expiresAt: number } | null; onClose: () => void; showToast: (message: string, type: ToastType) => void }) {
+  if (!result) return null;
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(result.token);
+      showToast("Token copied to clipboard", "success");
+    } catch {
+      showToast("Copy failed — select and copy manually", "error");
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="w-full max-w-lg bg-white rounded-xl shadow-xl" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between p-4 border-b">
+          <h2 className="text-lg font-semibold">New Access Token</h2>
+          <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded">
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+        <div className="p-4 space-y-3">
+          <p className="text-sm text-gray-600">
+            Copy this token now — it is shown only once. It is valid until{" "}
+            <span className="font-medium">{formatTokenExpiry(result.expiresAt)}</span> (48 hours).
+          </p>
+          <div className="flex items-center gap-2">
+            <code className="flex-1 px-3 py-2 bg-gray-100 rounded-lg text-sm font-mono break-all">
+              {result.token}
+            </code>
+            <button
+              onClick={handleCopy}
+              className="px-3 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 flex items-center gap-1"
+            >
+              <Check className="h-4 w-4" />
+              Copy
+            </button>
+          </div>
+        </div>
+        <div className="flex justify-end p-4 border-t bg-gray-50 rounded-b-xl">
+          <button onClick={onClose} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
 // Main SharePool Component
 // ============================================================================
 export default function SharePool() {
@@ -409,9 +468,12 @@ export default function SharePool() {
     loading,
     authenticated,
     error: authError,
+    expired,
+    tokenExp,
     refresh,
     login,
     logout,
+    resetToken,
     uploadImage,
     uploadText,
     deleteItem,
@@ -426,6 +488,8 @@ export default function SharePool() {
   const [viewer, setViewer] = useState<SharePoolItem | null>(null);
   const [composeOpen, setComposeOpen] = useState(false);
   const [loginError, setLoginError] = useState("");
+  const [resetResult, setResetResult] = useState<{ token: string; expiresAt: number } | null>(null);
+  const [resetting, setResetting] = useState(false);
 
   // Selection State
   const [selectMode, setSelectMode] = useState(false);
@@ -454,6 +518,21 @@ export default function SharePool() {
     const ok = await login(token);
     if (!ok) {
       setLoginError("Invalid token. Please check and try again.");
+    }
+  };
+
+  // Handle token reset
+  const handleResetToken = async () => {
+    if (!confirm("Reset your access token? The current token will stop working immediately.")) return;
+    setResetting(true);
+    try {
+      const issued = await resetToken();
+      setResetResult(issued);
+      showToast("Access token reset", "success");
+    } catch {
+      showToast("Failed to reset token", "error");
+    } finally {
+      setResetting(false);
     }
   };
 
@@ -558,7 +637,7 @@ export default function SharePool() {
     return (
       <div className="container mx-auto px-4 py-8">
         <SEO title="SharePool" description="Share images and text across devices" />
-        <LoginGate onLogin={handleLogin} loading={loading} error={loginError || authError || ""} />
+        <LoginGate onLogin={handleLogin} loading={loading} error={loginError || authError || ""} expired={expired} />
       </div>
     );
   }
@@ -575,7 +654,14 @@ export default function SharePool() {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-gray-900">SharePool</h1>
-            <p className="text-sm text-gray-500">{items.length} items</p>
+            <p className="text-sm text-gray-500">
+              {items.length} items
+              {tokenExp > 0 && (
+                <span className="ml-2 text-xs text-gray-400">
+                  · token valid until {formatTokenExpiry(tokenExp)}
+                </span>
+              )}
+            </p>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -604,6 +690,14 @@ export default function SharePool() {
               Delete ({selected.size})
             </button>
           )}
+          <button
+            onClick={handleResetToken}
+            disabled={resetting}
+            className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg disabled:opacity-50"
+            title="Reset access token"
+          >
+            {resetting ? <Loader2 className="h-5 w-5 animate-spin" /> : <KeyRound className="h-5 w-5" />}
+          </button>
           <button onClick={logout} className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg" title="Logout">
             <LogOut className="h-5 w-5" />
           </button>
@@ -752,6 +846,8 @@ export default function SharePool() {
         onClose={() => setComposeOpen(false)}
         onSubmit={handleCompose}
       />
+
+      <TokenResetModal result={resetResult} onClose={() => setResetResult(null)} showToast={showToast} />
 
       {/* Toasts */}
       <ToastContainer toasts={toasts} removeToast={removeToast} />
