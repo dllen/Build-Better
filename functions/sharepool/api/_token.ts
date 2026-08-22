@@ -42,3 +42,27 @@ export async function issueToken(db: D1Database): Promise<IssuedToken> {
   ]);
   return { token, expiresAt };
 }
+
+// Issues a revocable session row and returns the plaintext token (shown once).
+// Multiple sessions per user are allowed; user_id is NULL for admin-backdoor sessions.
+export async function issueSession(
+  db: D1Database,
+  userId: string | null,
+  isAdmin: boolean
+): Promise<IssuedToken> {
+  const token = generateToken();
+  const hash = await hashToken(token);
+  const now = Date.now();
+  const expiresAt = now + TOKEN_TTL_MS;
+  await db
+    .prepare(
+      "INSERT INTO sessions (token_hash, user_id, is_admin, created_at, expires_at) VALUES (?, ?, ?, ?, ?)"
+    )
+    .bind(hash, userId, isAdmin ? 1 : 0, new Date(now).toISOString(), expiresAt)
+    .run();
+  return { token, expiresAt };
+}
+
+export async function deleteSession(db: D1Database, tokenHash: string): Promise<void> {
+  await db.prepare("DELETE FROM sessions WHERE token_hash = ?").bind(tokenHash).run();
+}
