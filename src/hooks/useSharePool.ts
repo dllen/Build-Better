@@ -98,10 +98,20 @@ export function useSharePool() {
   }, []);
 
   const handleResetToken = useCallback(async (): Promise<TokenResult> => {
-    const issued = await apiResetToken();
-    setTokenExp(issued.expiresAt);
-    setExpired(false);
-    return issued;
+    try {
+      const issued = await apiResetToken();
+      setTokenExp(issued.expiresAt);
+      setExpired(false);
+      return issued;
+    } catch (e) {
+      if (e instanceof AuthError) {
+        logout();
+        setAuthenticated(false);
+        setItems([]);
+        setExpired(true);
+      }
+      throw e;
+    }
   }, []);
 
   const handleUploadImage = useCallback(async (full: Blob, thumb: Blob): Promise<void> => {
