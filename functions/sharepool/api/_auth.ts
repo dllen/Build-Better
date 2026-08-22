@@ -1,4 +1,5 @@
 import type { Env } from "./_env";
+import { hashToken, isExpired } from "./_token";
 
 export function constantTimeEqual(a: string, b: string): boolean {
   if (a.length !== b.length) return false;
@@ -9,14 +10,33 @@ export function constantTimeEqual(a: string, b: string): boolean {
   return diff === 0;
 }
 
-export function canRead(request: Request, env: Env): boolean {
-  return env.DEMO_MODE === "1" || isAuthed(request, env);
+export function extractBearer(request: Request): string {
+  const header = request.headers.get("authorization") || "";
+  const prefix = "Bearer ";
+  if (!header.startsWith(prefix)) return "";
+  return header.slice(prefix.length);
 }
 
-export function isAuthed(request: Request, env: Env): boolean {
+// One-time bootstrap key. ONLY /api/token/initialize may call this.
+export function isBootstrap(request: Request, env: Env): boolean {
   if (!env.AUTH_TOKEN) return false;
-  const h = request.headers.get("authorization") || "";
-  const prefix = "Bearer ";
-  if (!h.startsWith(prefix)) return false;
-  return constantTimeEqual(h.slice(prefix.length), env.AUTH_TOKEN);
+  return constantTimeEqual(extractBearer(request), env.AUTH_TOKEN);
+}
+
+// Regular auth: D1-issued token that exists and has not expired.
+export async function isAuthed(request: Request, env: Env): Promise<boolean> {
+  const token = extractBearer(request);
+  if (!token) return false;
+  const hash = await hashToken(token);
+  const row = await env.SHARE_POOL_DB.prepare(
+    "SELECT expires_at FROM tokens WHERE token_hash = ?"
+  )
+    .bind(hash)
+    .first();
+  if (!row) return false;
+  return !isExpired(Number(row.expires_at));
+}
+
+export async function canRead(request: Request, env: Env): Promise<boolean> {
+  return env.DEMO_MODE === "1" || (await isAuthed(request, env));
 }

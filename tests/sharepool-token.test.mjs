@@ -100,3 +100,84 @@ describe('Token primitives (_token.ts)', () => {
     assert.notStrictEqual(state.rows[0].token_hash, 'old');
   });
 });
+
+// --- Mirrors functions/sharepool/api/_auth.ts glue (cannot import it under Node
+// because it uses extensionless relative imports). Keep in sync. ---
+function ctEqual(a, b) {
+  if (a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return diff === 0;
+}
+function extractBearer(authHeader) {
+  const prefix = 'Bearer ';
+  if (!authHeader || !authHeader.startsWith(prefix)) return '';
+  return authHeader.slice(prefix.length);
+}
+function isBootstrap(authHeader, authToken) {
+  if (!authToken) return false;
+  return ctEqual(extractBearer(authHeader), authToken);
+}
+async function isAuthedMirror(authHeader, db, now = Date.now()) {
+  const token = extractBearer(authHeader);
+  if (!token) return false;
+  const hash = await hashToken(token);
+  const row = await db
+    .prepare('SELECT expires_at FROM tokens WHERE token_hash = ?')
+    .bind(hash)
+    .first();
+  if (!row) return false;
+  return !isExpired(Number(row.expires_at), now);
+}
+
+describe('Auth rules (mirror of _auth.ts)', () => {
+  const AUTH_TOKEN = 'bootstrap-secret';
+
+  it('extractBearer parses Bearer scheme only', () => {
+    assert.strictEqual(extractBearer('Bearer abc'), 'abc');
+    assert.strictEqual(extractBearer('Basic abc'), '');
+    assert.strictEqual(extractBearer(''), '');
+  });
+
+  it('isBootstrap accepts only the exact AUTH_TOKEN', () => {
+    assert.strictEqual(isBootstrap(`Bearer ${AUTH_TOKEN}`, AUTH_TOKEN), true);
+    assert.strictEqual(isBootstrap('Bearer wrong', AUTH_TOKEN), false);
+    assert.strictEqual(isBootstrap('', AUTH_TOKEN), false);
+    assert.strictEqual(isBootstrap(`Bearer ${AUTH_TOKEN}`, ''), false);
+  });
+
+  it('isAuthed accepts a freshly issued token', async () => {
+    const { db } = makeMockDb();
+    const issued = await issueToken(db);
+    assert.strictEqual(await isAuthedMirror(`Bearer ${issued.token}`, db), true);
+  });
+
+  it('isAuthed rejects once expired', async () => {
+    const { db } = makeMockDb();
+    const issued = await issueToken(db);
+    assert.strictEqual(
+      await isAuthedMirror(`Bearer ${issued.token}`, db, issued.expiresAt + 1),
+      false
+    );
+  });
+
+  it('isAuthed rejects the bootstrap AUTH_TOKEN (not a daily token)', async () => {
+    const { db } = makeMockDb();
+    await issueToken(db);
+    assert.strictEqual(await isAuthedMirror(`Bearer ${AUTH_TOKEN}`, db), false);
+  });
+
+  it('isAuthed rejects an unknown token', async () => {
+    const { db } = makeMockDb();
+    await issueToken(db);
+    assert.strictEqual(await isAuthedMirror('Bearer nope', db), false);
+  });
+
+  it('issuing a new token invalidates the previous one', async () => {
+    const { db } = makeMockDb();
+    const first = await issueToken(db);
+    const second = await issueToken(db);
+    assert.strictEqual(await isAuthedMirror(`Bearer ${first.token}`, db), false);
+    assert.strictEqual(await isAuthedMirror(`Bearer ${second.token}`, db), true);
+  });
+});
