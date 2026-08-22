@@ -22,26 +22,15 @@ npx wrangler d1 create share-pool
 
 记下输出的 `database_id`。
 
-### 2. 初始化 Schema
+### 2. 初始化 Schema（应用迁移，创建 `items` 与 `tokens` 表）
 
 ```bash
-npx wrangler d1 execute share-pool --file=functions/shotsync/src/db/schema.sql
+npx wrangler d1 migrations apply share-pool --remote
 ```
 
-或创建 schema.sql 文件，包含以下 CREATE TABLE 语句：
-
-```sql
-CREATE TABLE IF NOT EXISTS share_pool (
-  id TEXT PRIMARY KEY,
-  type TEXT NOT NULL,
-  content TEXT NOT NULL,
-  content_type TEXT,
-  source TEXT,
-  orig_name TEXT,
-  created_at INTEGER NOT NULL,
-  has_thumb INTEGER DEFAULT 0
-);
-```
+迁移文件在 `migrations/` 目录：`0001_init.sql` 创建 `items` 与 `tokens` 表，
+`0002_items_created_index.sql` 建 `created_at` 索引。若 `tokens` 表缺失，
+登录通过后 `initialize`/`reset` 会因 `INSERT INTO tokens` 报 500。
 
 ### 3. 更新 wrangler.toml
 
@@ -65,9 +54,12 @@ openssl rand -hex 24
 ### 5. 配置 Secrets
 
 ```bash
-npx wrangler secret put AUTH_TOKEN
+npx wrangler pages secret put AUTH_TOKEN --project-name build-better
 # 输入上一步生成的 token
 ```
+
+> ⚠️ 必须是 `pages secret`（Pages Functions 读取），不是 `wrangler secret put`（那是 Workers 的 secret）。
+> 若 AUTH_TOKEN 未在 Pages 侧配置，`/api/token/initialize` 会直接返回 401。
 
 ### 6. 部署
 
