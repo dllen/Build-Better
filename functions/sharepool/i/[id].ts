@@ -1,6 +1,6 @@
 import type { Env } from "../api/_env";
-import { err } from "../_shared";
-import { canRead } from "../_auth";
+import { err } from "../api/_shared";
+import { canRead } from "../api/_auth";
 
 export async function onRequestGet(context: {
   request: Request;
@@ -13,7 +13,9 @@ export async function onRequestGet(context: {
 
   const item = await env.SHARE_POOL_DB.prepare(
     "SELECT type, content, content_type FROM items WHERE id = ?"
-  ).bind(params.id).first();
+  )
+    .bind(params.id)
+    .first();
 
   if (!item) return err(404, "not found");
 

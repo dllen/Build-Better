@@ -1,4 +1,4 @@
-import { constantTimeEqual } from "./_crypto";
+import { constantTimeEqual } from "./_auth";
 
 async function hmacSign(msg: string, key: string): Promise<string> {
   const enc = new TextEncoder();
