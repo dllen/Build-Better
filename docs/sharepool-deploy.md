@@ -98,6 +98,14 @@ D1 Database 存储：
 - **分享链接**: 每个内容可以生成 7 天有效的分享链接
 - **批量删除**: 选择模式下可批量删除
 
+## 令牌模型
+
+- `AUTH_TOKEN` 是一次性**引导密钥**，只被 `/api/token/initialize` 接受，不再用于日常读写。
+- 日常读写使用由服务端签发、存于 D1 的令牌（仅存 SHA-256 哈希），**48 小时有效**。
+- 单令牌模型：每次 `initialize`/`reset` 都会让旧令牌立即失效。
+- 忘记/过期时：在登录页输入 `AUTH_TOKEN` 即可重新初始化一个新令牌。
+- 若 `AUTH_TOKEN` 本身也丢失，用 `npx wrangler pages secret put AUTH_TOKEN --project-name build-better` 重设，再重新初始化。
+
 ## API 端点
 
 | 方法 | 路径 | 描述 |
@@ -106,6 +114,8 @@ D1 Database 存储：
 | POST | `/sharepool/api/upload` | 上传图片或文本 |
 | DELETE | `/sharepool/api/img/<id>` | 删除内容 |
 | POST | `/sharepool/api/share/<id>` | 创建分享链接 |
+| POST | `/sharepool/api/token/initialize` | 用 AUTH_TOKEN 初始化，签发 48h 令牌 |
+| POST | `/sharepool/api/token/reset` | 登录态内自助重置，签发新 48h 令牌（旧的立即失效） |
 | GET | `/sharepool/i/<id>` | 获取图片 |
 | GET | `/sharepool/s/<id>?exp=&sig=` | 获取分享内容 |
 
