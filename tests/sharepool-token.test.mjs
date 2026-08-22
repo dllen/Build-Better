@@ -8,6 +8,7 @@ import {
   isExpired,
   issueToken,
 } from '../functions/sharepool/api/_token.ts';
+import { formatTokenExpiry } from '../src/lib/sharepool.ts';
 
 // --- Minimal in-memory D1 mock capturing issued tokens ---
 function makeMockDb(existingRows = []) {
@@ -179,5 +180,16 @@ describe('Auth rules (mirror of _auth.ts)', () => {
     const second = await issueToken(db);
     assert.strictEqual(await isAuthedMirror(`Bearer ${first.token}`, db), false);
     assert.strictEqual(await isAuthedMirror(`Bearer ${second.token}`, db), true);
+  });
+});
+
+describe('formatTokenExpiry (sharepool.ts)', () => {
+  it('returns empty string for falsy expiry', () => {
+    assert.strictEqual(formatTokenExpiry(0), '');
+  });
+
+  it('formats as MM-DD HH:mm in local time', () => {
+    const ts = new Date(2026, 7, 24, 15, 5).getTime(); // month 7 = August
+    assert.strictEqual(formatTokenExpiry(ts), '08-24 15:05');
   });
 });
