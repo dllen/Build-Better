@@ -1,7 +1,7 @@
-import type { Env } from "./_env";
-import { err, json } from "./_shared";
-import { isAuthed } from "./_auth";
-import { signShare, verifyShare } from "./_share";
+import type { Env } from "../_env";
+import { err, json } from "../_shared";
+import { isAuthed } from "../_auth";
+import { signShare, verifyShare } from "../_share";
 
 const SHARE_TTL_MS = 48 * 3600 * 1000;
 

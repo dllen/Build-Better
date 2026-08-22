@@ -1,6 +1,6 @@
-import type { Env } from "./_env";
-import { err } from "./_shared";
-import { canRead } from "./_auth";
+import type { Env } from "../api/_env";
+import { err } from "../_shared";
+import { canRead } from "../_auth";
 
 export async function onRequestGet(context: {
   request: Request;

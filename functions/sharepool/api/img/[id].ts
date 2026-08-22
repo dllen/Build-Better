@@ -1,6 +1,6 @@
-import type { Env } from "./_env";
-import { err } from "./_shared";
-import { isAuthed } from "./_auth";
+import type { Env } from "../_env";
+import { err } from "../_shared";
+import { isAuthed } from "../_auth";
 
 export async function onRequestDelete(context: {
   request: Request;
