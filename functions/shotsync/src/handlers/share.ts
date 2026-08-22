@@ -4,7 +4,7 @@ import { isAuthed } from "../auth";
 import { signShare, verifyShare } from "../share";
 import { getItem } from "./image";
 
-const SHARE_TTL_MS = 7 * 24 * 3600 * 1000;
+const SHARE_TTL_MS = 48 * 3600 * 1000;
 
 export async function handleShareCreate(
   request: Request,
