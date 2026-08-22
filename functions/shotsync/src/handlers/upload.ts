@@ -3,7 +3,7 @@ import { err, json } from "../responses";
 import { isAuthed } from "../auth";
 import { makeId, randSuffix } from "../ids";
 
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+const MAX_FILE_SIZE = 1 * 1024 * 1024; // 1MB
 
 export async function handleUpload(request: Request, env: Env): Promise<Response> {
   if (!isAuthed(request, env)) return err(401, "unauthorized");
@@ -22,7 +22,7 @@ export async function handleUpload(request: Request, env: Env): Promise<Response
   const full = fullEntry as File;
 
   if (full.size > MAX_FILE_SIZE) {
-    return err(413, `file too large: ${Math.round(full.size / 1024 / 1024)}MB (max 10MB)`);
+    return err(413, `file too large: ${Math.round(full.size / 1024)}KB (max 1MB)`);
   }
 
   const mimeType = full.type.split(";")[0].trim().toLowerCase();
