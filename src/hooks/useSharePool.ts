@@ -11,6 +11,10 @@ import {
   login,
   logout,
   isLoggedIn,
+  resetToken as apiResetToken,
+  getTokenExp,
+  AuthError,
+  TokenResult,
 } from "@/lib/sharepool";
 
 export function useSharePool() {
@@ -18,6 +22,8 @@ export function useSharePool() {
   const [loading, setLoading] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [expired, setExpired] = useState(false);
+  const [tokenExp, setTokenExp] = useState<number>(() => getTokenExp());
 
   const refresh = useCallback(async () => {
     if (!authenticated) return;
@@ -27,6 +33,14 @@ export function useSharePool() {
       const data = await listItems(100);
       setItems(data.items);
     } catch (e) {
+      if (e instanceof AuthError) {
+        // Token expired or was revoked: log out and flag the reason.
+        logout();
+        setAuthenticated(false);
+        setItems([]);
+        setExpired(true);
+        return;
+      }
       setError(e instanceof Error ? e.message : "Failed to load items");
     } finally {
       setLoading(false);
@@ -36,15 +50,22 @@ export function useSharePool() {
   // Check initial auth state
   useEffect(() => {
     const checkAuth = async () => {
-      if (isLoggedIn()) {
-        try {
-          const valid = await validateToken();
-          setAuthenticated(valid);
-          if (valid) await refresh();
-        } catch (e) {
-          setError(e instanceof Error ? e.message : "Authentication check failed");
+      if (!isLoggedIn()) return;
+      try {
+        const valid = await validateToken();
+        if (valid) {
+          setAuthenticated(true);
+          setExpired(false);
+          setTokenExp(getTokenExp());
+          await refresh();
+        } else {
+          logout();
           setAuthenticated(false);
+          setExpired(true);
         }
+      } catch (e) {
+        setError(e instanceof Error ? e.message : "Authentication check failed");
+        setAuthenticated(false);
       }
     };
     checkAuth();
@@ -60,7 +81,11 @@ export function useSharePool() {
   const handleLogin = useCallback(async (token: string): Promise<boolean> => {
     const ok = await login(token);
     setAuthenticated(ok);
-    if (ok) await refresh();
+    if (ok) {
+      setExpired(false);
+      setTokenExp(getTokenExp());
+      await refresh();
+    }
     return ok;
   }, [refresh]);
 
@@ -68,6 +93,15 @@ export function useSharePool() {
     logout();
     setAuthenticated(false);
     setItems([]);
+    setExpired(false);
+    setTokenExp(0);
+  }, []);
+
+  const handleResetToken = useCallback(async (): Promise<TokenResult> => {
+    const issued = await apiResetToken();
+    setTokenExp(issued.expiresAt);
+    setExpired(false);
+    return issued;
   }, []);
 
   const handleUploadImage = useCallback(async (full: Blob, thumb: Blob): Promise<void> => {
@@ -98,9 +132,12 @@ export function useSharePool() {
     loading,
     authenticated,
     error,
+    expired,
+    tokenExp,
     refresh,
     login: handleLogin,
     logout: handleLogout,
+    resetToken: handleResetToken,
     uploadImage: handleUploadImage,
     uploadText: handleUploadText,
     deleteItem: handleDelete,
