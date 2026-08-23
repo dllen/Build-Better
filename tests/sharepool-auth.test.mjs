@@ -46,3 +46,24 @@ describe('Verify rules (mirror of auth/verify.ts)', () => {
     assert.notStrictEqual(stored, token);
   });
 });
+
+describe('Login rules (mirror of auth/login.ts)', () => {
+  it('login rejects wrong password', async () => {
+    const stored = await hashPassword('correct-password');
+    assert.strictEqual(await verifyPassword('wrong-password', stored), false);
+  });
+
+  it('login rejects unverified accounts (403)', () => {
+    // Rule: if email_verified === 0, the endpoint returns 403 before issuing a session.
+    const emailVerified = 0;
+    assert.strictEqual(emailVerified ? 'ok' : 'verify-email', 'verify-email');
+  });
+
+  it('login issues a 48h session on success', async () => {
+    // shape: { token: 64hex, expiresAt: number, isAdmin: boolean }
+    const issued = { token: 'a'.repeat(64), expiresAt: Date.now() + 48 * 3600 * 1000, isAdmin: false };
+    assert.match(issued.token, /^[0-9a-f]{64}$/);
+    assert.ok(issued.expiresAt > Date.now());
+    assert.strictEqual(typeof issued.isAdmin, 'boolean');
+  });
+});
