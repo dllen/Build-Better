@@ -3,9 +3,17 @@ import { err, json } from "../_shared";
 import { hashPassword, verifyPassword } from "../_password";
 import { issueSession } from "../_token";
 
-// Precomputed so login always runs PBKDF2, even for unknown emails, avoiding a
-// timing side-channel that would reveal whether an email is registered.
-const DUMMY_PASSWORD_HASH = await hashPassword("dummy-sharepool-password");
+// Lazily computed (and cached) so login always runs PBKDF2, even for unknown
+// emails, avoiding a timing side-channel that would reveal whether an email is
+// registered. Must be deferred into a handler: Workers forbid async I/O and
+// crypto.getRandomValues in global scope.
+let dummyPasswordHashPromise: Promise<string> | null = null;
+function getDummyPasswordHash(): Promise<string> {
+  if (!dummyPasswordHashPromise) {
+    dummyPasswordHashPromise = hashPassword("dummy-sharepool-password");
+  }
+  return dummyPasswordHashPromise;
+}
 
 export async function onRequestPost(context: {
   request: Request;
@@ -34,7 +42,8 @@ export async function onRequestPost(context: {
 
   // Always run PBKDF2 (dummy hash when no such user) and yield a generic 401
   // for both "no such user" and "wrong password".
-  const passwordOk = await verifyPassword(password, row ? row.password_hash : DUMMY_PASSWORD_HASH);
+  const dummyPasswordHash = await getDummyPasswordHash();
+  const passwordOk = await verifyPassword(password, row ? row.password_hash : dummyPasswordHash);
   if (!row || !passwordOk) {
     return err(401, "invalid credentials");
   }
