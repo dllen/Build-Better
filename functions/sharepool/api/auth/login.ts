@@ -32,9 +32,10 @@ export async function onRequestPost(context: {
   if (!email) return err(400, "invalid email");
 
   const row = await env.SHARE_POOL_DB.prepare(
-    "SELECT id, password_hash, email_verified, is_admin FROM users WHERE email = ?"
+    "SELECT id, email, password_hash, email_verified, is_admin FROM users WHERE email = ?"
   ).bind(email).first<{
     id: string;
+    email: string;
     password_hash: string;
     email_verified: number;
     is_admin: number;
@@ -50,5 +51,5 @@ export async function onRequestPost(context: {
   if (!row.email_verified) return err(403, "email not verified");
 
   const issued = await issueSession(env.SHARE_POOL_DB, row.id, !!row.is_admin);
-  return json({ token: issued.token, expiresAt: issued.expiresAt, isAdmin: !!row.is_admin });
+  return json({ token: issued.token, expiresAt: issued.expiresAt, isAdmin: !!row.is_admin, email: row.email });
 }
