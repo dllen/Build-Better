@@ -27,22 +27,6 @@ export function isExpired(expiresAtMs: number, nowMs: number = Date.now()): bool
   return nowMs >= expiresAtMs;
 }
 
-// Replaces the single active token row and returns the plaintext token
-// (shown to the user exactly once).
-export async function issueToken(db: D1Database): Promise<IssuedToken> {
-  const token = generateToken();
-  const hash = await hashToken(token);
-  const now = Date.now();
-  const expiresAt = now + TOKEN_TTL_MS;
-  await db.batch([
-    db.prepare("DELETE FROM tokens"),
-    db
-      .prepare("INSERT INTO tokens (token_hash, created_at, expires_at) VALUES (?, ?, ?)")
-      .bind(hash, new Date(now).toISOString(), expiresAt),
-  ]);
-  return { token, expiresAt };
-}
-
 // Issues a revocable session row and returns the plaintext token (shown once).
 // Multiple sessions per user are allowed; user_id is NULL for admin-backdoor sessions.
 export async function issueSession(

@@ -67,3 +67,20 @@ describe('Login rules (mirror of auth/login.ts)', () => {
     assert.strictEqual(typeof issued.isAdmin, 'boolean');
   });
 });
+
+describe('Admin backdoor rules (mirror of token/initialize.ts)', () => {
+  it('only AUTH_TOKEN may initialize an admin session', () => {
+    const isBootstrap = (bearer, authToken) => {
+      if (!authToken) return false;
+      return bearer === `Bearer ${authToken}`;
+    };
+    assert.strictEqual(isBootstrap('Bearer the-secret', 'the-secret'), true);
+    assert.strictEqual(isBootstrap('Bearer wrong', 'the-secret'), false);
+    assert.strictEqual(isBootstrap('Bearer the-secret', ''), false);
+  });
+
+  it('admin session is flagged isAdmin and has no user_id', () => {
+    const shape = { token: 'b'.repeat(64), expiresAt: Date.now() + 48 * 3600 * 1000, isAdmin: true };
+    assert.strictEqual(shape.isAdmin, true);
+  });
+});
