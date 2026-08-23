@@ -13,7 +13,8 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { useSharePool } from "@/hooks/useSharePool";
-import { SharePoolItem, getImageUrl, formatTokenExpiry, resendVerification, verifyEmail } from "@/lib/sharepool";
+import { AuthForm } from "@/components/auth/AuthForm";
+import { SharePoolItem, getImageUrl, formatTokenExpiry, verifyEmail } from "@/lib/sharepool";
 import { SEO } from "@/components/SEO";
 import { useSearchParams } from "react-router-dom";
 
@@ -43,201 +44,6 @@ function ToastContainer({ toasts, removeToast }: { toasts: Toast[]; removeToast:
           </button>
         </div>
       ))}
-    </div>
-  );
-}
-
-// ============================================================================
-// Login Gate
-// ============================================================================
-type AuthMode = "login" | "register";
-
-function LoginGate({ onLogin, onRegister, onResend, onAdminLogin, loading, error, expired, unverified, verifiedNotice }: {
-  onLogin: (email: string, password: string) => void;
-  onRegister: (email: string, password: string) => Promise<boolean>;
-  onResend: (email: string) => Promise<void>;
-  onAdminLogin: (authToken: string) => Promise<boolean>;
-  loading: boolean;
-  error: string;
-  expired: boolean;
-  unverified: boolean;
-  verifiedNotice: string;
-}) {
-  const [mode, setMode] = useState<AuthMode>("login");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
-  const [notice, setNotice] = useState("");
-  const [resendNotice, setResendNotice] = useState("");
-  const [adminOpen, setAdminOpen] = useState(false);
-  const [authToken, setAuthToken] = useState("");
-  const [adminError, setAdminError] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim() || !password.trim()) return;
-    if (mode === "register" && password !== confirm) {
-      setNotice("Passwords do not match");
-      return;
-    }
-    if (mode === "register") {
-      const ok = await onRegister(email.trim(), password);
-      if (ok) {
-        setMode("login");
-        setNotice("Account created — check your email to verify, then log in.");
-        setPassword("");
-        setConfirm("");
-      }
-    } else {
-      onLogin(email.trim(), password);
-    }
-  };
-
-  const handleResend = async () => {
-    if (!email.trim()) return;
-    setResendNotice("");
-    try {
-      await onResend(email.trim());
-      setResendNotice("Verification email sent — check your inbox.");
-    } catch {
-      setResendNotice("Failed to resend the verification email.");
-    }
-  };
-
-  const handleAdminSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!authToken.trim()) return;
-    setAdminError("");
-    const ok = await onAdminLogin(authToken.trim());
-    if (!ok) setAdminError("Invalid AUTH_TOKEN.");
-  };
-
-  return (
-    <div className="min-h-[60vh] flex items-center justify-center">
-      <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-sm border border-gray-200">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="p-3 rounded-xl bg-blue-100">
-            <ImageIcon className="h-8 w-8 text-blue-600" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">SharePool</h1>
-            <p className="text-sm text-gray-500">Share images and text across devices</p>
-          </div>
-        </div>
-
-        {expired && (
-          <p className="mb-4 text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
-            Your session has expired. Log in again.
-          </p>
-        )}
-
-        {verifiedNotice && (
-          <p className="mb-4 text-sm text-blue-700 bg-blue-50 border border-blue-200 rounded-lg px-3 py-2">
-            {verifiedNotice}
-          </p>
-        )}
-
-        <div className="flex mb-4 border-b">
-          {(["login", "register"] as const).map((m) => (
-            <button
-              key={m}
-              type="button"
-              onClick={() => { setMode(m); setNotice(""); }}
-              className={`flex-1 py-2 text-sm font-medium border-b-2 transition-colors ${
-                mode === m ? "border-blue-600 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700"
-              }`}
-            >
-              {m === "login" ? "Log in" : "Sign up"}
-            </button>
-          ))}
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input
-              id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com" autoFocus
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-            />
-          </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-            <input
-              id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}
-              placeholder={mode === "register" ? "At least 8 characters" : "Your password"}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-            />
-          </div>
-          {mode === "register" && (
-            <div>
-              <label htmlFor="confirm" className="block text-sm font-medium text-gray-700 mb-1">Confirm password</label>
-              <input
-                id="confirm" type="password" value={confirm} onChange={(e) => setConfirm(e.target.value)}
-                placeholder="Re-enter password"
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-              />
-            </div>
-          )}
-          {notice && <p className="text-sm text-blue-600">{notice}</p>}
-
-          {mode === "login" && unverified && (
-            <div className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
-              <p>Email not verified — check your inbox.</p>
-              <button
-                type="button"
-                onClick={handleResend}
-                className="mt-1 text-sm font-medium text-blue-600 hover:underline"
-              >
-                Resend verification email
-              </button>
-              {resendNotice && <p className="mt-1 text-blue-600">{resendNotice}</p>}
-            </div>
-          )}
-
-          {error && !unverified && <p className="text-sm text-red-600">{error}</p>}
-          <button
-            type="submit" disabled={loading || !email.trim() || !password.trim()}
-            className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-          >
-            {loading && <Loader2 className="h-4 w-4 animate-spin" />}
-            {loading ? "Please wait..." : mode === "login" ? "Log in" : "Create account"}
-          </button>
-        </form>
-
-        <div className="mt-6 border-t pt-3">
-          <button
-            type="button"
-            onClick={() => setAdminOpen(!adminOpen)}
-            className="text-xs text-gray-400 hover:text-gray-600"
-          >
-            {adminOpen ? "Hide admin" : "Admin"}
-          </button>
-          {adminOpen && (
-            <form onSubmit={handleAdminSubmit} className="mt-2 flex items-center gap-2">
-              <input
-                type="password"
-                value={authToken}
-                onChange={(e) => setAuthToken(e.target.value)}
-                placeholder="AUTH_TOKEN"
-                className="flex-1 px-3 py-2 rounded-lg border border-gray-300 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-              />
-              <button
-                type="submit"
-                disabled={!authToken.trim()}
-                className="px-3 py-2 bg-gray-800 text-white text-sm rounded-lg hover:bg-gray-700 disabled:opacity-50"
-              >
-                Initialize
-              </button>
-            </form>
-          )}
-          {adminError && <p className="mt-1 text-xs text-red-600">{adminError}</p>}
-        </div>
-
-        <p className="mt-4 text-xs text-gray-500 text-center">
-          Sessions expire after 48 hours. New accounts must verify their email.
-        </p>
-      </div>
     </div>
   );
 }
@@ -546,15 +352,10 @@ export default function SharePool() {
     items,
     loading,
     authenticated,
-    error: authError,
     expired,
-    unverified,
     tokenExp,
     refresh,
-    login,
     logout,
-    register,
-    loginWithAuthToken,
     uploadImage,
     uploadText,
     deleteItem,
@@ -568,7 +369,6 @@ export default function SharePool() {
   const [toastId, setToastId] = useState(0);
   const [viewer, setViewer] = useState<SharePoolItem | null>(null);
   const [composeOpen, setComposeOpen] = useState(false);
-  const [loginError, setLoginError] = useState("");
   const [verifiedNotice, setVerifiedNotice] = useState("");
 
   // Selection State
@@ -615,25 +415,6 @@ export default function SharePool() {
         });
     }
   }, [searchParams, setSearchParams]);
-
-  // Handle login
-  const handleLogin = async (email: string, password: string) => {
-    setLoginError("");
-    const ok = await login(email, password);
-    if (!ok) setLoginError("Invalid credentials. Please check and try again.");
-  };
-
-  // Handle registration (returns true on success so the gate can switch to login)
-  const handleRegister = async (email: string, password: string): Promise<boolean> => {
-    setLoginError("");
-    try {
-      await register(email, password);
-      return true;
-    } catch {
-      setLoginError("Registration failed. Please try again.");
-      return false;
-    }
-  };
 
   // Handle file upload with thumbnail generation
   const handleUpload = async (files: FileList | null) => {
@@ -736,17 +517,11 @@ export default function SharePool() {
     return (
       <div className="container mx-auto px-4 py-8">
         <SEO title="SharePool" description="Share images and text across devices" />
-        <LoginGate
-          onLogin={handleLogin}
-          onRegister={handleRegister}
-          onResend={resendVerification}
-          onAdminLogin={loginWithAuthToken}
-          loading={loading}
-          error={loginError || authError || ""}
-          expired={expired}
-          unverified={unverified}
-          verifiedNotice={verifiedNotice}
-        />
+        <div className="min-h-[60vh] flex items-center justify-center">
+          <div className="w-full max-w-md p-8 bg-card rounded-xl shadow-sm border border-border">
+            <AuthForm notice={verifiedNotice} expired={expired} />
+          </div>
+        </div>
       </div>
     );
   }
