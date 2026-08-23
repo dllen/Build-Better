@@ -129,6 +129,20 @@ export async function logout(): Promise<void> {
   clearToken();
 }
 
+// Admin backdoor: exchange the bootstrap AUTH_TOKEN for a fresh admin session.
+export async function initializeWithAuthToken(authToken: string): Promise<boolean> {
+  const res = await fetch(`${API_BASE}/api/token/initialize`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${authToken}` },
+  });
+  if (!res.ok) return false;
+
+  const data: TokenResult & { isAdmin: boolean } = await res.json();
+  setToken(data.token);
+  setTokenExp(data.expiresAt);
+  return true;
+}
+
 export function isLoggedIn(): boolean {
   return !!getToken();
 }

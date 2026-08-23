@@ -13,8 +13,9 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { useSharePool } from "@/hooks/useSharePool";
-import { SharePoolItem, getImageUrl, formatTokenExpiry } from "@/lib/sharepool";
+import { SharePoolItem, getImageUrl, formatTokenExpiry, resendVerification, verifyEmail } from "@/lib/sharepool";
 import { SEO } from "@/components/SEO";
+import { useSearchParams } from "react-router-dom";
 
 // ============================================================================
 // Toast Notification System
@@ -51,20 +52,28 @@ function ToastContainer({ toasts, removeToast }: { toasts: Toast[]; removeToast:
 // ============================================================================
 type AuthMode = "login" | "register";
 
-function LoginGate({ onLogin, onRegister, loading, error, expired }: {
+function LoginGate({ onLogin, onRegister, onResend, onAdminLogin, loading, error, expired, unverified, verifiedNotice }: {
   onLogin: (email: string, password: string) => void;
-  onRegister: (email: string, password: string) => void;
+  onRegister: (email: string, password: string) => Promise<boolean>;
+  onResend: (email: string) => Promise<void>;
+  onAdminLogin: (authToken: string) => Promise<boolean>;
   loading: boolean;
   error: string;
   expired: boolean;
+  unverified: boolean;
+  verifiedNotice: string;
 }) {
   const [mode, setMode] = useState<AuthMode>("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [notice, setNotice] = useState("");
+  const [resendNotice, setResendNotice] = useState("");
+  const [adminOpen, setAdminOpen] = useState(false);
+  const [authToken, setAuthToken] = useState("");
+  const [adminError, setAdminError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim() || !password.trim()) return;
     if (mode === "register" && password !== confirm) {
@@ -72,10 +81,35 @@ function LoginGate({ onLogin, onRegister, loading, error, expired }: {
       return;
     }
     if (mode === "register") {
-      onRegister(email.trim(), password);
+      const ok = await onRegister(email.trim(), password);
+      if (ok) {
+        setMode("login");
+        setNotice("Account created — check your email to verify, then log in.");
+        setPassword("");
+        setConfirm("");
+      }
     } else {
       onLogin(email.trim(), password);
     }
+  };
+
+  const handleResend = async () => {
+    if (!email.trim()) return;
+    setResendNotice("");
+    try {
+      await onResend(email.trim());
+      setResendNotice("Verification email sent — check your inbox.");
+    } catch {
+      setResendNotice("Failed to resend the verification email.");
+    }
+  };
+
+  const handleAdminSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!authToken.trim()) return;
+    setAdminError("");
+    const ok = await onAdminLogin(authToken.trim());
+    if (!ok) setAdminError("Invalid AUTH_TOKEN.");
   };
 
   return (
@@ -94,6 +128,12 @@ function LoginGate({ onLogin, onRegister, loading, error, expired }: {
         {expired && (
           <p className="mb-4 text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
             Your session has expired. Log in again.
+          </p>
+        )}
+
+        {verifiedNotice && (
+          <p className="mb-4 text-sm text-blue-700 bg-blue-50 border border-blue-200 rounded-lg px-3 py-2">
+            {verifiedNotice}
           </p>
         )}
 
@@ -140,7 +180,22 @@ function LoginGate({ onLogin, onRegister, loading, error, expired }: {
             </div>
           )}
           {notice && <p className="text-sm text-blue-600">{notice}</p>}
-          {error && <p className="text-sm text-red-600">{error}</p>}
+
+          {mode === "login" && unverified && (
+            <div className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+              <p>Email not verified — check your inbox.</p>
+              <button
+                type="button"
+                onClick={handleResend}
+                className="mt-1 text-sm font-medium text-blue-600 hover:underline"
+              >
+                Resend verification email
+              </button>
+              {resendNotice && <p className="mt-1 text-blue-600">{resendNotice}</p>}
+            </div>
+          )}
+
+          {error && !unverified && <p className="text-sm text-red-600">{error}</p>}
           <button
             type="submit" disabled={loading || !email.trim() || !password.trim()}
             className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
@@ -150,7 +205,36 @@ function LoginGate({ onLogin, onRegister, loading, error, expired }: {
           </button>
         </form>
 
-        <p className="mt-6 text-xs text-gray-500 text-center">
+        <div className="mt-6 border-t pt-3">
+          <button
+            type="button"
+            onClick={() => setAdminOpen(!adminOpen)}
+            className="text-xs text-gray-400 hover:text-gray-600"
+          >
+            {adminOpen ? "Hide admin" : "Admin"}
+          </button>
+          {adminOpen && (
+            <form onSubmit={handleAdminSubmit} className="mt-2 flex items-center gap-2">
+              <input
+                type="password"
+                value={authToken}
+                onChange={(e) => setAuthToken(e.target.value)}
+                placeholder="AUTH_TOKEN"
+                className="flex-1 px-3 py-2 rounded-lg border border-gray-300 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+              />
+              <button
+                type="submit"
+                disabled={!authToken.trim()}
+                className="px-3 py-2 bg-gray-800 text-white text-sm rounded-lg hover:bg-gray-700 disabled:opacity-50"
+              >
+                Initialize
+              </button>
+            </form>
+          )}
+          {adminError && <p className="mt-1 text-xs text-red-600">{adminError}</p>}
+        </div>
+
+        <p className="mt-4 text-xs text-gray-500 text-center">
           Sessions expire after 48 hours. New accounts must verify their email.
         </p>
       </div>
@@ -464,11 +548,13 @@ export default function SharePool() {
     authenticated,
     error: authError,
     expired,
+    unverified,
     tokenExp,
     refresh,
     login,
     logout,
     register,
+    loginWithAuthToken,
     uploadImage,
     uploadText,
     deleteItem,
@@ -483,6 +569,7 @@ export default function SharePool() {
   const [viewer, setViewer] = useState<SharePoolItem | null>(null);
   const [composeOpen, setComposeOpen] = useState(false);
   const [loginError, setLoginError] = useState("");
+  const [verifiedNotice, setVerifiedNotice] = useState("");
 
   // Selection State
   const [selectMode, setSelectMode] = useState(false);
@@ -505,6 +592,30 @@ export default function SharePool() {
     setToasts((prev) => prev.filter((t) => t.id !== id));
   }, []);
 
+  // Handle the ?verified=1 / ?token=... query params from the verification flow
+  const [searchParams, setSearchParams] = useSearchParams();
+  useEffect(() => {
+    const verified = searchParams.get("verified");
+    const token = searchParams.get("token");
+    if (verified === "1") {
+      setVerifiedNotice("Email verified — you can now log in.");
+      setSearchParams({}, { replace: true });
+    } else if (token) {
+      verifyEmail(token)
+        .then((ok) => {
+          if (ok) {
+            setVerifiedNotice("Email verified — you can now log in.");
+            setSearchParams({}, { replace: true });
+          } else {
+            setVerifiedNotice("Verification link is invalid or expired.");
+          }
+        })
+        .catch(() => {
+          setVerifiedNotice("Verification link is invalid or expired.");
+        });
+    }
+  }, [searchParams, setSearchParams]);
+
   // Handle login
   const handleLogin = async (email: string, password: string) => {
     setLoginError("");
@@ -512,14 +623,15 @@ export default function SharePool() {
     if (!ok) setLoginError("Invalid credentials. Please check and try again.");
   };
 
-  // Handle registration
-  const handleRegister = async (email: string, password: string) => {
+  // Handle registration (returns true on success so the gate can switch to login)
+  const handleRegister = async (email: string, password: string): Promise<boolean> => {
     setLoginError("");
     try {
       await register(email, password);
-      setLoginError("Account created — check your email to verify, then log in.");
+      return true;
     } catch {
       setLoginError("Registration failed. Please try again.");
+      return false;
     }
   };
 
@@ -624,7 +736,17 @@ export default function SharePool() {
     return (
       <div className="container mx-auto px-4 py-8">
         <SEO title="SharePool" description="Share images and text across devices" />
-        <LoginGate onLogin={handleLogin} onRegister={handleRegister} loading={loading} error={loginError || authError || ""} expired={expired} />
+        <LoginGate
+          onLogin={handleLogin}
+          onRegister={handleRegister}
+          onResend={resendVerification}
+          onAdminLogin={loginWithAuthToken}
+          loading={loading}
+          error={loginError || authError || ""}
+          expired={expired}
+          unverified={unverified}
+          verifiedNotice={verifiedNotice}
+        />
       </div>
     );
   }

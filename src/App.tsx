@@ -207,6 +207,7 @@ export default function App() {
           <Route path="/mermaid-renderer" element={<MermaidRenderer />} />
           <Route path="/short-url" element={<ShortUrlTool />} />
           <Route path="/sharepool" element={<SharePool />} />
+          <Route path="/sharepool/verify" element={<SharePool />} />
           <Route path="/commit-message" element={<CommitMessageGenerator />} />
           <Route path="/gitignore" element={<GitignoreGenerator />} />
 

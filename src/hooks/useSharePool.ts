@@ -12,6 +12,7 @@ import {
   logout,
   isLoggedIn,
   register as apiRegister,
+  initializeWithAuthToken,
   getTokenExp,
   AuthError,
   UnverifiedError,
@@ -23,6 +24,7 @@ export function useSharePool() {
   const [authenticated, setAuthenticated] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [expired, setExpired] = useState(false);
+  const [unverified, setUnverified] = useState(false);
   const [tokenExp, setTokenExp] = useState<number>(() => getTokenExp());
 
   const refresh = useCallback(async () => {
@@ -79,6 +81,7 @@ export function useSharePool() {
   }, [authenticated, refresh]);
 
   const handleLogin = useCallback(async (email: string, password: string): Promise<boolean> => {
+    setUnverified(false);
     try {
       const ok = await login(email, password);
       setAuthenticated(ok);
@@ -90,6 +93,7 @@ export function useSharePool() {
       return ok;
     } catch (e) {
       if (e instanceof UnverifiedError) {
+        setUnverified(true);
         setError("Email not verified. Check your inbox or resend the link.");
       } else {
         setError(e instanceof Error ? e.message : "Login failed");
@@ -101,6 +105,17 @@ export function useSharePool() {
   const handleRegister = useCallback(async (email: string, password: string): Promise<void> => {
     await apiRegister(email, password);
   }, []);
+
+  const handleAdminLogin = useCallback(async (authToken: string): Promise<boolean> => {
+    const ok = await initializeWithAuthToken(authToken);
+    if (ok) {
+      setAuthenticated(true);
+      setExpired(false);
+      setTokenExp(getTokenExp());
+      await refresh();
+    }
+    return ok;
+  }, [refresh]);
 
   const handleLogout = useCallback(async () => {
     await logout();
@@ -139,11 +154,13 @@ export function useSharePool() {
     authenticated,
     error,
     expired,
+    unverified,
     tokenExp,
     refresh,
     login: handleLogin,
     logout: handleLogout,
     register: handleRegister,
+    loginWithAuthToken: handleAdminLogin,
     uploadImage: handleUploadImage,
     uploadText: handleUploadText,
     deleteItem: handleDelete,
