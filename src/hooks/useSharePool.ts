@@ -13,7 +13,7 @@ import {
 } from "@/lib/sharepool";
 
 export function useSharePool() {
-  const { status, expired, login, register, loginWithAuthToken, logout } = useAuth();
+  const { status, expired, login, register, loginWithAuthToken, logout, expire } = useAuth();
   const authenticated = status === "authenticated";
 
   const [items, setItems] = useState<SharePoolItem[]>([]);
@@ -30,7 +30,7 @@ export function useSharePool() {
       setItems(data.items);
     } catch (e) {
       if (e instanceof AuthError) {
-        await logout();
+        await expire();
         setItems([]);
         return;
       }
@@ -38,7 +38,7 @@ export function useSharePool() {
     } finally {
       setLoading(false);
     }
-  }, [authenticated, logout]);
+  }, [authenticated, expire]);
 
   // Sync token expiry display with auth state.
   useEffect(() => {

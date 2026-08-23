@@ -20,6 +20,7 @@ export function AuthForm({
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [unverified, setUnverified] = useState(false);
   const [resendNotice, setResendNotice] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -42,7 +43,7 @@ export function AuthForm({
         setMode("login");
         setPassword("");
         setConfirm("");
-        setError("Account created — check your email to verify, then log in.");
+        setSuccess("Account created — check your email to verify, then log in.");
       } else {
         setError(res.message || "Registration failed");
       }
@@ -106,7 +107,7 @@ export function AuthForm({
           <button
             key={m}
             type="button"
-            onClick={() => { setMode(m); setError(""); setUnverified(false); }}
+            onClick={() => { setMode(m); setError(""); setUnverified(false); setSuccess(""); }}
             className={`flex-1 py-2 text-sm font-medium border-b-2 transition-colors ${
               mode === m ? "border-blue-600 text-blue-600" : "border-transparent text-muted-foreground hover:text-foreground"
             }`}
@@ -154,6 +155,7 @@ export function AuthForm({
           </div>
         )}
 
+        {success && <p className="text-sm text-green-600">{success}</p>}
         {error && <p className="text-sm text-red-600">{error}</p>}
 
         <button

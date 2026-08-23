@@ -32,6 +32,7 @@ interface AuthContextValue {
   register: (email: string, password: string) => Promise<RegisterResult>;
   loginWithAuthToken: (token: string) => Promise<boolean>;
   logout: () => Promise<void>;
+  expire: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -55,8 +56,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       })
       .catch((e) => {
         if (cancelled) return;
-        if (e instanceof AuthError) setExpired(true);
-        apiLogout();
+        if (e instanceof AuthError) {
+          setExpired(true);
+          apiLogout();
+        }
         setUser(null);
         setStatus("anonymous");
       });
@@ -106,8 +109,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setStatus("anonymous");
   }, []);
 
+  const expire = useCallback(async () => {
+    await apiLogout();
+    setUser(null);
+    setExpired(true);
+    setStatus("anonymous");
+  }, []);
+
   const value: AuthContextValue = {
-    status, user, expired, login, register, loginWithAuthToken, logout,
+    status, user, expired, login, register, loginWithAuthToken, logout, expire,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
