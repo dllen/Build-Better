@@ -4,9 +4,12 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LanguageSelector } from "../LanguageSelector";
 import { useTheme } from "@/contexts/ThemeContext";
+import { AuthStatus } from "@/components/auth/AuthStatus";
+import { AuthModal } from "@/components/auth/AuthModal";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
   const { t } = useTranslation();
   const { theme, setTheme } = useTheme();
 
@@ -24,7 +27,8 @@ export function Navbar() {
   const themeLabel = theme === "dark" ? "Dark" : theme === "light" ? "Light" : "System";
 
   return (
-    <nav className="bg-background/80 backdrop-blur-md sticky top-0 z-50 border-b border-border shadow-sm supports-[backdrop-filter]:bg-background/60">
+    <>
+      <nav className="bg-background/80 backdrop-blur-md sticky top-0 z-50 border-b border-border shadow-sm supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center gap-2 font-bold text-xl text-primary hover:opacity-80 transition-opacity">
@@ -174,11 +178,13 @@ export function Navbar() {
               <Settings className="h-4 w-4" />
               <span>{t("app.settings")}</span>
             </Link>
+            <AuthStatus onLoginClick={() => setAuthOpen(true)} />
             <LanguageSelector />
           </div>
 
           <div className="flex items-center gap-2 md:hidden">
             <LanguageSelector />
+            <AuthStatus onLoginClick={() => setAuthOpen(true)} />
             <button className="p-2 text-muted-foreground hover:text-foreground" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               <Menu className="h-6 w-6" />
             </button>
@@ -343,5 +349,7 @@ export function Navbar() {
         </div>
       )}
     </nav>
+    <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
+    </>
   );
 }
