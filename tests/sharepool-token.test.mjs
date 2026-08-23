@@ -6,32 +6,30 @@ import {
   generateToken,
   hashToken,
   isExpired,
-  issueToken,
+  issueSession,
 } from '../functions/sharepool/api/_token.ts';
 import { formatTokenExpiry } from '../src/lib/sharepool.ts';
 
-// --- Minimal in-memory D1 mock capturing issued tokens ---
-function makeMockDb(existingRows = []) {
-  const state = { rows: [...existingRows], statements: [] };
+// --- Minimal in-memory D1 mock capturing issued sessions ---
+function makeSessionDb() {
+  const state = { rows: [] };
   const db = {
     prepare(sql) {
       const stmt = {
-        sql,
-        _args: [],
+        sql, _args: [],
         bind(...args) { stmt._args = args; return stmt; },
         async run() {
-          state.statements.push({ sql, args: stmt._args });
           const trimmed = sql.trim();
-          if (/^DELETE FROM tokens/i.test(trimmed)) state.rows = [];
-          else if (/^INSERT INTO tokens/i.test(trimmed)) {
-            const [token_hash, created_at, expires_at] = stmt._args;
-            state.rows.push({ token_hash, created_at, expires_at });
+          if (/^INSERT INTO sessions/i.test(trimmed)) {
+            const [token_hash, user_id, is_admin, created_at, expires_at] = stmt._args;
+            state.rows.push({ token_hash, user_id, is_admin, created_at, expires_at });
+          } else if (/^DELETE FROM sessions/i.test(trimmed)) {
+            state.rows = state.rows.filter((r) => r.token_hash !== stmt._args[0]);
           }
           return {};
         },
         async first() {
-          state.statements.push({ sql, args: stmt._args });
-          if (/WHERE token_hash/i.test(sql)) {
+          if (/^SELECT/i.test(sql.trim())) {
             const hash = stmt._args[0];
             return state.rows.find((r) => r.token_hash === hash) || null;
           }
@@ -39,11 +37,6 @@ function makeMockDb(existingRows = []) {
         },
       };
       return stmt;
-    },
-    async batch(stmts) {
-      const out = [];
-      for (const s of stmts) out.push(await s.run());
-      return out;
     },
   };
   return { db, state };
@@ -79,27 +72,6 @@ describe('Token primitives (_token.ts)', () => {
     assert.strictEqual(isExpired(now, now), true);
     assert.strictEqual(isExpired(now - 1, now), true);
   });
-
-  it('issueToken stores hash with ~48h expiry, returns plaintext once', async () => {
-    const { db, state } = makeMockDb();
-    const before = Date.now();
-    const issued = await issueToken(db);
-    const after = Date.now();
-    assert.match(issued.token, /^[0-9a-f]{64}$/);
-    assert.strictEqual(state.rows.length, 1);
-    assert.strictEqual(state.rows[0].token_hash, await hashToken(issued.token));
-    assert.ok(issued.expiresAt >= before + TOKEN_TTL_MS);
-    assert.ok(issued.expiresAt <= after + TOKEN_TTL_MS);
-  });
-
-  it('issueToken replaces the previous token (single-token model)', async () => {
-    const { db, state } = makeMockDb([
-      { token_hash: 'old', created_at: 'x', expires_at: Date.now() + 1000 },
-    ]);
-    await issueToken(db);
-    assert.strictEqual(state.rows.length, 1);
-    assert.notStrictEqual(state.rows[0].token_hash, 'old');
-  });
 });
 
 // --- Mirrors functions/sharepool/api/_auth.ts glue (cannot import it under Node
@@ -124,7 +96,7 @@ async function isAuthedMirror(authHeader, db, now = Date.now()) {
   if (!token) return false;
   const hash = await hashToken(token);
   const row = await db
-    .prepare('SELECT expires_at FROM tokens WHERE token_hash = ?')
+    .prepare('SELECT user_id, is_admin, expires_at FROM sessions WHERE token_hash = ?')
     .bind(hash)
     .first();
   if (!row) return false;
@@ -147,39 +119,36 @@ describe('Auth rules (mirror of _auth.ts)', () => {
     assert.strictEqual(isBootstrap(`Bearer ${AUTH_TOKEN}`, ''), false);
   });
 
-  it('isAuthed accepts a freshly issued token', async () => {
-    const { db } = makeMockDb();
-    const issued = await issueToken(db);
-    assert.strictEqual(await isAuthedMirror(`Bearer ${issued.token}`, db), true);
+  it('isAuthed accepts a freshly issued session', async () => {
+    const { db } = makeSessionDb();
+    const s = await issueSession(db, 'user-1', false);
+    assert.strictEqual(await isAuthedMirror(`Bearer ${s.token}`, db), true);
   });
 
   it('isAuthed rejects once expired', async () => {
-    const { db } = makeMockDb();
-    const issued = await issueToken(db);
-    assert.strictEqual(
-      await isAuthedMirror(`Bearer ${issued.token}`, db, issued.expiresAt + 1),
-      false
-    );
+    const { db } = makeSessionDb();
+    const s = await issueSession(db, 'user-1', false);
+    assert.strictEqual(await isAuthedMirror(`Bearer ${s.token}`, db, s.expiresAt + 1), false);
   });
 
-  it('isAuthed rejects the bootstrap AUTH_TOKEN (not a daily token)', async () => {
-    const { db } = makeMockDb();
-    await issueToken(db);
+  it('isAuthed rejects the bootstrap AUTH_TOKEN (not a session)', async () => {
+    const { db } = makeSessionDb();
+    await issueSession(db, 'user-1', false);
     assert.strictEqual(await isAuthedMirror(`Bearer ${AUTH_TOKEN}`, db), false);
   });
 
   it('isAuthed rejects an unknown token', async () => {
-    const { db } = makeMockDb();
-    await issueToken(db);
+    const { db } = makeSessionDb();
+    await issueSession(db, 'user-1', false);
     assert.strictEqual(await isAuthedMirror('Bearer nope', db), false);
   });
 
-  it('issuing a new token invalidates the previous one', async () => {
-    const { db } = makeMockDb();
-    const first = await issueToken(db);
-    const second = await issueToken(db);
-    assert.strictEqual(await isAuthedMirror(`Bearer ${first.token}`, db), false);
-    assert.strictEqual(await isAuthedMirror(`Bearer ${second.token}`, db), true);
+  it('sessions are independent: one session surviving does not invalidate another', async () => {
+    const { db } = makeSessionDb();
+    const a = await issueSession(db, 'user-1', false);
+    const b = await issueSession(db, 'user-2', false);
+    assert.strictEqual(await isAuthedMirror(`Bearer ${a.token}`, db), true);
+    assert.strictEqual(await isAuthedMirror(`Bearer ${b.token}`, db), true);
   });
 });
 

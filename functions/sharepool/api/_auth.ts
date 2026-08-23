@@ -23,18 +23,30 @@ export function isBootstrap(request: Request, env: Env): boolean {
   return constantTimeEqual(extractBearer(request), env.AUTH_TOKEN);
 }
 
-// Regular auth: D1-issued token that exists and has not expired.
-export async function isAuthed(request: Request, env: Env): Promise<boolean> {
+export interface SessionInfo {
+  tokenHash: string;
+  userId: string | null;
+  isAdmin: boolean;
+}
+
+// Regular auth: a valid, unexpired session row. The shared pool is binary
+// (authed or not); userId/isAdmin are surfaced for logout and future use.
+export async function sessionInfo(request: Request, env: Env): Promise<SessionInfo | null> {
   const token = extractBearer(request);
-  if (!token) return false;
+  if (!token) return null;
   const hash = await hashToken(token);
   const row = await env.SHARE_POOL_DB.prepare(
-    "SELECT expires_at FROM tokens WHERE token_hash = ?"
+    "SELECT user_id, is_admin, expires_at FROM sessions WHERE token_hash = ?"
   )
     .bind(hash)
-    .first();
-  if (!row) return false;
-  return !isExpired(Number(row.expires_at));
+    .first<{ user_id: string | null; is_admin: number; expires_at: number }>();
+  if (!row) return null;
+  if (isExpired(Number(row.expires_at))) return null;
+  return { tokenHash: hash, userId: row.user_id, isAdmin: !!row.is_admin };
+}
+
+export async function isAuthed(request: Request, env: Env): Promise<boolean> {
+  return (await sessionInfo(request, env)) !== null;
 }
 
 export async function canRead(request: Request, env: Env): Promise<boolean> {
