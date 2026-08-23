@@ -27,6 +27,13 @@ export class AuthError extends Error {
   }
 }
 
+export class UnverifiedError extends Error {
+  constructor(message = "Email not verified") {
+    super(message);
+    this.name = "UnverifiedError";
+  }
+}
+
 function getToken(): string {
   return localStorage.getItem(TOKEN_KEY) || "";
 }
@@ -70,53 +77,55 @@ export async function validateToken(): Promise<boolean> {
   return res.ok;
 }
 
-// Exchange the one-time bootstrap key (AUTH_TOKEN) for a fresh 48h token.
-async function initializeWithAuthToken(authToken: string): Promise<TokenResult | null> {
-  const res = await fetch(`${API_BASE}/api/token/initialize`, {
+export async function register(email: string, password: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/api/auth/register`, {
     method: "POST",
-    headers: { authorization: `Bearer ${authToken}` },
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ email, password }),
   });
-  if (!res.ok) return null;
-  return res.json();
+  if (res.status === 409) throw new Error("Email already registered");
+  if (!res.ok) throw new Error("Registration failed");
 }
 
-// Two-stage login: try `input` as an issued token first; if that fails,
-// try it as the bootstrap AUTH_TOKEN and initialize a new token.
-export async function login(input: string): Promise<boolean> {
-  setToken(input);
-  let valid = false;
+export async function verifyEmail(token: string): Promise<boolean> {
+  const res = await fetch(`${API_BASE}/api/auth/verify?token=${encodeURIComponent(token)}`);
+  return res.ok;
+}
+
+export async function resendVerification(email: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/api/auth/resend-verification`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ email }),
+  });
+  if (!res.ok) throw new Error("Failed to resend verification");
+}
+
+export async function login(email: string, password: string): Promise<boolean> {
+  const res = await fetch(`${API_BASE}/api/auth/login`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  if (res.status === 403) throw new UnverifiedError();
+  if (res.status === 401) return false;
+  if (!res.ok) throw new Error("Login failed");
+
+  const data: TokenResult & { isAdmin: boolean } = await res.json();
+  setToken(data.token);
+  setTokenExp(data.expiresAt);
+  return true;
+}
+
+export async function logout(): Promise<void> {
   try {
-    valid = await validateToken();
+    await fetch(`${API_BASE}/api/auth/logout`, {
+      method: "POST",
+      headers: authHeaders(),
+    });
   } catch {
-    valid = false;
+    // best-effort: always clear local state even if the network fails
   }
-  if (valid) return true;
-
-  const issued = await initializeWithAuthToken(input).catch(() => null);
-  if (issued) {
-    setToken(issued.token);
-    setTokenExp(issued.expiresAt);
-    return true;
-  }
-
-  clearToken();
-  return false;
-}
-
-export async function resetToken(): Promise<TokenResult> {
-  const res = await fetch(`${API_BASE}/api/token/reset`, {
-    method: "POST",
-    headers: authHeaders(),
-  });
-  throwIfUnauthorized(res);
-  if (!res.ok) throw new Error("Failed to reset token");
-  const issued: TokenResult = await res.json();
-  setToken(issued.token);
-  setTokenExp(issued.expiresAt);
-  return issued;
-}
-
-export function logout(): void {
   clearToken();
 }
 

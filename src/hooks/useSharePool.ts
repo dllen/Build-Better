@@ -11,10 +11,10 @@ import {
   login,
   logout,
   isLoggedIn,
-  resetToken as apiResetToken,
+  register as apiRegister,
   getTokenExp,
   AuthError,
-  TokenResult,
+  UnverifiedError,
 } from "@/lib/sharepool";
 
 export function useSharePool() {
@@ -78,40 +78,36 @@ export function useSharePool() {
     return () => clearInterval(timer);
   }, [authenticated, refresh]);
 
-  const handleLogin = useCallback(async (token: string): Promise<boolean> => {
-    const ok = await login(token);
-    setAuthenticated(ok);
-    if (ok) {
-      setExpired(false);
-      setTokenExp(getTokenExp());
-      await refresh();
+  const handleLogin = useCallback(async (email: string, password: string): Promise<boolean> => {
+    try {
+      const ok = await login(email, password);
+      setAuthenticated(ok);
+      if (ok) {
+        setExpired(false);
+        setTokenExp(getTokenExp());
+        await refresh();
+      }
+      return ok;
+    } catch (e) {
+      if (e instanceof UnverifiedError) {
+        setError("Email not verified. Check your inbox or resend the link.");
+      } else {
+        setError(e instanceof Error ? e.message : "Login failed");
+      }
+      return false;
     }
-    return ok;
   }, [refresh]);
 
-  const handleLogout = useCallback(() => {
-    logout();
+  const handleRegister = useCallback(async (email: string, password: string): Promise<void> => {
+    await apiRegister(email, password);
+  }, []);
+
+  const handleLogout = useCallback(async () => {
+    await logout();
     setAuthenticated(false);
     setItems([]);
     setExpired(false);
     setTokenExp(0);
-  }, []);
-
-  const handleResetToken = useCallback(async (): Promise<TokenResult> => {
-    try {
-      const issued = await apiResetToken();
-      setTokenExp(issued.expiresAt);
-      setExpired(false);
-      return issued;
-    } catch (e) {
-      if (e instanceof AuthError) {
-        logout();
-        setAuthenticated(false);
-        setItems([]);
-        setExpired(true);
-      }
-      throw e;
-    }
   }, []);
 
   const handleUploadImage = useCallback(async (full: Blob, thumb: Blob): Promise<void> => {
@@ -147,7 +143,7 @@ export function useSharePool() {
     refresh,
     login: handleLogin,
     logout: handleLogout,
-    resetToken: handleResetToken,
+    register: handleRegister,
     uploadImage: handleUploadImage,
     uploadText: handleUploadText,
     deleteItem: handleDelete,

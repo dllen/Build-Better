@@ -11,7 +11,6 @@ import {
   Plus,
   Loader2,
   RefreshCw,
-  KeyRound,
 } from "lucide-react";
 import { useSharePool } from "@/hooks/useSharePool";
 import { SharePoolItem, getImageUrl, formatTokenExpiry } from "@/lib/sharepool";
@@ -50,12 +49,33 @@ function ToastContainer({ toasts, removeToast }: { toasts: Toast[]; removeToast:
 // ============================================================================
 // Login Gate
 // ============================================================================
-function LoginGate({ onLogin, loading, error, expired }: { onLogin: (token: string) => void; loading: boolean; error: string; expired: boolean }) {
-  const [token, setToken] = useState("");
+type AuthMode = "login" | "register";
+
+function LoginGate({ onLogin, onRegister, loading, error, expired }: {
+  onLogin: (email: string, password: string) => void;
+  onRegister: (email: string, password: string) => void;
+  loading: boolean;
+  error: string;
+  expired: boolean;
+}) {
+  const [mode, setMode] = useState<AuthMode>("login");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [notice, setNotice] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (token.trim()) onLogin(token.trim());
+    if (!email.trim() || !password.trim()) return;
+    if (mode === "register" && password !== confirm) {
+      setNotice("Passwords do not match");
+      return;
+    }
+    if (mode === "register") {
+      onRegister(email.trim(), password);
+    } else {
+      onLogin(email.trim(), password);
+    }
   };
 
   return (
@@ -73,38 +93,65 @@ function LoginGate({ onLogin, loading, error, expired }: { onLogin: (token: stri
 
         {expired && (
           <p className="mb-4 text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
-            Your token has expired. Enter your AUTH_TOKEN to initialize a new 48-hour token.
+            Your session has expired. Log in again.
           </p>
         )}
 
+        <div className="flex mb-4 border-b">
+          {(["login", "register"] as const).map((m) => (
+            <button
+              key={m}
+              type="button"
+              onClick={() => { setMode(m); setNotice(""); }}
+              className={`flex-1 py-2 text-sm font-medium border-b-2 transition-colors ${
+                mode === m ? "border-blue-600 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              {m === "login" ? "Log in" : "Sign up"}
+            </button>
+          ))}
+        </div>
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="token" className="block text-sm font-medium text-gray-700 mb-1">
-              Access Token
-            </label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <input
-              id="token"
-              type="password"
-              value={token}
-              onChange={(e) => setToken(e.target.value)}
-              placeholder="Access token, or AUTH_TOKEN to initialize"
+              id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com" autoFocus
               className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-              autoFocus
             />
           </div>
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <input
+              id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}
+              placeholder={mode === "register" ? "At least 8 characters" : "Your password"}
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+            />
+          </div>
+          {mode === "register" && (
+            <div>
+              <label htmlFor="confirm" className="block text-sm font-medium text-gray-700 mb-1">Confirm password</label>
+              <input
+                id="confirm" type="password" value={confirm} onChange={(e) => setConfirm(e.target.value)}
+                placeholder="Re-enter password"
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+              />
+            </div>
+          )}
+          {notice && <p className="text-sm text-blue-600">{notice}</p>}
           {error && <p className="text-sm text-red-600">{error}</p>}
           <button
-            type="submit"
-            disabled={loading || !token.trim()}
+            type="submit" disabled={loading || !email.trim() || !password.trim()}
             className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {loading && <Loader2 className="h-4 w-4 animate-spin" />}
-            {loading ? "Signing in..." : "Sign In"}
+            {loading ? "Please wait..." : mode === "login" ? "Log in" : "Create account"}
           </button>
         </form>
 
         <p className="mt-6 text-xs text-gray-500 text-center">
-          Tokens expire after 48 hours. Reset anytime from the header.
+          Sessions expire after 48 hours. New accounts must verify their email.
         </p>
       </div>
     </div>
@@ -408,58 +455,6 @@ function TextComposeModal({ open, onClose, onSubmit }: TextComposeModalProps) {
 }
 
 // ============================================================================
-// Token Reset Result Modal
-// ============================================================================
-function TokenResetModal({ result, onClose, showToast }: { result: { token: string; expiresAt: number } | null; onClose: () => void; showToast: (message: string, type: ToastType) => void }) {
-  if (!result) return null;
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(result.token);
-      showToast("Token copied to clipboard", "success");
-    } catch {
-      showToast("Copy failed — select and copy manually", "error");
-    }
-  };
-
-  return (
-    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onClick={onClose}>
-      <div className="w-full max-w-lg bg-white rounded-xl shadow-xl" onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-lg font-semibold">New Access Token</h2>
-          <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded">
-            <X className="h-5 w-5" />
-          </button>
-        </div>
-        <div className="p-4 space-y-3">
-          <p className="text-sm text-gray-600">
-            Copy this token now — it is shown only once. It is valid until{" "}
-            <span className="font-medium">{formatTokenExpiry(result.expiresAt)}</span> (48 hours).
-          </p>
-          <div className="flex items-center gap-2">
-            <code className="flex-1 px-3 py-2 bg-gray-100 rounded-lg text-sm font-mono break-all">
-              {result.token}
-            </code>
-            <button
-              onClick={handleCopy}
-              className="px-3 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 flex items-center gap-1"
-            >
-              <Check className="h-4 w-4" />
-              Copy
-            </button>
-          </div>
-        </div>
-        <div className="flex justify-end p-4 border-t bg-gray-50 rounded-b-xl">
-          <button onClick={onClose} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-            Done
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ============================================================================
 // Main SharePool Component
 // ============================================================================
 export default function SharePool() {
@@ -473,7 +468,7 @@ export default function SharePool() {
     refresh,
     login,
     logout,
-    resetToken,
+    register,
     uploadImage,
     uploadText,
     deleteItem,
@@ -488,8 +483,6 @@ export default function SharePool() {
   const [viewer, setViewer] = useState<SharePoolItem | null>(null);
   const [composeOpen, setComposeOpen] = useState(false);
   const [loginError, setLoginError] = useState("");
-  const [resetResult, setResetResult] = useState<{ token: string; expiresAt: number } | null>(null);
-  const [resetting, setResetting] = useState(false);
 
   // Selection State
   const [selectMode, setSelectMode] = useState(false);
@@ -513,26 +506,20 @@ export default function SharePool() {
   }, []);
 
   // Handle login
-  const handleLogin = async (token: string) => {
+  const handleLogin = async (email: string, password: string) => {
     setLoginError("");
-    const ok = await login(token);
-    if (!ok) {
-      setLoginError("Invalid token. Please check and try again.");
-    }
+    const ok = await login(email, password);
+    if (!ok) setLoginError("Invalid credentials. Please check and try again.");
   };
 
-  // Handle token reset
-  const handleResetToken = async () => {
-    if (!confirm("Reset your access token? The current token will stop working immediately.")) return;
-    setResetting(true);
+  // Handle registration
+  const handleRegister = async (email: string, password: string) => {
+    setLoginError("");
     try {
-      const issued = await resetToken();
-      setResetResult(issued);
-      showToast("Access token reset", "success");
+      await register(email, password);
+      setLoginError("Account created — check your email to verify, then log in.");
     } catch {
-      showToast("Failed to reset token", "error");
-    } finally {
-      setResetting(false);
+      setLoginError("Registration failed. Please try again.");
     }
   };
 
@@ -637,7 +624,7 @@ export default function SharePool() {
     return (
       <div className="container mx-auto px-4 py-8">
         <SEO title="SharePool" description="Share images and text across devices" />
-        <LoginGate onLogin={handleLogin} loading={loading} error={loginError || authError || ""} expired={expired} />
+        <LoginGate onLogin={handleLogin} onRegister={handleRegister} loading={loading} error={loginError || authError || ""} expired={expired} />
       </div>
     );
   }
@@ -690,14 +677,6 @@ export default function SharePool() {
               Delete ({selected.size})
             </button>
           )}
-          <button
-            onClick={handleResetToken}
-            disabled={resetting}
-            className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg disabled:opacity-50"
-            title="Reset access token"
-          >
-            {resetting ? <Loader2 className="h-5 w-5 animate-spin" /> : <KeyRound className="h-5 w-5" />}
-          </button>
           <button onClick={logout} className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg" title="Logout">
             <LogOut className="h-5 w-5" />
           </button>
@@ -846,8 +825,6 @@ export default function SharePool() {
         onClose={() => setComposeOpen(false)}
         onSubmit={handleCompose}
       />
-
-      <TokenResetModal result={resetResult} onClose={() => setResetResult(null)} showToast={showToast} />
 
       {/* Toasts */}
       <ToastContainer toasts={toasts} removeToast={removeToast} />
