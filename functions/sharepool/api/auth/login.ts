@@ -1,7 +1,11 @@
 import type { Env } from "../_env";
 import { err, json } from "../_shared";
-import { verifyPassword } from "../_password";
+import { hashPassword, verifyPassword } from "../_password";
 import { issueSession } from "../_token";
+
+// Precomputed so login always runs PBKDF2, even for unknown emails, avoiding a
+// timing side-channel that would reveal whether an email is registered.
+const DUMMY_PASSWORD_HASH = await hashPassword("dummy-sharepool-password");
 
 export async function onRequestPost(context: {
   request: Request;
@@ -15,8 +19,9 @@ export async function onRequestPost(context: {
   } catch {
     return err(400, "invalid JSON");
   }
-  const email = (body.email || "").trim().toLowerCase();
-  const password = body.password || "";
+  const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+  const password = typeof body.password === "string" ? body.password : "";
+  if (!email) return err(400, "invalid email");
 
   const row = await env.SHARE_POOL_DB.prepare(
     "SELECT id, password_hash, email_verified, is_admin FROM users WHERE email = ?"
@@ -27,8 +32,10 @@ export async function onRequestPost(context: {
     is_admin: number;
   }>();
 
-  // Generic 401 for both "no such user" and "wrong password".
-  if (!row || !(await verifyPassword(password, row.password_hash))) {
+  // Always run PBKDF2 (dummy hash when no such user) and yield a generic 401
+  // for both "no such user" and "wrong password".
+  const passwordOk = await verifyPassword(password, row ? row.password_hash : DUMMY_PASSWORD_HASH);
+  if (!row || !passwordOk) {
     return err(401, "invalid credentials");
   }
   if (!row.email_verified) return err(403, "email not verified");

@@ -23,8 +23,8 @@ export async function onRequestPost(context: {
     return err(400, "invalid JSON");
   }
 
-  const email = normalizeEmail(body.email || "");
-  const password = body.password || "";
+  const email = normalizeEmail(typeof body.email === "string" ? body.email : "");
+  const password = typeof body.password === "string" ? body.password : "";
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   if (!emailOk) return err(400, "invalid email");
   if (password.length < 8) return err(400, "password too short");
@@ -44,16 +44,15 @@ export async function onRequestPost(context: {
   const origin = new URL(request.url).origin;
   const verifyUrl = `${origin}/sharepool/verify?token=${verifyToken}`;
 
-  if (existing) {
-    await env.SHARE_POOL_DB.prepare(
-      "UPDATE users SET password_hash = ?, verify_token_hash = ?, verify_expires_at = ? WHERE id = ?"
-    ).bind(passwordHash, verifyTokenHash, verifyExpiresAt, existing.id).run();
-  } else {
-    const id = crypto.randomUUID();
-    await env.SHARE_POOL_DB.prepare(
-      "INSERT INTO users (id, email, password_hash, email_verified, is_admin, verify_token_hash, verify_expires_at, created_at) VALUES (?, ?, ?, 0, 0, ?, ?, ?)"
-    ).bind(id, email, passwordHash, verifyTokenHash, verifyExpiresAt, now).run();
-  }
+  const id = crypto.randomUUID();
+  await env.SHARE_POOL_DB.prepare(
+    `INSERT INTO users (id, email, password_hash, email_verified, is_admin, verify_token_hash, verify_expires_at, created_at)
+     VALUES (?, ?, ?, 0, 0, ?, ?, ?)
+     ON CONFLICT(email) DO UPDATE SET
+       password_hash = excluded.password_hash,
+       verify_token_hash = excluded.verify_token_hash,
+       verify_expires_at = excluded.verify_expires_at`
+  ).bind(id, email, passwordHash, verifyTokenHash, verifyExpiresAt, now).run();
 
   await sendEmail(env, buildVerificationEmail(email, verifyUrl));
   return json({ ok: true }, 201);

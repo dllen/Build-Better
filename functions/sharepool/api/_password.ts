@@ -46,20 +46,27 @@ export async function verifyPassword(password: string, stored: string): Promise<
   const parts = stored.split("$");
   if (parts.length !== 4 || parts[0] !== "pbkdf2") return false;
   const iterations = Number(parts[1]);
-  const salt = b64ToBytes(parts[2]);
-  const expected = b64ToBytes(parts[3]);
+  if (!Number.isFinite(iterations) || iterations <= 0) return false;
 
-  const key = await crypto.subtle.importKey(
-    "raw",
-    enc.encode(password),
-    "PBKDF2",
-    false,
-    ["deriveBits"]
-  );
-  const bits = await crypto.subtle.deriveBits(
-    { name: "PBKDF2", hash: "SHA-256", salt, iterations },
-    key,
-    expected.length * 8
-  );
-  return constantTimeEqual(new Uint8Array(bits), expected);
+  try {
+    const salt = b64ToBytes(parts[2]);
+    const expected = b64ToBytes(parts[3]);
+
+    const key = await crypto.subtle.importKey(
+      "raw",
+      enc.encode(password),
+      "PBKDF2",
+      false,
+      ["deriveBits"]
+    );
+    const bits = await crypto.subtle.deriveBits(
+      { name: "PBKDF2", hash: "SHA-256", salt, iterations },
+      key,
+      expected.length * 8
+    );
+    return constantTimeEqual(new Uint8Array(bits), expected);
+  } catch {
+    // Corrupted stored hash (invalid base64, etc.) must not 500 login.
+    return false;
+  }
 }

@@ -13,8 +13,8 @@ export async function onRequestGet(context: {
 
   const hash = await hashToken(token);
   const row = await env.SHARE_POOL_DB.prepare(
-    "SELECT id, verify_expires_at, email_verified FROM users WHERE verify_token_hash = ?"
-  ).bind(hash).first<{ id: string; verify_expires_at: number; email_verified: number }>();
+    "SELECT id, verify_expires_at FROM users WHERE verify_token_hash = ?"
+  ).bind(hash).first<{ id: string; verify_expires_at: number }>();
 
   if (!row) return err(400, "invalid token");
   if (isExpired(Number(row.verify_expires_at))) return err(410, "verification link expired");

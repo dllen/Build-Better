@@ -17,8 +17,7 @@ export async function onRequestPost(context: {
   } catch {
     return err(400, "invalid JSON");
   }
-  const email = (body.email || "").trim().toLowerCase();
-  if (!email) return err(400, "invalid email");
+  const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
 
   const row = await env.SHARE_POOL_DB.prepare(
     "SELECT id, email_verified FROM users WHERE email = ?"

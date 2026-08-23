@@ -6,13 +6,23 @@ export interface EmailMessage {
   html: string;
 }
 
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export function buildVerificationEmail(to: string, verifyUrl: string): EmailMessage {
+  const safeUrl = escapeHtml(verifyUrl);
   return {
     to,
     subject: "Verify your SharePool email",
     html:
       `<p>Welcome to SharePool. Confirm your email address to start sharing:</p>` +
-      `<p><a href="${verifyUrl}">${verifyUrl}</a></p>` +
+      `<p><a href="${safeUrl}">${safeUrl}</a></p>` +
       `<p>If you didn't create an account, you can ignore this email.</p>`,
   };
 }
