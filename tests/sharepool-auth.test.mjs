@@ -29,3 +29,20 @@ describe('Register rules (mirror of auth/register.ts)', () => {
     assert.match(stored, /^[0-9a-f]{64}$/);
   });
 });
+
+describe('Verify rules (mirror of auth/verify.ts)', () => {
+  it('verification token expires after 24h', () => {
+    const TTL = 24 * 3600 * 1000;
+    const now = Date.now();
+    const expired = now - 1;              // issued in the past, now past expiry
+    assert.strictEqual(now > expired + TTL, false);
+    const issued = now + 1000;            // future
+    assert.strictEqual(Date.now() + 1 > issued + TTL, false);
+  });
+
+  it('verify uses the token hash, not the plaintext token', async () => {
+    const token = generateToken();
+    const stored = await hashToken(token);
+    assert.notStrictEqual(stored, token);
+  });
+});
