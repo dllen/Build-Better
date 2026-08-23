@@ -1,5 +1,7 @@
 const TOKEN_KEY = "sharepool_token";
 const TOKEN_EXP_KEY = "sharepool_token_exp";
+const EMAIL_KEY = "sharepool_email";
+const ADMIN_KEY = "sharepool_admin";
 const API_BASE = "/sharepool"; // Proxy to Worker
 
 export interface SharePoolItem {
@@ -55,6 +57,8 @@ function setTokenExp(expiresAt: number): void {
 function clearToken(): void {
   localStorage.removeItem(TOKEN_KEY);
   localStorage.removeItem(TOKEN_EXP_KEY);
+  localStorage.removeItem(EMAIL_KEY);
+  localStorage.removeItem(ADMIN_KEY);
 }
 
 export function formatTokenExpiry(expiresAt: number): string {
@@ -70,6 +74,20 @@ function authHeaders(): HeadersInit {
 
 function throwIfUnauthorized(res: Response): void {
   if (res.status === 401) throw new AuthError();
+}
+
+export function getStoredUser(): { email: string | null; isAdmin: boolean } {
+  return {
+    email: localStorage.getItem(EMAIL_KEY),
+    isAdmin: localStorage.getItem(ADMIN_KEY) === "1",
+  };
+}
+
+export async function fetchMe(): Promise<{ email: string | null; isAdmin: boolean }> {
+  const res = await fetch(`${API_BASE}/api/auth/me`, { headers: authHeaders() });
+  if (res.status === 401) throw new AuthError();
+  if (!res.ok) throw new Error("Failed to fetch user");
+  return res.json();
 }
 
 export async function validateToken(): Promise<boolean> {
@@ -111,9 +129,11 @@ export async function login(email: string, password: string): Promise<boolean> {
   if (res.status === 401) return false;
   if (!res.ok) throw new Error("Login failed");
 
-  const data: TokenResult & { isAdmin: boolean } = await res.json();
+  const data: TokenResult & { isAdmin: boolean; email: string } = await res.json();
   setToken(data.token);
   setTokenExp(data.expiresAt);
+  localStorage.setItem(EMAIL_KEY, data.email);
+  localStorage.setItem(ADMIN_KEY, data.isAdmin ? "1" : "0");
   return true;
 }
 
