@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Mail,
   Copy,
@@ -9,9 +9,12 @@ import {
   Code,
   FileText,
   Loader2,
+  ChevronDown,
+  LayoutTemplate,
 } from "lucide-react";
 import { render as renderEmail, type RenderWarning } from "emailmd";
 import { SEO } from "@/components/SEO";
+import { EMAIL_TEMPLATES, type EmailTemplate } from "@/data/email-templates";
 
 type OutputTab = "html" | "text" | "preview";
 
@@ -42,6 +45,17 @@ Cheers,
 The BuildBetter Team
 `;
 
+const CATEGORY_ORDER = ["Onboarding", "E-Commerce", "Marketing", "Product", "Security", "Analytics", "Billing", "Events", "Feedback"];
+
+function groupTemplatesByCategory(): [string, EmailTemplate[]][] {
+  const groups = new Map<string, EmailTemplate[]>();
+  for (const t of EMAIL_TEMPLATES) {
+    if (!groups.has(t.category)) groups.set(t.category, []);
+    groups.get(t.category)!.push(t);
+  }
+  return CATEGORY_ORDER.filter((c) => groups.has(c)).map((c) => [c, groups.get(c)!]);
+}
+
 export default function EmailMarkdown() {
   const [markdown, setMarkdown] = useState(DEFAULT_MARKDOWN);
   const [html, setHtml] = useState("");
@@ -53,6 +67,24 @@ export default function EmailMarkdown() {
   const [loading, setLoading] = useState(false);
   const [tab, setTab] = useState<OutputTab>("html");
   const [copied, setCopied] = useState<string | null>(null);
+  const [templatesOpen, setTemplatesOpen] = useState(false);
+  const templateRef = useRef<HTMLDivElement>(null);
+
+  // Close template dropdown on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (templateRef.current && !templateRef.current.contains(e.target as Node)) {
+        setTemplatesOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const loadTemplate = useCallback((t: EmailTemplate) => {
+    setMarkdown(t.markdown);
+    setTemplatesOpen(false);
+  }, []);
 
   // Debounced render: 400ms after markdown changes
   useEffect(() => {
@@ -227,12 +259,48 @@ export default function EmailMarkdown() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Input */}
           <div className="space-y-3">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-2 flex-wrap">
               <div className="flex items-center gap-2 font-medium">
                 <FileText className="h-4 w-4" />
                 Markdown
               </div>
-              <span className="text-xs text-gray-500">{markdown.length} chars</span>
+              <div className="flex items-center gap-2">
+                <div className="relative" ref={templateRef}>
+                  <button
+                    onClick={() => setTemplatesOpen((o) => !o)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300
+                               text-sm hover:bg-gray-50"
+                  >
+                    <LayoutTemplate className="h-3.5 w-3.5" />
+                    Templates
+                    <ChevronDown className="h-3 w-3" />
+                  </button>
+                  {templatesOpen && (
+                    <div className="absolute right-0 top-full mt-1 z-20 w-72 rounded-lg border border-gray-200 bg-white shadow-lg max-h-80 overflow-y-auto">
+                      <div className="px-3 py-2 text-xs font-medium text-gray-500 border-b border-gray-100">
+                        Choose a starter template
+                      </div>
+                      {groupTemplatesByCategory().map(([category, templates]) => (
+                        <div key={category}>
+                          <div className="px-3 pt-2 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                            {category}
+                          </div>
+                          {templates.map((t) => (
+                            <button
+                              key={t.id}
+                              onClick={() => loadTemplate(t)}
+                              className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-700"
+                            >
+                              {t.title}
+                            </button>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <span className="text-xs text-gray-500">{markdown.length} chars</span>
+              </div>
             </div>
             <textarea
               className="w-full h-[32rem] rounded-md border border-gray-300 px-3 py-2 font-mono text-sm
@@ -243,7 +311,7 @@ export default function EmailMarkdown() {
               placeholder="# Hello&#10;&#10;Write your email in **Markdown**…"
             />
             <p className="text-xs text-gray-500">
-              Tip: include a YAML frontmatter block with <code>subject</code> /{" "}
+              Tip: pick a <strong>template</strong> above, or include YAML frontmatter with <code>subject</code> /{" "}
               <code>from</code>, and use <code>{"{button}"}</code> for a CTA.
             </p>
           </div>

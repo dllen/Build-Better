@@ -1,0 +1,1082 @@
+export interface EmailTemplate {
+  id: string;
+  title: string;
+  category: string;
+  markdown: string;
+}
+
+export const EMAIL_TEMPLATES: EmailTemplate[] = [
+  {
+    id: "password-reset",
+    title: "Password Reset",
+    category: "Security",
+    markdown: `---
+preheader: "Let's get you back in — link valid for 60 minutes"
+background_color: "#F7F7F8"
+content_color: "#FFFFFF"
+heading_color: "#3F4249"
+body_color: "#5C6470"
+brand_color: "#6366F1"
+button_color: "#6366F1"
+button_text_color: "#FFFFFF"
+card_color: "#F4F4F5"
+border_radius: "8px"
+---
+
+::: header
+![Vault](https://imgs.emailmd.dev/logoipsum-245.png){width="48"}
+:::
+
+# Locked out? No sweat.
+
+Someone (hopefully you) asked to reset the password on this account. Hit the button and you'll be back in business.
+
+[Reset My Password](https://example.com/reset?token=abc123){button width="full"}
+
+::: callout center compact
+:lock: This link expires in **60 minutes** and can only be used once.
+:::
+
+**Wasn't you?** Your password hasn't changed and your account is safe. Still stuck? [support@vaultapp.com](mailto:support@vaultapp.com) has your back.
+
+::: divider color=#E4E4E7 thickness=1
+
+::: footer
+This request came from **San Francisco, CA** (203.0.113.7). If this wasn't you, you can safely ignore it.
+
+**Vault** · [Help Center](https://example.com/help) · [Status](https://example.com/status)
+:::
+`,
+  },
+  {
+    id: "order-confirmation",
+    title: "Order Confirmation",
+    category: "E-Commerce",
+    markdown: `---
+preheader: "Your Monstera is on its way — arriving Feb 15"
+background_color: "#F1EBE1"
+content_color: "#FFFFFF"
+heading_color: "#23201B"
+body_color: "#5D5852"
+brand_color: "#C2410C"
+button_color: "#C2410C"
+button_text_color: "#FFFFFF"
+card_color: "#FAF6EF"
+divider_color: "#EDE5D8"
+border_radius: "12px"
+font_family: "Georgia, 'Times New Roman', serif"
+breaks: true
+---
+
+::: header
+![Rooted](https://imgs.emailmd.dev/rooted_logo.png){width="132"}
+:::
+
+# It's on its way.
+
+Please let your other plants know a new sibling is on the way.
+
+[Track Order](https://example.com/track/RTD-7742){button}
+
+::: steps
+- [x] Ordered: Feb 12 — potted and packed the same afternoon
+- [x] Shipped: Feb 13 — USPS Ground, no signature needed
+- [ ] Arrives: Wednesday, Feb 15
+:::
+
+::: centered
+Order **#RTD-7742** · [View order details](https://example.com/orders/7742)
+:::
+
+---
+
+::: callout
+![Monstera Deliciosa in a ceramic pot](https://images.unsplash.com/photo-1545241047-6083a3684587?w=160&h=160&fit=crop&crop=focalpoint&fp-x=0.62&fp-y=0.4&q=80){width="80" float="left" border-radius="8px"} **Monstera Deliciosa**
+6" ceramic pot · Easy care
+Bright indirect light · Water weekly
+:::
+
+|  |  |
+| :--- | ---: |
+| Monstera Deliciosa, 6" pot | $42.00 |
+| Shipping | Free |
+| **Total** | **$42.00** |
+
+:::: columns gap=0
+::: column 48 bg=#FAF6EF
+**SHIPS TO**
+Sam Reyes
+2201 Alder St, Apt 4
+Portland, OR 97214
+:::
+::: column 4
+::: spacer 8
+:::
+::: column 48 bg=#FAF6EF
+**ARRIVES**
+Wednesday, Feb 15
+USPS Ground
+No signature needed
+:::
+::::
+
+## Common questions
+
+::: accordion
+### Going on vacation?
+We can hold your shipment or shift the window — [reschedule](https://example.com/help/reschedule) before it leaves the greenhouse.
+
+### Gifting to someone else?
+Add a handwritten note and ship to any address with [Send as Gift](https://example.com/help/gifting).
+
+### What if it arrives looking sad?
+Send us a photo within 7 days and we'll ship a replacement — no questions asked.
+:::
+
+::: highlight center compact bg=#F8E2D0 color=#7C2D12
+No porch surprises — [get a text the moment it lands](https://example.com/sms-alerts).
+:::
+
+---
+
+::: footer
+A real plant person reads every reply.
+
+**ROOTED CO.** · 675 Greenhouse Ave · Portland, OR 97201
+[Care Guides](https://example.com/care) · [Unsubscribe](https://example.com/unsub)
+:::
+`,
+  },
+  {
+    id: "newsletter",
+    title: "Monthly Newsletter",
+    category: "Marketing",
+    markdown: `---
+preheader: "We made new stuff. Come look."
+font_family: "ui-monospace, SF Mono, Menlo, Consolas, monospace"
+background_color: "#FFE500"
+content_color: "#FFE500"
+heading_color: "#0A0A0A"
+body_color: "#0A0A0A"
+brand_color: "#0A0A0A"
+button_color: "#0A0A0A"
+button_text_color: "#FFE500"
+card_color: "#FFFFFF"
+border_radius: "0px"
+---
+
+::: highlight compact center bg=#0A0A0A color=#FFE500
+**MOONBEAN MONTHLY · NO. 012 · FRESH ROASTS ONLY**
+:::
+
+![Moonbean](https://imgs.emailmd.dev/moonbean_logo.png){width="110" align="left"}
+
+# NEW DROPS. ZERO DECAF.
+
+::: divider color=#0A0A0A thickness=3
+
+![Coffee bench](https://imgs.emailmd.dev/moonbean_coffee.jpg){width="600" caption="THIS MONTH'S BENCH. ALL HAND-ROASTED."}
+
+::: callout
+## By now, you know Moonbean exists.
+
+Hand-roasted. Farm-direct. You get it. So here's the news: three new single-origins and a cold brew concentrate that might rearrange your entire morning.
+:::
+
+::: highlight compact center bg=#0A0A0A color=#FFE500
+**IN THE BAG**
+:::
+
+:::: columns gap=8
+::: column 15
+# 1
+:::
+::: column 85
+**Ethiopian Yirgacheffe.** Bright. Fruity. The kind of cup that makes you close your eyes.
+:::
+::::
+
+::: divider color=#0A0A0A thickness=3
+
+:::: columns gap=8
+::: column 15
+# 2
+:::
+::: column 85
+**Colombian Huila.** Smooth. Chocolatey. Your 3pm meeting just got better.
+:::
+::::
+
+::: divider color=#0A0A0A thickness=3
+
+:::: columns gap=8
+::: column 15
+# 3
+:::
+::: column 85
+**Sumatra Mandheling.** Bold. Earthy. Doesn't apologize.
+:::
+::::
+
+::: divider color=#0A0A0A thickness=3
+
+:::: columns gap=8
+::: column 15
+# 4
+:::
+::: column 85
+**Cold Brew Concentrate.** Mix it. Dilute it. Pour it over ice cream. We don't judge.
+:::
+::::
+
+::: highlight compact center bg=#0A0A0A color=#FFE500
+**FREE STICKERS. EVERY ORDER. WE LIKE YOU.**
+:::
+
+[SHOP MOONBEAN →](https://example.com/shop){button width="full"}
+
+::: highlight compact center bg=#0A0A0A color=#FFE500
+**FOLLOW US**
+:::
+
+::: social
+- [Instagram](https://instagram.com/moonbean)
+- [X](https://x.com/moonbean)
+- [YouTube](https://youtube.com/@moonbean)
+:::
+
+::: divider color=#0A0A0A thickness=3
+
+::: footer
+**MOONBEAN COFFEE CO.** · SMALL BATCH. BIG ENERGY.
+
+(c) 2026 Moonbean Coffee Co. · 42 Roaster Lane · Portland, OR 97201
+
+[Unsubscribe](https://example.com/unsub)
+:::
+`,
+  },
+  {
+    id: "monthly-report",
+    title: "Monthly Report",
+    category: "Analytics",
+    markdown: `---
+preheader: "March at a glance — $48,200 in sales, your best month yet"
+background_color: "#F2F6F5"
+content_color: "#FFFFFF"
+heading_color: "#0F241D"
+body_color: "#4B5A55"
+brand_color: "#0F766E"
+button_color: "#0F766E"
+button_text_color: "#FFFFFF"
+card_color: "#EDF5F3"
+divider_color: "#E0EAE7"
+border_radius: "10px"
+---
+
+::: header
+### Counter
+:::
+
+# March, in numbers.
+
+Your best month since Wildflower opened — and the first one where returning customers outspent new ones.
+
+::: stats
+- Sales: $48,200 (+12%)
+- Orders: 612 (+8%)
+- Average order: $78.75 (+3.7%)
+- Refunds: 1.4% (-0.6pt) {good=down}
+:::
+
+::: sparkline
+Weekly sales, this quarter: 7,200 8,100 7,600 9,400 8,800 10,200 9,600 11,100 9,800 11,400 12,600 14,400
+March closed four weeks up in a row. That has not happened before.
+:::
+
+[Open your dashboard](https://example.com/dashboard){button width="full"}
+
+## Where it came from
+
+::: chart
+- Storefront: $21,400
+- In person: $16,900
+- Instagram: $6,300
+- Wholesale: $3,600
+:::
+
+Instagram is small but it doubled, and it brings the highest average order of the four.
+
+::: divider
+
+## Also worth knowing
+
+::: trend
+Returning customers: 214, 248, 266, 299
+:::
+
+::: trend good=down
+Abandoned carts: 340, 318, 296, 271
+:::
+
+::: trend
+Email signups: 210, 245, 260, 312
+:::
+
+::: divider
+
+## Your 2026 goal
+
+::: progress max=$250,000
+Earned so far: $128,400
+Hold March's pace and you clear it in early October.
+:::
+
+## How shoppers rated you
+
+::: rating
+- Product quality: 4.8
+- Support: 4.6
+- Shipping speed: 4.2
+
+Across 214 reviews left in March.
+:::
+
+::: callout
+:bulb: **Shipping speed is your softest number.** Three of the four one-star reviews last month said the same thing. [Turn on same-day pickup](https://example.com/settings/pickup) and it stops being a queue.
+:::
+
+::: divider
+
+::: footer
+**Counter** · Payments and storefronts for small shops
+
+You get this because you run **Wildflower Provisions**. [Change what lands here](https://example.com/prefs) · [Turn monthly reports off](https://example.com/unsub)
+:::
+`,
+  },
+  {
+    id: "invoice",
+    title: "Invoice",
+    category: "Billing",
+    markdown: `---
+preheader: "Invoice #NEB-2026-0217 — $65.00 due March 17"
+background_color: "#F6F5FB"
+content_color: "#FFFFFF"
+heading_color: "#211A3E"
+body_color: "#524D63"
+brand_color: "#7C3AED"
+button_color: "#7C3AED"
+button_text_color: "#FFFFFF"
+card_color: "#F7F5FC"
+border_radius: "8px"
+breaks: true
+---
+
+::: header
+### Nebula
+:::
+
+# Invoice
+
+#NEB-2026-0217 · February 2026
+
+::: stats columns=3 size=20 gap=8
+- Amount due: $65.00
+- Due date: Mar 17, 2026
+- Status: Unpaid
+:::
+
+[Pay This Invoice](https://example.com/invoices/217/pay){button width="full"}
+
+::: centered
+[Download PDF](https://example.com/invoices/217/pdf)
+:::
+
+| | |
+|:---|---:|
+| Pro Plan — Monthly | $29.00 |
+| Team Seats × 3 | $27.00 |
+| API calls × 12,430 | $9.00 |
+
+:::: columns gap=0
+::: column 93 right color=#6E6889
+Total due March 17
+
+### $65.00
+:::
+::: column 7
+:::
+::::
+
+:::: columns gap=0
+::: column 49 bg=#F7F5FC compact
+**BILLED TO**
+
+Jamie Chen
+jamie@example.com
+:::
+::: column 2
+:::
+::: column 49 bg=#F7F5FC compact
+**PAYMENT METHOD**
+
+Visa ···· 4242
+[Update card](https://example.com/billing)
+:::
+::::
+
+Questions about this bill, or need to change your plan? Just reply to this email — our billing team answers within a few hours.
+
+::: divider color=#ECEAF4 thickness=1
+
+::: footer
+**Nebula Inc.** · 800 Cloud Ave, San Francisco, CA 94107
+
+[Billing Portal](https://example.com/billing) · [Unsubscribe](https://example.com/unsub)
+:::
+`,
+  },
+  {
+    id: "welcome",
+    title: "Welcome Email",
+    category: "Onboarding",
+    markdown: `---
+preheader: "Your next adventure starts now"
+theme: dark
+background_color: "#050607"
+content_color: "#101113"
+heading_color: "#FFFFFF"
+body_color: "#A6ABB5"
+brand_color: "#00F7A4"
+button_color: "#00F7A4"
+button_text_color: "#050607"
+card_color: "#1A1C1F"
+border_radius: "12px"
+---
+
+::: header
+![StageDive](https://imgs.emailmd.dev/logoipsum-363.png){width="90"}
+:::
+
+::: hero https://imgs.emailmd.dev/stagedive_hero.jpg color=#FFFFFF bg=#101113
+**YOU'RE ON THE LIST**
+
+# Let's get you in the door.
+:::
+
+[Find something tonight](https://example.com/tonight){button border-radius="999px"}
+
+::: centered
+We built StageDive for people who'd rather *be there* than scroll past it — every show, every game, one tap from the door.
+:::
+
+::: spacer 8
+
+## Three moves and you're set
+
+::: steps gap=20
+1. Follow your first artist
+
+   Tell us who you love. We ping you the second their tickets drop — before anyone else. [Pick your artists →](https://example.com/artists)
+2. Preview your seat
+
+   Check the exact view from any seat in the venue before you commit a dollar. [Try the seat preview →](https://example.com/seatview)
+3. Walk in with your phone
+
+   Your ticket lives in the app. No printing, no will-call line, no stress. [Get the app →](https://example.com/app)
+:::
+
+::: centered
+[Browse everything happening tonight →](https://example.com/explore)
+:::
+
+::: spacer 8
+
+::: highlight center bg=#00F7A4 color=#050607
+**Real tickets. Real prices. Zero surprises.**
+
+We check every source so you never overpay. Promise.
+:::
+
+::: centered
+Questions? Just reply to this email — a real human will answer.
+:::
+
+::: divider color=#26272B
+
+::: social
+- [X](https://x.com/stagedive)
+- [Instagram](https://www.instagram.com/stagedive)
+- [YouTube](https://www.youtube.com/@stagedive)
+:::
+
+::: footer
+Get the app: [iOS](https://example.com/ios) · [Android](https://example.com/android) · [Web](https://example.com/web)
+
+StageDive HQ · 123 Market St · San Francisco, CA 94105
+
+[Unsubscribe](https://example.com/unsub) · [Preferences](https://example.com/prefs)
+:::
+`,
+  },
+  {
+    id: "review-roundup",
+    title: "Review Roundup",
+    category: "Marketing",
+    markdown: `---
+preheader: "Our customers said WHAT?"
+background_color: "#FF90E8"
+content_color: "#FF90E8"
+heading_color: "#0A0A0A"
+body_color: "#231F20"
+brand_color: "#0A0A0A"
+button_color: "#0A0A0A"
+button_text_color: "#FF90E8"
+card_color: "#FFFFFF"
+border_radius: "16px"
+---
+
+::: header
+![Chunk](https://imgs.emailmd.dev/chunk_logo.png){width="140"}
+:::
+
+# :star: Proudly overrated :star:
+
+Let's address the elephant in the room. Someone named Derek left us a 5-star review calling our Peanut Crunch bar ==life-changing.==
+
+**Derek. It's a protein bar.** We appreciate the enthusiasm, but let's keep expectations realistic.
+
+![Chunk bars on a hot magenta backdrop](https://imgs.emailmd.dev/chunk_bars.jpg){width="600" border-radius="16px"}
+
+::: centered
+That said, we looked into it, and Derek might be onto something.
+:::
+
+::: hero bg=#0A0A0A color=#FF90E8
+:star: :star: :star: :star: :star:
+
+## "tastes like a candy bar but healthy"
+
+No it doesn't, Sarah. It tastes like oats, whey, and responsible decisions. But we're flattered.
+:::
+
+We would never claim to taste like candy. Candy doesn't have 22g of protein, and candy doesn't judge you for eating three.
+
+[SHOP RESPONSIBLE DECISIONS](https://example.com/shop){button border-radius="999px"}
+
+::: rating color=#0A0A0A track=#F5B9E4
+- Taste: 4.8
+- Texture: 4.6
+- Value: 4.1
+- Resembles candy: 1.2
+
+2,410 reviews. Derek's counted once.
+:::
+
+::: centered
+Now that we've set the record straight, here are some *less* dramatic reviews:
+:::
+
+:::: columns
+::: column 48 bg=#FFFFFF center valign=middle
+:star: :star: :star: :star: :star:
+
+"Bought these for my gym bag. They never made it to the gym."
+
+— **Marcus**
+:::
+::: column 4
+:::
+::: column 48 bg=#FFFFFF center valign=middle
+:star: :star: :star: :star: :star:
+
+"My kids think it's dessert. I'm not correcting them."
+
+— **Priya**
+:::
+::::
+
+::: highlight center bg=#0A0A0A color=#FFE500
+★ "When are you going to stop sending emails and make a maple flavor?" — **Mom**
+:::
+
+::: callout center spacious
+Fine. Keep your eyes peeled for **Maple Crunch**, coming next month. Yes, Mom. We listened.
+
+**[TRY CHUNK →](https://example.com/shop)**
+:::
+
+::: footer
+**CHUNK CO.** Unreasonably good protein bars.
+
+© 2026 Chunk Co. · 18 Granola Way · Austin, TX 78701
+
+[Too many emails? Snooze for 2 weeks.](https://example.com/snooze) · [Unsubscribe](https://example.com/unsub)
+:::
+`,
+  },
+  {
+    id: "rate-support",
+    title: "Rate Your Support",
+    category: "Feedback",
+    markdown: `---
+preheader: "One question. Ten seconds. Be honest."
+theme: dark
+background_color: "#0B0C0D"
+content_color: "#161718"
+heading_color: "#FFFFFF"
+body_color: "#A6A6AD"
+brand_color: "#FF6B6B"
+button_color: "#FF6B6B"
+button_text_color: "#1A0B0B"
+card_color: "#202124"
+border_radius: "10px"
+---
+
+::: header
+![Pager](https://imgs.emailmd.dev/logoipsum-412.png){width="120"}
+:::
+
+::: highlight center compact bg=#FF6B6B color=#1A0B0B
+**TICKET #PGR-7217 · RESOLVED**
+:::
+
+::: spacer 48
+
+::: centered
+# So… how'd we do?
+
+Our team thinks that chat went *great*. They would say that — so we're asking you, Casey.
+:::
+
+::: spacer 16
+
+:::: columns gap=12
+::: column center color=#FFFFFF
+[😍](https://example.com/rate/5){button width="full"}
+
+**Chef's kiss**
+:::
+::: column center color=#FFFFFF
+[😐](https://example.com/rate/3){button color="#26272B" width="full"}
+
+**Middle of the road**
+:::
+::: column center color=#FFFFFF
+[😩](https://example.com/rate/1){button color="#26272B" width="full"}
+
+**We need to talk**
+:::
+::::
+
+::: spacer 48
+
+::: callout
+💬 **Got more to say?** Hit reply — a real human reads every word, and your verdict decides who gets cake on Friday.
+:::
+
+::: divider color=#26272B
+
+::: footer
+**Pager** · Infra that ships while you sleep.
+
+[Status](https://example.com/status) · [Docs](https://example.com/docs) · [Unsubscribe](https://example.com/unsub)
+:::
+`,
+  },
+  {
+    id: "confirm-email",
+    title: "Confirm Email",
+    category: "Onboarding",
+    markdown: `---
+preheader: "Your code: DFY-X7U — valid for 10 minutes"
+theme: dark
+background_color: "#0B0B0D"
+content_color: "#151517"
+heading_color: "#EDEDEF"
+body_color: "#A1A1AA"
+brand_color: "#8B95F6"
+card_color: "#232327"
+border_radius: "10px"
+---
+
+::: header
+![Logoipsum](https://imgs.emailmd.dev/logoipsum-388.png){width="200"}
+:::
+
+# Confirm your email address
+
+Enter this code in your open browser window and we'll get you signed in.
+
+::: callout center
+# DFY-X7U
+:::
+
+This code expires in 10 minutes. If you didn't request it, you can safely ignore this email.
+
+::: divider color=#2A2A2E thickness=1
+
+::: spacer 16
+
+::: footer
+![Logoipsum](https://imgs.emailmd.dev/logoipsum-389.png){width="48"}
+
+Acme Inc. · 123 Main St · [Unsubscribe](https://example.com/unsub)
+
+![LinkedIn](https://imgs.emailmd.dev/linkedin_negative.png){width=24} ![GitHub](https://imgs.emailmd.dev/github_negative.png){width=24} ![Discord](https://imgs.emailmd.dev/discord_negative.png){width=24}
+:::
+`,
+  },
+  {
+    id: "release-notes",
+    title: "Release Notes",
+    category: "Product",
+    markdown: `---
+preheader: "Nebula CLI 2.4 — deploy previews, rollbacks, and a faster cold start"
+theme: dark
+background_color: "#0A0A0C"
+content_color: "#141416"
+heading_color: "#F7F8F8"
+body_color: "#A6ABB5"
+brand_color: "#A78BFA"
+button_color: "#A78BFA"
+button_text_color: "#0B0713"
+card_color: "#1E1E22"
+border_radius: "10px"
+---
+
+::: header
+### Nebula
+:::
+
+::: hero bg=#7C3AED color=#FFFFFF
+**CHANGELOG · JULY 2026**
+
+# Nebula CLI 2.4
+
+Deploy previews, one-command rollbacks, and a cold start that's 40% less cold.
+:::
+
+The release you kept opening GitHub issues about — the three most-requested features, shipped in one go.
+
+[Read the full changelog](https://example.com/changelog/2.4){button}
+
+## Deploy previews, no dashboard required
+
+Every branch gets a shareable preview URL straight from the CLI — or from the SDK if you'd rather script it:
+
+\`\`\`js
+import { nebula } from "@nebula/sdk";
+
+const preview = await nebula.deploy({
+  branch: "feat/checkout",
+  env: "preview",
+});
+
+console.log(preview.url);
+\`\`\`
+
+::: spacer 16
+
+::: divider color=#26272B
+
+## Rollbacks in one command
+
+Shipped a bug at 4:59 on a Friday? We've been there:
+
+\`\`\`bash
+nebula rollback --to v2.3.1
+\`\`\`
+
+Traffic shifts back in seconds, and the bad deploy stays archived for the postmortem.
+
+::: spacer 16
+
+::: divider color=#26272B
+
+## A cold start that's 40% less cold
+
+::: chart max=520
+Cold start, p50 across every region — lower is better.
+
+- Nebula 2.3: 420ms {color=#4B4B55}
+- Nebula 2.4: 250ms
+:::
+
+Same runtime, same regions. We just stopped re-reading the bundle on every boot.
+
+::: spacer 16
+
+::: divider color=#26272B
+
+::: spacer 16
+
+:::: columns
+::: column
+**Also in 2.4**
+
+- Preview URLs on forked pull requests
+- \`--json\` output on every command
+- Log tailing across regions
+:::
+::: column
+**Coming in 2.5**
+
+- Edge cron jobs
+- Secrets sync from your vault
+- Dashboard dark mode, obviously
+:::
+::::
+
+::: accordion
+### Breaking changes
+\`nebula env pull\` now writes to \`.env.local\` instead of \`.env\`. If your scripts read the old path, update them before upgrading.
+
+### How do I upgrade?
+Run \`npm i -g @nebula/cli\` — config and login sessions carry over automatically.
+:::
+
+[Upgrade to 2.4](https://example.com/docs/upgrade){button width="full"}
+
+::: social
+- [GitHub](https://github.com/nebula)
+- [X](https://x.com/nebula)
+- [YouTube](https://youtube.com/@nebula)
+:::
+
+::: footer
+**Nebula Inc.** · 800 Cloud Ave, San Francisco, CA 94107
+
+You're getting this because you subscribed to release notes.
+
+[Unsubscribe](https://example.com/unsub) · [All releases](https://example.com/changelog)
+:::
+`,
+  },
+  {
+    id: "event-invite",
+    title: "Event Invite",
+    category: "Events",
+    markdown: `---
+preheader: "Two days, one stage, zero fluff — join us June 11–12"
+background_color: "#F4F4F5"
+content_color: "#FFFFFF"
+heading_color: "#18181B"
+body_color: "#3F3F46"
+brand_color: "#4F46E5"
+button_color: "#4F46E5"
+button_text_color: "#FFFFFF"
+secondary_color: "#FFFFFF"
+secondary_text_color: "#FFFFFF"
+card_color: "#EEF2FF"
+divider_color: "#E4E4E7"
+border_radius: "10px"
+---
+
+::: hero https://wsrv.nl/?url=picsum.photos/seed/stage/1200/600&filt=duotone&start=1e1b4b&stop=4f46e5 bg=#4F46E5 color=#FFFFFF
+**JUNE 11–12 · PORTLAND, OR + STREAMED EVERYWHERE**
+
+# Assemble 2026
+
+No vendor keynotes. No "synergy." Two days of engineers showing their work.
+
+[Save Your Seat](https://example.com/register){button.secondary}
+:::
+
+::: stats center columns=3
+- Days: 2
+- Talks: 28
+- Builders: 800
+:::
+
+You build things for a living. So does everyone else in the room — every talk comes from a practitioner who shipped it, broke it, or wrote the postmortem.
+
+## The shape of it
+
+::: timeline
+- Morning: **Day 1** systems that survived · **Day 2** live incident reviews
+- Afternoon: **Day 1** hands-on workshops · **Day 2** the hallway track, formalized
+- Evening: **Day 1** food carts and demo night · **Day 2** the closing show
+:::
+
+## Pick your track
+
+:::: columns
+::: column 48 bg=#EEF2FF
+**Build track**
+
+Schema migrations at scale, monorepo costs, and one very honest postmortem.
+:::
+::: column 4
+:::
+::: column 48 bg=#EEF2FF
+**Grow track**
+
+Staff-engineer skills, saying no politely, and teams that ship without burnout.
+:::
+::::
+
+::: accordion
+### Is there a virtual ticket?
+Yes — every talk streams live and lands in your library the same day, captioned.
+
+### What's the refund policy?
+Full refund until May 15, and you can transfer your ticket to a teammate anytime.
+
+### Can my company sponsor?
+Three booths left. Reply to this email and we'll send the sponsor kit.
+:::
+
+::: highlight center
+**Early-bird pricing ends April 30** — after that, tickets go up $150.
+:::
+
+[Save Your Seat](https://example.com/register){button width="full"}
+
+::: footer
+**Assemble Conf** · 121 SE Main St, Portland, OR
+
+You signed up for event updates at [assembleconf.com](https://example.com).
+
+[Unsubscribe](https://example.com/unsub)
+:::
+`,
+  },
+  {
+    id: "abandoned-cart",
+    title: "Abandoned Cart",
+    category: "E-Commerce",
+    markdown: `---
+preheader: "Your Monstera is still waiting by the door"
+background_color: "#F8EDE4"
+content_color: "#FFFFFF"
+heading_color: "#23201B"
+body_color: "#5D5852"
+brand_color: "#C2410C"
+button_color: "#1F4030"
+button_text_color: "#F3EDE2"
+card_color: "#F6EFE6"
+border_radius: "12px"
+font_family: "Georgia, 'Times New Roman', serif"
+---
+
+::: header
+![Rooted](https://imgs.emailmd.dev/rooted_logo.png){width="150"}
+:::
+
+# You left someone behind.
+
+Your cart has been sitting in the greenhouse since Tuesday. The Monstera is being very patient about it. That's kind of its whole thing.
+
+:::: columns
+::: column 45
+![Monstera Deliciosa](https://images.unsplash.com/photo-1545241047-6083a3684587?w=600&h=740&fit=crop&q=80){caption="Monstera Deliciosa · 6-inch ceramic pot" border-radius="12px"}
+:::
+::: column 55 valign=middle
+**Monstera Deliciosa**
+
+Easy care · Bright indirect light
+
+**$42.00**
+
+[Finish Checkout](https://example.com/cart){button}
+:::
+::::
+
+::: progress max=$50
+Cart total: $42.00
+$8 to go — orders over $50 ship free.
+:::
+
+::: highlight center bg=#1F4030 color=#F3EDE2
+**Carts release after 7 days** — plants sell out faster than we can repot them.
+:::
+
+::: centered
+Not sure it'll survive your apartment's lighting? Just reply and describe the room — a real plant person will tell you honestly.
+:::
+
+::: footer
+**ROOTED CO.**
+675 Greenhouse Ave · Portland, OR 97201
+
+You're getting this because you left items in your cart at [rooted.co](https://example.com).
+
+[Unsubscribe](https://example.com/unsub)
+:::
+`,
+  },
+  {
+    id: "product-announcement",
+    title: "Product Announcement",
+    category: "Product",
+    markdown: `---
+preheader: "Offline Everything is here — maps, routes, and GPS that work with zero bars"
+background_color: "#FAF6F0"
+content_color: "#FFFFFF"
+heading_color: "#1C1917"
+body_color: "#57534E"
+brand_color: "#B45309"
+button_color: "#B45309"
+button_text_color: "#FFFFFF"
+card_color: "#FDF1DF"
+divider_color: "#EFE7DA"
+border_radius: "10px"
+---
+
+::: header
+### ATLAS
+:::
+
+::: hero https://wsrv.nl/?url=picsum.photos/seed/atlas/1200/700&filt=duotone&start=451a03&stop=b45309 bg=#78350F color=#FFFFFF
+**NEW · OFFLINE EVERYTHING**
+
+# The trail doesn't have bars.
+
+Now Atlas doesn't need them either.
+:::
+
+Download any region before you leave the driveway — full topo maps, trail routes, and live GPS that keep working when your signal doesn't.
+
+[Get Offline Everything](https://example.com/offline){button}
+
+:::: columns
+::: column 48 bg=#FDF1DF
+**Whole regions, one tap**
+
+Grab the entire Cascades in about a minute — every trail, water source, and campsite included.
+:::
+::: column 4
+:::
+::: column 48 bg=#FDF1DF
+**GPS with zero bars**
+
+Your blue dot stays live in airplane mode. Battery lasts the weekend, not the morning.
+:::
+::::
+
+| | |
+| :-- | --: |
+| Region download | ~1 min on Wi-Fi |
+| Offline storage | From 120 MB |
+| Works on | iOS · Android · Watch |
+
+::: callout compact
+:zap: **Already on Atlas Pro?** Offline Everything is included — update the app and download your first region tonight.
+:::
+
+::: highlight center bg=#1C1917 color=#FDBA74
+**Rolling out today.** Update Atlas and take the long way home.
+:::
+
+::: footer
+**ATLAS** · Maps for people who leave the map.
+
+400 Basecamp Rd · Boulder, CO 80302
+
+[Unsubscribe](https://example.com/unsub) · [Preferences](https://example.com/prefs)
+:::
+`,
+  },
+];
