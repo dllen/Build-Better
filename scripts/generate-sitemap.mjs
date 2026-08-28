@@ -17,6 +17,7 @@ const routes = [
   "/tools/qr-generator",
   "/tools/regex-tester",
   "/tools/markdown-html",
+  "/tools/email-md",
   "/tools/password-generator",
   "/tools/text-diff",
   "/tools/lottery-ssq",

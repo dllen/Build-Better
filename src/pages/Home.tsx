@@ -372,6 +372,15 @@ export default function Home() {
       bgColor: "bg-emerald-100",
     },
     {
+      id: "email-md",
+      name: "Markdown → Email",
+      description: "Render Markdown into email-safe HTML (Gmail, Outlook, Apple Mail).",
+      icon: FileText,
+      path: "/email-md",
+      color: "text-purple-600",
+      bgColor: "bg-purple-100",
+    },
+    {
       id: "password-generator",
       name: "Password Generator",
       description: "Generate strong passwords with customizable character sets and length.",

@@ -501,6 +501,30 @@ export const toolSEOContent: Record<string, ToolSEOData> = {
       { q: "Can I download the HTML?", a: "Yes. Download the rendered HTML with embedded styles." },
     ],
   },
+  "email-md": {
+    title: "Markdown to Email HTML Converter - Email-safe HTML Generator",
+    description: "Convert Markdown into responsive, email-safe HTML that works in Gmail, Outlook, Apple Mail and Yahoo. Live preview, plain text fallback, and .eml download.",
+    slug: "email-md",
+    features: [
+      "Email-safe responsive HTML",
+      "Plain text MIME part included",
+      "YAML frontmatter support (subject, from, preheader)",
+      "Button, chart, and callout directives",
+      "Sandboxed email preview iframe",
+      "One-click .eml download",
+    ],
+    howToSteps: [
+      { title: "Write markdown", body: "Compose your email in Markdown with optional YAML frontmatter for subject/from." },
+      { title: "Preview", body: "Watch the email render in the sandboxed Preview tab as you type." },
+      { title: "Review HTML / plain text", body: "Switch tabs to inspect the raw HTML and plain-text fallback." },
+      { title: "Send", body: "Copy HTML or download a ready-to-send .eml file." },
+    ],
+    faqs: [
+      { q: "Which email clients are supported?", a: "The renderer is built on MJML, so output works in Gmail, Outlook, Apple Mail, Yahoo, and most other clients." },
+      { q: "Can I include a subject line?", a: "Yes — put `subject:` in a YAML frontmatter block at the top of the markdown." },
+      { q: "Is there a plain text version?", a: "Yes, the renderer also outputs a text/plain part, which you can copy or get as part of the .eml download." },
+    ],
+  },
   "text-stats": {
     title: "Text Statistics - Free Online Word Counter & Text Analyzer",
     description: "Analyze text statistics instantly. Word count, character count, sentence count, readability score. Free online text analyzer.",

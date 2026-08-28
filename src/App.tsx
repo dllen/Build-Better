@@ -13,6 +13,7 @@ import DeviceInfo from "@/pages/tools/DeviceInfo";
 import QrGenerator from "@/pages/tools/QrGenerator";
 import RegexTester from "@/pages/tools/RegexTester";
 import MarkdownHtml from "@/pages/tools/MarkdownHtml";
+import EmailMarkdown from "@/pages/tools/EmailMarkdown";
 import PasswordGenerator from "@/pages/tools/PasswordGenerator";
 import TextDiff from "@/pages/tools/TextDiff";
 import LotterySsq from "@/pages/tools/LotterySsq";
@@ -135,6 +136,7 @@ export default function App() {
           <Route path="/json-diff" element={<JsonDiffTool />} />
           <Route path="/regex-tester" element={<RegexTester />} />
           <Route path="/markdown-html" element={<MarkdownHtml />} />
+          <Route path="/email-md" element={<EmailMarkdown />} />
           <Route path="/jwt-decode" element={<JwtDecodeTool />} />
           
           {/* Image Tools */}
@@ -253,6 +255,7 @@ export default function App() {
           <Route path="/tools/json-diff" element={<Navigate to="/json-diff" replace />} />
           <Route path="/tools/regex-tester" element={<Navigate to="/regex-tester" replace />} />
           <Route path="/tools/markdown-html" element={<Navigate to="/markdown-html" replace />} />
+          <Route path="/tools/email-md" element={<Navigate to="/email-md" replace />} />
           <Route path="/tools/jwt-decode" element={<Navigate to="/jwt-decode" replace />} />
           
           {/* Image Tools - Legacy */}

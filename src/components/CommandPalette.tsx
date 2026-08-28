@@ -66,6 +66,7 @@ const allCommands = [
   { id: "text-stats", name: "Text Stats", description: "Text statistics", path: "/text-stats", category: "text", icon: Wrench },
   { id: "text-case", name: "Text Case Converter", description: "Convert text case", path: "/text/case", category: "text", icon: Wrench },
   { id: "markdown-html", name: "Markdown to HTML", description: "Convert Markdown to HTML", path: "/markdown-html", category: "text", icon: Wrench },
+  { id: "email-md", name: "Markdown to Email", description: "Render Markdown into email-safe HTML", path: "/email-md", category: "text", icon: Wrench },
   
   // Games
   { id: "snake", name: "Snake Game", description: "Classic snake game", path: "/games/snake", category: "games", icon: Gamepad2 },
