@@ -5,7 +5,9 @@ import tsconfigPaths from "vite-tsconfig-paths";
 // https://vite.dev/config/
 export default defineConfig({
   build: {
-    sourcemap: "hidden",
+    // Cloudflare Pages rejects files >25 MiB. The default `hidden` sourcemap for
+    // the bundle exceeds that (~27 MiB), so disable sourcemaps for production.
+    sourcemap: false,
   },
   plugins: [
     react({
