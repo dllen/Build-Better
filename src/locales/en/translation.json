@@ -530,6 +530,26 @@
     "llm-request-builder": {
       "name": "LLM Request Builder",
       "desc": "Build OpenAI-compatible API request JSON or curl commands."
+    },
+    "wallet-analyzer": {
+      "name": "Wallet Analyzer",
+      "desc": "Validate Ethereum address format and EIP-55 checksum."
+    },
+    "ens-lookup": {
+      "name": "ENS Lookup",
+      "desc": "Forward and reverse ENS domain resolution."
+    },
+    "gas-tracker": {
+      "name": "Gas Tracker",
+      "desc": "Query current Ethereum gas prices (Low/Medium/High)."
+    },
+    "tx-hash-identifier": {
+      "name": "Hash Identifier",
+      "desc": "Identify hash types: ETH/BTC TXID, ENS Namehash, IPFS CID, UUID."
+    },
+    "token-approval-checker": {
+      "name": "Token Approval Checker",
+      "desc": "Query token approval allowances and detect unlimited approvals."
     }
   },
   "games": {
@@ -650,6 +670,7 @@
     "network": "Network & Chat",
     "finance": "Finance",
     "life": "Life",
-    "games": "Games"
+    "games": "Games",
+    "web3": "Web3"
   }
 }

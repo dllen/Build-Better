@@ -530,6 +530,26 @@
     "llm-request-builder": {
       "name": "LLM 请求构建器",
       "desc": "表单生成 OpenAI 兼容请求 JSON / curl 命令。"
+    },
+    "wallet-analyzer": {
+      "name": "钱包地址解析",
+      "desc": "验证以太坊地址格式，解析 EIP-55 checksum 状态。"
+    },
+    "ens-lookup": {
+      "name": "ENS 查询",
+      "desc": "正向/反向解析 ENS 域名与以太坊地址。"
+    },
+    "gas-tracker": {
+      "name": "Gas Tracker",
+      "desc": "查询当前以太坊 Gas 价格（低/中/高建议）。"
+    },
+    "tx-hash-identifier": {
+      "name": "哈希识别",
+      "desc": "识别哈希类型（ETH/BTC TXID、ENS Namehash、IPFS CID、UUID）。"
+    },
+    "token-approval-checker": {
+      "name": "Token 授权查询",
+      "desc": "查询地址的 Token 授权额度，识别无限授权。"
     }
   },
   "games": {
@@ -650,6 +670,7 @@
     "network": "网络与聊天",
     "finance": "金融",
     "life": "生活",
-    "games": "游戏"
+    "games": "游戏",
+    "web3": "Web3"
   }
 }

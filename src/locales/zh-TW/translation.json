@@ -498,6 +498,26 @@
     "llm-request-builder": {
       "name": "LLM 請求構建器",
       "desc": "表單生成 OpenAI 兼容請求 JSON / curl 命令。"
+    },
+    "wallet-analyzer": {
+      "name": "錢包位址解析",
+      "desc": "驗證以太坊位址格式，解析 EIP-55 checksum 狀態。"
+    },
+    "ens-lookup": {
+      "name": "ENS 查詢",
+      "desc": "正向/反向解析 ENS 域名與以太坊位址。"
+    },
+    "gas-tracker": {
+      "name": "Gas Tracker",
+      "desc": "查詢當前以太坊 Gas 價格（低/中/高建議）。"
+    },
+    "tx-hash-identifier": {
+      "name": "雜湊識別",
+      "desc": "識別雜湊類型（ETH/BTC TXID、ENS Namehash、IPFS CID、UUID）。"
+    },
+    "token-approval-checker": {
+      "name": "Token 授權查詢",
+      "desc": "查詢位址的 Token 授權額度，識別無限授權。"
     }
   },
   "games": {
@@ -618,6 +638,7 @@
     "network": "網路與聊天",
     "finance": "金融",
     "life": "生活",
-    "games": "遊戲"
+    "games": "遊戲",
+    "web3": "Web3"
   }
 }
