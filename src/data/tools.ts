@@ -1432,6 +1432,18 @@ export const TOOL_REGISTRY: ToolMeta[] = [
     keywords: ["token", "risk", "scanner", "web3", "ethereum", "rug", "honeypot"],
     isNew: true,
   },
+  {
+    id: "tx-decoder",
+    path: "/web3/tx-decoder",
+    category: "web3",
+    icon: FileText,
+    color: "text-blue-600",
+    bgColor: "bg-blue-100",
+    name: "交易解码器",
+    description: "输入交易哈希，解码交易详情：from/to/value/input data/logs。",
+    keywords: ["transaction", "decoder", "tx", "web3", "ethereum", "input", "logs"],
+    isNew: true,
+  },
 
   // ============ Games（首页只放入口卡片） ============
   {
