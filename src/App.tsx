@@ -105,6 +105,12 @@ import NonIndieDeveloper from "./pages/NonIndieDeveloper";
 import DataDeveloper from "@/pages/DataDeveloper";
 
 import AiDevelopment from "@/pages/AiDevelopment";
+import WalletAnalyzer from "@/pages/tools/web3/WalletAnalyzer";
+import EnsLookup from "@/pages/tools/web3/EnsLookup";
+import GasTracker from "@/pages/tools/web3/GasTracker";
+import TxHashIdentifier from "@/pages/tools/web3/TxHashIdentifier";
+import TokenApprovalChecker from "@/pages/tools/web3/TokenApprovalChecker";
+import TokenRiskScanner from "@/pages/tools/web3/TokenRiskScanner";
 import TokenCounter from "@/pages/tools/TokenCounter";
 import PromptBuilder from "@/pages/tools/PromptBuilder";
 import PromptDiff from "@/pages/tools/PromptDiff";
@@ -389,6 +395,23 @@ export default function App() {
           <Route path="/llm-request-builder" element={<LlmRequestBuilder />} />
 
           {/* Phase E Legacy */}
+
+          {/* Web3 Tools */}
+          <Route path="/web3/wallet-analyzer" element={<WalletAnalyzer />} />
+          <Route path="/web3/ens-lookup" element={<EnsLookup />} />
+          <Route path="/web3/gas-tracker" element={<GasTracker />} />
+          <Route path="/web3/tx-hash-identifier" element={<TxHashIdentifier />} />
+          <Route path="/web3/token-approval-checker" element={<TokenApprovalChecker />} />
+          <Route path="/web3/token-risk-scanner" element={<TokenRiskScanner />} />
+
+          {/* Web3 Legacy */}
+          <Route path="/tools/web3/wallet-analyzer" element={<Navigate to="/web3/wallet-analyzer" replace />} />
+          <Route path="/tools/web3/ens-lookup" element={<Navigate to="/web3/ens-lookup" replace />} />
+          <Route path="/tools/web3/gas-tracker" element={<Navigate to="/web3/gas-tracker" replace />} />
+          <Route path="/tools/web3/tx-hash-identifier" element={<Navigate to="/web3/tx-hash-identifier" replace />} />
+          <Route path="/tools/web3/token-approval-checker" element={<Navigate to="/web3/token-approval-checker" replace />} />
+          <Route path="/tools/web3/token-risk-scanner" element={<Navigate to="/web3/token-risk-scanner" replace />} />
+
           <Route path="/tools/token-counter" element={<Navigate to="/token-counter" replace />} />
           <Route path="/tools/prompt-builder" element={<Navigate to="/prompt-builder" replace />} />
           <Route path="/tools/prompt-diff" element={<Navigate to="/prompt-diff" replace />} />

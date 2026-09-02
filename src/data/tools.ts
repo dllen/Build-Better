@@ -51,6 +51,8 @@ import {
   Gamepad2,
   Coins,
   Heart,
+  Wallet,
+  Fuel,
 } from "lucide-react";
 
 /**
@@ -72,7 +74,8 @@ export type CategoryId =
   | "network"
   | "finance"
   | "life"
-  | "games";
+  | "games"
+  | "web3";
 
 export interface ToolMeta {
   id: string;
@@ -120,6 +123,7 @@ export const CATEGORIES: CategoryMeta[] = [
   { id: "finance", labelKey: "categories.finance", icon: Coins, order: 10 },
   { id: "life", labelKey: "categories.life", icon: Heart, order: 11 },
   { id: "games", labelKey: "categories.games", icon: Gamepad2, order: 12 },
+  { id: "web3", labelKey: "categories.web3", icon: Wallet, order: 13 },
 ];
 
 export const TOOL_REGISTRY: ToolMeta[] = [
@@ -1351,6 +1355,81 @@ export const TOOL_REGISTRY: ToolMeta[] = [
     name: "LLM 请求构建器",
     description: "表单生成 OpenAI 兼容请求 JSON / curl 命令。",
     keywords: ["llm", "api", "request", "openai", "curl"],
+    isNew: true,
+  },
+
+  // ============ Phase F — Web3 Tools ============
+  {
+    id: "wallet-analyzer",
+    path: "/web3/wallet-analyzer",
+    category: "web3",
+    icon: Wallet,
+    color: "text-purple-600",
+    bgColor: "bg-purple-100",
+    name: "钱包地址解析",
+    description: "验证以太坊地址格式，解析 EIP-55 checksum 状态。",
+    keywords: ["ethereum", "wallet", "address", "eip-55", "web3"],
+    isNew: true,
+  },
+  {
+    id: "ens-lookup",
+    path: "/web3/ens-lookup",
+    category: "web3",
+    icon: Globe,
+    color: "text-blue-600",
+    bgColor: "bg-blue-100",
+    name: "ENS 查询",
+    description: "正向/反向解析 ENS 域名与以太坊地址。",
+    keywords: ["ens", "ethereum", "domain", "web3"],
+    isNew: true,
+  },
+  {
+    id: "gas-tracker",
+    path: "/web3/gas-tracker",
+    category: "web3",
+    icon: Fuel,
+    color: "text-emerald-600",
+    bgColor: "bg-emerald-100",
+    name: "Gas Tracker",
+    description: "查询当前以太坊 Gas 价格（低/中/高建议）。",
+    keywords: ["gas", "ethereum", "fee", "gwei", "web3"],
+    isNew: true,
+  },
+  {
+    id: "tx-hash-identifier",
+    path: "/web3/tx-hash-identifier",
+    category: "web3",
+    icon: Fingerprint,
+    color: "text-cyan-600",
+    bgColor: "bg-cyan-100",
+    name: "哈希识别",
+    description: "识别哈希类型（ETH/BTC TXID、ENS Namehash、IPFS CID、UUID）。",
+    keywords: ["hash", "txid", "identifier", "web3", "bitcoin", "ethereum"],
+    isNew: true,
+  },
+  {
+    id: "token-approval-checker",
+    path: "/web3/token-approval-checker",
+    category: "web3",
+    icon: ShieldCheck,
+    color: "text-amber-600",
+    bgColor: "bg-amber-100",
+    name: "Token 授权查询",
+    description: "查询地址的 Token 授权额度，识别无限授权。",
+    keywords: ["token", "approval", "allowance", "web3", "ethereum"],
+    isNew: true,
+  },
+
+  {
+    id: "token-risk-scanner",
+    path: "/web3/token-risk-scanner",
+    category: "web3",
+    icon: Shield,
+    color: "text-red-600",
+    bgColor: "bg-red-100",
+    name: "Token 风险扫描",
+    description: "分析 ERC-20 合约风险：Mint 函数、Owner 权限、交易税等指标。",
+    keywords: ["token", "risk", "scanner", "web3", "ethereum", "rug", "honeypot"],
     isNew: true,
   },
 
