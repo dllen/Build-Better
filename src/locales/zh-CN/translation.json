@@ -466,6 +466,46 @@
     "sql-table-extractor": {
       "name": "SQL 表提取",
       "desc": "从 SQL 中提取涉及的表名，按类型（查询/写入/结构）分类。"
+    },
+    "sql-column-extractor": {
+      "name": "SQL 列提取",
+      "desc": "从 SQL SELECT 语句提取列名，支持表前缀与别名。"
+    },
+    "sql-mermaid": {
+      "name": "SQL → Mermaid",
+      "desc": "解析 CREATE TABLE DDL 生成 Mermaid ER 图代码。"
+    },
+    "sql-review": {
+      "name": "SQL Review",
+      "desc": "规则式 SQL 静态检查，发现潜在性能与安全问题。"
+    },
+    "json-schema-generator": {
+      "name": "JSON Schema 生成器",
+      "desc": "从 JSON 样本推断 JSON Schema (draft-07)。"
+    },
+    "data-faker": {
+      "name": "Data Faker",
+      "desc": "批量生成测试假数据，支持 JSON/CSV/SQL 格式。"
+    },
+    "docker-run-builder": {
+      "name": "Docker Run 构建器",
+      "desc": "表单生成 docker run 命令，支持端口/卷/环境变量/网络。"
+    },
+    "docker-compose-generator": {
+      "name": "Docker Compose 生成器",
+      "desc": "表单生成 docker-compose.yml，支持多服务与环境变量。"
+    },
+    "k8s-yaml-generator": {
+      "name": "K8s YAML 生成器",
+      "desc": "表单生成 Kubernetes Deployment / Service YAML。"
+    },
+    "k8s-resource-calculator": {
+      "name": "K8s 资源计算器",
+      "desc": "估算 Pod 资源需求与集群容量，判断是否超量。"
+    },
+    "systemd-generator": {
+      "name": "Systemd 生成器",
+      "desc": "表单生成 systemd .service unit 文件。"
     }
   },
   "games": {

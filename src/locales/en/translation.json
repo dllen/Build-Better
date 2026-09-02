@@ -466,6 +466,46 @@
     "sql-table-extractor": {
       "name": "SQL Table Extractor",
       "desc": "Extract table names from SQL queries, grouped by type."
+    },
+    "sql-column-extractor": {
+      "name": "SQL Column Extractor",
+      "desc": "Extract column names from SQL SELECT statements with occurrence counts."
+    },
+    "sql-mermaid": {
+      "name": "SQL → Mermaid",
+      "desc": "Parse CREATE TABLE DDL to generate Mermaid ER diagram code."
+    },
+    "sql-review": {
+      "name": "SQL Review",
+      "desc": "Rule-based SQL static linting for performance and security issues."
+    },
+    "json-schema-generator": {
+      "name": "JSON Schema Generator",
+      "desc": "Infer JSON Schema from JSON samples (draft-07)."
+    },
+    "data-faker": {
+      "name": "Data Faker",
+      "desc": "Generate mock data in JSON/CSV/SQL formats using @faker-js/faker."
+    },
+    "docker-run-builder": {
+      "name": "Docker Run Builder",
+      "desc": "Form-based docker run command generator."
+    },
+    "docker-compose-generator": {
+      "name": "Docker Compose Generator",
+      "desc": "Form-based docker-compose.yml generator with multi-service support."
+    },
+    "k8s-yaml-generator": {
+      "name": "K8s YAML Generator",
+      "desc": "Generate Kubernetes Deployment/Service YAML from a form."
+    },
+    "k8s-resource-calculator": {
+      "name": "K8s Resource Calculator",
+      "desc": "Estimate Pod resource requests vs cluster capacity."
+    },
+    "systemd-generator": {
+      "name": "Systemd Generator",
+      "desc": "Generate systemd .service unit files from a form."
     }
   },
   "games": {

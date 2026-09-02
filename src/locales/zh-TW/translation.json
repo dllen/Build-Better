@@ -434,6 +434,46 @@
     "sql-table-extractor": {
       "name": "SQL 表提取",
       "desc": "從 SQL 中提取涉及的表名，按類型（查詢/寫入/結構）分類。"
+    },
+    "sql-column-extractor": {
+      "name": "SQL 欄提取",
+      "desc": "從 SQL SELECT 語句提取欄名，支援表前綴與別名。"
+    },
+    "sql-mermaid": {
+      "name": "SQL → Mermaid",
+      "desc": "解析 CREATE TABLE DDL 生成 Mermaid ER 圖代碼。"
+    },
+    "sql-review": {
+      "name": "SQL Review",
+      "desc": "規則式 SQL 靜態檢查，發現潛在效能與安全問題。"
+    },
+    "json-schema-generator": {
+      "name": "JSON Schema 生成器",
+      "desc": "從 JSON 樣本推斷 JSON Schema (draft-07)。"
+    },
+    "data-faker": {
+      "name": "Data Faker",
+      "desc": "批量生成測試假數據，支援 JSON/CSV/SQL 格式。"
+    },
+    "docker-run-builder": {
+      "name": "Docker Run 構建器",
+      "desc": "表單生成 docker run 命令，支援端口/卷/環境變量/網路。"
+    },
+    "docker-compose-generator": {
+      "name": "Docker Compose 生成器",
+      "desc": "表單生成 docker-compose.yml，支援多服務與環境變量。"
+    },
+    "k8s-yaml-generator": {
+      "name": "K8s YAML 生成器",
+      "desc": "表單生成 Kubernetes Deployment / Service YAML。"
+    },
+    "k8s-resource-calculator": {
+      "name": "K8s 資源計算器",
+      "desc": "估算 Pod 資源需求與集群容量，判斷是否超量。"
+    },
+    "systemd-generator": {
+      "name": "Systemd 生成器",
+      "desc": "表單生成 systemd .service unit 文件。"
     }
   },
   "games": {

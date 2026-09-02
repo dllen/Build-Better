@@ -105,6 +105,16 @@ import NonIndieDeveloper from "./pages/NonIndieDeveloper";
 import DataDeveloper from "@/pages/DataDeveloper";
 
 import AiDevelopment from "@/pages/AiDevelopment";
+import SqlColumnExtractor from "@/pages/tools/SqlColumnExtractor";
+import SqlMermaid from "@/pages/tools/SqlMermaid";
+import SqlReview from "@/pages/tools/SqlReview";
+import JsonSchemaGenerator from "@/pages/tools/JsonSchemaGenerator";
+import DataFaker from "@/pages/tools/DataFaker";
+import DockerRunBuilder from "@/pages/tools/DockerRunBuilder";
+import DockerComposeGenerator from "@/pages/tools/DockerComposeGenerator";
+import K8sYamlGenerator from "@/pages/tools/K8sYamlGenerator";
+import K8sResourceCalculator from "@/pages/tools/K8sResourceCalculator";
+import SystemdGenerator from "@/pages/tools/SystemdGenerator";
 import Base64Tool from "@/pages/tools/Base64Tool";
 import UrlEncoder from "@/pages/tools/UrlEncoder";
 import UuidGenerator from "@/pages/tools/UuidGenerator";
@@ -347,6 +357,33 @@ export default function App() {
           <Route path="/tools/haproxy-config" element={<Navigate to="/haproxy-config" replace />} />
 
           {/* Phase B — MVP Legacy */}
+
+          {/* Phase C — Data Tools */}
+          <Route path="/sql-column-extractor" element={<SqlColumnExtractor />} />
+          <Route path="/sql-mermaid" element={<SqlMermaid />} />
+          <Route path="/sql-review" element={<SqlReview />} />
+          <Route path="/json-schema-generator" element={<JsonSchemaGenerator />} />
+          <Route path="/data-faker" element={<DataFaker />} />
+
+          {/* Phase D — DevOps Tools */}
+          <Route path="/docker-run-builder" element={<DockerRunBuilder />} />
+          <Route path="/docker-compose-generator" element={<DockerComposeGenerator />} />
+          <Route path="/k8s-yaml-generator" element={<K8sYamlGenerator />} />
+          <Route path="/k8s-resource-calculator" element={<K8sResourceCalculator />} />
+          <Route path="/systemd-generator" element={<SystemdGenerator />} />
+
+          {/* Phase C+D Legacy */}
+          <Route path="/tools/sql-column-extractor" element={<Navigate to="/sql-column-extractor" replace />} />
+          <Route path="/tools/sql-mermaid" element={<Navigate to="/sql-mermaid" replace />} />
+          <Route path="/tools/sql-review" element={<Navigate to="/sql-review" replace />} />
+          <Route path="/tools/json-schema-generator" element={<Navigate to="/json-schema-generator" replace />} />
+          <Route path="/tools/data-faker" element={<Navigate to="/data-faker" replace />} />
+          <Route path="/tools/docker-run-builder" element={<Navigate to="/docker-run-builder" replace />} />
+          <Route path="/tools/docker-compose-generator" element={<Navigate to="/docker-compose-generator" replace />} />
+          <Route path="/tools/k8s-yaml-generator" element={<Navigate to="/k8s-yaml-generator" replace />} />
+          <Route path="/tools/k8s-resource-calculator" element={<Navigate to="/k8s-resource-calculator" replace />} />
+          <Route path="/tools/systemd-generator" element={<Navigate to="/systemd-generator" replace />} />
+
           <Route path="/tools/base64" element={<Navigate to="/base64" replace />} />
           <Route path="/tools/url-encoder" element={<Navigate to="/url-encoder" replace />} />
           <Route path="/tools/uuid-generator" element={<Navigate to="/uuid-generator" replace />} />

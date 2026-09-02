@@ -789,7 +789,157 @@ export const toolSEOContent: Record<string, ToolSEOData> = {
     ],
   },
 
-
+  "sql-column-extractor": {
+    title: "SQL Column Extractor - Free Online Tool",
+    description: "Extract column names from SQL SELECT statements. Supports table qualifiers, aliases, wildcards, and aggregate functions. Runs locally.",
+    slug: "sql-column-extractor",
+    features: ["Extract column names from SELECT", "Handles table qualifiers", "Strips aliases", "Occurrence count", "Toggle to remove prefixes"],
+    howToSteps: [
+      { title: "Paste SQL", body: "Enter your SQL with one or more SELECT statements." },
+      { title: "Extract", body: "Click Extract to see all referenced columns." },
+      { title: "Copy", body: "Copy the column list or individual entries." },
+    ],
+    faqs: [
+      { q: "Does it handle aliases?", a: "Yes. AS aliases are stripped and the real column name is shown." },
+      { q: "Is this local?", a: "Yes. All processing is done in your browser." },
+    ],
+  },
+  "sql-mermaid": {
+    title: "SQL to Mermaid ER Diagram - Free Online Tool",
+    description: "Parse CREATE TABLE DDL to generate Mermaid erDiagram code. Shows entities, attributes, PK/FK annotations, and relationships.",
+    slug: "sql-mermaid",
+    features: ["Parse CREATE TABLE statements", "PK and FK annotations", "Relationship lines", "Works with multiple tables", "One-click copy"],
+    howToSteps: [
+      { title: "Paste DDL", body: "Enter one or more CREATE TABLE statements." },
+      { title: "Generate", body: "Click Generate to create Mermaid erDiagram code." },
+      { title: "Copy", body: "Copy the code and paste it into the Mermaid Renderer." },
+    ],
+    faqs: [
+      { q: "Does it render the diagram?", a: "No. It only generates the Mermaid code. Use the Mermaid Renderer tool to view it." },
+      { q: "Is this local?", a: "Yes. All processing is done in your browser." },
+    ],
+  },
+  "sql-review": {
+    title: "SQL Review - Free Online SQL Linter",
+    description: "Rule-based SQL static analysis. Checks for performance issues, missing WHERE clauses, SELECT *, and dangerous operations like DROP/TRUNCATE.",
+    slug: "sql-review",
+    features: ["7 built-in rules", "Severity levels (danger/warning/info)", "Chinese suggestions", "No false positives on clean SQL"],
+    howToSteps: [
+      { title: "Paste SQL", body: "Enter the SQL you want to review." },
+      { title: "Review", body: "Click Check to run static analysis." },
+      { title: "Fix", body: "Address issues based on the Chinese suggestions." },
+    ],
+    faqs: [
+      { q: "Is this a full linter?", a: "No. It uses rule-based pattern matching. For complex analysis, use a dedicated SQL linting tool." },
+      { q: "Is this local?", a: "Yes. All analysis is done in your browser." },
+    ],
+  },
+  "json-schema-generator": {
+    title: "JSON Schema Generator - Free Online Tool",
+    description: "Infer JSON Schema (draft-07) from JSON samples. Detects types, formats, arrays, and required fields. Runs locally.",
+    slug: "json-schema-generator",
+    features: ["Type inference", "Format detection", "Array schema merging", "Required fields", "additionalProperties option"],
+    howToSteps: [
+      { title: "Paste JSON", body: "Enter a JSON sample in the input area." },
+      { title: "Configure options", body: "Choose whether to infer formats, mark fields as required, etc." },
+      { title: "Generate", body: "Click Generate to create the JSON Schema." },
+      { title: "Copy or download", body: "Copy the schema or download as .schema.json." },
+    ],
+    faqs: [
+      { q: "Does it support draft-07?", a: "Yes. The generated schema is compatible with JSON Schema draft-07." },
+      { q: "Is this local?", a: "Yes. All processing is done in your browser." },
+    ],
+  },
+  "data-faker": {
+    title: "Data Faker - Free Mock Data Generator",
+    description: "Generate realistic mock data in JSON, CSV, or SQL INSERT format. Uses @faker-js/faker locally in the browser.",
+    slug: "data-faker",
+    features: ["13 field types", "JSON/CSV/SQL output", "Batch up to 1000 rows", "Downloadable files", "No API needed"],
+    howToSteps: [
+      { title: "Define fields", body: "Add field name and type rows (name, email, phone, etc)." },
+      { title: "Set count", body: "Choose how many rows to generate (up to 1000)." },
+      { title: "Select format", body: "Choose JSON, CSV, or SQL INSERT." },
+      { title: "Generate", body: "Click Generate to create mock data." },
+    ],
+    faqs: [
+      { q: "Is the data realistic?", a: "Uses @faker-js/faker for realistic names, emails, addresses, etc." },
+      { q: "Is this local?", a: "Yes. All generation is done in your browser." },
+    ],
+  },
+  "docker-run-builder": {
+    title: "Docker Run Builder - Free Online Tool",
+    description: "Build docker run commands from a form. Supports ports, volumes, environment variables, restart policy, networks, and more.",
+    slug: "docker-run-builder",
+    features: ["Port mapping (-p)", "Volume mounts (-v)", "Environment variables (-e)", "Restart policy", "Network mode"],
+    howToSteps: [
+      { title: "Enter image", body: "Fill in the required Docker image name." },
+      { title: "Configure options", body: "Add ports, volumes, env vars, and other options." },
+      { title: "Copy command", body: "Copy the generated docker run command." },
+    ],
+    faqs: [
+      { q: "Is this local?", a: "Yes. All processing is done in your browser." },
+    ],
+  },
+  "docker-compose-generator": {
+    title: "Docker Compose Generator - Free Online Tool",
+    description: "Generate docker-compose.yml from a form. Supports multiple services, environment variables, volumes, and depends_on.",
+    slug: "docker-compose-generator",
+    features: ["Multi-service support", "Environment variables", "Volume mounts", "depends_on", "Multiple versions (2.1-3.9)"],
+    howToSteps: [
+      { title: "Add services", body: "Add one or more services with image and configuration." },
+      { title: "Choose version", body: "Select the Compose file version." },
+      { title: "Generate", body: "Click Generate to create the YAML." },
+      { title: "Copy or download", body: "Copy or download the docker-compose.yml." },
+    ],
+    faqs: [
+      { q: "Is this local?", a: "Yes. All processing is done in your browser." },
+    ],
+  },
+  "k8s-yaml-generator": {
+    title: "K8s YAML Generator - Free Kubernetes Manifest Builder",
+    description: "Generate Kubernetes Deployment and Service YAML manifests from a form. No kubectl needed.",
+    slug: "k8s-yaml-generator",
+    features: ["Deployment YAML", "Service YAML", "Labels and selectors", "Resource requests/limits", "Port mappings"],
+    howToSteps: [
+      { title: "Choose resource type", body: "Select Deployment or Service." },
+      { title: "Fill the form", body: "Enter name, image, replicas, ports, etc." },
+      { title: "Generate", body: "Click Generate to create the YAML." },
+      { title: "Copy or download", body: "Copy or save the YAML for use with kubectl." },
+    ],
+    faqs: [
+      { q: "Does it generate Helm charts?", a: "No. It generates raw Kubernetes manifests." },
+      { q: "Is this local?", a: "Yes. All processing is done in your browser." },
+    ],
+  },
+  "k8s-resource-calculator": {
+    title: "K8s Resource Calculator - Free Kubernetes Tool",
+    description: "Calculate total Pod resource requests vs cluster capacity. See if your workloads will fit.",
+    slug: "k8s-resource-calculator",
+    features: ["CPU and memory requests/limits", "Cluster capacity check", "Max Pods estimation", "Color-coded status"],
+    howToSteps: [
+      { title: "Enter Pod specs", body: "Fill in replicas, CPU, and memory per replica." },
+      { title: "Enter cluster info", body: "Enter number of nodes and capacity per node." },
+      { title: "View results", body: "See if the workload fits and how much capacity remains." },
+    ],
+    faqs: [
+      { q: "Is this local?", a: "Yes. All calculations are done in your browser." },
+    ],
+  },
+  "systemd-generator": {
+    title: "Systemd Generator - Free Online .service File Builder",
+    description: "Generate systemd .service unit files from a form. Supports Unit, Service, and Install sections.",
+    slug: "systemd-generator",
+    features: ["Unit section", "Service section (Type, ExecStart, etc)", "Install section", "Environment variables", "Restart policy"],
+    howToSteps: [
+      { title: "Fill the form", body: "Enter unit description, service details, and install options." },
+      { title: "Generate", body: "Click Generate to create the .service file." },
+      { title: "Copy or download", body: "Copy or download the unit file." },
+    ],
+    faqs: [
+      { q: "Where do I put the file?", a: "Typically in /etc/systemd/system/ or ~/.config/systemd/user/." },
+      { q: "Is this local?", a: "Yes. All processing is done in your browser." },
+    ],
+  },
 };
 
 export function getToolSEO(slug: string): ToolSEOData | null {
