@@ -1456,6 +1456,18 @@ export const TOOL_REGISTRY: ToolMeta[] = [
     keywords: ["token", "holders", "analyzer", "web3", "ethereum", "distribution"],
     isNew: true,
   },
+  {
+    id: "wallet-pnl",
+    path: "/web3/wallet-pnl",
+    category: "web3",
+    icon: Wallet,
+    color: "text-emerald-600",
+    bgColor: "bg-emerald-100",
+    name: "钱包资产查询",
+    description: "查询以太坊钱包的 ETH 余额和 ERC-20 代币持有情况。",
+    keywords: ["wallet", "balance", "portfolio", "web3", "ethereum", "pnl", "asset"],
+    isNew: true,
+  },
 
   // ============ Games（首页只放入口卡片） ============
   {
