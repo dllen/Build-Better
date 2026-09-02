@@ -53,6 +53,7 @@ import {
   Heart,
   Wallet,
   Fuel,
+  Fish,
 } from "lucide-react";
 
 /**
@@ -1466,6 +1467,18 @@ export const TOOL_REGISTRY: ToolMeta[] = [
     name: "钱包资产查询",
     description: "查询以太坊钱包的 ETH 余额和 ERC-20 代币持有情况。",
     keywords: ["wallet", "balance", "portfolio", "web3", "ethereum", "pnl", "asset"],
+    isNew: true,
+  },
+  {
+    id: "whale-tracker",
+    path: "/web3/whale-tracker",
+    category: "web3",
+    icon: Fish,
+    color: "text-cyan-600",
+    bgColor: "bg-cyan-100",
+    name: "巨鲸追踪",
+    description: "追踪链上大额 ERC-20 转账，发现巨鲸动向。",
+    keywords: ["whale", "tracker", "large transfer", "web3", "ethereum", "mempool"],
     isNew: true,
   },
 

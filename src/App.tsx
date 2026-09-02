@@ -114,6 +114,7 @@ import TokenRiskScanner from "@/pages/tools/web3/TokenRiskScanner";
 import TxDecoder from "@/pages/tools/web3/TxDecoder";
 import TokenHolderAnalyzer from "@/pages/tools/web3/TokenHolderAnalyzer";
 import WalletPnL from "@/pages/tools/web3/WalletPnL";
+import WhaleTracker from "@/pages/tools/web3/WhaleTracker";
 import TokenCounter from "@/pages/tools/TokenCounter";
 import PromptBuilder from "@/pages/tools/PromptBuilder";
 import PromptDiff from "@/pages/tools/PromptDiff";
@@ -409,6 +410,7 @@ export default function App() {
           <Route path="/web3/tx-decoder" element={<TxDecoder />} />
           <Route path="/web3/token-holder-analyzer" element={<TokenHolderAnalyzer />} />
           <Route path="/web3/wallet-pnl" element={<WalletPnL />} />
+          <Route path="/web3/whale-tracker" element={<WhaleTracker />} />
 
           {/* Web3 Legacy */}
           <Route path="/tools/web3/wallet-analyzer" element={<Navigate to="/web3/wallet-analyzer" replace />} />
@@ -420,6 +422,7 @@ export default function App() {
           <Route path="/tools/web3/tx-decoder" element={<Navigate to="/web3/tx-decoder" replace />} />
           <Route path="/tools/web3/token-holder-analyzer" element={<Navigate to="/web3/token-holder-analyzer" replace />} />
           <Route path="/tools/web3/wallet-pnl" element={<Navigate to="/web3/wallet-pnl" replace />} />
+          <Route path="/tools/web3/whale-tracker" element={<Navigate to="/web3/whale-tracker" replace />} />
 
           <Route path="/tools/token-counter" element={<Navigate to="/token-counter" replace />} />
           <Route path="/tools/prompt-builder" element={<Navigate to="/prompt-builder" replace />} />
