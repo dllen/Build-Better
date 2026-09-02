@@ -105,6 +105,12 @@ import NonIndieDeveloper from "./pages/NonIndieDeveloper";
 import DataDeveloper from "@/pages/DataDeveloper";
 
 import AiDevelopment from "@/pages/AiDevelopment";
+import TokenCounter from "@/pages/tools/TokenCounter";
+import PromptBuilder from "@/pages/tools/PromptBuilder";
+import PromptDiff from "@/pages/tools/PromptDiff";
+import RagChunkCalculator from "@/pages/tools/RagChunkCalculator";
+import AiCostCalculator from "@/pages/tools/AiCostCalculator";
+import LlmRequestBuilder from "@/pages/tools/LlmRequestBuilder";
 import SqlColumnExtractor from "@/pages/tools/SqlColumnExtractor";
 import SqlMermaid from "@/pages/tools/SqlMermaid";
 import SqlReview from "@/pages/tools/SqlReview";
@@ -373,6 +379,23 @@ export default function App() {
           <Route path="/systemd-generator" element={<SystemdGenerator />} />
 
           {/* Phase C+D Legacy */}
+
+          {/* Phase E — AI Tools */}
+          <Route path="/token-counter" element={<TokenCounter />} />
+          <Route path="/prompt-builder" element={<PromptBuilder />} />
+          <Route path="/prompt-diff" element={<PromptDiff />} />
+          <Route path="/rag-chunk-calculator" element={<RagChunkCalculator />} />
+          <Route path="/ai-cost-calculator" element={<AiCostCalculator />} />
+          <Route path="/llm-request-builder" element={<LlmRequestBuilder />} />
+
+          {/* Phase E Legacy */}
+          <Route path="/tools/token-counter" element={<Navigate to="/token-counter" replace />} />
+          <Route path="/tools/prompt-builder" element={<Navigate to="/prompt-builder" replace />} />
+          <Route path="/tools/prompt-diff" element={<Navigate to="/prompt-diff" replace />} />
+          <Route path="/tools/rag-chunk-calculator" element={<Navigate to="/rag-chunk-calculator" replace />} />
+          <Route path="/tools/ai-cost-calculator" element={<Navigate to="/ai-cost-calculator" replace />} />
+          <Route path="/tools/llm-request-builder" element={<Navigate to="/llm-request-builder" replace />} />
+
           <Route path="/tools/sql-column-extractor" element={<Navigate to="/sql-column-extractor" replace />} />
           <Route path="/tools/sql-mermaid" element={<Navigate to="/sql-mermaid" replace />} />
           <Route path="/tools/sql-review" element={<Navigate to="/sql-review" replace />} />

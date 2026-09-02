@@ -474,6 +474,30 @@
     "systemd-generator": {
       "name": "Systemd 生成器",
       "desc": "表單生成 systemd .service unit 文件。"
+    },
+    "token-counter": {
+      "name": "Token 計數器",
+      "desc": "使用 js-tiktoken 估算文本 token 數，支援多種編碼。"
+    },
+    "prompt-builder": {
+      "name": "Prompt 構建器",
+      "desc": "模板化組裝 Prompt，支援保存草稿到本地。"
+    },
+    "prompt-diff": {
+      "name": "Prompt 對比",
+      "desc": "兩版 Prompt 差異高亮，直觀對比變化。"
+    },
+    "rag-chunk-calculator": {
+      "name": "RAG 分塊計算器",
+      "desc": "估算 chunk 數量與 token 分佈。"
+    },
+    "ai-cost-calculator": {
+      "name": "AI 成本計算器",
+      "desc": "主流模型價格 × token 數 → 成本估算。"
+    },
+    "llm-request-builder": {
+      "name": "LLM 請求構建器",
+      "desc": "表單生成 OpenAI 兼容請求 JSON / curl 命令。"
     }
   },
   "games": {

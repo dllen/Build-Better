@@ -925,6 +925,93 @@ export const toolSEOContent: Record<string, ToolSEOData> = {
       { q: "Is this local?", a: "Yes. All calculations are done in your browser." },
     ],
   },
+
+  "token-counter": {
+    title: "Token Counter - Free Online LLM Token Estimator",
+    description: "Estimate token count for any text using js-tiktoken. Supports cl100k_base, o200k_base, p50k_base encodings. Runs locally.",
+    slug: "token-counter",
+    features: ["Multiple encodings (GPT-4, GPT-3.5, Codex)", "Live token count", "Estimated cost", "Copy and clear"],
+    howToSteps: [
+      { title: "Paste text", body: "Enter or paste the text you want to count tokens for." },
+      { title: "Select encoding", body: "Choose the encoding that matches your model." },
+      { title: "Count", body: "Click Count to see the token count and estimated cost." },
+    ],
+    faqs: [
+      { q: "Which encoding should I use?", a: "Use cl100k_base for GPT-4/GPT-3.5, o200k_base for GPT-4o, p50k_base for Codex." },
+      { q: "Is this local?", a: "Yes. All counting is done in your browser using js-tiktoken." },
+    ],
+  },
+  "prompt-builder": {
+    title: "Prompt Builder - Free Online Tool",
+    description: "Build structured prompts with role, task, constraints, examples, and format requirements. Save drafts locally.",
+    slug: "prompt-builder",
+    features: ["5 prompt sections", "Markdown assembly", "Local draft save/load", "Copy and download"],
+    howToSteps: [
+      { title: "Fill sections", body: "Enter role, task, constraints, examples, and format requirements." },
+      { title: "Generate", body: "Click Generate to assemble the prompt." },
+      { title: "Save or copy", body: "Save as draft or copy the result." },
+    ],
+    faqs: [
+      { q: "Is my prompt saved?", a: "Drafts are saved in your browser's localStorage. Nothing is sent to a server." },
+    ],
+  },
+  "prompt-diff": {
+    title: "Prompt Diff - Compare Two Prompt Versions",
+    description: "Visual diff between two prompt versions. Additions in green, deletions in red. Runs locally.",
+    slug: "prompt-diff",
+    features: ["Side-by-side comparison", "Color-coded diff", "Line-level changes", "Copy diff"],
+    howToSteps: [
+      { title: "Paste prompts", body: "Enter the old prompt on the left and the new prompt on the right." },
+      { title: "Compare", body: "Click Compare to see the differences." },
+    ],
+    faqs: [
+      { q: "Is this local?", a: "Yes. All comparison is done in your browser." },
+    ],
+  },
+  "rag-chunk-calculator": {
+    title: "RAG Chunk Calculator - Free Online Tool",
+    description: "Estimate chunk count and token distribution for RAG pipelines. Calculate overlap and chunk statistics.",
+    slug: "rag-chunk-calculator",
+    features: ["Token/character chunk sizing", "Overlap calculation", "Chunk preview", "Formula shown"],
+    howToSteps: [
+      { title: "Enter document size", body: "Enter total character count or token count of your document." },
+      { title: "Configure chunking", body: "Set chunk size and overlap." },
+      { title: "Calculate", body: "View estimated chunk count and token distribution." },
+    ],
+    faqs: [
+      { q: "Is this local?", a: "Yes. All calculations are done in your browser." },
+    ],
+  },
+  "ai-cost-calculator": {
+    title: "AI Cost Calculator - Free LLM Pricing Tool",
+    description: "Calculate LLM API costs for GPT-4, Claude, Gemini, and more. Static pricing, no API needed.",
+    slug: "ai-cost-calculator",
+    features: ["8 popular models", "Input/output cost breakdown", "Request multiplier", "Formula shown"],
+    howToSteps: [
+      { title: "Select model", body: "Choose the LLM model." },
+      { title: "Enter tokens", body: "Input token counts." },
+      { title: "Calculate", body: "View the cost breakdown." },
+    ],
+    faqs: [
+      { q: "Is pricing always current?", a: "This tool uses static prices. Check the model's official pricing page for the latest rates." },
+      { q: "Is this local?", a: "Yes. All calculations are done in your browser." },
+    ],
+  },
+  "llm-request-builder": {
+    title: "LLM Request Builder - Free API Request Generator",
+    description: "Build OpenAI-compatible API request JSON or curl commands from a form. Never sends actual requests.",
+    slug: "llm-request-builder",
+    features: ["Multiple model support", "JSON and curl output", "Message builder", "Parameter tuning"],
+    howToSteps: [
+      { title: "Configure request", body: "Set model, messages, and parameters." },
+      { title: "Generate", body: "See the request JSON or curl command." },
+      { title: "Copy or download", body: "Copy the request or download as .json." },
+    ],
+    faqs: [
+      { q: "Does this send requests?", a: "No. This tool only generates the request text. It never sends anything to any API." },
+      { q: "Is this local?", a: "Yes. All processing is done in your browser." },
+    ],
+  },
   "systemd-generator": {
     title: "Systemd Generator - Free Online .service File Builder",
     description: "Generate systemd .service unit files from a form. Supports Unit, Service, and Install sections.",

@@ -506,6 +506,30 @@
     "systemd-generator": {
       "name": "Systemd Generator",
       "desc": "Generate systemd .service unit files from a form."
+    },
+    "token-counter": {
+      "name": "Token Counter",
+      "desc": "Estimate token count using js-tiktoken with multiple encodings."
+    },
+    "prompt-builder": {
+      "name": "Prompt Builder",
+      "desc": "Template-based Prompt assembler with local draft save."
+    },
+    "prompt-diff": {
+      "name": "Prompt Diff",
+      "desc": "Highlight differences between two Prompt versions."
+    },
+    "rag-chunk-calculator": {
+      "name": "RAG Chunk Calculator",
+      "desc": "Estimate chunk count and token distribution for RAG."
+    },
+    "ai-cost-calculator": {
+      "name": "AI Cost Calculator",
+      "desc": "Estimate LLM API costs based on model pricing and token counts."
+    },
+    "llm-request-builder": {
+      "name": "LLM Request Builder",
+      "desc": "Build OpenAI-compatible API request JSON or curl commands."
     }
   },
   "games": {
