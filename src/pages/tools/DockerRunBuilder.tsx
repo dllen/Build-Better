@@ -156,6 +156,7 @@ export default function DockerRunBuilder() {
     parts.push(image.trim());
 
     return parts.join(" \\\n  ");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [image, containerName, ports, volumes, envVars, restart, network, user, extraOptions]);
 
   async function copyCommand() {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Wallet, TrendingUp, TrendingDown, Copy, Check } from "lucide-react";
+import { Wallet } from "lucide-react";
 
 const ETHERSCAN_API = "https://api.etherscan.io/api";
 const ETHERSCAN_KEY = "YourApiKeyToken";
@@ -26,14 +26,10 @@ export default function WalletPnL() {
   const [ethPrice, setEthPrice] = useState<number>(0);
   const [tokens, setTokens] = useState<TokenBalance[]>([]);
   const [totalValue, setTotalValue] = useState(0);
-  const [copied, setCopied] = useState<string | null>(null);
+  const _copied = useState<string | null>(null);
 
-  function copyToClipboard(text: string, key: string) {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(key);
-      setTimeout(() => setCopied(null), 1000);
-    });
-  }
+  // Kept for future per-row copy feature
+  const _copyToClipboard = (_text: string, _key: string) => {};
 
   async function fetchWallet() {
     if (!address.trim()) { setError("请输入钱包地址"); return; }
@@ -79,7 +75,7 @@ export default function WalletPnL() {
       if (tokensData.status === "1" && tokensData.result && Array.isArray(tokensData.result)) {
         // Get prices for top tokens
         const uniqueTokens = tokensData.result
-          .filter((t: any) => parseFloat(t.balance) > 0)
+          .filter((t: { balance: string }) => parseFloat(t.balance) > 0)
           .slice(0, 20); // limit for rate limit
 
         for (const token of uniqueTokens) {

@@ -80,7 +80,6 @@ function detectHash(hash: string): DetectionResult | null {
 
   // Ethereum-style: 0x + 64 hex = 66 chars
   if (/^0x[0-9a-f]{64}$/i.test(h)) {
-    const withoutPrefix = h.substring(2);
     // ENS Namehash: starts with 0x0000...
     if (/^0x0{4,}/i.test(h)) {
       return {

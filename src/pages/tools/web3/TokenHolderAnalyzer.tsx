@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Users, Copy, Check } from "lucide-react";
+import { Users } from "lucide-react";
 
 const ETHERSCAN_API = "https://api.etherscan.io/api";
 const ETHERSCAN_KEY = "YourApiKeyToken";
@@ -29,16 +29,9 @@ export default function TokenHolderAnalyzer() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [holders, setHolders] = useState<Holder[]>([]);
-  const [totalSupply, setTotalSupply] = useState("");
-  const [symbol, setSymbol] = useState("");
-  const [copied, setCopied] = useState<string | null>(null);
-
-  function copyToClipboard(text: string, key: string) {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(key);
-      setTimeout(() => setCopied(null), 1000);
-    });
-  }
+  const [, setTotalSupply] = useState("");
+  const [, setSymbol] = useState("");
+  const _copied = useState<string | null>(null);
 
   async function fetchHolders() {
     if (!address.trim()) { setError("请输入合约地址"); return; }
@@ -52,14 +45,6 @@ export default function TokenHolderAnalyzer() {
 
     try {
       const addr = address.trim();
-
-      // Get token info (symbol + totalSupply) from contract
-      const symbolUrl = `${ETHERSCAN_API}?module=contract&action=getabi&address=${addr}&apikey=${ETHERSCAN_KEY}`;
-      const symbolController = new AbortController();
-      const symbolTimeoutId = setTimeout(() => symbolController.abort(), 15000);
-      const symbolRes = await fetch(symbolUrl, { signal: symbolController.signal });
-      clearTimeout(symbolTimeoutId);
-      const symbolData = await symbolRes.json();
 
       // Try to get transfers (up to holderCount * 20 to get enough data)
       const transfers: Record<string, string> = {};
@@ -100,8 +85,6 @@ export default function TokenHolderAnalyzer() {
         balance: formatBalance(bal),
         percentage: total > 0 ? ((parseFloat(bal) / total) * 100).toFixed(2) + "%" : "0%",
       })));
-
-      setSymbol(symbolData.result?.ContractName || "TOKEN");
 
     } catch {
       setError("网络错误，请稍后重试");
@@ -186,12 +169,7 @@ export default function TokenHolderAnalyzer() {
                   <tr key={h.address} className="border-b border-gray-100 hover:bg-gray-50">
                     <td className="py-2 pr-4 text-gray-500">{h.rank}</td>
                     <td className="py-2 pr-4 font-mono">
-                      <div className="flex items-center gap-1">
-                        <span className="text-xs">{h.address.slice(0, 10)}...{h.address.slice(-6)}</span>
-                        <button onClick={() => copyToClipboard(h.address, h.address)}>
-                          {copied === h.address ? <Check className="h-3 w-3 text-green-500" /> : <Copy className="h-3 w-3" />}
-                        </button>
-                      </div>
+                      <span className="text-xs">{h.address.slice(0, 10)}...{h.address.slice(-6)}</span>
                     </td>
                     <td className="py-2 pr-4 font-mono text-right">{h.balance}</td>
                     <td className="py-2 font-mono text-right">{h.percentage}</td>

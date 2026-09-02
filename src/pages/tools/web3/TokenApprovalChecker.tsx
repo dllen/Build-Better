@@ -31,11 +31,6 @@ function formatAmount(amount: string, decimals: number = 18): string {
   return adjusted.toLocaleString(undefined, { maximumFractionDigits: 6 });
 }
 
-function shortenAddress(addr: string): string {
-  if (!addr || addr.length < 10) return addr;
-  return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
-}
-
 function isValidAddress(addr: string): boolean {
   return /^0x[0-9a-fA-F]{40}$/.test(addr);
 }
@@ -59,7 +54,7 @@ export default function TokenApprovalChecker() {
       const data: AllowanceResponse = await res.json();
       setResults(data.allowances ?? []);
       setSearched(true);
-    } catch (e) {
+    } catch {
       setError("API 请求失败，请稍后重试或检查地址是否正确。");
       setSearched(true);
     } finally {

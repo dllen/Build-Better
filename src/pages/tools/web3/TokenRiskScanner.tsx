@@ -53,8 +53,8 @@ export default function TokenRiskScanner() {
       }
 
       const source = data.result[0].SourceCode || "";
-      const compiler = data.result[0].CompilerVersion || "";
-      const contractName = data.result[0].ContractName || "Unknown";
+      const _compiler = data.result[0].CompilerVersion || "";
+      const _contractName = data.result[0].ContractName || "Unknown";
 
       const risks: RiskItem[] = [];
 
@@ -67,7 +67,7 @@ export default function TokenRiskScanner() {
       });
 
       // Check 2: Mint function
-      const hasMint = /function\s+mint\s*\(/.test(source) || /function\s+mint\s*\(/.test(source.replace(/\\/g, ""));
+      const hasMint = source.includes("function mint") || source.replace(/\\/g, "").includes("function mint");
       risks.push({
         name: "Mint 函数",
         status: hasMint ? "danger" : "safe",
@@ -75,7 +75,7 @@ export default function TokenRiskScanner() {
       });
 
       // Check 3: Pause / Blacklist
-      const hasPause = /pause\s*\(|pause\s*\(|whenPaused\s*\(/.test(source);
+      const hasPause = source.includes("pause") || source.includes("whenPaused");
       const hasBlacklist = /blacklist|isBlackListed/.test(source);
       risks.push({
         name: "Pause / Blacklist",
@@ -84,7 +84,7 @@ export default function TokenRiskScanner() {
       });
 
       // Check 4: Honeypot signals (high tax)
-      const taxMatch = source.match(/(\d+)\s*[\*\/]\s*100/g);
+      const taxMatch = source.match(/(\d+)\s*[*]\s*100/g);
       const highTax = taxMatch && taxMatch.some((t: string) => {
         const val = parseInt(t.replace(/[^\d]/g, ""));
         return val > 10;
