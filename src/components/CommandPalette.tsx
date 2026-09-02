@@ -5,70 +5,18 @@ import { Search, CommandIcon, Wrench, Gamepad2, Settings, X, ArrowRight, Clock, 
 import Fuse from "fuse.js";
 import { useHistory } from "@/hooks/useHistory";
 import { useFavorites } from "@/hooks/useFavorites";
+import { TOOL_REGISTRY } from "@/data/tools";
 
-// All available routes
-const allCommands = [
-  // Pages
+// Pages (non-tool destinations)
+const pageCommands = [
   { id: "home", name: "Home", description: "Main tools dashboard", path: "/", category: "pages", icon: Wrench },
-  { id: "games", name: "Games", description: "Play mini games", path: "/games", category: "pages", icon: Gamepad2 },
+  { id: "games", name: "Games", description: "Play mini games", path: "/games", category: "games", icon: Gamepad2 },
   { id: "settings", name: "Settings", description: "App settings", path: "/settings", category: "pages", icon: Settings },
   { id: "rss-read", name: "RSS Reader", description: "Read RSS feeds", path: "/rss-read", category: "pages", icon: Settings },
-  
-  // Dev Wrenchs
-  { id: "api-debugger", name: "API Debugger", description: "Test HTTP requests", path: "/api-debugger", category: "dev", icon: Wrench },
-  { id: "gitignore", name: ".gitignore Generator", description: "Generate .gitignore files", path: "/gitignore", category: "dev", icon: Wrench },
-  { id: "code-formatter", name: "Code Formatter", description: "Format code", path: "/code-formatter", category: "dev", icon: Wrench },
-  { id: "json-diff", name: "JSON Diff", description: "Compare JSON files", path: "/json-diff", category: "dev", icon: Wrench },
-  { id: "json-editor", name: "JSON Editor", description: "Edit JSON visually", path: "/json-editor", category: "dev", icon: Wrench },
-  { id: "regex-tester", name: "Regex Tester", description: "Test regular expressions", path: "/regex-tester", category: "dev", icon: Wrench },
-  { id: "jwt-decode", name: "JWT Decode", description: "Decode JWT tokens", path: "/jwt-decode", category: "dev", icon: Wrench },
-  { id: "sql-formatter", name: "SQL Formatter", description: "Format SQL queries", path: "/code-formatter", category: "dev", icon: Wrench },
-  
-  // Data Wrenchs
-  { id: "csv-to-json", name: "CSV to JSON", description: "Convert CSV to JSON", path: "/csv-to-json", category: "data", icon: Wrench },
-  { id: "data-converter", name: "Data Converter", description: "Convert between formats", path: "/data-converter", category: "data", icon: Wrench },
-  { id: "text-deduper", name: "Text Deduper", description: "Remove duplicate lines", path: "/text-deduper", category: "data", icon: Wrench },
-  { id: "text-diff", name: "Text Diff", description: "Compare text files", path: "/text-diff", category: "data", icon: Wrench },
-  
-  // Crypto & Security
-  { id: "hash-tools", name: "Hash Wrenchs", description: "Generate hashes", path: "/hash-tools", category: "security", icon: Wrench },
-  { id: "bcrypt", name: "Bcrypt", description: "Hash passwords", path: "/bcrypt", category: "security", icon: Wrench },
-  { id: "rsa-keygen", name: "RSA Key Generator", description: "Generate RSA keys", path: "/rsa-keygen", category: "security", icon: Wrench },
-  { id: "otp-generator", name: "OTP Generator", description: "Generate one-time passwords", path: "/otp-generator", category: "security", icon: Wrench },
-  { id: "bip39", name: "BIP39 Wrench", description: "Mnemonic codes", path: "/bip39", category: "security", icon: Wrench },
-  
-  // Image Wrenchs
-  { id: "qr-generator", name: "QR Generator", description: "Generate QR codes", path: "/qr-generator", category: "image", icon: Wrench },
-  { id: "image-compressor", name: "Image Compressor", description: "Compress images", path: "/image-compressor", category: "image", icon: Wrench },
-  { id: "image-resizer", name: "Image Resizer", description: "Resize images", path: "/image-resizer", category: "image", icon: Wrench },
-  
-  // Utilities
-  { id: "password-generator", name: "Password Generator", description: "Generate passwords", path: "/password-generator", category: "utils", icon: Wrench },
-  { id: "uuid-generator", name: "UUID/ULID Generator", description: "Generate UUIDs and ULIDs", path: "/ulid", category: "utils", icon: Wrench },
-  { id: "base-converter", name: "Base Converter", description: "Convert number bases", path: "/base-converter", category: "utils", icon: Wrench },
-  { id: "calculator", name: "Calculator", description: "Calculator tool", path: "/calculator", category: "utils", icon: Wrench },
-  { id: "cron-quartz", name: "Cron Quartz", description: "Cron expression builder", path: "/cron-quartz", category: "utils", icon: Wrench },
-  { id: "date-time", name: "Date Time Wrenchs", description: "Date and time utilities", path: "/date-time", category: "utils", icon: Wrench },
-  { id: "commit-message", name: "Commit Message", description: "Generate git commit messages", path: "/commit-message", category: "dev", icon: Wrench },
-  
-  // Finance
-  { id: "mortgage-calculator", name: "Mortgage Calculator", description: "Calculate mortgage payments", path: "/mortgage-calculator", category: "finance", icon: Wrench },
-  { id: "investment-return", name: "Investment Return", description: "Calculate investment returns", path: "/investment-return", category: "finance", icon: Wrench },
-  { id: "roi-calculator", name: "ROI Calculator", description: "Calculate ROI", path: "/roi-calculator", category: "finance", icon: Wrench },
-  
-  // Config Generators
-  { id: "nginx-config", name: "Nginx Config", description: "Generate Nginx config", path: "/nginx-config", category: "config", icon: Wrench },
-  { id: "apache-config", name: "Apache Config", description: "Generate Apache config", path: "/apache-config", category: "config", icon: Wrench },
-  { id: "haproxy-config", name: "HAProxy Config", description: "Generate HAProxy config", path: "/haproxy-config", category: "config", icon: Wrench },
-  
-  // Text Wrenchs
-  { id: "text-suite", name: "Text Suite", description: "All text tools", path: "/text", category: "text", icon: Wrench },
-  { id: "text-stats", name: "Text Stats", description: "Text statistics", path: "/text-stats", category: "text", icon: Wrench },
-  { id: "text-case", name: "Text Case Converter", description: "Convert text case", path: "/text/case", category: "text", icon: Wrench },
-  { id: "markdown-html", name: "Markdown to HTML", description: "Convert Markdown to HTML", path: "/markdown-html", category: "text", icon: Wrench },
-  { id: "email-md", name: "Markdown to Email", description: "Render Markdown into email-safe HTML", path: "/email-md", category: "text", icon: Wrench },
-  
-  // Games
+];
+
+// Individual games (each has its own route; the registry only carries the /games entry card)
+const gameCommands = [
   { id: "snake", name: "Snake Game", description: "Classic snake game", path: "/games/snake", category: "games", icon: Gamepad2 },
   { id: "tetris", name: "Tetris", description: "Classic Tetris game", path: "/games/tetris", category: "games", icon: Gamepad2 },
   { id: "2048", name: "2048", description: "2048 puzzle game", path: "/games/2048", category: "games", icon: Gamepad2 },
@@ -76,8 +24,20 @@ const allCommands = [
   { id: "chinese-chess", name: "Chinese Chess", description: "Xiangqi", path: "/games/chinese-chess", category: "games", icon: Gamepad2 },
   { id: "gomoku", name: "Gomoku", description: "Five in a row", path: "/games/gomoku", category: "games", icon: Gamepad2 },
   { id: "go", name: "Go Game", description: "Weiqi/Baduk", path: "/games/go", category: "games", icon: Gamepad2 },
-  { id: "drawing-tool", name: "Drawing Board", description: "Infinite-canvas whiteboard with pen, shapes, arrows, images", path: "/drawing-tool", category: "tools", icon: Wrench },
 ];
+
+// Tools derived from the single source of truth (skip the /games entry card)
+const toolCommands = TOOL_REGISTRY.filter((t) => t.category !== "games").map((t) => ({
+  id: t.id,
+  name: t.name,
+  description: t.description,
+  path: t.path,
+  category: t.category,
+  icon: t.icon,
+}));
+
+// All available commands
+const allCommands = [...pageCommands, ...toolCommands, ...gameCommands];
 
 interface Command {
   id: string;
@@ -206,14 +166,17 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
 
   const categoryLabels: Record<string, string> = {
     pages: "Pages",
-    dev: "Developer Wrenchs",
-    data: "Data Wrenchs",
-    security: "Security",
-    image: "Image Wrenchs",
-    utils: "Utilities",
+    developer: "Developer",
+    data: "Data",
+    linux: "Linux",
+    devops: "DevOps",
+    ai: "AI",
+    text: "Text",
+    image: "Image",
+    crypto: "Crypto & Security",
+    network: "Network & Chat",
     finance: "Finance",
-    config: "Config Generators",
-    text: "Text Wrenchs",
+    life: "Life",
     games: "Games",
   };
 

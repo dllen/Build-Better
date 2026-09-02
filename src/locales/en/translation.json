@@ -27,7 +27,10 @@
   "home": {
     "title": "Developer Micro-Tools Collection",
     "subtitle": "A suite of essential tools for developers, Fast, reliable, and easy to use.",
-    "section_tools": "Developer Tools"
+    "section_tools": "Developer Tools",
+    "section_popular": "Popular Tools",
+    "section_recent": "Recently Added",
+    "all_categories": "All"
   },
   "tools": {
     "kinship": {
@@ -320,33 +323,6 @@
     },
     "mortgage-calculator": {
       "name": "Mortgage Calculator",
-      "desc": "Calculate mortgage payments for commercial, provident fund, and combination loans.",
-      "title": "Mortgage Calculator",
-      "subtitle": "Quickly calculate your monthly mortgage payments and interest",
-      "loan_type": "Loan Type",
-      "type_commercial": "Commercial Loan",
-      "type_provident": "Provident Fund",
-      "type_combination": "Combination",
-      "commercial_amount": "Commercial Amount",
-      "provident_amount": "Provident Amount",
-      "unit_wan": "10k",
-      "years": "Loan Term",
-      "year_unit": "Years",
-      "commercial_rate": "Commercial Rate",
-      "provident_rate": "Provident Rate",
-      "payment_method": "Payment Method",
-      "method_interest": "Equal Principal & Interest",
-      "method_principal": "Equal Principal",
-      "monthly_payment": "Monthly Payment",
-      "first_month_payment": "First Month Payment",
-      "monthly_decrease": "Monthly Decrease {amount}",
-      "total_interest": "Total Interest",
-      "total_payment": "Total Payment",
-      "tip_interest": "Equal Principal & Interest: Fixed monthly payment. Principal increases and interest decreases monthly.",
-      "tip_principal": "Equal Principal: Fixed monthly principal payment. Interest decreases monthly, so total monthly payment decreases."
-    },
-    "mortgage-calculator": {
-      "name": "Mortgage Calculator",
       "desc": "Calculate monthly payments for Commercial, Provident Fund, and Combination loans.",
       "title": "Mortgage Calculator",
       "subtitle": "Calculate your mortgage payments and interest",
@@ -577,5 +553,19 @@
       "title": "Drawing Board",
       "subtitle": "Sketch, diagram, and brainstorm on an infinite canvas — pressure ink, shapes, arrows, images, and more."
     }
+  },
+  "categories": {
+    "developer": "Developer",
+    "data": "Data",
+    "linux": "Linux",
+    "devops": "DevOps",
+    "ai": "AI",
+    "text": "Text",
+    "image": "Image",
+    "crypto": "Crypto & Security",
+    "network": "Network & Chat",
+    "finance": "Finance",
+    "life": "Life",
+    "games": "Games"
   }
 }

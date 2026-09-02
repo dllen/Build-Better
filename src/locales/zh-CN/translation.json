@@ -27,7 +27,10 @@
   "home": {
     "title": "小工具集合",
     "subtitle": "必备工具箱，快速、可靠、易用。",
-    "section_tools": "小工具"
+    "section_tools": "小工具",
+    "section_popular": "热门工具",
+    "section_recent": "最近新增",
+    "all_categories": "全部"
   },
   "tools": {
     "kinship": {
@@ -550,5 +553,19 @@
       "title": "绘图板",
       "subtitle": "在无限画布上绘制、图表和头脑风暴 — 压感笔触、形状、箭头、图片等。"
     }
+  },
+  "categories": {
+    "developer": "开发者",
+    "data": "数据",
+    "linux": "Linux",
+    "devops": "DevOps",
+    "ai": "AI",
+    "text": "文本",
+    "image": "图片",
+    "crypto": "加密与安全",
+    "network": "网络与聊天",
+    "finance": "金融",
+    "life": "生活",
+    "games": "游戏"
   }
 }
