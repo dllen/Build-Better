@@ -112,6 +112,7 @@ import TxHashIdentifier from "@/pages/tools/web3/TxHashIdentifier";
 import TokenApprovalChecker from "@/pages/tools/web3/TokenApprovalChecker";
 import TokenRiskScanner from "@/pages/tools/web3/TokenRiskScanner";
 import TxDecoder from "@/pages/tools/web3/TxDecoder";
+import TokenHolderAnalyzer from "@/pages/tools/web3/TokenHolderAnalyzer";
 import TokenCounter from "@/pages/tools/TokenCounter";
 import PromptBuilder from "@/pages/tools/PromptBuilder";
 import PromptDiff from "@/pages/tools/PromptDiff";
@@ -405,6 +406,7 @@ export default function App() {
           <Route path="/web3/token-approval-checker" element={<TokenApprovalChecker />} />
           <Route path="/web3/token-risk-scanner" element={<TokenRiskScanner />} />
           <Route path="/web3/tx-decoder" element={<TxDecoder />} />
+          <Route path="/web3/token-holder-analyzer" element={<TokenHolderAnalyzer />} />
 
           {/* Web3 Legacy */}
           <Route path="/tools/web3/wallet-analyzer" element={<Navigate to="/web3/wallet-analyzer" replace />} />
@@ -414,6 +416,7 @@ export default function App() {
           <Route path="/tools/web3/token-approval-checker" element={<Navigate to="/web3/token-approval-checker" replace />} />
           <Route path="/tools/web3/token-risk-scanner" element={<Navigate to="/web3/token-risk-scanner" replace />} />
           <Route path="/tools/web3/tx-decoder" element={<Navigate to="/web3/tx-decoder" replace />} />
+          <Route path="/tools/web3/token-holder-analyzer" element={<Navigate to="/web3/token-holder-analyzer" replace />} />
 
           <Route path="/tools/token-counter" element={<Navigate to="/token-counter" replace />} />
           <Route path="/tools/prompt-builder" element={<Navigate to="/prompt-builder" replace />} />

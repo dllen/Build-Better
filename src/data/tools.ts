@@ -1444,6 +1444,18 @@ export const TOOL_REGISTRY: ToolMeta[] = [
     keywords: ["transaction", "decoder", "tx", "web3", "ethereum", "input", "logs"],
     isNew: true,
   },
+  {
+    id: "token-holder-analyzer",
+    path: "/web3/token-holder-analyzer",
+    category: "web3",
+    icon: Users,
+    color: "text-purple-600",
+    bgColor: "bg-purple-100",
+    name: "代币持有者分析",
+    description: "分析 ERC-20 代币 Top 持有者分布，基于转账记录估算。",
+    keywords: ["token", "holders", "analyzer", "web3", "ethereum", "distribution"],
+    isNew: true,
+  },
 
   // ============ Games（首页只放入口卡片） ============
   {
