@@ -40,7 +40,10 @@ export default function TokenRiskScanner() {
     try {
       // Get contract source code
       const url = `${ETHERSCAN_API}?module=contract&action=getsourcecode&address=${address.trim()}&apikey=${ETHERSCAN_KEY}`;
-      const res = await fetch(url);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
       const data = await res.json();
 
       if (data.status !== "1" || !data.result || data.result[0]?.SourceCode === "") {
@@ -96,7 +99,7 @@ export default function TokenRiskScanner() {
       const isProxy = /proxy|delegate|EIP1167/.test(source);
       risks.push({
         name: "代理模式",
-        status: isProxy ? "safe" : "safe",
+        status: isProxy ? "safe" : "warning",
         detail: isProxy ? "使用代理模式（通常更安全）" : "非代理合约",
       });
 

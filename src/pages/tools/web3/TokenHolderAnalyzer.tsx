@@ -55,17 +55,23 @@ export default function TokenHolderAnalyzer() {
 
       // Get token info (symbol + totalSupply) from contract
       const symbolUrl = `${ETHERSCAN_API}?module=contract&action=getabi&address=${addr}&apikey=${ETHERSCAN_KEY}`;
-      const symbolRes = await fetch(symbolUrl);
+      const symbolController = new AbortController();
+      const symbolTimeoutId = setTimeout(() => symbolController.abort(), 15000);
+      const symbolRes = await fetch(symbolUrl, { signal: symbolController.signal });
+      clearTimeout(symbolTimeoutId);
       const symbolData = await symbolRes.json();
 
       // Try to get transfers (up to holderCount * 20 to get enough data)
       const transfers: Record<string, string> = {};
       const pageCount = Math.min(10, Math.ceil(holderCount * 2));
       const pages = await Promise.all(
-        Array.from({ length: pageCount }, (_, i) =>
-          fetch(`${ETHERSCAN_API}?module=account&action=tokentx&address=${addr}&startblock=0&endblock=99999999&page=1&offset=100&sort=desc&apikey=${ETHERSCAN_KEY}`)
-            .then(r => r.json())
-        )
+        Array.from({ length: pageCount }, (_, i) => {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 15000);
+          return fetch(`${ETHERSCAN_API}?module=account&action=tokentx&address=${addr}&startblock=0&endblock=99999999&page=${i + 1}&offset=100&sort=desc&apikey=${ETHERSCAN_KEY}`, { signal: controller.signal })
+            .finally(() => clearTimeout(timeoutId))
+            .then(r => r.json());
+        })
       );
 
       for (const page of pages) {

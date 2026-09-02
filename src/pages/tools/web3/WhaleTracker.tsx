@@ -43,11 +43,12 @@ export default function WhaleTracker() {
     setTransfers([]);
 
     try {
-      const minWei = (minAmount * 1e18).toString();
-
       // Fetch recent ERC-20 transfers
       const url = `${ETHERSCAN_API}?module=account&action=tokentx&startblock=0&endblock=99999999&page=1&offset=50&sort=desc&apikey=${ETHERSCAN_KEY}`;
-      const res = await fetch(url);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
       const data = await res.json();
 
       if (data.status !== "1" || !data.result) {

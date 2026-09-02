@@ -49,21 +49,30 @@ export default function WalletPnL() {
 
       // 1. Get ETH balance
       const balanceUrl = `${ETHERSCAN_API}?module=account&action=balance&address=${addr}&tag=latest&apikey=${ETHERSCAN_KEY}`;
-      const balanceRes = await fetch(balanceUrl);
+      const balanceController = new AbortController();
+      const balanceTimeoutId = setTimeout(() => balanceController.abort(), 15000);
+      const balanceRes = await fetch(balanceUrl, { signal: balanceController.signal });
+      clearTimeout(balanceTimeoutId);
       const balanceData = await balanceRes.json();
       const ethRaw = balanceData.result || "0";
       const eth = parseFloat(ethRaw) / 1e18;
       setEthBalance(eth);
 
       // 2. Get ETH price from CoinGecko
-      const priceRes = await fetch(`${COINGECKO_API}/simple/price?ids=ethereum&vs_currencies=usd`);
+      const priceController = new AbortController();
+      const priceTimeoutId = setTimeout(() => priceController.abort(), 15000);
+      const priceRes = await fetch(`${COINGECKO_API}/simple/price?ids=ethereum&vs_currencies=usd`, { signal: priceController.signal });
+      clearTimeout(priceTimeoutId);
       const priceData = await priceRes.json();
       const price = priceData?.ethereum?.usd || 0;
       setEthPrice(price);
 
       // 3. Get ERC-20 token balances
       const tokensUrl = `${ETHERSCAN_API}?module=account&action=tokenlist&address=${addr}&apikey=${ETHERSCAN_KEY}`;
-      const tokensRes = await fetch(tokensUrl);
+      const tokensController = new AbortController();
+      const tokensTimeoutId = setTimeout(() => tokensController.abort(), 15000);
+      const tokensRes = await fetch(tokensUrl, { signal: tokensController.signal });
+      clearTimeout(tokensTimeoutId);
       const tokensData = await tokensRes.json();
       const tokenList: TokenBalance[] = [];
 
@@ -109,6 +118,8 @@ export default function WalletPnL() {
     setTokens([]);
     setError(null);
     setTotalValue(0);
+    setEthBalance(0);
+    setEthPrice(0);
   }
 
   return (

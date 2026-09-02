@@ -88,7 +88,10 @@ export default function TxDecoder() {
 
       // Get transaction
       const txUrl = `${ETHERSCAN_API}?module=proxy&action=eth_getTransactionByHash&txhash=${cleanHash}&apikey=${ETHERSCAN_KEY}`;
-      const txRes = await fetch(txUrl);
+      const txController = new AbortController();
+      const txTimeoutId = setTimeout(() => txController.abort(), 15000);
+      const txRes = await fetch(txUrl, { signal: txController.signal });
+      clearTimeout(txTimeoutId);
       const txData = await txRes.json();
       const tx = txData.result;
 
@@ -100,7 +103,10 @@ export default function TxDecoder() {
 
       // Get receipt for status and logs
       const receiptUrl = `${ETHERSCAN_API}?module=proxy&action=eth_getTransactionReceipt&txhash=${cleanHash}&apikey=${ETHERSCAN_KEY}`;
-      const receiptRes = await fetch(receiptUrl);
+      const receiptController = new AbortController();
+      const receiptTimeoutId = setTimeout(() => receiptController.abort(), 15000);
+      const receiptRes = await fetch(receiptUrl, { signal: receiptController.signal });
+      clearTimeout(receiptTimeoutId);
       const receiptData = await receiptRes.json();
       const receipt = receiptData.result;
 
@@ -167,7 +173,7 @@ export default function TxDecoder() {
           <button
             className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
             onClick={clear}
-            disabled={!hash && !result}
+            disabled={!hash && !result && !loading}
           >
             清空
           </button>
