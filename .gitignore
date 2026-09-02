@@ -31,3 +31,6 @@ libs
 .wrangler
 .dev.vars
 public/pdf-tools/_next/
+
+
+package-lock.json
