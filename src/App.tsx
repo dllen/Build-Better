@@ -105,6 +105,11 @@ import NonIndieDeveloper from "./pages/NonIndieDeveloper";
 import DataDeveloper from "@/pages/DataDeveloper";
 
 import AiDevelopment from "@/pages/AiDevelopment";
+import Base64Tool from "@/pages/tools/Base64Tool";
+import UrlEncoder from "@/pages/tools/UrlEncoder";
+import UuidGenerator from "@/pages/tools/UuidGenerator";
+import SqlFormatter from "@/pages/tools/SqlFormatter";
+import SqlTableExtractor from "@/pages/tools/SqlTableExtractor";
 import LoopEngineering from "./pages/loop-engineering/LoopEngineering";
 import GithubStars from "./pages/GithubStars";
 
@@ -220,6 +225,13 @@ export default function App() {
           <Route path="/nginx-config" element={<NginxConfigGenerator />} />
           <Route path="/apache-config" element={<ApacheConfigGenerator />} />
           <Route path="/haproxy-config" element={<HAProxyConfigGenerator />} />
+
+          {/* Phase B — MVP Tools */}
+          <Route path="/base64" element={<Base64Tool />} />
+          <Route path="/url-encoder" element={<UrlEncoder />} />
+          <Route path="/uuid-generator" element={<UuidGenerator />} />
+          <Route path="/sql-formatter" element={<SqlFormatter />} />
+          <Route path="/sql-table-extractor" element={<SqlTableExtractor />} />
           
           {/* Finance Tools */}
           <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
@@ -333,6 +345,13 @@ export default function App() {
           <Route path="/tools/nginx-config" element={<Navigate to="/nginx-config" replace />} />
           <Route path="/tools/apache-config" element={<Navigate to="/apache-config" replace />} />
           <Route path="/tools/haproxy-config" element={<Navigate to="/haproxy-config" replace />} />
+
+          {/* Phase B — MVP Legacy */}
+          <Route path="/tools/base64" element={<Navigate to="/base64" replace />} />
+          <Route path="/tools/url-encoder" element={<Navigate to="/url-encoder" replace />} />
+          <Route path="/tools/uuid-generator" element={<Navigate to="/uuid-generator" replace />} />
+          <Route path="/tools/sql-formatter" element={<Navigate to="/sql-formatter" replace />} />
+          <Route path="/tools/sql-table-extractor" element={<Navigate to="/sql-table-extractor" replace />} />
           
           {/* Finance Tools - Legacy */}
           <Route path="/tools/mortgage-calculator" element={<Navigate to="/mortgage-calculator" replace />} />

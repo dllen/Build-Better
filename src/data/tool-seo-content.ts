@@ -710,6 +710,85 @@ export const toolSEOContent: Record<string, ToolSEOData> = {
       { q: "Is annualized ROI calculated?", a: "Yes. Adjust for different time periods." },
     ],
   },
+  "base64": {
+    title: "Base64 Encoder/Decoder - Free Online Tool",
+    description: "UTF-8 safe Base64 encode and decode. Supports standard and URL-safe variants. Runs locally in your browser — no data uploaded.",
+    slug: "base64",
+    features: ["UTF-8 safe encoding/decoding", "Standard Base64", "URL-safe Base64 variant", "One-click copy", "Instant results"],
+    howToSteps: [
+      { title: "Paste or type text", body: "Paste your text into the input area." },
+      { title: "Choose mode", body: "Select Encode or Decode. Enable URL-safe if needed." },
+      { title: "Convert", body: "Click Convert to see the result instantly." },
+      { title: "Copy", body: "Click Copy to copy the result to your clipboard." },
+    ],
+    faqs: [
+      { q: "Is my data uploaded?", a: "No. All processing happens in your browser. Data never leaves your device." },
+      { q: "What is URL-safe Base64?", a: "It replaces +/ with -_ and removes padding =, making it safe for URLs." },
+    ],
+  },
+  "url-encoder": {
+    title: "URL Encoder/Decoder - Free Online Tool",
+    description: "URL encode and decode online. Supports component-level (encodeURIComponent) and full-URL (encodeURI) modes. Runs locally.",
+    slug: "url-encoder",
+    features: ["Component-level and full-URL encoding", "Decode with error feedback", "One-click copy", "Handles Chinese and special chars"],
+    howToSteps: [
+      { title: "Paste URL or text", body: "Enter the URL or text you want to encode or decode." },
+      { title: "Choose mode", body: "Select Encode or Decode. Choose component or full-URL mode." },
+      { title: "Convert", body: "Click Convert to get the result." },
+      { title: "Copy", body: "Click Copy to copy the result." },
+    ],
+    faqs: [
+      { q: "encodeURIComponent vs encodeURI?", a: "encodeURIComponent encodes everything except A-Z a-z 0-9 - _ . ! ~ * ' ( ). encodeURI encodes fewer characters (keeps :/?#&=,) for complete URLs." },
+      { q: "Is this local?", a: "Yes. All processing is done in your browser." },
+    ],
+  },
+  "uuid-generator": {
+    title: "UUID Generator - Free Online v4 UUID Generator",
+    description: "Generate RFC 4122 v4 UUIDs online. Supports batch generation, uppercase, and hyphens removal. Runs locally in your browser.",
+    slug: "uuid-generator",
+    features: ["RFC 4122 v4 compliant", "Batch generation 1-100", "Uppercase toggle", "Remove hyphens", "Click to copy individual"],
+    howToSteps: [
+      { title: "Set options", body: "Choose count, uppercase, and hyphens removal options." },
+      { title: "Generate", body: "Click Generate to create UUIDs." },
+      { title: "Copy", body: "Click Copy All or click an individual UUID to copy." },
+    ],
+    faqs: [
+      { q: "Are these truly random?", a: "Uses crypto.randomUUID() which provides cryptographically strong random values." },
+      { q: "Is this local?", a: "Yes. All generation is done in your browser." },
+    ],
+  },
+  "sql-formatter": {
+    title: "SQL Formatter - Free Online SQL Beautifier",
+    description: "Format, beautify, and minify SQL queries online. Supports MySQL, PostgreSQL, Hive, Spark, SQLite, and more. Runs locally.",
+    slug: "sql-formatter",
+    features: ["Multi-dialect support", "Keyword case options", "Custom indentation", "Minify SQL", "Copy and download"],
+    howToSteps: [
+      { title: "Paste SQL", body: "Enter your SQL query in the input area." },
+      { title: "Choose options", body: "Select dialect and formatting options." },
+      { title: "Format", body: "Click Format to beautify your SQL." },
+      { title: "Copy or download", body: "Copy the result or download as .sql file." },
+    ],
+    faqs: [
+      { q: "Which dialects are supported?", a: "Standard SQL, MySQL, PostgreSQL, Hive, Spark, SQLite, MariaDB, BigQuery, T-SQL, and more." },
+      { q: "Is my SQL uploaded?", a: "No. All formatting is done locally in your browser." },
+    ],
+  },
+  "sql-table-extractor": {
+    title: "SQL Table Extractor - Free Online Tool",
+    description: "Extract table names from any SQL query. Groups by query type (SELECT/UPDATE/CREATE etc). Runs locally, no data uploaded.",
+    slug: "sql-table-extractor",
+    features: ["Handles multiple statements", "Groups by query type", "Deduplicates tables", "Handles aliases and schemas"],
+    howToSteps: [
+      { title: "Paste SQL", body: "Enter your SQL containing multiple statements." },
+      { title: "Extract", body: "Click Extract to see all referenced tables." },
+      { title: "Copy", body: "Copy the table list or individual entries." },
+    ],
+    faqs: [
+      { q: "Does it handle aliases?", a: "Yes. Table aliases are detected and stripped to show the real table name." },
+      { q: "What SQL types are supported?", a: "SELECT, INSERT, UPDATE, DELETE, CREATE TABLE, ALTER TABLE, DROP TABLE, TRUNCATE." },
+    ],
+  },
+
 
 };
 

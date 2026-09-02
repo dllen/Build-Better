@@ -446,6 +446,26 @@
       "reason_start": "Starts with same letter",
       "reason_sound": "Sounds similar",
       "reason_random": "Popular choice"
+    },
+    "base64": {
+      "name": "Base64 Encoder/Decoder",
+      "desc": "UTF-8 safe Base64 encode and decode, standard and URL-safe variants."
+    },
+    "url-encoder": {
+      "name": "URL Encoder",
+      "desc": "URL component and full-URL encoding/decoding with error feedback."
+    },
+    "uuid-generator": {
+      "name": "UUID Generator",
+      "desc": "Generate RFC 4122 v4 UUIDs. Batch, uppercase, strip hyphens options."
+    },
+    "sql-formatter": {
+      "name": "SQL Formatter",
+      "desc": "Format and minify SQL. Supports MySQL, PostgreSQL, Hive, Spark, SQLite."
+    },
+    "sql-table-extractor": {
+      "name": "SQL Table Extractor",
+      "desc": "Extract table names from SQL queries, grouped by type."
     }
   },
   "games": {

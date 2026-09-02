@@ -446,6 +446,26 @@
       "reason_start": "首字母相同",
       "reason_sound": "发音相似",
       "reason_random": "热门推荐"
+    },
+    "base64": {
+      "name": "Base64 编解码",
+      "desc": "UTF-8 安全的 Base64 编码与解码，支持标准与 URL-safe 变体。"
+    },
+    "url-encoder": {
+      "name": "URL 编码",
+      "desc": "URL 组件编码与完整 URL 编码互转，支持解码与错误提示。"
+    },
+    "uuid-generator": {
+      "name": "UUID 生成器",
+      "desc": "生成 RFC 4122 v4 UUID，支持批量、大写、去除连字符。"
+    },
+    "sql-formatter": {
+      "name": "SQL 格式化",
+      "desc": "格式化、压缩 SQL，支持多方言（MySQL/PG/Hive/Spark/SQLite）。"
+    },
+    "sql-table-extractor": {
+      "name": "SQL 表提取",
+      "desc": "从 SQL 中提取涉及的表名，按类型（查询/写入/结构）分类。"
     }
   },
   "games": {

@@ -414,6 +414,26 @@
       "reason_start": "首字母相同",
       "reason_sound": "發音相似",
       "reason_random": "熱門推薦"
+    },
+    "base64": {
+      "name": "Base64 編解碼",
+      "desc": "UTF-8 安全的 Base64 編碼與解碼，支援標準與 URL-safe 變體。"
+    },
+    "url-encoder": {
+      "name": "URL 編碼",
+      "desc": "URL 組件編碼與完整 URL 編碼互轉，支援解碼與錯誤提示。"
+    },
+    "uuid-generator": {
+      "name": "UUID 生成器",
+      "desc": "生成 RFC 4122 v4 UUID，支援批量、大寫、去除連字符。"
+    },
+    "sql-formatter": {
+      "name": "SQL 格式化",
+      "desc": "格式化、壓縮 SQL，支援多方言（MySQL/PG/Hive/Spark/SQLite）。"
+    },
+    "sql-table-extractor": {
+      "name": "SQL 表提取",
+      "desc": "從 SQL 中提取涉及的表名，按類型（查詢/寫入/結構）分類。"
     }
   },
   "games": {
