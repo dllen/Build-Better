@@ -121,8 +121,8 @@ const MortgageCalculator: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <SEO
-        title={t("mortgage-calculator.title")}
-        description={t("mortgage-calculator.desc")}
+        title={t("tools.mortgage-calculator.title")}
+        description={t("tools.mortgage-calculator.desc")}
         keywords={[
           "房贷计算器",
           "商业贷款",
@@ -140,9 +140,9 @@ const MortgageCalculator: React.FC = () => {
             </div>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">
-            {t("mortgage-calculator.title")}
+            {t("tools.mortgage-calculator.title")}
           </h1>
-          <p className="text-lg text-gray-600">{t("mortgage-calculator.subtitle")}</p>
+          <p className="text-lg text-gray-600">{t("tools.mortgage-calculator.subtitle")}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -152,7 +152,7 @@ const MortgageCalculator: React.FC = () => {
               {/* Loan Type */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t("mortgage-calculator.loan_type")}
+                  {t("tools.mortgage-calculator.loan_type")}
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {(["commercial", "provident", "combination"] as LoanType[]).map((type) => (
@@ -165,7 +165,7 @@ const MortgageCalculator: React.FC = () => {
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
-                      {t(`mortgage-calculator.type_${type}`)}
+                      {t(`tools.mortgage-calculator.type_${type}`)}
                     </button>
                   ))}
                 </div>
@@ -175,8 +175,8 @@ const MortgageCalculator: React.FC = () => {
               {(loanType === "commercial" || loanType === "combination") && (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t("mortgage-calculator.commercial_amount")} (
-                    {t("mortgage-calculator.unit_wan")})
+                    {t("tools.mortgage-calculator.commercial_amount")} (
+                    {t("tools.mortgage-calculator.unit_wan")})
                   </label>
                   <div className="relative rounded-md shadow-sm">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -195,8 +195,8 @@ const MortgageCalculator: React.FC = () => {
               {(loanType === "provident" || loanType === "combination") && (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t("mortgage-calculator.provident_amount")} ({t("mortgage-calculator.unit_wan")}
-                    )
+                    {t("tools.mortgage-calculator.provident_amount")} (
+                    {t("tools.mortgage-calculator.unit_wan")})
                   </label>
                   <div className="relative rounded-md shadow-sm">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -215,7 +215,7 @@ const MortgageCalculator: React.FC = () => {
               {/* Term */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  {t("mortgage-calculator.years")}
+                  {t("tools.mortgage-calculator.years")}
                 </label>
                 <select
                   value={years}
@@ -224,7 +224,7 @@ const MortgageCalculator: React.FC = () => {
                 >
                   {[5, 10, 15, 20, 25, 30].map((y) => (
                     <option key={y} value={y}>
-                      {y} {t("mortgage-calculator.year_unit")}
+                      {y} {t("tools.mortgage-calculator.year_unit")}
                     </option>
                   ))}
                 </select>
@@ -235,7 +235,7 @@ const MortgageCalculator: React.FC = () => {
                 {(loanType === "commercial" || loanType === "combination") && (
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      {t("mortgage-calculator.commercial_rate")} (%)
+                      {t("tools.mortgage-calculator.commercial_rate")} (%)
                     </label>
                     <input
                       type="number"
@@ -249,7 +249,7 @@ const MortgageCalculator: React.FC = () => {
                 {(loanType === "provident" || loanType === "combination") && (
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      {t("mortgage-calculator.provident_rate")} (%)
+                      {t("tools.mortgage-calculator.provident_rate")} (%)
                     </label>
                     <input
                       type="number"
@@ -265,7 +265,7 @@ const MortgageCalculator: React.FC = () => {
               {/* Payment Method */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t("mortgage-calculator.payment_method")}
+                  {t("tools.mortgage-calculator.payment_method")}
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
@@ -276,7 +276,7 @@ const MortgageCalculator: React.FC = () => {
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
-                    {t("mortgage-calculator.method_interest")}
+                    {t("tools.mortgage-calculator.method_interest")}
                   </button>
                   <button
                     onClick={() => setPaymentMethod("equal_principal")}
@@ -286,7 +286,7 @@ const MortgageCalculator: React.FC = () => {
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
-                    {t("mortgage-calculator.method_principal")}
+                    {t("tools.mortgage-calculator.method_principal")}
                   </button>
                 </div>
               </div>
@@ -300,15 +300,15 @@ const MortgageCalculator: React.FC = () => {
                 <div className="text-center">
                   <p className="text-sm font-medium text-gray-500 mb-1">
                     {paymentMethod === "equal_principal_interest"
-                      ? t("mortgage-calculator.monthly_payment")
-                      : t("mortgage-calculator.first_month_payment")}
+                      ? t("tools.mortgage-calculator.monthly_payment")
+                      : t("tools.mortgage-calculator.first_month_payment")}
                   </p>
                   <p className="text-4xl font-bold text-blue-600">
                     {formatCurrency(result.monthlyPayment)}
                   </p>
                   {paymentMethod === "equal_principal" && result.monthlyPaymentDecrease && (
                     <p className="text-sm text-gray-500 mt-2">
-                      {t("mortgage-calculator.monthly_decrease", {
+                      {t("tools.mortgage-calculator.monthly_decrease", {
                         amount: formatCurrency(result.monthlyPaymentDecrease),
                       })}
                     </p>
@@ -318,7 +318,7 @@ const MortgageCalculator: React.FC = () => {
                 <div className="grid grid-cols-2 gap-4 pt-8 border-t border-gray-100">
                   <div className="text-center">
                     <p className="text-sm font-medium text-gray-500 mb-1">
-                      {t("mortgage-calculator.total_interest")}
+                      {t("tools.mortgage-calculator.total_interest")}
                     </p>
                     <p className="text-xl font-bold text-gray-900">
                       {formatCurrency(result.totalInterest)}
@@ -326,7 +326,7 @@ const MortgageCalculator: React.FC = () => {
                   </div>
                   <div className="text-center">
                     <p className="text-sm font-medium text-gray-500 mb-1">
-                      {t("mortgage-calculator.total_payment")}
+                      {t("tools.mortgage-calculator.total_payment")}
                     </p>
                     <p className="text-xl font-bold text-gray-900">
                       {formatCurrency(result.totalPayment)}
@@ -339,8 +339,8 @@ const MortgageCalculator: React.FC = () => {
                     <Info className="h-5 w-5 text-blue-500 mt-0.5 mr-3 flex-shrink-0" />
                     <p className="text-sm text-blue-700">
                       {paymentMethod === "equal_principal_interest"
-                        ? t("mortgage-calculator.tip_interest")
-                        : t("mortgage-calculator.tip_principal")}
+                        ? t("tools.mortgage-calculator.tip_interest")
+                        : t("tools.mortgage-calculator.tip_principal")}
                     </p>
                   </div>
                 </div>

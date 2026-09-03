@@ -37,6 +37,22 @@
       "name": "JSON 編輯器",
       "desc": "查看、編輯、格式化和校驗 JSON 數據。"
     },
+    "image-ascii": {
+      "title": "圖片轉 ASCII 藝術",
+      "desc": "將圖片轉換為 ASCII 字符畫。支援自訂字符集和顏色模式。",
+      "drag_drop": "點擊或拖拽圖片到這裡",
+      "settings": "設定",
+      "width": "寬度 (字符)",
+      "mode": "顏色模式",
+      "mode_bw": "黑白",
+      "mode_gray": "灰階",
+      "mode_color": "彩色",
+      "charset": "字符集",
+      "inverted": "反轉顏色",
+      "original": "原始圖片",
+      "preview": "ASCII 預覽",
+      "placeholder": "上傳圖片以檢視效果"
+    },
     "image-joiner": {
       "title": "圖片拼接工具",
       "desc": "多圖縱向或橫向拼接。支持拖拽排序、自動對齊寬度。",
@@ -128,6 +144,22 @@
       "download_all": "打包下載",
       "original": "原大小",
       "compressed": "壓縮後"
+    },
+    "kinship": {
+      "title": "中國親戚稱呼計算器",
+      "desc": "快速查詢中國親戚稱呼，解決過年不知道叫什麼的難題。",
+      "male": "我是男性",
+      "female": "我是女性",
+      "current_relation": "目前關係",
+      "placeholder": "請選擇關係...",
+      "reverse_lookup": "稱呼反查 (如: 舅舅)",
+      "result": "計算結果",
+      "waiting": "等待計算...",
+      "tips_title": "使用小貼士",
+      "tip1": "點選\"父\"、\"母\"等按鈕依序加入關係。",
+      "tip2": "支援\"稱呼反查\"，例如輸入\"舅舅\"檢視是什麼關係。",
+      "tip3": "不同地區稱呼可能存在差異，結果僅供參考。",
+      "share_text": "我正在查詢親戚稱呼"
     },
     "token-generator": {
       "name": "Token 生成器",
