@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDown, HelpCircle, X } from "lucide-react";
+import { JsonLd } from "./JsonLd";
 
 interface HowToStep {
   title: string;
@@ -28,8 +29,17 @@ export function ToolPageSEO({ data }: ToolPageSEOProps) {
   const { title, description, features, howToSteps, faqs } = data;
   const [isOpen, setIsOpen] = useState(false);
 
+  const pageUrl = `https://buildbetter.tools/tools/${data.slug}/`;
+  const breadcrumb = [
+    { name: 'Home', url: 'https://buildbetter.tools/' },
+    { name: 'Tools', url: 'https://buildbetter.tools/tools/' },
+    { name: data.title.split(' - ')[0] || data.title, url: pageUrl },
+  ];
+
   return (
     <>
+      <JsonLd url={pageUrl} data={data} breadcrumb={breadcrumb} />
+
       {/* Hidden SEO content for search engines */}
       <section className="hidden" aria-hidden="true">
         <h1>{title}</h1>
