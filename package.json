@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:pdf && tsc -b && vite build && node scripts/generate-sitemap.mjs",
+    "build": "npm run build:pdf && node scripts/prerender-routes.mjs && tsc -b && vite build && node scripts/generate-sitemap.mjs && node scripts/prerender.mjs",
     "build:pdf": "cd libs/pdfcraft && npm install --legacy-peer-deps && npm run build && mkdir -p ../../public/pdf-tools && cp -r out/* ../../public/pdf-tools/",
     "build:algo": "cd libs/algorithm-visualizer && npm install --legacy-peer-deps && npm run build && mkdir -p ../../public/algorithm-visualizer && cp -r build/* ../../public/algorithm-visualizer/",
     "build:fund": "cd libs/real-time-fund && npm install && npm run build && mkdir -p ../../public/fund-analysis && cp -r out/* ../../public/fund-analysis/",
@@ -23,7 +23,9 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",
-    "test:e2e:headed": "playwright test --headed"
+    "test:e2e:headed": "playwright test --headed",
+    "prerender:routes": "node scripts/prerender-routes.mjs",
+    "prerender:run": "node scripts/prerender.mjs"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -93,11 +95,13 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
     "postcss": "^8.5.3",
+    "puppeteer": "^25.12.0",
     "tailwindcss": "^3.4.17",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
     "vite": "^6.3.5",
     "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-prerender-spa": "^0.1.1",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^4.0.16",
     "wrangler": "^4.54.0"
