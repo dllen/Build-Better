@@ -3,6 +3,9 @@ import "./i18n/config"; // Import i18n config
 import { Layout } from "@/components/layout/Layout";
 import Home from "@/pages/Home";
 import Settings from "@/pages/Settings";
+import Privacy from "@/pages/Privacy";
+import About from "@/pages/About";
+import Contact from "@/pages/Contact";
 import Games from "@/pages/Games";
 import ApiDebugger from "@/pages/tools/ApiDebugger";
 import CodeFormatter from "@/pages/tools/CodeFormatter";
@@ -154,6 +157,9 @@ export default function App() {
           <Route path="/loop-engineering" element={<LoopEngineering />} />
           <Route path="/github-stars" element={<GithubStars />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           
           {/* ========== NEW TOP-LEVEL ROUTES (Week 2) ========== */}
           {/* Developer Tools */}
