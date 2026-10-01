@@ -53,6 +53,10 @@ import HAProxyConfigGenerator from "@/pages/tools/HAProxyConfigGenerator";
 import MortgageCalculator from "@/pages/tools/MortgageCalculator";
 import InvestmentReturnCalculator from "@/pages/tools/InvestmentReturnCalculator";
 import ROICalculator from "@/pages/tools/ROICalculator";
+import DiscountCalculator from "@/pages/tools/DiscountCalculator";
+import BreakEvenCalculator from "@/pages/tools/BreakEvenCalculator";
+import TipCalculator from "@/pages/tools/TipCalculator";
+import SizeConverter from "@/pages/tools/SizeConverter";
 import MarginCalculator from "@/pages/tools/MarginCalculator";
 import OtpGenerator from "@/pages/tools/OtpGenerator";
 import JwtDecodeTool from "@/pages/tools/JwtDecodeTool";
@@ -292,6 +296,10 @@ export function AppRoutes() {
         <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
         <Route path="/investment-return" element={<InvestmentReturnCalculator />} />
         <Route path="/roi-calculator" element={<ROICalculator />} />
+        <Route path="/discount-calculator" element={<DiscountCalculator />} />
+        <Route path="/break-even-calculator" element={<BreakEvenCalculator />} />
+        <Route path="/tip-calculator" element={<TipCalculator />} />
+        <Route path="/size-converter" element={<SizeConverter />} />
         <Route path="/margin-calculator" element={<MarginCalculator />} />
         
         {/* ========== GAMES ========== */}
@@ -482,6 +490,10 @@ export function AppRoutes() {
         <Route path="/tools/mortgage-calculator" element={<Navigate to="/mortgage-calculator" replace />} />
         <Route path="/tools/investment-return" element={<Navigate to="/investment-return" replace />} />
         <Route path="/tools/roi-calculator" element={<Navigate to="/roi-calculator" replace />} />
+        <Route path="/tools/discount-calculator" element={<Navigate to="/discount-calculator" replace />} />
+        <Route path="/tools/break-even-calculator" element={<Navigate to="/break-even-calculator" replace />} />
+        <Route path="/tools/tip-calculator" element={<Navigate to="/tip-calculator" replace />} />
+        <Route path="/tools/size-converter" element={<Navigate to="/size-converter" replace />} />
         <Route path="/tools/margin-calculator" element={<Navigate to="/margin-calculator" replace />} />
         </Route>
       </Route>
