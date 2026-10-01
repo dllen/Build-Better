@@ -104,6 +104,7 @@ export default function MarginCalculator() {
       iconBgColor="bg-blue-100"
       iconColor="text-blue-600"
       keywords={["margin calculator", "profit margin calculator", "markup calculator", "ecommerce"]}
+      result={resultNode}
     >
       <div className="space-y-4">
         <div>
@@ -136,7 +137,6 @@ export default function MarginCalculator() {
           </div>
         )}
       </div>
-      {resultNode}
-    </CalculatorShell>
+  </CalculatorShell>
   );
 }
