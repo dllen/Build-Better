@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Ruler } from "lucide-react";
 import { SEO } from "@/components/SEO";
 
@@ -45,6 +46,7 @@ const CATEGORIES = [
 const HEADERS = ["US", "EU", "UK", "Asia"];
 
 export default function SizeConverter() {
+  const { t } = useTranslation();
   const [category, setCategory] = useState("shoe-women");
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
@@ -57,7 +59,7 @@ export default function SizeConverter() {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <SEO
-        title="Size Converter"
+        title={t("tools.size-converter.title")}
         description="Convert shoe and clothing sizes between US, EU, UK, and Asian sizing systems."
         keywords={["size converter", "shoe size", "clothing size", "international sizes"]}
       />
@@ -68,8 +70,8 @@ export default function SizeConverter() {
               <Ruler className="h-8 w-8 text-pink-600" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">Size Converter</h1>
-          <p className="text-lg text-gray-600">Convert between US, EU, UK and Asian sizes</p>
+          <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">{t("tools.size-converter.title")}</h1>
+          <p className="text-lg text-gray-600">{t("tools.size-converter.subtitle")}</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-xl p-6 mb-6">
@@ -124,7 +126,7 @@ export default function SizeConverter() {
           </div>
           {table.length === 0 && (
             <div className="text-center py-12 text-gray-400">
-              <p>More categories coming soon.</p>
+              <p>{t("tools.size-converter.more_coming")}</p>
             </div>
           )}
         </div>

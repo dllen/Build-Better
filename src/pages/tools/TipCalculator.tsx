@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CalculatorShell } from "@/components/common/CalculatorShell";
+import { useTranslation } from "react-i18next";
 import { Coins, Users, Copy } from "lucide-react";
 
 const fmt = (n: number) =>
@@ -8,6 +9,7 @@ const fmt = (n: number) =>
 const QUICK_TIPS = [10, 15, 18, 20, 25];
 
 export default function TipCalculator() {
+  const { t } = useTranslation();
   const [bill, setBill] = useState<string>("");
   const [tipPct, setTipPct] = useState<string>("15");
   const [customTip, setCustomTip] = useState<string>("");
@@ -35,16 +37,16 @@ export default function TipCalculator() {
       {billAmt > 0 ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">Tip Amount</p>
+            <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.tip-calculator.tip_amount")}</p>
             <p className="text-4xl font-bold text-green-600">{fmt(tipAmt)}</p>
           </div>
           <div className="grid grid-cols-2 gap-4 pt-6 border-t border-gray-100">
             <div className="text-center">
-              <p className="text-sm font-medium text-gray-500 mb-1">Total</p>
+              <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.tip-calculator.total")}</p>
               <p className="text-2xl font-bold text-gray-900">{fmt(total)}</p>
             </div>
             <div className="text-center">
-              <p className="text-sm font-medium text-gray-500 mb-1">Per Person</p>
+              <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.tip-calculator.per_person")}</p>
               <p className="text-2xl font-bold text-blue-600 flex items-center justify-center gap-1">
                 <Users className="h-5 w-5" />{fmt(perPerson)}
               </p>
@@ -55,20 +57,20 @@ export default function TipCalculator() {
               onClick={copy}
               className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700"
             >
-              <Copy className="h-4 w-4" />{copied ? "Copied!" : "Copy"}
+              <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.tip-calculator.copy")}
             </button>
             <button
               onClick={() => { setBill(""); setTipPct("15"); setCustomTip(""); setPeople("1"); }}
               className="flex-1 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200"
             >
-              Reset
+              {t("tools.tip-calculator.reset")}
             </button>
           </div>
         </>
       ) : (
         <div className="text-center text-gray-400 py-12">
           <Coins className="h-12 w-12 mx-auto mb-4 opacity-40" />
-          <p className="text-lg">Enter bill amount to calculate tip</p>
+          <p className="text-lg">{t("tools.tip-calculator.enter_bill")}</p>
         </div>
       )}
     </div>
@@ -76,8 +78,8 @@ export default function TipCalculator() {
 
   return (
     <CalculatorShell
-      title="Tip Calculator"
-      subtitle="Calculate tip amount and split the bill across people"
+      title={t("tools.tip-calculator.title")}
+      subtitle={t("tools.tip-calculator.subtitle")}
       icon={Coins}
       iconBgColor="bg-amber-100"
       iconColor="text-amber-600"
@@ -86,7 +88,7 @@ export default function TipCalculator() {
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Bill Amount ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.tip-calculator.bill_amount")} ($)</label>
           <input
             type="number" step="0.01" min="0" value={bill}
             onChange={e => setBill(e.target.value)} placeholder="0.00"
@@ -94,7 +96,7 @@ export default function TipCalculator() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Tip %</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">{t("tools.tip-calculator.tip_percent")}</label>
           <div className="flex flex-wrap gap-2 mb-2">
             {QUICK_TIPS.map(p => (
               <button
@@ -109,7 +111,7 @@ export default function TipCalculator() {
               onClick={() => setUseCustom(true)}
               className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${useCustom ? "bg-amber-500 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
             >
-              Custom
+              {t("tools.tip-calculator.custom")}
             </button>
           </div>
           {useCustom && (
@@ -121,7 +123,7 @@ export default function TipCalculator() {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Split Between (people)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.tip-calculator.split_between")}</label>
           <input
             type="number" step="1" min="1" max="50" value={people}
             onChange={e => setPeople(e.target.value)}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CalculatorShell } from "@/components/common/CalculatorShell";
+import { useTranslation } from "react-i18next";
 import { TrendingUp, Target, DollarSign, Copy } from "lucide-react";
 
 const fmt = (n: number) =>
@@ -13,6 +14,7 @@ interface Result {
 }
 
 export default function BreakEvenCalculator() {
+  const { t } = useTranslation();
   const [fixed, setFixed] = useState<string>("");
   const [variable, setVariable] = useState<string>("");
   const [price, setPrice] = useState<string>("");
@@ -25,7 +27,7 @@ export default function BreakEvenCalculator() {
     if (p <= v) {
       setResult({
         breakEvenUnits: 0, breakEvenRevenue: 0, contributionMargin: p - v,
-        warning: "Selling price must exceed variable cost per unit.",
+        warning: t("tools.break-even-calculator.warning_price"),
       });
       return;
     }
@@ -49,7 +51,7 @@ export default function BreakEvenCalculator() {
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">Break-even Point</p>
+            <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.break-even-calculator.break_even_point")}</p>
             <p className="text-4xl font-bold text-indigo-600">{Math.ceil(result.breakEvenUnits)} units</p>
             <p className="text-lg text-gray-500 mt-1">{fmt(result.breakEvenRevenue)} revenue</p>
           </div>
@@ -73,20 +75,20 @@ export default function BreakEvenCalculator() {
               onClick={copy}
               className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
             >
-              <Copy className="h-4 w-4" />{copied ? "Copied!" : "Copy"}
+              <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.break-even-calculator.copy")}
             </button>
             <button
               onClick={() => { setFixed(""); setVariable(""); setPrice(""); }}
               className="flex-1 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200"
             >
-              Reset
+              {t("tools.break-even-calculator.reset")}
             </button>
           </div>
         </>
       ) : (
         <div className="text-center text-gray-400 py-12">
           <TrendingUp className="h-12 w-12 mx-auto mb-4 opacity-40" />
-          <p className="text-lg">Enter all three values to calculate break-even</p>
+          <p className="text-lg">{t("tools.break-even-calculator.enter_values")}</p>
         </div>
       )}
     </div>
@@ -94,8 +96,8 @@ export default function BreakEvenCalculator() {
 
   return (
     <CalculatorShell
-      title="Break-even Calculator"
-      subtitle="Find the sales volume needed to cover all your costs"
+      title={t("tools.break-even-calculator.title")}
+      subtitle={t("tools.break-even-calculator.subtitle")}
       icon={Target}
       iconBgColor="bg-indigo-100"
       iconColor="text-indigo-600"
@@ -104,9 +106,9 @@ export default function BreakEvenCalculator() {
     >
       <div className="space-y-4">
         {[
-          { label: "Fixed Costs ($)", value: fixed, set: setFixed, placeholder: "e.g. 10000" },
-          { label: "Variable Cost per Unit ($)", value: variable, set: setVariable, placeholder: "e.g. 25" },
-          { label: "Selling Price per Unit ($)", value: price, set: setPrice, placeholder: "e.g. 50" },
+          { label: t("tools.break-even-calculator.fixed_costs") + " ($)", value: fixed, set: setFixed, placeholder: "e.g. 10000" },
+          { label: t("tools.break-even-calculator.variable_cost_per_unit") + " ($)", value: variable, set: setVariable, placeholder: "e.g. 25" },
+          { label: t("tools.break-even-calculator.selling_price_per_unit") + " ($)", value: price, set: setPrice, placeholder: "e.g. 50" },
         ].map(({ label, value, set, placeholder }) => (
           <div key={label}>
             <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
