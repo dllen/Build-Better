@@ -1494,6 +1494,19 @@ export const TOOL_REGISTRY: ToolMeta[] = [
     description: "休闲小游戏合集：贪吃蛇、俄罗斯方块、五子棋、象棋等。",
     keywords: ["game", "snake", "tetris", "游戏"],
   },
+  // ============ Finance — MVP0 ============
+  {
+    id: "margin-calculator",
+    path: "/margin-calculator",
+    category: "finance",
+    icon: Percent,
+    color: "text-blue-600",
+    bgColor: "bg-blue-100",
+    name: "Margin Calculator",
+    description: "Calculate profit margin and markup from cost and selling price instantly.",
+    keywords: ["margin calculator", "profit margin", "markup", "ecommerce", "seller"],
+    popular: true,
+  },
 ];
 
 // ============ 派生工具函数 ============

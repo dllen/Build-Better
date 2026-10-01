@@ -53,6 +53,7 @@ import HAProxyConfigGenerator from "@/pages/tools/HAProxyConfigGenerator";
 import MortgageCalculator from "@/pages/tools/MortgageCalculator";
 import InvestmentReturnCalculator from "@/pages/tools/InvestmentReturnCalculator";
 import ROICalculator from "@/pages/tools/ROICalculator";
+import MarginCalculator from "@/pages/tools/MarginCalculator";
 import OtpGenerator from "@/pages/tools/OtpGenerator";
 import JwtDecodeTool from "@/pages/tools/JwtDecodeTool";
 import ShortUrlTool from "@/pages/tools/ShortUrlTool";
@@ -291,6 +292,7 @@ export function AppRoutes() {
         <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
         <Route path="/investment-return" element={<InvestmentReturnCalculator />} />
         <Route path="/roi-calculator" element={<ROICalculator />} />
+        <Route path="/margin-calculator" element={<MarginCalculator />} />
         
         {/* ========== GAMES ========== */}
         <Route path="/games/snake" element={<Snake />} />
@@ -480,6 +482,7 @@ export function AppRoutes() {
         <Route path="/tools/mortgage-calculator" element={<Navigate to="/mortgage-calculator" replace />} />
         <Route path="/tools/investment-return" element={<Navigate to="/investment-return" replace />} />
         <Route path="/tools/roi-calculator" element={<Navigate to="/roi-calculator" replace />} />
+        <Route path="/tools/margin-calculator" element={<Navigate to="/margin-calculator" replace />} />
         </Route>
       </Route>
     </Routes>
