@@ -586,7 +586,7 @@ Expected: 含 title + SoftwareApplication JSON-LD
 - 提交 sitemap URL
 - 用 URL Inspection 触发 3-5 个高优先级工具页 indexing
 
-- [ ] **Step G.6: 提交 AdSense 申请**
+- [x] **Step G.6: 提交 AdSense 申请** ✅ (2026-10-01 提交)
 
 访问 https://www.google.com/adsense/
 - 登录 Gmail
