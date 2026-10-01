@@ -5,6 +5,11 @@ import compression from "vite-plugin-compression";
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    // Handle SPA routing: all unknown paths return index.html
+    // Required for /:lang? prefix routing to work in dev
+    historyApiFallback: true,
+  },
   build: {
     // Cloudflare Pages rejects files >25 MiB. The default `hidden` sourcemap for
     // the bundle exceeds that (~27 MiB), so disable sourcemaps for production.

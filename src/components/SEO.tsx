@@ -1,5 +1,19 @@
 import { Helmet } from "react-helmet-async";
 
+const ALL_LANGUAGES = [
+  { code: "en", href: "https://buildbetter.tools/" },
+  { code: "ja", href: "https://buildbetter.tools/ja/" },
+  { code: "ko", href: "https://buildbetter.tools/ko/" },
+  { code: "de", href: "https://buildbetter.tools/de/" },
+  { code: "fr", href: "https://buildbetter.tools/fr/" },
+  { code: "es", href: "https://buildbetter.tools/es/" },
+  { code: "pt", href: "https://buildbetter.tools/pt/" },
+  { code: "ru", href: "https://buildbetter.tools/ru/" },
+  { code: "ar", href: "https://buildbetter.tools/ar/" },
+  { code: "zh-CN", href: "https://buildbetter.tools/zh-CN/" },
+  { code: "zh-TW", href: "https://buildbetter.tools/zh-TW/" },
+];
+
 interface SEOProps {
   title?: string;
   description?: string;
@@ -19,6 +33,20 @@ export function SEO({
 }: SEOProps) {
   const siteTitle = "BuildBetter Tools";
   const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
+
+  // For language-prefixed URLs, build per-language alternate URLs
+  // e.g. /ja/json-editor/ → https://buildbetter.tools/ja/json-editor/
+  const languageAlternates = ALL_LANGUAGES.map(({ code, href }) => {
+    // If current page URL has a path, replace/add the language prefix
+    if (url && url.includes("/tools/") || url?.includes("/games/") || url === "https://buildbetter.tools/") {
+      // Extract the path without any existing language prefix
+      const pathMatch = url.match(/\/(ja|ko|de|fr|es|pt|ru|ar|zh-CN|zh-TW)(\/.*)?$/);
+      const cleanPath = pathMatch ? pathMatch[2] || "/" : new URL(url).pathname;
+      const langHref = code === "en" ? `https://buildbetter.tools${cleanPath}` : `https://buildbetter.tools/${code}${cleanPath}`;
+      return { code, href: langHref };
+    }
+    return { code, href };
+  });
 
   return (
     <Helmet>
@@ -43,6 +71,13 @@ export function SEO({
 
       {/* Canonical */}
       <link rel="canonical" href={url} />
+
+      {/* hreflang for international SEO */}
+      {languageAlternates.map(({ code, href }) => (
+        <link key={code} rel="alternate" hrefLang={code} href={href} />
+      ))}
+      {/* x-default: English is the default */}
+      <link rel="alternate" hrefLang="x-default" href="https://buildbetter.tools/" />
     </Helmet>
   );
 }

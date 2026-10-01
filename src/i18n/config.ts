@@ -2,51 +2,59 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
-// Import translation files statically for now to avoid async loading issues in simple setup
-// In a larger app plugin with dynamic imports is better
 import enTranslation from "../locales/en/translation.json";
 import zhCNTranslation from "../locales/zh-CN/translation.json";
 import zhTWTranslation from "../locales/zh-TW/translation.json";
+import jaTranslation from "../locales/ja/translation.json";
+import koTranslation from "../locales/ko/translation.json";
+import deTranslation from "../locales/de/translation.json";
+import frTranslation from "../locales/fr/translation.json";
+import esTranslation from "../locales/es/translation.json";
+import ptTranslation from "../locales/pt/translation.json";
+import ruTranslation from "../locales/ru/translation.json";
+import arTranslation from "../locales/ar/translation.json";
 
 const resources = {
-  en: {
-    translation: enTranslation,
-  },
-  "zh-CN": {
-    translation: zhCNTranslation,
-  },
-  "zh-TW": {
-    translation: zhTWTranslation,
-  },
+  en: { translation: enTranslation },
+  "zh-CN": { translation: zhCNTranslation },
+  "zh-TW": { translation: zhTWTranslation },
+  ja: { translation: jaTranslation },
+  ko: { translation: koTranslation },
+  de: { translation: deTranslation },
+  fr: { translation: frTranslation },
+  es: { translation: esTranslation },
+  pt: { translation: ptTranslation },
+  ru: { translation: ruTranslation },
+  ar: { translation: arTranslation },
 };
 
 i18n
-  // detect user language
-  // learn more: https://github.com/i18next/i18next-browser-languageDetector
   .use(LanguageDetector)
-  // pass the i18n instance to react-i18next.
   .use(initReactI18next)
-  // init i18next
-  // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     resources,
     fallbackLng: "en",
-    debug: true,
-
-    interpolation: {
-      escapeValue: false, // not needed for react as it escapes by default
-    },
-
+    debug: false,
+    interpolation: { escapeValue: false },
     detection: {
-      // order and from where user language should be detected
       order: ["querystring", "cookie", "localStorage", "navigator", "htmlTag", "path", "subdomain"],
-      // keys or params to lookup language from
       lookupQuerystring: "lang",
       lookupCookie: "i18next",
       lookupLocalStorage: "i18nextLng",
-      // cache user language on
       caches: ["localStorage", "cookie"],
     },
   });
+
+// Sync i18n language with <html dir> for RTL support
+i18n.on("languageChanged", (lng) => {
+  const isRTL = lng === "ar";
+  document.documentElement.dir = isRTL ? "rtl" : "ltr";
+  document.documentElement.lang = lng;
+});
+
+// Apply initial RTL state (handles page refresh when lang is already cached)
+const isRTL = i18n.language === "ar";
+document.documentElement.dir = isRTL ? "rtl" : "ltr";
+document.documentElement.lang = i18n.language || "en";
 
 export default i18n;

@@ -499,3 +499,61 @@
     to { opacity: 1; transform: translateY(0); }
   }
 }
+
+/* ============================================
+   RTL (Right-to-Left) Support for Arabic
+   Applied when dir="rtl" on <html>
+   ============================================ */
+
+[dir="rtl"] {
+  /* Reverse horizontal margins and paddings */
+  /* Use logical properties where possible (margin-inline-start/end) */
+}
+
+/* Navbar RTL: reverse flex direction for items that are language/currency specific */
+[dir="rtl"] .navbar-nav,
+[dir="rtl"] .nav-items {
+  flex-direction: row-reverse;
+}
+
+/* Command palette dropdown position */
+[dir="rtl"] .command-palette-dropdown,
+[dir="rtl"] .dropdown-menu {
+  left: 0 !important;
+  right: auto !important;
+}
+
+/* Text alignment for RTL */
+[dir="rtl"] .text-start {
+  text-align: right;
+}
+[dir="rtl"] .text-end {
+  text-align: left;
+}
+
+/* Toast notifications slide from opposite side */
+[dir="rtl"] .toast-enter-from-right {
+  transform: translateX(-100%);
+}
+[dir="rtl"] .toast-enter-from-left {
+  transform: translateX(100%);
+}
+
+/* Scroll to top button position */
+[dir="rtl"] .scroll-to-top {
+  left: 24px;
+  right: auto;
+}
+
+/* Sidebar positioning */
+[dir="rtl"] .sidebar {
+  left: auto;
+  right: 0;
+}
+
+/* Language selector dropdown alignment */
+[dir="rtl"] .language-dropdown,
+[dir="rtl"] .locale-dropdown {
+  left: 0;
+  right: auto;
+}

@@ -1,4 +1,5 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useParams, Outlet } from "react-router-dom";
+import { useEffect } from "react";
 import "./i18n/config"; // Import i18n config
 import { Layout } from "@/components/layout/Layout";
 import Home from "@/pages/Home";
@@ -143,10 +144,31 @@ import LoopEngineering from "./pages/loop-engineering/LoopEngineering";
 import GithubStars from "./pages/GithubStars";
 
 
+
+// Syncs i18n language with URL language prefix
+function LangLayout() {
+  const { lang } = useParams();
+
+  useEffect(() => {
+    // Only change language if lang is a valid code (not undefined for /)
+    // If lang is undefined, keep current i18n language (fallback handles it)
+    if (lang) {
+      import("i18next").then((i18n) => {
+        if (lang !== i18n.default.language) {
+          i18n.default.changeLanguage(lang);
+        }
+      });
+    }
+  }, [lang]);
+
+  return <Outlet />;
+}
+
 export function AppRoutes() {
   return (
     <Routes>
-      <Route element={<Layout />}>
+      <Route path="/:lang?" element={<LangLayout />}>
+        <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/games" element={<Games />} />
         <Route path="/rss-read" element={<RssReader />} />
@@ -458,6 +480,7 @@ export function AppRoutes() {
         <Route path="/tools/mortgage-calculator" element={<Navigate to="/mortgage-calculator" replace />} />
         <Route path="/tools/investment-return" element={<Navigate to="/investment-return" replace />} />
         <Route path="/tools/roi-calculator" element={<Navigate to="/roi-calculator" replace />} />
+        </Route>
       </Route>
     </Routes>
   );
