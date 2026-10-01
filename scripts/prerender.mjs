@@ -53,10 +53,10 @@ if (!PUPPETEER_PATH) {
   }
 }
 const USER_DATA_DIR = process.env.PUPPETEER_USER_DATA_DIR || '/tmp/chrome-prerender';
-const ROUTE_TIMEOUT_MS = Number(process.env.PRERENDER_TIMEOUT_MS) || 30000;
+const ROUTE_TIMEOUT_MS = Number(process.env.PRERENDER_TIMEOUT_MS) || 20000;
 // Number of routes to render in parallel. 5 is a safe default that balances
 // speed against not overwhelming the dev server or Chrome's memory usage.
-const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY) || 5;
+const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY) || 10;
 
 function log(...args) {
   console.log('[prerender]', ...args);

@@ -155,7 +155,7 @@ jobs:
       - name: Run prerender (5 concurrent tabs)
         run: node scripts/prerender.mjs
         env:
-          PRERENDER_CONCURRENCY: 5
+          PRERENDER_CONCURRENCY: 10
 
       - name: Deploy prerendered pages
         uses: cloudflare/wrangler-action@v4
