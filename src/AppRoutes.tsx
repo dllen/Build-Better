@@ -57,6 +57,14 @@ import DiscountCalculator from "@/pages/tools/DiscountCalculator";
 import BreakEvenCalculator from "@/pages/tools/BreakEvenCalculator";
 import TipCalculator from "@/pages/tools/TipCalculator";
 import SizeConverter from "@/pages/tools/SizeConverter";
+import SellerProfitCalculator from "@/pages/tools/SellerProfitCalculator";
+import MarketplaceFeeCalculator from "@/pages/tools/MarketplaceFeeCalculator";
+import VatCalculator from "@/pages/tools/VatCalculator";
+import CurrencyCalculator from "@/pages/tools/CurrencyCalculator";
+import TimeZoneConverter from "@/pages/tools/TimeZoneConverter";
+import ImportDutyCalculator from "@/pages/tools/ImportDutyCalculator";
+import InvoiceGenerator from "@/pages/tools/InvoiceGenerator";
+import FreelancerRateCalculator from "@/pages/tools/FreelancerRateCalculator";
 import MarginCalculator from "@/pages/tools/MarginCalculator";
 import OtpGenerator from "@/pages/tools/OtpGenerator";
 import JwtDecodeTool from "@/pages/tools/JwtDecodeTool";
@@ -300,6 +308,14 @@ export function AppRoutes() {
         <Route path="/break-even-calculator" element={<BreakEvenCalculator />} />
         <Route path="/tip-calculator" element={<TipCalculator />} />
         <Route path="/size-converter" element={<SizeConverter />} />
+        <Route path="/seller-profit-calculator" element={<SellerProfitCalculator />} />
+        <Route path="/marketplace-fee-calculator" element={<MarketplaceFeeCalculator />} />
+        <Route path="/vat-calculator" element={<VatCalculator />} />
+        <Route path="/currency-calculator" element={<CurrencyCalculator />} />
+        <Route path="/time-zone-converter" element={<TimeZoneConverter />} />
+        <Route path="/import-duty-calculator" element={<ImportDutyCalculator />} />
+        <Route path="/invoice-generator" element={<InvoiceGenerator />} />
+        <Route path="/freelancer-rate-calculator" element={<FreelancerRateCalculator />} />
         <Route path="/margin-calculator" element={<MarginCalculator />} />
         
         {/* ========== GAMES ========== */}
@@ -494,6 +510,14 @@ export function AppRoutes() {
         <Route path="/tools/break-even-calculator" element={<Navigate to="/break-even-calculator" replace />} />
         <Route path="/tools/tip-calculator" element={<Navigate to="/tip-calculator" replace />} />
         <Route path="/tools/size-converter" element={<Navigate to="/size-converter" replace />} />
+        <Route path="/tools/seller-profit-calculator" element={<Navigate to="/seller-profit-calculator" replace />} />
+        <Route path="/tools/marketplace-fee-calculator" element={<Navigate to="/marketplace-fee-calculator" replace />} />
+        <Route path="/tools/vat-calculator" element={<Navigate to="/vat-calculator" replace />} />
+        <Route path="/tools/currency-calculator" element={<Navigate to="/currency-calculator" replace />} />
+        <Route path="/tools/time-zone-converter" element={<Navigate to="/time-zone-converter" replace />} />
+        <Route path="/tools/import-duty-calculator" element={<Navigate to="/import-duty-calculator" replace />} />
+        <Route path="/tools/invoice-generator" element={<Navigate to="/invoice-generator" replace />} />
+        <Route path="/tools/freelancer-rate-calculator" element={<Navigate to="/freelancer-rate-calculator" replace />} />
         <Route path="/tools/margin-calculator" element={<Navigate to="/margin-calculator" replace />} />
         </Route>
       </Route>
