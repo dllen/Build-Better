@@ -557,3 +557,34 @@
   left: 0;
   right: auto;
 }
+
+/* ============================================
+   Multi-script Font Stacks
+   Each lang attr loads its native Noto Sans variant
+   ============================================ */
+
+html[lang="ar"] body {
+  font-family: "Noto Sans Arabic", "Noto Sans", system-ui, -apple-system, sans-serif;
+  font-feature-settings: "kern", "liga";
+}
+
+html[lang="ja"] body {
+  font-family: "Noto Sans JP", "Noto Sans", system-ui, -apple-system, sans-serif;
+}
+
+html[lang="ko"] body {
+  font-family: "Noto Sans KR", "Noto Sans", system-ui, -apple-system, sans-serif;
+}
+
+html[lang="zh-CN"] body {
+  font-family: "Noto Sans SC", "Noto Sans", system-ui, -apple-system, sans-serif;
+}
+
+html[lang="zh-TW"] body {
+  font-family: "Noto Sans TC", "Noto Sans SC", "Noto Sans", system-ui, -apple-system, sans-serif;
+}
+
+/* Default LTR Latin-script languages use Noto Sans (loaded via Google Fonts CSS) */
+html body {
+  font-family: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}

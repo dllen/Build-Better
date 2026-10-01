@@ -34,28 +34,29 @@
   },
   "tools": {
     "kinship": {
-      "title": "Chinese Kinship Calculator",
-      "desc": "Calculate Chinese relative titles and relations.",
-      "male": "I am Male",
-      "female": "I am Female",
-      "current_relation": "Current Relation",
-      "placeholder": "Select relation...",
-      "reverse_lookup": "Reverse Lookup (e.g., Uncle)",
-      "result": "Result",
-      "waiting": "Waiting for calculation...",
-      "tips_title": "Tips",
-      "tip1": "Click buttons to add relations.",
-      "tip2": "Supports reverse lookup.",
-      "tip3": "Regional differences may exist.",
-      "share_text": "I am checking kinship titles"
+      "title": "حاسبة القرابة الصينية",
+      "desc": "احسب ألقاب وال relation القرابة الصينية.",
+      "male": "أنا ذكر",
+      "female": "أنا أنثى",
+      "current_relation": "العلاقة الحالية",
+      "placeholder": "اختر العلاقة...",
+      "reverse_lookup": "بحث عكسي (مثال: عم)",
+      "result": "النتيجة",
+      "waiting": "في انتظار الحساب...",
+      "tips_title": "نصائح",
+      "tip1": "انقر على الأزرار لإضافة العلاقات.",
+      "tip2": "يدعم البحث العكسي.",
+      "tip3": "قد تكون هناك اختلافات إقليمية.",
+      "share_text": "أتحقق من القرابة",
+      "name": "حاسبة القرابة الصينية"
     },
     "json-editor": {
-      "name": "JSON Editor",
-      "desc": "View, edit, format, and validate JSON data."
+      "name": "محرر JSON",
+      "desc": "عرض وتحرير وتنسيق والتحقق من صحة بيانات JSON."
     },
     "image-joiner": {
       "title": "Image Joiner",
-      "desc": "Join multiple images vertically or horizontally. Supports drag sorting and auto alignment.",
+      "desc": "دمج الصور عمودياً أو أفقياً.",
       "subtitle": "Combine multiple photos into one long image. Drag to sort, auto resize, and customize spacing.",
       "click_upload": "Click to upload images",
       "drag_hint": "Support multiple selection",
@@ -70,11 +71,12 @@
       "download": "Download Image",
       "images": "Images",
       "clear": "Clear All",
-      "preview_hint": "Upload images to see preview"
+      "preview_hint": "Upload images to see preview",
+      "name": "دمج الصور"
     },
     "image-watermark": {
       "title": "Image Watermark Tool",
-      "desc": "Add text watermarks to images. Custom position, opacity, and rotation.",
+      "desc": "إضافة علامات مائية نصية إلى الصور.",
       "subtitle": "Batch add text watermarks to photos. Secure your images locally.",
       "settings": "Watermark Settings",
       "text": "Watermark Text",
@@ -88,11 +90,12 @@
       "process_all": "Add Watermark",
       "download_all": "Download All",
       "original_size": "Original Size",
-      "success": "Watermark added successfully"
+      "success": "Watermark added successfully",
+      "name": "العلامة المائية"
     },
     "image-converter": {
       "title": "Image Format Converter",
-      "desc": "Convert images between JPG, PNG, and WebP formats.",
+      "desc": "التحويل بين JPG و PNG و WebP.",
       "subtitle": "Convert between JPG, PNG, and WebP. Support for background color filling.",
       "settings": "Conversion Settings",
       "target_format": "Target Format",
@@ -102,11 +105,12 @@
       "convert_all": "Convert All",
       "download_all": "Download All",
       "original_size": "Original Size",
-      "converted_to": "Converted to"
+      "converted_to": "Converted to",
+      "name": "محول صيغ الصور"
     },
     "image-resizer": {
       "title": "Image Resizer & Cropper",
-      "desc": "Resize, crop, and convert images. Batch processing support.",
+      "desc": "تغيير الحجم والقص والتحويل.",
       "subtitle": "Batch resize images or crop them individually. Supports custom dimensions and presets.",
       "batch_mode": "Batch Resize",
       "crop_mode": "Crop Image",
@@ -128,11 +132,12 @@
       "crop_info": "Drag on image to select area.",
       "apply_crop": "Apply Crop",
       "crop_this": "Crop this image",
-      "resized": "Processed"
+      "resized": "Processed",
+      "name": "تغيير حجم الصور"
     },
     "image-compressor": {
       "title": "Image Compressor",
-      "desc": "Compress and resize JPG, PNG, WebP images locally.",
+      "desc": "ضغط الصور مع الحفاظ على الجودة.",
       "subtitle": "Compress, resize, and convert images locally. No files uploaded to server.",
       "format": "Output Format",
       "keep_original": "Keep Original",
@@ -143,11 +148,12 @@
       "compress_all": "Compress All",
       "download_all": "Download All",
       "original": "Original",
-      "compressed": "Compressed"
+      "compressed": "Compressed",
+      "name": "ضاغط الصور"
     },
     "image-ascii": {
       "title": "Image to ASCII Art",
-      "desc": "Convert images to ASCII art with customizable options.",
+      "desc": "تحويل الصور إلى فن ASCII.",
       "drag_drop": "Click or drag image here",
       "settings": "Settings",
       "width": "Width (chars)",
@@ -159,11 +165,12 @@
       "inverted": "Inverted",
       "original": "Original Image",
       "preview": "ASCII Preview",
-      "placeholder": "Upload an image to see the magic"
+      "placeholder": "Upload an image to see the magic",
+      "name": "صورة إلى ASCII"
     },
     "token-generator": {
-      "name": "Token Generator",
-      "desc": "Generate random strings using custom characters, letters, numbers, and symbols.",
+      "name": "مولد الرموز",
+      "desc": "توليد رموز آمنة عشوائية.",
       "settings": "Settings",
       "characters": "Characters",
       "uppercase": "Uppercase (A-Z)",
@@ -180,8 +187,8 @@
       "no_chars_error": "Please select at least one character set or enter custom characters."
     },
     "format-converter": {
-      "name": "Format Converter",
-      "desc": "Convert between JSON, YAML, TOML, and XML formats.",
+      "name": "محول الصيغ",
+      "desc": "التحويل بين JSON و YAML و TOML و XML.",
       "title": "Format Converter",
       "description": "Convert between JSON, YAML, TOML, and XML formats.",
       "input_label": "Input",
@@ -190,8 +197,8 @@
       "copied": "Copied!"
     },
     "device-info": {
-      "name": "Device Information",
-      "desc": "Get detailed information about your current device, screen, and browser.",
+      "name": "معلومات الجهاز",
+      "desc": "عرض معلومات المتصفح والشاشة والشبكة.",
       "title": "Device Information",
       "description": "Get detailed information about your current device, screen, and browser.",
       "screen_resolution": "Screen Resolution",
@@ -208,8 +215,8 @@
       "copy": "Copy"
     },
     "html-to-text": {
-      "name": "HTML to Text",
-      "desc": "Extract text content from HTML, removing tags and scripts.",
+      "name": "HTML إلى نص",
+      "desc": "استخراج نص من HTML.",
       "input_label": "HTML Input",
       "output_label": "Extracted Text",
       "convert_btn": "Extract Text",
@@ -217,12 +224,12 @@
       "copied": "Copied!"
     },
     "api-debugger": {
-      "name": "API Debugger",
-      "desc": "Test and debug HTTP requests with ease. Support for GET, POST, PUT, DELETE."
+      "name": "مصحح API",
+      "desc": "تصحيح واختبار طلبات API."
     },
     "code-formatter": {
-      "name": "Code Formatter",
-      "desc": "Format your code to standard styles. Supports JS, TS, HTML, CSS, JSON, etc.",
+      "name": "منسق الكود",
+      "desc": "تنسيق الكود بعدة لغات.",
       "themes": {
         "light": "Light",
         "dark": "Dark",
@@ -245,16 +252,16 @@
       "error_title": "Formatting Error"
     },
     "qr-generator": {
-      "name": "QR Code Generator",
-      "desc": "Generate QR codes for URLs, text, and more. Customizable size and color."
+      "name": "مولد رمز QR",
+      "desc": "توليد رموز QR للنص و URL وجهات الاتصال."
     },
     "perpetual-calendar": {
-      "name": "Perpetual Calendar",
-      "desc": "Comprehensive calendar with Chinese Lunar date, Solar terms, and festivals."
+      "name": "التقويم الدائم",
+      "desc": "إجراء حسابات التواريخ."
     },
     "domain-valuation": {
-      "name": "Domain Valuation",
-      "desc": "Estimate domain market value based on length, TLD, and keywords.",
+      "name": "تقييم النطاق",
+      "desc": "تقدير القيمة السوقية للنطاقات.",
       "title": "Domain Valuation Tool",
       "subtitle": "Quickly estimate the market value of your domain",
       "input_label": "Enter Domain Name",
@@ -264,8 +271,8 @@
       "disclaimer": "This valuation is an algorithmic estimation and does not guarantee actual market price."
     },
     "nginx-config": {
-      "name": "Nginx Config Generator",
-      "desc": "Generate Nginx configuration files online with HTTPS, proxy, Gzip support.",
+      "name": "مولد Nginx",
+      "desc": "توليد ملفات تكوين Nginx.",
       "title": "Nginx Config Generator",
       "subtitle": "Generate Nginx server block configurations easily",
       "basic_settings": "Basic Settings",
@@ -285,8 +292,8 @@
       "generated_config": "Generated Configuration"
     },
     "apache-config": {
-      "name": "Apache Config Generator",
-      "desc": "Generate Apache VirtualHost configuration files online with HTTPS, redirects, logs.",
+      "name": "مولد Apache",
+      "desc": "توليد ملفات تكوين Apache.",
       "title": "Apache Config Generator",
       "subtitle": "Generate Apache VirtualHost configurations easily",
       "basic_settings": "Basic Settings",
@@ -306,8 +313,8 @@
       "generated_config": "Generated Configuration"
     },
     "haproxy-config": {
-      "name": "HAProxy Config Generator",
-      "desc": "Generate HAProxy load balancer configuration files with algorithms, health checks.",
+      "name": "مولد HAProxy",
+      "desc": "توليد ملفات تكوين HAProxy.",
       "title": "HAProxy Config Generator",
       "subtitle": "Generate high-availability load balancer configurations",
       "global_defaults": "Global & Defaults",
@@ -322,8 +329,8 @@
       "generated_config": "Generated Configuration"
     },
     "mortgage-calculator": {
-      "name": "Mortgage Calculator",
-      "desc": "Calculate monthly payments for Commercial, Provident Fund, and Combination loans.",
+      "name": "حاسبة الرهن العقاري",
+      "desc": "حساب الأقساط الشهرية والفوائد.",
       "title": "Mortgage Calculator",
       "subtitle": "Calculate your mortgage payments and interest",
       "loan_type": "Loan Type",
@@ -349,8 +356,8 @@
       "tip_principal": "Equal Principal: Fixed principal payment, decreasing interest."
     },
     "investment-return": {
-      "name": "Investment Return Calculator",
-      "desc": "Calculate compound interest with regular contributions and frequency settings.",
+      "name": "حاسبة العائد",
+      "desc": "حساب العائد المركب.",
       "title": "Investment Return Calculator",
       "subtitle": "Plan your wealth growth",
       "initial_amount": "Initial Principal",
@@ -373,8 +380,8 @@
       "empty_tip": "Enter parameters and calculate to see results"
     },
     "roi-calculator": {
-      "name": "ROI Calculator",
-      "desc": "Calculate Return on Investment (ROI) and Annualized ROI.",
+      "name": "حاسبة ROI",
+      "desc": "حساب العائد على الاستثمار.",
       "title": "ROI Calculator",
       "subtitle": "Evaluate investment profitability",
       "invested_amount": "Invested Amount",
@@ -393,8 +400,8 @@
       "empty_tip": "Enter investment and return amounts to calculate"
     },
     "otp-generator": {
-      "name": "OTP Generator",
-      "desc": "Generate and verify Time-based One-Time Passwords (TOTP) for Multi-Factor Authentication.",
+      "name": "مولد OTP",
+      "desc": "توليد كلمات مرور لمرة واحدة TOTP/HOTP.",
       "title": "OTP Generator",
       "subtitle": "Secure 2FA token generator and validator",
       "config": "Configuration",
@@ -416,7 +423,7 @@
     },
     "wifi-qr": {
       "title": "WiFi QR Code Generator",
-      "desc": "Generate and download QR codes for quick WiFi connection.",
+      "desc": "توليد رمز QR لاتصال WiFi.",
       "subtitle": "Create a QR code for your guests to connect to WiFi instantly",
       "ssid": "Network Name (SSID)",
       "encryption": "Encryption",
@@ -425,11 +432,12 @@
       "none": "None",
       "preview": "Preview",
       "download": "Download",
-      "print": "Print"
+      "print": "Print",
+      "name": "رمز WiFi QR"
     },
     "english-name": {
       "title": "English Name Generator",
-      "desc": "Generate English names based on your Chinese name.",
+      "desc": "توليد أسماء إنجليزية عشوائية.",
       "subtitle": "Find the perfect English name that matches your Chinese name",
       "input_label": "Your Chinese Name",
       "placeholder": "e.g. Li Ming",
@@ -445,217 +453,218 @@
       "no_results": "No suitable names found based on current criteria. Try different inputs.",
       "reason_start": "Starts with same letter",
       "reason_sound": "Sounds similar",
-      "reason_random": "Popular choice"
+      "reason_random": "Popular choice",
+      "name": "مولد الأسماء الإنجليزية"
     },
     "base64": {
-      "name": "Base64 Encoder/Decoder",
-      "desc": "UTF-8 safe Base64 encode and decode, standard and URL-safe variants."
+      "name": "Base64 ترميز/فك",
+      "desc": "ترميز/فك ترميز النص والملفات إلى Base64."
     },
     "url-encoder": {
-      "name": "URL Encoder",
-      "desc": "URL component and full-URL encoding/decoding with error feedback."
+      "name": "ترميز URL",
+      "desc": "ترميز/فك ترميز سلاسل URL."
     },
     "uuid-generator": {
-      "name": "UUID Generator",
-      "desc": "Generate RFC 4122 v4 UUIDs. Batch, uppercase, strip hyphens options."
+      "name": "مولد UUID",
+      "desc": "توليد UUID v1/v4/v5."
     },
     "sql-formatter": {
-      "name": "SQL Formatter",
-      "desc": "Format and minify SQL. Supports MySQL, PostgreSQL, Hive, Spark, SQLite."
+      "name": "منسق SQL",
+      "desc": "تنسيق استعلامات SQL."
     },
     "sql-table-extractor": {
-      "name": "SQL Table Extractor",
-      "desc": "Extract table names from SQL queries, grouped by type."
+      "name": "مستخرج جداول SQL",
+      "desc": "استخراج تعريفات الجداول من SQL."
     },
     "sql-column-extractor": {
-      "name": "SQL Column Extractor",
-      "desc": "Extract column names from SQL SELECT statements with occurrence counts."
+      "name": "مستخرج أعمدة SQL",
+      "desc": "استخراج تعريفات الأعمدة من SQL."
     },
     "sql-mermaid": {
-      "name": "SQL → Mermaid",
-      "desc": "Parse CREATE TABLE DDL to generate Mermaid ER diagram code."
+      "name": "SQL إلى Mermaid",
+      "desc": "تحويل مخططات SQL إلى مخططات Mermaid."
     },
     "sql-review": {
-      "name": "SQL Review",
-      "desc": "Rule-based SQL static linting for performance and security issues."
+      "name": "مراجعة SQL",
+      "desc": "مراجعة SQL واقتراح تحسينات."
     },
     "json-schema-generator": {
-      "name": "JSON Schema Generator",
-      "desc": "Infer JSON Schema from JSON samples (draft-07)."
+      "name": "مولد مخطط JSON",
+      "desc": "توليد مخطط JSON من JSON."
     },
     "data-faker": {
-      "name": "Data Faker",
-      "desc": "Generate mock data in JSON/CSV/SQL formats using @faker-js/faker."
+      "name": "مولد البيانات",
+      "desc": "توليد بيانات اختبار واقعية."
     },
     "docker-run-builder": {
-      "name": "Docker Run Builder",
-      "desc": "Form-based docker run command generator."
+      "name": "مولد Docker run",
+      "desc": "توليد أوامر docker run."
     },
     "docker-compose-generator": {
-      "name": "Docker Compose Generator",
-      "desc": "Form-based docker-compose.yml generator with multi-service support."
+      "name": "مولد Docker Compose",
+      "desc": "توليد ملفات Docker Compose."
     },
     "k8s-yaml-generator": {
-      "name": "K8s YAML Generator",
-      "desc": "Generate Kubernetes Deployment/Service YAML from a form."
+      "name": "مولد K8s YAML",
+      "desc": "توليد YAML لـ Kubernetes."
     },
     "k8s-resource-calculator": {
-      "name": "K8s Resource Calculator",
-      "desc": "Estimate Pod resource requests vs cluster capacity."
+      "name": "حاسبة موارد K8s",
+      "desc": "حساب متطلبات موارد Kubernetes."
     },
     "systemd-generator": {
-      "name": "Systemd Generator",
-      "desc": "Generate systemd .service unit files from a form."
+      "name": "مولد Systemd",
+      "desc": "توليد ملفات خدمة systemd."
     },
     "token-counter": {
-      "name": "Token Counter",
-      "desc": "Estimate token count using js-tiktoken with multiple encodings."
+      "name": "عداد الرموز",
+      "desc": "عد رموز نماذج LLM."
     },
     "prompt-builder": {
-      "name": "Prompt Builder",
-      "desc": "Template-based Prompt assembler with local draft save."
+      "name": "مولد التعليمات",
+      "desc": "بناء تعليمات LLM."
     },
     "prompt-diff": {
-      "name": "Prompt Diff",
-      "desc": "Highlight differences between two Prompt versions."
+      "name": "مقارنة التعليمات",
+      "desc": "عرض الفروق بين التعليمات."
     },
     "rag-chunk-calculator": {
-      "name": "RAG Chunk Calculator",
-      "desc": "Estimate chunk count and token distribution for RAG."
+      "name": "حاسبة أجزاء RAG",
+      "desc": "حساب حجم الأجزاء لـ RAG."
     },
     "ai-cost-calculator": {
-      "name": "AI Cost Calculator",
-      "desc": "Estimate LLM API costs based on model pricing and token counts."
+      "name": "حاسبة تكلفة AI",
+      "desc": "تقدير تكاليف API لـ LLM."
     },
     "llm-request-builder": {
-      "name": "LLM Request Builder",
-      "desc": "Build OpenAI-compatible API request JSON or curl commands."
+      "name": "مولد طلبات LLM",
+      "desc": "بناء طلبات API متوافقة مع OpenAI."
     },
     "wallet-analyzer": {
-      "name": "Wallet Analyzer",
-      "desc": "Validate Ethereum address format and EIP-55 checksum."
+      "name": "محلل المحفظة",
+      "desc": "التحقق من عناوين Ethereum و EIP-55."
     },
     "ens-lookup": {
-      "name": "ENS Lookup",
-      "desc": "Forward and reverse ENS domain resolution."
+      "name": "بحث ENS",
+      "desc": "حلول ENS الأمامية والعكسية."
     },
     "gas-tracker": {
-      "name": "Gas Tracker",
-      "desc": "Query current Ethereum gas prices (Low/Medium/High)."
+      "name": "متتبع الغاز",
+      "desc": "الاستعلام عن أسعار الغاز الحالية."
     },
     "tx-hash-identifier": {
-      "name": "Hash Identifier",
-      "desc": "Identify hash types: ETH/BTC TXID, ENS Namehash, IPFS CID, UUID."
+      "name": "معرّف التجزئة",
+      "desc": "تحديد أنواع التجزئة."
     },
     "token-approval-checker": {
-      "name": "Token Approval Checker",
-      "desc": "Query token approval allowances and detect unlimited approvals."
+      "name": "فاحص الموافقات",
+      "desc": "فحص موافقات الرموز."
     }
   },
   "games": {
     "chinese-chess": {
-      "title": "Chinese Chess",
-      "desc": "Play Chinese Chess (Xiangqi) against AI.",
-      "subtitle": "Challenge the AI in this classic strategy game.",
-      "settings": "Game Settings",
-      "difficulty": "Difficulty",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "red_turn": "Red's Turn",
-      "black_turn": "Black's Turn (AI)",
-      "red_win": "Red Wins!",
-      "black_win": "Black Wins!"
+      "title": "الشطرنج الصيني",
+      "desc": "العب الشطرنج الصيني ضد الذكاء الاصطناعي.",
+      "subtitle": "تحدى الذكاء الاصطناعي في لعبة الاستراتيجية الكلاسيكية.",
+      "settings": "الإعدادات",
+      "difficulty": "الصعوبة",
+      "easy": "سهل",
+      "medium": "متوسط",
+      "hard": "صعب",
+      "red_turn": "دور الأحمر",
+      "black_turn": "دور الأسود (الذكاء)",
+      "red_win": "الأحمر يفوز!",
+      "black_win": "الأسود يفوز!"
     },
     "go": {
-      "title": "Go (Weiqi)",
-      "desc": "Play Go (Weiqi) against AI.",
-      "subtitle": "Ancient strategy board game of territory.",
-      "settings": "Game Settings",
-      "difficulty": "Difficulty",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "black": "Black (You)",
-      "white": "White (AI)",
-      "captured": "captured",
-      "your_turn": "Your Turn",
-      "ai_turn": "AI Thinking...",
-      "game_over": "Game Over"
+      "title": "جو (ويقي)",
+      "desc": "العب جو ضد الذكاء الاصطناعي.",
+      "subtitle": "لعبة استراتيجية قديمة.",
+      "settings": "الإعدادات",
+      "difficulty": "الصعوبة",
+      "easy": "سهل",
+      "medium": "متوسط",
+      "hard": "صعب",
+      "black": "الأسود (أنت)",
+      "white": "الأبيض (الذكاء)",
+      "captured": "تم الأسر",
+      "your_turn": "دورك",
+      "ai_turn": "الذكاء يفكر...",
+      "game_over": "انتهت اللعبة"
     },
     "jungle": {
-      "title": "Jungle Chess",
-      "desc": "Play Jungle Chess (Dou Shou Qi) against AI.",
-      "subtitle": "Classic Animal Battle Game",
-      "settings": "Game Settings",
-      "difficulty": "Difficulty",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "red": "Red (You)",
-      "blue": "Blue (AI)",
-      "your_turn": "Your Turn",
-      "ai_turn": "AI Thinking...",
-      "red_win": "Red Wins!",
-      "blue_win": "Blue Wins!",
-      "den": "DEN",
-      "trap": "TRAP",
-      "rules": "Rank: 🐘 > 🦁 > 🐯 > 🐆 > 🐺 > 🐕 > 🐈 > 🐀 (> 🐘)"
+      "title": "شطرنج الغابة",
+      "desc": "العب شطرنج الغابة ضد الذكاء الاصطناعي.",
+      "subtitle": "لعبة معركة حيوانات كلاسيكية",
+      "settings": "الإعدادات",
+      "difficulty": "الصعوبة",
+      "easy": "سهل",
+      "medium": "متوسط",
+      "hard": "صعب",
+      "red": "الأحمر (أنت)",
+      "blue": "الأزرق (الذكاء)",
+      "your_turn": "دورك",
+      "ai_turn": "الذكاء يفكر...",
+      "red_win": "الأحمر يفوز!",
+      "blue_win": "الأزرق يفوز!",
+      "den": "العش",
+      "trap": "فخ",
+      "rules": "الرتبة: 🐘 > 🦁 > 🐯 > 🐆 > 🐺 > 🐕 > 🐈 > 🐀 (> 🐘)"
     },
     "flying_chess": {
-      "title": "Flying Chess",
-      "desc": "Classic Aeroplane Chess (Ludo Variant) with AI.",
-      "subtitle": "Battle with 3 AIs!",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "red": "Red (You)",
-      "yellow": "Yellow (AI)",
-      "blue": "Blue (AI)",
-      "green": "Green (AI)",
-      "status": "Game Status",
-      "turn": "Current Turn",
-      "roll": "Roll Dice",
-      "launched": "Plane Launched!",
-      "moved": "Plane Moved",
-      "jump": "Jump!",
-      "kicked": "Kicked",
-      "kicked_msg": "Kicked opponent",
-      "finished": "Plane Finished!",
-      "bonus_turn": "Rolled 6! Bonus Turn.",
-      "turn_change": "Turn Passed",
-      "turn_change_limit": "Turn Passed (3x Sixes)",
-      "rules": "Game Rules",
-      "rule1": "Roll 6 to launch a plane from hangar.",
-      "rule2": "Jump (+4 tiles) if landing on same color.",
-      "rule3": "Kick opponent back to hangar if landing on them.",
-      "rule4": "First to fly all 4 planes to center wins."
+      "title": "شطرنج طائر",
+      "desc": "شطرنج طائرة كلاسيكي (متغير لودو) مع الذكاء.",
+      "subtitle": "قاتل 3 ذكاءات اصطناعية!",
+      "easy": "سهل",
+      "medium": "متوسط",
+      "hard": "صعب",
+      "red": "الأحمر (أنت)",
+      "yellow": "الأصفر (الذكاء)",
+      "blue": "الأزرق (الذكاء)",
+      "green": "الأخضر (الذكاء)",
+      "status": "الحالة",
+      "turn": "الدور الحالي",
+      "roll": "رمي النرد",
+      "launched": "أقلعت الطائرة!",
+      "moved": "تحركت الطائرة",
+      "jump": "قفز!",
+      "kicked": "طرد",
+      "kicked_msg": "طرد الخصم",
+      "finished": "اكتملت الطائرة!",
+      "bonus_turn": "حصلت على 6! دور إضافي.",
+      "turn_change": "انتقل الدور",
+      "turn_change_limit": "انتقل الدور (3 مرات 6)",
+      "rules": "القواعد",
+      "rule1": "ارم 6 لإقلاع طائرة.",
+      "rule2": "اقفز (+4 خانات) على نفس اللون.",
+      "rule3": "اطرد الخصم.",
+      "rule4": "أول من يطير 4 طائرات إلى المركز يفوز."
     },
     "chinese_checkers": {
-      "title": "Chinese Checkers",
-      "desc": "Classic strategy board game (Sternhalma).",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "you": "You (Green)",
-      "ai": "AI (Red)",
-      "status": "Game Status",
-      "turn": "Turn",
-      "win": "You Win!",
-      "lose": "AI Wins!",
-      "rules": "Rules",
-      "rule1": "Move to adjacent empty hole.",
-      "rule2": "Jump over adjacent piece to empty hole.",
-      "rule3": "Chain jumps are allowed.",
-      "rule4": "First to fill opposite triangle wins."
+      "title": "الضامة الصينية",
+      "desc": "لعبة استراتيجية كلاسيكية (Sternhalma).",
+      "easy": "سهل",
+      "medium": "متوسط",
+      "hard": "صعب",
+      "you": "أنت (أخضر)",
+      "ai": "الذكاء (أحمر)",
+      "status": "الحالة",
+      "turn": "الدور",
+      "win": "فزت!",
+      "lose": "الذكاء يفوز!",
+      "rules": "القواعد",
+      "rule1": "تحرك إلى حفرة مجاورة.",
+      "rule2": "اقفز فوق قطعة مجاورة.",
+      "rule3": "القفزات المتسلسلة مسموحة.",
+      "rule4": "أول من يملأ المثلث المقابل يفوز."
     },
     "drawing-tool": {
-      "pageTitle": "Drawing Board - Build Better",
-      "pageDescription": "An infinite-canvas drawing board with pressure-sensitive ink, shapes, arrows, and more. Powered by QuickDraw.",
-      "name": "Drawing Board",
-      "desc": "Infinite-canvas drawing board with pen, shapes, arrows, sticky notes, and more.",
-      "title": "Drawing Board",
-      "subtitle": "Sketch, diagram, and brainstorm on an infinite canvas — pressure ink, shapes, arrows, images, and more."
+      "pageTitle": "لوحة الرسم - Build Better",
+      "pageDescription": "لوحة رسم بقماش لا نهائي وحبر حساس للضغط.",
+      "name": "لوحة الرسم",
+      "desc": "لوحة رسم بقماش لا نهائي وقلم وأشكال.",
+      "title": "لوحة الرسم",
+      "subtitle": "ارسم وحلل الأفكار على قماش لا نهائي."
     }
   },
   "categories": {

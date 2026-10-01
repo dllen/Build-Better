@@ -45,9 +45,30 @@ const staticRoutes = [
   '/tools/',
 ];
 
-const routes = ['/', ...toolSlugs.map((s) => `${s}/`), ...staticRoutes];
+const baseRoutes = ['/', ...toolSlugs.map((s) => `${s}/`), ...staticRoutes];
+const uniqueBaseRoutes = [...new Set(baseRoutes)];
 
-const uniqueRoutes = [...new Set(routes)];
+// Supported languages for i18n routing (2026-10-01 expansion: ja/ko/de/fr/es/pt/ru/ar + existing zh-CN/zh-TW)
+// English is the canonical default; non-English variants are added as /:lang/ prefixes for SEO.
+const LANGUAGES = ['ja', 'ko', 'de', 'fr', 'es', 'pt', 'ru', 'ar', 'zh-CN', 'zh-TW'];
 
-writeFileSync('prerender-routes.json', JSON.stringify(uniqueRoutes, null, 2));
-console.log(`Generated ${uniqueRoutes.length} routes for prerender`);
+// Generate language-prefixed variants of all routes
+// /ja/tools/api-debugger/ → https://buildbetter.tools/ja/tools/api-debugger/
+// Homepage / gets one variant per language: /ja/, /ko/, etc. (English / stays canonical)
+const languageRoutes = [];
+for (const lang of LANGUAGES) {
+  for (const route of uniqueBaseRoutes) {
+    if (route === '/') {
+      // Homepage: add /ja/, /ko/, etc. (English / stays canonical)
+      languageRoutes.push(`/${lang}/`);
+    } else {
+      // Tool/game/static pages: /ja/<original-route>
+      languageRoutes.push(`/${lang}${route}`);
+    }
+  }
+}
+
+const allRoutes = [...uniqueBaseRoutes, ...languageRoutes];
+
+writeFileSync('prerender-routes.json', JSON.stringify(allRoutes, null, 2));
+console.log(`Generated ${allRoutes.length} routes for prerender (${uniqueBaseRoutes.length} base + ${languageRoutes.length} language variants)`);

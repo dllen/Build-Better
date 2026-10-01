@@ -34,28 +34,29 @@
   },
   "tools": {
     "kinship": {
-      "title": "Chinese Kinship Calculator",
-      "desc": "Calculate Chinese relative titles and relations.",
-      "male": "I am Male",
-      "female": "I am Female",
-      "current_relation": "Current Relation",
-      "placeholder": "Select relation...",
-      "reverse_lookup": "Reverse Lookup (e.g., Uncle)",
-      "result": "Result",
-      "waiting": "Waiting for calculation...",
-      "tips_title": "Tips",
-      "tip1": "Click buttons to add relations.",
-      "tip2": "Supports reverse lookup.",
-      "tip3": "Regional differences may exist.",
-      "share_text": "I am checking kinship titles"
+      "title": "Calculateur de parenté chinois",
+      "desc": "Calculer les titres et relations de parenté chinois.",
+      "male": "Je suis un homme",
+      "female": "Je suis une femme",
+      "current_relation": "Relation actuelle",
+      "placeholder": "Sélectionner une relation...",
+      "reverse_lookup": "Recherche inversée (ex: Oncle)",
+      "result": "Résultat",
+      "waiting": "En attente du calcul...",
+      "tips_title": "Conseils",
+      "tip1": "Cliquez sur les boutons pour ajouter.",
+      "tip2": "Supporte la recherche inversée.",
+      "tip3": "Des différences régionales peuvent exister.",
+      "share_text": "Je vérifie les parentés",
+      "name": "Calculateur de parenté chinois"
     },
     "json-editor": {
-      "name": "JSON Editor",
-      "desc": "View, edit, format, and validate JSON data."
+      "name": "Éditeur JSON",
+      "desc": "Afficher, éditer, formater et valider des données JSON."
     },
     "image-joiner": {
       "title": "Image Joiner",
-      "desc": "Join multiple images vertically or horizontally. Supports drag sorting and auto alignment.",
+      "desc": "Fusionner des images vertically ou horizontalement.",
       "subtitle": "Combine multiple photos into one long image. Drag to sort, auto resize, and customize spacing.",
       "click_upload": "Click to upload images",
       "drag_hint": "Support multiple selection",
@@ -70,11 +71,12 @@
       "download": "Download Image",
       "images": "Images",
       "clear": "Clear All",
-      "preview_hint": "Upload images to see preview"
+      "preview_hint": "Upload images to see preview",
+      "name": "Fusionneur d'images"
     },
     "image-watermark": {
       "title": "Image Watermark Tool",
-      "desc": "Add text watermarks to images. Custom position, opacity, and rotation.",
+      "desc": "Ajouter des filigranes texte aux images.",
       "subtitle": "Batch add text watermarks to photos. Secure your images locally.",
       "settings": "Watermark Settings",
       "text": "Watermark Text",
@@ -88,11 +90,12 @@
       "process_all": "Add Watermark",
       "download_all": "Download All",
       "original_size": "Original Size",
-      "success": "Watermark added successfully"
+      "success": "Watermark added successfully",
+      "name": "Filigrane d'image"
     },
     "image-converter": {
       "title": "Image Format Converter",
-      "desc": "Convert images between JPG, PNG, and WebP formats.",
+      "desc": "Convertir entre JPG, PNG et WebP.",
       "subtitle": "Convert between JPG, PNG, and WebP. Support for background color filling.",
       "settings": "Conversion Settings",
       "target_format": "Target Format",
@@ -102,11 +105,12 @@
       "convert_all": "Convert All",
       "download_all": "Download All",
       "original_size": "Original Size",
-      "converted_to": "Converted to"
+      "converted_to": "Converted to",
+      "name": "Convertisseur d'image"
     },
     "image-resizer": {
       "title": "Image Resizer & Cropper",
-      "desc": "Resize, crop, and convert images. Batch processing support.",
+      "desc": "Redimensionner, recadrer et convertir des images.",
       "subtitle": "Batch resize images or crop them individually. Supports custom dimensions and presets.",
       "batch_mode": "Batch Resize",
       "crop_mode": "Crop Image",
@@ -128,11 +132,12 @@
       "crop_info": "Drag on image to select area.",
       "apply_crop": "Apply Crop",
       "crop_this": "Crop this image",
-      "resized": "Processed"
+      "resized": "Processed",
+      "name": "Redimensionneur d'image"
     },
     "image-compressor": {
       "title": "Image Compressor",
-      "desc": "Compress and resize JPG, PNG, WebP images locally.",
+      "desc": "Compresser des images en préservant la qualité.",
       "subtitle": "Compress, resize, and convert images locally. No files uploaded to server.",
       "format": "Output Format",
       "keep_original": "Keep Original",
@@ -143,11 +148,12 @@
       "compress_all": "Compress All",
       "download_all": "Download All",
       "original": "Original",
-      "compressed": "Compressed"
+      "compressed": "Compressed",
+      "name": "Compresseur d'image"
     },
     "image-ascii": {
       "title": "Image to ASCII Art",
-      "desc": "Convert images to ASCII art with customizable options.",
+      "desc": "Convertir des images en art ASCII.",
       "drag_drop": "Click or drag image here",
       "settings": "Settings",
       "width": "Width (chars)",
@@ -159,11 +165,12 @@
       "inverted": "Inverted",
       "original": "Original Image",
       "preview": "ASCII Preview",
-      "placeholder": "Upload an image to see the magic"
+      "placeholder": "Upload an image to see the magic",
+      "name": "Image en art ASCII"
     },
     "token-generator": {
-      "name": "Token Generator",
-      "desc": "Generate random strings using custom characters, letters, numbers, and symbols.",
+      "name": "Générateur de jetons",
+      "desc": "Générer des jetons sécurisés aléatoires.",
       "settings": "Settings",
       "characters": "Characters",
       "uppercase": "Uppercase (A-Z)",
@@ -180,8 +187,8 @@
       "no_chars_error": "Please select at least one character set or enter custom characters."
     },
     "format-converter": {
-      "name": "Format Converter",
-      "desc": "Convert between JSON, YAML, TOML, and XML formats.",
+      "name": "Convertisseur de format",
+      "desc": "Convertir entre JSON, YAML, TOML et XML.",
       "title": "Format Converter",
       "description": "Convert between JSON, YAML, TOML, and XML formats.",
       "input_label": "Input",
@@ -190,8 +197,8 @@
       "copied": "Copied!"
     },
     "device-info": {
-      "name": "Device Information",
-      "desc": "Get detailed information about your current device, screen, and browser.",
+      "name": "Informations sur l'appareil",
+      "desc": "Afficher les infos du navigateur, écran et réseau.",
       "title": "Device Information",
       "description": "Get detailed information about your current device, screen, and browser.",
       "screen_resolution": "Screen Resolution",
@@ -208,8 +215,8 @@
       "copy": "Copy"
     },
     "html-to-text": {
-      "name": "HTML to Text",
-      "desc": "Extract text content from HTML, removing tags and scripts.",
+      "name": "HTML en texte",
+      "desc": "Extraire du texte depuis HTML.",
       "input_label": "HTML Input",
       "output_label": "Extracted Text",
       "convert_btn": "Extract Text",
@@ -217,12 +224,12 @@
       "copied": "Copied!"
     },
     "api-debugger": {
-      "name": "API Debugger",
-      "desc": "Test and debug HTTP requests with ease. Support for GET, POST, PUT, DELETE."
+      "name": "Débogueur API",
+      "desc": "Déboguer et tester les requêtes API."
     },
     "code-formatter": {
-      "name": "Code Formatter",
-      "desc": "Format your code to standard styles. Supports JS, TS, HTML, CSS, JSON, etc.",
+      "name": "Formateur de code",
+      "desc": "Formater du code en plusieurs langages.",
       "themes": {
         "light": "Light",
         "dark": "Dark",
@@ -245,16 +252,16 @@
       "error_title": "Formatting Error"
     },
     "qr-generator": {
-      "name": "QR Code Generator",
-      "desc": "Generate QR codes for URLs, text, and more. Customizable size and color."
+      "name": "Générateur de QR Code",
+      "desc": "Générer des QR codes pour texte, URL, contacts."
     },
     "perpetual-calendar": {
-      "name": "Perpetual Calendar",
-      "desc": "Comprehensive calendar with Chinese Lunar date, Solar terms, and festivals."
+      "name": "Calendrier perpétuel",
+      "desc": "Effectuer des calculs de dates."
     },
     "domain-valuation": {
-      "name": "Domain Valuation",
-      "desc": "Estimate domain market value based on length, TLD, and keywords.",
+      "name": "Évaluation de domaine",
+      "desc": "Estimer la valeur marchande des domaines.",
       "title": "Domain Valuation Tool",
       "subtitle": "Quickly estimate the market value of your domain",
       "input_label": "Enter Domain Name",
@@ -264,8 +271,8 @@
       "disclaimer": "This valuation is an algorithmic estimation and does not guarantee actual market price."
     },
     "nginx-config": {
-      "name": "Nginx Config Generator",
-      "desc": "Generate Nginx configuration files online with HTTPS, proxy, Gzip support.",
+      "name": "Configurateur Nginx",
+      "desc": "Générer des fichiers de configuration Nginx.",
       "title": "Nginx Config Generator",
       "subtitle": "Generate Nginx server block configurations easily",
       "basic_settings": "Basic Settings",
@@ -285,8 +292,8 @@
       "generated_config": "Generated Configuration"
     },
     "apache-config": {
-      "name": "Apache Config Generator",
-      "desc": "Generate Apache VirtualHost configuration files online with HTTPS, redirects, logs.",
+      "name": "Configurateur Apache",
+      "desc": "Générer des fichiers de configuration Apache.",
       "title": "Apache Config Generator",
       "subtitle": "Generate Apache VirtualHost configurations easily",
       "basic_settings": "Basic Settings",
@@ -306,8 +313,8 @@
       "generated_config": "Generated Configuration"
     },
     "haproxy-config": {
-      "name": "HAProxy Config Generator",
-      "desc": "Generate HAProxy load balancer configuration files with algorithms, health checks.",
+      "name": "Configurateur HAProxy",
+      "desc": "Générer des fichiers de configuration HAProxy.",
       "title": "HAProxy Config Generator",
       "subtitle": "Generate high-availability load balancer configurations",
       "global_defaults": "Global & Defaults",
@@ -322,8 +329,8 @@
       "generated_config": "Generated Configuration"
     },
     "mortgage-calculator": {
-      "name": "Mortgage Calculator",
-      "desc": "Calculate monthly payments for Commercial, Provident Fund, and Combination loans.",
+      "name": "Calculateur d'hypothèque",
+      "desc": "Calculer les paiements mensuels et intérêts.",
       "title": "Mortgage Calculator",
       "subtitle": "Calculate your mortgage payments and interest",
       "loan_type": "Loan Type",
@@ -349,8 +356,8 @@
       "tip_principal": "Equal Principal: Fixed principal payment, decreasing interest."
     },
     "investment-return": {
-      "name": "Investment Return Calculator",
-      "desc": "Calculate compound interest with regular contributions and frequency settings.",
+      "name": "Calculateur de rendement",
+      "desc": "Calculer les rendement composés.",
       "title": "Investment Return Calculator",
       "subtitle": "Plan your wealth growth",
       "initial_amount": "Initial Principal",
@@ -373,8 +380,8 @@
       "empty_tip": "Enter parameters and calculate to see results"
     },
     "roi-calculator": {
-      "name": "ROI Calculator",
-      "desc": "Calculate Return on Investment (ROI) and Annualized ROI.",
+      "name": "Calculateur de ROI",
+      "desc": "Calculer le retour sur investissement.",
       "title": "ROI Calculator",
       "subtitle": "Evaluate investment profitability",
       "invested_amount": "Invested Amount",
@@ -393,8 +400,8 @@
       "empty_tip": "Enter investment and return amounts to calculate"
     },
     "otp-generator": {
-      "name": "OTP Generator",
-      "desc": "Generate and verify Time-based One-Time Passwords (TOTP) for Multi-Factor Authentication.",
+      "name": "Générateur OTP",
+      "desc": "Générer des mots de passe à usage unique TOTP/HOTP.",
       "title": "OTP Generator",
       "subtitle": "Secure 2FA token generator and validator",
       "config": "Configuration",
@@ -416,7 +423,7 @@
     },
     "wifi-qr": {
       "title": "WiFi QR Code Generator",
-      "desc": "Generate and download QR codes for quick WiFi connection.",
+      "desc": "Générer un QR code de connexion WiFi.",
       "subtitle": "Create a QR code for your guests to connect to WiFi instantly",
       "ssid": "Network Name (SSID)",
       "encryption": "Encryption",
@@ -425,11 +432,12 @@
       "none": "None",
       "preview": "Preview",
       "download": "Download",
-      "print": "Print"
+      "print": "Print",
+      "name": "QR Code WiFi"
     },
     "english-name": {
       "title": "English Name Generator",
-      "desc": "Generate English names based on your Chinese name.",
+      "desc": "Générer des noms anglais aléatoires.",
       "subtitle": "Find the perfect English name that matches your Chinese name",
       "input_label": "Your Chinese Name",
       "placeholder": "e.g. Li Ming",
@@ -445,217 +453,218 @@
       "no_results": "No suitable names found based on current criteria. Try different inputs.",
       "reason_start": "Starts with same letter",
       "reason_sound": "Sounds similar",
-      "reason_random": "Popular choice"
+      "reason_random": "Popular choice",
+      "name": "Générateur de nom anglais"
     },
     "base64": {
-      "name": "Base64 Encoder/Decoder",
-      "desc": "UTF-8 safe Base64 encode and decode, standard and URL-safe variants."
+      "name": "Encodeur/Décodeur Base64",
+      "desc": "Encoder/décoder du texte et fichiers en Base64."
     },
     "url-encoder": {
-      "name": "URL Encoder",
-      "desc": "URL component and full-URL encoding/decoding with error feedback."
+      "name": "Encodeur URL",
+      "desc": "Encoder/décoder des chaînes URL."
     },
     "uuid-generator": {
-      "name": "UUID Generator",
-      "desc": "Generate RFC 4122 v4 UUIDs. Batch, uppercase, strip hyphens options."
+      "name": "Générateur UUID",
+      "desc": "Générer des UUID v1/v4/v5."
     },
     "sql-formatter": {
-      "name": "SQL Formatter",
-      "desc": "Format and minify SQL. Supports MySQL, PostgreSQL, Hive, Spark, SQLite."
+      "name": "Formateur SQL",
+      "desc": "Formater des requêtes SQL."
     },
     "sql-table-extractor": {
-      "name": "SQL Table Extractor",
-      "desc": "Extract table names from SQL queries, grouped by type."
+      "name": "Extracteur de tables SQL",
+      "desc": "Extraire les définitions de tables SQL."
     },
     "sql-column-extractor": {
-      "name": "SQL Column Extractor",
-      "desc": "Extract column names from SQL SELECT statements with occurrence counts."
+      "name": "Extracteur de colonnes SQL",
+      "desc": "Extraire les définitions de colonnes SQL."
     },
     "sql-mermaid": {
-      "name": "SQL → Mermaid",
-      "desc": "Parse CREATE TABLE DDL to generate Mermaid ER diagram code."
+      "name": "SQL vers Mermaid",
+      "desc": "Convertir des schémas SQL en diagrammes Mermaid."
     },
     "sql-review": {
-      "name": "SQL Review",
-      "desc": "Rule-based SQL static linting for performance and security issues."
+      "name": "Revue SQL",
+      "desc": "Réviser et suggérer des améliorations SQL."
     },
     "json-schema-generator": {
-      "name": "JSON Schema Generator",
-      "desc": "Infer JSON Schema from JSON samples (draft-07)."
+      "name": "Générateur de schéma JSON",
+      "desc": "Générer un schéma JSON depuis JSON."
     },
     "data-faker": {
-      "name": "Data Faker",
-      "desc": "Generate mock data in JSON/CSV/SQL formats using @faker-js/faker."
+      "name": "Générateur de données",
+      "desc": "Générer des données de test réalistes."
     },
     "docker-run-builder": {
-      "name": "Docker Run Builder",
-      "desc": "Form-based docker run command generator."
+      "name": "Constructeur Docker run",
+      "desc": "Générer des commandes docker run."
     },
     "docker-compose-generator": {
-      "name": "Docker Compose Generator",
-      "desc": "Form-based docker-compose.yml generator with multi-service support."
+      "name": "Générateur Docker Compose",
+      "desc": "Générer des fichiers Docker Compose."
     },
     "k8s-yaml-generator": {
-      "name": "K8s YAML Generator",
-      "desc": "Generate Kubernetes Deployment/Service YAML from a form."
+      "name": "Générateur K8s YAML",
+      "desc": "Générer du YAML Kubernetes."
     },
     "k8s-resource-calculator": {
-      "name": "K8s Resource Calculator",
-      "desc": "Estimate Pod resource requests vs cluster capacity."
+      "name": "Calculateur de ressources K8s",
+      "desc": "Calculer les besoins en ressources Kubernetes."
     },
     "systemd-generator": {
-      "name": "Systemd Generator",
-      "desc": "Generate systemd .service unit files from a form."
+      "name": "Générateur Systemd",
+      "desc": "Générer des fichiers de service systemd."
     },
     "token-counter": {
-      "name": "Token Counter",
-      "desc": "Estimate token count using js-tiktoken with multiple encodings."
+      "name": "Compteur de jetons",
+      "desc": "Compter les jetons des modèles LLM."
     },
     "prompt-builder": {
-      "name": "Prompt Builder",
-      "desc": "Template-based Prompt assembler with local draft save."
+      "name": "Constructeur de prompts",
+      "desc": "Construire des prompts LLM."
     },
     "prompt-diff": {
-      "name": "Prompt Diff",
-      "desc": "Highlight differences between two Prompt versions."
+      "name": "Diff de prompts",
+      "desc": "Afficher les différences entre prompts."
     },
     "rag-chunk-calculator": {
-      "name": "RAG Chunk Calculator",
-      "desc": "Estimate chunk count and token distribution for RAG."
+      "name": "Calculateur de chunks RAG",
+      "desc": "Calculer la taille des chunks pour RAG."
     },
     "ai-cost-calculator": {
-      "name": "AI Cost Calculator",
-      "desc": "Estimate LLM API costs based on model pricing and token counts."
+      "name": "Calculateur de coût IA",
+      "desc": "Estimer les coûts d'API LLM."
     },
     "llm-request-builder": {
-      "name": "LLM Request Builder",
-      "desc": "Build OpenAI-compatible API request JSON or curl commands."
+      "name": "Constructeur de requêtes LLM",
+      "desc": "Construire des requêtes API compatibles OpenAI."
     },
     "wallet-analyzer": {
-      "name": "Wallet Analyzer",
-      "desc": "Validate Ethereum address format and EIP-55 checksum."
+      "name": "Analyseur de portefeuille",
+      "desc": "Valider les adresses Ethereum et checksum EIP-55."
     },
     "ens-lookup": {
-      "name": "ENS Lookup",
-      "desc": "Forward and reverse ENS domain resolution."
+      "name": "Recherche ENS",
+      "desc": "Résolution ENS avant/arrière."
     },
     "gas-tracker": {
-      "name": "Gas Tracker",
-      "desc": "Query current Ethereum gas prices (Low/Medium/High)."
+      "name": "Traqueur de gas",
+      "desc": "Consulter les prix Ethereum gas actuels."
     },
     "tx-hash-identifier": {
-      "name": "Hash Identifier",
-      "desc": "Identify hash types: ETH/BTC TXID, ENS Namehash, IPFS CID, UUID."
+      "name": "Identifiant de hash",
+      "desc": "Identifier les types de hash."
     },
     "token-approval-checker": {
-      "name": "Token Approval Checker",
-      "desc": "Query token approval allowances and detect unlimited approvals."
+      "name": "Vérificateur d'approbation",
+      "desc": "Vérifier les approbations de jetons."
     }
   },
   "games": {
     "chinese-chess": {
-      "title": "Chinese Chess",
-      "desc": "Play Chinese Chess (Xiangqi) against AI.",
-      "subtitle": "Challenge the AI in this classic strategy game.",
-      "settings": "Game Settings",
-      "difficulty": "Difficulty",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "red_turn": "Red's Turn",
-      "black_turn": "Black's Turn (AI)",
-      "red_win": "Red Wins!",
-      "black_win": "Black Wins!"
+      "title": "Échecs chinois",
+      "desc": "Jouer aux échecs chinois (Xiangqi) contre l'IA.",
+      "subtitle": "Défiez l'IA dans ce jeu de stratégie classique.",
+      "settings": "Paramètres du jeu",
+      "difficulty": "Difficulté",
+      "easy": "Facile",
+      "medium": "Moyen",
+      "hard": "Difficile",
+      "red_turn": "Tour des rouges",
+      "black_turn": "Tour des noirs (IA)",
+      "red_win": "Les rouges gagnent !",
+      "black_win": "Les noirs gagnent !"
     },
     "go": {
       "title": "Go (Weiqi)",
-      "desc": "Play Go (Weiqi) against AI.",
-      "subtitle": "Ancient strategy board game of territory.",
-      "settings": "Game Settings",
-      "difficulty": "Difficulty",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "black": "Black (You)",
-      "white": "White (AI)",
-      "captured": "captured",
-      "your_turn": "Your Turn",
-      "ai_turn": "AI Thinking...",
-      "game_over": "Game Over"
+      "desc": "Jouer au Go (Weiqi) contre l'IA.",
+      "subtitle": "Ancien jeu de plateau stratégique.",
+      "settings": "Paramètres du jeu",
+      "difficulty": "Difficulté",
+      "easy": "Facile",
+      "medium": "Moyen",
+      "hard": "Difficile",
+      "black": "Noir (Vous)",
+      "white": "Blanc (IA)",
+      "captured": "capturé",
+      "your_turn": "Votre tour",
+      "ai_turn": "L'IA réfléchit...",
+      "game_over": "Fin de partie"
     },
     "jungle": {
-      "title": "Jungle Chess",
-      "desc": "Play Jungle Chess (Dou Shou Qi) against AI.",
-      "subtitle": "Classic Animal Battle Game",
-      "settings": "Game Settings",
-      "difficulty": "Difficulty",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "red": "Red (You)",
-      "blue": "Blue (AI)",
-      "your_turn": "Your Turn",
-      "ai_turn": "AI Thinking...",
-      "red_win": "Red Wins!",
-      "blue_win": "Blue Wins!",
-      "den": "DEN",
-      "trap": "TRAP",
-      "rules": "Rank: 🐘 > 🦁 > 🐯 > 🐆 > 🐺 > 🐕 > 🐈 > 🐀 (> 🐘)"
+      "title": "Échecs de la jungle",
+      "desc": "Jouer aux échecs de la jungle (Dou Shou Qi) contre l'IA.",
+      "subtitle": "Jeu de bataille d'animaux classique",
+      "settings": "Paramètres du jeu",
+      "difficulty": "Difficulté",
+      "easy": "Facile",
+      "medium": "Moyen",
+      "hard": "Difficile",
+      "red": "Rouge (Vous)",
+      "blue": "Bleu (IA)",
+      "your_turn": "Votre tour",
+      "ai_turn": "L'IA réfléchit...",
+      "red_win": "Rouge gagne !",
+      "blue_win": "Bleu gagne !",
+      "den": "TANIÈRE",
+      "trap": "PIÈGE",
+      "rules": "Rang: 🐘 > 🦁 > 🐯 > 🐆 > 🐺 > 🐕 > 🐈 > 🐀 (> 🐘)"
     },
     "flying_chess": {
-      "title": "Flying Chess",
-      "desc": "Classic Aeroplane Chess (Ludo Variant) with AI.",
-      "subtitle": "Battle with 3 AIs!",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "red": "Red (You)",
-      "yellow": "Yellow (AI)",
-      "blue": "Blue (AI)",
-      "green": "Green (AI)",
-      "status": "Game Status",
-      "turn": "Current Turn",
-      "roll": "Roll Dice",
-      "launched": "Plane Launched!",
-      "moved": "Plane Moved",
-      "jump": "Jump!",
-      "kicked": "Kicked",
-      "kicked_msg": "Kicked opponent",
-      "finished": "Plane Finished!",
-      "bonus_turn": "Rolled 6! Bonus Turn.",
-      "turn_change": "Turn Passed",
-      "turn_change_limit": "Turn Passed (3x Sixes)",
-      "rules": "Game Rules",
-      "rule1": "Roll 6 to launch a plane from hangar.",
-      "rule2": "Jump (+4 tiles) if landing on same color.",
-      "rule3": "Kick opponent back to hangar if landing on them.",
-      "rule4": "First to fly all 4 planes to center wins."
+      "title": "Échecs volants",
+      "desc": "Échecs d'avion classiques (variante Ludo) avec IA.",
+      "subtitle": "Bataille contre 3 IA !",
+      "easy": "Facile",
+      "medium": "Moyen",
+      "hard": "Difficile",
+      "red": "Rouge (Vous)",
+      "yellow": "Jaune (IA)",
+      "blue": "Bleu (IA)",
+      "green": "Vert (IA)",
+      "status": "Statut",
+      "turn": "Tour actuel",
+      "roll": "Lancer le dé",
+      "launched": "Avion lancé !",
+      "moved": "Avion déplacé",
+      "jump": "Saut !",
+      "kicked": "Éjecté",
+      "kicked_msg": "Adversaire éjecté",
+      "finished": "Avion terminé !",
+      "bonus_turn": "6 lancé ! Tour bonus.",
+      "turn_change": "Tour passé",
+      "turn_change_limit": "Tour passé (3x 6)",
+      "rules": "Règles",
+      "rule1": "Lancer 6 pour lancer un avion.",
+      "rule2": "Sauter (+4 cases) sur même couleur.",
+      "rule3": "Éjecter l'adversaire.",
+      "rule4": "Premier à voler 4 avions au centre gagne."
     },
     "chinese_checkers": {
-      "title": "Chinese Checkers",
-      "desc": "Classic strategy board game (Sternhalma).",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "you": "You (Green)",
-      "ai": "AI (Red)",
-      "status": "Game Status",
-      "turn": "Turn",
-      "win": "You Win!",
-      "lose": "AI Wins!",
-      "rules": "Rules",
-      "rule1": "Move to adjacent empty hole.",
-      "rule2": "Jump over adjacent piece to empty hole.",
-      "rule3": "Chain jumps are allowed.",
-      "rule4": "First to fill opposite triangle wins."
+      "title": "Dames chinoises",
+      "desc": "Jeu de plateau stratégique classique (Sternhalma).",
+      "easy": "Facile",
+      "medium": "Moyen",
+      "hard": "Difficile",
+      "you": "Vous (Vert)",
+      "ai": "IA (Rouge)",
+      "status": "Statut",
+      "turn": "Tour",
+      "win": "Vous gagnez !",
+      "lose": "L'IA gagne !",
+      "rules": "Règles",
+      "rule1": "Se déplacer vers un trou adjacent.",
+      "rule2": "Sauter par-dessus une pièce adjacente.",
+      "rule3": "Sauts en chaîne autorisés.",
+      "rule4": "Premier à remplir le triangle opposé gagne."
     },
     "drawing-tool": {
-      "pageTitle": "Drawing Board - Build Better",
-      "pageDescription": "An infinite-canvas drawing board with pressure-sensitive ink, shapes, arrows, and more. Powered by QuickDraw.",
-      "name": "Drawing Board",
-      "desc": "Infinite-canvas drawing board with pen, shapes, arrows, sticky notes, and more.",
-      "title": "Drawing Board",
-      "subtitle": "Sketch, diagram, and brainstorm on an infinite canvas — pressure ink, shapes, arrows, images, and more."
+      "pageTitle": "Tableau de dessin - Build Better",
+      "pageDescription": "Tableau de dessin au canevas infini avec encre sensible à la pression, formes et flèches.",
+      "name": "Tableau de dessin",
+      "desc": "Tableau de dessin au canevas infini avec stylo, formes, flèches, notes.",
+      "title": "Tableau de dessin",
+      "subtitle": "Esquisser, diagrammer et réfléchir sur un canevas infini."
     }
   },
   "categories": {

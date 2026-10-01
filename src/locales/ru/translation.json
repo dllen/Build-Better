@@ -34,28 +34,29 @@
   },
   "tools": {
     "kinship": {
-      "title": "Chinese Kinship Calculator",
-      "desc": "Calculate Chinese relative titles and relations.",
-      "male": "I am Male",
-      "female": "I am Female",
-      "current_relation": "Current Relation",
-      "placeholder": "Select relation...",
-      "reverse_lookup": "Reverse Lookup (e.g., Uncle)",
-      "result": "Result",
-      "waiting": "Waiting for calculation...",
-      "tips_title": "Tips",
-      "tip1": "Click buttons to add relations.",
-      "tip2": "Supports reverse lookup.",
-      "tip3": "Regional differences may exist.",
-      "share_text": "I am checking kinship titles"
+      "title": "Калькулятор родства",
+      "desc": "Расчёт китайских родственных связей.",
+      "male": "Я мужчина",
+      "female": "Я женщина",
+      "current_relation": "Текущее отношение",
+      "placeholder": "Выберите отношение...",
+      "reverse_lookup": "Обратный поиск (напр.: дядя)",
+      "result": "Результат",
+      "waiting": "Ожидание расчёта...",
+      "tips_title": "Советы",
+      "tip1": "Нажимайте кнопки, чтобы добавить связи.",
+      "tip2": "Поддерживает обратный поиск.",
+      "tip3": "Могут быть региональные различия.",
+      "share_text": "Проверяю родство",
+      "name": "Калькулятор родства"
     },
     "json-editor": {
-      "name": "JSON Editor",
-      "desc": "View, edit, format, and validate JSON data."
+      "name": "JSON-редактор",
+      "desc": "Просмотр, редактирование, форматирование и проверка JSON."
     },
     "image-joiner": {
       "title": "Image Joiner",
-      "desc": "Join multiple images vertically or horizontally. Supports drag sorting and auto alignment.",
+      "desc": "Объединение изображений по вертили или горизонтали.",
       "subtitle": "Combine multiple photos into one long image. Drag to sort, auto resize, and customize spacing.",
       "click_upload": "Click to upload images",
       "drag_hint": "Support multiple selection",
@@ -70,11 +71,12 @@
       "download": "Download Image",
       "images": "Images",
       "clear": "Clear All",
-      "preview_hint": "Upload images to see preview"
+      "preview_hint": "Upload images to see preview",
+      "name": "Объединение изображений"
     },
     "image-watermark": {
       "title": "Image Watermark Tool",
-      "desc": "Add text watermarks to images. Custom position, opacity, and rotation.",
+      "desc": "Добавление текстовых водяных знаков на изображения.",
       "subtitle": "Batch add text watermarks to photos. Secure your images locally.",
       "settings": "Watermark Settings",
       "text": "Watermark Text",
@@ -88,11 +90,12 @@
       "process_all": "Add Watermark",
       "download_all": "Download All",
       "original_size": "Original Size",
-      "success": "Watermark added successfully"
+      "success": "Watermark added successfully",
+      "name": "Водяной знак на фото"
     },
     "image-converter": {
       "title": "Image Format Converter",
-      "desc": "Convert images between JPG, PNG, and WebP formats.",
+      "desc": "Конвертация между JPG, PNG и WebP.",
       "subtitle": "Convert between JPG, PNG, and WebP. Support for background color filling.",
       "settings": "Conversion Settings",
       "target_format": "Target Format",
@@ -102,11 +105,12 @@
       "convert_all": "Convert All",
       "download_all": "Download All",
       "original_size": "Original Size",
-      "converted_to": "Converted to"
+      "converted_to": "Converted to",
+      "name": "Конвертер форматов изображений"
     },
     "image-resizer": {
       "title": "Image Resizer & Cropper",
-      "desc": "Resize, crop, and convert images. Batch processing support.",
+      "desc": "Изменение размера, обрезка и конвертация изображений.",
       "subtitle": "Batch resize images or crop them individually. Supports custom dimensions and presets.",
       "batch_mode": "Batch Resize",
       "crop_mode": "Crop Image",
@@ -128,11 +132,12 @@
       "crop_info": "Drag on image to select area.",
       "apply_crop": "Apply Crop",
       "crop_this": "Crop this image",
-      "resized": "Processed"
+      "resized": "Processed",
+      "name": "Изменение размера"
     },
     "image-compressor": {
       "title": "Image Compressor",
-      "desc": "Compress and resize JPG, PNG, WebP images locally.",
+      "desc": "Сжатие изображений с сохранением качества.",
       "subtitle": "Compress, resize, and convert images locally. No files uploaded to server.",
       "format": "Output Format",
       "keep_original": "Keep Original",
@@ -143,11 +148,12 @@
       "compress_all": "Compress All",
       "download_all": "Download All",
       "original": "Original",
-      "compressed": "Compressed"
+      "compressed": "Compressed",
+      "name": "Сжатие изображений"
     },
     "image-ascii": {
       "title": "Image to ASCII Art",
-      "desc": "Convert images to ASCII art with customizable options.",
+      "desc": "Конвертация изображений в ASCII-арт.",
       "drag_drop": "Click or drag image here",
       "settings": "Settings",
       "width": "Width (chars)",
@@ -159,11 +165,12 @@
       "inverted": "Inverted",
       "original": "Original Image",
       "preview": "ASCII Preview",
-      "placeholder": "Upload an image to see the magic"
+      "placeholder": "Upload an image to see the magic",
+      "name": "Изображение в ASCII-арт"
     },
     "token-generator": {
-      "name": "Token Generator",
-      "desc": "Generate random strings using custom characters, letters, numbers, and symbols.",
+      "name": "Генератор токенов",
+      "desc": "Генерация случайных безопасных токенов.",
       "settings": "Settings",
       "characters": "Characters",
       "uppercase": "Uppercase (A-Z)",
@@ -180,8 +187,8 @@
       "no_chars_error": "Please select at least one character set or enter custom characters."
     },
     "format-converter": {
-      "name": "Format Converter",
-      "desc": "Convert between JSON, YAML, TOML, and XML formats.",
+      "name": "Конвертер форматов",
+      "desc": "Конвертация между JSON, YAML, TOML и XML.",
       "title": "Format Converter",
       "description": "Convert between JSON, YAML, TOML, and XML formats.",
       "input_label": "Input",
@@ -190,8 +197,8 @@
       "copied": "Copied!"
     },
     "device-info": {
-      "name": "Device Information",
-      "desc": "Get detailed information about your current device, screen, and browser.",
+      "name": "Информация об устройстве",
+      "desc": "Отображение информации о браузере, экране и сети.",
       "title": "Device Information",
       "description": "Get detailed information about your current device, screen, and browser.",
       "screen_resolution": "Screen Resolution",
@@ -208,8 +215,8 @@
       "copy": "Copy"
     },
     "html-to-text": {
-      "name": "HTML to Text",
-      "desc": "Extract text content from HTML, removing tags and scripts.",
+      "name": "HTML в текст",
+      "desc": "Извлечение текста из HTML.",
       "input_label": "HTML Input",
       "output_label": "Extracted Text",
       "convert_btn": "Extract Text",
@@ -217,12 +224,12 @@
       "copied": "Copied!"
     },
     "api-debugger": {
-      "name": "API Debugger",
-      "desc": "Test and debug HTTP requests with ease. Support for GET, POST, PUT, DELETE."
+      "name": "API-отладчик",
+      "desc": "Отладка и тестирование API-запросов."
     },
     "code-formatter": {
-      "name": "Code Formatter",
-      "desc": "Format your code to standard styles. Supports JS, TS, HTML, CSS, JSON, etc.",
+      "name": "Форматирование кода",
+      "desc": "Форматирование кода на нескольких языках.",
       "themes": {
         "light": "Light",
         "dark": "Dark",
@@ -245,16 +252,16 @@
       "error_title": "Formatting Error"
     },
     "qr-generator": {
-      "name": "QR Code Generator",
-      "desc": "Generate QR codes for URLs, text, and more. Customizable size and color."
+      "name": "Генератор QR-кодов",
+      "desc": "Генерация QR-кодов для текста, URL и контактов."
     },
     "perpetual-calendar": {
-      "name": "Perpetual Calendar",
-      "desc": "Comprehensive calendar with Chinese Lunar date, Solar terms, and festivals."
+      "name": "Вечный календарь",
+      "desc": "Вычисления дат и операции с календарём."
     },
     "domain-valuation": {
-      "name": "Domain Valuation",
-      "desc": "Estimate domain market value based on length, TLD, and keywords.",
+      "name": "Оценка домена",
+      "desc": "Оценка рыночной стоимости доменов.",
       "title": "Domain Valuation Tool",
       "subtitle": "Quickly estimate the market value of your domain",
       "input_label": "Enter Domain Name",
@@ -264,8 +271,8 @@
       "disclaimer": "This valuation is an algorithmic estimation and does not guarantee actual market price."
     },
     "nginx-config": {
-      "name": "Nginx Config Generator",
-      "desc": "Generate Nginx configuration files online with HTTPS, proxy, Gzip support.",
+      "name": "Генератор Nginx",
+      "desc": "Генерация файлов конфигурации Nginx.",
       "title": "Nginx Config Generator",
       "subtitle": "Generate Nginx server block configurations easily",
       "basic_settings": "Basic Settings",
@@ -285,8 +292,8 @@
       "generated_config": "Generated Configuration"
     },
     "apache-config": {
-      "name": "Apache Config Generator",
-      "desc": "Generate Apache VirtualHost configuration files online with HTTPS, redirects, logs.",
+      "name": "Генератор Apache",
+      "desc": "Генерация файлов конфигурации Apache.",
       "title": "Apache Config Generator",
       "subtitle": "Generate Apache VirtualHost configurations easily",
       "basic_settings": "Basic Settings",
@@ -306,8 +313,8 @@
       "generated_config": "Generated Configuration"
     },
     "haproxy-config": {
-      "name": "HAProxy Config Generator",
-      "desc": "Generate HAProxy load balancer configuration files with algorithms, health checks.",
+      "name": "Генератор HAProxy",
+      "desc": "Генерация файлов конфигурации HAProxy.",
       "title": "HAProxy Config Generator",
       "subtitle": "Generate high-availability load balancer configurations",
       "global_defaults": "Global & Defaults",
@@ -322,8 +329,8 @@
       "generated_config": "Generated Configuration"
     },
     "mortgage-calculator": {
-      "name": "Mortgage Calculator",
-      "desc": "Calculate monthly payments for Commercial, Provident Fund, and Combination loans.",
+      "name": "Ипотечный калькулятор",
+      "desc": "Расчёт ежемесячных платежей и процентов.",
       "title": "Mortgage Calculator",
       "subtitle": "Calculate your mortgage payments and interest",
       "loan_type": "Loan Type",
@@ -349,8 +356,8 @@
       "tip_principal": "Equal Principal: Fixed principal payment, decreasing interest."
     },
     "investment-return": {
-      "name": "Investment Return Calculator",
-      "desc": "Calculate compound interest with regular contributions and frequency settings.",
+      "name": "Калькулятор доходности",
+      "desc": "Расчёт сложных процентов и годовой доходности.",
       "title": "Investment Return Calculator",
       "subtitle": "Plan your wealth growth",
       "initial_amount": "Initial Principal",
@@ -373,8 +380,8 @@
       "empty_tip": "Enter parameters and calculate to see results"
     },
     "roi-calculator": {
-      "name": "ROI Calculator",
-      "desc": "Calculate Return on Investment (ROI) and Annualized ROI.",
+      "name": "Калькулятор ROI",
+      "desc": "Расчёт возврата инвестиций.",
       "title": "ROI Calculator",
       "subtitle": "Evaluate investment profitability",
       "invested_amount": "Invested Amount",
@@ -393,8 +400,8 @@
       "empty_tip": "Enter investment and return amounts to calculate"
     },
     "otp-generator": {
-      "name": "OTP Generator",
-      "desc": "Generate and verify Time-based One-Time Passwords (TOTP) for Multi-Factor Authentication.",
+      "name": "Генератор OTP",
+      "desc": "Генерация одноразовых паролей TOTP/HOTP.",
       "title": "OTP Generator",
       "subtitle": "Secure 2FA token generator and validator",
       "config": "Configuration",
@@ -416,7 +423,7 @@
     },
     "wifi-qr": {
       "title": "WiFi QR Code Generator",
-      "desc": "Generate and download QR codes for quick WiFi connection.",
+      "desc": "Генерация QR-кода для подключения к WiFi.",
       "subtitle": "Create a QR code for your guests to connect to WiFi instantly",
       "ssid": "Network Name (SSID)",
       "encryption": "Encryption",
@@ -425,11 +432,12 @@
       "none": "None",
       "preview": "Preview",
       "download": "Download",
-      "print": "Print"
+      "print": "Print",
+      "name": "WiFi QR-код"
     },
     "english-name": {
       "title": "English Name Generator",
-      "desc": "Generate English names based on your Chinese name.",
+      "desc": "Генерация случайных английских имён.",
       "subtitle": "Find the perfect English name that matches your Chinese name",
       "input_label": "Your Chinese Name",
       "placeholder": "e.g. Li Ming",
@@ -445,217 +453,218 @@
       "no_results": "No suitable names found based on current criteria. Try different inputs.",
       "reason_start": "Starts with same letter",
       "reason_sound": "Sounds similar",
-      "reason_random": "Popular choice"
+      "reason_random": "Popular choice",
+      "name": "Генератор английских имён"
     },
     "base64": {
-      "name": "Base64 Encoder/Decoder",
-      "desc": "UTF-8 safe Base64 encode and decode, standard and URL-safe variants."
+      "name": "Base64 кодер/декодер",
+      "desc": "Кодирование/декодирование текста и файлов в Base64."
     },
     "url-encoder": {
-      "name": "URL Encoder",
-      "desc": "URL component and full-URL encoding/decoding with error feedback."
+      "name": "URL-кодер",
+      "desc": "Кодирование/декодирование URL-строк."
     },
     "uuid-generator": {
-      "name": "UUID Generator",
-      "desc": "Generate RFC 4122 v4 UUIDs. Batch, uppercase, strip hyphens options."
+      "name": "Генератор UUID",
+      "desc": "Генерация UUID v1/v4/v5."
     },
     "sql-formatter": {
-      "name": "SQL Formatter",
-      "desc": "Format and minify SQL. Supports MySQL, PostgreSQL, Hive, Spark, SQLite."
+      "name": "SQL-форматтер",
+      "desc": "Форматирование SQL-запросов."
     },
     "sql-table-extractor": {
-      "name": "SQL Table Extractor",
-      "desc": "Extract table names from SQL queries, grouped by type."
+      "name": "Извлечение таблиц SQL",
+      "desc": "Извлечение определений таблиц из SQL."
     },
     "sql-column-extractor": {
-      "name": "SQL Column Extractor",
-      "desc": "Extract column names from SQL SELECT statements with occurrence counts."
+      "name": "Извлечение столбцов SQL",
+      "desc": "Извлечение определений столбцов из SQL."
     },
     "sql-mermaid": {
-      "name": "SQL → Mermaid",
-      "desc": "Parse CREATE TABLE DDL to generate Mermaid ER diagram code."
+      "name": "SQL в Mermaid",
+      "desc": "Конвертация SQL-схем в Mermaid ER-диаграммы."
     },
     "sql-review": {
-      "name": "SQL Review",
-      "desc": "Rule-based SQL static linting for performance and security issues."
+      "name": "Обзор SQL",
+      "desc": "Обзор и рекомендации по улучшению SQL."
     },
     "json-schema-generator": {
-      "name": "JSON Schema Generator",
-      "desc": "Infer JSON Schema from JSON samples (draft-07)."
+      "name": "Генератор JSON-схем",
+      "desc": "Генерация JSON-схемы из JSON."
     },
     "data-faker": {
-      "name": "Data Faker",
-      "desc": "Generate mock data in JSON/CSV/SQL formats using @faker-js/faker."
+      "name": "Генератор данных",
+      "desc": "Генерация реалистичных тестовых данных."
     },
     "docker-run-builder": {
-      "name": "Docker Run Builder",
-      "desc": "Form-based docker run command generator."
+      "name": "Генератор Docker run",
+      "desc": "Генерация команд docker run."
     },
     "docker-compose-generator": {
-      "name": "Docker Compose Generator",
-      "desc": "Form-based docker-compose.yml generator with multi-service support."
+      "name": "Генератор Docker Compose",
+      "desc": "Генерация файлов Docker Compose."
     },
     "k8s-yaml-generator": {
-      "name": "K8s YAML Generator",
-      "desc": "Generate Kubernetes Deployment/Service YAML from a form."
+      "name": "Генератор K8s YAML",
+      "desc": "Генерация YAML для Kubernetes."
     },
     "k8s-resource-calculator": {
-      "name": "K8s Resource Calculator",
-      "desc": "Estimate Pod resource requests vs cluster capacity."
+      "name": "Калькулятор ресурсов K8s",
+      "desc": "Расчёт требований к ресурсам Kubernetes."
     },
     "systemd-generator": {
-      "name": "Systemd Generator",
-      "desc": "Generate systemd .service unit files from a form."
+      "name": "Генератор Systemd",
+      "desc": "Генерация файлов служб systemd."
     },
     "token-counter": {
-      "name": "Token Counter",
-      "desc": "Estimate token count using js-tiktoken with multiple encodings."
+      "name": "Счётчик токенов",
+      "desc": "Подсчёт токенов моделей LLM."
     },
     "prompt-builder": {
-      "name": "Prompt Builder",
-      "desc": "Template-based Prompt assembler with local draft save."
+      "name": "Конструктор промтов",
+      "desc": "Создание и организация промтов LLM."
     },
     "prompt-diff": {
-      "name": "Prompt Diff",
-      "desc": "Highlight differences between two Prompt versions."
+      "name": "Сравнение промтов",
+      "desc": "Отображение различий между промтами."
     },
     "rag-chunk-calculator": {
-      "name": "RAG Chunk Calculator",
-      "desc": "Estimate chunk count and token distribution for RAG."
+      "name": "Калькулятор чанков RAG",
+      "desc": "Расчёт размера чанков для RAG."
     },
     "ai-cost-calculator": {
-      "name": "AI Cost Calculator",
-      "desc": "Estimate LLM API costs based on model pricing and token counts."
+      "name": "Калькулятор стоимости ИИ",
+      "desc": "Оценка стоимости API LLM."
     },
     "llm-request-builder": {
-      "name": "LLM Request Builder",
-      "desc": "Build OpenAI-compatible API request JSON or curl commands."
+      "name": "Конструктор запросов LLM",
+      "desc": "Создание OpenAI-совместимых запросов JSON или curl."
     },
     "wallet-analyzer": {
-      "name": "Wallet Analyzer",
-      "desc": "Validate Ethereum address format and EIP-55 checksum."
+      "name": "Анализатор кошелька",
+      "desc": "Проверка адресов Ethereum и контрольных сумм EIP-55."
     },
     "ens-lookup": {
-      "name": "ENS Lookup",
-      "desc": "Forward and reverse ENS domain resolution."
+      "name": "Поиск ENS",
+      "desc": "Прямое и обратное разрешение ENS."
     },
     "gas-tracker": {
-      "name": "Gas Tracker",
-      "desc": "Query current Ethereum gas prices (Low/Medium/High)."
+      "name": "Трекер газа",
+      "desc": "Запрос текущих цен газа Ethereum."
     },
     "tx-hash-identifier": {
-      "name": "Hash Identifier",
-      "desc": "Identify hash types: ETH/BTC TXID, ENS Namehash, IPFS CID, UUID."
+      "name": "Идентификатор хэшей",
+      "desc": "Идентификация типов хэшей."
     },
     "token-approval-checker": {
-      "name": "Token Approval Checker",
-      "desc": "Query token approval allowances and detect unlimited approvals."
+      "name": "Проверка одобрения токенов",
+      "desc": "Проверка одобрения токенов."
     }
   },
   "games": {
     "chinese-chess": {
-      "title": "Chinese Chess",
-      "desc": "Play Chinese Chess (Xiangqi) against AI.",
-      "subtitle": "Challenge the AI in this classic strategy game.",
-      "settings": "Game Settings",
-      "difficulty": "Difficulty",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "red_turn": "Red's Turn",
-      "black_turn": "Black's Turn (AI)",
-      "red_win": "Red Wins!",
-      "black_win": "Black Wins!"
+      "title": "Китайские шахматы",
+      "desc": "Играйте в китайские шахматы (Xiangqi) против ИИ.",
+      "subtitle": "Бросьте вызов ИИ.",
+      "settings": "Настройки",
+      "difficulty": "Сложность",
+      "easy": "Легко",
+      "medium": "Средне",
+      "hard": "Сложно",
+      "red_turn": "Ход красных",
+      "black_turn": "Ход чёрных (ИИ)",
+      "red_win": "Красные победили!",
+      "black_win": "Чёрные победили!"
     },
     "go": {
-      "title": "Go (Weiqi)",
-      "desc": "Play Go (Weiqi) against AI.",
-      "subtitle": "Ancient strategy board game of territory.",
-      "settings": "Game Settings",
-      "difficulty": "Difficulty",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "black": "Black (You)",
-      "white": "White (AI)",
-      "captured": "captured",
-      "your_turn": "Your Turn",
-      "ai_turn": "AI Thinking...",
-      "game_over": "Game Over"
+      "title": "Го (Вейци)",
+      "desc": "Играйте в Го против ИИ.",
+      "subtitle": "Древняя игра территорий.",
+      "settings": "Настройки",
+      "difficulty": "Сложность",
+      "easy": "Легко",
+      "medium": "Средне",
+      "hard": "Сложно",
+      "black": "Чёрные (Вы)",
+      "white": "Белые (ИИ)",
+      "captured": "захвачено",
+      "your_turn": "Ваш ход",
+      "ai_turn": "ИИ думает...",
+      "game_over": "Игра окончена"
     },
     "jungle": {
-      "title": "Jungle Chess",
-      "desc": "Play Jungle Chess (Dou Shou Qi) against AI.",
-      "subtitle": "Classic Animal Battle Game",
-      "settings": "Game Settings",
-      "difficulty": "Difficulty",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "red": "Red (You)",
-      "blue": "Blue (AI)",
-      "your_turn": "Your Turn",
-      "ai_turn": "AI Thinking...",
-      "red_win": "Red Wins!",
-      "blue_win": "Blue Wins!",
-      "den": "DEN",
-      "trap": "TRAP",
-      "rules": "Rank: 🐘 > 🦁 > 🐯 > 🐆 > 🐺 > 🐕 > 🐈 > 🐀 (> 🐘)"
+      "title": "Джунгли",
+      "desc": "Играйте в джунгли против ИИ.",
+      "subtitle": "Классическая игра животных",
+      "settings": "Настройки",
+      "difficulty": "Сложность",
+      "easy": "Легко",
+      "medium": "Средне",
+      "hard": "Сложно",
+      "red": "Красные (Вы)",
+      "blue": "Синие (ИИ)",
+      "your_turn": "Ваш ход",
+      "ai_turn": "ИИ думает...",
+      "red_win": "Красные победили!",
+      "blue_win": "Синие победили!",
+      "den": "ЛОГОВО",
+      "trap": "ЛОВУШКА",
+      "rules": "Ранг: 🐘 > 🦁 > 🐯 > 🐆 > 🐺 > 🐕 > 🐈 > 🐀 (> 🐘)"
     },
     "flying_chess": {
-      "title": "Flying Chess",
-      "desc": "Classic Aeroplane Chess (Ludo Variant) with AI.",
-      "subtitle": "Battle with 3 AIs!",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "red": "Red (You)",
-      "yellow": "Yellow (AI)",
-      "blue": "Blue (AI)",
-      "green": "Green (AI)",
-      "status": "Game Status",
-      "turn": "Current Turn",
-      "roll": "Roll Dice",
-      "launched": "Plane Launched!",
-      "moved": "Plane Moved",
-      "jump": "Jump!",
-      "kicked": "Kicked",
-      "kicked_msg": "Kicked opponent",
-      "finished": "Plane Finished!",
-      "bonus_turn": "Rolled 6! Bonus Turn.",
-      "turn_change": "Turn Passed",
-      "turn_change_limit": "Turn Passed (3x Sixes)",
-      "rules": "Game Rules",
-      "rule1": "Roll 6 to launch a plane from hangar.",
-      "rule2": "Jump (+4 tiles) if landing on same color.",
-      "rule3": "Kick opponent back to hangar if landing on them.",
-      "rule4": "First to fly all 4 planes to center wins."
+      "title": "Летающие шахматы",
+      "desc": "Классические летающие шахматы (вариант Ludo) с ИИ.",
+      "subtitle": "Битва с 3 ИИ!",
+      "easy": "Легко",
+      "medium": "Средне",
+      "hard": "Сложно",
+      "red": "Красные (Вы)",
+      "yellow": "Жёлтые (ИИ)",
+      "blue": "Синие (ИИ)",
+      "green": "Зелёные (ИИ)",
+      "status": "Статус",
+      "turn": "Ход",
+      "roll": "Бросить кубик",
+      "launched": "Самолёт взлетел!",
+      "moved": "Самолёт двинулся",
+      "jump": "Прыжок!",
+      "kicked": "Выбит",
+      "kicked_msg": "Противник выбит",
+      "finished": "Самолёт прилетел!",
+      "bonus_turn": "Выпало 6! Бонусный ход.",
+      "turn_change": "Ход перешёл",
+      "turn_change_limit": "Ход перешёл (3x 6)",
+      "rules": "Правила",
+      "rule1": "Бросьте 6, чтобы запустить самолёт.",
+      "rule2": "Прыжок (+4 клетки) на свой цвет.",
+      "rule3": "Выбейте противника.",
+      "rule4": "Кто первый долетит 4 самолётами до центра — победил."
     },
     "chinese_checkers": {
-      "title": "Chinese Checkers",
-      "desc": "Classic strategy board game (Sternhalma).",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "you": "You (Green)",
-      "ai": "AI (Red)",
-      "status": "Game Status",
-      "turn": "Turn",
-      "win": "You Win!",
-      "lose": "AI Wins!",
-      "rules": "Rules",
-      "rule1": "Move to adjacent empty hole.",
-      "rule2": "Jump over adjacent piece to empty hole.",
-      "rule3": "Chain jumps are allowed.",
-      "rule4": "First to fill opposite triangle wins."
+      "title": "Китайские шашки",
+      "desc": "Классическая игра (Sternhalma).",
+      "easy": "Легко",
+      "medium": "Средне",
+      "hard": "Сложно",
+      "you": "Вы (Зелёные)",
+      "ai": "ИИ (Красные)",
+      "status": "Статус",
+      "turn": "Ход",
+      "win": "Вы победили!",
+      "lose": "ИИ победил!",
+      "rules": "Правила",
+      "rule1": "Ход на соседнюю пустую клетку.",
+      "rule2": "Прыжок через соседнюю фигуру.",
+      "rule3": "Цепные прыжки разрешены.",
+      "rule4": "Кто первый заполнит противоположный треугольник — победил."
     },
     "drawing-tool": {
-      "pageTitle": "Drawing Board - Build Better",
-      "pageDescription": "An infinite-canvas drawing board with pressure-sensitive ink, shapes, arrows, and more. Powered by QuickDraw.",
-      "name": "Drawing Board",
-      "desc": "Infinite-canvas drawing board with pen, shapes, arrows, sticky notes, and more.",
-      "title": "Drawing Board",
-      "subtitle": "Sketch, diagram, and brainstorm on an infinite canvas — pressure ink, shapes, arrows, images, and more."
+      "pageTitle": "Доска для рисования - Build Better",
+      "pageDescription": "Доска для рисования с бесконечным холстом и чернилами.",
+      "name": "Доска для рисования",
+      "desc": "Доска с бесконечным холстом, пером, формами.",
+      "title": "Доска для рисования",
+      "subtitle": "Рисуйте и обдумывайте идеи на бесконечном холсте."
     }
   },
   "categories": {

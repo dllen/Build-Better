@@ -34,28 +34,29 @@
   },
   "tools": {
     "kinship": {
-      "title": "Chinese Kinship Calculator",
-      "desc": "Calculate Chinese relative titles and relations.",
-      "male": "I am Male",
-      "female": "I am Female",
-      "current_relation": "Current Relation",
-      "placeholder": "Select relation...",
-      "reverse_lookup": "Reverse Lookup (e.g., Uncle)",
-      "result": "Result",
-      "waiting": "Waiting for calculation...",
-      "tips_title": "Tips",
-      "tip1": "Click buttons to add relations.",
-      "tip2": "Supports reverse lookup.",
-      "tip3": "Regional differences may exist.",
-      "share_text": "I am checking kinship titles"
+      "title": "중국 친족 계산기",
+      "desc": "중국 친척 칭호와 관계를 계산합니다.",
+      "male": "저는 남성",
+      "female": "저는 여성",
+      "current_relation": "현재 관계",
+      "placeholder": "관계 선택...",
+      "reverse_lookup": "역방향 조회 (예: 삼촌)",
+      "result": "결과",
+      "waiting": "계산 대기 중...",
+      "tips_title": "팁",
+      "tip1": "버튼을 클릭하여 관계를 추가하세요.",
+      "tip2": "역방향 조회를 지원합니다.",
+      "tip3": "지역 차이가 있을 수 있습니다.",
+      "share_text": "친족 칭호 확인 중",
+      "name": "중국 친족 계산기"
     },
     "json-editor": {
-      "name": "JSON Editor",
-      "desc": "View, edit, format, and validate JSON data."
+      "name": "JSON 에디터",
+      "desc": "JSON 데이터를 보고, 편집, 포맷, 검증합니다."
     },
     "image-joiner": {
       "title": "Image Joiner",
-      "desc": "Join multiple images vertically or horizontally. Supports drag sorting and auto alignment.",
+      "desc": "여러 이미지를 세로 또는 가로로 결합합니다.",
       "subtitle": "Combine multiple photos into one long image. Drag to sort, auto resize, and customize spacing.",
       "click_upload": "Click to upload images",
       "drag_hint": "Support multiple selection",
@@ -70,11 +71,12 @@
       "download": "Download Image",
       "images": "Images",
       "clear": "Clear All",
-      "preview_hint": "Upload images to see preview"
+      "preview_hint": "Upload images to see preview",
+      "name": "이미지 합치기"
     },
     "image-watermark": {
       "title": "Image Watermark Tool",
-      "desc": "Add text watermarks to images. Custom position, opacity, and rotation.",
+      "desc": "이미지에 텍스트 워터마크를 추가합니다.",
       "subtitle": "Batch add text watermarks to photos. Secure your images locally.",
       "settings": "Watermark Settings",
       "text": "Watermark Text",
@@ -88,11 +90,12 @@
       "process_all": "Add Watermark",
       "download_all": "Download All",
       "original_size": "Original Size",
-      "success": "Watermark added successfully"
+      "success": "Watermark added successfully",
+      "name": "이미지 워터마크 도구"
     },
     "image-converter": {
       "title": "Image Format Converter",
-      "desc": "Convert images between JPG, PNG, and WebP formats.",
+      "desc": "JPG, PNG, WebP 포맷 간에 이미지를 변환합니다.",
       "subtitle": "Convert between JPG, PNG, and WebP. Support for background color filling.",
       "settings": "Conversion Settings",
       "target_format": "Target Format",
@@ -102,11 +105,12 @@
       "convert_all": "Convert All",
       "download_all": "Download All",
       "original_size": "Original Size",
-      "converted_to": "Converted to"
+      "converted_to": "Converted to",
+      "name": "이미지 포맷 변환기"
     },
     "image-resizer": {
       "title": "Image Resizer & Cropper",
-      "desc": "Resize, crop, and convert images. Batch processing support.",
+      "desc": "이미지 크기 조정, 자르기 및 변환.",
       "subtitle": "Batch resize images or crop them individually. Supports custom dimensions and presets.",
       "batch_mode": "Batch Resize",
       "crop_mode": "Crop Image",
@@ -128,11 +132,12 @@
       "crop_info": "Drag on image to select area.",
       "apply_crop": "Apply Crop",
       "crop_this": "Crop this image",
-      "resized": "Processed"
+      "resized": "Processed",
+      "name": "이미지 크기 조정 및 자르기"
     },
     "image-compressor": {
       "title": "Image Compressor",
-      "desc": "Compress and resize JPG, PNG, WebP images locally.",
+      "desc": "품질을 유지하면서 이미지를 압축합니다.",
       "subtitle": "Compress, resize, and convert images locally. No files uploaded to server.",
       "format": "Output Format",
       "keep_original": "Keep Original",
@@ -143,11 +148,12 @@
       "compress_all": "Compress All",
       "download_all": "Download All",
       "original": "Original",
-      "compressed": "Compressed"
+      "compressed": "Compressed",
+      "name": "이미지 압축기"
     },
     "image-ascii": {
       "title": "Image to ASCII Art",
-      "desc": "Convert images to ASCII art with customizable options.",
+      "desc": "이미지를 ASCII 아트로 변환합니다.",
       "drag_drop": "Click or drag image here",
       "settings": "Settings",
       "width": "Width (chars)",
@@ -159,11 +165,12 @@
       "inverted": "Inverted",
       "original": "Original Image",
       "preview": "ASCII Preview",
-      "placeholder": "Upload an image to see the magic"
+      "placeholder": "Upload an image to see the magic",
+      "name": "이미지를 ASCII 아트로 변환"
     },
     "token-generator": {
-      "name": "Token Generator",
-      "desc": "Generate random strings using custom characters, letters, numbers, and symbols.",
+      "name": "토큰 생성기",
+      "desc": "안전한 랜덤 토큰을 생성합니다.",
       "settings": "Settings",
       "characters": "Characters",
       "uppercase": "Uppercase (A-Z)",
@@ -180,8 +187,8 @@
       "no_chars_error": "Please select at least one character set or enter custom characters."
     },
     "format-converter": {
-      "name": "Format Converter",
-      "desc": "Convert between JSON, YAML, TOML, and XML formats.",
+      "name": "포맷 변환기",
+      "desc": "JSON, YAML, TOML, XML 간 변환.",
       "title": "Format Converter",
       "description": "Convert between JSON, YAML, TOML, and XML formats.",
       "input_label": "Input",
@@ -190,8 +197,8 @@
       "copied": "Copied!"
     },
     "device-info": {
-      "name": "Device Information",
-      "desc": "Get detailed information about your current device, screen, and browser.",
+      "name": "기기 정보",
+      "desc": "브라우저, 화면, 네트워크 정보를 표시합니다.",
       "title": "Device Information",
       "description": "Get detailed information about your current device, screen, and browser.",
       "screen_resolution": "Screen Resolution",
@@ -208,8 +215,8 @@
       "copy": "Copy"
     },
     "html-to-text": {
-      "name": "HTML to Text",
-      "desc": "Extract text content from HTML, removing tags and scripts.",
+      "name": "HTML을 텍스트로",
+      "desc": "HTML을 일반 텍스트로 변환합니다.",
       "input_label": "HTML Input",
       "output_label": "Extracted Text",
       "convert_btn": "Extract Text",
@@ -217,12 +224,12 @@
       "copied": "Copied!"
     },
     "api-debugger": {
-      "name": "API Debugger",
-      "desc": "Test and debug HTTP requests with ease. Support for GET, POST, PUT, DELETE."
+      "name": "API 디버거",
+      "desc": "API 요청을 디버그하고 테스트합니다."
     },
     "code-formatter": {
-      "name": "Code Formatter",
-      "desc": "Format your code to standard styles. Supports JS, TS, HTML, CSS, JSON, etc.",
+      "name": "코드 포맷터",
+      "desc": "여러 언어의 코드를 포맷합니다.",
       "themes": {
         "light": "Light",
         "dark": "Dark",
@@ -245,16 +252,16 @@
       "error_title": "Formatting Error"
     },
     "qr-generator": {
-      "name": "QR Code Generator",
-      "desc": "Generate QR codes for URLs, text, and more. Customizable size and color."
+      "name": "QR 코드 생성기",
+      "desc": "텍스트, URL, 연락처의 QR 코드를 생성합니다."
     },
     "perpetual-calendar": {
-      "name": "Perpetual Calendar",
-      "desc": "Comprehensive calendar with Chinese Lunar date, Solar terms, and festivals."
+      "name": "만년 캘린더",
+      "desc": "날짜 계산 및 달력 작업을 수행합니다."
     },
     "domain-valuation": {
-      "name": "Domain Valuation",
-      "desc": "Estimate domain market value based on length, TLD, and keywords.",
+      "name": "도메인 가치 평가",
+      "desc": "도메인의 시장 가치를 추정합니다.",
       "title": "Domain Valuation Tool",
       "subtitle": "Quickly estimate the market value of your domain",
       "input_label": "Enter Domain Name",
@@ -264,8 +271,8 @@
       "disclaimer": "This valuation is an algorithmic estimation and does not guarantee actual market price."
     },
     "nginx-config": {
-      "name": "Nginx Config Generator",
-      "desc": "Generate Nginx configuration files online with HTTPS, proxy, Gzip support.",
+      "name": "Nginx 설정 생성기",
+      "desc": "Nginx 설정 파일을 생성합니다.",
       "title": "Nginx Config Generator",
       "subtitle": "Generate Nginx server block configurations easily",
       "basic_settings": "Basic Settings",
@@ -285,8 +292,8 @@
       "generated_config": "Generated Configuration"
     },
     "apache-config": {
-      "name": "Apache Config Generator",
-      "desc": "Generate Apache VirtualHost configuration files online with HTTPS, redirects, logs.",
+      "name": "Apache 설정 생성기",
+      "desc": "Apache 설정 파일을 생성합니다.",
       "title": "Apache Config Generator",
       "subtitle": "Generate Apache VirtualHost configurations easily",
       "basic_settings": "Basic Settings",
@@ -306,8 +313,8 @@
       "generated_config": "Generated Configuration"
     },
     "haproxy-config": {
-      "name": "HAProxy Config Generator",
-      "desc": "Generate HAProxy load balancer configuration files with algorithms, health checks.",
+      "name": "HAProxy 설정 생성기",
+      "desc": "HAProxy 설정 파일을 생성합니다.",
       "title": "HAProxy Config Generator",
       "subtitle": "Generate high-availability load balancer configurations",
       "global_defaults": "Global & Defaults",
@@ -322,8 +329,8 @@
       "generated_config": "Generated Configuration"
     },
     "mortgage-calculator": {
-      "name": "Mortgage Calculator",
-      "desc": "Calculate monthly payments for Commercial, Provident Fund, and Combination loans.",
+      "name": "담보 대출 계산기",
+      "desc": "월별 대출 요와 이자를 계산합니다.",
       "title": "Mortgage Calculator",
       "subtitle": "Calculate your mortgage payments and interest",
       "loan_type": "Loan Type",
@@ -349,8 +356,8 @@
       "tip_principal": "Equal Principal: Fixed principal payment, decreasing interest."
     },
     "investment-return": {
-      "name": "Investment Return Calculator",
-      "desc": "Calculate compound interest with regular contributions and frequency settings.",
+      "name": "투자 수익률 계산기",
+      "desc": "복리 수익과 연환산 수익률을 계산합니다.",
       "title": "Investment Return Calculator",
       "subtitle": "Plan your wealth growth",
       "initial_amount": "Initial Principal",
@@ -373,8 +380,8 @@
       "empty_tip": "Enter parameters and calculate to see results"
     },
     "roi-calculator": {
-      "name": "ROI Calculator",
-      "desc": "Calculate Return on Investment (ROI) and Annualized ROI.",
+      "name": "ROI 계산기",
+      "desc": "투자 수익률을 계산합니다.",
       "title": "ROI Calculator",
       "subtitle": "Evaluate investment profitability",
       "invested_amount": "Invested Amount",
@@ -393,8 +400,8 @@
       "empty_tip": "Enter investment and return amounts to calculate"
     },
     "otp-generator": {
-      "name": "OTP Generator",
-      "desc": "Generate and verify Time-based One-Time Passwords (TOTP) for Multi-Factor Authentication.",
+      "name": "OTP 생성기",
+      "desc": "TOTP/HOTP 일회용 비밀번호를 생성합니다.",
       "title": "OTP Generator",
       "subtitle": "Secure 2FA token generator and validator",
       "config": "Configuration",
@@ -416,7 +423,7 @@
     },
     "wifi-qr": {
       "title": "WiFi QR Code Generator",
-      "desc": "Generate and download QR codes for quick WiFi connection.",
+      "desc": "WiFi 연결용 QR 코드를 생성합니다.",
       "subtitle": "Create a QR code for your guests to connect to WiFi instantly",
       "ssid": "Network Name (SSID)",
       "encryption": "Encryption",
@@ -425,11 +432,12 @@
       "none": "None",
       "preview": "Preview",
       "download": "Download",
-      "print": "Print"
+      "print": "Print",
+      "name": "WiFi QR 코드 생성기"
     },
     "english-name": {
       "title": "English Name Generator",
-      "desc": "Generate English names based on your Chinese name.",
+      "desc": "랜덤 영문 이름을 생성합니다.",
       "subtitle": "Find the perfect English name that matches your Chinese name",
       "input_label": "Your Chinese Name",
       "placeholder": "e.g. Li Ming",
@@ -445,217 +453,218 @@
       "no_results": "No suitable names found based on current criteria. Try different inputs.",
       "reason_start": "Starts with same letter",
       "reason_sound": "Sounds similar",
-      "reason_random": "Popular choice"
+      "reason_random": "Popular choice",
+      "name": "영어 이름 생성기"
     },
     "base64": {
-      "name": "Base64 Encoder/Decoder",
-      "desc": "UTF-8 safe Base64 encode and decode, standard and URL-safe variants."
+      "name": "Base64 인코더/디코더",
+      "desc": "텍스트와 파일을 Base64로 인코딩/디코딩합니다."
     },
     "url-encoder": {
-      "name": "URL Encoder",
-      "desc": "URL component and full-URL encoding/decoding with error feedback."
+      "name": "URL 인코더",
+      "desc": "URL 문자열을 인코딩/디코딩합니다."
     },
     "uuid-generator": {
-      "name": "UUID Generator",
-      "desc": "Generate RFC 4122 v4 UUIDs. Batch, uppercase, strip hyphens options."
+      "name": "UUID 생성기",
+      "desc": "UUID v1/v4/v5를 생성합니다."
     },
     "sql-formatter": {
-      "name": "SQL Formatter",
-      "desc": "Format and minify SQL. Supports MySQL, PostgreSQL, Hive, Spark, SQLite."
+      "name": "SQL 포맷터",
+      "desc": "SQL 쿼리를 포맷하고 아름답게 만듭니다."
     },
     "sql-table-extractor": {
-      "name": "SQL Table Extractor",
-      "desc": "Extract table names from SQL queries, grouped by type."
+      "name": "SQL 테이블 추출",
+      "desc": "SQL에서 테이블 정의를 추출합니다."
     },
     "sql-column-extractor": {
-      "name": "SQL Column Extractor",
-      "desc": "Extract column names from SQL SELECT statements with occurrence counts."
+      "name": "SQL 컬럼 추출",
+      "desc": "SQL에서 컬럼 정의를 추출합니다."
     },
     "sql-mermaid": {
       "name": "SQL → Mermaid",
-      "desc": "Parse CREATE TABLE DDL to generate Mermaid ER diagram code."
+      "desc": "SQL 스키마를 Mermaid ER 다이어그램으로 변환."
     },
     "sql-review": {
-      "name": "SQL Review",
-      "desc": "Rule-based SQL static linting for performance and security issues."
+      "name": "SQL 리뷰",
+      "desc": "SQL 쿼리를 검토하고 개선 제안을 합니다."
     },
     "json-schema-generator": {
-      "name": "JSON Schema Generator",
-      "desc": "Infer JSON Schema from JSON samples (draft-07)."
+      "name": "JSON 스키마 생성기",
+      "desc": "JSON에서 JSON 스키마를 생성합니다."
     },
     "data-faker": {
-      "name": "Data Faker",
-      "desc": "Generate mock data in JSON/CSV/SQL formats using @faker-js/faker."
+      "name": "데이터 페이커",
+      "desc": "실제 같은 테스트 데이터를 생성합니다."
     },
     "docker-run-builder": {
-      "name": "Docker Run Builder",
-      "desc": "Form-based docker run command generator."
+      "name": "Docker run 생성기",
+      "desc": "docker run 명령을 생성합니다."
     },
     "docker-compose-generator": {
-      "name": "Docker Compose Generator",
-      "desc": "Form-based docker-compose.yml generator with multi-service support."
+      "name": "Docker Compose 생성기",
+      "desc": "Docker Compose 파일을 생성합니다."
     },
     "k8s-yaml-generator": {
-      "name": "K8s YAML Generator",
-      "desc": "Generate Kubernetes Deployment/Service YAML from a form."
+      "name": "K8s YAML 생성기",
+      "desc": "Kubernetes YAML을 생성합니다."
     },
     "k8s-resource-calculator": {
-      "name": "K8s Resource Calculator",
-      "desc": "Estimate Pod resource requests vs cluster capacity."
+      "name": "K8s 리소스 계산기",
+      "desc": "Kubernetes 리소스 요구 사항을 계산합니다."
     },
     "systemd-generator": {
-      "name": "Systemd Generator",
-      "desc": "Generate systemd .service unit files from a form."
+      "name": "Systemd 생성기",
+      "desc": "systemd 서비스 파일을 생성합니다."
     },
     "token-counter": {
-      "name": "Token Counter",
-      "desc": "Estimate token count using js-tiktoken with multiple encodings."
+      "name": "토큰 카운터",
+      "desc": "LLM 모델의 토큰 수를 계산합니다."
     },
     "prompt-builder": {
-      "name": "Prompt Builder",
-      "desc": "Template-based Prompt assembler with local draft save."
+      "name": "프롬프트 빌더",
+      "desc": "LLM 프롬프트를 구성합니다."
     },
     "prompt-diff": {
-      "name": "Prompt Diff",
-      "desc": "Highlight differences between two Prompt versions."
+      "name": "프롬프트 비교",
+      "desc": "두 프롬프트의 차이점을 표시합니다."
     },
     "rag-chunk-calculator": {
-      "name": "RAG Chunk Calculator",
-      "desc": "Estimate chunk count and token distribution for RAG."
+      "name": "RAG 청크 계산기",
+      "desc": "RAG 검색을 텍 청크 크기를 계산합니다."
     },
     "ai-cost-calculator": {
-      "name": "AI Cost Calculator",
-      "desc": "Estimate LLM API costs based on model pricing and token counts."
+      "name": "AI 비용 계산기",
+      "desc": "LLM API 비용을 모델 가격과 토큰 수로 추정합니다."
     },
     "llm-request-builder": {
-      "name": "LLM Request Builder",
-      "desc": "Build OpenAI-compatible API request JSON or curl commands."
+      "name": "LLM 요청 빌더",
+      "desc": "OpenAI 호환 API 요청 JSON 또는 curl 명령을 생성합니다."
     },
     "wallet-analyzer": {
-      "name": "Wallet Analyzer",
-      "desc": "Validate Ethereum address format and EIP-55 checksum."
+      "name": "지갑 분석기",
+      "desc": "Ethereum 주소 형식과 EIP-55 체크섬을 검증합니다."
     },
     "ens-lookup": {
-      "name": "ENS Lookup",
-      "desc": "Forward and reverse ENS domain resolution."
+      "name": "ENS 조회",
+      "desc": "ENS 도메인 정방향/역방향 조회."
     },
     "gas-tracker": {
-      "name": "Gas Tracker",
-      "desc": "Query current Ethereum gas prices (Low/Medium/High)."
+      "name": "가스 추적기",
+      "desc": "현재 Ethereum 가스 가격을 조회합니다 (Low/Medium/High)."
     },
     "tx-hash-identifier": {
-      "name": "Hash Identifier",
-      "desc": "Identify hash types: ETH/BTC TXID, ENS Namehash, IPFS CID, UUID."
+      "name": "해시 식별",
+      "desc": "해시 유형 식별: ETH/BTC TXID, ENS, IPFS, UUID."
     },
     "token-approval-checker": {
-      "name": "Token Approval Checker",
-      "desc": "Query token approval allowances and detect unlimited approvals."
+      "name": "토큰 승인 검사기",
+      "desc": "토큰 승인 허용량을 조회하고 무제한 승인을 감지합니다."
     }
   },
   "games": {
     "chinese-chess": {
-      "title": "Chinese Chess",
-      "desc": "Play Chinese Chess (Xiangqi) against AI.",
-      "subtitle": "Challenge the AI in this classic strategy game.",
-      "settings": "Game Settings",
-      "difficulty": "Difficulty",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "red_turn": "Red's Turn",
-      "black_turn": "Black's Turn (AI)",
-      "red_win": "Red Wins!",
-      "black_win": "Black Wins!"
+      "title": "중국 장기",
+      "desc": "AI와 중국 장기를 둡니다.",
+      "subtitle": "이 고전 전략 게임에서 AI에 도전하세요.",
+      "settings": "게임 설정",
+      "difficulty": "난이도",
+      "easy": "쉬움",
+      "medium": "보통",
+      "hard": "어려움",
+      "red_turn": "레드 차례",
+      "black_turn": "블랙 차례 (AI)",
+      "red_win": "레드 승리!",
+      "black_win": "블랙 승리!"
     },
     "go": {
-      "title": "Go (Weiqi)",
-      "desc": "Play Go (Weiqi) against AI.",
-      "subtitle": "Ancient strategy board game of territory.",
-      "settings": "Game Settings",
-      "difficulty": "Difficulty",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "black": "Black (You)",
-      "white": "White (AI)",
-      "captured": "captured",
-      "your_turn": "Your Turn",
-      "ai_turn": "AI Thinking...",
-      "game_over": "Game Over"
+      "title": "바둑 (위치)",
+      "desc": "AI와 바둑을 둡니다.",
+      "subtitle": "고대 영토 전략 보드 게임.",
+      "settings": "게임 설정",
+      "difficulty": "난이도",
+      "easy": "쉬움",
+      "medium": "보통",
+      "hard": "어려움",
+      "black": "흑 (당신)",
+      "white": "백 (AI)",
+      "captured": "잡힘",
+      "your_turn": "당신 차례",
+      "ai_turn": "AI 생각 중...",
+      "game_over": "게임 종료"
     },
     "jungle": {
-      "title": "Jungle Chess",
-      "desc": "Play Jungle Chess (Dou Shou Qi) against AI.",
-      "subtitle": "Classic Animal Battle Game",
-      "settings": "Game Settings",
-      "difficulty": "Difficulty",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "red": "Red (You)",
-      "blue": "Blue (AI)",
-      "your_turn": "Your Turn",
-      "ai_turn": "AI Thinking...",
-      "red_win": "Red Wins!",
-      "blue_win": "Blue Wins!",
-      "den": "DEN",
-      "trap": "TRAP",
-      "rules": "Rank: 🐘 > 🦁 > 🐯 > 🐆 > 🐺 > 🐕 > 🐈 > 🐀 (> 🐘)"
+      "title": "정글 체스",
+      "desc": "AI와 정글 체스를 둡니다.",
+      "subtitle": "고전 동물 전투 게임",
+      "settings": "게임 설정",
+      "difficulty": "난이도",
+      "easy": "쉬움",
+      "medium": "보통",
+      "hard": "어려움",
+      "red": "레드 (당신)",
+      "blue": "블루 (AI)",
+      "your_turn": "당신 차례",
+      "ai_turn": "AI 생각 중...",
+      "red_win": "레드 승리!",
+      "blue_win": "블루 승리!",
+      "den": "굴",
+      "trap": "함정",
+      "rules": "순위: 🐘 > 🦁 > 🐯 > 🐆 > 🐺 > 🐕 > 🐈 > 🐀 (> 🐘)"
     },
     "flying_chess": {
-      "title": "Flying Chess",
-      "desc": "Classic Aeroplane Chess (Ludo Variant) with AI.",
-      "subtitle": "Battle with 3 AIs!",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "red": "Red (You)",
-      "yellow": "Yellow (AI)",
-      "blue": "Blue (AI)",
-      "green": "Green (AI)",
-      "status": "Game Status",
-      "turn": "Current Turn",
-      "roll": "Roll Dice",
-      "launched": "Plane Launched!",
-      "moved": "Plane Moved",
-      "jump": "Jump!",
-      "kicked": "Kicked",
-      "kicked_msg": "Kicked opponent",
-      "finished": "Plane Finished!",
-      "bonus_turn": "Rolled 6! Bonus Turn.",
-      "turn_change": "Turn Passed",
-      "turn_change_limit": "Turn Passed (3x Sixes)",
-      "rules": "Game Rules",
-      "rule1": "Roll 6 to launch a plane from hangar.",
-      "rule2": "Jump (+4 tiles) if landing on same color.",
-      "rule3": "Kick opponent back to hangar if landing on them.",
-      "rule4": "First to fly all 4 planes to center wins."
+      "title": "플라잉 체스",
+      "desc": "AI와 함께하는 클래식 비행기 체스 (루도 변형).",
+      "subtitle": "3명의 AI와 대전!",
+      "easy": "쉬움",
+      "medium": "보통",
+      "hard": "어려움",
+      "red": "레드 (당신)",
+      "yellow": "옐로우 (AI)",
+      "blue": "블루 (AI)",
+      "green": "그린 (AI)",
+      "status": "게임 상태",
+      "turn": "현재 차례",
+      "roll": "주사위 굴리기",
+      "launched": "비행기 출발!",
+      "moved": "비행기 이동",
+      "jump": "점프!",
+      "kicked": "쳐냄",
+      "kicked_msg": "상대 쳐냄",
+      "finished": "비행기 도착!",
+      "bonus_turn": "6이 나왔습니다! 보너스 턴.",
+      "turn_change": "차례 변경",
+      "turn_change_limit": "차례 변경 (3x 6)",
+      "rules": "게임 규칙",
+      "rule1": "6을 굴려 비행기를 출발.",
+      "rule2": "같은 색에 멈추면 점프 (+4칸).",
+      "rule3": "상대를 격납고로 쳐냄.",
+      "rule4": "먼저 4대를 중앙에 보낸 플레이어 승."
     },
     "chinese_checkers": {
-      "title": "Chinese Checkers",
-      "desc": "Classic strategy board game (Sternhalma).",
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard",
-      "you": "You (Green)",
-      "ai": "AI (Red)",
-      "status": "Game Status",
-      "turn": "Turn",
-      "win": "You Win!",
-      "lose": "AI Wins!",
-      "rules": "Rules",
-      "rule1": "Move to adjacent empty hole.",
-      "rule2": "Jump over adjacent piece to empty hole.",
-      "rule3": "Chain jumps are allowed.",
-      "rule4": "First to fill opposite triangle wins."
+      "title": "차이니즈 체커스",
+      "desc": "고전 전략 보드 게임 (Sternhalma).",
+      "easy": "쉬움",
+      "medium": "보통",
+      "hard": "어려움",
+      "you": "당신 (그린)",
+      "ai": "AI (레드)",
+      "status": "게임 상태",
+      "turn": "차례",
+      "win": "당신 승리!",
+      "lose": "AI 승리!",
+      "rules": "규칙",
+      "rule1": "인접한 빈 칸으로 이동.",
+      "rule2": "인접한 말을 뛰어넘기.",
+      "rule3": "연속 점프 가능.",
+      "rule4": "먼저 반대쪽 삼각형을 채우는 쪽이 승."
     },
     "drawing-tool": {
-      "pageTitle": "Drawing Board - Build Better",
-      "pageDescription": "An infinite-canvas drawing board with pressure-sensitive ink, shapes, arrows, and more. Powered by QuickDraw.",
-      "name": "Drawing Board",
-      "desc": "Infinite-canvas drawing board with pen, shapes, arrows, sticky notes, and more.",
-      "title": "Drawing Board",
-      "subtitle": "Sketch, diagram, and brainstorm on an infinite canvas — pressure ink, shapes, arrows, images, and more."
+      "pageTitle": "드로잉 보드 - Build Better",
+      "pageDescription": "무한 캔버스 드로잉 보드, 압력 감지 잉크 지원.",
+      "name": "드로잉 보드",
+      "desc": "펜, 도형, 화살표가 있는 무한 캔버스 보드.",
+      "title": "드로잉 보드",
+      "subtitle": "무한 캔버스에서 스케치, 다이어그램, 브레인스토밍."
     }
   },
   "categories": {
