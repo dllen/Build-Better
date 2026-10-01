@@ -34,9 +34,24 @@ const distDir = path.join(projectRoot, 'dist');
 const routesFile = path.join(projectRoot, 'prerender-routes.json');
 
 const PORT = Number(process.env.PRERENDER_PORT) || 4173;
-const PUPPETEER_PATH =
-  process.env.PUPPETEER_EXECUTABLE_PATH ||
-  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+// Resolve Chrome path: env override → puppeteer's bundled binary → skip if missing.
+// On macOS dev, PUPPETEER_EXECUTABLE_PATH typically points to /Applications/Google Chrome.
+// On CI, puppeteer's postinstall script downloads Chrome to ~/.cache/puppeteer/ and
+// puppeteer.executablePath() returns the right platform-specific path.
+let PUPPETEER_PATH = process.env.PUPPETEER_EXECUTABLE_PATH;
+if (!PUPPETEER_PATH) {
+  try {
+    // puppeteer.executablePath() is async in puppeteer >=21 — it resolves
+    // to the bundled Chrome binary that the package's postinstall downloaded.
+    // On Linux CI this lives at ~/.cache/puppeteer/chrome/<rev>/chrome-linux64/chrome.
+    const { default: puppeteer } = await import('puppeteer');
+    PUPPETEER_PATH = await puppeteer.executablePath();
+  } catch (err) {
+    log('fatal: no Chrome available and PUPPETEER_EXECUTABLE_PATH not set:', err.message);
+    log('       hint: install Chrome or set PUPPETEER_EXECUTABLE_PATH=/path/to/chrome');
+    process.exit(1);
+  }
+}
 const USER_DATA_DIR = process.env.PUPPETEER_USER_DATA_DIR || '/tmp/chrome-prerender';
 const ROUTE_TIMEOUT_MS = Number(process.env.PRERENDER_TIMEOUT_MS) || 30000;
 
