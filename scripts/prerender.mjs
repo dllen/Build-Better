@@ -54,6 +54,9 @@ if (!PUPPETEER_PATH) {
 }
 const USER_DATA_DIR = process.env.PUPPETEER_USER_DATA_DIR || '/tmp/chrome-prerender';
 const ROUTE_TIMEOUT_MS = Number(process.env.PRERENDER_TIMEOUT_MS) || 30000;
+// Number of routes to render in parallel. 5 is a safe default that balances
+// speed against not overwhelming the dev server or Chrome's memory usage.
+const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY) || 5;
 
 function log(...args) {
   console.log('[prerender]', ...args);
@@ -266,32 +269,36 @@ async function main() {
     ],
   });
 
-  let ok = 0;
-  let failed = 0;
   const failures = [];
 
   try {
-    for (const route of routes) {
-      const outPath = routeToOutputPath(route);
-      try {
-        const html = await renderRoute(browser, route);
-        await mkdir(path.dirname(outPath), { recursive: true });
-        await writeFile(outPath, html, 'utf-8');
-        ok += 1;
-        log(`OK   ${route} -> ${path.relative(distDir, outPath)}`);
-      } catch (err) {
-        failed += 1;
-        const msg = err && err.message ? err.message : String(err);
-        failures.push({ route, error: msg });
-        log(`FAIL ${route}: ${msg}`);
-      }
+    // Concurrency pool: process routes in batches of CONCURRENCY
+    for (let i = 0; i < routes.length; i += CONCURRENCY) {
+      const batch = routes.slice(i, i + CONCURRENCY);
+      await Promise.all(
+        batch.map(async (route) => {
+          const outPath = routeToOutputPath(route);
+          try {
+            const html = await renderRoute(browser, route);
+            await mkdir(path.dirname(outPath), { recursive: true });
+            await writeFile(outPath, html, 'utf-8');
+            log(`OK   ${route} -> ${path.relative(distDir, outPath)}`);
+          } catch (err) {
+            const msg = err && err.message ? err.message : String(err);
+            failures.push({ route, error: msg });
+            log(`FAIL ${route}: ${msg}`);
+          }
+        })
+      );
+      const done = Math.min(i + CONCURRENCY, routes.length);
+      log(`progress: ${done}/${routes.length} routes`);
     }
   } finally {
     await browser.close();
     server.close();
   }
 
-  log(`done: ${ok} succeeded, ${failed} failed (${routes.length} total)`);
+  log(`done: ${routes.length - failures.length} succeeded, ${failures.length} failed (${routes.length} total)`);
   if (failures.length > 0) {
     log('failures:', JSON.stringify(failures, null, 2));
     process.exitCode = 1;

@@ -17,18 +17,12 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v7
         with:
-          # nostalgist@0.19.2 requires node >=24.7.0; bumping from 22 fixes
-          # the "Cannot read properties of null (reading 'edgesOut')" graph
-          # resolution error during npm install.
           node-version: 24
           cache: "npm"
           cache-dependency-path: |
             package.json
             package-lock.json
 
-      # --legacy-peer-deps is required because puppeteer 25 + other large
-      # transitive deps declare peer ranges that npm 10+ cannot reconcile
-      # on its own and would otherwise produce an inconsistent dep graph.
       - name: Install dependencies
         run: npm install --legacy-peer-deps --no-audit
 
@@ -41,8 +35,7 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      # functions/ is not covered by tsconfig, so verify it bundles here —
-      # catches unresolved imports before the deploy step does.
+      # functions/ is not covered by tsconfig, so verify it bundles here.
       - name: Build Pages Functions
         run: npx wrangler pages functions build functions --outdir .wrangler/functions-check
 
@@ -71,7 +64,7 @@ jobs:
       - name: Run tests
         run: npm run test
 
-  # Build and deploy
+  # Build + deploy (no prerender — fast for all PRs)
   build-deploy:
     runs-on: ubuntu-latest
     needs: [quality, test]
@@ -97,22 +90,65 @@ jobs:
       - name: Download sensitive words
         run: node scripts/download-sensitive-words.mjs
 
-      - name: Build
-        run: npm run build
+      # Build steps without prerender.mjs — saves ~4 hrs per PR.
+      # prerender runs separately in `prerender` job (main push only, 5x concurrent).
+      - name: Build (skip prerender)
+        run: |
+          npm run build:pdf
+          node scripts/prerender-routes.mjs
+          npx tsc -b
+          npx vite build
+          node scripts/generate-sitemap.mjs
+        env:
+          CI: "true"
 
       - name: Apply D1 migrations
         run: npx wrangler d1 migrations apply share-pool --remote
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false)
+        if: github.event_name == 'push'
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          # wrangler-action reads wrangler.toml, so [[kv_namespaces]] SHORT_URLS binding is applied automatically.
-          # Push to main → production (uses `id`). Pull request → preview (uses `preview_id`).
           command: pages deploy dist --project-name=build-better --commit-dirty=true
-        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false)
+        if: github.event_name == 'push'
+
+  # Prerender runs only on main push — 5 concurrent Chrome tabs → ~20 min vs 5+ hrs serial.
+  # Cloudflare Pages serves prerendered HTML with Helmet <head> tags for full SEO.
+  prerender:
+    runs-on: ubuntu-latest
+    needs: [build-deploy]
+    if: github.event_name == 'push'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Install dependencies (puppeteer needed)
+        run: npm install --legacy-peer-deps --no-audit
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: dist
+
+      - name: Run prerender (5 concurrent tabs)
+        run: node scripts/prerender.mjs
+        env:
+          PRERENDER_CONCURRENCY: 5
+
+      - name: Deploy prerendered pages
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=build-better --commit-dirty=true
