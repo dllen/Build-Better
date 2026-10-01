@@ -109,6 +109,17 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         if: github.event_name == 'push'
 
+      # Upload dist/ as artifact so the prerender job can download it.
+      # wrangler-action deploys directly to Cloudflare but does not expose
+      # an artifact that download-artifact can find.
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: dist
+          retention-days: 1
+        if: github.event_name == 'push'
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v4
         with:
