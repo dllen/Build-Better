@@ -17,13 +17,20 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v7
         with:
-          node-version: 22
+          # nostalgist@0.19.2 requires node >=24.7.0; bumping from 22 fixes
+          # the "Cannot read properties of null (reading 'edgesOut')" graph
+          # resolution error during npm install.
+          node-version: 24
           cache: "npm"
           cache-dependency-path: |
             package.json
+            package-lock.json
 
+      # --legacy-peer-deps is required because puppeteer 25 + other large
+      # transitive deps declare peer ranges that npm 10+ cannot reconcile
+      # on its own and would otherwise produce an inconsistent dep graph.
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps --no-audit
 
       - name: Download sensitive words
         run: node scripts/download-sensitive-words.mjs
@@ -49,13 +56,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v7
         with:
-          node-version: 22
+          node-version: 24
           cache: "npm"
           cache-dependency-path: |
             package.json
+            package-lock.json
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps --no-audit
 
       - name: Download sensitive words
         run: node scripts/download-sensitive-words.mjs
@@ -77,13 +85,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v7
         with:
-          node-version: 22
+          node-version: 24
           cache: "npm"
           cache-dependency-path: |
             package.json
+            package-lock.json
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps --no-audit
 
       - name: Download sensitive words
         run: node scripts/download-sensitive-words.mjs
@@ -96,7 +105,7 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false)
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false)
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v4
