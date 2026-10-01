@@ -65,6 +65,14 @@ import TimeZoneConverter from "@/pages/tools/TimeZoneConverter";
 import ImportDutyCalculator from "@/pages/tools/ImportDutyCalculator";
 import InvoiceGenerator from "@/pages/tools/InvoiceGenerator";
 import FreelancerRateCalculator from "@/pages/tools/FreelancerRateCalculator";
+import ShippingBoxOptimizer from "@/pages/tools/ShippingBoxOptimizer";
+import ProductCostBreakdown from "@/pages/tools/ProductCostBreakdown";
+import BusinessNameChecker from "@/pages/tools/BusinessNameChecker";
+import HsCodeLookup from "@/pages/tools/HsCodeLookup";
+import ContractTemplateGenerator from "@/pages/tools/ContractTemplateGenerator";
+import TimeTracker from "@/pages/tools/TimeTracker";
+import ZakatCalculator from "@/pages/tools/ZakatCalculator";
+import HolidayCalendar from "@/pages/tools/HolidayCalendar";
 import MarginCalculator from "@/pages/tools/MarginCalculator";
 import OtpGenerator from "@/pages/tools/OtpGenerator";
 import JwtDecodeTool from "@/pages/tools/JwtDecodeTool";
@@ -316,6 +324,14 @@ export function AppRoutes() {
         <Route path="/import-duty-calculator" element={<ImportDutyCalculator />} />
         <Route path="/invoice-generator" element={<InvoiceGenerator />} />
         <Route path="/freelancer-rate-calculator" element={<FreelancerRateCalculator />} />
+        <Route path="/shipping-box-optimizer" element={<ShippingBoxOptimizer />} />
+        <Route path="/product-cost-breakdown" element={<ProductCostBreakdown />} />
+        <Route path="/business-name-checker" element={<BusinessNameChecker />} />
+        <Route path="/hs-code-lookup" element={<HsCodeLookup />} />
+        <Route path="/contract-template-generator" element={<ContractTemplateGenerator />} />
+        <Route path="/time-tracker" element={<TimeTracker />} />
+        <Route path="/zakat-calculator" element={<ZakatCalculator />} />
+        <Route path="/holiday-calendar" element={<HolidayCalendar />} />
         <Route path="/margin-calculator" element={<MarginCalculator />} />
         
         {/* ========== GAMES ========== */}
@@ -518,6 +534,14 @@ export function AppRoutes() {
         <Route path="/tools/import-duty-calculator" element={<Navigate to="/import-duty-calculator" replace />} />
         <Route path="/tools/invoice-generator" element={<Navigate to="/invoice-generator" replace />} />
         <Route path="/tools/freelancer-rate-calculator" element={<Navigate to="/freelancer-rate-calculator" replace />} />
+        <Route path="/tools/shipping-box-optimizer" element={<Navigate to="/shipping-box-optimizer" replace />} />
+        <Route path="/tools/product-cost-breakdown" element={<Navigate to="/product-cost-breakdown" replace />} />
+        <Route path="/tools/business-name-checker" element={<Navigate to="/business-name-checker" replace />} />
+        <Route path="/tools/hs-code-lookup" element={<Navigate to="/hs-code-lookup" replace />} />
+        <Route path="/tools/contract-template-generator" element={<Navigate to="/contract-template-generator" replace />} />
+        <Route path="/tools/time-tracker" element={<Navigate to="/time-tracker" replace />} />
+        <Route path="/tools/zakat-calculator" element={<Navigate to="/zakat-calculator" replace />} />
+        <Route path="/tools/holiday-calendar" element={<Navigate to="/holiday-calendar" replace />} />
         <Route path="/tools/margin-calculator" element={<Navigate to="/margin-calculator" replace />} />
         </Route>
       </Route>
