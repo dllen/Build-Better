@@ -73,6 +73,14 @@ import ContractTemplateGenerator from "@/pages/tools/ContractTemplateGenerator";
 import TimeTracker from "@/pages/tools/TimeTracker";
 import ZakatCalculator from "@/pages/tools/ZakatCalculator";
 import HolidayCalendar from "@/pages/tools/HolidayCalendar";
+import PPh21Calculator from "@/pages/tools/PPh21Calculator";
+import SSSPhilHealthPagibigCalculator from "@/pages/tools/SSSPhilHealthPagibigCalculator";
+import VatReverseCalculator from "@/pages/tools/VatReverseCalculator";
+import PackingListGenerator from "@/pages/tools/PackingListGenerator";
+import RepricingTool from "@/pages/tools/RepricingTool";
+import FxSpreadCalculator from "@/pages/tools/FxSpreadCalculator";
+import KeywordGenerator from "@/pages/tools/KeywordGenerator";
+import BusinessRegistrationGuide from "@/pages/tools/BusinessRegistrationGuide";
 import MarginCalculator from "@/pages/tools/MarginCalculator";
 import OtpGenerator from "@/pages/tools/OtpGenerator";
 import JwtDecodeTool from "@/pages/tools/JwtDecodeTool";
@@ -332,6 +340,14 @@ export function AppRoutes() {
         <Route path="/time-tracker" element={<TimeTracker />} />
         <Route path="/zakat-calculator" element={<ZakatCalculator />} />
         <Route path="/holiday-calendar" element={<HolidayCalendar />} />
+        <Route path="/pph21-calculator" element={<PPh21Calculator />} />
+        <Route path="/sss-philhealth-pagibig" element={<SSSPhilHealthPagibigCalculator />} />
+        <Route path="/vat-reverse-calculator" element={<VatReverseCalculator />} />
+        <Route path="/packing-list-generator" element={<PackingListGenerator />} />
+        <Route path="/repricing-tool" element={<RepricingTool />} />
+        <Route path="/fx-spread-calculator" element={<FxSpreadCalculator />} />
+        <Route path="/keyword-generator" element={<KeywordGenerator />} />
+        <Route path="/business-registration-guide" element={<BusinessRegistrationGuide />} />
         <Route path="/margin-calculator" element={<MarginCalculator />} />
         
         {/* ========== GAMES ========== */}
@@ -542,6 +558,14 @@ export function AppRoutes() {
         <Route path="/tools/time-tracker" element={<Navigate to="/time-tracker" replace />} />
         <Route path="/tools/zakat-calculator" element={<Navigate to="/zakat-calculator" replace />} />
         <Route path="/tools/holiday-calendar" element={<Navigate to="/holiday-calendar" replace />} />
+        <Route path="/tools/pph21-calculator" element={<Navigate to="/pph21-calculator" replace />} />
+        <Route path="/tools/sss-philhealth-pagibig" element={<Navigate to="/sss-philhealth-pagibig" replace />} />
+        <Route path="/tools/vat-reverse-calculator" element={<Navigate to="/vat-reverse-calculator" replace />} />
+        <Route path="/tools/packing-list-generator" element={<Navigate to="/packing-list-generator" replace />} />
+        <Route path="/tools/repricing-tool" element={<Navigate to="/repricing-tool" replace />} />
+        <Route path="/tools/fx-spread-calculator" element={<Navigate to="/fx-spread-calculator" replace />} />
+        <Route path="/tools/keyword-generator" element={<Navigate to="/keyword-generator" replace />} />
+        <Route path="/tools/business-registration-guide" element={<Navigate to="/business-registration-guide" replace />} />
         <Route path="/tools/margin-calculator" element={<Navigate to="/margin-calculator" replace />} />
         </Route>
       </Route>
