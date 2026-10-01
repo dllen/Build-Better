@@ -122,7 +122,17 @@ async function startServer() {
         return res.end(indexHtml);
       }
 
-      const data = await readFile(filePath);
+      const data = await readFile(filePath).catch(() => null);
+      if (data == null) {
+        // File missing — typical case when an earlier prerender pass created
+        // dist/<parent>/ (from a child route like dist/games/snake/index.html)
+        // but dist/<parent>/index.html hasn't been written yet. Fall back to
+        // the SPA root so React Router can take over client-side instead of
+        // returning a 500 that would corrupt the prerendered HTML.
+        res.statusCode = 200;
+        res.setHeader('Content-Type', fallbackHeaders['Content-Type']);
+        return res.end(indexHtml);
+      }
       res.statusCode = 200;
       res.setHeader('Content-Type', mimeFor(filePath));
       return res.end(data);
