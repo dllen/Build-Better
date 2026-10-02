@@ -81,6 +81,11 @@ import RepricingTool from "@/pages/tools/RepricingTool";
 import FxSpreadCalculator from "@/pages/tools/FxSpreadCalculator";
 import KeywordGenerator from "@/pages/tools/KeywordGenerator";
 import BusinessRegistrationGuide from "@/pages/tools/BusinessRegistrationGuide";
+import AICustomerReplyGenerator from "@/pages/tools/AICustomerReplyGenerator";
+import AIProductDescriptionGenerator from "@/pages/tools/AIProductDescriptionGenerator";
+import AINegativeReviewResponder from "@/pages/tools/AINegativeReviewResponder";
+import AIProductSEOOptimizer from "@/pages/tools/AIProductSEOOptimizer";
+import AIWhatsAppAutoReply from "@/pages/tools/AIWhatsAppAutoReply";
 import MarginCalculator from "@/pages/tools/MarginCalculator";
 import OtpGenerator from "@/pages/tools/OtpGenerator";
 import JwtDecodeTool from "@/pages/tools/JwtDecodeTool";
@@ -348,6 +353,11 @@ export function AppRoutes() {
         <Route path="/fx-spread-calculator" element={<FxSpreadCalculator />} />
         <Route path="/keyword-generator" element={<KeywordGenerator />} />
         <Route path="/business-registration-guide" element={<BusinessRegistrationGuide />} />
+        <Route path="/ai-customer-reply" element={<AICustomerReplyGenerator />} />
+        <Route path="/ai-product-desc" element={<AIProductDescriptionGenerator />} />
+        <Route path="/ai-review" element={<AINegativeReviewResponder />} />
+        <Route path="/ai-seo" element={<AIProductSEOOptimizer />} />
+        <Route path="/ai-whatsapp" element={<AIWhatsAppAutoReply />} />
         <Route path="/margin-calculator" element={<MarginCalculator />} />
         
         {/* ========== GAMES ========== */}
@@ -566,6 +576,11 @@ export function AppRoutes() {
         <Route path="/tools/fx-spread-calculator" element={<Navigate to="/fx-spread-calculator" replace />} />
         <Route path="/tools/keyword-generator" element={<Navigate to="/keyword-generator" replace />} />
         <Route path="/tools/business-registration-guide" element={<Navigate to="/business-registration-guide" replace />} />
+        <Route path="/tools/ai-customer-reply" element={<Navigate to="/ai-customer-reply" replace />} />
+        <Route path="/tools/ai-product-desc" element={<Navigate to="/ai-product-desc" replace />} />
+        <Route path="/tools/ai-review" element={<Navigate to="/ai-review" replace />} />
+        <Route path="/tools/ai-seo" element={<Navigate to="/ai-seo" replace />} />
+        <Route path="/tools/ai-whatsapp" element={<Navigate to="/ai-whatsapp" replace />} />
         <Route path="/tools/margin-calculator" element={<Navigate to="/margin-calculator" replace />} />
         </Route>
       </Route>
