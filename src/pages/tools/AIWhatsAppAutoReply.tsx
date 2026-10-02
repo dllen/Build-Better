@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CalculatorShell } from "@/components/common/CalculatorShell";
 import { MessageCircle, Sparkles, Copy } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { OllamaModelBadge } from "@/components/ai/OllamaModelBadge";
 import { generateWithOllama, isOllamaAvailable } from "@/services/ollama";
 
 const TRIGGERS = [
@@ -152,6 +153,8 @@ VARIANT 3: [message 3]`;
           <label className="flex items-center gap-1"><input type="checkbox" checked={includePricing} onChange={e => setIncludePricing(e.target.checked)} />Include pricing</label>
           <label className="flex items-center gap-1"><input type="checkbox" checked={includeCTA} onChange={e => setIncludeCTA(e.target.checked)} />Include CTA</label>
         </div>
+        <OllamaModelBadge />
+
         <button onClick={generate} disabled={loading}
           className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50">
           <Sparkles className="h-4 w-4" />{loading ? "..." : t("tools.ai-whatsapp.generate")}

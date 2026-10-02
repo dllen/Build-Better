@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CalculatorShell } from "@/components/common/CalculatorShell";
 import { MessageSquare, Sparkles, Copy } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { OllamaModelBadge } from "@/components/ai/OllamaModelBadge";
 import { generateWithOllama, isOllamaAvailable } from "@/services/ollama";
 
 const SCENARIOS = [
@@ -135,6 +136,8 @@ Reply (just the message, 2-4 sentences):`;
             {LANGS.map(l => <option key={l.code} value={l.code}>{l.name}</option>)}
           </select>
         </div>
+        <OllamaModelBadge />
+
         <button onClick={generate} disabled={loading || !customerMsg.trim()}
           className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50">
           <Sparkles className="h-4 w-4" />{loading ? t("tools.ai-customer-reply.generating_btn") : t("tools.ai-customer-reply.generate")}

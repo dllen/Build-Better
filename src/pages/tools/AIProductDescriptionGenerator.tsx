@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CalculatorShell } from "@/components/common/CalculatorShell";
 import { Sparkles, Copy } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { OllamaModelBadge } from "@/components/ai/OllamaModelBadge";
 import { generateWithOllama, isOllamaAvailable } from "@/services/ollama";
 
 export default function AIProductDescriptionGenerator() {
@@ -158,6 +159,8 @@ KEYWORDS: [comma-separated SEO keywords, max 10]`;
             </select>
           </div>
         </div>
+        <OllamaModelBadge />
+
         <button onClick={generate} disabled={loading || !productName.trim()}
           className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50">
           <Sparkles className="h-4 w-4" />{loading ? "..." : t("tools.ai-product-desc.generate")}
