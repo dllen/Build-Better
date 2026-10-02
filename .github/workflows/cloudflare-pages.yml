@@ -39,6 +39,9 @@ jobs:
       - name: Build Pages Functions
         run: npx wrangler pages functions build functions --outdir .wrangler/functions-check
 
+      - name: SEO validation (unit tests for hreflang + JSON-LD)
+        run: node --test tests/seo-*.test.ts
+
   # Unit tests
   test:
     runs-on: ubuntu-latest
