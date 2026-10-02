@@ -1,4 +1,26 @@
 User-agent: *
 Allow: /
+Disallow: /admin
 
-Sitemap: /sitemap.xml
+# AI crawlers (for SEO, doesn't affect ranking)
+User-agent: GPTBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+
+Sitemap: https://bb4bb.me/sitemap.xml
+Sitemap: https://bb4bb.me/sitemap-en.xml
+Sitemap: https://bb4bb.me/sitemap-ja.xml
+Sitemap: https://bb4bb.me/sitemap-ko.xml
+Sitemap: https://bb4bb.me/sitemap-de.xml
+Sitemap: https://bb4bb.me/sitemap-fr.xml
+Sitemap: https://bb4bb.me/sitemap-es.xml
+Sitemap: https://bb4bb.me/sitemap-pt.xml
+Sitemap: https://bb4bb.me/sitemap-ru.xml
+Sitemap: https://bb4bb.me/sitemap-ar.xml
+Sitemap: https://bb4bb.me/sitemap-zh-CN.xml
+Sitemap: https://bb4bb.me/sitemap-zh-TW.xml
