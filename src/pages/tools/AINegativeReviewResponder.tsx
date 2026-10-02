@@ -38,6 +38,8 @@ export default function AINegativeReviewResponder() {
         systemPrompt: SYSTEM_PROMPTS.reviewReply,
         temperature: TEMPERATURES.reviewReply,
         maxTokens: MAX_TOKENS.reviewReply,
+        tool: "ai-review",
+        language: "English",
       });
       setResult(cleanFreeformReply(res.response));
     } catch (err) {

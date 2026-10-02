@@ -53,6 +53,8 @@ export default function AICustomerReplyGenerator() {
         systemPrompt: SYSTEM_PROMPTS.customerReply,
         temperature: TEMPERATURES.customerReply,
         maxTokens: MAX_TOKENS.customerReply,
+        tool: "ai-customer-reply",
+        language,
       });
       setReply(cleanFreeformReply(res.response));
     } catch (err) {

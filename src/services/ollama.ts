@@ -1,8 +1,11 @@
 // src/services/ollama.ts
 // Ollama client for local LLM-powered tools. Defaults to http://localhost:11434.
 
+import { routeModel } from "./ai/modelRouter";
+
 const OLLAMA_BASE = (import.meta.env?.VITE_OLLAMA_URL as string | undefined) || "http://localhost:11434";
 const DEFAULT_MODEL = (import.meta.env?.VITE_OLLAMA_MODEL as string | undefined) || "llama3.2:latest";
+const AUTO_ROUTE = (import.meta.env?.VITE_OLLAMA_AUTO_ROUTE as string | undefined) !== "false"; // on unless disabled
 const MODEL_STORAGE_KEY = "ollama_selected_model";
 
 /** Pick a model from localStorage or the env-configured default. */
@@ -55,6 +58,12 @@ export interface OllamaGenerateOptions {
   maxTokens?: number;
   systemPrompt?: string;
   signal?: AbortSignal;
+  /** Task context for auto-routing */
+  tool?: string;
+  language?: string;
+  hasImage?: boolean;
+  /** Skip the router even if no model is provided */
+  skipAutoRoute?: boolean;
 }
 
 export interface OllamaGenerateResult {
@@ -68,7 +77,27 @@ export async function generateWithOllama(
   prompt: string,
   options: OllamaGenerateOptions = {}
 ): Promise<OllamaGenerateResult> {
-  const model = options.model || getSelectedModel();
+  let model = options.model || getSelectedModel();
+
+  // Auto-route: if no explicit model set and skipAutoRoute is false, pick the best
+  // installed model for the task. Falls back to current model if router is unsure.
+  if (!options.model && !options.skipAutoRoute && AUTO_ROUTE && (options.tool || options.language || options.hasImage)) {
+    try {
+      const tagsRes = await fetch(`${OLLAMA_BASE}/api/tags`);
+      if (tagsRes.ok) {
+        const data = await tagsRes.json();
+        const installed = (data.models || []).map((m: { name: string }) => m.name);
+        const decision = routeModel(installed, {
+          tool: options.tool,
+          language: options.language,
+          hasImage: options.hasImage,
+        });
+        if (decision.picked) model = decision.picked;
+      }
+    } catch {
+      // Router failed — keep current model
+    }
+  }
   const t0 = Date.now();
 
   const res = await fetch(`${OLLAMA_BASE}/api/generate`, {

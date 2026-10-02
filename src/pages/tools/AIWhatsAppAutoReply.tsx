@@ -47,6 +47,8 @@ export default function AIWhatsAppAutoReply() {
         systemPrompt: SYSTEM_PROMPTS.whatsappReply,
         temperature: TEMPERATURES.whatsappReply,
         maxTokens: MAX_TOKENS.whatsappReply,
+        tool: "ai-whatsapp",
+        language: "English",
       });
       setResult(res.response);
       const parsed = parseWhatsApp(res.response);

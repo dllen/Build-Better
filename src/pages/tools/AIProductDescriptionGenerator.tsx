@@ -36,6 +36,8 @@ export default function AIProductDescriptionGenerator() {
         systemPrompt: SYSTEM_PROMPTS.productDescription,
         temperature: TEMPERATURES.productDescription,
         maxTokens: MAX_TOKENS.productDescription,
+        tool: "ai-product-desc",
+        language,
       });
       const parsed = parseProductDescription(res.response, productName);
       setResult(parsed);

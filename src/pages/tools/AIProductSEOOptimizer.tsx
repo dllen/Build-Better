@@ -34,6 +34,8 @@ export default function AIProductSEOOptimizer() {
         systemPrompt: SYSTEM_PROMPTS.seoOptimizer,
         temperature: TEMPERATURES.seoOptimizer,
         maxTokens: MAX_TOKENS.seoOptimizer,
+        tool: "ai-seo",
+        language: "English",
       });
       setResult(parseSEO(res.response));
     } catch (err) {
