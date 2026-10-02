@@ -1,18 +1,5 @@
 import { Helmet } from "react-helmet-async";
-
-const ALL_LANGUAGES = [
-  { code: "en", href: "https://bb4bb.me/" },
-  { code: "ja", href: "https://bb4bb.me/ja/" },
-  { code: "ko", href: "https://bb4bb.me/ko/" },
-  { code: "de", href: "https://bb4bb.me/de/" },
-  { code: "fr", href: "https://bb4bb.me/fr/" },
-  { code: "es", href: "https://bb4bb.me/es/" },
-  { code: "pt", href: "https://bb4bb.me/pt/" },
-  { code: "ru", href: "https://bb4bb.me/ru/" },
-  { code: "ar", href: "https://bb4bb.me/ar/" },
-  { code: "zh-CN", href: "https://bb4bb.me/zh-CN/" },
-  { code: "zh-TW", href: "https://bb4bb.me/zh-TW/" },
-];
+import { buildHreflangAlternates } from "@/utils/hreflang";
 
 interface SEOProps {
   title?: string;
@@ -34,19 +21,13 @@ export function SEO({
   const siteTitle = "BuildBetter Tools";
   const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
 
-  // For language-prefixed URLs, build per-language alternate URLs
-  // e.g. /ja/json-editor/ → https://bb4bb.me/ja/json-editor/
-  const languageAlternates = ALL_LANGUAGES.map(({ code, href }) => {
-    // If current page URL has a path, replace/add the language prefix
-    if (url && url.includes("/tools/") || url?.includes("/games/") || url === "https://bb4bb.me/") {
-      // Extract the path without any existing language prefix
-      const pathMatch = url.match(/\/(ja|ko|de|fr|es|pt|ru|ar|zh-CN|zh-TW)(\/.*)?$/);
-      const cleanPath = pathMatch ? pathMatch[2] || "/" : new URL(url).pathname;
-      const langHref = code === "en" ? `https://bb4bb.me${cleanPath}` : `https://bb4bb.me/${code}${cleanPath}`;
-      return { code, href: langHref };
-    }
-    return { code, href };
-  });
+  // Use the shared hreflang utility (11 langs + x-default)
+  const cleanPath = (() => {
+    if (!url) return "/";
+    try { return new URL(url).pathname; }
+    catch { return "/"; }
+  })();
+  const languageAlternates = buildHreflangAlternates(cleanPath);
 
   return (
     <Helmet>
@@ -72,12 +53,10 @@ export function SEO({
       {/* Canonical */}
       <link rel="canonical" href={url} />
 
-      {/* hreflang for international SEO */}
-      {languageAlternates.map(({ code, href }) => (
-        <link key={code} rel="alternate" hrefLang={code} href={href} />
+      {/* hreflang for international SEO (includes x-default) */}
+      {languageAlternates.map(({ lang, href }) => (
+        <link key={lang} rel="alternate" hrefLang={lang} href={href} />
       ))}
-      {/* x-default: English is the default */}
-      <link rel="alternate" hrefLang="x-default" href="https://bb4bb.me/" />
     </Helmet>
   );
 }
