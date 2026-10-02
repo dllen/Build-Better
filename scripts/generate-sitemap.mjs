@@ -7,7 +7,7 @@ const distDir = path.resolve(__dirname, "../dist");
 const publicDir = path.resolve(__dirname, "../public");
 
 // Base URL (replace with actual production URL)
-const BASE_URL = "https://buildbetter.tools";
+const BASE_URL = "https://bb4bb.me";
 
 const routes = [
   "/",

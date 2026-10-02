@@ -29,10 +29,10 @@ export function ToolPageSEO({ data }: ToolPageSEOProps) {
   const { title, description, features, howToSteps, faqs } = data;
   const [isOpen, setIsOpen] = useState(false);
 
-  const pageUrl = `https://buildbetter.tools/tools/${data.slug}/`;
+  const pageUrl = `https://bb4bb.me/tools/${data.slug}/`;
   const breadcrumb = [
-    { name: 'Home', url: 'https://buildbetter.tools/' },
-    { name: 'Tools', url: 'https://buildbetter.tools/tools/' },
+    { name: 'Home', url: 'https://bb4bb.me/' },
+    { name: 'Tools', url: 'https://bb4bb.me/tools/' },
     { name: data.title.split(' - ')[0] || data.title, url: pageUrl },
   ];
 

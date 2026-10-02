@@ -1,252 +1,422 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://buildbetter.tools/</loc>
+    <loc>https://bb4bb.me/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/settings</loc>
+    <loc>https://bb4bb.me/settings</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/api-debugger</loc>
+    <loc>https://bb4bb.me/tools/api-debugger</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/code-formatter</loc>
+    <loc>https://bb4bb.me/tools/code-formatter</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/qr-generator</loc>
+    <loc>https://bb4bb.me/tools/qr-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/regex-tester</loc>
+    <loc>https://bb4bb.me/tools/regex-tester</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/markdown-html</loc>
+    <loc>https://bb4bb.me/tools/markdown-html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/email-md</loc>
+    <loc>https://bb4bb.me/tools/email-md</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/password-generator</loc>
+    <loc>https://bb4bb.me/tools/password-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/text-diff</loc>
+    <loc>https://bb4bb.me/tools/text-diff</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/lottery-ssq</loc>
+    <loc>https://bb4bb.me/tools/lottery-ssq</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/csv-to-json</loc>
+    <loc>https://bb4bb.me/tools/csv-to-json</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/hash-tools</loc>
+    <loc>https://bb4bb.me/tools/hash-tools</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/date-time</loc>
+    <loc>https://bb4bb.me/tools/date-time</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/network-tools</loc>
+    <loc>https://bb4bb.me/tools/network-tools</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/base-converter</loc>
+    <loc>https://bb4bb.me/tools/base-converter</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/color-hunt</loc>
+    <loc>https://bb4bb.me/tools/color-hunt</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/text-deduper</loc>
+    <loc>https://bb4bb.me/tools/text-deduper</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/dedup-sort-diff</loc>
+    <loc>https://bb4bb.me/tools/dedup-sort-diff</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/cron-quartz</loc>
+    <loc>https://bb4bb.me/tools/cron-quartz</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/calculator</loc>
+    <loc>https://bb4bb.me/tools/calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/bcrypt</loc>
+    <loc>https://bb4bb.me/tools/bcrypt</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/ulid</loc>
+    <loc>https://bb4bb.me/tools/ulid</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/text-cipher</loc>
+    <loc>https://bb4bb.me/tools/text-cipher</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/bip39</loc>
+    <loc>https://bb4bb.me/tools/bip39</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/hmac</loc>
+    <loc>https://bb4bb.me/tools/hmac</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/rsa-keygen</loc>
+    <loc>https://bb4bb.me/tools/rsa-keygen</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/keycode</loc>
+    <loc>https://bb4bb.me/tools/keycode</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/json-diff</loc>
+    <loc>https://bb4bb.me/tools/json-diff</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/text-stats</loc>
+    <loc>https://bb4bb.me/tools/text-stats</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/unit-converter</loc>
+    <loc>https://bb4bb.me/tools/unit-converter</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/date-diff</loc>
+    <loc>https://bb4bb.me/tools/date-diff</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/naming</loc>
+    <loc>https://bb4bb.me/tools/naming</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/domain-valuation</loc>
+    <loc>https://bb4bb.me/tools/domain-valuation</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/nginx-config</loc>
+    <loc>https://bb4bb.me/tools/nginx-config</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/apache-config</loc>
+    <loc>https://bb4bb.me/tools/apache-config</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/haproxy-config</loc>
+    <loc>https://bb4bb.me/tools/haproxy-config</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/mortgage-calculator</loc>
+    <loc>https://bb4bb.me/tools/mortgage-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/investment-return</loc>
+    <loc>https://bb4bb.me/tools/investment-return</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/roi-calculator</loc>
+    <loc>https://bb4bb.me/tools/roi-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/jwt-decode</loc>
+    <loc>https://bb4bb.me/tools/jwt-decode</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/short-url</loc>
+    <loc>https://bb4bb.me/tools/short-url</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/tools/chmod</loc>
+    <loc>https://bb4bb.me/tools/chmod</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/games/snake</loc>
+    <loc>https://bb4bb.me/games/snake</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/games/tetris</loc>
+    <loc>https://bb4bb.me/games/tetris</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/games/gomoku</loc>
+    <loc>https://bb4bb.me/games/gomoku</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/games/dino</loc>
+    <loc>https://bb4bb.me/games/dino</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/games/minesweeper</loc>
+    <loc>https://bb4bb.me/games/minesweeper</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/games/2048</loc>
+    <loc>https://bb4bb.me/tools/margin-calculator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildbetter.tools/games/link-match</loc>
+    <loc>https://bb4bb.me/tools/discount-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/break-even-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/tip-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/size-converter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/seller-profit-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/marketplace-fee-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/vat-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/currency-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/time-zone-converter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/import-duty-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/invoice-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/freelancer-rate-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/shipping-box-optimizer</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/product-cost-breakdown</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/business-name-checker</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/hs-code-lookup</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/contract-template-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/time-tracker</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/zakat-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/holiday-calendar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/pph21-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/sss-philhealth-pagibig</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/vat-reverse-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/packing-list-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/repricing-tool</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/fx-spread-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/keyword-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/business-registration-guide</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/ai-customer-reply</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/ai-product-desc</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/ai-review</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/ai-seo</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/ai-whatsapp</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/games/2048</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/games/link-match</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -53,7 +53,7 @@ const uniqueBaseRoutes = [...new Set(baseRoutes)];
 const LANGUAGES = ['ja', 'ko', 'de', 'fr', 'es', 'pt', 'ru', 'ar', 'zh-CN', 'zh-TW'];
 
 // Generate language-prefixed variants of all routes
-// /ja/tools/api-debugger/ → https://buildbetter.tools/ja/tools/api-debugger/
+// /ja/tools/api-debugger/ → https://bb4bb.me/ja/tools/api-debugger/
 // Homepage / gets one variant per language: /ja/, /ko/, etc. (English / stays canonical)
 const languageRoutes = [];
 for (const lang of LANGUAGES) {

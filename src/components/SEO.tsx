@@ -1,17 +1,17 @@
 import { Helmet } from "react-helmet-async";
 
 const ALL_LANGUAGES = [
-  { code: "en", href: "https://buildbetter.tools/" },
-  { code: "ja", href: "https://buildbetter.tools/ja/" },
-  { code: "ko", href: "https://buildbetter.tools/ko/" },
-  { code: "de", href: "https://buildbetter.tools/de/" },
-  { code: "fr", href: "https://buildbetter.tools/fr/" },
-  { code: "es", href: "https://buildbetter.tools/es/" },
-  { code: "pt", href: "https://buildbetter.tools/pt/" },
-  { code: "ru", href: "https://buildbetter.tools/ru/" },
-  { code: "ar", href: "https://buildbetter.tools/ar/" },
-  { code: "zh-CN", href: "https://buildbetter.tools/zh-CN/" },
-  { code: "zh-TW", href: "https://buildbetter.tools/zh-TW/" },
+  { code: "en", href: "https://bb4bb.me/" },
+  { code: "ja", href: "https://bb4bb.me/ja/" },
+  { code: "ko", href: "https://bb4bb.me/ko/" },
+  { code: "de", href: "https://bb4bb.me/de/" },
+  { code: "fr", href: "https://bb4bb.me/fr/" },
+  { code: "es", href: "https://bb4bb.me/es/" },
+  { code: "pt", href: "https://bb4bb.me/pt/" },
+  { code: "ru", href: "https://bb4bb.me/ru/" },
+  { code: "ar", href: "https://bb4bb.me/ar/" },
+  { code: "zh-CN", href: "https://bb4bb.me/zh-CN/" },
+  { code: "zh-TW", href: "https://bb4bb.me/zh-TW/" },
 ];
 
 interface SEOProps {
@@ -35,14 +35,14 @@ export function SEO({
   const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
 
   // For language-prefixed URLs, build per-language alternate URLs
-  // e.g. /ja/json-editor/ → https://buildbetter.tools/ja/json-editor/
+  // e.g. /ja/json-editor/ → https://bb4bb.me/ja/json-editor/
   const languageAlternates = ALL_LANGUAGES.map(({ code, href }) => {
     // If current page URL has a path, replace/add the language prefix
-    if (url && url.includes("/tools/") || url?.includes("/games/") || url === "https://buildbetter.tools/") {
+    if (url && url.includes("/tools/") || url?.includes("/games/") || url === "https://bb4bb.me/") {
       // Extract the path without any existing language prefix
       const pathMatch = url.match(/\/(ja|ko|de|fr|es|pt|ru|ar|zh-CN|zh-TW)(\/.*)?$/);
       const cleanPath = pathMatch ? pathMatch[2] || "/" : new URL(url).pathname;
-      const langHref = code === "en" ? `https://buildbetter.tools${cleanPath}` : `https://buildbetter.tools/${code}${cleanPath}`;
+      const langHref = code === "en" ? `https://bb4bb.me${cleanPath}` : `https://bb4bb.me/${code}${cleanPath}`;
       return { code, href: langHref };
     }
     return { code, href };
@@ -77,7 +77,7 @@ export function SEO({
         <link key={code} rel="alternate" hrefLang={code} href={href} />
       ))}
       {/* x-default: English is the default */}
-      <link rel="alternate" hrefLang="x-default" href="https://buildbetter.tools/" />
+      <link rel="alternate" hrefLang="x-default" href="https://bb4bb.me/" />
     </Helmet>
   );
 }
