@@ -2,15 +2,20 @@ import React, { useState, useEffect } from "react";
 import { CalculatorShell } from "@/components/common/CalculatorShell";
 import { Sparkles, Copy } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { OllamaModelBadge } from "@/components/ai/OllamaModelBadge";
 import { generateWithOllama, isOllamaAvailable } from "@/services/ollama";
+import { OllamaModelBadge } from "@/components/ai/OllamaModelBadge";
+import { SYSTEM_PROMPTS, buildSEOPrompt, TEMPERATURES, MAX_TOKENS } from "@/services/ai/prompts";
+import { parseSEO } from "@/services/ai/parseResponse";
+
+const PLATFORMS = ["Shopee", "TikTok Shop", "Amazon", "Lazada", "Tokopedia"];
+const LANGS = ["English", "Indonesian", "Chinese", "Malay", "Thai", "Vietnamese"];
 
 export default function AIProductSEOOptimizer() {
   const { t } = useTranslation();
   const [currentTitle, setCurrentTitle] = useState("");
   const [currentDesc, setCurrentDesc] = useState("");
   const [platform, setPlatform] = useState("Shopee");
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState("English");
   const [result, setResult] = useState<{ titles: string[]; description: string; tags: string[]; tips: string } | null>(null);
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -23,41 +28,13 @@ export default function AIProductSEOOptimizer() {
     setLoading(true);
     setResult(null);
     try {
-      const langMap: Record<string, string> = { en: "English", id: "Indonesian", zh: "Chinese", ms: "Malay", th: "Thai", vi: "Vietnamese" };
-      const prompt = `You are an ecommerce SEO expert. Given the product info, optimize the listing for ${platform} in ${langMap[language] || "English"}.
-
-Current title: "${currentTitle}"
-Current description: "${currentDesc || "(empty)"}"
-
-Format your response EXACTLY as:
-TITLES:
-1. [optimized title 1]
-2. [optimized title 2]
-3. [optimized title 3]
-DESCRIPTION: [SEO-optimized description, 2-3 sentences, include keywords naturally]
-TAGS: [comma-separated tags, 8-12 items]
-TIPS: [2-3 platform-specific SEO tips]`;
-
+      const prompt = buildSEOPrompt({ currentTitle, currentDesc, platform, language });
       const res = await generateWithOllama(prompt, {
-        temperature: 0.7,
-        maxTokens: 600,
-        systemPrompt: "You output optimized SEO content for ecommerce. Follow the requested format exactly.",
+        systemPrompt: SYSTEM_PROMPTS.seoOptimizer,
+        temperature: TEMPERATURES.seoOptimizer,
+        maxTokens: MAX_TOKENS.seoOptimizer,
       });
-
-      const titlesMatch = res.response.match(/TITLES:\s*([\s\S]+?)(?=DESCRIPTION:)/);
-      const descMatch = res.response.match(/DESCRIPTION:\s*([\s\S]+?)(?=TAGS:)/);
-      const tagsMatch = res.response.match(/TAGS:\s*([\s\S]+?)(?=TIPS:|$)/);
-      const tipsMatch = res.response.match(/TIPS:\s*([\s\S]+?)$/);
-
-      const titles = titlesMatch?.[1]?.split(/\d+\.\s*/).filter(Boolean).map(t => t.trim()) || [];
-      const tags = tagsMatch?.[1]?.split(",").map(t => t.trim()).filter(Boolean) || [];
-
-      setResult({
-        titles,
-        description: descMatch?.[1]?.trim() || "",
-        tags,
-        tips: tipsMatch?.[1]?.trim() || "",
-      });
+      setResult(parseSEO(res.response));
     } catch (err) {
       setResult({ titles: [], description: err instanceof Error ? err.message : "Failed", tags: [], tips: "" });
     } finally {
@@ -148,20 +125,18 @@ TIPS: [2-3 platform-specific SEO tips]`;
             <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.ai-seo.platform")}</label>
             <select value={platform} onChange={e => setPlatform(e.target.value)}
               className="block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm py-2 px-3 border">
-              <option>Shopee</option><option>TikTok Shop</option><option>Amazon</option><option>Lazada</option><option>Tokopedia</option>
+              {PLATFORMS.map(p => <option key={p}>{p}</option>)}
             </select>
           </div>
           <div>
             <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.ai-seo.language")}</label>
             <select value={language} onChange={e => setLanguage(e.target.value)}
               className="block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm py-2 px-3 border">
-              <option value="en">English</option><option value="zh">中文</option><option value="id">Indonesian</option>
-              <option value="ms">Malay</option><option value="th">Thai</option><option value="vi">Vietnamese</option>
+              {LANGS.map(l => <option key={l}>{l}</option>)}
             </select>
           </div>
         </div>
         <OllamaModelBadge />
-
         <button onClick={generate} disabled={loading || !currentTitle.trim()}
           className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50">
           <Sparkles className="h-4 w-4" />{loading ? "..." : t("tools.ai-seo.generate")}

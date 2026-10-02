@@ -2,15 +2,21 @@ import React, { useState, useEffect } from "react";
 import { CalculatorShell } from "@/components/common/CalculatorShell";
 import { Sparkles, Copy } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { OllamaModelBadge } from "@/components/ai/OllamaModelBadge";
 import { generateWithOllama, isOllamaAvailable } from "@/services/ollama";
+import { OllamaModelBadge } from "@/components/ai/OllamaModelBadge";
+import { SYSTEM_PROMPTS, buildProductDescPrompt, TEMPERATURES, MAX_TOKENS } from "@/services/ai/prompts";
+import { parseProductDescription } from "@/services/ai/parseResponse";
+
+const PLATFORMS = ["Shopee", "TikTok Shop", "Amazon", "Lazada", "Tokopedia"];
+const LANGS = ["English", "Indonesian", "Chinese", "Malay", "Thai", "Vietnamese"];
+const TONES = ["Engaging", "Professional", "Playful", "Luxury"];
 
 export default function AIProductDescriptionGenerator() {
   const { t } = useTranslation();
   const [productName, setProductName] = useState("");
   const [features, setFeatures] = useState("");
   const [platform, setPlatform] = useState("Shopee");
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState("English");
   const [tone, setTone] = useState("Engaging");
   const [result, setResult] = useState<{ title: string; short: string; long: string; keywords: string } | null>(null);
   const [loading, setLoading] = useState(false);
@@ -24,38 +30,14 @@ export default function AIProductDescriptionGenerator() {
     setLoading(true);
     setResult(null);
     try {
-      const langMap: Record<string, string> = { en: "English", id: "Indonesian", zh: "Chinese", ms: "Malay", th: "Thai", vi: "Vietnamese" };
-      const langName = langMap[language] || "English";
-      const prompt = `Generate a product description for ${platform}.
-
-Product name: ${productName}
-Key features: ${features}
-Language: ${langName}
-Tone: ${tone}
-
-Format the response as plain text in this exact format (no JSON, no markdown):
-TITLE: [compelling product title under 100 chars]
-SHORT: [1-2 sentence hook]
-LONG: [3-5 sentence description with bullet-friendly content]
-KEYWORDS: [comma-separated SEO keywords, max 10]`;
-
+      const prompt = buildProductDescPrompt({ productName, features, platform, language, tone });
       const res = await generateWithOllama(prompt, {
-        temperature: 0.8,
-        maxTokens: 600,
-        systemPrompt: "You are an expert ecommerce copywriter. Write clear, benefit-focused product descriptions that convert. Follow the requested format exactly.",
+        systemPrompt: SYSTEM_PROMPTS.productDescription,
+        temperature: TEMPERATURES.productDescription,
+        maxTokens: MAX_TOKENS.productDescription,
       });
-
-      const titleMatch = res.response.match(/TITLE:\s*(.+)/);
-      const shortMatch = res.response.match(/SHORT:\s*([\s\S]+?)(?=LONG:)/);
-      const longMatch = res.response.match(/LONG:\s*([\s\S]+?)(?=KEYWORDS:)/);
-      const kwMatch = res.response.match(/KEYWORDS:\s*(.+)/);
-
-      setResult({
-        title: titleMatch?.[1]?.trim() || productName,
-        short: shortMatch?.[1]?.trim() || "",
-        long: longMatch?.[1]?.trim() || res.response,
-        keywords: kwMatch?.[1]?.trim() || "",
-      });
+      const parsed = parseProductDescription(res.response, productName);
+      setResult(parsed);
     } catch (err) {
       setResult({ title: "Error", short: "", long: err instanceof Error ? err.message : "Failed", keywords: "" });
     } finally {
@@ -80,18 +62,24 @@ KEYWORDS: [comma-separated SEO keywords, max 10]`;
       ) : result ? (
         <>
           <div className="space-y-3">
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
-              <p className="text-xs text-purple-600 mb-1">TITLE</p>
-              <p className="font-bold text-sm">{result.title}</p>
-            </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-              <p className="text-xs text-blue-600 mb-1">SHORT</p>
-              <p className="text-sm">{result.short}</p>
-            </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-              <p className="text-xs text-green-600 mb-1">LONG</p>
-              <p className="text-sm whitespace-pre-wrap">{result.long}</p>
-            </div>
+            {result.title && (
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
+                <p className="text-xs text-purple-600 mb-1">TITLE</p>
+                <p className="font-bold text-sm">{result.title}</p>
+              </div>
+            )}
+            {result.short && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                <p className="text-xs text-blue-600 mb-1">SHORT</p>
+                <p className="text-sm">{result.short}</p>
+              </div>
+            )}
+            {result.long && (
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+                <p className="text-xs text-green-600 mb-1">LONG</p>
+                <p className="text-sm whitespace-pre-wrap">{result.long}</p>
+              </div>
+            )}
             {result.keywords && (
               <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
                 <p className="text-xs text-amber-600 mb-1">SEO KEYWORDS</p>
@@ -140,27 +128,25 @@ KEYWORDS: [comma-separated SEO keywords, max 10]`;
             <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.ai-product-desc.platform")}</label>
             <select value={platform} onChange={e => setPlatform(e.target.value)}
               className="block w-full border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm py-2 px-2 border">
-              <option>Shopee</option><option>TikTok Shop</option><option>Amazon</option><option>Lazada</option><option>Tokopedia</option>
+              {PLATFORMS.map(p => <option key={p}>{p}</option>)}
             </select>
           </div>
           <div>
             <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.ai-product-desc.language")}</label>
             <select value={language} onChange={e => setLanguage(e.target.value)}
               className="block w-full border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm py-2 px-2 border">
-              <option value="en">English</option><option value="zh">中文</option><option value="id">Indonesian</option>
-              <option value="ms">Malay</option><option value="th">Thai</option><option value="vi">Vietnamese</option>
+              {LANGS.map(l => <option key={l}>{l}</option>)}
             </select>
           </div>
           <div>
             <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.ai-product-desc.tone")}</label>
             <select value={tone} onChange={e => setTone(e.target.value)}
               className="block w-full border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm py-2 px-2 border">
-              <option>Engaging</option><option>Professional</option><option>Playful</option><option>Luxury</option>
+              {TONES.map(tn => <option key={tn}>{tn}</option>)}
             </select>
           </div>
         </div>
         <OllamaModelBadge />
-
         <button onClick={generate} disabled={loading || !productName.trim()}
           className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50">
           <Sparkles className="h-4 w-4" />{loading ? "..." : t("tools.ai-product-desc.generate")}

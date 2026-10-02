@@ -2,21 +2,23 @@ import React, { useState, useEffect } from "react";
 import { CalculatorShell } from "@/components/common/CalculatorShell";
 import { Star, Sparkles, Copy } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { OllamaModelBadge } from "@/components/ai/OllamaModelBadge";
 import { generateWithOllama, isOllamaAvailable } from "@/services/ollama";
+import { OllamaModelBadge } from "@/components/ai/OllamaModelBadge";
+import { SYSTEM_PROMPTS, buildReviewReplyPrompt, TEMPERATURES, MAX_TOKENS } from "@/services/ai/prompts";
+import { cleanFreeformReply } from "@/services/ai/parseResponse";
 
 const ISSUES = [
-  { id: "quality", label: "Product Quality Issue" },
-  { id: "shipping", label: "Shipping Delay / Damaged" },
-  { id: "service", label: "Bad Customer Service" },
-  { id: "wrong_item", label: "Wrong Item Received" },
-  { id: "refund_denied", label: "Refund Denied" },
+  "Product Quality Issue",
+  "Shipping Delay / Damaged",
+  "Bad Customer Service",
+  "Wrong Item Received",
+  "Refund Denied",
 ];
 
 export default function AINegativeReviewResponder() {
   const { t } = useTranslation();
   const [review, setReview] = useState("");
-  const [issue, setIssue] = useState("quality");
+  const [issue, setIssue] = useState("Product Quality Issue");
   const [resolution, setResolution] = useState("We offer free replacement");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
@@ -30,27 +32,13 @@ export default function AINegativeReviewResponder() {
     setLoading(true);
     setResult("");
     try {
-      const issueLabel = ISSUES.find(i => i.id === issue)?.label || "Issue";
-      const prompt = `You are a customer service expert. Write an empathetic, professional public response to this negative customer review.
-
-Issue type: ${issueLabel}
-Customer's review: "${review}"
-Resolution offered: ${resolution}
-
-Your reply should:
-- Acknowledge the customer's frustration sincerely
-- Apologize without making excuses
-- State the concrete resolution
-- Invite them to continue the conversation privately
-- Keep it under 80 words, professional, brand-safe
-
-Reply:`;
+      const prompt = buildReviewReplyPrompt({ review, issueType: issue, resolution });
       const res = await generateWithOllama(prompt, {
-        systemPrompt: "You write concise, empathetic customer service responses. Output only the reply text.",
-        temperature: 0.6,
-        maxTokens: 200,
+        systemPrompt: SYSTEM_PROMPTS.reviewReply,
+        temperature: TEMPERATURES.reviewReply,
+        maxTokens: MAX_TOKENS.reviewReply,
       });
-      setResult(res.response);
+      setResult(cleanFreeformReply(res.response));
     } catch (err) {
       setResult(`Error: ${err instanceof Error ? err.message : "Failed"}`);
     } finally {
@@ -113,7 +101,7 @@ Reply:`;
           <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.ai-review.issue_type")}</label>
           <select value={issue} onChange={e => setIssue(e.target.value)}
             className="block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm py-2 px-3 border">
-            {ISSUES.map(i => <option key={i.id} value={i.id}>{i.label}</option>)}
+            {ISSUES.map(i => <option key={i}>{i}</option>)}
           </select>
         </div>
         <div>
@@ -122,7 +110,6 @@ Reply:`;
             className="block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm py-2 px-3 border" />
         </div>
         <OllamaModelBadge />
-
         <button onClick={generate} disabled={loading || !review.trim()}
           className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50">
           <Sparkles className="h-4 w-4" />{loading ? "..." : t("tools.ai-review.generate")}
