@@ -931,12 +931,11 @@
     },
     "packing-list": {
       "name": "Packing List Generator",
-      "desc": "Generate cross-border packing lists with HS codes, quantities and values. Export to text.",
+      "desc": "Description",
       "title": "Packing List Generator",
       "subtitle": "Generate export packing list",
       "shipper": "Shipper / Exporter",
       "consignee": "Consignee / Buyer",
-      "desc": "Description",
       "add_item": "Add Item",
       "copy": "Copy",
       "download": "Download"
@@ -995,6 +994,12 @@
       "steps": "Registration Steps",
       "note": "Note",
       "enter_values": "Select a country"
+    },
+    "ollama-setup": {
+      "name": "Ollama Setup Guide",
+      "desc": "Install and run Ollama locally to power Build-Better AI tools. Multi-language guide.",
+      "title": "Set up Ollama locally",
+      "subtitle": "Run AI models on your machine"
     },
     "ai-customer-reply": {
       "name": "AI Customer Reply Generator",

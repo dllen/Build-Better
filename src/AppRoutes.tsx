@@ -86,6 +86,7 @@ import AIProductDescriptionGenerator from "@/pages/tools/AIProductDescriptionGen
 import AINegativeReviewResponder from "@/pages/tools/AINegativeReviewResponder";
 import AIProductSEOOptimizer from "@/pages/tools/AIProductSEOOptimizer";
 import AIWhatsAppAutoReply from "@/pages/tools/AIWhatsAppAutoReply";
+import OllamaSetup from "@/pages/docs/OllamaSetup";
 import MarginCalculator from "@/pages/tools/MarginCalculator";
 import OtpGenerator from "@/pages/tools/OtpGenerator";
 import JwtDecodeTool from "@/pages/tools/JwtDecodeTool";
@@ -353,6 +354,7 @@ export function AppRoutes() {
         <Route path="/fx-spread-calculator" element={<FxSpreadCalculator />} />
         <Route path="/keyword-generator" element={<KeywordGenerator />} />
         <Route path="/business-registration-guide" element={<BusinessRegistrationGuide />} />
+        <Route path="/ollama-setup" element={<OllamaSetup />} />
         <Route path="/ai-customer-reply" element={<AICustomerReplyGenerator />} />
         <Route path="/ai-product-desc" element={<AIProductDescriptionGenerator />} />
         <Route path="/ai-review" element={<AINegativeReviewResponder />} />
@@ -576,6 +578,7 @@ export function AppRoutes() {
         <Route path="/tools/fx-spread-calculator" element={<Navigate to="/fx-spread-calculator" replace />} />
         <Route path="/tools/keyword-generator" element={<Navigate to="/keyword-generator" replace />} />
         <Route path="/tools/business-registration-guide" element={<Navigate to="/business-registration-guide" replace />} />
+        <Route path="/tools/ollama-setup" element={<Navigate to="/ollama-setup" replace />} />
         <Route path="/tools/ai-customer-reply" element={<Navigate to="/ai-customer-reply" replace />} />
         <Route path="/tools/ai-product-desc" element={<Navigate to="/ai-product-desc" replace />} />
         <Route path="/tools/ai-review" element={<Navigate to="/ai-review" replace />} />

@@ -4,6 +4,7 @@ import { MessageCircle, Sparkles, Copy } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { generateWithOllama, isOllamaAvailable } from "@/services/ollama";
 import { OllamaModelBadge } from "@/components/ai/OllamaModelBadge";
+import { OllamaHelpBanner } from "@/components/ai/OllamaHelpBanner";
 import { SYSTEM_PROMPTS, buildWhatsAppPrompt, TEMPERATURES, MAX_TOKENS } from "@/services/ai/prompts";
 import { parseWhatsApp } from "@/services/ai/parseResponse";
 
@@ -99,7 +100,7 @@ export default function AIWhatsAppAutoReply() {
         <div className="text-center text-gray-400 py-12">
           <MessageCircle className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-sm">{t("tools.ai-whatsapp.enter_values")}</p>
-          {ollamaOk === false && <p className="text-xs text-red-500 mt-2">{t("tools.ai-customer-reply.ollama_off")}</p>}
+          {ollamaOk === false && <div className="mt-3"><OllamaHelpBanner /></div>}
         </div>
       )}
     </div>
