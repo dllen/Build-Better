@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ChevronDown, HelpCircle, X } from "lucide-react";
-import { JsonLd } from "./JsonLd";
+import { JsonLd, buildSoftwareApplicationLd, buildBreadcrumbLd, buildFAQPageLd, buildHowToLd } from "./JsonLd";
 
 interface HowToStep {
   title: string;
@@ -30,15 +30,23 @@ export function ToolPageSEO({ data }: ToolPageSEOProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const pageUrl = `https://bb4bb.me/tools/${data.slug}/`;
-  const breadcrumb = [
-    { name: 'Home', url: 'https://bb4bb.me/' },
-    { name: 'Tools', url: 'https://bb4bb.me/tools/' },
-    { name: data.title.split(' - ')[0] || data.title, url: pageUrl },
-  ];
-
-  return (
+return (
     <>
-      <JsonLd url={pageUrl} data={data} breadcrumb={breadcrumb} />
+      <JsonLd graphs={[
+        buildSoftwareApplicationLd({
+          name: data.title.split(' - ')[0] || data.title,
+          description,
+          url: pageUrl,
+          featureList: features,
+        }),
+        buildBreadcrumbLd([
+          { name: 'Home', href: 'https://bb4bb.me/' },
+          { name: 'Tools', href: 'https://bb4bb.me/tools/' },
+          { name: data.title.split(' - ')[0] || data.title, href: pageUrl },
+        ]),
+        ...(faqs.length > 0 ? [buildFAQPageLd(faqs.map(f => ({ question: f.q, answer: f.a })))] : []),
+        ...(howToSteps.length > 0 ? [buildHowToLd(data.title.split(' - ')[0] || data.title, howToSteps.map(s => s.body))] : []),
+      ]} />
 
       {/* Hidden SEO content for search engines */}
       <section className="hidden" aria-hidden="true">
