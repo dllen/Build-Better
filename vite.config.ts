@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 import compression from "vite-plugin-compression";
+import mdx from "vite-plugin-mdx";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -25,6 +26,7 @@ export default defineConfig({
     // Pre-compress eligible assets with brotli so Cloudflare Pages can serve
     // them via Content-Encoding: br at the edge. Originals are kept so the
     // fallback (no Accept-Encoding: br) still works.
+    mdx(),
     compression({
       algorithm: "brotliCompress",
       ext: ".br",
