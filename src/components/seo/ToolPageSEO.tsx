@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { ChevronDown, HelpCircle, X } from "lucide-react";
 import { JsonLd, buildSoftwareApplicationLd, buildBreadcrumbLd, buildFAQPageLd, buildHowToLd } from "./JsonLd";
+import { RatingWidget } from "../RatingWidget";
+import { isTopTool } from "@/data/top-tools";
+
+
+import { getRatingSchema } from "@/services/ratings";
 
 interface HowToStep {
   title: string;
@@ -38,6 +43,10 @@ return (
           description,
           url: pageUrl,
           featureList: features,
+          ...(() => {
+            const r = getRatingSchema(data.slug);
+            return r ? { ratingValue: Number(r.ratingValue), ratingCount: Number(r.ratingCount) } : {};
+          })(),
         }),
         buildBreadcrumbLd([
           { name: 'Home', href: 'https://bb4bb.me/' },
@@ -70,6 +79,13 @@ return (
           </dl>
         )}
       </section>
+
+      {/* User rating widget (Top 20 tools only) */}
+      {isTopTool(data.slug) && (
+        <div className="max-w-4xl mx-auto px-4 mt-6">
+          <RatingWidget toolId={data.slug} />
+        </div>
+      )}
 
       {/* Floating help button */}
       <button
