@@ -74,6 +74,7 @@ import TimeTracker from "@/pages/tools/TimeTracker";
 import ZakatCalculator from "@/pages/tools/ZakatCalculator";
 import HolidayCalendar from "@/pages/tools/HolidayCalendar";
 import PPh21Calculator from "@/pages/tools/PPh21Calculator";
+import CryptoCapitalGainsCalculator from "@/pages/tools/CryptoCapitalGainsCalculator";
 import SSSPhilHealthPagibigCalculator from "@/pages/tools/SSSPhilHealthPagibigCalculator";
 import VatReverseCalculator from "@/pages/tools/VatReverseCalculator";
 import PackingListGenerator from "@/pages/tools/PackingListGenerator";
@@ -347,6 +348,7 @@ export function AppRoutes() {
         <Route path="/zakat-calculator" element={<ZakatCalculator />} />
         <Route path="/holiday-calendar" element={<HolidayCalendar />} />
         <Route path="/pph21-calculator" element={<PPh21Calculator />} />
+        <Route path="/crypto-capital-gains-calculator" element={<CryptoCapitalGainsCalculator />} />
         <Route path="/sss-philhealth-pagibig" element={<SSSPhilHealthPagibigCalculator />} />
         <Route path="/vat-reverse-calculator" element={<VatReverseCalculator />} />
         <Route path="/packing-list-generator" element={<PackingListGenerator />} />

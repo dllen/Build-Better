@@ -472,7 +472,7 @@
       "desc": "Extract column names from SQL SELECT statements with occurrence counts."
     },
     "sql-mermaid": {
-      "name": "SQL \u2192 Mermaid",
+      "name": "SQL → Mermaid",
       "desc": "Parse CREATE TABLE DDL to generate Mermaid ER diagram code."
     },
     "sql-review": {
@@ -873,7 +873,7 @@
       "net_wealth": "Net Zakat-able Wealth",
       "nisab": "Nisab Threshold",
       "zakat_due": "Zakat Due",
-      "below_nisab": "Below Nisab \u2014 No Zakat",
+      "below_nisab": "Below Nisab — No Zakat",
       "rate": "Rate",
       "nisab_gold": "Gold Nisab (85g)",
       "nisab_silver": "Silver Nisab (595g)",
@@ -1173,7 +1173,7 @@
       "blue_win": "Blue Wins!",
       "den": "DEN",
       "trap": "TRAP",
-      "rules": "Rank: \ud83d\udc18 > \ud83e\udd81 > \ud83d\udc2f > \ud83d\udc06 > \ud83d\udc3a > \ud83d\udc15 > \ud83d\udc08 > \ud83d\udc00 (> \ud83d\udc18)"
+      "rules": "Rank: 🐘 > 🦁 > 🐯 > 🐆 > 🐺 > 🐕 > 🐈 > 🐀 (> 🐘)"
     },
     "flying_chess": {
       "title": "Flying Chess",
@@ -1228,7 +1228,7 @@
       "name": "Drawing Board",
       "desc": "Infinite-canvas drawing board with pen, shapes, arrows, sticky notes, and more.",
       "title": "Drawing Board",
-      "subtitle": "Sketch, diagram, and brainstorm on an infinite canvas \u2014 pressure ink, shapes, arrows, images, and more."
+      "subtitle": "Sketch, diagram, and brainstorm on an infinite canvas — pressure ink, shapes, arrows, images, and more."
     }
   },
   "categories": {
@@ -1249,5 +1249,55 @@
   "common": {
     "copied": "Copied!",
     "calculate": "Calculate"
+  },
+  "priceSync": {
+    "name": "Price Sync Simulator",
+    "desc": "Simulate multi-platform pricing strategies and predict profitability across e-commerce platforms.",
+    "title": "Price Sync Simulator",
+    "subtitle": "Compare pricing across e-commerce platforms",
+    "product_cost": "Product Cost (USD)",
+    "platforms": "Platform Settings",
+    "platform": "Platform",
+    "fee_rate": "Fee Rate (%)",
+    "your_price": "Your Price",
+    "profit": "Profit",
+    "profit_margin": "Margin",
+    "summary": "Summary",
+    "best_platform": "Best Platform",
+    "worst_platform": "Worst Platform",
+    "average_margin": "Average Margin",
+    "platform_details": "Platform Details",
+    "enter_values": "Enter product cost and prices to see profits",
+    "below_cost": "Below cost!"
+  },
+  "freelancerRetainer": {
+    "name": "Freelancer Retainer Calculator",
+    "desc": "Convert hourly or project rates to monthly retainer pricing for freelancers.",
+    "title": "Freelancer Retainer Calculator",
+    "subtitle": "Calculate fair pricing for your freelance work",
+    "annual_net_income": "Annual Target Net Income (USD)",
+    "working_months": "Working Months per Year",
+    "overhead_percent": "Business Overhead (%)",
+    "billing_mode": "Billing Mode",
+    "hourly": "Hourly",
+    "per_project": "Per Project",
+    "retainer": "Retainer",
+    "your_hourly_rate": "Your Hourly Rate (USD/hr)",
+    "avg_project_value": "Average Project Value (USD)",
+    "projects_per_month": "Projects per Month",
+    "hours_included": "Hours Included per Month",
+    "monthly_target": "Monthly Income Target",
+    "gross_needed": "Gross needed",
+    "suggested_hourly": "Suggested Hourly Rate",
+    "recommended_daily": "Recommended Daily Rate",
+    "minimum_rate": "Minimum Safe Hourly Rate",
+    "min_rate_note": "Lowest rate to meet income target",
+    "your_hourly": "Your Hourly Rate",
+    "below_minimum": "Below minimum safe rate!",
+    "recommended_project": "Recommended Project Price",
+    "suggested_retainer": "Suggested Monthly Retainer",
+    "includes": "Includes",
+    "hours_per_month": "hours/month",
+    "enter_values": "Enter annual income target to calculate rates"
   }
 }
