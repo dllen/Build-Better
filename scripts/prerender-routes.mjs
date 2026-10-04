@@ -1,41 +1,47 @@
-import { writeFileSync, readFileSync } from 'node:fs';
+import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 
+// ── Primary: read from TOOL_REGISTRY in tools.ts ──────────────────────────────────
+const toolsPath = 'src/data/tools.ts';
+let toolPaths = [];
+
+if (existsSync(toolsPath)) {
+  const src = readFileSync(toolsPath, 'utf-8');
+  const matches = [...src.matchAll(/path:\s*"([^"]+)"/g)];
+  toolPaths = matches.map((m) => m[1]);
+  console.log(`[prerender] Extracted ${toolPaths.length} paths from tools.ts`);
+}
+
+// ── Normalize: prepend /tools/ to regular tool slugs ────────────────────────────
+// tools.ts paths are like "/api-debugger" or "/hijri-calendar-converter"
+// Sitemap expects "/tools/api-debugger". Game/web3/text routes are top-level.
+// Filter out game/web3/chat/text top-level routes and add /tools/ prefix
+const normalizedRoutes = toolPaths.map((p) => {
+  if (
+    p.startsWith('/games/') ||
+    p.startsWith('/web3/') ||
+    p.startsWith('/text/') ||
+    p.startsWith('/chat/')
+  ) {
+    return p; // top-level route, use as-is
+  }
+  return `/tools${p}`; // regular tool slug
+});
+
+// ── Fallback: also read from generate-sitemap.mjs to catch special routes ───────
 const sitemapPath = 'scripts/generate-sitemap.mjs';
+let sitemapRoutes = [];
+if (existsSync(sitemapPath)) {
+  const sitemapSrc = readFileSync(sitemapPath, 'utf-8');
+  const routeMatches = [...sitemapSrc.matchAll(/^\s*"([^"]+)",?\s*$/gm)];
+  sitemapRoutes = routeMatches.map((m) => m[1]).filter((r) => r.startsWith('/'));
+}
 
-// Extract paths from existing sitemap.mjs to use as source of truth.
-// generate-sitemap.mjs uses double-quoted strings inside the routes array.
-const sitemapSrc = readFileSync(sitemapPath, 'utf-8');
-const routeMatches = [...sitemapSrc.matchAll(/^\s*"([^"]+)",?\s*$/gm)];
-const existingRoutes = routeMatches.map((m) => m[1]);
+// ── Merge, deduplicate, normalize ───────────────────────────────────────────────
+const allToolRoutes = [
+  ...new Set([...normalizedRoutes, ...sitemapRoutes.map((r) => r.replace(/\/$/, ''))]),
+];
 
-// Keep tool slugs (paths that look like individual tool pages, not category indexes).
-const toolSlugs = existingRoutes
-  .filter(
-    (r) =>
-      r.startsWith('/tools/') ||
-      r.startsWith('/games/') ||
-      r.startsWith('/web3/') ||
-      r.startsWith('/sql-') ||
-      r.startsWith('/base64') ||
-      r.startsWith('/url-encoder') ||
-      r.startsWith('/uuid-generator') ||
-      r.startsWith('/token-counter') ||
-      r.startsWith('/prompt-') ||
-      r.startsWith('/rag-') ||
-      r.startsWith('/ai-') ||
-      r.startsWith('/llm-') ||
-      r.startsWith('/docker-') ||
-      r.startsWith('/k8s-') ||
-      r.startsWith('/systemd-') ||
-      r.startsWith('/data-') ||
-      r.startsWith('/json-') ||
-      r.startsWith('/mortgage-') ||
-      r.startsWith('/investment-') ||
-      r.startsWith('/roi-'),
-  )
-  .map((r) => r.replace(/\/$/, ''));
-
-// Add static pages (these were added in Task A) and category indexes.
+// ── Static routes ────────────────────────────────────────────────────────────────
 const staticRoutes = [
   '/privacy/',
   '/about/',
@@ -45,24 +51,18 @@ const staticRoutes = [
   '/tools/',
 ];
 
-const baseRoutes = ['/', ...toolSlugs.map((s) => `${s}/`), ...staticRoutes];
+const baseRoutes = ['/', ...allToolRoutes.map((s) => `${s}/`), ...staticRoutes];
 const uniqueBaseRoutes = [...new Set(baseRoutes)];
 
-// Supported languages for i18n routing (2026-10-01 expansion: ja/ko/de/fr/es/pt/ru/ar + existing zh-CN/zh-TW)
-// English is the canonical default; non-English variants are added as /:lang/ prefixes for SEO.
+// ── Language variants (11 locales) ─────────────────────────────────────────────
 const LANGUAGES = ['ja', 'ko', 'de', 'fr', 'es', 'pt', 'ru', 'ar', 'zh-CN', 'zh-TW'];
 
-// Generate language-prefixed variants of all routes
-// /ja/tools/api-debugger/ → https://bb4bb.me/ja/tools/api-debugger/
-// Homepage / gets one variant per language: /ja/, /ko/, etc. (English / stays canonical)
 const languageRoutes = [];
 for (const lang of LANGUAGES) {
   for (const route of uniqueBaseRoutes) {
     if (route === '/') {
-      // Homepage: add /ja/, /ko/, etc. (English / stays canonical)
       languageRoutes.push(`/${lang}/`);
     } else {
-      // Tool/game/static pages: /ja/<original-route>
       languageRoutes.push(`/${lang}${route}`);
     }
   }
@@ -71,4 +71,6 @@ for (const lang of LANGUAGES) {
 const allRoutes = [...uniqueBaseRoutes, ...languageRoutes];
 
 writeFileSync('prerender-routes.json', JSON.stringify(allRoutes, null, 2));
-console.log(`Generated ${allRoutes.length} routes for prerender (${uniqueBaseRoutes.length} base + ${languageRoutes.length} language variants)`);
+console.log(
+  `[prerender] Generated ${allRoutes.length} routes (${uniqueBaseRoutes.length} base + ${languageRoutes.length} lang variants)`,
+);

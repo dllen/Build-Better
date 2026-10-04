@@ -1,0 +1,101 @@
+name: Lighthouse CI Core Web Vitals
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Create lighthouserc.json
+        run: |
+          cat > lighthouserc.json << 'LIGHTHOUSE_CONFIG'
+          {
+            "ci": {
+              "collect": {
+                "numberOfRuns": 3,
+                "settings": {
+                  "onlyCategories": ["performance"],
+                  "chromeFlags": "--no-sandbox --disable-gpu --headless",
+                  "staticDistDir": "./dist",
+                  "urls": [
+                    "http://localhost:3000/",
+                    "http://localhost:3000/tools/api-debugger",
+                    "http://localhost:3000/tools/hijri-calendar-converter",
+                    "http://localhost:3000/tools/pix-key-validator",
+                    "http://localhost:3000/tools/zakat-calculator"
+                  ]
+                }
+              },
+              "assert": {
+                "assertions": {
+                  "categories:performance": ["error", { "minScore": 0.9 }],
+                  "first-contentful-paint": ["warn", { "maxNumericValue": 2000, "numericUnit": "millisecond" }],
+                  "largest-contentful-paint": ["error", { "maxNumericValue": 2500, "numericUnit": "millisecond" }],
+                  "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],
+                  "total-blocking-time": ["error", { "maxNumericValue": 200, "numericUnit": "millisecond" }]
+                }
+              },
+              "upload": {
+                "target": "temporary-public-storage"
+              },
+              "prComment": {
+                "prComment": true,
+                "prCommentAppend": false
+              }
+            }
+          }
+          LIGHTHOUSE_CONFIG
+
+      - name: Start static server
+        run: npx serve -s dist -l 3000 &
+        env:
+          CI: true
+
+      - name: Wait for server to be ready
+        run: sleep 5
+
+      - name: Run Lighthouse CI
+        uses: lighthouseci/lhcci-action@v2
+        with:
+          urls: |
+            http://localhost:3000/
+            http://localhost:3000/tools/api-debugger
+            http://localhost:3000/tools/hijri-calendar-converter
+            http://localhost:3000/tools/pix-key-validator
+            http://localhost:3000/tools/zakat-calculator
+          configPath: ./lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Lighthouse results as artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-results
+          path: .lighthouseci/
+          retention-days: 30

@@ -1,14 +1,2539 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap><loc>https://bb4bb.me/sitemap-en.xml</loc></sitemap>
-  <sitemap><loc>https://bb4bb.me/sitemap-ja.xml</loc></sitemap>
-  <sitemap><loc>https://bb4bb.me/sitemap-ko.xml</loc></sitemap>
-  <sitemap><loc>https://bb4bb.me/sitemap-de.xml</loc></sitemap>
-  <sitemap><loc>https://bb4bb.me/sitemap-fr.xml</loc></sitemap>
-  <sitemap><loc>https://bb4bb.me/sitemap-es.xml</loc></sitemap>
-  <sitemap><loc>https://bb4bb.me/sitemap-pt.xml</loc></sitemap>
-  <sitemap><loc>https://bb4bb.me/sitemap-ru.xml</loc></sitemap>
-  <sitemap><loc>https://bb4bb.me/sitemap-ar.xml</loc></sitemap>
-  <sitemap><loc>https://bb4bb.me/sitemap-zh-CN.xml</loc></sitemap>
-  <sitemap><loc>https://bb4bb.me/sitemap-zh-TW.xml</loc></sitemap>
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://bb4bb.me/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/settings</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/settings"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/settings"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/settings"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/settings"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/settings"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/settings"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/settings"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/settings"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/settings"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/settings"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-editor</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-editor"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-editor"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-editor"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-editor"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-editor"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-editor"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-editor"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-editor"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-editor"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-editor"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-diff</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-diff"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-diff"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-diff"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-diff"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-diff"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-diff"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-diff"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-diff"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-diff"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-diff"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/format-converter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/format-converter"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/format-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/format-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/format-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/format-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/format-converter"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/format-converter"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/format-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/format-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/format-converter"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/code-formatter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/code-formatter"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/code-formatter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/code-formatter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/code-formatter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/code-formatter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/code-formatter"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/code-formatter"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/code-formatter"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/code-formatter"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/code-formatter"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/regex-tester</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/regex-tester"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/markdown-html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/markdown-html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/markdown-html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/markdown-html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/markdown-html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/markdown-html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/markdown-html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/markdown-html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/markdown-html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/markdown-html"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/markdown-html"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/email-md</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/email-md"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/email-md"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/email-md"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/email-md"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/email-md"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/email-md"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/email-md"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/email-md"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/email-md"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/email-md"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/jwt-decode</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/jwt-decode"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/jwt-decode"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/jwt-decode"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/jwt-decode"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/jwt-decode"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/jwt-decode"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/jwt-decode"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/jwt-decode"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/jwt-decode"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/jwt-decode"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/html-to-text</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/html-to-text"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/html-to-text"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/html-to-text"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/html-to-text"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/html-to-text"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/html-to-text"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/html-to-text"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/html-to-text"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/html-to-text"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/html-to-text"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/api-debugger</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/api-debugger"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/api-debugger"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/api-debugger"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/api-debugger"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/api-debugger"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/api-debugger"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/api-debugger"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/api-debugger"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/api-debugger"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/api-debugger"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/text-diff</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/text-diff"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/base-converter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/base-converter"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/base-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/base-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/base-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/base-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/base-converter"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/base-converter"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/base-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/base-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/base-converter"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/naming</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/naming"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/naming"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/naming"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/naming"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/naming"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/naming"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/naming"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/naming"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/naming"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/naming"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/commit-message</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/commit-message"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/commit-message"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/commit-message"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/commit-message"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/commit-message"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/commit-message"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/commit-message"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/commit-message"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/commit-message"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/commit-message"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/gitignore</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/gitignore"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/gitignore"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/gitignore"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/gitignore"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/gitignore"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/gitignore"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/gitignore"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/gitignore"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/gitignore"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/gitignore"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/mermaid-renderer</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/mermaid-renderer"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/mermaid-renderer"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/mermaid-renderer"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/mermaid-renderer"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/mermaid-renderer"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/mermaid-renderer"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/mermaid-renderer"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/mermaid-renderer"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/mermaid-renderer"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/mermaid-renderer"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/drawing-tool</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/drawing-tool"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/drawing-tool"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/drawing-tool"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/drawing-tool"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/drawing-tool"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/drawing-tool"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/drawing-tool"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/drawing-tool"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/drawing-tool"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/drawing-tool"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/data-converter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/data-converter"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/data-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/data-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/data-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/data-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/data-converter"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/data-converter"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/data-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/data-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/data-converter"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/csv-to-json</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/csv-to-json"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/chmod</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/chmod"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/chmod"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/chmod"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/chmod"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/chmod"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/chmod"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/chmod"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/chmod"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/chmod"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/chmod"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/cron-quartz</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/cron-quartz"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/cron-quartz"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/cron-quartz"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/cron-quartz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/cron-quartz"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/cron-quartz"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/cron-quartz"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/cron-quartz"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/cron-quartz"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/cron-quartz"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/date-time</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/date-time"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/date-time"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/date-time"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/date-time"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/date-time"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/date-time"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/date-time"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/date-time"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/date-time"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/date-time"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/network-tools</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/network-tools"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/network-tools"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/network-tools"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/network-tools"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/network-tools"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/network-tools"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/network-tools"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/network-tools"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/network-tools"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/network-tools"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/unit-converter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/unit-converter"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/unit-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/unit-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/unit-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/unit-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/unit-converter"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/unit-converter"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/unit-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/unit-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/unit-converter"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/nginx-config</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/nginx-config"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/nginx-config"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/nginx-config"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/nginx-config"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/nginx-config"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/nginx-config"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/nginx-config"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/nginx-config"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/nginx-config"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/nginx-config"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/apache-config</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/apache-config"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/apache-config"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/apache-config"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/apache-config"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/apache-config"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/apache-config"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/apache-config"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/apache-config"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/apache-config"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/apache-config"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/haproxy-config</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/haproxy-config"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/haproxy-config"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/haproxy-config"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/haproxy-config"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/haproxy-config"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/haproxy-config"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/haproxy-config"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/haproxy-config"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/haproxy-config"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/haproxy-config"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/text</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/text"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/text"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/text"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/text"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/text"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/text"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/text"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/text"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/text"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/text"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/text-stats</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/text-stats"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/text-stats"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/text-stats"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/text-stats"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/text-stats"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/text-stats"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/text-stats"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/text-stats"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/text-stats"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/text-stats"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/text-deduper</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/text-deduper"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/text-deduper"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/text-deduper"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/text-deduper"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/text-deduper"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/text-deduper"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/text-deduper"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/text-deduper"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/text-deduper"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/text-deduper"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/dedup-sort-diff</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/dedup-sort-diff"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/dedup-sort-diff"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/dedup-sort-diff"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/dedup-sort-diff"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/dedup-sort-diff"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/dedup-sort-diff"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/dedup-sort-diff"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/dedup-sort-diff"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/dedup-sort-diff"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/dedup-sort-diff"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/text-cipher</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/text-cipher"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/text-cipher"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/text-cipher"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/text-cipher"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/text-cipher"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/text-cipher"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/text-cipher"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/text-cipher"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/text-cipher"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/text-cipher"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/case</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/case"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/case"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/case"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/case"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/case"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/case"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/case"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/case"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/case"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/case"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/replace</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/replace"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/replace"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/replace"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/replace"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/replace"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/replace"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/replace"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/replace"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/replace"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/replace"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/sort</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/sort"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/sort"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/sort"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/sort"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/sort"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/sort"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/sort"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/sort"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/sort"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/sort"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/numbers</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/numbers"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/numbers"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/numbers"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/numbers"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/numbers"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/numbers"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/numbers"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/numbers"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/numbers"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/numbers"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/html"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/html"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/symbols</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/symbols"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/symbols"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/symbols"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/symbols"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/symbols"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/symbols"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/symbols"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/symbols"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/symbols"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/symbols"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/emojis</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/emojis"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/emojis"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/emojis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/emojis"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/emojis"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/emojis"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/emojis"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/emojis"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/emojis"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/emojis"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/fancy</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/fancy"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/fancy"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/fancy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/fancy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/fancy"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/fancy"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/fancy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/fancy"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/fancy"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/fancy"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/typesetter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/typesetter"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/typesetter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/typesetter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/typesetter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/typesetter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/typesetter"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/typesetter"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/typesetter"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/typesetter"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/typesetter"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/similarity</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/similarity"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/similarity"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/similarity"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/similarity"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/similarity"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/similarity"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/similarity"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/similarity"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/similarity"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/similarity"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/workflow</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/workflow"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/workflow"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/workflow"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/workflow"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/workflow"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/workflow"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/workflow"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/workflow"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/workflow"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/workflow"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/random</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/random"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/random"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/random"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/random"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/random"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/random"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/random"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/random"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/random"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/random"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/qr-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/qr-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/wifi-qr-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/wifi-qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/wifi-qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/wifi-qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/wifi-qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/wifi-qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/wifi-qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/wifi-qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/wifi-qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/wifi-qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/wifi-qr-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/image-compressor</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/image-compressor"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/image-resizer</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/image-resizer"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/image-converter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/image-converter"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/image-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/image-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/image-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/image-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/image-converter"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/image-converter"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/image-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/image-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/image-converter"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/image-watermark</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/image-watermark"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/image-watermark"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/image-watermark"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/image-watermark"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/image-watermark"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/image-watermark"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/image-watermark"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/image-watermark"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/image-watermark"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/image-watermark"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/image-joiner</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/image-joiner"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/image-joiner"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/image-joiner"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/image-joiner"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/image-joiner"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/image-joiner"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/image-joiner"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/image-joiner"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/image-joiner"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/image-joiner"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/image-ascii</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/image-ascii"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/image-ascii"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/image-ascii"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/image-ascii"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/image-ascii"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/image-ascii"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/image-ascii"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/image-ascii"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/image-ascii"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/image-ascii"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/color-hunt</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/color-hunt"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/color-hunt"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/color-hunt"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/color-hunt"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/color-hunt"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/color-hunt"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/color-hunt"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/color-hunt"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/color-hunt"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/color-hunt"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/hash-tools</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/hash-tools"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/hash-tools"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/hash-tools"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/hash-tools"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/hash-tools"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/hash-tools"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/hash-tools"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/hash-tools"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/hash-tools"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/hash-tools"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/hmac</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/hmac"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/hmac"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/hmac"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/hmac"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/hmac"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/hmac"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/hmac"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/hmac"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/hmac"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/hmac"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/bcrypt</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/bcrypt"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/bcrypt"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/bcrypt"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/bcrypt"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/bcrypt"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/bcrypt"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/bcrypt"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/bcrypt"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/bcrypt"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/bcrypt"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/rsa-keygen</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/rsa-keygen"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/rsa-keygen"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/rsa-keygen"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/rsa-keygen"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/rsa-keygen"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/rsa-keygen"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/rsa-keygen"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/rsa-keygen"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/rsa-keygen"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/rsa-keygen"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/password-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/password-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/otp-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/otp-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/otp-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/otp-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/otp-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/otp-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/otp-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/otp-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/otp-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/otp-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/otp-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/bip39</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/bip39"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/bip39"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/bip39"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/bip39"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/bip39"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/bip39"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/bip39"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/bip39"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/bip39"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/bip39"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/ulid</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/ulid"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/ulid"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/ulid"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/ulid"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/ulid"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/ulid"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/ulid"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/ulid"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/ulid"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/ulid"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/token-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/token-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/token-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/token-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/token-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/token-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/token-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/token-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/token-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/token-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/token-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/webchat</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/webchat"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/webchat"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/webchat"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/webchat"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/webchat"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/webchat"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/webchat"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/webchat"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/webchat"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/webchat"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/p2p-chat</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/p2p-chat"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/p2p-chat"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/p2p-chat"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/p2p-chat"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/p2p-chat"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/p2p-chat"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/p2p-chat"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/p2p-chat"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/p2p-chat"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/p2p-chat"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/manual-chat</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/manual-chat"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/manual-chat"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/manual-chat"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/manual-chat"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/manual-chat"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/manual-chat"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/manual-chat"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/manual-chat"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/manual-chat"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/manual-chat"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/short-url</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/short-url"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/short-url"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/short-url"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/short-url"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/short-url"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/short-url"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/short-url"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/short-url"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/short-url"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/short-url"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/sharepool</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/sharepool"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/sharepool"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/sharepool"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/sharepool"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/sharepool"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/sharepool"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/sharepool"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/sharepool"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/sharepool"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/sharepool"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/keycode</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/keycode"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/keycode"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/keycode"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/keycode"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/keycode"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/keycode"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/keycode"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/keycode"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/keycode"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/keycode"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/device-info</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/device-info"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/device-info"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/device-info"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/device-info"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/device-info"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/device-info"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/device-info"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/device-info"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/device-info"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/device-info"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/mortgage-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/mortgage-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/mortgage-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/mortgage-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/mortgage-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/mortgage-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/mortgage-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/mortgage-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/mortgage-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/mortgage-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/mortgage-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/investment-return</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/investment-return"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/investment-return"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/investment-return"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/investment-return"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/investment-return"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/investment-return"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/investment-return"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/investment-return"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/investment-return"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/investment-return"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/roi-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/roi-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/roi-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/roi-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/roi-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/roi-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/roi-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/roi-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/roi-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/roi-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/roi-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/domain-valuation</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/domain-valuation"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/domain-valuation"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/domain-valuation"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/domain-valuation"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/domain-valuation"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/domain-valuation"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/domain-valuation"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/domain-valuation"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/domain-valuation"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/domain-valuation"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/perpetual-calendar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/perpetual-calendar"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/perpetual-calendar"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/perpetual-calendar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/perpetual-calendar"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/perpetual-calendar"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/perpetual-calendar"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/perpetual-calendar"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/perpetual-calendar"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/perpetual-calendar"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/perpetual-calendar"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/date-diff</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/date-diff"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/date-diff"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/date-diff"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/date-diff"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/date-diff"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/date-diff"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/date-diff"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/date-diff"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/date-diff"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/date-diff"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/kinship-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/kinship-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/kinship-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/kinship-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/kinship-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/kinship-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/kinship-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/kinship-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/kinship-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/kinship-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/kinship-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/lottery-ssq</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/lottery-ssq"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/lottery-ssq"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/lottery-ssq"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/lottery-ssq"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/lottery-ssq"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/lottery-ssq"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/lottery-ssq"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/lottery-ssq"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/lottery-ssq"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/lottery-ssq"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/english-name</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/english-name"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/english-name"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/english-name"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/english-name"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/english-name"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/english-name"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/english-name"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/english-name"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/english-name"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/english-name"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/i18n-manager</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/i18n-manager"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/i18n-manager"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/i18n-manager"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/i18n-manager"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/i18n-manager"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/i18n-manager"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/i18n-manager"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/i18n-manager"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/i18n-manager"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/i18n-manager"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/base64</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/base64"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/url-encoder</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/url-encoder"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/url-encoder"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/url-encoder"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/url-encoder"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/url-encoder"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/url-encoder"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/url-encoder"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/url-encoder"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/url-encoder"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/url-encoder"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/uuid-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/uuid-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/sql-formatter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/sql-formatter"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/sql-table-extractor</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/sql-table-extractor"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/sql-table-extractor"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/sql-table-extractor"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/sql-table-extractor"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/sql-table-extractor"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/sql-table-extractor"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/sql-table-extractor"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/sql-table-extractor"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/sql-table-extractor"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/sql-table-extractor"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/sql-column-extractor</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/sql-column-extractor"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/sql-column-extractor"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/sql-column-extractor"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/sql-column-extractor"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/sql-column-extractor"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/sql-column-extractor"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/sql-column-extractor"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/sql-column-extractor"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/sql-column-extractor"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/sql-column-extractor"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/sql-mermaid</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/sql-mermaid"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/sql-mermaid"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/sql-mermaid"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/sql-mermaid"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/sql-mermaid"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/sql-mermaid"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/sql-mermaid"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/sql-mermaid"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/sql-mermaid"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/sql-mermaid"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/sql-review</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/sql-review"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/sql-review"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/sql-review"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/sql-review"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/sql-review"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/sql-review"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/sql-review"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/sql-review"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/sql-review"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/sql-review"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-schema-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-schema-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-schema-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-schema-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-schema-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-schema-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-schema-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-schema-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-schema-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-schema-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-schema-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/data-faker</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/data-faker"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/data-faker"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/data-faker"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/data-faker"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/data-faker"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/data-faker"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/data-faker"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/data-faker"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/data-faker"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/data-faker"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/docker-run-builder</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/docker-run-builder"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/docker-run-builder"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/docker-run-builder"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/docker-run-builder"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/docker-run-builder"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/docker-run-builder"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/docker-run-builder"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/docker-run-builder"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/docker-run-builder"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/docker-run-builder"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/docker-compose-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/docker-compose-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/docker-compose-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/docker-compose-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/docker-compose-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/docker-compose-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/docker-compose-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/docker-compose-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/docker-compose-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/docker-compose-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/docker-compose-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/k8s-yaml-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/k8s-yaml-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/k8s-yaml-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/k8s-yaml-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/k8s-yaml-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/k8s-yaml-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/k8s-yaml-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/k8s-yaml-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/k8s-yaml-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/k8s-yaml-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/k8s-yaml-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/k8s-resource-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/k8s-resource-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/k8s-resource-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/k8s-resource-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/k8s-resource-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/k8s-resource-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/k8s-resource-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/k8s-resource-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/k8s-resource-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/k8s-resource-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/k8s-resource-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/systemd-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/systemd-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/systemd-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/systemd-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/systemd-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/systemd-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/systemd-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/systemd-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/systemd-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/systemd-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/systemd-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/token-counter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/token-counter"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/token-counter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/token-counter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/token-counter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/token-counter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/token-counter"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/token-counter"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/token-counter"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/token-counter"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/token-counter"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/prompt-builder</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/prompt-builder"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/prompt-builder"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/prompt-builder"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/prompt-builder"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/prompt-builder"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/prompt-builder"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/prompt-builder"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/prompt-builder"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/prompt-builder"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/prompt-builder"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/prompt-diff</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/prompt-diff"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/prompt-diff"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/prompt-diff"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/prompt-diff"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/prompt-diff"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/prompt-diff"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/prompt-diff"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/prompt-diff"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/prompt-diff"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/prompt-diff"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/rag-chunk-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/rag-chunk-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/rag-chunk-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/rag-chunk-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/rag-chunk-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/rag-chunk-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/rag-chunk-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/rag-chunk-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/rag-chunk-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/rag-chunk-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/rag-chunk-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/ai-cost-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/ai-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/ai-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/ai-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/ai-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/ai-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/ai-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/ai-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/ai-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/ai-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/ai-cost-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/llm-request-builder</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/llm-request-builder"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/llm-request-builder"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/llm-request-builder"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/llm-request-builder"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/llm-request-builder"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/llm-request-builder"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/llm-request-builder"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/llm-request-builder"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/llm-request-builder"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/llm-request-builder"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/web3/wallet-analyzer</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/web3/wallet-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/web3/wallet-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/web3/wallet-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/web3/wallet-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/web3/wallet-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/web3/wallet-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/web3/wallet-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/web3/wallet-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/web3/wallet-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/web3/wallet-analyzer"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/web3/ens-lookup</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/web3/ens-lookup"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/web3/ens-lookup"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/web3/ens-lookup"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/web3/ens-lookup"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/web3/ens-lookup"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/web3/ens-lookup"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/web3/ens-lookup"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/web3/ens-lookup"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/web3/ens-lookup"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/web3/ens-lookup"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/web3/gas-tracker</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/web3/gas-tracker"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/web3/gas-tracker"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/web3/gas-tracker"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/web3/gas-tracker"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/web3/gas-tracker"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/web3/gas-tracker"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/web3/gas-tracker"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/web3/gas-tracker"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/web3/gas-tracker"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/web3/gas-tracker"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/web3/tx-hash-identifier</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/web3/tx-hash-identifier"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/web3/tx-hash-identifier"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/web3/tx-hash-identifier"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/web3/tx-hash-identifier"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/web3/tx-hash-identifier"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/web3/tx-hash-identifier"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/web3/tx-hash-identifier"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/web3/tx-hash-identifier"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/web3/tx-hash-identifier"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/web3/tx-hash-identifier"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/web3/token-approval-checker</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/web3/token-approval-checker"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/web3/token-approval-checker"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/web3/token-approval-checker"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/web3/token-approval-checker"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/web3/token-approval-checker"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/web3/token-approval-checker"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/web3/token-approval-checker"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/web3/token-approval-checker"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/web3/token-approval-checker"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/web3/token-approval-checker"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/web3/token-risk-scanner</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/web3/token-risk-scanner"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/web3/token-risk-scanner"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/web3/token-risk-scanner"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/web3/token-risk-scanner"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/web3/token-risk-scanner"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/web3/token-risk-scanner"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/web3/token-risk-scanner"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/web3/token-risk-scanner"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/web3/token-risk-scanner"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/web3/token-risk-scanner"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/web3/tx-decoder</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/web3/tx-decoder"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/web3/tx-decoder"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/web3/tx-decoder"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/web3/tx-decoder"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/web3/tx-decoder"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/web3/tx-decoder"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/web3/tx-decoder"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/web3/tx-decoder"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/web3/tx-decoder"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/web3/tx-decoder"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/web3/token-holder-analyzer</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/web3/token-holder-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/web3/token-holder-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/web3/token-holder-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/web3/token-holder-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/web3/token-holder-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/web3/token-holder-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/web3/token-holder-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/web3/token-holder-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/web3/token-holder-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/web3/token-holder-analyzer"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/web3/wallet-pnl</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/web3/wallet-pnl"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/web3/wallet-pnl"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/web3/wallet-pnl"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/web3/wallet-pnl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/web3/wallet-pnl"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/web3/wallet-pnl"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/web3/wallet-pnl"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/web3/wallet-pnl"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/web3/wallet-pnl"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/web3/wallet-pnl"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/web3/whale-tracker</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/web3/whale-tracker"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/web3/whale-tracker"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/web3/whale-tracker"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/web3/whale-tracker"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/web3/whale-tracker"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/web3/whale-tracker"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/web3/whale-tracker"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/web3/whale-tracker"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/web3/whale-tracker"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/web3/whale-tracker"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/games</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/games"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/games"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/games"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/games"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/games"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/games"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/games"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/games"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/games"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/games"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/margin-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/margin-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/margin-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/margin-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/margin-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/margin-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/margin-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/margin-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/margin-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/margin-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/margin-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/discount-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/discount-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/discount-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/discount-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/discount-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/discount-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/discount-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/discount-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/discount-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/discount-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/discount-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/break-even-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/break-even-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/break-even-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/break-even-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/break-even-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/break-even-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/break-even-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/break-even-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/break-even-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/break-even-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/break-even-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/tip-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/tip-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/tip-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/tip-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/tip-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/tip-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/tip-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/tip-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/tip-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/tip-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/tip-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/size-converter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/size-converter"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/size-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/size-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/size-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/size-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/size-converter"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/size-converter"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/size-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/size-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/size-converter"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/seller-profit-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/seller-profit-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/seller-profit-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/seller-profit-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/seller-profit-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/seller-profit-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/seller-profit-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/seller-profit-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/seller-profit-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/seller-profit-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/seller-profit-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/marketplace-fee-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/marketplace-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/marketplace-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/marketplace-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/marketplace-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/marketplace-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/marketplace-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/marketplace-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/marketplace-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/marketplace-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/marketplace-fee-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/vat-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/vat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/vat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/vat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/vat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/vat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/vat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/vat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/vat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/vat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/vat-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/currency-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/currency-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/currency-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/currency-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/currency-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/currency-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/currency-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/currency-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/currency-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/currency-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/currency-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/time-zone-converter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/time-zone-converter"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/time-zone-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/time-zone-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/time-zone-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/time-zone-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/time-zone-converter"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/time-zone-converter"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/time-zone-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/time-zone-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/time-zone-converter"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/import-duty-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/import-duty-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/import-duty-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/import-duty-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/import-duty-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/import-duty-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/import-duty-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/import-duty-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/import-duty-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/import-duty-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/import-duty-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/invoice-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/invoice-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/invoice-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/invoice-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/invoice-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/invoice-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/invoice-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/invoice-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/invoice-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/invoice-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/invoice-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/freelancer-rate-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/freelancer-rate-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/freelancer-rate-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/freelancer-rate-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/freelancer-rate-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/freelancer-rate-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/freelancer-rate-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/freelancer-rate-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/freelancer-rate-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/freelancer-rate-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/freelancer-rate-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/shipping-box-optimizer</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/shipping-box-optimizer"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/shipping-box-optimizer"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/shipping-box-optimizer"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/shipping-box-optimizer"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/shipping-box-optimizer"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/shipping-box-optimizer"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/shipping-box-optimizer"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/shipping-box-optimizer"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/shipping-box-optimizer"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/shipping-box-optimizer"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/product-cost-breakdown</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/product-cost-breakdown"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/product-cost-breakdown"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/product-cost-breakdown"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/product-cost-breakdown"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/product-cost-breakdown"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/product-cost-breakdown"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/product-cost-breakdown"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/product-cost-breakdown"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/product-cost-breakdown"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/product-cost-breakdown"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/business-name-checker</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/business-name-checker"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/business-name-checker"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/business-name-checker"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/business-name-checker"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/business-name-checker"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/business-name-checker"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/business-name-checker"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/business-name-checker"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/business-name-checker"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/business-name-checker"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/hs-code-lookup</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/hs-code-lookup"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/hs-code-lookup"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/hs-code-lookup"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/hs-code-lookup"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/hs-code-lookup"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/hs-code-lookup"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/hs-code-lookup"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/hs-code-lookup"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/hs-code-lookup"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/hs-code-lookup"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/contract-template-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/contract-template-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/contract-template-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/contract-template-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/contract-template-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/contract-template-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/contract-template-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/contract-template-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/contract-template-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/contract-template-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/contract-template-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/time-tracker</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/time-tracker"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/time-tracker"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/time-tracker"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/time-tracker"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/time-tracker"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/time-tracker"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/time-tracker"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/time-tracker"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/time-tracker"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/time-tracker"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/zakat-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/zakat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/zakat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/zakat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/zakat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/zakat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/zakat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/zakat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/zakat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/zakat-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/zakat-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/holiday-calendar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/holiday-calendar"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/holiday-calendar"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/holiday-calendar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/holiday-calendar"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/holiday-calendar"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/holiday-calendar"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/holiday-calendar"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/holiday-calendar"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/holiday-calendar"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/holiday-calendar"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/pph21-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/pph21-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/pph21-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/pph21-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/pph21-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/pph21-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/pph21-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/pph21-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/pph21-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/pph21-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/pph21-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/crypto-capital-gains-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/crypto-capital-gains-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/crypto-capital-gains-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/crypto-capital-gains-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/crypto-capital-gains-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/crypto-capital-gains-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/crypto-capital-gains-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/crypto-capital-gains-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/crypto-capital-gains-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/crypto-capital-gains-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/crypto-capital-gains-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/sss-philhealth-pagibig</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/sss-philhealth-pagibig"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/sss-philhealth-pagibig"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/sss-philhealth-pagibig"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/sss-philhealth-pagibig"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/sss-philhealth-pagibig"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/sss-philhealth-pagibig"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/sss-philhealth-pagibig"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/sss-philhealth-pagibig"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/sss-philhealth-pagibig"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/sss-philhealth-pagibig"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/vat-reverse-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/vat-reverse-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/vat-reverse-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/vat-reverse-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/vat-reverse-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/vat-reverse-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/vat-reverse-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/vat-reverse-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/vat-reverse-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/vat-reverse-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/vat-reverse-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/packing-list-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/packing-list-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/packing-list-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/packing-list-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/packing-list-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/packing-list-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/packing-list-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/packing-list-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/packing-list-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/packing-list-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/packing-list-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/repricing-tool</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/repricing-tool"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/repricing-tool"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/repricing-tool"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/repricing-tool"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/repricing-tool"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/repricing-tool"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/repricing-tool"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/repricing-tool"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/repricing-tool"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/repricing-tool"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/fx-spread-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/fx-spread-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/fx-spread-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/fx-spread-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/fx-spread-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/fx-spread-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/fx-spread-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/fx-spread-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/fx-spread-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/fx-spread-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/fx-spread-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/keyword-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/keyword-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/keyword-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/keyword-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/keyword-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/keyword-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/keyword-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/keyword-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/keyword-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/keyword-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/keyword-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/business-registration-guide</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/business-registration-guide"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/business-registration-guide"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/business-registration-guide"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/business-registration-guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/business-registration-guide"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/business-registration-guide"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/business-registration-guide"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/business-registration-guide"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/business-registration-guide"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/business-registration-guide"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/ai-customer-reply</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/ai-customer-reply"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/ai-customer-reply"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/ai-customer-reply"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/ai-customer-reply"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/ai-customer-reply"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/ai-customer-reply"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/ai-customer-reply"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/ai-customer-reply"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/ai-customer-reply"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/ai-customer-reply"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/ai-product-desc</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/ai-product-desc"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/ai-product-desc"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/ai-product-desc"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/ai-product-desc"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/ai-product-desc"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/ai-product-desc"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/ai-product-desc"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/ai-product-desc"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/ai-product-desc"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/ai-product-desc"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/ai-review</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/ai-review"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/ai-review"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/ai-review"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/ai-review"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/ai-review"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/ai-review"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/ai-review"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/ai-review"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/ai-review"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/ai-review"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/ai-seo</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/ai-seo"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/ai-seo"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/ai-seo"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/ai-seo"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/ai-seo"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/ai-seo"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/ai-seo"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/ai-seo"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/ai-seo"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/ai-seo"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/ai-whatsapp</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/ai-whatsapp"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/ai-whatsapp"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/ai-whatsapp"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/ai-whatsapp"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/ai-whatsapp"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/ai-whatsapp"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/ai-whatsapp"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/ai-whatsapp"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/ai-whatsapp"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/ai-whatsapp"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/hijri-calendar-converter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/hijri-calendar-converter"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/hijri-calendar-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/hijri-calendar-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/hijri-calendar-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/hijri-calendar-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/hijri-calendar-converter"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/hijri-calendar-converter"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/hijri-calendar-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/hijri-calendar-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/hijri-calendar-converter"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/pix-key-validator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/pix-key-validator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/pix-key-validator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/pix-key-validator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/pix-key-validator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/pix-key-validator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/pix-key-validator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/pix-key-validator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/pix-key-validator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/pix-key-validator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/pix-key-validator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/brazil-tax-id-tool</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/brazil-tax-id-tool"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/brazil-tax-id-tool"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/brazil-tax-id-tool"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/brazil-tax-id-tool"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/brazil-tax-id-tool"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/brazil-tax-id-tool"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/brazil-tax-id-tool"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/brazil-tax-id-tool"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/brazil-tax-id-tool"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/brazil-tax-id-tool"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/withholding-tax-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/withholding-tax-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/withholding-tax-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/withholding-tax-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/withholding-tax-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/withholding-tax-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/withholding-tax-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/withholding-tax-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/withholding-tax-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/withholding-tax-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/withholding-tax-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/landed-cost-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/landed-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/landed-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/landed-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/landed-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/landed-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/landed-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/landed-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/landed-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/landed-cost-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/landed-cost-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/payment-fee-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/payment-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/payment-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/payment-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/payment-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/payment-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/payment-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/payment-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/payment-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/payment-fee-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/payment-fee-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/cost-to-company-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/cost-to-company-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/cost-to-company-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/cost-to-company-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/cost-to-company-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/cost-to-company-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/cost-to-company-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/cost-to-company-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/cost-to-company-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/cost-to-company-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/cost-to-company-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/rtl-text-length-estimator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/rtl-text-length-estimator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/rtl-text-length-estimator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/rtl-text-length-estimator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/rtl-text-length-estimator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/rtl-text-length-estimator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/rtl-text-length-estimator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/rtl-text-length-estimator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/rtl-text-length-estimator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/rtl-text-length-estimator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/rtl-text-length-estimator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/payment-deadline-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/payment-deadline-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/payment-deadline-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/payment-deadline-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/payment-deadline-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/payment-deadline-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/payment-deadline-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/payment-deadline-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/payment-deadline-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/payment-deadline-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/payment-deadline-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/price-sync-simulator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/price-sync-simulator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/price-sync-simulator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/price-sync-simulator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/price-sync-simulator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/price-sync-simulator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/price-sync-simulator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/price-sync-simulator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/price-sync-simulator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/price-sync-simulator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/price-sync-simulator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/freelancer-retainer-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/freelancer-retainer-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/freelancer-retainer-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/freelancer-retainer-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/freelancer-retainer-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/freelancer-retainer-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/freelancer-retainer-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/freelancer-retainer-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/freelancer-retainer-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/freelancer-retainer-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/freelancer-retainer-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/contract-clause-checker</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/contract-clause-checker"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/contract-clause-checker"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/contract-clause-checker"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/contract-clause-checker"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/contract-clause-checker"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/contract-clause-checker"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/contract-clause-checker"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/contract-clause-checker"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/contract-clause-checker"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/contract-clause-checker"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/size-chart-converter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/size-chart-converter"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/size-chart-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/size-chart-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/size-chart-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/size-chart-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/size-chart-converter"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/size-chart-converter"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/size-chart-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/size-chart-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/size-chart-converter"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/games/snake</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/games/snake"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/games/snake"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/games/snake"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/games/snake"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/games/snake"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/games/snake"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/games/snake"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/games/snake"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/games/snake"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/games/snake"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/games/tetris</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/games/tetris"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/games/tetris"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/games/tetris"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/games/tetris"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/games/tetris"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/games/tetris"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/games/tetris"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/games/tetris"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/games/tetris"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/games/tetris"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/games/gomoku</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/games/gomoku"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/games/gomoku"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/games/gomoku"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/games/gomoku"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/games/gomoku"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/games/gomoku"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/games/gomoku"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/games/gomoku"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/games/gomoku"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/games/gomoku"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/games/dino</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/games/dino"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/games/dino"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/games/dino"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/games/dino"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/games/dino"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/games/dino"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/games/dino"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/games/dino"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/games/dino"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/games/dino"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/games/minesweeper</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/games/minesweeper"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/games/minesweeper"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/games/minesweeper"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/games/minesweeper"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/games/minesweeper"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/games/minesweeper"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/games/minesweeper"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/games/minesweeper"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/games/minesweeper"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/games/minesweeper"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/games/2048</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/games/2048"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/games/2048"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/games/2048"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/games/2048"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/games/2048"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/games/2048"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/games/2048"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/games/2048"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/games/2048"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/games/2048"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/games/link-match</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/games/link-match"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/games/link-match"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/games/link-match"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/games/link-match"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/games/link-match"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/games/link-match"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/games/link-match"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/games/link-match"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/games/link-match"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/games/link-match"/>
+  </url>
+</urlset>
