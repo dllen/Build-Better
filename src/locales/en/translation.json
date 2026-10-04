@@ -472,7 +472,7 @@
       "desc": "Extract column names from SQL SELECT statements with occurrence counts."
     },
     "sql-mermaid": {
-      "name": "SQL → Mermaid",
+      "name": "SQL \u2192 Mermaid",
       "desc": "Parse CREATE TABLE DDL to generate Mermaid ER diagram code."
     },
     "sql-review": {
@@ -873,7 +873,7 @@
       "net_wealth": "Net Zakat-able Wealth",
       "nisab": "Nisab Threshold",
       "zakat_due": "Zakat Due",
-      "below_nisab": "Below Nisab — No Zakat",
+      "below_nisab": "Below Nisab \u2014 No Zakat",
       "rate": "Rate",
       "nisab_gold": "Gold Nisab (85g)",
       "nisab_silver": "Silver Nisab (595g)",
@@ -1075,6 +1075,54 @@
       "generating": "Generating...",
       "copy": "Copy All",
       "enter_values": "Configure your business details to generate replies"
+    },
+    "landedCost": {
+      "title": "Landed Cost Calculator",
+      "subtitle": "Calculate total import landed cost including shipping, duties, and VAT",
+      "product_value": "Product Value (USD)",
+      "quantity": "Quantity (units)",
+      "shipping_method": {
+        "label": "Shipping Method",
+        "sea": "Sea",
+        "air": "Air",
+        "express": "Express"
+      },
+      "weight": "Weight",
+      "volume": "Volume (optional)",
+      "destination": "Destination Country",
+      "hs_code": "HS Code (optional)",
+      "duty_rate": "Customs Duty Rate (%)",
+      "vat_rate": "Import VAT Rate (%)",
+      "insurance": "Insurance",
+      "clearance_fee": "Clearance Fee",
+      "other_costs": "Other Costs",
+      "fob_value": "FOB Value",
+      "shipping_cost": "Shipping Cost",
+      "customs_duty": "Customs Duty",
+      "import_vat": "Import VAT",
+      "clearance_other": "Clearance & Other",
+      "total_landed_cost": "Total Landed Cost",
+      "per_unit": "Per Unit Cost",
+      "copy": "Copy Results",
+      "enter_values": "Enter product details to calculate"
+    },
+    "paymentFee": {
+      "title": "Payment Fee Calculator",
+      "subtitle": "Compare payment processing fees across different methods",
+      "order_amount": "Order Amount (USD)",
+      "market_filter": "Filter by Market",
+      "rate": "Rate",
+      "fixed_fee": "Fixed",
+      "fee": "Fee",
+      "net": "Net",
+      "sorted_by_net": "Sorted by net amount (highest first)",
+      "recommended": "Best",
+      "savings": "Save",
+      "vs_visa": "vs Visa/Mastercard",
+      "no_methods": "No payment methods available for this market",
+      "enter_amount": "Enter order amount to compare fees",
+      "note_title": "Note",
+      "note_desc": "Rates are approximate and may vary. Verify with payment providers before use."
     }
   },
   "games": {
@@ -1125,7 +1173,7 @@
       "blue_win": "Blue Wins!",
       "den": "DEN",
       "trap": "TRAP",
-      "rules": "Rank: 🐘 > 🦁 > 🐯 > 🐆 > 🐺 > 🐕 > 🐈 > 🐀 (> 🐘)"
+      "rules": "Rank: \ud83d\udc18 > \ud83e\udd81 > \ud83d\udc2f > \ud83d\udc06 > \ud83d\udc3a > \ud83d\udc15 > \ud83d\udc08 > \ud83d\udc00 (> \ud83d\udc18)"
     },
     "flying_chess": {
       "title": "Flying Chess",
@@ -1180,7 +1228,7 @@
       "name": "Drawing Board",
       "desc": "Infinite-canvas drawing board with pen, shapes, arrows, sticky notes, and more.",
       "title": "Drawing Board",
-      "subtitle": "Sketch, diagram, and brainstorm on an infinite canvas — pressure ink, shapes, arrows, images, and more."
+      "subtitle": "Sketch, diagram, and brainstorm on an infinite canvas \u2014 pressure ink, shapes, arrows, images, and more."
     }
   },
   "categories": {
@@ -1197,5 +1245,9 @@
     "life": "Life",
     "games": "Games",
     "web3": "Web3"
+  },
+  "common": {
+    "copied": "Copied!",
+    "calculate": "Calculate"
   }
 }
