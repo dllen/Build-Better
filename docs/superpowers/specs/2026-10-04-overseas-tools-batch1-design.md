@@ -539,3 +539,221 @@ keywords={[
 - [ ] 响应式布局通过移动端测试
 - [ ] 无外部 API 依赖（纯前端）
 - [ ] 每个工具有对应的 `keywords` 传入 SEO 组件
+
+---
+
+## 7. Batch 2 工具详细设计
+
+### 7.1 RTL Text Length Estimator
+
+**Slug**: `/rtl-text-length-estimator`
+**文件**: `src/pages/tools/RtlTextLengthEstimator.tsx`
+**Icon**: `Type`，IconBg: `bg-amber-100`，IconColor: `text-amber-600`
+
+#### 功能
+
+- **用途**：估算等效中文/英文文本翻译为阿拉伯语/希伯来语后的长度（RTL 语言通常比 LTR 长 20–35%）
+- **输入**：纯文本或粘贴段落
+- **输出**：
+  - 字符数（原文）
+  - 估算 RTL 字符数（乘以系数，1.25 默认，可调整）
+  - 视觉行数估算（给定宽度/字体大小时）
+  - 字符密度对比图
+- **参考系数**：阿拉伯语 ≈ ×1.28，希伯来语 ≈ ×1.15，波斯语 ≈ ×1.22，乌尔都语 ≈ ×1.30
+
+#### 界面布局
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+输入文本：
+[____________________________]
+[____________________________]
+[____________________________]
+
+语言选择：
+[阿拉伯语 ▼]
+RTL 膨胀系数：1.28  （可拖动滑块 1.15–1.40）
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+原文长度：       300 字符
+RTL 估算长度：   384 字符
+增长：          +28%
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+预估 UI 行数（300px 宽）：7 行
+原始行数：         5 行
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+#### i18n key 前缀: `rtlTextLength`
+
+---
+
+### 7.2 Local Payment Deadline Calculator
+
+**Slug**: `/payment-deadline-calculator`
+**文件**: `src/pages/tools/PaymentDeadlineCalculator.tsx`
+**Icon**: `Clock`，IconBg: `bg-cyan-100`，IconColor: `text-cyan-600`
+
+#### 功能
+
+- **用途**：计算各市场本地付款账期截止日（Net 30/45/60/90，月初/月中/月底结算）
+- **支持账期类型**：
+  - Net 7 / 15 / 30 / 45 / 60 / 90
+  - End of Month (EOM) + N days
+  - 15th of Following Month (15th MF)
+  - Prepayment
+- **输入**：
+  - 发票日期
+  - 账期类型
+  - 市场（影响工作日/日历日规则）
+- **输出**：
+  - 到期日（日历日）
+  - 下一工作日（如遇节假日顺延）
+  - 工作日天数
+  - 是否已逾期（与当前日期比较）
+
+#### i18n key 前缀: `paymentDeadline`
+
+---
+
+### 7.3 Multi-Platform Price Sync Simulator
+
+**Slug**: `/price-sync-simulator`
+**文件**: `src/pages/tools/PriceSyncSimulator.tsx`
+**Icon**: `TrendingUp`，IconBg: `bg-teal-100`，IconColor: `text-teal-600`
+
+#### 功能
+
+- **用途**：模拟多平台定价策略，预测竞争力
+- **输入**：
+  - 商品成本（USD）
+  - 各平台当前售价（Shopee / TikTok Shop / Lazada / Amazon / MercadoLibre / Shopee PH / Shopee ID / Shopee MY）
+  - 各平台手续费率（可预设，可修改）
+  - 目标利润率
+- **输出**：
+  - 各平台：售价、手续费、利润、利润率
+  - 最优价格建议（对齐最低价 / 保护利润率 / 对齐竞争对手）
+  - 价格修改建议：如果某平台价格低于成本，提示调整方案
+- **交互**：拖动价格滑块，实时更新所有平台结果
+
+#### i18n key 前缀: `priceSync`
+
+---
+
+### 7.4 Freelancer Retainer Calculator
+
+**Slug**: `/freelancer-retainer-calculator`
+**文件**: `src/pages/tools/FreelancerRetainerCalculator.tsx`
+**Icon**: `Briefcase`，IconBg: `bg-violet-100`，IconColor: `text-violet-600`
+
+#### 功能
+
+- **用途**：自由职业者将按项目/按小时收入换算为月 retainers 标准报价
+- **三种计费模式**：
+  - 按小时：时薪 × 每月小时数
+  - 按项目：项目均价 × 月均项目数
+  - 按 retainer：固定月费（含多少小时/任务）
+- **输入**：
+  - 每年目标净收入（USD）
+  - 每年工作月数（扣除假期）
+  - 业务开销比例（工具/软件/保险/税费等，默认为 30%）
+  - 计费模式
+- **输出**：
+  - 月均收入目标
+  - 最低时薪报价
+  - 建议 retainer 月费（含 N 小时）
+  - 每小时单价
+  - 建议日薪（8 小时计）
+
+#### i18n key 前缀: `freelancerRetainer`
+
+---
+
+### 7.5 International Contract Clause Checker
+
+**Slug**: `/contract-clause-checker`
+**文件**: `src/pages/tools/ContractClauseChecker.tsx`
+**Icon**: `Scale`，IconBg: `bg-slate-100`，IconColor: `text-slate-600`
+
+#### 功能
+
+- **用途**：检查合同条款是否符合目标国家劳动法关键规定（筛查风险条款）
+- **支持国家**：沙特阿拉伯 / 印尼 / 越南 / 阿联酋 / 菲律宾
+- **检查条款**：
+  - 试用期长度（沙特最多 90 天，印尼最多 3 个月，越南最多 60 天）
+  - 年假天数（沙特 21 天，印尼 12 天工作日，越南 12 天）
+  - 加班工资倍数（工作日 1.5x / 休息日 2x / 节假日 3x）
+  - 社保强制缴纳
+  - 无故终止合同赔偿上限
+  - 竞业限制条款有效性
+- **输入**：
+  - 选择国家
+  - 粘贴或输入合同关键条款（文本）
+  - 或从预设清单勾选条款
+- **输出**：
+  - 每条检查：⚠️ 风险 / ✓ 合规 / ❓ 不确定
+  - 风险等级（高/中/低）
+  - 改善建议
+
+#### i18n key 前缀: `contractClause`
+
+---
+
+### 7.6 Crypto Capital Gains Calculator (Brazil / Kenya)
+
+**Slug**: `/crypto-capital-gains-calculator`
+**文件**: `src/pages/tools/CryptoCapitalGainsCalculator.tsx`
+**Icon**: `Coins`，IconBg: `bg-amber-100`，IconColor: `text-amber-600`
+
+#### 功能
+
+- **用途**：计算加密货币资本利得税（巴西 & 肯尼亚）
+- **巴西规则**：
+  - 免税门槛：月交易 < BRL 35,000（个人投资者）
+  - 超过门槛：收益的 15–22.5% 累进税率
+  - 计算：收益 = 卖出价 - 买入价（按 FIFO）
+- **肯尼亚规则**：
+  - 资本利得不收所得税（但兑换时可能有汇率收益）
+  - 实际：加密货币收益视为营业收入，10% 的流转税（WHT）
+  - 更简化版：按 10% WHT 计算
+- **输入**：
+  - 国家：巴西 / 肯尼亚
+  - 交易类型：买入 / 卖出
+  - 加密货币类型（BTC / ETH / USDT 等，主要影响价格波动参考）
+  - 购买价格（USD）
+  - 卖出价格（USD）
+  - 数量
+  - 交易日期
+- **输出**：
+  - 收益金额（USD）
+  - 适用税率
+  - 应纳税额
+  - 到手金额（扣除税后）
+
+#### i18n key 前缀: `cryptoCapitalGains`
+
+---
+
+### 7.7 Size Chart Converter
+
+**Slug**: `/size-chart-converter`
+**文件**: `src/pages/tools/SizeChartConverter.tsx`
+**Icon**: `Ruler`，IconBg: `bg-pink-100`，IconColor: `text-pink-600`
+
+#### 功能
+
+- **用途**：服装/鞋类尺码对照表，支持东南亚/拉美主要市场
+- **支持品类**：
+  - 服装：Tops（XS–XXL）、Bottoms（腰围）、Dresses
+  - 鞋类：US / EU / UK / CM 对照
+- **支持市场**：美国 / 英国 / 欧盟 / 中国 / 日本 / 印尼 / 菲律宾 / 巴西 / 越南 / 泰国
+- **交互**：
+  - 选择品类（Tops / Bottoms / Dresses / Shoes）
+  - 输入尺码（选择来源市场）
+  - 表格显示所有目标市场的对应尺码
+  - 高亮显示常用市场（印尼/菲律宾/越南）
+- **输出**：
+  - 完整尺码对照表
+  - 推荐尺码区间（适用于不同体型）
+
+#### i18n key 前缀: `sizeChart`
