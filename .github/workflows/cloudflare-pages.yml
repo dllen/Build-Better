@@ -146,7 +146,22 @@ jobs:
         with:
           node-version: 24
 
+      # Cache node_modules + puppeteer's downloaded Chrome binary so we skip
+      # both the install (~30s) and the ~120MB Chrome download (~30s) on warm
+      # runs. Key on package.json since package-lock.json is gitignored.
+      - name: Cache node_modules and Chrome
+        id: cache-deps
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ${{ runner.home }}/.cache/puppeteer
+          key: ${{ runner.os }}-node24-deps-${{ hashFiles('package.json', '.github/workflows/cloudflare-pages.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-node24-deps-
+
       - name: Install dependencies (puppeteer needed)
+        if: steps.cache-deps.outputs.cache-hit != 'true'
         run: npm install --legacy-peer-deps --no-audit
 
       - name: Download build artifact
