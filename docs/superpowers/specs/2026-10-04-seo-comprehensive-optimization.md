@@ -79,7 +79,9 @@ const toolPaths = pathMatches.map(m => m[1]);
 
 ### 2.3 组件 3：Core Web Vitals CI 监控
 
-**文件**：`.github/workflows/lighthouse-ci.yml`（新建）
+**文件**：`.github/workflows/lighthouse-ci.yml.disabled`（原 `.github/workflows/lighthouse-ci.yml`，2026-10-09 禁用，重命名后缀 `.disabled` 使其不再被 GitHub Actions 解析）
+
+**状态**：已禁用（不再在 PR/main 上运行）
 
 **目标指标**：
 | 指标 | 阈值 | 严重阈值 |
