@@ -526,6 +526,18 @@ export const TOOL_REGISTRY: ToolMeta[] = [
     keywords: ["dedup", "sort", "diff"],
   },
   {
+    id: "text-transpose",
+    path: "/text/transpose",
+    category: "text",
+    icon: ArrowRightLeft,
+    color: "text-sky-600",
+    bgColor: "bg-sky-100",
+    name: "Row ↔ Column Converter",
+    description: "行列互转：将逗号/空格分隔的行文本拆分为列，或将多行合并为一行。",
+    keywords: ["transpose", "row", "column", "split", "join", "行列转换"],
+    isNew: true,
+  },
+  {
     id: "text-cipher",
     path: "/text-cipher",
     category: "text",

@@ -29,6 +29,7 @@ import BaseConverter from "@/pages/tools/BaseConverter";
 import ColorHunt from "@/pages/tools/ColorHunt";
 import TextDeduper from "@/pages/tools/TextDeduper";
 import DedupSortDiff from "@/pages/tools/DedupSortDiff";
+import TextTranspose from "@/pages/tools/TextTranspose";
 import CronQuartz from "@/pages/tools/CronQuartz";
 import CalculatorTool from "@/pages/tools/Calculator";
 import BcryptTool from "@/pages/tools/BcryptTool";
@@ -267,6 +268,7 @@ export function AppRoutes() {
         <Route path="/text/stats" element={<TextStats />} />
         <Route path="/text/deduplicate" element={<TextDeduper />} />
         <Route path="/text/diff" element={<DedupSortDiff />} />
+        <Route path="/text/transpose" element={<TextTranspose />} />
         <Route path="/password-generator" element={<PasswordGenerator />} />
         <Route path="/text-diff" element={<TextDiff />} />
         <Route path="/text-deduper" element={<TextDeduper />} />
@@ -427,6 +429,7 @@ export function AppRoutes() {
         <Route path="/tools/text/stats" element={<Navigate to="/text/stats" replace />} />
         <Route path="/tools/text/deduplicate" element={<Navigate to="/text/deduplicate" replace />} />
         <Route path="/tools/text/diff" element={<Navigate to="/text/diff" replace />} />
+        <Route path="/tools/text/transpose" element={<Navigate to="/text/transpose" replace />} />
         <Route path="/tools/password-generator" element={<Navigate to="/password-generator" replace />} />
         <Route path="/tools/text-diff" element={<Navigate to="/text-diff" replace />} />
         <Route path="/tools/text-deduper" element={<Navigate to="/text-deduper" replace />} />

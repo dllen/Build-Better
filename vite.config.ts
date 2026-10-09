@@ -2,7 +2,11 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 import compression from "vite-plugin-compression";
-import mdx from "vite-plugin-mdx";
+import mdxPkg from "vite-plugin-mdx";
+
+// vite-plugin-mdx v3 CJS dist only sets exports.default, so the default
+// import can resolve to the module object instead of the plugin factory.
+const mdx = (mdxPkg as unknown as { default?: typeof mdxPkg }).default ?? mdxPkg;
 
 // https://vite.dev/config/
 export default defineConfig({
