@@ -164,6 +164,17 @@ jobs:
         if: steps.cache-deps.outputs.cache-hit != 'true'
         run: npm install --legacy-peer-deps --no-audit
 
+      # Self-heal the Chrome cache. The actions/cache step above may restore
+      # node_modules alongside a Chrome directory whose binary is missing or
+      # stale: puppeteer's postinstall silently swallows download errors
+      # (install.mjs: console.warn then exits 0), so a previous run can
+      # have cached an empty ~/.cache/puppeteer. `puppeteer browsers
+      # install chrome` is idempotent — it returns immediately when the
+      # binary is present, downloads only when missing, and fails loudly
+      # (unlike the silent postinstall) if the network is down.
+      - name: Ensure Chrome for Puppeteer is installed
+        run: npx puppeteer browsers install chrome
+
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
