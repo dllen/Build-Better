@@ -1125,6 +1125,30 @@
       "generating": "生成中...",
       "copy": "全部复制",
       "enter_values": "配置店铺信息以生成回复"
+    },
+    "json-to-sql": {
+      "name": "JSON 转 SQL",
+      "desc": "将 JSON 对象转换为 SQL CREATE TABLE 和 INSERT 语句。"
+    },
+    "sql-to-json": {
+      "name": "SQL 转 JSON",
+      "desc": "将 SQL CREATE TABLE 和 INSERT 语句转换为 JSON。"
+    },
+    "json-to-xml": {
+      "name": "JSON 转 XML",
+      "desc": "JSON 与 XML 互相转换。"
+    },
+    "json-to-yaml": {
+      "name": "JSON 转 YAML",
+      "desc": "JSON 与 YAML 互相转换。"
+    },
+    "json-to-toml": {
+      "name": "JSON 转 TOML",
+      "desc": "JSON 与 TOML 互相转换。"
+    },
+    "json-to-csv": {
+      "name": "JSON 转 CSV",
+      "desc": "JSON 数组与 CSV 互相转换。"
     }
   },
   "games": {

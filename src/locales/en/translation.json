@@ -1179,6 +1179,30 @@
       "enter_amount": "Enter order amount to compare fees",
       "note_title": "Note",
       "note_desc": "Rates are approximate and may vary. Verify with payment providers before use."
+    },
+    "json-to-sql": {
+      "name": "JSON to SQL",
+      "desc": "Convert JSON objects to SQL CREATE TABLE and INSERT statements."
+    },
+    "sql-to-json": {
+      "name": "SQL to JSON",
+      "desc": "Convert SQL CREATE TABLE and INSERT statements to JSON."
+    },
+    "json-to-xml": {
+      "name": "JSON to XML",
+      "desc": "Convert JSON to XML and XML to JSON."
+    },
+    "json-to-yaml": {
+      "name": "JSON to YAML",
+      "desc": "Convert JSON to YAML and YAML to JSON."
+    },
+    "json-to-toml": {
+      "name": "JSON to TOML",
+      "desc": "Convert JSON to TOML and TOML to JSON."
+    },
+    "json-to-csv": {
+      "name": "JSON to CSV",
+      "desc": "Convert JSON arrays to CSV and CSV to JSON."
     }
   },
   "games": {

@@ -10,3 +10,9 @@ export { languageConverters, convertLanguage, type LanguageTarget } from "./lang
 
 // Re-export format converter registry (populated in Task 4)
 export { formatConverters, convertFormat, type FormatTarget } from "./formats/index";
+
+// Reverse converters for bidirectional tools
+export { xmlToJson } from "./formats/xml.ts";
+export { yamlToJson } from "./formats/yaml.ts";
+export { tomlToJson } from "./formats/toml.ts";
+export { csvToJson } from "./formats/csv.ts";

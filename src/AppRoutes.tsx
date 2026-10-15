@@ -56,6 +56,12 @@ import JsonToCpp from "@/pages/tools/JsonToCpp";
 import JsonToPhp from "@/pages/tools/JsonToPhp";
 import JsonToScala from "@/pages/tools/JsonToScala";
 import JsonToGraphql from "@/pages/tools/JsonToGraphql";
+import JsonToSql from "@/pages/tools/JsonToSql";
+import SqlToJson from "@/pages/tools/SqlToJson";
+import JsonToXml from "@/pages/tools/JsonToXml";
+import JsonToYaml from "@/pages/tools/JsonToYaml";
+import JsonToToml from "@/pages/tools/JsonToToml";
+import JsonToCsv from "@/pages/tools/JsonToCsv";
 import ChmodCalculator from "@/pages/tools/ChmodCalculator";
 import TextStats from "@/pages/tools/TextStats";
 import UnitConverter from "@/pages/tools/UnitConverter";
@@ -258,6 +264,12 @@ export function AppRoutes() {
         <Route path="/json-to-php" element={<JsonToPhp />} />
         <Route path="/json-to-scala" element={<JsonToScala />} />
         <Route path="/json-to-graphql" element={<JsonToGraphql />} />
+        <Route path="/json-to-sql" element={<JsonToSql />} />
+        <Route path="/sql-to-json" element={<SqlToJson />} />
+        <Route path="/json-to-xml" element={<JsonToXml />} />
+        <Route path="/json-to-yaml" element={<JsonToYaml />} />
+        <Route path="/json-to-toml" element={<JsonToToml />} />
+        <Route path="/json-to-csv" element={<JsonToCsv />} />
         <Route path="/regex-tester" element={<RegexTester />} />
         <Route path="/markdown-html" element={<MarkdownHtml />} />
         <Route path="/email-md" element={<EmailMarkdown />} />
