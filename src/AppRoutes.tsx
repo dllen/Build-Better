@@ -65,6 +65,9 @@ import JsonSort from "@/pages/tools/JsonSort";
 import JsonCompress from "@/pages/tools/JsonCompress";
 import JsonClean from "@/pages/tools/JsonClean";
 import JsonToGet from "@/pages/tools/JsonToGet";
+import JsonPath from "@/pages/tools/JsonPath";
+import JsonMerge from "@/pages/tools/JsonMerge";
+import MatrixToJson from "@/pages/tools/MatrixToJson";
 import JsonToCsv from "@/pages/tools/JsonToCsv";
 import JsonToExcel from "@/pages/tools/JsonToExcel";
 import JsonToPostman from "@/pages/tools/JsonToPostman";
@@ -282,6 +285,9 @@ export function AppRoutes() {
         <Route path="/json-compress" element={<JsonCompress />} />
         <Route path="/json-clean" element={<JsonClean />} />
         <Route path="/json-get" element={<JsonToGet />} />
+        <Route path="/json-path" element={<JsonPath />} />
+        <Route path="/json-merge" element={<JsonMerge />} />
+        <Route path="/matrix-to-json" element={<MatrixToJson />} />
         <Route path="/regex-tester" element={<RegexTester />} />
         <Route path="/markdown-html" element={<MarkdownHtml />} />
         <Route path="/email-md" element={<EmailMarkdown />} />

@@ -1227,6 +1227,18 @@
     "json-get": {
       "name": "JSON to Query String",
       "desc": "Convert a JSON object to a URL query string for GET requests."
+    },
+    "json-path": {
+      "name": "JSONPath Evaluator",
+      "desc": "Query JSON data using JSONPath expressions."
+    },
+    "json-merge": {
+      "name": "JSON Merge",
+      "desc": "Merge two JSON objects with deep-merge or prefer strategies."
+    },
+    "matrix-to-json": {
+      "name": "Table to JSON",
+      "desc": "Convert a tab-delimited table to a JSON array of objects."
     }
   },
   "games": {

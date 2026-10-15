@@ -1173,6 +1173,18 @@
     "json-get": {
       "name": "JSON 转 Query",
       "desc": "将 JSON 对象转换为 URL 查询字符串用于 GET 请求。"
+    },
+    "json-path": {
+      "name": "JSONPath 查询",
+      "desc": "使用 JSONPath 表达式查询 JSON 数据。"
+    },
+    "json-merge": {
+      "name": "JSON 合并",
+      "desc": "合并两个 JSON 对象，支持深度合并或优先策略。"
+    },
+    "matrix-to-json": {
+      "name": "表格转 JSON",
+      "desc": "将制表符分隔的表格转换为 JSON 对象数组。"
     }
   },
   "games": {
