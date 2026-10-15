@@ -62,6 +62,8 @@ import JsonToXml from "@/pages/tools/JsonToXml";
 import JsonToYaml from "@/pages/tools/JsonToYaml";
 import JsonToToml from "@/pages/tools/JsonToToml";
 import JsonToCsv from "@/pages/tools/JsonToCsv";
+import JsonToExcel from "@/pages/tools/JsonToExcel";
+import JsonToPostman from "@/pages/tools/JsonToPostman";
 import ChmodCalculator from "@/pages/tools/ChmodCalculator";
 import TextStats from "@/pages/tools/TextStats";
 import UnitConverter from "@/pages/tools/UnitConverter";
@@ -270,6 +272,8 @@ export function AppRoutes() {
         <Route path="/json-to-yaml" element={<JsonToYaml />} />
         <Route path="/json-to-toml" element={<JsonToToml />} />
         <Route path="/json-to-csv" element={<JsonToCsv />} />
+        <Route path="/json-to-excel" element={<JsonToExcel />} />
+        <Route path="/json-to-postman" element={<JsonToPostman />} />
         <Route path="/regex-tester" element={<RegexTester />} />
         <Route path="/markdown-html" element={<MarkdownHtml />} />
         <Route path="/email-md" element={<EmailMarkdown />} />

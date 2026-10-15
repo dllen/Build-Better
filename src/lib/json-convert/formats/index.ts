@@ -21,6 +21,15 @@ formatConverters.toml = jsonToToml;
 import { jsonToCsv, csvToJson } from "./csv.ts";
 formatConverters.csv = jsonToCsv;
 
+import { jsonToExcelBase64 } from "./excel.ts";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+formatConverters.excel = ((() => {
+  throw new Error("Excel export is async; use jsonToExcelBase64() directly.");
+}) as unknown) as typeof formatConverters.excel;
+
+import { jsonToPostman } from "./postman.ts";
+formatConverters.postman = jsonToPostman;
+
 // Reverse converters — imported by tests and tool pages
 export { xmlToJson } from "./xml.ts";
 export { yamlToJson } from "./yaml.ts";

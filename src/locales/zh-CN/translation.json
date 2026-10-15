@@ -1149,6 +1149,14 @@
     "json-to-csv": {
       "name": "JSON 转 CSV",
       "desc": "JSON 数组与 CSV 互相转换。"
+    },
+    "json-to-excel": {
+      "name": "JSON 转 Excel",
+      "desc": "将 JSON 数组和对象转换为 Excel .xlsx 电子表格文件。"
+    },
+    "json-to-postman": {
+      "name": "JSON 转 Postman",
+      "desc": "将 JSON 对象转换为 Postman Collection v2.1 用于 API 测试。"
     }
   },
   "games": {

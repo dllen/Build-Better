@@ -1203,6 +1203,14 @@
     "json-to-csv": {
       "name": "JSON to CSV",
       "desc": "Convert JSON arrays to CSV and CSV to JSON."
+    },
+    "json-to-excel": {
+      "name": "JSON to Excel",
+      "desc": "Convert JSON arrays and objects to Excel .xlsx files for spreadsheet analysis."
+    },
+    "json-to-postman": {
+      "name": "JSON to Postman",
+      "desc": "Convert JSON objects to Postman Collection v2.1 for API testing."
     }
   },
   "games": {
