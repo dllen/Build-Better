@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { CalculatorShell } from "@/components/common/CalculatorShell";
 import { useTranslation } from "react-i18next";
 import { Percent, Tag, Copy } from "lucide-react";
@@ -17,7 +17,7 @@ export default function DiscountCalculator() {
   const [result, setResult] = useState<{ savings: number; final: number; pct: number } | null>(null);
   const [copied, setCopied] = useState(false);
 
-  const compute = () => {
+  const compute = useCallback(() => {
     const o = parseFloat(original);
     if (isNaN(o) || o <= 0) { setResult(null); return; }
     if (mode === "percent") {
@@ -31,9 +31,9 @@ export default function DiscountCalculator() {
       const savings = o - f;
       setResult({ savings, final: f, pct: (savings / o) * 100 });
     }
-  };
+  }, [original, mode, discountPct, finalPrice]);
 
-  React.useEffect(() => { compute(); }, [original, discountPct, finalPrice, mode]);
+  React.useEffect(() => { compute(); }, [compute]);
 
   const copy = () => {
     if (!result) return;

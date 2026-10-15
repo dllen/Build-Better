@@ -1,19 +1,4 @@
-import React from "react";
-import {
-  buildSoftwareApplicationLd,
-  buildBreadcrumbLd,
-  buildFAQPageLd,
-  buildHowToLd,
-  type JsonLdObject,
-} from "./jsonLdBuilders";
-
-export {
-  buildSoftwareApplicationLd,
-  buildBreadcrumbLd,
-  buildFAQPageLd,
-  buildHowToLd,
-  type JsonLdObject,
-};
+import type { JsonLdObject } from "./jsonLdBuilders";
 
 export function JsonLd({ graphs }: { graphs: JsonLdObject[] }) {
   return (

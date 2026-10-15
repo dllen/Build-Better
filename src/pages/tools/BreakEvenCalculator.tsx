@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { CalculatorShell } from "@/components/common/CalculatorShell";
 import { useTranslation } from "react-i18next";
 import { TrendingUp, Target, DollarSign, Copy } from "lucide-react";
@@ -21,7 +21,7 @@ export default function BreakEvenCalculator() {
   const [result, setResult] = useState<Result | null>(null);
   const [copied, setCopied] = useState(false);
 
-  const compute = () => {
+  const compute = useCallback(() => {
     const f = parseFloat(fixed), v = parseFloat(variable), p = parseFloat(price);
     if ([f, v, p].some(isNaN)) { setResult(null); return; }
     if (p <= v) {
@@ -33,9 +33,9 @@ export default function BreakEvenCalculator() {
     }
     const units = f / (p - v);
     setResult({ breakEvenUnits: units, breakEvenRevenue: units * p, contributionMargin: p - v });
-  };
+  }, [fixed, variable, price, t]);
 
-  React.useEffect(() => { compute(); }, [fixed, variable, price]);
+  React.useEffect(() => { compute(); }, [compute]);
 
   const copy = () => {
     if (!result) return;

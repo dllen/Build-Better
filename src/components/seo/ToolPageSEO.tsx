@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { ChevronDown, HelpCircle, X } from "lucide-react";
-import { JsonLd, buildSoftwareApplicationLd, buildBreadcrumbLd, buildFAQPageLd, buildHowToLd } from "./JsonLd";
+import { JsonLd } from "./JsonLd";
+import {
+  buildSoftwareApplicationLd,
+  buildBreadcrumbLd,
+  buildFAQPageLd,
+  buildHowToLd,
+} from "./jsonLdBuilders";
 import { RatingWidget } from "../RatingWidget";
 import { isTopTool } from "@/data/top-tools";
 

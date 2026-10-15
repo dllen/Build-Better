@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { CalculatorShell } from "@/components/common/CalculatorShell";
 import { Clock } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -110,7 +110,7 @@ export default function PaymentDeadlineCalculator() {
     colorClass: string;
   } | null>(null);
 
-  const calculate = () => {
+  const calculate = useCallback(() => {
     if (!invoiceDate) return;
 
     const term = PAYMENT_TERMS.find((t) => t.id === paymentTerm);
@@ -136,13 +136,13 @@ export default function PaymentDeadlineCalculator() {
       statusLabel: statusInfo.label,
       colorClass: statusInfo.colorClass,
     });
-  };
+  }, [invoiceDate, paymentTerm]);
 
   useEffect(() => {
     if (invoiceDate && paymentTerm) {
       calculate();
     }
-  }, [invoiceDate, market, paymentTerm]);
+  }, [invoiceDate, market, paymentTerm, calculate]);
 
   const resultNode = (
     <div className="space-y-6">

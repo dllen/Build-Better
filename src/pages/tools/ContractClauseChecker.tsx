@@ -243,7 +243,7 @@ export default function ContractClauseChecker() {
     }
 
     return res;
-  }, [country, values, countryRule, isZh]);
+  }, [values, countryRule, isZh]);
 
   const riskLevel = useMemo(() => {
     if (results.some((r) => r.status === "fail")) return "high";
