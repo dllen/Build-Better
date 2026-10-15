@@ -487,6 +487,58 @@
       "name": "JSON 转 TypeScript",
       "desc": "将 JSON 对象转换为 TypeScript 接口和类型定义。"
     },
+    "json-to-java": {
+      "name": "JSON 转 Java",
+      "desc": "将 JSON 对象转换为 Java 类定义，包含 Getter/Setter。"
+    },
+    "json-to-python": {
+      "name": "JSON 转 Python",
+      "desc": "将 JSON 对象转换为 Python dataclass 定义。"
+    },
+    "json-to-go": {
+      "name": "JSON 转 Go",
+      "desc": "将 JSON 对象转换为带 JSON 标签的 Go 结构体。"
+    },
+    "json-to-csharp": {
+      "name": "JSON 转 C#",
+      "desc": "将 JSON 对象转换为 C# 类定义，包含 get/set 属性。"
+    },
+    "json-to-kotlin": {
+      "name": "JSON 转 Kotlin",
+      "desc": "将 JSON 对象转换为 Kotlin data class 定义。"
+    },
+    "json-to-swift": {
+      "name": "JSON 转 Swift",
+      "desc": "将 JSON 对象转换为 Swift Codable 结构体。"
+    },
+    "json-to-rust": {
+      "name": "JSON 转 Rust",
+      "desc": "将 JSON 对象转换为带 serde 宏的 Rust 结构体。"
+    },
+    "json-to-dart": {
+      "name": "JSON 转 Dart",
+      "desc": "将 JSON 对象转换为带 fromJson 工厂的 Dart 类。"
+    },
+    "json-to-ruby": {
+      "name": "JSON 转 Ruby",
+      "desc": "将 JSON 对象转换为带 attr_accessor 的 Ruby 类。"
+    },
+    "json-to-cpp": {
+      "name": "JSON 转 C++",
+      "desc": "将 JSON 对象转换为 C++ 结构体，包含头文件引用。"
+    },
+    "json-to-php": {
+      "name": "JSON 转 PHP",
+      "desc": "将 JSON 对象转换为带类型属性的 PHP 类。"
+    },
+    "json-to-scala": {
+      "name": "JSON 转 Scala",
+      "desc": "将 JSON 对象转换为 Scala case class 定义。"
+    },
+    "json-to-graphql": {
+      "name": "JSON 转 GraphQL",
+      "desc": "将 JSON 对象转换为 GraphQL 类型定义。"
+    },
     "data-faker": {
       "name": "Data Faker",
       "desc": "批量生成测试假数据，支持 JSON/CSV/SQL 格式。"

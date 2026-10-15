@@ -487,6 +487,58 @@
       "name": "JSON to TypeScript",
       "desc": "Convert JSON objects to TypeScript interfaces and types."
     },
+    "json-to-java": {
+      "name": "JSON to Java",
+      "desc": "Convert JSON objects to Java classes with getters and setters."
+    },
+    "json-to-python": {
+      "name": "JSON to Python",
+      "desc": "Convert JSON objects to Python dataclasses."
+    },
+    "json-to-go": {
+      "name": "JSON to Go",
+      "desc": "Convert JSON objects to Go structs with JSON tags."
+    },
+    "json-to-csharp": {
+      "name": "JSON to C#",
+      "desc": "Convert JSON objects to C# classes with get/set properties."
+    },
+    "json-to-kotlin": {
+      "name": "JSON to Kotlin",
+      "desc": "Convert JSON objects to Kotlin data classes."
+    },
+    "json-to-swift": {
+      "name": "JSON to Swift",
+      "desc": "Convert JSON objects to Swift Codable structs."
+    },
+    "json-to-rust": {
+      "name": "JSON to Rust",
+      "desc": "Convert JSON objects to Rust structs with serde derives."
+    },
+    "json-to-dart": {
+      "name": "JSON to Dart",
+      "desc": "Convert JSON objects to Dart classes with fromJson factory."
+    },
+    "json-to-ruby": {
+      "name": "JSON to Ruby",
+      "desc": "Convert JSON objects to Ruby classes with attr_accessor."
+    },
+    "json-to-cpp": {
+      "name": "JSON to C++",
+      "desc": "Convert JSON objects to C++ structs with includes."
+    },
+    "json-to-php": {
+      "name": "JSON to PHP",
+      "desc": "Convert JSON objects to PHP classes with typed properties."
+    },
+    "json-to-scala": {
+      "name": "JSON to Scala",
+      "desc": "Convert JSON objects to Scala case classes."
+    },
+    "json-to-graphql": {
+      "name": "JSON to GraphQL",
+      "desc": "Convert JSON objects to GraphQL type definitions."
+    },
     "data-faker": {
       "name": "Data Faker",
       "desc": "Generate mock data in JSON/CSV/SQL formats using @faker-js/faker."

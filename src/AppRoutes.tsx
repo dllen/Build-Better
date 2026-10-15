@@ -43,6 +43,19 @@ import RsaKeygen from "@/pages/tools/RsaKeygen";
 import KeycodeInfo from "@/pages/tools/KeycodeInfo";
 import JsonDiffTool from "@/pages/tools/JsonDiffTool";
 import JsonToTypescript from "@/pages/tools/JsonToTypescript";
+import JsonToJava from "@/pages/tools/JsonToJava";
+import JsonToPython from "@/pages/tools/JsonToPython";
+import JsonToGo from "@/pages/tools/JsonToGo";
+import JsonToCsharp from "@/pages/tools/JsonToCsharp";
+import JsonToKotlin from "@/pages/tools/JsonToKotlin";
+import JsonToSwift from "@/pages/tools/JsonToSwift";
+import JsonToRust from "@/pages/tools/JsonToRust";
+import JsonToDart from "@/pages/tools/JsonToDart";
+import JsonToRuby from "@/pages/tools/JsonToRuby";
+import JsonToCpp from "@/pages/tools/JsonToCpp";
+import JsonToPhp from "@/pages/tools/JsonToPhp";
+import JsonToScala from "@/pages/tools/JsonToScala";
+import JsonToGraphql from "@/pages/tools/JsonToGraphql";
 import ChmodCalculator from "@/pages/tools/ChmodCalculator";
 import TextStats from "@/pages/tools/TextStats";
 import UnitConverter from "@/pages/tools/UnitConverter";
@@ -232,6 +245,19 @@ export function AppRoutes() {
         <Route path="/json-editor" element={<JsonEditorTool />} />
         <Route path="/json-diff" element={<JsonDiffTool />} />
         <Route path="/json-to-typescript" element={<JsonToTypescript />} />
+        <Route path="/json-to-java" element={<JsonToJava />} />
+        <Route path="/json-to-python" element={<JsonToPython />} />
+        <Route path="/json-to-go" element={<JsonToGo />} />
+        <Route path="/json-to-csharp" element={<JsonToCsharp />} />
+        <Route path="/json-to-kotlin" element={<JsonToKotlin />} />
+        <Route path="/json-to-swift" element={<JsonToSwift />} />
+        <Route path="/json-to-rust" element={<JsonToRust />} />
+        <Route path="/json-to-dart" element={<JsonToDart />} />
+        <Route path="/json-to-ruby" element={<JsonToRuby />} />
+        <Route path="/json-to-cpp" element={<JsonToCpp />} />
+        <Route path="/json-to-php" element={<JsonToPhp />} />
+        <Route path="/json-to-scala" element={<JsonToScala />} />
+        <Route path="/json-to-graphql" element={<JsonToGraphql />} />
         <Route path="/regex-tester" element={<RegexTester />} />
         <Route path="/markdown-html" element={<MarkdownHtml />} />
         <Route path="/email-md" element={<EmailMarkdown />} />
