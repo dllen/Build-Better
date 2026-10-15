@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { FileCode2, Copy, Download, Trash2, Check, Loader2 } from "lucide-react";
+import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 type JsonPrimitive = string | number | boolean | null;
 
@@ -192,62 +193,41 @@ export default function JsonSchemaGenerator() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-violet-100 text-violet-600">
-          <FileCode2 className="h-5 w-5" />
-        </div>
-        <h1 className="text-2xl font-semibold">JSON Schema 生成器</h1>
-      </div>
-
-      <p className="text-sm text-gray-500">
-        数据仅在浏览器本地处理，不会上传到服务器。
-      </p>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              输入 JSON 样本
-            </label>
-            <textarea
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              placeholder={'例如：\n{\n  "name": "张三",\n  "age": 30,\n  "email": "zhang@example.com"\n}'}
-              className="w-full h-48 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono text-sm resize-y"
+    <EditorSplitLayout
+      title={
+        <>
+          <div className="inline-flex p-2 rounded-lg bg-violet-100 text-violet-600">
+            <FileCode2 className="h-5 w-5" />
+          </div>
+          <h1 className="text-2xl font-semibold">JSON Schema 生成器</h1>
+        </>
+      }
+      toolbar={
+        <>
+          <label className="inline-flex items-center gap-2 text-sm">
+            <input
+              type="checkbox"
+              checked={inferFormats}
+              onChange={(e) => setInferFormats(e.target.checked)}
             />
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">选项</label>
-            <div className="space-y-2">
-              <label className="inline-flex items-center gap-2 text-sm">
-                <input
-                  type="checkbox"
-                  checked={inferFormats}
-                  onChange={(e) => setInferFormats(e.target.checked)}
-                />
-                包含 format 推断（date-time, email, uri, date）
-              </label>
-              <label className="inline-flex items-center gap-2 text-sm">
-                <input
-                  type="checkbox"
-                  checked={allRequired}
-                  onChange={(e) => setAllRequired(e.target.checked)}
-                />
-                将所有字段标记为 required
-              </label>
-              <label className="inline-flex items-center gap-2 text-sm">
-                <input
-                  type="checkbox"
-                  checked={additionalPropertiesFalse}
-                  onChange={(e) => setAdditionalPropertiesFalse(e.target.checked)}
-                />
-                生成 additionalProperties: false
-              </label>
-            </div>
-          </div>
-
+            包含 format 推断（date-time, email, uri, date）
+          </label>
+          <label className="inline-flex items-center gap-2 text-sm">
+            <input
+              type="checkbox"
+              checked={allRequired}
+              onChange={(e) => setAllRequired(e.target.checked)}
+            />
+            将所有字段标记为 required
+          </label>
+          <label className="inline-flex items-center gap-2 text-sm">
+            <input
+              type="checkbox"
+              checked={additionalPropertiesFalse}
+              onChange={(e) => setAdditionalPropertiesFalse(e.target.checked)}
+            />
+            生成 additionalProperties: false
+          </label>
           <div className="flex flex-wrap gap-3">
             <button
               className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
@@ -281,25 +261,39 @@ export default function JsonSchemaGenerator() {
               清空
             </button>
           </div>
-
+        </>
+      }
+      inputLabel="输入 JSON 样本"
+      input={
+        <textarea
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          placeholder={'例如：\n{\n  "name": "张三",\n  "age": 30,\n  "email": "zhang@example.com"\n}'}
+          className="h-full w-full resize-none px-3 py-2 font-mono text-sm focus:outline-none"
+        />
+      }
+      outputLabel="生成的 JSON Schema"
+      output={
+        outputSchema ? (
+          <pre className="h-full overflow-auto px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words bg-gray-50">
+            {outputSchema}
+          </pre>
+        ) : (
+          <div className="px-3 py-2 text-sm text-gray-500">点击"生成"按钮将 JSON 样本转换为 JSON Schema (draft-07)</div>
+        )
+      }
+      footer={
+        <>
           {error && (
             <div className="text-sm text-red-600 whitespace-pre-wrap bg-red-50 rounded-md p-3 border border-red-200">
               {error}
             </div>
           )}
-        </div>
-
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="font-medium mb-2">生成的 JSON Schema</div>
-          {outputSchema ? (
-            <pre className="font-mono text-sm whitespace-pre-wrap break-words bg-gray-50 rounded-md p-3 overflow-auto max-h-96">
-              {outputSchema}
-            </pre>
-          ) : (
-            <div className="text-sm text-gray-500">点击"生成"按钮将 JSON 样本转换为 JSON Schema (draft-07)</div>
-          )}
-        </div>
-      </div>
-    </div>
+          <p className="text-sm text-gray-500">
+            数据仅在浏览器本地处理，不会上传到服务器。
+          </p>
+        </>
+      }
+    />
   );
 }

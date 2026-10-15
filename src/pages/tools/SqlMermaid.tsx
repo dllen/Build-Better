@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Database, Copy, Check, Trash2 } from "lucide-react";
+import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 interface Column {
   name: string;
@@ -228,68 +229,67 @@ export default function SqlMermaid() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-purple-100 text-purple-600">
-          <Database className="h-5 w-5" />
-        </div>
-        <h1 className="text-2xl font-semibold">SQL 转 Mermaid ER 图</h1>
-      </div>
-
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <p className="text-sm text-gray-500 mb-4">数据仅在浏览器本地处理，不会上传到服务器。</p>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">输入 DDL</label>
-            <textarea
-              value={ddl}
-              onChange={(e) => setDdl(e.target.value)}
-              placeholder={`粘贴 CREATE TABLE 语句，例如：\n\nCREATE TABLE users (\n  id INT PRIMARY KEY,\n  name VARCHAR(100),\n  email VARCHAR(255) UNIQUE\n);\n\nCREATE TABLE posts (\n  id INT PRIMARY KEY,\n  user_id INT REFERENCES users(id),\n  title VARCHAR(200),\n  content TEXT\n);`}
-              className="w-full h-64 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono text-sm"
-            />
+    <EditorSplitLayout
+      title={
+        <>
+          <div className="inline-flex p-2 rounded-lg bg-purple-100 text-purple-600">
+            <Database className="h-5 w-5" />
           </div>
-
+          <h1 className="text-2xl font-semibold">SQL 转 Mermaid ER 图</h1>
+        </>
+      }
+      toolbar={
+        <>
+          <button
+            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 hover:bg-blue-700 transition-colors"
+            onClick={generate}
+          >
+            生成
+          </button>
+          <button
+            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 hover:bg-gray-200 transition-colors disabled:opacity-50"
+            onClick={copy}
+            disabled={!output}
+          >
+            {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+            {copied ? "已复制" : "复制"}
+          </button>
+          <button
+            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 hover:bg-gray-200 transition-colors"
+            onClick={clear}
+          >
+            <Trash2 className="h-4 w-4" />
+            清空
+          </button>
+        </>
+      }
+      inputLabel="输入 DDL"
+      input={
+        <textarea
+          value={ddl}
+          onChange={(e) => setDdl(e.target.value)}
+          placeholder={`粘贴 CREATE TABLE 语句，例如：\n\nCREATE TABLE users (\n  id INT PRIMARY KEY,\n  name VARCHAR(100),\n  email VARCHAR(255) UNIQUE\n);`}
+          className="h-full w-full resize-none px-3 py-2 font-mono text-sm focus:outline-none"
+        />
+      }
+      outputLabel="Mermaid 代码"
+      output={
+        output ? (
+          <pre className="h-full overflow-auto px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words bg-gray-50">
+            {output}
+          </pre>
+        ) : (
+          <div className="h-full overflow-auto px-3 py-2 text-sm text-gray-500">
+            输入 DDL 后点击"生成"
+          </div>
+        )
+      }
+      footer={
+        <>
           {error && <div className="text-sm text-red-600 bg-red-50 rounded-md px-3 py-2">{error}</div>}
-
-          <div className="flex gap-3 flex-wrap">
-            <button
-              className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 hover:bg-blue-700 transition-colors"
-              onClick={generate}
-            >
-              生成
-            </button>
-            <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 hover:bg-gray-200 transition-colors disabled:opacity-50"
-              onClick={copy}
-              disabled={!output}
-            >
-              {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
-              {copied ? "已复制" : "复制"}
-            </button>
-            <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 hover:bg-gray-200 transition-colors"
-              onClick={clear}
-            >
-              <Trash2 className="h-4 w-4" />
-              清空
-            </button>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="font-medium mb-2 text-gray-700">Mermaid 代码</div>
-          {output ? (
-            <pre className="font-mono text-sm whitespace-pre-wrap break-words bg-gray-50 rounded-md p-4 overflow-auto max-h-[400px]">
-              {output}
-            </pre>
-          ) : (
-            <div className="text-sm text-gray-500">输入 DDL 后点击"生成"</div>
-          )}
-        </div>
-      </div>
-    </div>
+          <p className="text-xs text-gray-500">数据仅在浏览器本地处理，不会上传到服务器。</p>
+        </>
+      }
+    />
   );
 }

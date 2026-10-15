@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Shield, ClipboardCopy, Check } from "lucide-react";
 import { format, relativeTime } from "@/lib/date";
+import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 function b64urlToString(input: string) {
   const s = input.replace(/-/g, "+").replace(/_/g, "/");
@@ -108,134 +109,108 @@ export default function JwtDecodeTool() {
   }, [alg, claims, signatureBytes]);
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-violet-100 text-violet-600">
-          <Shield className="h-5 w-5" />
-        </div>
-        <h1 className="text-2xl font-semibold">JWT Decode</h1>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Token</label>
-          <textarea
-            className="w-full h-28 rounded-md border border-gray-300 px-3 py-2 font-mono"
-            placeholder="eyJhbGciOi...header.payload.signature"
-            value={token}
-            onChange={(e) => setToken(e.target.value)}
-          />
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
-          <div className="font-medium">Header</div>
-          {headerParsed.ok ? (
-            <div className="flex items-center gap-2">
-              <pre className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words">
+    <EditorSplitLayout
+      title={
+        <>
+          <div className="inline-flex p-2 rounded-lg bg-violet-100 text-violet-600">
+            <Shield className="h-5 w-5" />
+          </div>
+          <h1 className="text-2xl font-semibold">JWT Decode</h1>
+        </>
+      }
+      toolbar={
+        <>
+          <button
+            className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+            onClick={() => copy(pretty(headerParsed.value), "header")}
+            disabled={!headerParsed.ok}
+          >
+            <ClipboardCopy className="h-4 w-4" /> Copy Header{" "}
+            {copied.part === "header" && copied.ok ? (
+              <Check className="h-4 w-4 text-green-600" />
+            ) : null}
+          </button>
+          <button
+            className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+            onClick={() => copy(pretty(payloadParsed.value), "payload")}
+            disabled={!payloadParsed.ok}
+          >
+            <ClipboardCopy className="h-4 w-4" /> Copy Payload{" "}
+            {copied.part === "payload" && copied.ok ? (
+              <Check className="h-4 w-4 text-green-600" />
+            ) : null}
+          </button>
+          <button
+            className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+            onClick={() => copy(summary, "all")}
+            disabled={!summary}
+          >
+            <ClipboardCopy className="h-4 w-4" /> Copy All{" "}
+            {copied.part === "all" && copied.ok ? (
+              <Check className="h-4 w-4 text-green-600" />
+            ) : null}
+          </button>
+        </>
+      }
+      inputLabel="Token"
+      input={
+        <textarea
+          className="h-full w-full resize-none px-3 py-2 font-mono text-sm focus:outline-none"
+          placeholder="eyJhbGciOi...header.payload.signature"
+          value={token}
+          onChange={(e) => setToken(e.target.value)}
+          spellCheck={false}
+        />
+      }
+      outputLabel="Decoded"
+      output={
+        <div className="h-full overflow-auto px-3 py-2 space-y-4">
+          <section>
+            <div className="font-medium text-sm text-gray-700 mb-1">Header</div>
+            {headerParsed.ok ? (
+              <pre className="rounded-md border border-gray-200 px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words bg-gray-50">
                 {pretty(headerParsed.value)}
               </pre>
-              <button
-                className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
-                onClick={() => copy(pretty(headerParsed.value), "header")}
-              >
-                <ClipboardCopy className="h-4 w-4" /> Copy{" "}
-                {copied.part === "header" && copied.ok ? (
-                  <Check className="h-4 w-4 text-green-600" />
-                ) : null}
-              </button>
-            </div>
-          ) : (
-            <div className="text-sm text-red-600">Invalid header</div>
-          )}
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
-          <div className="font-medium">Payload</div>
-          {payloadParsed.ok ? (
-            <div className="flex items-center gap-2">
-              <pre className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words">
+            ) : (
+              <div className="text-sm text-red-600">Invalid header</div>
+            )}
+          </section>
+          <section>
+            <div className="font-medium text-sm text-gray-700 mb-1">Payload</div>
+            {payloadParsed.ok ? (
+              <pre className="rounded-md border border-gray-200 px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words bg-gray-50">
                 {pretty(payloadParsed.value)}
               </pre>
-              <button
-                className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
-                onClick={() => copy(pretty(payloadParsed.value), "payload")}
-              >
-                <ClipboardCopy className="h-4 w-4" /> Copy{" "}
-                {copied.part === "payload" && copied.ok ? (
-                  <Check className="h-4 w-4 text-green-600" />
-                ) : null}
-              </button>
-            </div>
-          ) : (
-            <div className="text-sm text-red-600">Invalid payload</div>
-          )}
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
-          <div className="font-medium">Claims</div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-            <div className="rounded-md border border-gray-200 px-3 py-2">alg: {alg || "—"}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
-              iss: {claims.iss || "—"}
-            </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
-              sub: {claims.sub || "—"}
-            </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
-              aud: {claims.aud || "—"}
-            </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
-              exp: {tsToDateString(claims.exp)} {tsRelative(claims.exp)}
-            </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
-              nbf: {tsToDateString(claims.nbf)} {tsRelative(claims.nbf)}
-            </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
-              iat: {tsToDateString(claims.iat)} {tsRelative(claims.iat)}
-            </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
-              jti: {claims.jti || "—"}
-            </div>
-          </div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
-          <div className="font-medium">Signature</div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div className="rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all">
+            ) : (
+              <div className="text-sm text-red-600">Invalid payload</div>
+            )}
+          </section>
+          <section>
+            <div className="font-medium text-sm text-gray-700 mb-1">Signature</div>
+            <div className="rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all bg-gray-50">
               {signatureStr || "—"}
             </div>
-            <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
-              onClick={() => copy(signatureStr, "signature")}
-              disabled={!signatureStr}
-            >
-              <ClipboardCopy className="h-4 w-4" /> Copy{" "}
-              {copied.part === "signature" && copied.ok ? (
-                <Check className="h-4 w-4 text-green-600" />
-              ) : null}
-            </button>
-          </div>
-          <div className="text-sm text-gray-600">bytes: {signatureBytes || 0}</div>
+            <div className="text-sm text-gray-600 mt-1">
+              bytes: {signatureBytes || 0}
+            </div>
+          </section>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
-          <div className="font-medium">Summary</div>
-          <div className="flex items-center gap-2">
-            <pre className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words">
-              {summary}
-            </pre>
-            <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
-              onClick={() => copy(summary, "all")}
-              disabled={!summary}
-            >
-              <ClipboardCopy className="h-4 w-4" /> Copy{" "}
-              {copied.part === "all" && copied.ok ? (
-                <Check className="h-4 w-4 text-green-600" />
-              ) : null}
-            </button>
+      }
+      footer={
+        <div className="rounded-lg border border-gray-200 bg-white p-3">
+          <div className="font-medium text-sm mb-2">Claims</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+            <div className="rounded border border-gray-200 px-2 py-1">alg: {alg || "—"}</div>
+            <div className="rounded border border-gray-200 px-2 py-1">iss: {claims.iss || "—"}</div>
+            <div className="rounded border border-gray-200 px-2 py-1">sub: {claims.sub || "—"}</div>
+            <div className="rounded border border-gray-200 px-2 py-1">aud: {claims.aud || "—"}</div>
+            <div className="rounded border border-gray-200 px-2 py-1">exp: {tsToDateString(claims.exp)} {tsRelative(claims.exp)}</div>
+            <div className="rounded border border-gray-200 px-2 py-1">nbf: {tsToDateString(claims.nbf)} {tsRelative(claims.nbf)}</div>
+            <div className="rounded border border-gray-200 px-2 py-1">iat: {tsToDateString(claims.iat)} {tsRelative(claims.iat)}</div>
+            <div className="rounded border border-gray-200 px-2 py-1">jti: {claims.jti || "—"}</div>
           </div>
         </div>
-      </div>
-    </div>
+      }
+    />
   );
 }

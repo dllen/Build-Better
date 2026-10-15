@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Binary, Copy, Check, Eraser, ArrowRightLeft } from "lucide-react";
+import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 type Mode = "encode" | "decode";
 
@@ -82,111 +83,109 @@ export default function Base64Tool() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
-          <Binary className="h-5 w-5" />
-        </div>
-        <h1 className="text-2xl font-semibold">Base64 编码/解码</h1>
-      </div>
-
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
-        <div className="flex flex-wrap items-center gap-4">
-          <div className="inline-flex rounded-md border border-gray-300 overflow-hidden">
-            <button
-              className={`px-4 py-2 text-sm inline-flex items-center gap-1 ${
-                mode === "encode"
-                  ? "bg-blue-600 text-white"
-                  : "bg-white text-gray-700"
-              }`}
-              onClick={() => switchMode("encode")}
-            >
-              编码
-            </button>
-            <button
-              className={`px-4 py-2 text-sm inline-flex items-center gap-1 ${
-                mode === "decode"
-                  ? "bg-blue-600 text-white"
-                  : "bg-white text-gray-700"
-              }`}
-              onClick={() => switchMode("decode")}
-            >
-              解码
-            </button>
+    <EditorSplitLayout
+      title={
+        <>
+          <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+            <Binary className="h-5 w-5" />
           </div>
-          <label className="inline-flex items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={urlSafe}
-              onChange={(e) => setUrlSafe(e.target.checked)}
-            />
-            URL 安全（Base64URL，去掉末尾 =）
-          </label>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">
-              {mode === "encode" ? "输入（明文）" : "输入（Base64）"}
+          <h1 className="text-2xl font-semibold">Base64 编码/解码</h1>
+        </>
+      }
+      toolbar={
+          <>
+            <div className="inline-flex rounded-md border border-gray-300 overflow-hidden">
+              <button
+                className={`px-4 py-2 text-sm inline-flex items-center gap-1 ${
+                  mode === "encode"
+                    ? "bg-blue-600 text-white"
+                    : "bg-white text-gray-700"
+                }`}
+                onClick={() => switchMode("encode")}
+              >
+                编码
+              </button>
+              <button
+                className={`px-4 py-2 text-sm inline-flex items-center gap-1 ${
+                  mode === "decode"
+                    ? "bg-blue-600 text-white"
+                    : "bg-white text-gray-700"
+                }`}
+                onClick={() => switchMode("decode")}
+              >
+                解码
+              </button>
+            </div>
+            <label className="inline-flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                checked={urlSafe}
+                onChange={(e) => setUrlSafe(e.target.checked)}
+              />
+              URL 安全（Base64URL，去掉末尾 =）
             </label>
-            <textarea
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder={
-                mode === "encode"
-                  ? "输入要编码的文本，支持中文和 emoji，例如：你好，世界 👋"
-                  : "粘贴要解码的 Base64 文本"
-              }
-              className="w-full h-48 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono"
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">结果</label>
-            <textarea
-              value={result}
-              readOnly
-              placeholder="转换结果会显示在这里"
-              className="w-full h-48 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono bg-gray-50"
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-wrap gap-3">
-          <button
-            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
-            onClick={() => convert(input, mode, urlSafe)}
-            disabled={!input.trim()}
-          >
-            <ArrowRightLeft className="h-4 w-4" />
-            转换
-          </button>
-          <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
-            onClick={copy}
-            disabled={!result}
-          >
-            {copied ? (
-              <Check className="h-4 w-4 text-green-600" />
-            ) : (
-              <Copy className="h-4 w-4" />
-            )}
-            {copied ? "已复制 ✓" : "复制"}
-          </button>
-          <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
-            onClick={clear}
-            disabled={!input && !result}
-          >
-            <Eraser className="h-4 w-4" />
-            清空
-          </button>
-        </div>
-
-        {error && <div className="text-sm text-red-600">{error}</div>}
-        <div className="text-xs text-gray-500">
-          数据仅在浏览器本地处理，不会上传到服务器。
-        </div>
-      </div>
-    </div>
+            <div className="flex flex-wrap gap-3">
+              <button
+                className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+                onClick={() => convert(input, mode, urlSafe)}
+                disabled={!input.trim()}
+              >
+                <ArrowRightLeft className="h-4 w-4" />
+                转换
+              </button>
+              <button
+                className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+                onClick={copy}
+                disabled={!result}
+              >
+                {copied ? (
+                  <Check className="h-4 w-4 text-green-600" />
+                ) : (
+                  <Copy className="h-4 w-4" />
+                )}
+                {copied ? "已复制 ✓" : "复制"}
+              </button>
+              <button
+                className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+                onClick={clear}
+                disabled={!input && !result}
+              >
+                <Eraser className="h-4 w-4" />
+                清空
+              </button>
+            </div>
+          </>
+        }
+        inputLabel={mode === "encode" ? "输入（明文）" : "输入（Base64）"}
+        input={
+          <textarea
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder={
+              mode === "encode"
+                ? "输入要编码的文本，支持中文和 emoji，例如：你好，世界 👋"
+                : "粘贴要解码的 Base64 文本"
+            }
+            className="h-full w-full resize-none px-3 py-2 font-mono text-sm focus:outline-none"
+          />
+        }
+        outputLabel="结果"
+        output={
+          <textarea
+            value={result}
+            readOnly
+            placeholder="转换结果会显示在这里"
+            className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-gray-50 focus:outline-none"
+          />
+        }
+        footer={
+          <>
+            {error && <div className="text-sm text-red-600">{error}</div>}
+            <div className="text-xs text-gray-500">
+              数据仅在浏览器本地处理，不会上传到服务器。
+            </div>
+          </>
+        }
+      />
   );
 }

@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { GitCompare, ClipboardCopy, Check } from "lucide-react";
 import * as JsDiff from "diff";
+import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 type Mode = "line" | "token";
 type DiffPart = { added?: boolean; removed?: boolean; value: string };

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link2, Copy, Check, Trash2, Shield } from "lucide-react";
+import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 type Mode = "encode" | "decode";
 type EncodeKind = "component" | "full";
@@ -53,16 +54,17 @@ export default function UrlEncoder() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
-          <Link2 className="h-5 w-5" />
-        </div>
-        <h1 className="text-2xl font-semibold">URL 编码 / 解码</h1>
-      </div>
-
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+    <EditorSplitLayout
+      title={
+        <>
+          <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+            <Link2 className="h-5 w-5" />
+          </div>
+          <h1 className="text-2xl font-semibold">URL 编码 / 解码</h1>
+        </>
+      }
+      toolbar={
+        <>
           <div className="flex items-center gap-4">
             <label className="inline-flex items-center gap-2 text-sm">
               <input
@@ -112,65 +114,66 @@ export default function UrlEncoder() {
               </label>
             </div>
           )}
-        </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">
-            {mode === "encode" ? "输入要编码的文本" : "输入要解码的 URL 编码文本"}
-          </label>
-          <textarea
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={
-              mode === "encode"
-                ? "例如：https://example.com/search?q=你好 世界"
-                : "例如：%E4%BD%A0%E5%A5%BD%20%E4%B8%96%E7%95%8C"
-            }
-            className="w-full h-32 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono"
-          />
-        </div>
-
-        <div className="flex flex-wrap gap-3">
-          <button
-            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
-            onClick={convert}
-            disabled={!input.trim()}
-          >
-            转换
-          </button>
-          <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
-            onClick={copy}
-            disabled={!result}
-          >
-            {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
-            {copied ? "已复制" : "复制"}
-          </button>
-          <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
-            onClick={clear}
-            disabled={!input && !result && !error}
-          >
-            <Trash2 className="h-4 w-4" />
-            清空
-          </button>
-        </div>
-
-        {error && <div className="text-sm text-red-600">{error}</div>}
-      </div>
-
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="font-medium mb-2">结果</div>
-        <pre className="font-mono text-sm whitespace-pre-wrap break-words">{result}</pre>
-        {!result && !error && (
-          <div className="text-sm text-gray-500">输入内容后点击“转换”查看结果</div>
-        )}
-      </div>
-
-      <div className="inline-flex items-center gap-2 text-sm text-gray-500">
-        <Shield className="h-4 w-4" />
-        数据仅在浏览器本地处理，不会上传到服务器。
-      </div>
-    </div>
+          <div className="flex flex-wrap gap-3">
+            <button
+              className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+              onClick={convert}
+              disabled={!input.trim()}
+            >
+              转换
+            </button>
+            <button
+              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+              onClick={copy}
+              disabled={!result}
+            >
+              {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+              {copied ? "已复制" : "复制"}
+            </button>
+            <button
+              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+              onClick={clear}
+              disabled={!input && !result && !error}
+            >
+              <Trash2 className="h-4 w-4" />
+              清空
+            </button>
+          </div>
+        </>
+      }
+      inputLabel={mode === "encode" ? "输入要编码的文本" : "输入要解码的 URL 编码文本"}
+      input={
+        <textarea
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder={
+            mode === "encode"
+              ? "例如：https://example.com/search?q=你好 世界"
+              : "例如：%E4%BD%A0%E5%A5%BD%20%E4%B8%96%E7%95%8C"
+          }
+          className="h-full w-full resize-none px-3 py-2 font-mono text-sm focus:outline-none"
+        />
+      }
+      outputLabel="结果"
+      output={
+        result || error ? (
+          <pre className="h-full overflow-auto px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words">
+            {result}
+          </pre>
+        ) : (
+          <div className="px-3 py-2 text-sm text-gray-500">输入内容后点击“转换”查看结果</div>
+        )
+      }
+      footer={
+        <>
+          {error && <div className="text-sm text-red-600">{error}</div>}
+          <div className="inline-flex items-center gap-2 text-sm text-gray-500">
+            <Shield className="h-4 w-4" />
+            数据仅在浏览器本地处理，不会上传到服务器。
+          </div>
+        </>
+      }
+    />
   );
 }

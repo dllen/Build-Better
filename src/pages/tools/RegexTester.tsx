@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
+import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 export default function RegexTester() {
   const [pattern, setPattern] = useState("");
@@ -80,29 +81,26 @@ export default function RegexTester() {
   }, [regex, text, flags.g, flagsString]);
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
-          <Search className="h-5 w-5" />
-        </div>
-        <h1 className="text-2xl font-semibold">Regex Tester</h1>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-4">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Pattern</label>
-            <input
-              className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="e.g. (foo|bar)+"
-              value={pattern}
-              onChange={(e) => setPattern(e.target.value)}
-            />
+    <EditorSplitLayout
+      title={
+        <>
+          <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+            <Search className="h-5 w-5" />
           </div>
-
-          <div className="flex flex-wrap gap-3">
+          <h1 className="text-2xl font-semibold">Regex Tester</h1>
+        </>
+      }
+      toolbar={
+        <>
+          <input
+            className="rounded-md border border-gray-300 px-2 py-1 text-sm font-mono min-w-48"
+            placeholder="(foo|bar)+"
+            value={pattern}
+            onChange={(e) => setPattern(e.target.value)}
+          />
+          <div className="flex items-center gap-2">
             {(["g", "i", "m", "s", "u", "y"] as const).map((flag) => (
-              <label key={flag} className="inline-flex items-center gap-2 text-sm">
+              <label key={flag} className="inline-flex items-center gap-1 text-sm">
                 <input
                   type="checkbox"
                   checked={flags[flag]}
@@ -111,35 +109,40 @@ export default function RegexTester() {
                 <span>{flag}</span>
               </label>
             ))}
-            <span className="text-xs text-gray-500">
-              Flags: /{pattern}/{flagsString}
-            </span>
           </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Input Text</label>
-            <textarea
-              className="w-full h-48 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter text to test against"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-            />
-          </div>
+          <span className="text-xs text-gray-500 font-mono">
+            /{pattern}/{flagsString}
+          </span>
+        </>
+      }
+      inputLabel="Input Text"
+      input={
+        <textarea
+          className="h-full w-full resize-none px-3 py-2 font-mono text-sm focus:outline-none"
+          placeholder="Enter text to test against"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+      }
+      outputLabel="Highlighted"
+      output={
+        <div className="h-full overflow-auto px-3 py-3 text-sm text-gray-800 break-words whitespace-pre-wrap">
+          {highlighted}
         </div>
-
-        <div className="space-y-4">
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
-            <div className="font-medium mb-2">Status</div>
+      }
+      footer={
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="rounded-lg border border-gray-200 bg-white p-3">
+            <div className="font-medium text-sm mb-1">Status</div>
             {error ? (
               <div className="text-red-600 text-sm">{error}</div>
             ) : (
               <div className="text-green-600 text-sm">Valid regular expression</div>
             )}
           </div>
-
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
-            <div className="font-medium mb-2">Matches ({matches.length})</div>
-            <div className="space-y-2 max-h-64 overflow-auto">
+          <div className="rounded-lg border border-gray-200 bg-white p-3">
+            <div className="font-medium text-sm mb-1">Matches ({matches.length})</div>
+            <div className="space-y-2 max-h-48 overflow-auto">
               {matches.map((m, idx) => (
                 <div key={idx} className="text-sm text-gray-700">
                   <div>
@@ -157,12 +160,7 @@ export default function RegexTester() {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="font-medium mb-2">Highlighted</div>
-        <div className="prose max-w-none text-gray-800 break-words">{highlighted}</div>
-      </div>
-    </div>
+      }
+    />
   );
 }

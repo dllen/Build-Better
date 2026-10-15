@@ -5,6 +5,7 @@ import { Footer } from "./Footer";
 import { CommandPalette } from "@/components/CommandPalette";
 import { AdSlot } from "@/components/ads";
 import { useHistory } from "@/hooks/useHistory";
+import { FillViewportContext } from "@/contexts/FillViewportContext";
 
 /** Detect "this is a tool detail page" so we only render ads where intended. */
 function isToolDetail(pathname: string): boolean {
@@ -19,6 +20,7 @@ export function Layout() {
   const location = useLocation();
   const { addToHistory } = useHistory();
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  const [fillViewport, setFillViewport] = useState(false);
 
   // Track tool and game usage
   useEffect(() => {
@@ -59,24 +61,38 @@ export function Layout() {
   const showToolAd = isToolDetail(location.pathname);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground font-sans">
-      <Navbar />
-      <main className="flex-1 container mx-auto px-4 py-8">
-        <Outlet />
-      </main>
-      {showToolAd && (
-        <aside
-          aria-label="Advertisement"
-          className="container mx-auto px-4 pb-6"
+    <FillViewportContext.Provider value={{ setFillViewport }}>
+      <div
+        className={`flex flex-col bg-background text-foreground font-sans ${
+          fillViewport
+            ? "min-h-screen lg:h-dvh lg:overflow-hidden"
+            : "min-h-screen"
+        }`}
+      >
+        <Navbar />
+        <main
+          className={`flex-1 container mx-auto px-4 w-full ${
+            fillViewport
+              ? "py-4 lg:flex lg:min-h-0 lg:flex-col"
+              : "py-8"
+          }`}
         >
-          <AdSlot format="auto" minHeight={90} className="mx-auto max-w-3xl" />
-        </aside>
-      )}
-      <Footer />
-      <CommandPalette
-        isOpen={isCommandPaletteOpen}
-        onClose={() => setIsCommandPaletteOpen(false)}
-      />
-    </div>
+          <Outlet />
+        </main>
+        {!fillViewport && showToolAd && (
+          <aside
+            aria-label="Advertisement"
+            className="container mx-auto px-4 pb-6"
+          >
+            <AdSlot format="auto" minHeight={90} className="mx-auto max-w-3xl" />
+          </aside>
+        )}
+        {!fillViewport && <Footer />}
+        <CommandPalette
+          isOpen={isCommandPaletteOpen}
+          onClose={() => setIsCommandPaletteOpen(false)}
+        />
+      </div>
+    </FillViewportContext.Provider>
   );
 }
