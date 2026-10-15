@@ -1211,6 +1211,22 @@
     "json-to-postman": {
       "name": "JSON to Postman",
       "desc": "Convert JSON objects to Postman Collection v2.1 for API testing."
+    },
+    "json-sort": {
+      "name": "JSON Sort",
+      "desc": "Sort JSON object keys alphabetically or in reverse order."
+    },
+    "json-compress": {
+      "name": "JSON Compress",
+      "desc": "Minify JSON by removing all whitespace for compact storage."
+    },
+    "json-clean": {
+      "name": "JSON Clean",
+      "desc": "Remove comments, trailing commas, and fix single quotes in JSON."
+    },
+    "json-get": {
+      "name": "JSON to Query String",
+      "desc": "Convert a JSON object to a URL query string for GET requests."
     }
   },
   "games": {

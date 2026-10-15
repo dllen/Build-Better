@@ -1157,6 +1157,22 @@
     "json-to-postman": {
       "name": "JSON 转 Postman",
       "desc": "将 JSON 对象转换为 Postman Collection v2.1 用于 API 测试。"
+    },
+    "json-sort": {
+      "name": "JSON 排序",
+      "desc": "按字母顺序或逆序排列 JSON 对象键。"
+    },
+    "json-compress": {
+      "name": "JSON 压缩",
+      "desc": "移除所有空白字符以压缩 JSON。"
+    },
+    "json-clean": {
+      "name": "JSON 清理",
+      "desc": "移除 JSON 中的注释、尾随逗号并修复单引号。"
+    },
+    "json-get": {
+      "name": "JSON 转 Query",
+      "desc": "将 JSON 对象转换为 URL 查询字符串用于 GET 请求。"
     }
   },
   "games": {
