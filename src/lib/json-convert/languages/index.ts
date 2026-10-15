@@ -1,5 +1,8 @@
 import type { ConverterFn, JsonValue, ConvertOptions } from "../types";
 
+// Side-effect: registers all language converters
+import "./typescript.ts";
+
 export type LanguageTarget =
   | "typescript"
   | "java"
@@ -18,6 +21,10 @@ export type LanguageTarget =
 
 /** Registry of language converters. Populated as each converter is added. */
 export const languageConverters: Partial<Record<LanguageTarget, ConverterFn>> = {};
+
+// Register language converters
+import { jsonToTypescript } from "./typescript.ts";
+languageConverters.typescript = jsonToTypescript;
 
 export function convertLanguage(
   target: LanguageTarget,

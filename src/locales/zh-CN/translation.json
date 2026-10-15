@@ -483,6 +483,10 @@
       "name": "JSON Schema 生成器",
       "desc": "从 JSON 样本推断 JSON Schema (draft-07)。"
     },
+    "json-to-typescript": {
+      "name": "JSON 转 TypeScript",
+      "desc": "将 JSON 对象转换为 TypeScript 接口和类型定义。"
+    },
     "data-faker": {
       "name": "Data Faker",
       "desc": "批量生成测试假数据，支持 JSON/CSV/SQL 格式。"

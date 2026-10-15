@@ -483,6 +483,10 @@
       "name": "JSON Schema Generator",
       "desc": "Infer JSON Schema from JSON samples (draft-07)."
     },
+    "json-to-typescript": {
+      "name": "JSON to TypeScript",
+      "desc": "Convert JSON objects to TypeScript interfaces and types."
+    },
     "data-faker": {
       "name": "Data Faker",
       "desc": "Generate mock data in JSON/CSV/SQL formats using @faker-js/faker."

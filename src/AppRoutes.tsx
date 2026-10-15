@@ -42,6 +42,7 @@ import HmacTool from "@/pages/tools/HmacTool";
 import RsaKeygen from "@/pages/tools/RsaKeygen";
 import KeycodeInfo from "@/pages/tools/KeycodeInfo";
 import JsonDiffTool from "@/pages/tools/JsonDiffTool";
+import JsonToTypescript from "@/pages/tools/JsonToTypescript";
 import ChmodCalculator from "@/pages/tools/ChmodCalculator";
 import TextStats from "@/pages/tools/TextStats";
 import UnitConverter from "@/pages/tools/UnitConverter";
@@ -230,6 +231,7 @@ export function AppRoutes() {
         <Route path="/device-info" element={<DeviceInfo />} />
         <Route path="/json-editor" element={<JsonEditorTool />} />
         <Route path="/json-diff" element={<JsonDiffTool />} />
+        <Route path="/json-to-typescript" element={<JsonToTypescript />} />
         <Route path="/regex-tester" element={<RegexTester />} />
         <Route path="/markdown-html" element={<MarkdownHtml />} />
         <Route path="/email-md" element={<EmailMarkdown />} />
