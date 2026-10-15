@@ -51,11 +51,6 @@ export function jsonToDart(parsed: JsonValue, options?: ConvertOptions): string 
       fromJsonMapping.push(`      ${fieldName}: json['${key}']`);
     }
 
-    const fromJsonBody =
-      fromJsonMapping.length > 0
-        ? `${className}({${ctorParams.join(", ")} ->\n      ${fromJsonMapping.join(",\n")})`
-        : className;
-
     if (obj && Object.keys(obj).length > 0) {
       classes.push(
         `class ${className} {\n${fieldLines.join("\n")}\n\n  ${className}({${ctorParams.join(", ")}});\n\n  factory ${className}.fromJson(Map<String, dynamic> json) =>\n    ${className}(\n${fromJsonMapping.join(",\n")}\n    );\n}`
