@@ -52,6 +52,7 @@ import {
   Database,
   Container,
   Sparkles,
+  Braces,
   Gamepad2,
   Coins,
   CreditCard,
@@ -98,7 +99,8 @@ export type CategoryId =
   | "finance"
   | "life"
   | "games"
-  | "web3";
+  | "web3"
+  | "json";
 
 export interface ToolMeta {
   id: string;
@@ -147,6 +149,7 @@ export const CATEGORIES: CategoryMeta[] = [
   { id: "life", labelKey: "categories.life", icon: Heart, order: 11 },
   { id: "games", labelKey: "categories.games", icon: Gamepad2, order: 12 },
   { id: "web3", labelKey: "categories.web3", icon: Wallet, order: 13 },
+  { id: "json", labelKey: "categories.json", icon: Braces, order: 14 },
 ];
 
 export const TOOL_REGISTRY: ToolMeta[] = [

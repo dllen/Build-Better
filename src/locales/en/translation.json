@@ -1244,7 +1244,8 @@
     "finance": "Finance",
     "life": "Life",
     "games": "Games",
-    "web3": "Web3"
+    "web3": "Web3",
+    "json": "JSON Tools"
   },
   "common": {
     "copied": "Copied!",
