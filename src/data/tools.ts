@@ -182,7 +182,7 @@ export const TOOL_REGISTRY: ToolMeta[] = [
   {
     id: "json-to-typescript",
     path: "/json-to-typescript",
-    category: "developer",
+    category: "json",
     icon: Code,
     color: "text-blue-600",
     bgColor: "bg-blue-100",

@@ -1,8 +1,5 @@
 import type { ConverterFn, JsonValue, ConvertOptions } from "../types";
 
-// Side-effect: registers all language converters
-import "./typescript.ts";
-
 export type LanguageTarget =
   | "typescript"
   | "java"
