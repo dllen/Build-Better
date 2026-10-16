@@ -16,7 +16,7 @@ export default function JsonToSql() {
 
   useEffect(() => {
     convert(input, dialect, tableName);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [input, dialect, tableName]);
 
   function convert(text: string, d: string, t: string) {

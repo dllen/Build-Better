@@ -22,7 +22,7 @@ export default function JsonSort() {
 
   useEffect(() => {
     convert(input, order, recursive);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [input, order, recursive]);
 
   function convert(text: string, orderVal: "asc" | "desc", recursiveVal: boolean) {

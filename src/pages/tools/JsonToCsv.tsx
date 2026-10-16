@@ -16,7 +16,7 @@ export default function JsonToCsv() {
 
   useEffect(() => {
     convert(input, delimiter, direction);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [input, delimiter, direction]);
 
   function convert(text: string, delim: string, dir: "json-csv" | "csv-json") {

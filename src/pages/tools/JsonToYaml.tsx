@@ -16,7 +16,7 @@ export default function JsonToYaml() {
 
   useEffect(() => {
     convert(input, direction);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [input, direction]);
 
   function convert(text: string, dir: "json-yaml" | "yaml-json") {

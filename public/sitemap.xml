@@ -62,6 +62,441 @@
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-diff"/>
   </url>
   <url>
+    <loc>https://bb4bb.me/tools/json-to-typescript</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-typescript"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-java</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-java"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-java"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-java"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-java"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-java"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-java"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-java"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-java"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-java"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-java"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-python</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-python"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-python"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-python"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-python"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-python"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-python"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-python"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-python"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-python"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-python"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-go</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-go"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-go"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-go"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-go"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-go"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-go"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-go"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-go"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-go"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-go"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-csharp</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-csharp"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-kotlin</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-kotlin"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-kotlin"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-kotlin"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-kotlin"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-kotlin"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-kotlin"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-kotlin"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-kotlin"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-kotlin"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-kotlin"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-swift</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-swift"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-swift"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-swift"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-swift"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-swift"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-swift"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-swift"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-swift"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-swift"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-swift"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-rust</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-rust"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-rust"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-rust"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-rust"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-rust"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-rust"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-rust"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-rust"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-rust"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-rust"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-dart</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-dart"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-dart"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-dart"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-dart"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-dart"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-dart"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-dart"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-dart"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-dart"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-dart"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-ruby</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-ruby"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-cpp</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-cpp"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-cpp"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-cpp"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-cpp"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-cpp"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-cpp"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-cpp"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-cpp"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-cpp"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-cpp"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-php</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-php"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-php"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-php"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-php"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-php"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-php"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-php"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-scala</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-scala"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-scala"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-scala"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-scala"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-scala"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-scala"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-scala"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-scala"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-scala"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-scala"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-graphql</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-graphql"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-graphql"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-graphql"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-graphql"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-graphql"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-graphql"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-graphql"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-graphql"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-graphql"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-graphql"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-sql</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-sql"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-sql"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-sql"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-sql"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-sql"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-sql"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-sql"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-sql"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-sql"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-sql"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/sql-to-json</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/sql-to-json"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/sql-to-json"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/sql-to-json"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/sql-to-json"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/sql-to-json"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/sql-to-json"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/sql-to-json"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/sql-to-json"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/sql-to-json"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/sql-to-json"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-xml</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-xml"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-xml"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-xml"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-xml"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-xml"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-xml"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-xml"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-xml"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-xml"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-xml"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-yaml</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-yaml"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-yaml"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-yaml"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-yaml"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-yaml"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-yaml"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-yaml"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-yaml"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-yaml"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-yaml"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-toml</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-toml"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-toml"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-toml"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-toml"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-toml"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-toml"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-toml"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-toml"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-toml"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-toml"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-csv</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-csv"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-excel</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-excel"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-excel"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-excel"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-excel"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-excel"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-excel"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-excel"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-excel"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-excel"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-excel"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-to-postman</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-to-postman"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-to-postman"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-to-postman"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-to-postman"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-to-postman"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-to-postman"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-to-postman"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-to-postman"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-to-postman"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-to-postman"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-sort</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-sort"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-sort"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-sort"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-sort"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-sort"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-sort"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-sort"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-sort"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-sort"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-sort"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-compress</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-compress"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-compress"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-compress"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-compress"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-compress"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-compress"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-compress"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-compress"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-compress"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-compress"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-clean</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-clean"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-clean"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-clean"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-clean"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-clean"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-clean"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-clean"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-clean"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-clean"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-clean"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-get</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-get"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-get"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-get"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-get"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-get"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-get"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-get"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-get"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-get"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-get"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-path</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-path"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-path"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-path"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-path"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-path"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-path"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-path"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-path"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-path"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-path"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/json-merge</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/json-merge"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/json-merge"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/json-merge"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/json-merge"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/json-merge"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/json-merge"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/json-merge"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/json-merge"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/json-merge"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/json-merge"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/tools/matrix-to-json</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/tools/matrix-to-json"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/tools/matrix-to-json"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/tools/matrix-to-json"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/tools/matrix-to-json"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/tools/matrix-to-json"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/tools/matrix-to-json"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/tools/matrix-to-json"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/matrix-to-json"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/matrix-to-json"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/matrix-to-json"/>
+  </url>
+  <url>
     <loc>https://bb4bb.me/tools/format-converter</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -495,6 +930,21 @@
     <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/tools/dedup-sort-diff"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/tools/dedup-sort-diff"/>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/tools/dedup-sort-diff"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/transpose</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/transpose"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/transpose"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/transpose"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/transpose"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/transpose"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/transpose"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/transpose"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/transpose"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/transpose"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/transpose"/>
   </url>
   <url>
     <loc>https://bb4bb.me/tools/text-cipher</loc>

@@ -17,7 +17,7 @@ export default function JsonToGet() {
 
   useEffect(() => {
     convert(input, encoding);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [input, encoding]);
 
   function convert(text: string, enc: "encodeURI" | "encodeURIComponent") {

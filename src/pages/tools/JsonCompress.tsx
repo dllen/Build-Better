@@ -20,7 +20,7 @@ export default function JsonCompress() {
 
   useEffect(() => {
     convert(input);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [input]);
 
   function convert(text: string) {

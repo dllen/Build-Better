@@ -17,7 +17,7 @@ export default function JsonToXml() {
 
   useEffect(() => {
     convert(input, rootName, direction);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [input, rootName, direction]);
 
   function convert(text: string, root: string, dir: "json-xml" | "xml-json") {

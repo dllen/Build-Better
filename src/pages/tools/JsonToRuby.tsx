@@ -16,7 +16,7 @@ export default function JsonToRuby() {
 
   useEffect(() => {
     convert(input, rootName);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [input, rootName]);
 
   function convert(text: string, name: string) {

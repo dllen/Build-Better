@@ -17,7 +17,7 @@ INSERT INTO \`users\` (\`id\`, \`name\`, \`email\`) VALUES (2, 'Lucy', 'lucy@exa
 
   useEffect(() => {
     convert(input);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [input]);
 
   function convert(text: string) {

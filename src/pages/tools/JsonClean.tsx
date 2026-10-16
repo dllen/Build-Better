@@ -16,7 +16,7 @@ export default function JsonClean() {
 
   useEffect(() => {
     convert(input);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [input]);
 
   function convert(text: string) {
