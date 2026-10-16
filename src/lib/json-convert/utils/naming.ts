@@ -10,7 +10,7 @@ function splitWords(input: string): string[] {
     // Insert space between consecutive uppercase and lowercase: "XMLParser" -> "XML Parser"
     .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
     // Split on non-alphanumeric
-    .split(/[\s_\-]+/)
+    .split(/[\s_-]+/)
     .filter(Boolean);
 }
 

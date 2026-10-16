@@ -1,4 +1,4 @@
-import type { JsonValue, ConvertOptions } from "../types.ts";
+import type { JsonValue } from "../types.ts";
 import yaml from "js-yaml";
 
 export function jsonToYaml(parsed: JsonValue): string {

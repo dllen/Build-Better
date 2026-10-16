@@ -23,7 +23,7 @@ export function evaluateJsonPath(root: JsonValue, path: string): JsonValue[] {
   const results: JsonValue[] = [root];
   // Tokenize: split into segments on . and [n] / [*]
   const segments: { type: "key" | "index" | "wild"; value: string }[] = [];
-  const re = /\.?([^.\[]+)|\[(\d+|\*)\]/g;
+  const re = /\.?([^.[]+)|\[(\d+|\*)\]/g;
   let m: RegExpExecArray | null;
   while ((m = re.exec(expr)) !== null) {
     if (m[1] !== undefined) segments.push({ type: "key", value: m[1] });

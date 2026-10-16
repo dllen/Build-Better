@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FileCode, Download, Eraser, AlertCircle } from "lucide-react";
 import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 import { parseJson } from "@/lib/json-convert";

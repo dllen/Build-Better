@@ -9,20 +9,21 @@ export const formatConverters: Partial<Record<FormatTarget, ConverterFn>> = {};
 import { jsonToSql } from "./sql.ts";
 formatConverters.sql = jsonToSql;
 
-import { jsonToXml, xmlToJson } from "./xml.ts";
+import { jsonToXml } from "./xml.ts";
 formatConverters.xml = jsonToXml;
 
-import { jsonToYaml, yamlToJson } from "./yaml.ts";
+import { jsonToYaml } from "./yaml.ts";
 formatConverters.yaml = jsonToYaml;
 
-import { jsonToToml, tomlToJson } from "./toml.ts";
+import { jsonToToml } from "./toml.ts";
 formatConverters.toml = jsonToToml;
 
-import { jsonToCsv, csvToJson } from "./csv.ts";
+import { jsonToCsv } from "./csv.ts";
 formatConverters.csv = jsonToCsv;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { jsonToExcelBase64 } from "./excel.ts";
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 formatConverters.excel = ((() => {
   throw new Error("Excel export is async; use jsonToExcelBase64() directly.");
 }) as unknown) as typeof formatConverters.excel;
