@@ -208,6 +208,7 @@ import SqlFormatter from "@/pages/tools/SqlFormatter";
 import SqlTableExtractor from "@/pages/tools/SqlTableExtractor";
 import LoopEngineering from "./pages/loop-engineering/LoopEngineering";
 import GithubStars from "./pages/GithubStars";
+import SkillsHub from "./pages/SkillsHub";
 
 
 
@@ -244,6 +245,7 @@ export function AppRoutes() {
         <Route path="/ai-development" element={<AiDevelopment />} />
         <Route path="/loop-engineering" element={<LoopEngineering />} />
         <Route path="/github-stars" element={<GithubStars />} />
+        <Route path="/skills-hub" element={<SkillsHub />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/about" element={<About />} />
