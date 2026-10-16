@@ -25,7 +25,8 @@
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:headed": "playwright test --headed",
     "prerender:routes": "node scripts/prerender-routes.mjs",
-    "prerender:run": "node scripts/prerender.mjs"
+    "prerender:run": "node scripts/prerender.mjs",
+    "update-tools": "node update-tools.mjs"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
