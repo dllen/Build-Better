@@ -1,11 +1,12 @@
 import { useState, useCallback, useEffect } from "react";
-import { Copy, Check, AlertCircle } from "lucide-react";
+import { Copy, Check, ArrowRightLeft } from "lucide-react";
 import Editor from "@monaco-editor/react";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
 import yaml from "js-yaml";
 import toml, { JsonMap } from "@iarna/toml";
 import { XMLParser, XMLBuilder } from "fast-xml-parser";
+import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 type Format = "json" | "yaml" | "toml" | "xml";
 
@@ -72,15 +73,6 @@ export default function FormatConverter() {
           result = yaml.dump(parsedData);
           break;
         case "toml": {
-          // TOML requires root table to be an object
-          if (typeof parsedData !== "object" || parsedData === null || Array.isArray(parsedData)) {
-             // If parsed data is not an object (e.g. simple value or array), TOML cannot represent it at root easily without a key.
-             // However, strictly speaking TOML root must be a table (object).
-             // If we get an array from JSON, we might need to wrap it? 
-             // Let's try to stringify directly and see if it throws.
-             // @iarna/toml might handle it or throw.
-             // If it fails, we catch the error.
-          }
           const tomlData = parsedData as JsonMap;
           result = toml.stringify(tomlData);
           break;
@@ -107,133 +99,141 @@ export default function FormatConverter() {
       case "json": return "json";
       case "yaml": return "yaml";
       case "xml": return "xml";
-      case "toml": return "ini"; // Monaco doesn't have native toml, ini is close enough for highlighting
+      case "toml": return "ini";
       default: return "plaintext";
     }
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <SEO
-        title={t("tools.format-converter.title", "Format Converter")}
-        description={t("tools.format-converter.description", "Convert between JSON, YAML, TOML, and XML formats.")}
-        keywords={["json", "yaml", "toml", "xml", "converter", "format", "developer tools"]}
-      />
-
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-            {t("tools.format-converter.title", "Format Converter")}
-          </h1>
-          <p className="text-gray-600">
-            {t("tools.format-converter.description", "Convert between JSON, YAML, TOML, and XML formats.")}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Input Section */}
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-gray-700">
-                {t("tools.format-converter.input_label", "Input")}
-              </label>
-              <select
-                value={inputFormat}
-                onChange={(e) => setInputFormat(e.target.value as Format)}
-                className="block w-32 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2 border"
-              >
-                {formats.map((f) => (
-                  <option key={f} value={f}>
-                    {f.toUpperCase()}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="h-[500px] border rounded-lg overflow-hidden shadow-sm">
-              <Editor
-                height="100%"
-                defaultLanguage="json"
-                language={getMonacoLanguage(inputFormat)}
-                value={inputContent}
-                onChange={(value) => setInputContent(value || "")}
-                theme="light"
-                options={{
-                  minimap: { enabled: false },
-                  fontSize: 14,
-                  wordWrap: "on",
-                  scrollBeyondLastLine: false,
-                }}
-              />
-            </div>
+    <EditorSplitLayout
+      title={
+        <>
+          <div className="inline-flex p-2 rounded-lg bg-orange-100 text-orange-600">
+            <ArrowRightLeft className="h-5 w-5" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-semibold">
+              {t("tools.format-converter.title", "Format Converter")}
+            </h1>
+            <p className="text-sm text-gray-500">
+              {t("tools.format-converter.description", "Convert between JSON, YAML, TOML, and XML formats.")}
+            </p>
+          </div>
+          <SEO
+            title={t("tools.format-converter.title", "Format Converter")}
+            description={t("tools.format-converter.description", "Convert between JSON, YAML, TOML, and XML formats.")}
+            keywords={["json", "yaml", "toml", "xml", "converter", "format", "developer tools"]}
+          />
+        </>
+      }
+      toolbar={
+        <>
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium text-gray-700">
+              {t("tools.format-converter.input_label", "Input")}
+            </label>
+            <select
+              value={inputFormat}
+              onChange={(e) => setInputFormat(e.target.value as Format)}
+              className="rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            >
+              {formats.map((f) => (
+                <option key={f} value={f}>
+                  {f.toUpperCase()}
+                </option>
+              ))}
+            </select>
           </div>
 
-          {/* Output Section */}
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-gray-700">
-                {t("tools.format-converter.output_label", "Output")}
-              </label>
-              <div className="flex items-center gap-2">
-                <select
-                  value={outputFormat}
-                  onChange={(e) => setOutputFormat(e.target.value as Format)}
-                  className="block w-32 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2 border"
-                >
-                  {formats.map((f) => (
-                    <option key={f} value={f}>
-                      {f.toUpperCase()}
-                    </option>
-                  ))}
-                </select>
-                <button
-                  onClick={handleCopy}
-                  className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
-                >
-                  {copied ? (
-                    <>
-                      <Check className="w-4 h-4" />
-                      {t("tools.format-converter.copied", "Copied")}
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-4 h-4" />
-                      {t("tools.format-converter.copy_btn", "Copy")}
-                    </>
-                  )}
-                </button>
-              </div>
-            </div>
-            <div className="h-[500px] border rounded-lg overflow-hidden shadow-sm relative">
-              <Editor
-                height="100%"
-                defaultLanguage="yaml"
-                language={getMonacoLanguage(outputFormat)}
-                value={outputContent}
-                options={{
-                  readOnly: true,
-                  minimap: { enabled: false },
-                  fontSize: 14,
-                  wordWrap: "on",
-                  scrollBeyondLastLine: false,
-                }}
-              />
-              {error && (
-                <div className="absolute inset-0 bg-white/90 flex items-center justify-center p-4">
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4 max-w-md w-full">
-                    <div className="flex items-start gap-3">
-                      <AlertCircle className="w-5 h-5 text-red-500 mt-0.5" />
-                      <div>
-                        <h3 className="text-sm font-medium text-red-800">Conversion Error</h3>
-                        <p className="mt-1 text-sm text-red-700 font-mono break-all">{error}</p>
-                      </div>
-                    </div>
+          <ArrowRightLeft className="h-4 w-4 text-gray-400" />
+
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium text-gray-700">
+              {t("tools.format-converter.output_label", "Output")}
+            </label>
+            <select
+              value={outputFormat}
+              onChange={(e) => setOutputFormat(e.target.value as Format)}
+              className="rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            >
+              {formats.map((f) => (
+                <option key={f} value={f}>
+                  {f.toUpperCase()}
+                </option>
+              ))}
+            </select>
+          </div>
+        </>
+      }
+      inputLabel={t("tools.format-converter.input_label", "Input")}
+      input={
+        <Editor
+          height="100%"
+          defaultLanguage="json"
+          language={getMonacoLanguage(inputFormat)}
+          value={inputContent}
+          onChange={(value) => setInputContent(value || "")}
+          theme="light"
+          options={{
+            minimap: { enabled: false },
+            fontSize: 14,
+            wordWrap: "on",
+            scrollBeyondLastLine: false,
+            automaticLayout: true,
+          }}
+        />
+      }
+      outputLabel={t("tools.format-converter.output_label", "Output")}
+      outputActions={
+        <button
+          onClick={handleCopy}
+          disabled={!outputContent}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50 transition-colors"
+        >
+          {copied ? (
+            <>
+              <Check className="w-3.5 h-3.5 text-green-600" />
+              {t("tools.format-converter.copied", "Copied")}
+            </>
+          ) : (
+            <>
+              <Copy className="w-3.5 h-3.5" />
+              {t("tools.format-converter.copy_btn", "Copy")}
+            </>
+          )}
+        </button>
+      }
+      output={
+        <div className="relative h-full">
+          <Editor
+            height="100%"
+            defaultLanguage="yaml"
+            language={getMonacoLanguage(outputFormat)}
+            value={outputContent}
+            theme="light"
+            options={{
+              readOnly: true,
+              minimap: { enabled: false },
+              fontSize: 14,
+              wordWrap: "on",
+              scrollBeyondLastLine: false,
+              automaticLayout: true,
+            }}
+          />
+          {error && (
+            <div className="absolute inset-0 bg-white/90 flex items-center justify-center p-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 max-w-md w-full">
+                <div className="flex items-start gap-3">
+                  <div>
+                    <h3 className="text-sm font-medium text-red-800">Conversion Error</h3>
+                    <p className="mt-1 text-sm text-red-700 font-mono break-all">{error}</p>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
-      </div>
-    </div>
+      }
+    />
   );
 }

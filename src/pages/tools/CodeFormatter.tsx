@@ -14,6 +14,7 @@ import * as estree from "prettier/plugins/estree";
 import { format as formatSql } from "sql-formatter";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
+import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 type Language =
   | "javascript"
@@ -41,90 +42,20 @@ interface LanguageConfig {
 }
 
 const LANGUAGES: Record<Language, LanguageConfig> = {
-  javascript: {
-    name: "JavaScript",
-    parser: "babel",
-    plugins: [parserBabel, estree],
-    monacoId: "javascript",
-  },
-  typescript: {
-    name: "TypeScript",
-    parser: "babel-ts",
-    plugins: [parserBabel, estree],
-    monacoId: "typescript",
-  },
-  flow: {
-    name: "Flow",
-    parser: "flow",
-    plugins: [parserFlow, estree],
-    monacoId: "javascript",
-  },
-  json: {
-    name: "JSON",
-    parser: "json",
-    plugins: [parserBabel, estree],
-    monacoId: "json",
-  },
-  html: {
-    name: "HTML",
-    parser: "html",
-    plugins: [parserHtml],
-    monacoId: "html",
-  },
-  vue: {
-    name: "Vue",
-    parser: "vue",
-    plugins: [parserHtml, parserBabel, parserPostcss, estree],
-    monacoId: "html",
-  },
-  angular: {
-    name: "Angular",
-    parser: "angular",
-    plugins: [parserAngular, parserHtml, estree],
-    monacoId: "html",
-  },
-  css: {
-    name: "CSS",
-    parser: "css",
-    plugins: [parserPostcss],
-    monacoId: "css",
-  },
-  less: {
-    name: "Less",
-    parser: "less",
-    plugins: [parserPostcss],
-    monacoId: "less",
-  },
-  scss: {
-    name: "SCSS",
-    parser: "scss",
-    plugins: [parserPostcss],
-    monacoId: "scss",
-  },
-  markdown: {
-    name: "Markdown",
-    parser: "markdown",
-    plugins: [parserMarkdown],
-    monacoId: "markdown",
-  },
-  yaml: {
-    name: "YAML",
-    parser: "yaml",
-    plugins: [parserYaml],
-    monacoId: "yaml",
-  },
-  graphql: {
-    name: "GraphQL",
-    parser: "graphql",
-    plugins: [parserGraphql],
-    monacoId: "graphql",
-  },
-  sql: {
-    name: "SQL",
-    parser: "sql",
-    plugins: [],
-    monacoId: "sql",
-  },
+  javascript: { name: "JavaScript", parser: "babel", plugins: [parserBabel, estree], monacoId: "javascript" },
+  typescript: { name: "TypeScript", parser: "babel-ts", plugins: [parserBabel, estree], monacoId: "typescript" },
+  flow: { name: "Flow", parser: "flow", plugins: [parserFlow, estree], monacoId: "javascript" },
+  json: { name: "JSON", parser: "json", plugins: [parserBabel, estree], monacoId: "json" },
+  html: { name: "HTML", parser: "html", plugins: [parserHtml], monacoId: "html" },
+  vue: { name: "Vue", parser: "vue", plugins: [parserHtml, parserBabel, parserPostcss, estree], monacoId: "html" },
+  angular: { name: "Angular", parser: "angular", plugins: [parserAngular, parserHtml, estree], monacoId: "html" },
+  css: { name: "CSS", parser: "css", plugins: [parserPostcss], monacoId: "css" },
+  less: { name: "Less", parser: "less", plugins: [parserPostcss], monacoId: "less" },
+  scss: { name: "SCSS", parser: "scss", plugins: [parserPostcss], monacoId: "scss" },
+  markdown: { name: "Markdown", parser: "markdown", plugins: [parserMarkdown], monacoId: "markdown" },
+  yaml: { name: "YAML", parser: "yaml", plugins: [parserYaml], monacoId: "yaml" },
+  graphql: { name: "GraphQL", parser: "graphql", plugins: [parserGraphql], monacoId: "graphql" },
+  sql: { name: "SQL", parser: "sql", plugins: [], monacoId: "sql" },
 };
 
 const THEMES: Record<Theme, string> = {
@@ -174,7 +105,6 @@ export default function CodeFormatter() {
           singleQuote,
           printWidth,
         });
-
         setOutput(formatted);
       }
     } catch (err: unknown) {
@@ -196,7 +126,6 @@ export default function CodeFormatter() {
   };
 
   const handleEditorDidMount: OnMount = (editor) => {
-    // You can configure the editor here
     editor.updateOptions({
       minimap: { enabled: false },
       scrollBeyondLastLine: false,
@@ -206,27 +135,22 @@ export default function CodeFormatter() {
   };
 
   return (
-    <div className="max-w-[1600px] mx-auto space-y-6 px-4">
-      <SEO
-        title={`${t("tools.code-formatter.name")} - BuildBetter`}
-        description={t("tools.code-formatter.desc")}
-        keywords={[
-          "code formatter",
-          "prettier online",
-          "json formatter",
-          "javascript formatter",
-          "代码格式化",
-          "美化代码",
-        ]}
-      />
-
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t("tools.code-formatter.name")}</h1>
-          <p className="text-gray-500 mt-1">{t("tools.code-formatter.desc")}</p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3">
+    <EditorSplitLayout
+      title={
+        <>
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">{t("tools.code-formatter.name")}</h1>
+            <p className="text-sm text-gray-500">{t("tools.code-formatter.desc")}</p>
+          </div>
+          <SEO
+            title={`${t("tools.code-formatter.name")} - BuildBetter`}
+            description={t("tools.code-formatter.desc")}
+            keywords={["code formatter", "prettier online", "json formatter", "javascript formatter", "代码格式化", "美化代码"]}
+          />
+        </>
+      }
+      toolbar={
+        <>
           <div className="flex items-center gap-2 bg-white border border-gray-300 rounded-lg px-3 py-1.5 shadow-sm">
             <Settings2 className="h-4 w-4 text-gray-500" />
             <select
@@ -262,97 +186,118 @@ export default function CodeFormatter() {
             {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Play className="h-4 w-4" />}
             {t("tools.code-formatter.format_btn")}
           </button>
-        </div>
-      </div>
 
-      <div className="flex flex-wrap items-center gap-4 bg-gray-50 p-4 rounded-lg border border-gray-200">
-        <div className="flex items-center gap-2">
-          <label className="text-sm text-gray-600 font-medium">
-            {t("tools.code-formatter.options.tab_width")}:
-          </label>
-          <input
-            type="number"
-            value={tabWidth}
-            onChange={(e) => setTabWidth(Number(e.target.value))}
-            className="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
-            min={1}
-            max={8}
-          />
-        </div>
-
-        <div className="flex items-center gap-2">
-          <label className="text-sm text-gray-600 font-medium">
-            {t("tools.code-formatter.options.print_width")}:
-          </label>
-          <input
-            type="number"
-            value={printWidth}
-            onChange={(e) => setPrintWidth(Number(e.target.value))}
-            className="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
-            min={40}
-            max={200}
-            step={10}
-          />
-        </div>
-
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={useTabs}
-            onChange={(e) => setUseTabs(e.target.checked)}
-            className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-          />
-          <span className="text-sm text-gray-600">
-            {t("tools.code-formatter.options.use_tabs")}
-          </span>
-        </label>
-
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={semi}
-            onChange={(e) => setSemi(e.target.checked)}
-            className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-          />
-          <span className="text-sm text-gray-600">
-            {t("tools.code-formatter.options.semi")}
-          </span>
-        </label>
-
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={singleQuote}
-            onChange={(e) => setSingleQuote(e.target.checked)}
-            className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-          />
-          <span className="text-sm text-gray-600">
-            {t("tools.code-formatter.options.single_quote")}
-          </span>
-        </label>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100vh-250px)] min-h-[500px]">
-        {/* Input Editor */}
-        <div className="flex flex-col h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-gray-50/50">
-            <label className="text-sm font-semibold text-gray-700">
-              {t("tools.code-formatter.input_label")}
+          <div className="flex flex-wrap items-center gap-3 ml-auto text-sm">
+            <label className="flex items-center gap-1.5 text-gray-600">
+              {t("tools.code-formatter.options.tab_width")}:
+              <input
+                type="number"
+                value={tabWidth}
+                onChange={(e) => setTabWidth(Number(e.target.value))}
+                className="w-14 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                min={1}
+                max={8}
+              />
             </label>
-            <span className="text-xs text-gray-400 font-mono">
-              {t("tools.code-formatter.input_placeholder")}
-            </span>
+
+            <label className="flex items-center gap-1.5 text-gray-600">
+              {t("tools.code-formatter.options.print_width")}:
+              <input
+                type="number"
+                value={printWidth}
+                onChange={(e) => setPrintWidth(Number(e.target.value))}
+                className="w-14 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                min={40}
+                max={200}
+                step={10}
+              />
+            </label>
+
+            <label className="flex items-center gap-1.5 cursor-pointer text-gray-600">
+              <input
+                type="checkbox"
+                checked={useTabs}
+                onChange={(e) => setUseTabs(e.target.checked)}
+                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              />
+              {t("tools.code-formatter.options.use_tabs")}
+            </label>
+
+            <label className="flex items-center gap-1.5 cursor-pointer text-gray-600">
+              <input
+                type="checkbox"
+                checked={semi}
+                onChange={(e) => setSemi(e.target.checked)}
+                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              />
+              {t("tools.code-formatter.options.semi")}
+            </label>
+
+            <label className="flex items-center gap-1.5 cursor-pointer text-gray-600">
+              <input
+                type="checkbox"
+                checked={singleQuote}
+                onChange={(e) => setSingleQuote(e.target.checked)}
+                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              />
+              {t("tools.code-formatter.options.single_quote")}
+            </label>
           </div>
-          <div className="flex-1 relative">
+        </>
+      }
+      inputLabel={t("tools.code-formatter.input_label")}
+      input={
+        <Editor
+          height="100%"
+          defaultLanguage={LANGUAGES[language].monacoId}
+          language={LANGUAGES[language].monacoId}
+          theme={theme}
+          value={input}
+          onChange={(value) => setInput(value || "")}
+          onMount={handleEditorDidMount}
+          options={{
+            minimap: { enabled: false },
+            scrollBeyondLastLine: false,
+            fontSize: 14,
+            wordWrap: "on",
+            automaticLayout: true,
+            padding: { top: 16, bottom: 16 },
+          }}
+        />
+      }
+      outputLabel={t("tools.code-formatter.output_label")}
+      outputActions={
+        <button
+          onClick={handleCopy}
+          disabled={!output}
+          className="text-gray-600 hover:text-blue-600 disabled:opacity-30 disabled:hover:text-gray-600 transition-colors flex items-center gap-1.5 text-xs font-medium px-2 py-1 rounded hover:bg-blue-50"
+        >
+          {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+          {copied ? t("tools.code-formatter.copied") : t("tools.code-formatter.copy_btn")}
+        </button>
+      }
+      output={
+        <div className="relative h-full">
+          {error ? (
+            <div className="absolute inset-0 p-4 bg-red-50/50 overflow-auto">
+              <div className="bg-white p-4 rounded-xl border border-red-200 shadow-sm">
+                <h3 className="text-red-600 font-semibold mb-2">
+                  {t("tools.code-formatter.error_title")}
+                </h3>
+                <pre className="text-sm text-red-500 whitespace-pre-wrap font-mono bg-red-50 p-4 rounded-lg overflow-x-auto">
+                  {error}
+                </pre>
+              </div>
+            </div>
+          ) : (
             <Editor
               height="100%"
               defaultLanguage={LANGUAGES[language].monacoId}
               language={LANGUAGES[language].monacoId}
               theme={theme}
-              value={input}
-              onChange={(value) => setInput(value || "")}
-              onMount={handleEditorDidMount}
+              value={output}
               options={{
+                readOnly: true,
                 minimap: { enabled: false },
                 scrollBeyondLastLine: false,
                 fontSize: 14,
@@ -361,57 +306,9 @@ export default function CodeFormatter() {
                 padding: { top: 16, bottom: 16 },
               }}
             />
-          </div>
+          )}
         </div>
-
-        {/* Output Editor */}
-        <div className="flex flex-col h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-gray-50/50">
-            <label className="text-sm font-semibold text-gray-700">
-              {t("tools.code-formatter.output_label")}
-            </label>
-            <button
-              onClick={handleCopy}
-              disabled={!output}
-              className="text-gray-600 hover:text-blue-600 disabled:opacity-30 disabled:hover:text-gray-600 transition-colors flex items-center gap-1.5 text-xs font-medium px-2 py-1 rounded hover:bg-blue-50"
-            >
-              {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-              {copied ? t("tools.code-formatter.copied") : t("tools.code-formatter.copy_btn")}
-            </button>
-          </div>
-          <div className="flex-1 relative">
-            {error ? (
-              <div className="absolute inset-0 p-6 bg-red-50/50">
-                <div className="bg-white p-6 rounded-xl border border-red-200 shadow-sm">
-                  <h3 className="text-red-600 font-semibold mb-2">
-                    {t("tools.code-formatter.error_title")}
-                  </h3>
-                  <pre className="text-sm text-red-500 whitespace-pre-wrap font-mono bg-red-50 p-4 rounded-lg overflow-x-auto">
-                    {error}
-                  </pre>
-                </div>
-              </div>
-            ) : (
-              <Editor
-                height="100%"
-                defaultLanguage={LANGUAGES[language].monacoId}
-                language={LANGUAGES[language].monacoId}
-                theme={theme}
-                value={output}
-                options={{
-                  readOnly: true,
-                  minimap: { enabled: false },
-                  scrollBeyondLastLine: false,
-                  fontSize: 14,
-                  wordWrap: "on",
-                  automaticLayout: true,
-                  padding: { top: 16, bottom: 16 },
-                }}
-              />
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
+      }
+    />
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Database, Copy, Check, Download, Trash2, Wand2, Minimize2 } from "lucide-react";
 import { format } from "sql-formatter";
+import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 type Dialect = "sql" | "mysql" | "postgresql" | "hive" | "spark" | "sqlite";
 type KeywordCase = "upper" | "lower" | "preserve";
@@ -104,16 +105,17 @@ export default function SqlFormatter() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
-          <Database className="h-5 w-5" />
-        </div>
-        <h1 className="text-2xl font-semibold">SQL 格式化工具</h1>
-      </div>
-
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex flex-wrap items-center gap-4">
+    <EditorSplitLayout
+      title={
+        <>
+          <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+            <Database className="h-5 w-5" />
+          </div>
+          <h1 className="text-2xl font-semibold">SQL 格式化工具</h1>
+        </>
+      }
+      toolbar={
+        <>
           <div className="flex items-center gap-2">
             <label className="text-sm font-medium text-gray-700">方言</label>
             <select
@@ -159,82 +161,82 @@ export default function SqlFormatter() {
             </select>
           </div>
 
-          <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => runFormat(false)}
-              disabled={!canRun}
-              className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50 hover:bg-blue-700"
-            >
-              <Wand2 className="h-4 w-4" />
-              格式化
-            </button>
-            <button
-              onClick={() => runFormat(true)}
-              disabled={!canRun}
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50 hover:bg-gray-200"
-            >
-              <Minimize2 className="h-4 w-4" />
-              压缩
-            </button>
-            <button
-              onClick={handleCopy}
-              disabled={!output}
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50 hover:bg-gray-200"
-            >
-              {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
-              {copied ? "已复制 ✓" : "复制"}
-            </button>
-            <button
-              onClick={handleDownload}
-              disabled={!output}
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50 hover:bg-gray-200"
-            >
-              <Download className="h-4 w-4" />
-              下载
-            </button>
-            <button
-              onClick={handleClear}
-              disabled={!canRun && !output}
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50 hover:bg-gray-200"
-            >
-              <Trash2 className="h-4 w-4" />
-              清空
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-sm text-red-700">
-          {error}
-        </div>
-      )}
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="font-medium mb-2 text-gray-700">输入 SQL</div>
-          <textarea
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={"在此粘贴 SQL，例如：\nselect id, name from users where age > 18 order by id;"}
-            spellCheck={false}
-            className="w-full h-80 rounded-md border border-gray-300 px-3 py-2 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 resize-y"
-          />
-        </div>
-
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="font-medium mb-2 text-gray-700">格式化结果</div>
-          <textarea
-            value={output}
-            readOnly
-            placeholder="点击“格式化”或“压缩”后在此显示结果"
-            spellCheck={false}
-            className="w-full h-80 rounded-md border border-gray-200 bg-gray-50 px-3 py-2 font-mono text-sm focus:outline-none resize-y"
-          />
-        </div>
-      </div>
-
-      <p className="text-xs text-gray-500">数据仅在浏览器本地处理，不会上传到服务器。</p>
-    </div>
+          <button
+            onClick={() => runFormat(false)}
+            disabled={!canRun}
+            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50 hover:bg-blue-700"
+          >
+            <Wand2 className="h-4 w-4" />
+            格式化
+          </button>
+          <button
+            onClick={() => runFormat(true)}
+            disabled={!canRun}
+            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50 hover:bg-gray-200"
+          >
+            <Minimize2 className="h-4 w-4" />
+            压缩
+          </button>
+          <button
+            onClick={handleClear}
+            disabled={!canRun && !output}
+            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50 hover:bg-gray-200"
+          >
+            <Trash2 className="h-4 w-4" />
+            清空
+          </button>
+        </>
+      }
+      inputLabel="输入 SQL"
+      input={
+        <textarea
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder={"在此粘贴 SQL，例如：\nselect id, name from users where age > 18 order by id;"}
+          spellCheck={false}
+          className="h-full w-full resize-none px-3 py-2 font-mono text-sm focus:outline-none"
+        />
+      }
+      outputLabel="格式化结果"
+      outputActions={
+        <>
+          <button
+            onClick={handleCopy}
+            disabled={!output}
+            className="px-3 py-1.5 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-1.5 text-xs disabled:opacity-50 hover:bg-gray-200"
+          >
+            {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : <Copy className="h-3.5 w-3.5" />}
+            {copied ? "已复制 ✓" : "复制"}
+          </button>
+          <button
+            onClick={handleDownload}
+            disabled={!output}
+            className="px-3 py-1.5 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-1.5 text-xs disabled:opacity-50 hover:bg-gray-200"
+          >
+            <Download className="h-3.5 w-3.5" />
+            下载
+          </button>
+        </>
+      }
+      output={
+        <textarea
+          value={output}
+          readOnly
+          placeholder="点击“格式化”或“压缩”后在此显示结果"
+          spellCheck={false}
+          className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-gray-50 focus:outline-none"
+        />
+      }
+      footer={
+        <>
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-sm text-red-700">
+              {error}
+            </div>
+          )}
+          <p className="text-xs text-gray-500">数据仅在浏览器本地处理，不会上传到服务器。</p>
+        </>
+      }
+    />
   );
 }

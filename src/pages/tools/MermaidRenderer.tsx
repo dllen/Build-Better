@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Copy, RefreshCw, Image as ImageIcon, Terminal, Code, Palette } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Copy, Check, Code, Palette, ImageIcon, Terminal } from "lucide-react";
 import { renderMermaid, renderMermaidAscii, THEMES } from "beautiful-mermaid";
+import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 type OutputMode = "svg" | "ascii";
 
@@ -18,6 +19,7 @@ export default function MermaidRenderer() {
   const [output, setOutput] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -39,7 +41,6 @@ export default function MermaidRenderer() {
 
     try {
       if (outputMode === "svg") {
-        // Find the theme object
         const selectedTheme = Object.entries(THEMES).find(([key]) => key === theme)?.[1] || THEMES["tokyo-night"];
         const svg = await renderMermaid(inputCode, selectedTheme);
         setOutput(svg);
@@ -56,121 +57,120 @@ export default function MermaidRenderer() {
 
   const themeOptions = Object.keys(THEMES || {});
 
+  async function handleCopy() {
+    if (!output) return;
+    try {
+      await navigator.clipboard.writeText(output);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // ignore
+    }
+  }
+
   return (
-    <div className="min-h-screen bg-slate-950 text-cyan-400 font-mono p-4 md:p-8">
-      <div className="max-w-7xl mx-auto space-y-6">
-        <header className="flex items-center justify-between border-b border-cyan-900/50 pb-6">
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-cyan-950/30 rounded-lg border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
-              <Code className="w-8 h-8 text-cyan-400 animate-pulse-slow" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400 drop-shadow-[0_0_10px_rgba(6,182,212,0.5)]">
-                MERMAID_RENDERER
-              </h1>
-              <p className="text-cyan-600/80 text-sm mt-1">DIAGRAM VISUALIZATION SYSTEM</p>
-            </div>
+    <EditorSplitLayout
+      title={
+        <>
+          <div className="inline-flex p-2 rounded-lg bg-pink-100 text-pink-600">
+            <Code className="h-5 w-5" />
           </div>
-        </header>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100vh-200px)] min-h-[600px]">
-          {/* Input Section */}
-          <div className="flex flex-col gap-4 bg-slate-900/50 p-4 rounded-xl border border-cyan-900/30 backdrop-blur-sm relative overflow-hidden group">
-            <div className="absolute inset-0 bg-grid-cyan-900/10 [mask-image:linear-gradient(0deg,white,transparent)] pointer-events-none" />
-            
-            <div className="flex items-center justify-between relative z-10">
-              <label className="flex items-center gap-2 text-sm font-semibold text-cyan-300">
-                <Code className="w-4 h-4" />
-                SOURCE_CODE
-              </label>
-              <div className="flex items-center gap-2">
-                <div className="flex items-center gap-2 px-2 py-1 bg-slate-950 border border-cyan-800 rounded">
-                   <Palette className="w-3 h-3 text-cyan-500" />
-                   <select 
-                    value={theme}
-                    onChange={(e) => setTheme(e.target.value)}
-                    className="bg-transparent text-cyan-400 text-xs outline-none min-w-[100px]"
-                    disabled={outputMode === 'ascii'}
-                   >
-                     {themeOptions.map(t => (
-                       <option key={t} value={t}>{t}</option>
-                     ))}
-                   </select>
-                </div>
-              </div>
-            </div>
-
-            <textarea
-              value={inputCode}
-              onChange={(e) => setInputCode(e.target.value)}
-              placeholder="Enter Mermaid code here..."
-              className="flex-1 w-full bg-slate-950/50 border border-cyan-900/50 rounded-lg p-4 text-sm text-cyan-100 placeholder-cyan-800/50 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none resize-none font-mono leading-relaxed selection:bg-cyan-500/30 transition-all"
-              spellCheck={false}
-            />
+          <div>
+            <h1 className="text-2xl font-semibold">Mermaid Renderer</h1>
+            <p className="text-sm text-gray-500">Render Mermaid diagrams to SVG or ASCII</p>
+          </div>
+        </>
+      }
+      toolbar={
+        <>
+          <div className="flex items-center gap-2">
+            <Palette className="w-4 h-4 text-gray-500" />
+            <label className="text-sm font-medium text-gray-700">Theme</label>
+            <select
+              value={theme}
+              onChange={(e) => setTheme(e.target.value)}
+              className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              disabled={outputMode === "ascii"}
+            >
+              {themeOptions.map((t) => (
+                <option key={t} value={t}>{t}</option>
+              ))}
+            </select>
           </div>
 
-          {/* Output Section */}
-          <div className="flex flex-col gap-4 bg-slate-900/50 p-4 rounded-xl border border-cyan-900/30 backdrop-blur-sm relative overflow-hidden group">
-            <div className="absolute inset-0 bg-grid-pink-900/10 [mask-image:linear-gradient(0deg,white,transparent)] pointer-events-none" />
-
-            <div className="flex items-center justify-between relative z-10">
-              <label className="flex items-center gap-2 text-sm font-semibold text-pink-300">
-                {outputMode === 'svg' ? <ImageIcon className="w-4 h-4" /> : <Terminal className="w-4 h-4" />}
-                RENDER_OUTPUT
-              </label>
-              <div className="flex items-center gap-2">
-                <div className="flex bg-slate-950 border border-pink-800 rounded p-0.5">
-                  <button
-                    onClick={() => setOutputMode('svg')}
-                    className={`px-3 py-1 text-xs rounded transition-all ${outputMode === 'svg' ? 'bg-pink-900/50 text-pink-300' : 'text-pink-700 hover:text-pink-500'}`}
-                  >
-                    SVG
-                  </button>
-                  <button
-                    onClick={() => setOutputMode('ascii')}
-                    className={`px-3 py-1 text-xs rounded transition-all ${outputMode === 'ascii' ? 'bg-pink-900/50 text-pink-300' : 'text-pink-700 hover:text-pink-500'}`}
-                  >
-                    ASCII
-                  </button>
-                </div>
-                <button 
-                  onClick={() => navigator.clipboard.writeText(output)}
-                  className="p-1.5 hover:bg-pink-900/30 text-pink-400 rounded transition-colors"
-                  title="Copy to clipboard"
-                >
-                  <Copy className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-
-            <div className="relative flex-1 bg-slate-950/50 border border-pink-900/50 rounded-lg overflow-hidden">
-               {error ? (
-                <div className="absolute inset-0 p-4 text-red-400 bg-red-950/20">
-                  ERROR: {error}
-                </div>
-               ) : (
-                <div className="w-full h-full overflow-auto p-4 flex items-center justify-center">
-                  {outputMode === 'svg' ? (
-                    <div dangerouslySetInnerHTML={{ __html: output }} className="w-full h-full flex items-center justify-center" />
-                  ) : (
-                    <pre className="text-pink-100 font-mono text-sm leading-none whitespace-pre">
-                      {output}
-                    </pre>
-                  )}
-                </div>
-               )}
-               {loading && (
-                 <div className="absolute inset-0 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm">
-                   <div className="flex flex-col items-center gap-2">
-                     <RefreshCw className="w-8 h-8 text-pink-400 animate-spin" />
-                     <span className="text-xs text-pink-400 animate-pulse">RENDERING...</span>
-                   </div>
-                 </div>
-               )}
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium text-gray-700">Format</label>
+            <div className="flex rounded-md border border-gray-300 overflow-hidden">
+              <button
+                onClick={() => setOutputMode("svg")}
+                className={`px-3 py-2 text-sm ${outputMode === "svg" ? "bg-blue-600 text-white" : "bg-white text-gray-700 hover:bg-gray-50"}`}
+              >
+                SVG
+              </button>
+              <button
+                onClick={() => setOutputMode("ascii")}
+                className={`px-3 py-2 text-sm border-l border-gray-300 ${outputMode === "ascii" ? "bg-blue-600 text-white" : "bg-white text-gray-700 hover:bg-gray-50"}`}
+              >
+                ASCII
+              </button>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </>
+      }
+      inputLabel={
+        <span className="flex items-center gap-2">
+          <Code className="w-4 h-4" />
+          Source Code
+        </span>
+      }
+      input={
+        <textarea
+          value={inputCode}
+          onChange={(e) => setInputCode(e.target.value)}
+          placeholder="Enter Mermaid code here..."
+          className="h-full w-full resize-none px-3 py-2 font-mono text-sm focus:outline-none"
+          spellCheck={false}
+        />
+      }
+      outputLabel={
+        <span className="flex items-center gap-2">
+          {outputMode === "svg" ? <ImageIcon className="w-4 h-4" /> : <Terminal className="w-4 h-4" />}
+          Output
+          {loading && <span className="text-xs text-gray-400 animate-pulse">Rendering...</span>}
+        </span>
+      }
+      outputActions={
+        <button
+          onClick={handleCopy}
+          disabled={!output}
+          className="px-3 py-1.5 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-1.5 text-xs disabled:opacity-50 hover:bg-gray-200"
+        >
+          {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : <Copy className="h-3.5 w-3.5" />}
+          {copied ? "Copied" : "Copy"}
+        </button>
+      }
+      output={
+        error ? (
+          <div className="h-full flex items-center justify-center p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-sm text-red-700">
+              {error}
+            </div>
+          </div>
+        ) : (
+          <div className="h-full overflow-auto">
+            {outputMode === "svg" ? (
+              <div
+                dangerouslySetInnerHTML={{ __html: output }}
+                className="w-full h-full flex items-center justify-center p-4"
+              />
+            ) : (
+              <pre className="p-3 font-mono text-sm whitespace-pre">
+                {output}
+              </pre>
+            )}
+          </div>
+        )
+      }
+    />
   );
 }
