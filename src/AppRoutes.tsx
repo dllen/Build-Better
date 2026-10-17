@@ -209,6 +209,12 @@ import SqlTableExtractor from "@/pages/tools/SqlTableExtractor";
 import LoopEngineering from "./pages/loop-engineering/LoopEngineering";
 import GithubStars from "./pages/GithubStars";
 import SkillsHub from "./pages/SkillsHub";
+import ColorConverter from "@/pages/tools/ColorConverter";
+import CssUnitConverter from "@/pages/tools/CssUnitConverter";
+import JwtEncoder from "@/pages/tools/JwtEncoder";
+import HtmlEntityEncoder from "@/pages/tools/HtmlEntityEncoder";
+import LoremIpsumGenerator from "@/pages/tools/LoremIpsumGenerator";
+import SslCertificateChecker from "@/pages/tools/SslCertificateChecker";
 
 
 
@@ -543,6 +549,14 @@ export function AppRoutes() {
         <Route path="/sql-review" element={<SqlReview />} />
         <Route path="/json-schema-generator" element={<JsonSchemaGenerator />} />
         <Route path="/data-faker" element={<DataFaker />} />
+
+        {/* Tier 1 New Tools */}
+        <Route path="/color-converter" element={<ColorConverter />} />
+        <Route path="/css-unit-converter" element={<CssUnitConverter />} />
+        <Route path="/jwt-encoder" element={<JwtEncoder />} />
+        <Route path="/html-entity-encoder" element={<HtmlEntityEncoder />} />
+        <Route path="/lorem-ipsum-generator" element={<LoremIpsumGenerator />} />
+        <Route path="/ssl-certificate-checker" element={<SslCertificateChecker />} />
     
         {/* Phase D — DevOps Tools */}
         <Route path="/docker-run-builder" element={<DockerRunBuilder />} />
