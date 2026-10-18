@@ -215,6 +215,13 @@ import JwtEncoder from "@/pages/tools/JwtEncoder";
 import HtmlEntityEncoder from "@/pages/tools/HtmlEntityEncoder";
 import LoremIpsumGenerator from "@/pages/tools/LoremIpsumGenerator";
 import SslCertificateChecker from "@/pages/tools/SslCertificateChecker";
+import ColorPicker from "@/pages/tools/ColorPicker";
+import GradientGenerator from "@/pages/tools/GradientGenerator";
+import BoxShadowGenerator from "@/pages/tools/BoxShadowGenerator";
+import ExifViewer from "@/pages/tools/ExifViewer";
+import XmlFormatter from "@/pages/tools/XmlFormatter";
+import YamlValidator from "@/pages/tools/YamlValidator";
+import SemverCompare from "@/pages/tools/SemverCompare";
 
 
 
@@ -557,6 +564,15 @@ export function AppRoutes() {
         <Route path="/html-entity-encoder" element={<HtmlEntityEncoder />} />
         <Route path="/lorem-ipsum-generator" element={<LoremIpsumGenerator />} />
         <Route path="/ssl-certificate-checker" element={<SslCertificateChecker />} />
+
+        {/* Tier 2 New Tools */}
+        <Route path="/color-picker" element={<ColorPicker />} />
+        <Route path="/gradient-generator" element={<GradientGenerator />} />
+        <Route path="/box-shadow-generator" element={<BoxShadowGenerator />} />
+        <Route path="/exif-viewer" element={<ExifViewer />} />
+        <Route path="/xml-formatter" element={<XmlFormatter />} />
+        <Route path="/yaml-validator" element={<YamlValidator />} />
+        <Route path="/semver-compare" element={<SemverCompare />} />
     
         {/* Phase D — DevOps Tools */}
         <Route path="/docker-run-builder" element={<DockerRunBuilder />} />
