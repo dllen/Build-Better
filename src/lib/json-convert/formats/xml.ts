@@ -1,6 +1,6 @@
 import type { JsonValue, ConvertOptions } from "../types.ts";
 
-let _xmlModule: any = null;
+let _xmlModule: typeof import("fast-xml-parser") | null = null;
 
 async function ensureXml() {
   if (!_xmlModule) {

@@ -1,6 +1,6 @@
 import type { JsonValue } from "../types.ts";
 
-let _yamlModule: any = null;
+let _yamlModule: typeof import("js-yaml").default | null = null;
 
 async function ensureYaml() {
   if (!_yamlModule) {

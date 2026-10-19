@@ -1,8 +1,6 @@
 import type { PagesFunction } from "@cloudflare/workers-types";
 
-interface Env {}
-
-export const onRequest: PagesFunction<Env> = async (context) => {
+export const onRequest: PagesFunction = async (context) => {
   const url = new URL(context.request.url);
   const domain = url.searchParams.get("domain")?.trim().toLowerCase();
 
@@ -16,14 +14,6 @@ export const onRequest: PagesFunction<Env> = async (context) => {
   }
 
   try {
-    // Use TLS socket to get certificate info
-    // Cloudflare Workers support TCP connections via connect()
-    const socket = await (globalThis as any).connect(domain, { port: 443 });
-
-    // We can't get cert info directly from a TLS socket in Workers easily,
-    // so we use a public API fallback: the SSL Labs API or a simpler one
-    socket.close();
-
     // Use a reliable free API to get cert info
     const apiUrl = `https://crt.sh/?q=${encodeURIComponent(domain)}&output=json`;
     const resp = await fetch(apiUrl, {
@@ -88,7 +78,7 @@ export const onRequest: PagesFunction<Env> = async (context) => {
 
     // If crt.sh fails, try a simpler approach: fetch the domain and check response headers
     try {
-      const resp = await fetch(`https://${domain}`, {
+      await fetch(`https://${domain}`, {
         method: "HEAD",
         redirect: "follow",
         signal: AbortSignal.timeout(10000),

@@ -1,6 +1,6 @@
 import type { JsonValue } from "../types.ts";
 
-let _jszipModule: any = null;
+let _jszipModule: typeof import("jszip") | null = null;
 
 async function ensureJSZip() {
   if (!_jszipModule) {
