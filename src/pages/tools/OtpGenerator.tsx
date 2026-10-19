@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import {
   Copy,
   RefreshCw,
@@ -12,7 +12,6 @@ import {
   Clock,
 } from "lucide-react";
 import * as OTPAuth from "otpauth";
-import QRCode from "qrcode";
 
 export default function OtpGenerator() {
   const { t } = useTranslation();
@@ -71,12 +70,19 @@ export default function OtpGenerator() {
 
     updateToken();
     const interval = setInterval(updateToken, 1000);
-    
+
     // Generate QR Code
-    const uri = totp.toString();
-    QRCode.toDataURL(uri, (err, url) => {
-      if (!err) setQrCodeUrl(url);
-    });
+    const generateQr = async () => {
+      const uri = totp.toString();
+      try {
+        const QRCode = await import("qrcode");
+        const url = await QRCode.default.toDataURL(uri);
+        setQrCodeUrl(url);
+      } catch {
+        // QR generation failed silently
+      }
+    };
+    generateQr();
 
     return () => clearInterval(interval);
   }, [totp, period]);

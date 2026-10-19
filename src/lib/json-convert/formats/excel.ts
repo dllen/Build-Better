@@ -1,5 +1,13 @@
 import type { JsonValue } from "../types.ts";
-import JSZip from "jszip";
+
+let _jszipModule: any = null;
+
+async function ensureJSZip() {
+  if (!_jszipModule) {
+    _jszipModule = (await import("jszip")).default;
+  }
+  return _jszipModule;
+}
 
 /**
  * Convert a JSON array of objects to a minimal .xlsx file (returned as base64).
@@ -52,7 +60,7 @@ export async function jsonToExcelBase64(parsed: JsonValue, options?: { sheetName
 <sheetData>${rows.join("")}</sheetData>
 </worksheet>`;
 
-  // Minimal .xlsx package
+  const JSZip = await ensureJSZip();
   const zip = new JSZip();
   zip.file("[Content_Types].xml", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">

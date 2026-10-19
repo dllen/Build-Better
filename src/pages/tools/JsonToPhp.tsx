@@ -15,11 +15,14 @@ export default function JsonToPhp() {
   const [rootName, setRootName] = useState("Root");
 
   useEffect(() => {
-    convert(input, rootName);
-     
+    (async () => {
+
+      await convert(input, rootName);
+
+    })();
   }, [input, rootName]);
 
-  function convert(text: string, name: string) {
+  async function convert(text: string, name: string) {
     if (!text.trim()) {
       setResult("");
       setError(null);
@@ -32,7 +35,7 @@ export default function JsonToPhp() {
       return;
     }
     try {
-      setResult(convertLanguage("php", parsed.data, { className: name || "Root" }));
+      setResult(await convertLanguage("php", parsed.data, { className: name || "Root" }));
       setError(null);
     } catch (e) {
       setError(e instanceof Error ? e.message : "转换失败");

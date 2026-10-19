@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { Binary, Copy, Check, Eraser, ArrowRightLeft } from "lucide-react";
 import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
+import { toolSEOContent } from "@/data/tool-seo-content";
+import { ToolPageSEO } from "@/components/seo/ToolPageSEO";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 type Mode = "encode" | "decode";
 
@@ -54,7 +58,11 @@ export default function Base64Tool() {
       setError(null);
     } catch {
       setResult("");
-      setError("Base64 解码失败：输入包含非法字符或长度不正确，请检查是否完整。");
+      setError(
+        m === "decode"
+          ? "Base64 解码失败：输入包含非法字符或长度不正确，请检查是否完整。"
+          : "编码失败，请检查输入内容。"
+      );
     }
   }
 
@@ -83,8 +91,10 @@ export default function Base64Tool() {
   }
 
   return (
-    <EditorSplitLayout
-      title={
+    <>
+      {toolSEOContent["base64"] && <ToolPageSEO data={toolSEOContent["base64"]} />}
+      <EditorSplitLayout
+        title={
         <>
           <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
             <Binary className="h-5 w-5" />
@@ -187,5 +197,23 @@ export default function Base64Tool() {
           </>
         }
       />
+      <div className="mt-8 p-6 bg-white rounded-xl border border-gray-200">
+        <h2 className="text-lg font-semibold mb-4">Related Tools</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <Link to="/url-encoder" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">URL 编码/解码</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+          <Link to="/regex-tester" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">Regex Tester</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+          <Link to="/hash-tools" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">Hash Tools</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }

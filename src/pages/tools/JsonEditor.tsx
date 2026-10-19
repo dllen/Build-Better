@@ -2,7 +2,7 @@
 import React, { useState, useCallback } from "react";
 import "jsoneditor/dist/jsoneditor.css";
 import "./json-editor/editor-theme.css";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { ToolPageSEO } from "@/components/seo/ToolPageSEO";
 import { TrustBanner } from "@/components/seo/TrustBanner";
 import { useTranslation } from "react-i18next";
@@ -22,6 +22,7 @@ import {
   MODE_CONFIG,
   MODE_ORDER,
 } from "./json-editor";
+import { JsonEditorErrorBoundary } from "./json-editor/components/ErrorBoundary";
 import type { EditorMode, PanelTab, ContextMenuState } from "./json-editor/types";
 
 export default function JsonEditorTool() {
@@ -192,7 +193,9 @@ export default function JsonEditorTool() {
           onDrop={handleDrop}
           onDragOver={(e) => { e.preventDefault(); e.dataTransfer.dropEffect = "copy"; }}>
           <div className="flex-1 rounded-lg border border-border overflow-hidden bg-card shadow-inner">
-            <div ref={containerRef} className="w-full h-full" />
+            <JsonEditorErrorBoundary>
+              <div ref={containerRef} className="w-full h-full" />
+            </JsonEditorErrorBoundary>
           </div>
           <StatusBar
             isValid={isValid}

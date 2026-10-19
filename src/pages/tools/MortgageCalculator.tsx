@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Calculator, Info } from "lucide-react";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 
 type LoanType = "commercial" | "provident" | "combination";
 type PaymentMethod = "equal_principal_interest" | "equal_principal";

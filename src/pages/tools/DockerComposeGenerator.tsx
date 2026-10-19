@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Container, Copy, Download, Plus, Trash2, AlertCircle, Shield } from "lucide-react";
-import yaml from "js-yaml";
 
 interface ServiceEnv {
   key: string;
@@ -153,7 +152,7 @@ export default function DockerComposeGenerator() {
     );
   }
 
-  function generate() {
+  async function generate() {
     setError(null);
     setOutput("");
     const validationError = validateServices(services);
@@ -162,6 +161,7 @@ export default function DockerComposeGenerator() {
       return;
     }
     const doc = buildComposeDoc(services, version);
+    const yaml = (await import("js-yaml")).default;
     const yamlStr = yaml.dump(doc, { indent: 2, lineWidth: -1 });
     setOutput(yamlStr);
   }

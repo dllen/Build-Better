@@ -15,11 +15,12 @@ export default function JsonToCsv() {
   const [delimiter, setDelimiter] = useState(",");
 
   useEffect(() => {
-    convert(input, delimiter, direction);
-     
+    (async () => {
+      await convert(input, delimiter, direction);
+    })();
   }, [input, delimiter, direction]);
 
-  function convert(text: string, delim: string, dir: "json-csv" | "csv-json") {
+  async function convert(text: string, delim: string, dir: "json-csv" | "csv-json") {
     if (!text.trim()) {
       setResult("");
       setError(null);
@@ -33,7 +34,7 @@ export default function JsonToCsv() {
           setResult("");
           return;
         }
-        setResult(convertFormat("csv", parsed.data, { delimiter: delim }));
+        setResult(await convertFormat("csv", parsed.data, { delimiter: delim }));
       } else {
         const jsonStr = csvToJson(text, { delimiter: delim });
         setResult(jsonStr);

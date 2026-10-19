@@ -3,7 +3,7 @@ import {
   Mail, Copy, Check, Download, AlertTriangle, Eye, Code, FileText, Loader2, ChevronDown, LayoutTemplate,
 } from "lucide-react";
 import { render as renderEmail, type RenderWarning } from "emailmd";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { EMAIL_TEMPLATES, type EmailTemplate } from "@/data/email-templates";
 import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 

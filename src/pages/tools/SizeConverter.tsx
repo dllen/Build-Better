@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Ruler } from "lucide-react";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 
 interface SizeRow {
   us: string;

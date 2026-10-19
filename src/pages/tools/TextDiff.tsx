@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { GitCompare } from "lucide-react";
 import * as JsDiff from "diff";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 type Algo = "characters" | "words" | "lines";

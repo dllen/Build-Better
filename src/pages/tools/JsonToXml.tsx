@@ -16,11 +16,12 @@ export default function JsonToXml() {
   const [direction, setDirection] = useState<"json-xml" | "xml-json">("json-xml");
 
   useEffect(() => {
-    convert(input, rootName, direction);
-     
+    (async () => {
+      await convert(input, rootName, direction);
+    })();
   }, [input, rootName, direction]);
 
-  function convert(text: string, root: string, dir: "json-xml" | "xml-json") {
+  async function convert(text: string, root: string, dir: "json-xml" | "xml-json") {
     if (!text.trim()) {
       setResult("");
       setError(null);
@@ -34,9 +35,9 @@ export default function JsonToXml() {
           setResult("");
           return;
         }
-        setResult(convertFormat("xml", parsed.data, { rootName: root }));
+        setResult(await convertFormat("xml", parsed.data, { rootName: root }));
       } else {
-        const jsonStr = xmlToJson(text);
+        const jsonStr = await xmlToJson(text);
         setResult(jsonStr);
       }
       setError(null);

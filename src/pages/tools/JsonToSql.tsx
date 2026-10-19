@@ -15,11 +15,12 @@ export default function JsonToSql() {
   const [tableName, setTableName] = useState("items");
 
   useEffect(() => {
-    convert(input, dialect, tableName);
-     
+    (async () => {
+      await convert(input, dialect, tableName);
+    })();
   }, [input, dialect, tableName]);
 
-  function convert(text: string, d: string, t: string) {
+  async function convert(text: string, d: string, t: string) {
     if (!text.trim()) {
       setResult("");
       setError(null);
@@ -32,7 +33,7 @@ export default function JsonToSql() {
       return;
     }
     try {
-      setResult(convertFormat("sql", parsed.data, { dialect: d, tableName: t }));
+      setResult(await convertFormat("sql", parsed.data, { dialect: d, tableName: t }));
       setError(null);
     } catch (e) {
       setError(e instanceof Error ? e.message : "转换失败");

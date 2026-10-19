@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+import { useCookieConsent } from "@/contexts/CookieConsentContext";
 
 /**
  * Lazy-loaded Google AdSense ad slot.
  *
  * - Defers AdSense script load until the slot scrolls into view
  *   (saves ~30 KB JS on initial page load; Core Web Vitals).
- * - Skips rendering entirely in dev (no VITE_ADSENSE_PUBLISHER_ID)
- *   or when the user-agent is a bot (avoids empty ad fills).
+ * - Skips rendering entirely in dev (no VITE_ADSENSE_PUBLISHER_ID),
+ *   when the user-agent is a bot, or when cookie consent has been
+ *   rejected / not yet given.
  * - Honors a `data-adbreak-test` opt-in via the `test` prop (only
  *   use during AdSense review).
  */
@@ -52,6 +54,7 @@ export function AdSlot({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [pushed, setPushed] = useState(false);
+  const { consent } = useCookieConsent();
 
   // Lazy: only start loading the ad when the slot is within 200px of viewport.
   useEffect(() => {
@@ -91,7 +94,7 @@ export function AdSlot({
     }
   }, [shouldLoad, pushed]);
 
-  if (!PUBLISHER_ID || IS_BOT) {
+  if (!PUBLISHER_ID || IS_BOT || consent !== true) {
     return (
       <div
         ref={containerRef}

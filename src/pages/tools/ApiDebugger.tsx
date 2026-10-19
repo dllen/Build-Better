@@ -1,7 +1,7 @@
 // src/pages/tools/ApiDebugger.tsx
 import { useState, useCallback, useEffect } from "react";
 import { Terminal, PanelLeftClose, PanelLeft } from "lucide-react";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { ToolPageSEO } from "@/components/seo/ToolPageSEO";
 import { TrustBanner } from "@/components/seo/TrustBanner";
 import { useTranslation } from "react-i18next";

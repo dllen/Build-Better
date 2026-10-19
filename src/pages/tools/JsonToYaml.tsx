@@ -15,11 +15,12 @@ export default function JsonToYaml() {
   const [direction, setDirection] = useState<"json-yaml" | "yaml-json">("json-yaml");
 
   useEffect(() => {
-    convert(input, direction);
-     
+    (async () => {
+      await convert(input, direction);
+    })();
   }, [input, direction]);
 
-  function convert(text: string, dir: "json-yaml" | "yaml-json") {
+  async function convert(text: string, dir: "json-yaml" | "yaml-json") {
     if (!text.trim()) {
       setResult("");
       setError(null);
@@ -33,9 +34,9 @@ export default function JsonToYaml() {
           setResult("");
           return;
         }
-        setResult(convertFormat("yaml", parsed.data));
+        setResult(await convertFormat("yaml", parsed.data));
       } else {
-        const jsonStr = yamlToJson(text);
+        const jsonStr = await yamlToJson(text);
         setResult(jsonStr);
       }
       setError(null);

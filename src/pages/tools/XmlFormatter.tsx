@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { FileCode, Copy, Check, RotateCcw, AlertTriangle } from "lucide-react";
 import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
-import { XMLParser, XMLBuilder } from "fast-xml-parser";
 
 type Mode = "format" | "minify" | "validate";
 
@@ -13,13 +12,15 @@ export default function XmlFormatter() {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    if (!input.trim()) {
-      setOutput("");
-      setError("");
-      return;
-    }
+    const fn = async () => {
+      if (!input.trim()) {
+        setOutput("");
+        setError("");
+        return;
+      }
 
-    try {
+      try {
+        const { XMLParser, XMLBuilder } = await import("fast-xml-parser");
       if (mode === "validate") {
         // Validate only — parse and report
         const parser = new XMLParser({
@@ -53,9 +54,11 @@ export default function XmlFormatter() {
       setOutput(typeof result === "string" ? result : JSON.stringify(result, null, 2));
       setError("");
     } catch (e) {
-      setError((e as Error).message);
-      setOutput("");
-    }
+        setError((e as Error).message);
+        setOutput("");
+      }
+    };
+    fn();
   }, [input, mode]);
 
   const handleCopy = async () => {

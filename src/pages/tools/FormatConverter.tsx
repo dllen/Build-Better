@@ -1,20 +1,13 @@
-import { useState, useCallback, useEffect } from "react";
-import { Copy, Check, ArrowRightLeft } from "lucide-react";
-import Editor from "@monaco-editor/react";
+import React, { useState, useCallback, useEffect, lazy, Suspense } from "react";
+import { Copy, Check, ArrowRightLeft, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
-import yaml from "js-yaml";
+import { SEO } from "@/components/seo";
 import toml, { JsonMap } from "@iarna/toml";
-import { XMLParser, XMLBuilder } from "fast-xml-parser";
 import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
-type Format = "json" | "yaml" | "toml" | "xml";
+const Editor = lazy(() => import("@monaco-editor/react"));
 
-const xmlParser = new XMLParser();
-const xmlBuilder = new XMLBuilder({
-  format: true,
-  ignoreAttributes: false,
-});
+type Format = "json" | "yaml" | "toml" | "xml";
 
 export default function FormatConverter() {
   const { t } = useTranslation();
@@ -37,7 +30,7 @@ export default function FormatConverter() {
     }
   };
 
-  const convert = useCallback(() => {
+  const convert = useCallback(async () => {
     setError(null);
     if (!inputContent.trim()) {
       setOutputContent("");
@@ -53,13 +46,13 @@ export default function FormatConverter() {
           parsedData = JSON.parse(inputContent);
           break;
         case "yaml":
-          parsedData = yaml.load(inputContent);
+          parsedData = (await import("js-yaml")).default.load(inputContent);
           break;
         case "toml":
           parsedData = toml.parse(inputContent);
           break;
         case "xml":
-          parsedData = xmlParser.parse(inputContent);
+          parsedData = new (await import("fast-xml-parser")).XMLParser().parse(inputContent);
           break;
       }
 
@@ -70,7 +63,7 @@ export default function FormatConverter() {
           result = JSON.stringify(parsedData, null, 2);
           break;
         case "yaml":
-          result = yaml.dump(parsedData);
+          result = (await import("js-yaml")).default.dump(parsedData);
           break;
         case "toml": {
           const tomlData = parsedData as JsonMap;
@@ -78,7 +71,10 @@ export default function FormatConverter() {
           break;
         }
         case "xml":
-          result = xmlBuilder.build(parsedData);
+          result = new (await import("fast-xml-parser")).XMLBuilder({
+            format: true,
+            ignoreAttributes: false,
+          }).build(parsedData);
           break;
       }
 
@@ -167,21 +163,23 @@ export default function FormatConverter() {
       }
       inputLabel={t("tools.format-converter.input_label", "Input")}
       input={
-        <Editor
-          height="100%"
-          defaultLanguage="json"
-          language={getMonacoLanguage(inputFormat)}
-          value={inputContent}
-          onChange={(value) => setInputContent(value || "")}
-          theme="light"
-          options={{
-            minimap: { enabled: false },
-            fontSize: 14,
-            wordWrap: "on",
-            scrollBeyondLastLine: false,
-            automaticLayout: true,
-          }}
-        />
+        <Suspense fallback={<div className="flex items-center justify-center h-full text-gray-400"><Loader2 className="h-6 w-6 animate-spin" /></div>}>
+          <Editor
+            height="100%"
+            defaultLanguage="json"
+            language={getMonacoLanguage(inputFormat)}
+            value={inputContent}
+            onChange={(value) => setInputContent(value || "")}
+            theme="light"
+            options={{
+              minimap: { enabled: false },
+              fontSize: 14,
+              wordWrap: "on",
+              scrollBeyondLastLine: false,
+              automaticLayout: true,
+            }}
+          />
+        </Suspense>
       }
       outputLabel={t("tools.format-converter.output_label", "Output")}
       outputActions={
@@ -205,21 +203,23 @@ export default function FormatConverter() {
       }
       output={
         <div className="relative h-full">
-          <Editor
-            height="100%"
-            defaultLanguage="yaml"
-            language={getMonacoLanguage(outputFormat)}
-            value={outputContent}
-            theme="light"
-            options={{
-              readOnly: true,
-              minimap: { enabled: false },
-              fontSize: 14,
-              wordWrap: "on",
-              scrollBeyondLastLine: false,
-              automaticLayout: true,
-            }}
-          />
+          <Suspense fallback={<div className="flex items-center justify-center h-full text-gray-400"><Loader2 className="h-6 w-6 animate-spin" /></div>}>
+            <Editor
+              height="100%"
+              defaultLanguage="yaml"
+              language={getMonacoLanguage(outputFormat)}
+              value={outputContent}
+              theme="light"
+              options={{
+                readOnly: true,
+                minimap: { enabled: false },
+                fontSize: 14,
+                wordWrap: "on",
+                scrollBeyondLastLine: false,
+                automaticLayout: true,
+              }}
+            />
+          </Suspense>
           {error && (
             <div className="absolute inset-0 bg-white/90 flex items-center justify-center p-4">
               <div className="bg-red-50 border border-red-200 rounded-lg p-4 max-w-md w-full">

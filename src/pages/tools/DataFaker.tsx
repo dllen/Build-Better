@@ -1,6 +1,5 @@
 import { useState, useCallback } from "react";
 import { Database, Plus, Trash2, Copy, Download, RefreshCw, Shield } from "lucide-react";
-import { faker } from "@faker-js/faker";
 
 type FieldType = {
   id: string;
@@ -26,7 +25,17 @@ const FIELD_TYPES = [
   { value: "ip", label: "IP", method: "internet.ip" },
 ];
 
-function generateValue(type: string): unknown {
+type FakerModule = typeof import("@faker-js/faker");
+
+let _fakerModule: FakerModule | null = null;
+
+async function ensureFaker(): Promise<FakerModule> {
+  if (_fakerModule) return _fakerModule;
+  _fakerModule = await import("@faker-js/faker");
+  return _fakerModule;
+}
+
+function generateValue(type: string, faker: FakerModule["faker"]): unknown {
   switch (type) {
     case "fullName":
       return faker.person.fullName();
@@ -97,14 +106,17 @@ export default function DataFaker() {
     }
     setHint("");
 
-    const rows: Record<string, unknown>[] = [];
-    for (let i = 0; i < count; i++) {
-      const row: Record<string, unknown> = {};
-      for (const field of validFields) {
-        row[field.name] = generateValue(field.type);
+    const doGenerate = async () => {
+      const faker = (await ensureFaker()).faker;
+
+      const rows: Record<string, unknown>[] = [];
+      for (let i = 0; i < count; i++) {
+        const row: Record<string, unknown> = {};
+        for (const field of validFields) {
+          row[field.name] = generateValue(field.type, faker);
+        }
+        rows.push(row);
       }
-      rows.push(row);
-    }
 
     let result = "";
     if (format === "json") {
@@ -138,6 +150,8 @@ export default function DataFaker() {
     }
 
     setOutput(result);
+    };
+    doGenerate();
   }
 
   function copy() {

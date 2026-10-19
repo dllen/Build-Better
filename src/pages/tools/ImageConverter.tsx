@@ -1,8 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { Upload, X, Download, RefreshCw, Archive, Settings } from "lucide-react";
-import JSZip from "jszip";
 
 interface ImageItem {
   id: string;
@@ -131,6 +130,7 @@ export default function ImageConverter() {
   };
 
   const downloadAll = async () => {
+    const JSZip = (await import("jszip")).default;
     const zip = new JSZip();
     let count = 0;
 

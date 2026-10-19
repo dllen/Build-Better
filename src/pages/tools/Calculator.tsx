@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Calculator, ClipboardCopy } from "lucide-react";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 
 type Mode = "basic" | "scientific";
 type AngleMode = "deg" | "rad";

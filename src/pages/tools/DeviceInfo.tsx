@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Monitor, Smartphone, Cpu, Globe, Maximize, Copy, Check, LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 
 interface DeviceInfoItem {
   key: string;

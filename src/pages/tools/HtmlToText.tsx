@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { FileText, Copy, Check, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 export default function HtmlToText() {

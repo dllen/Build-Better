@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Play, Box, User, Gamepad2, Bomb, Grid2x2, Link2, Keyboard, CircleDot, PawPrint, Plane, Hexagon, ExternalLink } from "lucide-react";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { useState, useMemo } from "react";
 import Fuse from "fuse.js";
 import { SearchInput } from "@/components/common/SearchInput";

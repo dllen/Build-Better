@@ -24,21 +24,15 @@ const GAME_ROUTES = [
 const toolsTsPath = path.resolve(__dirname, "../src/data/tools.ts");
 const toolsTsContent = fs.readFileSync(toolsTsPath, "utf-8");
 
-// Extract all path: "xxx" values — paths are stored as full routes like "/brazil-tax-id-tool"
+// Extract all path: "xxx" values — paths are now stored as canonical full routes
+// like "/json-editor", "/web3/ens-lookup", "/text/case".
+// No /tools/ prefix needed — the migration to top-level routes is complete.
 const pathRegex = /path:\s*"([^"]+)"/g;
 const toolPaths = new Set();
 let match;
 
 while ((match = pathRegex.exec(toolsTsContent)) !== null) {
-  const p = match[1];
-  // Skip game/web3 routes (those are full slugs already, no /tools prefix needed)
-  if (p.startsWith("/games/") || p.startsWith("/web3/") || p.startsWith("/text/") || p.startsWith("/chat/")) {
-    // Games/web3/text are their own top-level routes
-    toolPaths.add(p);
-  } else {
-    // Regular tool paths like "/brazil-tax-id-tool" → need /tools prefix
-    toolPaths.add(`/tools${p}`);
-  }
+  toolPaths.add(match[1]);
 }
 
 // Build deduplicated route list

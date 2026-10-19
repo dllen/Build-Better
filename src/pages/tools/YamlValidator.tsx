@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { FileJson, Copy, Check, RotateCcw, AlertTriangle } from "lucide-react";
 import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
-import yaml from "js-yaml";
 
 type Mode = "validate" | "format" | "to-json";
 
@@ -13,14 +12,16 @@ export default function YamlValidator() {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    if (!input.trim()) {
-      setOutput("");
-      setError("");
-      return;
-    }
+    const fn = async () => {
+      if (!input.trim()) {
+        setOutput("");
+        setError("");
+        return;
+      }
 
-    try {
-      const parsed = yaml.load(input);
+      try {
+        const yaml = await import("js-yaml");
+        const parsed = yaml.default.load(input);
 
       if (mode === "validate") {
         setOutput(`✅ Valid YAML\n\nType: ${Array.isArray(parsed) ? "Array" : typeof parsed}`);
@@ -29,7 +30,7 @@ export default function YamlValidator() {
       }
 
       if (mode === "format") {
-        const formatted = yaml.dump(parsed, {
+        const formatted = yaml.default.dump(parsed, {
           indent: 2,
           lineWidth: 120,
           noRefs: true,
@@ -45,9 +46,11 @@ export default function YamlValidator() {
       setOutput(json);
       setError("");
     } catch (e) {
-      setError((e as Error).message);
-      setOutput("");
-    }
+        setError((e as Error).message);
+        setOutput("");
+      }
+    };
+    fn();
   }, [input, mode]);
 
   const handleCopy = async () => {

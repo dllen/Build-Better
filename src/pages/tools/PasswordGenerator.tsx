@@ -1,5 +1,9 @@
-import { useMemo, useState } from "react";
-import { Lock } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Lock, Copy, Check, Shield } from "lucide-react";
+import { toolSEOContent } from "@/data/tool-seo-content";
+import { ToolPageSEO } from "@/components/seo/ToolPageSEO";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 const LOWER = "abcdefghijklmnopqrstuvwxyz";
 const UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -30,6 +34,7 @@ export default function PasswordGenerator() {
   const [includeSymbol, setIncludeSymbol] = useState(false);
   const [avoidAmbiguous, setAvoidAmbiguous] = useState(true);
   const [password, setPassword] = useState("");
+  const [copied, setCopied] = useState(false);
 
   const pool = useMemo(() => {
     let p = "";
@@ -60,7 +65,12 @@ export default function PasswordGenerator() {
     return "Very weak";
   }, [entropyBits]);
 
-  function generate() {
+  // Auto-generate on mount and when options change
+  useEffect(() => {
+    generatePassword();
+  }, [length, includeLower, includeUpper, includeNum, includeSymbol, avoidAmbiguous]);
+
+  function generatePassword() {
     const selectedSets = [
       includeLower ? LOWER : "",
       includeUpper ? UPPER : "",
@@ -100,11 +110,17 @@ export default function PasswordGenerator() {
 
   async function copy() {
     if (!password) return;
-    await navigator.clipboard.writeText(password);
+    try {
+      await navigator.clipboard.writeText(password);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch { /* clipboard unavailable */ }
   }
 
   return (
-    <div className="space-y-6">
+    <>
+      {toolSEOContent["password-generator"] && <ToolPageSEO data={toolSEOContent["password-generator"]} />}
+      <div className="space-y-6">
       <div className="flex items-center gap-2">
         <div className="inline-flex p-2 rounded-lg bg-purple-100 text-purple-600">
           <Lock className="h-5 w-5" />
@@ -179,16 +195,17 @@ export default function PasswordGenerator() {
             <button
               className="px-4 py-2 rounded-md bg-blue-600 text-white disabled:opacity-50"
               disabled={!pool.length}
-              onClick={generate}
+              onClick={generatePassword}
             >
               Generate
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
               onClick={copy}
               disabled={!password}
             >
-              Copy
+              {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+              {copied ? "Copied" : "Copy"}
             </button>
           </div>
         </div>
@@ -198,6 +215,28 @@ export default function PasswordGenerator() {
           <div className="font-mono text-lg break-all">{password || ""}</div>
         </div>
       </div>
-    </div>
+      <div className="inline-flex items-center gap-1 mt-2 mb-4 text-xs text-gray-500">
+        <Shield className="h-3 w-3" />
+        数据仅在浏览器本地处理，不会上传到服务器。
+      </div>
+      <div className="mt-8 p-6 bg-white rounded-xl border border-gray-200">
+        <h2 className="text-lg font-semibold mb-4">Related Tools</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <Link to="/uuid-generator" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">UUID 生成器</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+          <Link to="/bcrypt" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">Bcrypt 哈希</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+          <Link to="/hash-tools" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">Hash Tools</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+        </div>
+      </div>
+      </div>
+    </>
   );
 }

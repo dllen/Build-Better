@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { RefreshCw, AlertCircle, Settings } from "lucide-react";
 
 // --- Types ---

@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Upload, Download, RefreshCw, Image as ImageIcon, Copy, Check, FileText } from 'lucide-react';
 import { processImage, DENSITY_SETS, AsciiResult } from '@/utils/asciiArt';
-import { SEO } from '@/components/SEO';
+import { SEO } from '@/components/seo';
 
 export default function ImageAsciiArt() {
   const { t } = useTranslation();

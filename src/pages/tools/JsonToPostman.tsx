@@ -15,11 +15,12 @@ export default function JsonToPostman() {
   const [collectionName, setCollectionName] = useState("Generated Collection");
 
   useEffect(() => {
-    convert(input, collectionName);
-     
+    (async () => {
+      await convert(input, collectionName);
+    })();
   }, [input, collectionName]);
 
-  function convert(text: string, name: string) {
+  async function convert(text: string, name: string) {
     if (!text.trim()) {
       setResult("");
       setError(null);
@@ -32,7 +33,7 @@ export default function JsonToPostman() {
       return;
     }
     try {
-      setResult(convertFormat("postman", parsed.data, { collectionName: name }));
+      setResult(await convertFormat("postman", parsed.data, { collectionName: name }));
       setError(null);
     } catch (e) {
       setError(e instanceof Error ? e.message : "转换失败");

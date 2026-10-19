@@ -1,10 +1,9 @@
 import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { Upload, X, Download, Image as Check, Crop as CropIcon, Sliders, Layers } from "lucide-react";
 import ReactCrop, { Crop, PixelCrop, centerCrop, makeAspectCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-import JSZip from "jszip";
 
 interface ImageItem {
   id: string;
@@ -307,6 +306,7 @@ export default function ImageResizer() {
   };
   
   const downloadAll = async () => {
+      const JSZip = (await import("jszip")).default;
       const zip = new JSZip();
       let count = 0;
   

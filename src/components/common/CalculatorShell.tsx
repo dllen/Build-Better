@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import { LucideIcon } from "lucide-react";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
+import { AdSlot } from "@/components/ads";
 
 interface CalculatorShellProps {
   title: string;
@@ -44,6 +45,7 @@ export const CalculatorShell: React.FC<CalculatorShellProps> = ({
             {result}
           </div>
         </div>
+        <AdSlot format="auto" minHeight={90} />
       </div>
     </div>
   );

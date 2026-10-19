@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { pinyin } from "pinyin-pro";
 import { User, Search, RefreshCw, Copy } from "lucide-react";
 

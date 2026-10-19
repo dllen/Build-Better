@@ -1068,6 +1068,30 @@ export const toolSEOContent: Record<string, ToolSEOData> = {
       { q: "Is this local?", a: "Yes. All processing is done in your browser." },
     ],
   },
+  "hmac-tool": {
+    title: "HMAC Generator - Free Online HMAC Hash Tool | Build Better",
+    description: "Generate HMAC (Hash-based Message Authentication Code) hashes instantly. Supports SHA-256, SHA-512, SHA-1, and MD5 algorithms with a secret key. 100% client-side processing.",
+    slug: "hmac-tool",
+    features: [
+      "SHA-256, SHA-512, SHA-1, MD5 support",
+      "Secret key-based HMAC generation",
+      "Hex, Base64, and Base64URL output formats",
+      "100% client-side processing — no data sent to any server",
+      "One-click copy to clipboard",
+      "Real-time key and message byte count display",
+    ],
+    howToSteps: [
+      { title: "Enter message", body: "Type or paste the message text you want to generate an HMAC for." },
+      { title: "Enter secret key", body: "Provide the secret key that will be used for the HMAC computation." },
+      { title: "Select algorithm and output", body: "Choose SHA-256, SHA-512, SHA-1, or MD5 as the hash algorithm, and select hex, base64, or base64url as the output format. Click Calculate." },
+      { title: "Copy result", body: "Click the Copy button to copy the generated HMAC hash to your clipboard." },
+    ],
+    faqs: [
+      { q: "What is HMAC?", a: "HMAC (Hash-based Message Authentication Code) combines a cryptographic hash function with a secret key to verify both the integrity and authenticity of a message." },
+      { q: "Is my data uploaded to a server?", a: "No. All HMAC computation happens locally in your browser using the Web Crypto API. Your data and secret key never leave your device." },
+      { q: "Which algorithm should I use?", a: "SHA-256 is recommended for most use cases. SHA-512 offers higher security. Avoid MD5 and SHA-1 for security-sensitive applications as they are considered cryptographically broken." },
+    ],
+  },
 };
 
 export function getToolSEO(slug: string): ToolSEOData | null {

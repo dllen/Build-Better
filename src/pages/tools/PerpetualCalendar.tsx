@@ -7,7 +7,7 @@ import {
   ChevronsRight,
 } from "lucide-react";
 import { Solar, HolidayUtil } from "lunar-javascript";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 
 export default function PerpetualCalendar() {
   const [currentDate, setCurrentDate] = useState(new Date());

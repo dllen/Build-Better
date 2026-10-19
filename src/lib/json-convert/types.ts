@@ -26,7 +26,7 @@ export interface ParseFailure {
 export type ParseResult = ParseSuccess | ParseFailure;
 
 /** A converter is a pure function: parsed JSON in, formatted text out. */
-export type ConverterFn = (parsed: JsonValue, options?: ConvertOptions) => string;
+export type ConverterFn = (parsed: JsonValue, options?: ConvertOptions) => string | Promise<string>;
 
 /** Common options for language converters. */
 export interface ConvertOptions {

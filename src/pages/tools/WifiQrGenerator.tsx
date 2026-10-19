@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import {
   Wifi,
   Download,
@@ -8,7 +8,6 @@ import {
   Eye,
   EyeOff,
 } from "lucide-react";
-import QRCode from "qrcode";
 
 export default function WifiQrGenerator() {
   const { t } = useTranslation();
@@ -24,7 +23,7 @@ export default function WifiQrGenerator() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ssid, password, encryption, hidden]);
 
-  const generateQrCode = () => {
+  const generateQrCode = async () => {
     if (!ssid) {
       setQrCodeUrl("");
       return;
@@ -40,20 +39,20 @@ export default function WifiQrGenerator() {
 
     const ssidEscaped = escape(ssid);
     const passwordEscaped = escape(password);
-    
+
     let wifiString = `WIFI:S:${ssidEscaped};`;
-    
+
     if (encryption !== "nopass") {
       wifiString += `T:${encryption};P:${passwordEscaped};`;
     } else {
       wifiString += `T:nopass;`;
     }
-    
+
     wifiString += `H:${hidden};;`;
 
-    QRCode.toDataURL(
-      wifiString,
-      {
+    try {
+      const QRCode = await import("qrcode");
+      const url = await QRCode.default.toDataURL(wifiString, {
         width: 400,
         margin: 2,
         color: {
@@ -61,11 +60,11 @@ export default function WifiQrGenerator() {
           light: "#ffffff",
         },
         errorCorrectionLevel: "M",
-      },
-      (err, url) => {
-        if (!err) setQrCodeUrl(url);
-      }
-    );
+      });
+      setQrCodeUrl(url);
+    } catch (err) {
+      console.error("Failed to generate QR code", err);
+    }
   };
 
   const handleDownload = () => {

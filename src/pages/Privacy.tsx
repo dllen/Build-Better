@@ -58,6 +58,16 @@ export default function Privacy() {
         </section>
 
         <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6 shadow-sm">
+          <h2 className="text-xl font-semibold">Analytics</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            We use anonymous analytics to understand how visitors use the site (pages viewed,
+            referrers, browser type). This data is collected in aggregate and contains no
+            personally identifiable information. Analytics never includes any tool input
+            content, generated output, or data entered into any tool on this site.
+          </p>
+        </section>
+
+        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6 shadow-sm">
           <h2 className="text-xl font-semibold">Data Storage</h2>
           <p className="text-muted-foreground leading-relaxed">
             Cloudflare KV is used for short URL generation. Cloudflare D1 (the SharePool

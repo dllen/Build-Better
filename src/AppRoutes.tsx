@@ -6,6 +6,7 @@ import Home from "@/pages/Home";
 import Settings from "@/pages/Settings";
 import Privacy from "@/pages/Privacy";
 import About from "@/pages/About";
+import Terms from "@/pages/Terms";
 import Contact from "@/pages/Contact";
 import Games from "@/pages/Games";
 import ApiDebugger from "@/pages/tools/ApiDebugger";
@@ -222,6 +223,7 @@ import ExifViewer from "@/pages/tools/ExifViewer";
 import XmlFormatter from "@/pages/tools/XmlFormatter";
 import YamlValidator from "@/pages/tools/YamlValidator";
 import SemverCompare from "@/pages/tools/SemverCompare";
+import NotFound from "@/pages/NotFound";
 
 
 
@@ -261,6 +263,7 @@ export function AppRoutes() {
         <Route path="/skills-hub" element={<SkillsHub />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         
@@ -680,6 +683,9 @@ export function AppRoutes() {
         <Route path="/tools/ai-seo" element={<Navigate to="/ai-seo" replace />} />
         <Route path="/tools/ai-whatsapp" element={<Navigate to="/ai-whatsapp" replace />} />
         <Route path="/tools/margin-calculator" element={<Navigate to="/margin-calculator" replace />} />
+
+        {/* 404 Catch-All */}
+        <Route path="*" element={<NotFound />} />
         </Route>
       </Route>
     </Routes>

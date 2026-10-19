@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Copy, Check, Globe } from "lucide-react";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 
 // In a real app with backend, we would fetch these from an API
 // For this client-side tool, we'll try to load them if possible, or start empty/with current loaded resources

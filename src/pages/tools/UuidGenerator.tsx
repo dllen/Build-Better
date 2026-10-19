@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { Fingerprint, RefreshCw, Copy, Check, Trash2, ShieldCheck } from "lucide-react";
+import { toolSEOContent } from "@/data/tool-seo-content";
+import { ToolPageSEO } from "@/components/seo/ToolPageSEO";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 function generateUuidV4(): string {
   if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
@@ -76,7 +80,9 @@ export default function UuidGenerator() {
   }
 
   return (
-    <div className="space-y-6">
+    <>
+      {toolSEOContent["uuid-generator"] && <ToolPageSEO data={toolSEOContent["uuid-generator"]} />}
+      <div className="space-y-6">
       <div className="flex items-center gap-2">
         <div className="inline-flex p-2 rounded-lg bg-indigo-100 text-indigo-600">
           <Fingerprint className="h-5 w-5" />
@@ -189,6 +195,24 @@ export default function UuidGenerator() {
           )}
         </div>
       </div>
-    </div>
+      <div className="mt-8 p-6 bg-white rounded-xl border border-gray-200">
+        <h2 className="text-lg font-semibold mb-4">相关工具</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <Link to="/password-generator" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">密码生成器</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+          <Link to="/ulid" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">ULID 生成器</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+          <Link to="/otp-generator" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">OTP 生成器</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+        </div>
+      </div>
+      </div>
+    </>
   );
 }

@@ -15,11 +15,12 @@ export default function JsonToToml() {
   const [direction, setDirection] = useState<"json-toml" | "toml-json">("json-toml");
 
   useEffect(() => {
-    convert(input, direction);
-     
+    (async () => {
+      await convert(input, direction);
+    })();
   }, [input, direction]);
 
-  function convert(text: string, dir: "json-toml" | "toml-json") {
+  async function convert(text: string, dir: "json-toml" | "toml-json") {
     if (!text.trim()) {
       setResult("");
       setError(null);
@@ -33,7 +34,7 @@ export default function JsonToToml() {
           setResult("");
           return;
         }
-        setResult(convertFormat("toml", parsed.data));
+        setResult(await convertFormat("toml", parsed.data));
       } else {
         const jsonStr = tomlToJson(text);
         setResult(jsonStr);

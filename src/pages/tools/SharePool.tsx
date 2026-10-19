@@ -15,7 +15,7 @@ import {
 import { useSharePool } from "@/hooks/useSharePool";
 import { AuthForm } from "@/components/auth/AuthForm";
 import { SharePoolItem, getImageUrl, formatTokenExpiry, verifyEmail } from "@/lib/sharepool";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { useSearchParams } from "react-router-dom";
 
 // ============================================================================

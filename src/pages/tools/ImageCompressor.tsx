@@ -1,8 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { Upload, X, Download, RefreshCw, Trash2, Archive } from "lucide-react";
-import JSZip from "jszip";
 
 interface CompressedImage {
   id: string;
@@ -25,15 +24,29 @@ export default function ImageCompressor() {
 
   const handleFiles = (files: FileList | null) => {
     if (!files) return;
-    
-    const newImages: CompressedImage[] = Array.from(files).map((file) => ({
-      id: Math.random().toString(36).substring(2) + Date.now().toString(36),
-      originalFile: file,
-      compressedBlob: null,
-      status: "pending",
-      originalPreview: URL.createObjectURL(file),
-      compressedPreview: null,
-    }));
+
+    const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50 MB
+    const newImages: CompressedImage[] = Array.from(files).map((file) => {
+      if (file.size > MAX_FILE_SIZE) {
+        return {
+          id: Math.random().toString(36).substring(2) + Date.now().toString(36),
+          originalFile: file,
+          compressedBlob: null,
+          status: "error" as const,
+          originalPreview: URL.createObjectURL(file),
+          compressedPreview: null,
+          error: "File exceeds 50 MB limit",
+        };
+      }
+      return {
+        id: Math.random().toString(36).substring(2) + Date.now().toString(36),
+        originalFile: file,
+        compressedBlob: null,
+        status: "pending" as const,
+        originalPreview: URL.createObjectURL(file),
+        compressedPreview: null,
+      };
+    });
 
     setImages((prev) => [...prev, ...newImages]);
   };
@@ -96,43 +109,17 @@ export default function ImageCompressor() {
 
   const processAll = async () => {
     setIsProcessing(true);
-    const updatedImages = [...images];
-    
-    // Process strictly sequentially or use Promise.all. 
-    // Promise.all is better for performance but UI updates might feel jumpy.
-    // Let's use map and Promise.all to update state once or incrementally.
-    // For better UX, let's update state as we go, but we can process in parallel.
-    
-    const _promises = updatedImages.map(async (img) => {
-      if (img.status === "done") {
-         // Re-process if settings changed? Yes, let's assume "Process All" means re-run everything that is pending or done but with new settings.
-         // Actually, usually user wants to apply settings to everything.
-      }
-      // Let's mark all as processing first
-      return img;
-    });
 
-    // Actually, simpler approach: Filter out already processing ones? 
-    // Let's just re-process everything that matches the current list.
-    
-    // First, set all to processing visually (optional, but good feedback)
-    setImages(prev => prev.map(img => ({ ...img, status: "processing" })));
+    // Mark all as processing for visual feedback
+    setImages(prev => prev.map(img => ({ ...img, status: "processing" as const })));
 
     const results = await Promise.all(
       images.map(img => processImage(img))
     );
-    
+
     setImages(results);
     setIsProcessing(false);
   };
-  
-  // Auto-process new images or on setting change? 
-  // Usually explicit "Start" or auto. Let's make it manual "Compress" button or auto? 
-  // The requirement says "Batch processing". 
-  // Let's adding a "Compress All" button. But also maybe auto-compress on add?
-  // Let's stick to a "Compress" button for clarity, especially since settings might change.
-  // Actually, reactive is cooler. Let's try to make it reactive to settings changes with a debounce?
-  // Or just a big "Compress" button. "Compress" button is safer for performance with many large images.
   
   const removeImage = (id: string) => {
     setImages((prev) => {
@@ -163,6 +150,7 @@ export default function ImageCompressor() {
   };
 
   const downloadAll = async () => {
+    const JSZip = (await import("jszip")).default;
     const zip = new JSZip();
     let count = 0;
 

@@ -1,7 +1,7 @@
 import { Quickdraw, type QuickdrawRef, useQuickdrawStore } from "@quickdrawjs/react";
 import "@quickdrawjs/core/quickdraw.css";
 import { useRef } from "react";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { useTranslation } from "react-i18next";
 
 export default function DrawingTool() {

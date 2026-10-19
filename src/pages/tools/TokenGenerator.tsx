@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { Key, Copy, Check, RefreshCw, Settings2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 
 const LOWER = "abcdefghijklmnopqrstuvwxyz";
 const UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

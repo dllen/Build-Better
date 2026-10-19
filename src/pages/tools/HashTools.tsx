@@ -129,6 +129,7 @@ export default function HashTools() {
                 value={alg}
                 onChange={(e) => setAlg(e.target.value as TextAlg)}
               >
+                <option value="MD5">MD5</option>
                 <option value="SHA-1">SHA-1</option>
                 <option value="SHA-256">SHA-256</option>
                 <option value="SHA-512">SHA-512</option>

@@ -1,20 +1,12 @@
-import { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { Copy, Check, Loader2, Play, Settings2 } from "lucide-react";
-import Editor, { OnMount } from "@monaco-editor/react";
-import * as prettier from "prettier/standalone";
-import * as parserBabel from "prettier/plugins/babel";
-import * as parserHtml from "prettier/plugins/html";
-import * as parserPostcss from "prettier/plugins/postcss";
-import * as parserMarkdown from "prettier/plugins/markdown";
-import * as parserYaml from "prettier/plugins/yaml";
-import * as parserGraphql from "prettier/plugins/graphql";
-import * as parserAngular from "prettier/plugins/angular";
-import * as parserFlow from "prettier/plugins/flow";
-import * as estree from "prettier/plugins/estree";
+import type { OnMount } from "@monaco-editor/react";
 import { format as formatSql } from "sql-formatter";
 import { useTranslation } from "react-i18next";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
+
+const Editor = lazy(() => import("@monaco-editor/react"));
 
 type Language =
   | "javascript"
@@ -37,26 +29,94 @@ type Theme = "vs-light" | "vs-dark" | "hc-black";
 interface LanguageConfig {
   name: string;
   parser: string;
-  plugins: unknown[];
   monacoId: string;
 }
 
 const LANGUAGES: Record<Language, LanguageConfig> = {
-  javascript: { name: "JavaScript", parser: "babel", plugins: [parserBabel, estree], monacoId: "javascript" },
-  typescript: { name: "TypeScript", parser: "babel-ts", plugins: [parserBabel, estree], monacoId: "typescript" },
-  flow: { name: "Flow", parser: "flow", plugins: [parserFlow, estree], monacoId: "javascript" },
-  json: { name: "JSON", parser: "json", plugins: [parserBabel, estree], monacoId: "json" },
-  html: { name: "HTML", parser: "html", plugins: [parserHtml], monacoId: "html" },
-  vue: { name: "Vue", parser: "vue", plugins: [parserHtml, parserBabel, parserPostcss, estree], monacoId: "html" },
-  angular: { name: "Angular", parser: "angular", plugins: [parserAngular, parserHtml, estree], monacoId: "html" },
-  css: { name: "CSS", parser: "css", plugins: [parserPostcss], monacoId: "css" },
-  less: { name: "Less", parser: "less", plugins: [parserPostcss], monacoId: "less" },
-  scss: { name: "SCSS", parser: "scss", plugins: [parserPostcss], monacoId: "scss" },
-  markdown: { name: "Markdown", parser: "markdown", plugins: [parserMarkdown], monacoId: "markdown" },
-  yaml: { name: "YAML", parser: "yaml", plugins: [parserYaml], monacoId: "yaml" },
-  graphql: { name: "GraphQL", parser: "graphql", plugins: [parserGraphql], monacoId: "graphql" },
-  sql: { name: "SQL", parser: "sql", plugins: [], monacoId: "sql" },
+  javascript: { name: "JavaScript", parser: "babel", monacoId: "javascript" },
+  typescript: { name: "TypeScript", parser: "babel-ts", monacoId: "typescript" },
+  flow: { name: "Flow", parser: "flow", monacoId: "javascript" },
+  json: { name: "JSON", parser: "json", monacoId: "json" },
+  html: { name: "HTML", parser: "html", monacoId: "html" },
+  vue: { name: "Vue", parser: "vue", monacoId: "html" },
+  angular: { name: "Angular", parser: "angular", monacoId: "html" },
+  css: { name: "CSS", parser: "css", monacoId: "css" },
+  less: { name: "Less", parser: "less", monacoId: "less" },
+  scss: { name: "SCSS", parser: "scss", monacoId: "scss" },
+  markdown: { name: "Markdown", parser: "markdown", monacoId: "markdown" },
+  yaml: { name: "YAML", parser: "yaml", monacoId: "yaml" },
+  graphql: { name: "GraphQL", parser: "graphql", monacoId: "graphql" },
+  sql: { name: "SQL", parser: "sql", monacoId: "sql" },
 };
+
+// Lazy-load prettier and its plugins
+type PrettierCache = {
+  prettier: typeof import("prettier/standalone");
+  plugins: Record<string, unknown>;
+} | null;
+
+let _prettierCache: PrettierCache = null;
+
+async function ensurePrettier(): Promise<NonNullable<PrettierCache>> {
+  if (_prettierCache) return _prettierCache;
+  const [
+    prettierMod,
+    babel,
+    html,
+    postcss,
+    markdown,
+    yamlMod,
+    graphql,
+    angular,
+    flow,
+    estree,
+  ] = await Promise.all([
+    import("prettier/standalone"),
+    import("prettier/plugins/babel"),
+    import("prettier/plugins/html"),
+    import("prettier/plugins/postcss"),
+    import("prettier/plugins/markdown"),
+    import("prettier/plugins/yaml"),
+    import("prettier/plugins/graphql"),
+    import("prettier/plugins/angular"),
+    import("prettier/plugins/flow"),
+    import("prettier/plugins/estree"),
+  ]);
+  _prettierCache = {
+    prettier: prettierMod,
+    plugins: { babel, html, postcss, markdown, yaml: yamlMod, graphql, angular, flow, estree },
+  };
+  return _prettierCache;
+}
+
+function getPlugins(parser: string, p: Record<string, unknown>): unknown[] {
+  switch (parser) {
+    case "babel":
+    case "babel-ts":
+    case "json":
+      return [p.babel, p.estree];
+    case "flow":
+      return [p.flow, p.estree];
+    case "html":
+      return [p.html];
+    case "vue":
+      return [p.html, p.babel, p.postcss, p.estree];
+    case "angular":
+      return [p.angular, p.html, p.estree];
+    case "css":
+    case "less":
+    case "scss":
+      return [p.postcss];
+    case "markdown":
+      return [p.markdown];
+    case "yaml":
+      return [p.yaml];
+    case "graphql":
+      return [p.graphql];
+    default:
+      return [];
+  }
+}
 
 const THEMES: Record<Theme, string> = {
   "vs-light": "light",
@@ -96,9 +156,10 @@ export default function CodeFormatter() {
         setOutput(formatted);
       } else {
         const config = LANGUAGES[language];
+        const { prettier, plugins } = await ensurePrettier();
         const formatted = await prettier.format(input, {
           parser: config.parser,
-          plugins: config.plugins,
+          plugins: getPlugins(config.parser, plugins),
           useTabs,
           tabWidth,
           semi,
@@ -247,23 +308,25 @@ export default function CodeFormatter() {
       }
       inputLabel={t("tools.code-formatter.input_label")}
       input={
-        <Editor
-          height="100%"
-          defaultLanguage={LANGUAGES[language].monacoId}
-          language={LANGUAGES[language].monacoId}
-          theme={theme}
-          value={input}
-          onChange={(value) => setInput(value || "")}
-          onMount={handleEditorDidMount}
-          options={{
-            minimap: { enabled: false },
-            scrollBeyondLastLine: false,
-            fontSize: 14,
-            wordWrap: "on",
-            automaticLayout: true,
-            padding: { top: 16, bottom: 16 },
-          }}
-        />
+        <Suspense fallback={<div className="flex items-center justify-center h-full text-gray-400"><Loader2 className="h-6 w-6 animate-spin" /></div>}>
+          <Editor
+            height="100%"
+            defaultLanguage={LANGUAGES[language].monacoId}
+            language={LANGUAGES[language].monacoId}
+            theme={theme}
+            value={input}
+            onChange={(value) => setInput(value || "")}
+            onMount={handleEditorDidMount}
+            options={{
+              minimap: { enabled: false },
+              scrollBeyondLastLine: false,
+              fontSize: 14,
+              wordWrap: "on",
+              automaticLayout: true,
+              padding: { top: 16, bottom: 16 },
+            }}
+          />
+        </Suspense>
       }
       outputLabel={t("tools.code-formatter.output_label")}
       outputActions={
@@ -290,22 +353,24 @@ export default function CodeFormatter() {
               </div>
             </div>
           ) : (
-            <Editor
-              height="100%"
-              defaultLanguage={LANGUAGES[language].monacoId}
-              language={LANGUAGES[language].monacoId}
-              theme={theme}
-              value={output}
-              options={{
-                readOnly: true,
-                minimap: { enabled: false },
-                scrollBeyondLastLine: false,
-                fontSize: 14,
-                wordWrap: "on",
-                automaticLayout: true,
-                padding: { top: 16, bottom: 16 },
-              }}
-            />
+            <Suspense fallback={<div className="flex items-center justify-center h-full text-gray-400"><Loader2 className="h-6 w-6 animate-spin" /></div>}>
+              <Editor
+                height="100%"
+                defaultLanguage={LANGUAGES[language].monacoId}
+                language={LANGUAGES[language].monacoId}
+                theme={theme}
+                value={output}
+                options={{
+                  readOnly: true,
+                  minimap: { enabled: false },
+                  scrollBeyondLastLine: false,
+                  fontSize: 14,
+                  wordWrap: "on",
+                  automaticLayout: true,
+                  padding: { top: 16, bottom: 16 },
+                }}
+              />
+            </Suspense>
           )}
         </div>
       }

@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import { useFillViewport } from "@/contexts/FillViewportContext";
+import { AdSlot } from "@/components/ads";
 
 interface MergeLayoutProps {
   title?: ReactNode;
@@ -63,6 +64,7 @@ export function MergeLayout({
           <div className="flex-1 min-h-0">{output}</div>
         </div>
       </div>
+      <AdSlot format="auto" minHeight={90} />
       {footer && <div className="px-2 pt-2 border-t">{footer}</div>}
     </div>
   );

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useState, useMemo } from "react";
 import Fuse from "fuse.js";
 import { Star, Clock } from "lucide-react";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { SearchInput } from "@/components/common/SearchInput";
 import {
   CATEGORIES,

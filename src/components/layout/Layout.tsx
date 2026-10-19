@@ -4,6 +4,7 @@ import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { CommandPalette } from "@/components/CommandPalette";
 import { AdSlot } from "@/components/ads";
+import { CookieConsent } from "@/components/common/CookieConsent";
 import { useHistory } from "@/hooks/useHistory";
 import { FillViewportContext } from "@/contexts/FillViewportContext";
 
@@ -92,6 +93,7 @@ export function Layout() {
           isOpen={isCommandPaletteOpen}
           onClose={() => setIsCommandPaletteOpen(false)}
         />
+        <CookieConsent />
       </div>
     </FillViewportContext.Provider>
   );

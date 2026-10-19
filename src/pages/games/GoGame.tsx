@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft, RefreshCw, Undo } from "lucide-react";
 import { Link } from "react-router-dom";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 
 // Board size
 const BOARD_SIZE = 19;

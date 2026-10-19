@@ -62,11 +62,11 @@ languageConverters.scala = jsonToScala;
 import { jsonToGraphql } from "./graphql.ts";
 languageConverters.graphql = jsonToGraphql;
 
-export function convertLanguage(
+export async function convertLanguage(
   target: LanguageTarget,
   data: JsonValue,
   options?: ConvertOptions,
-): string {
+): Promise<string> {
   const fn = languageConverters[target];
   if (!fn) {
     throw new Error(`Language converter "${target}" is not yet implemented.`);

@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { Shield, ClipboardCopy, Check } from "lucide-react";
 import { hmac, formatOutput, type HashAlg, type OutEnc } from "@/lib/hash";
 import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
+import { toolSEOContent } from "@/data/tool-seo-content";
+import { ToolPageSEO } from "@/components/seo/ToolPageSEO";
 
 export default function HmacTool() {
   const [alg, setAlg] = useState<HashAlg>("SHA-256");
@@ -44,6 +46,8 @@ export default function HmacTool() {
   }
 
   return (
+    <>
+      {toolSEOContent["hmac-tool"] && <ToolPageSEO data={toolSEOContent["hmac-tool"]} />}
     <EditorSplitLayout
       title={
         <>
@@ -114,5 +118,10 @@ export default function HmacTool() {
         </div>
       }
     />
+      <div className="mt-4 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+        <Shield className="h-4 w-4" />
+        <span>数据仅在浏览器本地处理，不会上传到服务器</span>
+      </div>
+    </>
   );
 }

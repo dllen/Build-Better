@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { XMLParser } from 'fast-xml-parser';
 import { ExternalLink, RefreshCw, Rss, Search, List } from 'lucide-react';
 
 const OPML_CONTENT = `<?xml version="1.0" encoding="UTF-8"?>
@@ -127,32 +126,33 @@ export default function RssReader() {
   const [selectedFeed, setSelectedFeed] = useState<string | null>(null);
 
   useEffect(() => {
-    // Parse OPML content
-    const parser = new XMLParser({
-      ignoreAttributes: false,
-      attributeNamePrefix: ""
-    });
-    const result = parser.parse(OPML_CONTENT);
-    
-    // Extract feeds from OPML structure
-    // Structure: opml -> body -> outline -> outline (array)
-    const outlines = result.opml?.body?.outline?.outline || [];
-    const extractedFeeds: FeedSource[] = outlines.map((outline: Record<string, string>) => ({
-      title: outline.text || outline.title,
-      xmlUrl: outline.xmlUrl,
-      htmlUrl: outline.htmlUrl
-    }));
-    
-    setFeeds(extractedFeeds);
-    
-    // Initial fetch of some feeds
-    fetchFeeds(extractedFeeds.slice(0, 5)); // Fetch first 5 to start
+    const parseOpml = async () => {
+      const { XMLParser } = await import('fast-xml-parser');
+      const parser = new XMLParser({
+        ignoreAttributes: false,
+        attributeNamePrefix: ""
+      });
+      const result = parser.parse(OPML_CONTENT);
+
+      const outlines = result.opml?.body?.outline?.outline || [];
+      const extractedFeeds: FeedSource[] = outlines.map((outline: Record<string, string>) => ({
+        title: outline.text || outline.title,
+        xmlUrl: outline.xmlUrl,
+        htmlUrl: outline.htmlUrl
+      }));
+
+      setFeeds(extractedFeeds);
+
+      fetchFeeds(extractedFeeds.slice(0, 5));
+    };
+    parseOpml();
   }, []);
 
   const fetchFeeds = async (feedSources: FeedSource[]) => {
     setLoading(true);
     const allItems: FeedItem[] = [];
-    
+
+    const { XMLParser } = await import('fast-xml-parser');
     const parser = new XMLParser({
       ignoreAttributes: false,
       attributeNamePrefix: ""

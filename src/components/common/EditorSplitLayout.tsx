@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import { useFillViewport } from "@/contexts/FillViewportContext";
+import { AdSlot } from "@/components/ads";
 
 interface EditorSplitLayoutProps {
   /** Page header row (icon + title), rendered above the toolbar. */
@@ -63,6 +64,7 @@ export function EditorSplitLayout({
           {output}
         </Pane>
       </div>
+      <AdSlot format="auto" minHeight={90} />
       {footer ? <div className="space-y-2">{footer}</div> : null}
     </div>
   );

@@ -37,11 +37,11 @@ export { yamlToJson } from "./yaml.ts";
 export { tomlToJson } from "./toml.ts";
 export { csvToJson } from "./csv.ts";
 
-export function convertFormat(
+export async function convertFormat(
   target: FormatTarget,
   data: JsonValue,
   options?: ConvertOptions,
-): string {
+): Promise<string> {
   const fn = formatConverters[target];
   if (!fn) {
     throw new Error(`Format converter "${target}" is not yet implemented.`);

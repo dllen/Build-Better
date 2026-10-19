@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
-import QRCode from "qrcode";
-import { Download, Loader2 } from "lucide-react";
+import { Download, Loader2, Shield } from "lucide-react";
+import { toolSEOContent } from "@/data/tool-seo-content";
+import { ToolPageSEO } from "@/components/seo/ToolPageSEO";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 export default function QrGenerator() {
   const [content, setContent] = useState("https://buildbetter.com");
@@ -18,7 +21,8 @@ export default function QrGenerator() {
       }
       setLoading(true);
       try {
-        const url = await QRCode.toDataURL(content, {
+        const QRCode = await import("qrcode");
+        const url = await QRCode.default.toDataURL(content, {
           width: size,
           margin: 2,
           color: {
@@ -48,7 +52,9 @@ export default function QrGenerator() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <>
+      {toolSEOContent["qr-generator"] && <ToolPageSEO data={toolSEOContent["qr-generator"]} />}
+      <div className="max-w-4xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">QR Code Generator</h1>
       </div>
@@ -131,8 +137,12 @@ export default function QrGenerator() {
                 style={{ width: size > 300 ? "100%" : size, maxWidth: "300px" }}
               />
             ) : (
-              <div className="w-[200px] h-[200px] flex items-center justify-center text-gray-400">
-                <Loader2 className="h-8 w-8 animate-spin" />
+              <div className="w-[200px] h-[200px] flex items-center justify-center text-gray-400 text-sm text-center px-4">
+                {loading ? (
+                  <Loader2 className="h-8 w-8 animate-spin" />
+                ) : (
+                  <p>Enter text or URL to generate a QR code</p>
+                )}
               </div>
             )}
             {loading && (
@@ -152,6 +162,28 @@ export default function QrGenerator() {
           </button>
         </div>
       </div>
-    </div>
+      <div className="inline-flex items-center gap-1 mt-2 text-xs text-gray-500">
+        <Shield className="h-3 w-3" />
+        数据仅在浏览器本地处理，不会上传到服务器。
+      </div>
+      <div className="mt-8 p-6 bg-white rounded-xl border border-gray-200">
+        <h2 className="text-lg font-semibold mb-4">Related Tools</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <Link to="/image-compressor" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">Image Compressor</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+          <Link to="/url-encoder" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">URL 编码/解码</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+          <Link to="/base64" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">Base64 编码/解码</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+        </div>
+      </div>
+      </div>
+    </>
   );
 }

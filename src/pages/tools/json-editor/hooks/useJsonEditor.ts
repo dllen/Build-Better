@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback } from "react";
-import JSONEditor, { type JSONEditorOptions } from "jsoneditor";
+import type { JSONEditorOptions } from "jsoneditor";
 import { tryParseJson } from "../utils/json5-parser";
 import type { EditorMode } from "../types";
 
@@ -17,14 +17,18 @@ export function useJsonEditor({
   onError,
 }: UseJsonEditorOptions = {}) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const editorRef = useRef<JSONEditor | null>(null);
+  const editorRef = useRef<InstanceType<typeof import("jsoneditor").default> | null>(null);
   const callbacksRef = useRef({ onContentChange, onModeChange, onError });
   callbacksRef.current = { onContentChange, onModeChange, onError };
 
   // Initialize editor once on mount
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const init = async () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const JSONEditorModule = await import("jsoneditor");
+      const JSONEditorClass = JSONEditorModule.default;
 
     const options: JSONEditorOptions = {
       mode: initialMode,
@@ -55,7 +59,7 @@ export function useJsonEditor({
       statusBar: false,
     };
 
-    const editor = new JSONEditor(container, options);
+    const editor = new JSONEditorClass(container, options);
     const defaultContent = JSON.stringify({
       name: "BuildBetter",
       version: "1.0.0",
@@ -70,6 +74,8 @@ export function useJsonEditor({
         editorRef.current = null;
       }
     };
+    };
+    init();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -99,7 +105,7 @@ export function useJsonEditor({
     }
   }, []);
 
-  const getEditor = useCallback((): JSONEditor | null => editorRef.current, []);
+  const getEditor = useCallback((): InstanceType<typeof import("jsoneditor").default> | null => editorRef.current, []);
 
   return { containerRef, editorRef, setMode, setContent, getContent, getEditor };
 }

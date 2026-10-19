@@ -1,11 +1,13 @@
 import { useMemo, useState } from "react";
-import { GitCompare } from "lucide-react";
+import { GitCompare, Copy, Check } from "lucide-react";
 import * as JsDiff from "diff";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/seo";
 import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 type ChangeType = "added" | "removed" | "changed";
 type ChangeRow = { path: string; type: ChangeType; left?: unknown; right?: unknown };
+
+const MAX_DIFF_ROWS = 500;
 
 function isPlainObject(v: unknown) { return Object.prototype.toString.call(v) === "[object Object]"; }
 
@@ -63,6 +65,7 @@ export default function JsonDiffTool() {
   const [leftText, setLeftText] = useState('{"name":"Alice","age":30,"skills":["js","ts"],"meta":{"active":true}}');
   const [rightText, setRightText] = useState('{"name":"Alice","age":31,"skills":["js","rust"],"meta":{"active":true,"level":2}}');
   const [sortKeys, setSortKeys] = useState(true);
+  const [copied, setCopied] = useState(false);
 
   const leftParsed = useMemo(() => {
     try {
@@ -79,18 +82,22 @@ export default function JsonDiffTool() {
   }, [rightText, sortKeys]);
 
   const structRows = useMemo(() => {
-    if (!leftParsed.ok || !rightParsed.ok) return [] as ChangeRow[];
-    return deepDiff(leftParsed.value, rightParsed.value);
+    if (!leftParsed.ok || !rightParsed.ok) return { rows: [] as ChangeRow[], truncated: false };
+    const all = deepDiff(leftParsed.value, rightParsed.value);
+    if (all.length > MAX_DIFF_ROWS) {
+      return { rows: all.slice(0, MAX_DIFF_ROWS), truncated: true };
+    }
+    return { rows: all, truncated: false };
   }, [leftParsed, rightParsed]);
 
   const stats = useMemo(() => {
     let added = 0, removed = 0, changed = 0;
-    for (const r of structRows) {
+    for (const r of structRows.rows) {
       if (r.type === "added") added++;
       else if (r.type === "removed") removed++;
       else changed++;
     }
-    return { added, removed, changed, total: structRows.length };
+    return { added, removed, changed, total: structRows.rows.length };
   }, [structRows]);
 
   const jsonParts = useMemo(() => {
@@ -99,6 +106,24 @@ export default function JsonDiffTool() {
     const r = stringifyLite(rightParsed.value);
     return JsDiff.diffJson(l, r);
   }, [leftParsed, rightParsed]);
+
+  async function copyDiff() {
+    const lines: string[] = [];
+    lines.push(`=== Structural Changes (${stats.total}) ===`);
+    lines.push(`Added: ${stats.added} · Removed: ${stats.removed} · Changed: ${stats.changed}`);
+    if (structRows.truncated) lines.push(`(Showing first ${MAX_DIFF_ROWS} of all changes)`);
+    lines.push("");
+    for (const row of structRows.rows) {
+      lines.push(`${row.type.toUpperCase()} ${row.path}`);
+      if (row.left !== undefined) lines.push(`  - ${stringifyLite(row.left)}`);
+      if (row.right !== undefined) lines.push(`  + ${stringifyLite(row.right)}`);
+    }
+    try {
+      await navigator.clipboard.writeText(lines.join("\n"));
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch { /* clipboard unavailable */ }
+  }
 
   return (
     <EditorSplitLayout
@@ -121,6 +146,14 @@ export default function JsonDiffTool() {
             <input type="checkbox" checked={sortKeys} onChange={(e) => setSortKeys(e.target.checked)} />
             Sort object keys
           </label>
+          <button
+            className="px-3 py-1.5 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 text-sm disabled:opacity-50"
+            onClick={copyDiff}
+            disabled={structRows.rows.length === 0}
+          >
+            {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+            {copied ? "Copied" : "Copy Diff"}
+          </button>
           <div className="ml-auto text-xs text-gray-600">
             Added: {stats.added} · Removed: {stats.removed} · Changed: {stats.changed} · Total: {stats.total}
           </div>
@@ -160,21 +193,27 @@ export default function JsonDiffTool() {
         <>
           <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
             <div className="font-medium">Structural Changes</div>
-            {structRows.length === 0 ? (
+            {structRows.rows.length === 0 ? (
               <div className="text-sm text-gray-600">No differences</div>
             ) : (
-              <div className="rounded-md border border-gray-200 overflow-x-auto">
-                <table className="min-w-full text-sm">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="text-left px-3 py-2 font-medium text-gray-700">Path</th>
-                      <th className="text-left px-3 py-2 font-medium text-gray-700">Type</th>
-                      <th className="text-left px-3 py-2 font-medium text-gray-700">Left</th>
-                      <th className="text-left px-3 py-2 font-medium text-gray-700">Right</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {structRows.map((row, i) => (
+              <>
+                {structRows.truncated && (
+                  <div className="text-xs text-amber-600 bg-amber-50 px-2 py-1 rounded">
+                    Showing first {MAX_DIFF_ROWS} of all changes. For large comparisons, consider using smaller inputs.
+                  </div>
+                )}
+                <div className="rounded-md border border-gray-200 overflow-x-auto">
+                  <table className="min-w-full text-sm">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th className="text-left px-3 py-2 font-medium text-gray-700">Path</th>
+                        <th className="text-left px-3 py-2 font-medium text-gray-700">Type</th>
+                        <th className="text-left px-3 py-2 font-medium text-gray-700">Left</th>
+                        <th className="text-left px-3 py-2 font-medium text-gray-700">Right</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {structRows.rows.map((row, i) => (
                       <tr key={i} className="border-t">
                         <td className="px-3 py-2 font-mono">{row.path}</td>
                         <td className="px-3 py-2">
@@ -197,6 +236,7 @@ export default function JsonDiffTool() {
                   </tbody>
                 </table>
               </div>
+              </>
             )}
           </div>
 

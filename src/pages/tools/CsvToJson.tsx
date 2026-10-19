@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { FileText, Download, Loader2, Copy } from "lucide-react";
+import { FileText, Download, Loader2, Copy, Check, Shield } from "lucide-react";
 import { parseCsvWebStream } from "../../../shared/csv-parser.mjs";
 import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
+import { toolSEOContent } from "@/data/tool-seo-content";
+import { ToolPageSEO } from "@/components/seo/ToolPageSEO";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 type Mode = "pretty" | "compact";
 
@@ -15,6 +19,7 @@ export default function CsvToJson() {
   const [result, setResult] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [copied, setCopied] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const canConvert = useMemo(() => {
@@ -76,7 +81,11 @@ export default function CsvToJson() {
 
   async function copy() {
     if (!result) return;
-    await navigator.clipboard.writeText(result);
+    try {
+      await navigator.clipboard.writeText(result);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch { /* clipboard unavailable */ }
   }
 
   function download() {
@@ -93,8 +102,10 @@ export default function CsvToJson() {
   }
 
   return (
-    <EditorSplitLayout
-      title={
+    <>
+      {toolSEOContent["csv-to-json"] && <ToolPageSEO data={toolSEOContent["csv-to-json"]} />}
+      <EditorSplitLayout
+        title={
         <>
           <div className="inline-flex p-2 rounded-lg bg-cyan-100 text-cyan-600">
             <FileText className="h-5 w-5" />
@@ -174,8 +185,8 @@ export default function CsvToJson() {
                 onClick={copy}
                 disabled={!result}
               >
-                <Copy className="h-4 w-4" />
-                复制JSON
+                {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+                {copied ? "已复制" : "复制JSON"}
               </button>
               <button
                 className="px-4 py-2 rounded-md bg-green-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
@@ -212,5 +223,27 @@ export default function CsvToJson() {
         }
         footer={error ? <div className="text-sm text-red-600">{error}</div> : undefined}
       />
+      <div className="inline-flex items-center gap-1 mt-2 mb-4 text-xs text-gray-500">
+        <Shield className="h-3 w-3" />
+        数据仅在浏览器本地处理，不会上传到服务器。
+      </div>
+      <div className="mt-8 p-6 bg-white rounded-xl border border-gray-200">
+        <h2 className="text-lg font-semibold mb-4">相关工具</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <Link to="/json-editor" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">JSON 编辑器</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+          <Link to="/sql-formatter" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">SQL 格式化</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+          <Link to="/text-diff" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
+            <span className="text-sm font-medium text-gray-700">文本差异对比</span>
+            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }
