@@ -38,6 +38,7 @@ const TOOLS = [
   { path: '/text/transpose', icon: ArrowRightLeft, title: 'Row ↔ Column', desc: 'Split a delimited row into lines, or join lines into one row.' },
   { path: '/text/pinyin', icon: Languages, title: 'Pinyin Converter', desc: 'Convert Chinese characters to pinyin with tone marks.' },
   { path: '/text/full-half-width', icon: Type, title: 'Full/Half Width', desc: 'Convert between full-width and half-width characters.' },
+  { path: '/text/simplified-traditional', icon: Languages, title: 'Simplified ↔ Traditional', desc: 'Convert between simplified and traditional Chinese characters.' },
 ];
 
 export default function TextTools() {

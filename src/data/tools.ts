@@ -88,6 +88,7 @@ import {
   Bot,
   Shuffle,
   Text,
+  Languages,
 } from "lucide-react";
 
 /**
@@ -1099,6 +1100,19 @@ export const TOOL_REGISTRY: ToolMeta[] = [
     name: "Full/Half Width",
     description: "全角半角字符互转：英文字母、数字、标点符号。",
     keywords: ["fullwidth", "halfwidth", "全角", "半角"],
+    isNew: true,
+  },
+
+  {
+    id: "simplified-traditional",
+    path: "/text/simplified-traditional",
+    category: "text",
+    icon: Languages,
+    color: "text-rose-600",
+    bgColor: "bg-rose-100",
+    name: "Simplified ↔ Traditional",
+    description: "简繁体汉字互转，支持简体→繁体、繁体→简体、火星文。",
+    keywords: ["simplified", "traditional", "chinese", "简繁", "简体", "繁体", "火星文"],
     isNew: true,
   },
 
