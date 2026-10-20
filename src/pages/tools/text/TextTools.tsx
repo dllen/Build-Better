@@ -24,6 +24,8 @@ import {
   Pen,
   Columns,
   Eraser,
+  IdCard,
+  CakeSlice,
 } from 'lucide-react';
 
 const TOOLS = [
@@ -54,6 +56,9 @@ const TOOLS = [
   { path: '/text/column-substr', icon: Columns, title: 'Column Substr', desc: 'Extract a specific column from delimited data.' },
   { path: '/text/numbering', icon: ListOrdered, title: 'Numbering', desc: 'Add or remove line numbers from text.' },
   { path: '/text/clear-chars', icon: Eraser, title: 'Text Cleaner', desc: 'Remove Chinese, English, digits, punctuation, or whitespace.' },
+  { path: '/text/idcard-check', icon: IdCard, title: 'ID Card Validator', desc: 'Validate Chinese 18-digit ID card numbers.' },
+  { path: '/text/idcard-info', icon: CakeSlice, title: 'ID Card Info', desc: 'Extract birthday, gender, and age from ID numbers.' },
+  { path: '/text/serial-gen', icon: Hash, title: 'Serial Numbers', desc: 'Generate sequential numbers with custom prefix and padding.' },
 ];
 
 export default function TextTools() {
