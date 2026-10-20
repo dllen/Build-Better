@@ -16,6 +16,7 @@ import {
   Filter,
   Dices,
   ArrowRightLeft,
+  Languages,
 } from 'lucide-react';
 
 const TOOLS = [
@@ -35,6 +36,7 @@ const TOOLS = [
   { path: '/tools/text/workflow', icon: Workflow, title: 'Workflow', desc: 'Chain multiple operations into a custom pipeline.' },
   { path: '/text/random', icon: Dices, title: 'Random Generator', desc: 'Generate random strings with custom character sets.' },
   { path: '/text/transpose', icon: ArrowRightLeft, title: 'Row ↔ Column', desc: 'Split a delimited row into lines, or join lines into one row.' },
+  { path: '/text/pinyin', icon: Languages, title: 'Pinyin Converter', desc: 'Convert Chinese characters to pinyin with tone marks.' },
 ];
 
 export default function TextTools() {

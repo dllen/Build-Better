@@ -1075,6 +1075,19 @@ export const TOOL_REGISTRY: ToolMeta[] = [
     keywords: ["random", "text", "string", "lorem"],
   },
 
+  {
+    id: "pinyin-converter",
+    path: "/text/pinyin",
+    category: "text",
+    icon: Type,
+    color: "text-emerald-600",
+    bgColor: "bg-emerald-100",
+    name: "Pinyin Converter",
+    description: "汉字转拼音：带声调/数字声调/无声调。",
+    keywords: ["pinyin", "chinese", "拼音", "汉字转拼音", "声调"],
+    isNew: true,
+  },
+
   // ============ Image ============
   {
     id: "qr-generator",
