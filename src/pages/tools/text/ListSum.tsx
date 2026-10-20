@@ -32,7 +32,7 @@ export default function ListSum() {
   const resultText = useMemo(() => {
     if (!stats) return "";
     return numbers.join(delimiter || "\t");
-  }, [numbers, delimiter]);
+  }, [numbers, delimiter, stats]);
 
   function copy(textToCopy: string) {
     if (!textToCopy) return;
