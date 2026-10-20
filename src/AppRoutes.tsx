@@ -223,6 +223,17 @@ import ExifViewer from "@/pages/tools/ExifViewer";
 import XmlFormatter from "@/pages/tools/XmlFormatter";
 import YamlValidator from "@/pages/tools/YamlValidator";
 import SemverCompare from "@/pages/tools/SemverCompare";
+import IpGenerator from "@/pages/tools/IpGenerator";
+import IpIntConverter from "@/pages/tools/IpIntConverter";
+import SubnetCalculator from "@/pages/tools/SubnetCalculator";
+import UrlParser from "@/pages/tools/UrlParser";
+import UaParser from "@/pages/tools/UaParser";
+import UaGenerator from "@/pages/tools/UaGenerator";
+import BadgeGenerator from "@/pages/tools/BadgeGenerator";
+import RobotsGenerator from "@/pages/tools/RobotsGenerator";
+import MetaGenerator from "@/pages/tools/MetaGenerator";
+import HtaccessToNginx from "@/pages/tools/HtaccessToNginx";
+import AutoRefresh from "@/pages/tools/AutoRefresh";
 import NotFound from "@/pages/NotFound";
 
 
@@ -576,6 +587,19 @@ export function AppRoutes() {
         <Route path="/xml-formatter" element={<XmlFormatter />} />
         <Route path="/yaml-validator" element={<YamlValidator />} />
         <Route path="/semver-compare" element={<SemverCompare />} />
+
+        {/* Network Tools Batch (A-tier, client-side) */}
+        <Route path="/ip-generator" element={<IpGenerator />} />
+        <Route path="/ip-int-converter" element={<IpIntConverter />} />
+        <Route path="/subnet-calculator" element={<SubnetCalculator />} />
+        <Route path="/url-parser" element={<UrlParser />} />
+        <Route path="/ua-parser" element={<UaParser />} />
+        <Route path="/ua-generator" element={<UaGenerator />} />
+        <Route path="/badge-generator" element={<BadgeGenerator />} />
+        <Route path="/robots-generator" element={<RobotsGenerator />} />
+        <Route path="/meta-generator" element={<MetaGenerator />} />
+        <Route path="/htaccess-to-nginx" element={<HtaccessToNginx />} />
+        <Route path="/auto-refresh" element={<AutoRefresh />} />
     
         {/* Phase D — DevOps Tools */}
         <Route path="/docker-run-builder" element={<DockerRunBuilder />} />
