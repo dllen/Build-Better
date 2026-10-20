@@ -26,6 +26,7 @@ libs
 .loopx
 .codex/goals
 .worktrees
+.claude/worktrees/
 .superpowers
 .pi-subagents
 .wrangler
