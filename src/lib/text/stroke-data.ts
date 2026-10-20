@@ -1,7 +1,5 @@
 // CJK Unified Ideograph stroke count data.
 
-interface CharData { char: string; strokes: number }
-
 const RAW_DATA: Array<[string, number]> = [
   ['一',1],['二',2],['三',3],['四',5],['五',4],['六',4],['七',2],['八',2],['九',2],['十',2],
   ['人',2],['入',2],['力',2],['又',2],['了',2],['几',2],['刀',2],['刁',2],
