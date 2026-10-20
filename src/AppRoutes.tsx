@@ -164,6 +164,9 @@ import TextWorkflow from "./pages/tools/text/TextWorkflow";
 import PinyinConverter from "./pages/tools/text/PinyinConverter";
 import FullHalfWidth from "./pages/tools/text/FullHalfWidth";
 import SimplifiedTraditional from "./pages/tools/text/SimplifiedTraditional";
+import TextVertical from "./pages/tools/text/TextVertical";
+import TextSpacing from "./pages/tools/text/TextSpacing";
+import ListSum from "./pages/tools/text/ListSum";
 import TextRandomGenerator from "./pages/tools/text/TextRandomGenerator";
 import KinshipCalculator from "./pages/tools/KinshipCalculator";
 import JsonEditorTool from "./pages/tools/JsonEditor";
@@ -362,6 +365,9 @@ export function AppRoutes() {
         <Route path="/text/pinyin" element={<PinyinConverter />} />
         <Route path="/text/full-half-width" element={<FullHalfWidth />} />
         <Route path="/text/simplified-traditional" element={<SimplifiedTraditional />} />
+        <Route path="/text/vertical" element={<TextVertical />} />
+        <Route path="/text/spacing" element={<TextSpacing />} />
+        <Route path="/text/list-sum" element={<ListSum />} />
         <Route path="/password-generator" element={<PasswordGenerator />} />
         <Route path="/text-diff" element={<TextDiff />} />
         <Route path="/text-deduper" element={<TextDeduper />} />

@@ -89,6 +89,9 @@ import {
   Shuffle,
   Text,
   Languages,
+  AlignJustify,
+  Space,
+  Sigma,
 } from "lucide-react";
 
 /**
@@ -1113,6 +1116,43 @@ export const TOOL_REGISTRY: ToolMeta[] = [
     name: "Simplified ↔ Traditional",
     description: "简繁体汉字互转，支持简体→繁体、繁体→简体、火星文。",
     keywords: ["simplified", "traditional", "chinese", "简繁", "简体", "繁体", "火星文"],
+    isNew: true,
+  },
+
+  {
+    id: "text-vertical",
+    path: "/text/vertical",
+    category: "text",
+    icon: AlignJustify,
+    color: "text-fuchsia-600",
+    bgColor: "bg-fuchsia-100",
+    name: "Text Vertical",
+    description: "文字竖排显示，适用于中文古文排版。",
+    keywords: ["vertical", "writing-mode", "竖排", "古文"],
+    isNew: true,
+  },
+  {
+    id: "text-spacing",
+    path: "/text/spacing",
+    category: "text",
+    icon: Space,
+    color: "text-teal-600",
+    bgColor: "bg-teal-100",
+    name: "Text Spacing",
+    description: "在字符/单词/行之间插入自定义分隔符。",
+    keywords: ["spacing", "separator", "间隔", "分隔"],
+    isNew: true,
+  },
+  {
+    id: "list-sum",
+    path: "/text/list-sum",
+    category: "text",
+    icon: Sigma,
+    color: "text-orange-600",
+    bgColor: "bg-orange-100",
+    name: "List Sum",
+    description: "数值列表求和、平均值、最小值、最大值。",
+    keywords: ["sum", "average", "min", "max", "求和", "统计"],
     isNew: true,
   },
 

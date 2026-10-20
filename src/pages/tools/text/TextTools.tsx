@@ -17,6 +17,9 @@ import {
   Dices,
   ArrowRightLeft,
   Languages,
+  AlignJustify,
+  Space,
+  Sigma,
 } from 'lucide-react';
 
 const TOOLS = [
@@ -39,6 +42,9 @@ const TOOLS = [
   { path: '/text/pinyin', icon: Languages, title: 'Pinyin Converter', desc: 'Convert Chinese characters to pinyin with tone marks.' },
   { path: '/text/full-half-width', icon: Type, title: 'Full/Half Width', desc: 'Convert between full-width and half-width characters.' },
   { path: '/text/simplified-traditional', icon: Languages, title: 'Simplified ↔ Traditional', desc: 'Convert between simplified and traditional Chinese characters.' },
+  { path: '/text/vertical', icon: AlignJustify, title: 'Vertical Text', desc: 'Display text vertically for classical Chinese layout.' },
+  { path: '/text/spacing', icon: Space, title: 'Text Spacing', desc: 'Insert separators between characters, words, or lines.' },
+  { path: '/text/list-sum', icon: Sigma, title: 'List Sum', desc: 'Sum, average, min, max of numeric lists.' },
 ];
 
 export default function TextTools() {
