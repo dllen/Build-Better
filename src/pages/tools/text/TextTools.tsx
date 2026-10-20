@@ -22,6 +22,8 @@ import {
   Sigma,
   Hash,
   Pen,
+  Columns,
+  Eraser,
 } from 'lucide-react';
 
 const TOOLS = [
@@ -49,6 +51,9 @@ const TOOLS = [
   { path: '/text/list-sum', icon: Sigma, title: 'List Sum', desc: 'Sum, average, min, max of numeric lists.' },
   { path: '/text/stroke-count', icon: Hash, title: 'Stroke Count', desc: 'Count strokes for Chinese characters with per-character breakdown.' },
   { path: '/text/stroke-order', icon: Pen, title: 'Stroke Order', desc: 'Display stroke count for each Chinese character.' },
+  { path: '/text/column-substr', icon: Columns, title: 'Column Substr', desc: 'Extract a specific column from delimited data.' },
+  { path: '/text/numbering', icon: ListOrdered, title: 'Numbering', desc: 'Add or remove line numbers from text.' },
+  { path: '/text/clear-chars', icon: Eraser, title: 'Text Cleaner', desc: 'Remove Chinese, English, digits, punctuation, or whitespace.' },
 ];
 
 export default function TextTools() {
