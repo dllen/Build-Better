@@ -1142,6 +1142,216 @@
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/random"/>
   </url>
   <url>
+    <loc>https://bb4bb.me/text/pinyin</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/pinyin"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/pinyin"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/pinyin"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/pinyin"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/pinyin"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/pinyin"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/pinyin"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/pinyin"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/pinyin"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/pinyin"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/full-half-width</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/full-half-width"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/full-half-width"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/full-half-width"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/full-half-width"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/full-half-width"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/full-half-width"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/full-half-width"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/full-half-width"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/full-half-width"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/full-half-width"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/simplified-traditional</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/simplified-traditional"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/simplified-traditional"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/simplified-traditional"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/simplified-traditional"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/simplified-traditional"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/simplified-traditional"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/simplified-traditional"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/simplified-traditional"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/simplified-traditional"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/simplified-traditional"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/vertical</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/vertical"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/vertical"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/vertical"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/vertical"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/vertical"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/vertical"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/vertical"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/vertical"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/vertical"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/vertical"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/spacing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/spacing"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/spacing"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/spacing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/spacing"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/spacing"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/spacing"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/spacing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/spacing"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/spacing"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/spacing"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/list-sum</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/list-sum"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/list-sum"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/list-sum"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/list-sum"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/list-sum"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/list-sum"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/list-sum"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/list-sum"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/list-sum"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/list-sum"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/stroke-count</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/stroke-count"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/stroke-count"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/stroke-count"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/stroke-count"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/stroke-count"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/stroke-count"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/stroke-count"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/stroke-count"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/stroke-count"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/stroke-count"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/stroke-order</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/stroke-order"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/stroke-order"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/stroke-order"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/stroke-order"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/stroke-order"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/stroke-order"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/stroke-order"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/stroke-order"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/stroke-order"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/stroke-order"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/column-substr</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/column-substr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/column-substr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/column-substr"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/column-substr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/column-substr"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/column-substr"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/column-substr"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/column-substr"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/column-substr"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/column-substr"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/numbering</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/numbering"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/numbering"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/numbering"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/numbering"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/numbering"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/numbering"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/numbering"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/numbering"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/numbering"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/numbering"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/clear-chars</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/clear-chars"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/clear-chars"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/clear-chars"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/clear-chars"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/clear-chars"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/clear-chars"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/clear-chars"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/clear-chars"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/clear-chars"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/clear-chars"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/idcard-check</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/idcard-check"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/idcard-check"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/idcard-check"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/idcard-check"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/idcard-check"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/idcard-check"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/idcard-check"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/idcard-check"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/idcard-check"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/idcard-check"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/idcard-info</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/idcard-info"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/idcard-info"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/idcard-info"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/idcard-info"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/idcard-info"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/idcard-info"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/idcard-info"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/idcard-info"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/idcard-info"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/idcard-info"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/text/serial-gen</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/text/serial-gen"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/text/serial-gen"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/text/serial-gen"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/text/serial-gen"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/text/serial-gen"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/text/serial-gen"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/text/serial-gen"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/text/serial-gen"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/text/serial-gen"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/text/serial-gen"/>
+  </url>
+  <url>
     <loc>https://bb4bb.me/qr-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -3075,6 +3285,171 @@
     <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/semver-compare"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/semver-compare"/>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/semver-compare"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/ip-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/ip-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/ip-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/ip-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/ip-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/ip-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/ip-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/ip-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/ip-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/ip-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/ip-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/ip-int-converter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/ip-int-converter"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/ip-int-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/ip-int-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/ip-int-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/ip-int-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/ip-int-converter"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/ip-int-converter"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/ip-int-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/ip-int-converter"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/ip-int-converter"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/subnet-calculator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/subnet-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/subnet-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/subnet-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/subnet-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/subnet-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/subnet-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/subnet-calculator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/subnet-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/subnet-calculator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/subnet-calculator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/url-parser</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/url-parser"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/url-parser"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/url-parser"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/url-parser"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/url-parser"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/url-parser"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/url-parser"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/url-parser"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/url-parser"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/url-parser"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/ua-parser</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/ua-parser"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/ua-parser"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/ua-parser"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/ua-parser"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/ua-parser"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/ua-parser"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/ua-parser"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/ua-parser"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/ua-parser"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/ua-parser"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/ua-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/ua-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/ua-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/ua-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/ua-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/ua-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/ua-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/ua-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/ua-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/ua-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/ua-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/badge-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/badge-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/badge-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/badge-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/badge-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/badge-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/badge-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/badge-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/badge-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/badge-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/badge-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/robots-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/robots-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/robots-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/robots-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/robots-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/robots-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/robots-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/robots-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/robots-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/robots-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/robots-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/meta-generator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/meta-generator"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/meta-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/meta-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/meta-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/meta-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/meta-generator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/meta-generator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/meta-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/meta-generator"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/meta-generator"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/htaccess-to-nginx</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/htaccess-to-nginx"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/htaccess-to-nginx"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/htaccess-to-nginx"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/htaccess-to-nginx"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/htaccess-to-nginx"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/htaccess-to-nginx"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/htaccess-to-nginx"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/htaccess-to-nginx"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/htaccess-to-nginx"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/htaccess-to-nginx"/>
+  </url>
+  <url>
+    <loc>https://bb4bb.me/auto-refresh</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bb4bb.me/ja/auto-refresh"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://bb4bb.me/ko/auto-refresh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bb4bb.me/de/auto-refresh"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bb4bb.me/fr/auto-refresh"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bb4bb.me/es/auto-refresh"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bb4bb.me/pt/auto-refresh"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bb4bb.me/ru/auto-refresh"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bb4bb.me/ar/auto-refresh"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://bb4bb.me/zh-CN/auto-refresh"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://bb4bb.me/zh-TW/auto-refresh"/>
   </url>
   <url>
     <loc>https://bb4bb.me/games/snake</loc>
