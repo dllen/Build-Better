@@ -162,6 +162,7 @@ import TextTypesetter from "./pages/tools/text/TextTypesetter";
 import TextSimilarity from "./pages/tools/text/TextSimilarity";
 import TextWorkflow from "./pages/tools/text/TextWorkflow";
 import PinyinConverter from "./pages/tools/text/PinyinConverter";
+import FullHalfWidth from "./pages/tools/text/FullHalfWidth";
 import TextRandomGenerator from "./pages/tools/text/TextRandomGenerator";
 import KinshipCalculator from "./pages/tools/KinshipCalculator";
 import JsonEditorTool from "./pages/tools/JsonEditor";
@@ -358,6 +359,7 @@ export function AppRoutes() {
         <Route path="/text/diff" element={<DedupSortDiff />} />
         <Route path="/text/transpose" element={<TextTranspose />} />
         <Route path="/text/pinyin" element={<PinyinConverter />} />
+        <Route path="/text/full-half-width" element={<FullHalfWidth />} />
         <Route path="/password-generator" element={<PasswordGenerator />} />
         <Route path="/text-diff" element={<TextDiff />} />
         <Route path="/text-deduper" element={<TextDeduper />} />

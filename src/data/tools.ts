@@ -87,6 +87,7 @@ import {
   Table,
   Bot,
   Shuffle,
+  Text,
 } from "lucide-react";
 
 /**
@@ -1085,6 +1086,19 @@ export const TOOL_REGISTRY: ToolMeta[] = [
     name: "Pinyin Converter",
     description: "汉字转拼音：带声调/数字声调/无声调。",
     keywords: ["pinyin", "chinese", "拼音", "汉字转拼音", "声调"],
+    isNew: true,
+  },
+
+  {
+    id: "full-half-width",
+    path: "/text/full-half-width",
+    category: "text",
+    icon: Text,
+    color: "text-violet-600",
+    bgColor: "bg-violet-100",
+    name: "Full/Half Width",
+    description: "全角半角字符互转：英文字母、数字、标点符号。",
+    keywords: ["fullwidth", "halfwidth", "全角", "半角"],
     isNew: true,
   },
 

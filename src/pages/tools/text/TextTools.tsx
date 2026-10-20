@@ -37,6 +37,7 @@ const TOOLS = [
   { path: '/text/random', icon: Dices, title: 'Random Generator', desc: 'Generate random strings with custom character sets.' },
   { path: '/text/transpose', icon: ArrowRightLeft, title: 'Row ↔ Column', desc: 'Split a delimited row into lines, or join lines into one row.' },
   { path: '/text/pinyin', icon: Languages, title: 'Pinyin Converter', desc: 'Convert Chinese characters to pinyin with tone marks.' },
+  { path: '/text/full-half-width', icon: Type, title: 'Full/Half Width', desc: 'Convert between full-width and half-width characters.' },
 ];
 
 export default function TextTools() {
