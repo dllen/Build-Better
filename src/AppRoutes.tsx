@@ -167,6 +167,8 @@ import SimplifiedTraditional from "./pages/tools/text/SimplifiedTraditional";
 import TextVertical from "./pages/tools/text/TextVertical";
 import TextSpacing from "./pages/tools/text/TextSpacing";
 import ListSum from "./pages/tools/text/ListSum";
+import StrokeCount from "./pages/tools/text/StrokeCount";
+import StrokeOrder from "./pages/tools/text/StrokeOrder";
 import TextRandomGenerator from "./pages/tools/text/TextRandomGenerator";
 import KinshipCalculator from "./pages/tools/KinshipCalculator";
 import JsonEditorTool from "./pages/tools/JsonEditor";
@@ -368,6 +370,8 @@ export function AppRoutes() {
         <Route path="/text/vertical" element={<TextVertical />} />
         <Route path="/text/spacing" element={<TextSpacing />} />
         <Route path="/text/list-sum" element={<ListSum />} />
+        <Route path="/text/stroke-count" element={<StrokeCount />} />
+        <Route path="/text/stroke-order" element={<StrokeOrder />} />
         <Route path="/password-generator" element={<PasswordGenerator />} />
         <Route path="/text-diff" element={<TextDiff />} />
         <Route path="/text-deduper" element={<TextDeduper />} />

@@ -20,6 +20,8 @@ import {
   AlignJustify,
   Space,
   Sigma,
+  Hash,
+  Pen,
 } from 'lucide-react';
 
 const TOOLS = [
@@ -45,6 +47,8 @@ const TOOLS = [
   { path: '/text/vertical', icon: AlignJustify, title: 'Vertical Text', desc: 'Display text vertically for classical Chinese layout.' },
   { path: '/text/spacing', icon: Space, title: 'Text Spacing', desc: 'Insert separators between characters, words, or lines.' },
   { path: '/text/list-sum', icon: Sigma, title: 'List Sum', desc: 'Sum, average, min, max of numeric lists.' },
+  { path: '/text/stroke-count', icon: Hash, title: 'Stroke Count', desc: 'Count strokes for Chinese characters with per-character breakdown.' },
+  { path: '/text/stroke-order', icon: Pen, title: 'Stroke Order', desc: 'Display stroke count for each Chinese character.' },
 ];
 
 export default function TextTools() {
