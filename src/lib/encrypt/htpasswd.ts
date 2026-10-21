@@ -1,7 +1,6 @@
 import SHA1 from 'crypto-js/sha1';
 import MD5 from 'crypto-js/md5';
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const bcrypt = require('bcryptjs');
+import * as bcrypt from 'bcryptjs';
 
 // Salt length for bcrypt
 const BCRYPT_ROUNDS = 10;

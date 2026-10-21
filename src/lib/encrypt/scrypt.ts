@@ -1,10 +1,7 @@
 // scrypt KDF — RFC 7914
 // Pure JavaScript implementation using crypto-js for SHA256
 
-import type { WordArray } from 'crypto-js';
-
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const CryptoJS = require('crypto-js');
+import CryptoJS, { type WordArray } from 'crypto-js';
 
 // Salsa20 quarter-round
 function quarterRound(a: number, b: number, c: number, d: number, w: number[]): void {
