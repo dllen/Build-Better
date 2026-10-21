@@ -4,8 +4,8 @@ import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 
 type Operation = "encrypt" | "decrypt" | "sign" | "verify";
 
-function pemToArrayBuffer(pem: string, type: "public" | "private"): Uint8Array {
-  const label = type === "public" ? "PUBLIC KEY" : "PRIVATE KEY";
+function pemToArrayBuffer(pem: string, _type: "public" | "private"): Uint8Array {
+  const _label = _type === "public" ? "PUBLIC KEY" : "PRIVATE KEY";
   const b64 = pem.replace(/-----(BEGIN|END) (RSA )?PRIVATE KEY-----/g, "")
     .replace(/-----(BEGIN|END) (RSA )?PUBLIC KEY-----/g, "")
     .replace(/\s/g, "");

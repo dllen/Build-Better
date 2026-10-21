@@ -4,14 +4,14 @@
 const BASE = 36;
 const TMIN = 1;
 const TMAX = 26;
-const SKEW = 38;
+const _SKEW = 38;
 const DAMP = 700;
 const INIT_BIAS = 72;
 const INIT_N = 0x80;
 const DELIMITER = 0x2D;
 
 function adaptBias(num: number, denom: number, threshold: number): number {
-  let num64 = num;
+  const num64 = num;
   // (num64 / denom) is floor division
   let q = Math.floor(num64 / denom);
   while (q > threshold) {
@@ -128,7 +128,7 @@ export function punycodeDecode(domain: string): string {
 
   let bias = INIT_BIAS;
   let n = INIT_N;
-  let outCodes: number[] = [];
+  const outCodes: number[] = [];
 
   // Process the part before the last delimiter as ASCII
   let i = 0;
@@ -144,7 +144,6 @@ export function punycodeDecode(domain: string): string {
   // Process the punycode part
   let b = i; // index in encoded string
   let oldN = n;
-  let j = 0;
 
   while (b < encoded.length) {
     oldN = n;
@@ -172,7 +171,6 @@ export function punycodeDecode(domain: string): string {
 
     if (n < 0) n = 0;
     outCodes.push(n);
-    j++;
   }
 
   // Convert code points back to string

@@ -70,7 +70,7 @@ function sbox32(x: number): number {
 }
 
 // T transformation used in key schedule and round function
-function tTransform(x: number): number {
+function _tTransform(x: number): number {
   return (sbox32(x) ^ rotl32(x, 2) ^ rotl32(x, 10) ^ rotl32(x, 18) ^ rotl32(x, 24)) >>> 0;
 }
 
@@ -85,7 +85,7 @@ function lTransform(x: number): number {
 }
 
 // L' transformation used in key schedule
-function lTransform1(x: number): number {
+function _lTransform1(x: number): number {
   return (x ^ rotl32(x, 13) ^ rotl32(x, 23)) >>> 0;
 }
 

@@ -26,7 +26,6 @@ export function htpasswdGenerate(username: string, password: string, algo: 'bcry
     case 'md5': {
       const salt = generateSaltMd5();
       // Apache apr1 MD5: $apr1$<salt>$<hash>
-      const ctx = MD5(password + salt);
       let din = password + '$apr1$' + salt + '$';
       const altSum = MD5(salt + password);
       for (let i = 0; i < 16; i++) {

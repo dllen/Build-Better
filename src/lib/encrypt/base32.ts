@@ -17,7 +17,7 @@ export function base32Encode(input: string, alphabet: 'standard'|'hex' = 'standa
 export function base32Decode(input: string, alphabet: 'standard'|'hex' = 'standard'): string {
   const chars = alphabet === 'hex' ? HEX : STANDARD;
   const clean = input.replace(/=+$/, '').toUpperCase();
-  let bits = 0, value = 0, index = 0;
+  let bits = 0, value = 0;
   const bytes: number[] = [];
   for (const char of clean) {
     const idx = chars.indexOf(char);

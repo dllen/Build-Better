@@ -5,7 +5,7 @@ function wordToHex(word: number): string {
   return (word >>> 0).toString(16).padStart(8, '0');
 }
 
-function hexToWord(hex: string): number {
+function _hexToWord(hex: string): number {
   return parseInt(hex, 16) >>> 0;
 }
 
