@@ -175,6 +175,28 @@ import TextClearChars from "./pages/tools/text/TextClearChars";
 import IdCardCheck from "./pages/tools/text/IdCardCheck";
 import IdCardBirthday from "./pages/tools/text/IdCardBirthday";
 import SerialNumberGen from "./pages/tools/text/SerialNumberGen";
+
+// Encrypt Tools
+import EncryptTools from "./pages/tools/encrypt/EncryptTools";
+import AesDesEncrypt from "./pages/tools/encrypt/AesDesEncrypt";
+import Sm4Encrypt from "./pages/tools/encrypt/Sm4Encrypt";
+import RsaEncrypt from "./pages/tools/encrypt/RsaEncrypt";
+import Md2Md4Tool from "./pages/tools/encrypt/Md2Md4Tool";
+import KeccakShakeTool from "./pages/tools/encrypt/KeccakShakeTool";
+import Sm3Tool from "./pages/tools/encrypt/Sm3Tool";
+import ScryptTool from "./pages/tools/encrypt/ScryptTool";
+import Base32Tool from "./pages/tools/encrypt/Base32Tool";
+import CrcTool from "./pages/tools/encrypt/CrcTool";
+import EscapeTool from "./pages/tools/encrypt/EscapeTool";
+import Utf8Tool from "./pages/tools/encrypt/Utf8Tool";
+import PunycodeTool from "./pages/tools/encrypt/PunycodeTool";
+import MorseTool from "./pages/tools/encrypt/MorseTool";
+import Type7Tool from "./pages/tools/encrypt/Type7Tool";
+import GzipTool from "./pages/tools/encrypt/GzipTool";
+import HtpasswdTool from "./pages/tools/encrypt/HtpasswdTool";
+import DbPasswordTool from "./pages/tools/encrypt/DbPasswordTool";
+import JsObfuscatorTool from "./pages/tools/encrypt/JsObfuscatorTool";
+import EmailEncodeTool from "./pages/tools/encrypt/EmailEncodeTool";
 import TextRandomGenerator from "./pages/tools/text/TextRandomGenerator";
 import KinshipCalculator from "./pages/tools/KinshipCalculator";
 import JsonEditorTool from "./pages/tools/JsonEditor";
@@ -427,6 +449,28 @@ export function AppRoutes() {
     
         {/* Drawing */}
         <Route path="/drawing-tool" element={<DrawingTool />} />
+
+        {/* Encrypt Tools */}
+        <Route path="/encrypt" element={<EncryptTools />} />
+        <Route path="/encrypt/aes-des" element={<AesDesEncrypt />} />
+        <Route path="/encrypt/sm4" element={<Sm4Encrypt />} />
+        <Route path="/encrypt/rsa" element={<RsaEncrypt />} />
+        <Route path="/encrypt/md2-md4" element={<Md2Md4Tool />} />
+        <Route path="/encrypt/keccak" element={<KeccakShakeTool />} />
+        <Route path="/encrypt/sm3" element={<Sm3Tool />} />
+        <Route path="/encrypt/scrypt" element={<ScryptTool />} />
+        <Route path="/encrypt/base32" element={<Base32Tool />} />
+        <Route path="/encrypt/crc" element={<CrcTool />} />
+        <Route path="/encrypt/escape" element={<EscapeTool />} />
+        <Route path="/encrypt/utf8" element={<Utf8Tool />} />
+        <Route path="/encrypt/punycode" element={<PunycodeTool />} />
+        <Route path="/encrypt/morse" element={<MorseTool />} />
+        <Route path="/encrypt/type7" element={<Type7Tool />} />
+        <Route path="/encrypt/gzip" element={<GzipTool />} />
+        <Route path="/encrypt/htpasswd" element={<HtpasswdTool />} />
+        <Route path="/encrypt/db-passwords" element={<DbPasswordTool />} />
+        <Route path="/encrypt/js-obfuscator" element={<JsObfuscatorTool />} />
+        <Route path="/encrypt/email-encode" element={<EmailEncodeTool />} />
     
         {/* Config Generators */}
         <Route path="/nginx-config" element={<NginxConfigGenerator />} />
