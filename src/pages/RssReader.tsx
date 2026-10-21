@@ -438,13 +438,13 @@ export default function RssReader() {
       {toolSEOContent['rss-read'] && <ToolPageSEO data={toolSEOContent['rss-read']} />}
 
       <div className="max-w-7xl mx-auto p-4 md:p-8 space-y-6">
-        <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-6">
+        <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-card border border-border rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-primary/10 rounded-xl border border-primary/20">
               <Rss className="w-8 h-8 text-primary" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">RSS Reader</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-card-foreground">RSS Reader</h1>
               <p className="text-muted-foreground text-sm mt-1">
                 Aggregated feeds from popular blogs
               </p>
@@ -464,7 +464,7 @@ export default function RssReader() {
             </div>
             <button
               onClick={handleRefresh}
-              className="p-2 bg-background border border-border rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors"
+              className="p-2.5 bg-background border border-border rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors shadow-sm"
               title="Refresh Feeds"
               type="button"
             >
@@ -474,7 +474,7 @@ export default function RssReader() {
         </header>
 
         {errors.length > 0 && (
-          <div className="bg-destructive/10 border border-destructive/20 rounded-xl p-4 flex items-start gap-3">
+          <div className="bg-destructive/10 border border-destructive/20 rounded-xl p-4 flex items-start gap-3 shadow-sm">
             <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <p className="text-sm font-medium text-destructive">
@@ -501,7 +501,7 @@ export default function RssReader() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          <div className={`lg:col-span-1 bg-card rounded-xl border border-border overflow-hidden flex flex-col ${
+          <div className={`lg:col-span-1 bg-card rounded-xl border border-border overflow-hidden flex flex-col shadow-sm ${
             sidebarOpen ? 'block' : 'hidden lg:flex'
           } h-[calc(100vh-250px)]`}>
             <div className="p-4 border-b border-border bg-card/80 backdrop-blur-sm sticky top-0">
@@ -545,7 +545,7 @@ export default function RssReader() {
                 onClick={handleSelectAll}
                 className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
                   !selectedFeed
-                    ? 'bg-primary/10 text-primary'
+                    ? 'bg-primary/10 text-primary ring-1 ring-primary/20 font-medium'
                     : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
                 }`}
                 type="button"
@@ -559,7 +559,7 @@ export default function RssReader() {
                     key={feed.xmlUrl}
                     className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm transition-colors ${
                       selectedFeed === feed.xmlUrl
-                        ? 'bg-primary/10 text-primary'
+                        ? 'bg-primary/10 text-primary ring-1 ring-primary/20 font-medium'
                         : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
                     }`}
                   >
@@ -596,7 +596,7 @@ export default function RssReader() {
                     onClick={() => setViewFilter(filter)}
                     className={`flex-1 sm:flex-none px-3 py-1.5 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
                       viewFilter === filter
-                        ? 'bg-background text-foreground shadow-sm'
+                        ? 'bg-background text-foreground shadow-sm ring-1 ring-border'
                         : 'text-muted-foreground hover:text-foreground'
                     }`}
                     type="button"
@@ -615,7 +615,7 @@ export default function RssReader() {
             </div>
 
             {loading && items.length === 0 ? (
-              <div className="flex items-center justify-center h-64 text-muted-foreground border-2 border-dashed border-border rounded-xl">
+              <div className="flex items-center justify-center h-64 text-muted-foreground bg-card border-2 border-dashed border-border rounded-xl">
                 <div className="flex flex-col items-center gap-3">
                   <RefreshCw className="w-8 h-8 animate-spin text-primary" />
                   <p>Loading feeds...</p>
@@ -629,7 +629,7 @@ export default function RssReader() {
                   return (
                     <article
                       key={`${item.link}-${index}`}
-                      className={`group bg-card border rounded-xl p-5 transition-all duration-300 ${
+                      className={`group bg-card border rounded-xl p-5 shadow-sm transition-all duration-300 ${
                         read
                           ? 'border-border opacity-80'
                           : 'border-border hover:border-primary/30'
@@ -707,7 +707,7 @@ export default function RssReader() {
                 })}
               </div>
             ) : (
-              <div className="flex items-center justify-center h-64 text-muted-foreground border-2 border-dashed border-border rounded-xl">
+              <div className="flex items-center justify-center h-64 text-muted-foreground bg-card border-2 border-dashed border-border rounded-xl">
                 <p>No articles found. Try selecting a feed or refreshing.</p>
               </div>
             )}
@@ -722,7 +722,7 @@ export default function RssReader() {
             aria-modal="true"
           >
             <div
-              className="relative w-full max-w-3xl bg-card text-card-foreground border border-border rounded-2xl shadow-xl my-8 p-6 md:p-8 space-y-4"
+              className="relative w-full max-w-3xl bg-card text-card-foreground border border-border rounded-2xl shadow-2xl my-8 p-6 md:p-8 space-y-4"
               onClick={(e) => e.stopPropagation()}
             >
               <button
