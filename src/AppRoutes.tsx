@@ -197,6 +197,16 @@ import HtpasswdTool from "./pages/tools/encrypt/HtpasswdTool";
 import DbPasswordTool from "./pages/tools/encrypt/DbPasswordTool";
 import JsObfuscatorTool from "./pages/tools/encrypt/JsObfuscatorTool";
 import EmailEncodeTool from "./pages/tools/encrypt/EmailEncodeTool";
+// Format Tools
+import FormatTools from "./pages/tools/format/FormatTools";
+import PythonFormat from "./pages/tools/format/PythonFormat";
+import JavaFormat from "./pages/tools/format/JavaFormat";
+import PhpFormat from "./pages/tools/format/PhpFormat";
+import RubyFormat from "./pages/tools/format/RubyFormat";
+import CsharpFormat from "./pages/tools/format/CsharpFormat";
+import CFormat from "./pages/tools/format/CFormat";
+import VbscriptFormat from "./pages/tools/format/VbscriptFormat";
+import PerlFormat from "./pages/tools/format/PerlFormat";
 import TextRandomGenerator from "./pages/tools/text/TextRandomGenerator";
 import KinshipCalculator from "./pages/tools/KinshipCalculator";
 import JsonEditorTool from "./pages/tools/JsonEditor";
@@ -471,7 +481,18 @@ export function AppRoutes() {
         <Route path="/encrypt/db-passwords" element={<DbPasswordTool />} />
         <Route path="/encrypt/js-obfuscator" element={<JsObfuscatorTool />} />
         <Route path="/encrypt/email-encode" element={<EmailEncodeTool />} />
-    
+
+        {/* Format Tools */}
+        <Route path="/format" element={<FormatTools />} />
+        <Route path="/format/python-formatter" element={<PythonFormat />} />
+        <Route path="/format/java-formatter" element={<JavaFormat />} />
+        <Route path="/format/php-formatter" element={<PhpFormat />} />
+        <Route path="/format/ruby-formatter" element={<RubyFormat />} />
+        <Route path="/format/csharp-formatter" element={<CsharpFormat />} />
+        <Route path="/format/c-formatter" element={<CFormat />} />
+        <Route path="/format/vbscript-formatter" element={<VbscriptFormat />} />
+        <Route path="/format/perl-formatter" element={<PerlFormat />} />
+
         {/* Config Generators */}
         <Route path="/nginx-config" element={<NginxConfigGenerator />} />
         <Route path="/apache-config" element={<ApacheConfigGenerator />} />
