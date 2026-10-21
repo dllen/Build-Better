@@ -19,6 +19,8 @@ interface EditorSplitLayoutProps {
   output: ReactNode;
   /** Hints / errors rendered below the panes. */
   footer?: ReactNode;
+  /** Whether to render an ad slot below the panes. Defaults to true. */
+  adSlot?: boolean;
 }
 
 /**
@@ -40,6 +42,7 @@ export function EditorSplitLayout({
   outputActions,
   output,
   footer,
+  adSlot = true,
 }: EditorSplitLayoutProps) {
   const { setFillViewport } = useFillViewport();
 
@@ -64,7 +67,7 @@ export function EditorSplitLayout({
           {output}
         </Pane>
       </div>
-      <AdSlot format="auto" minHeight={90} />
+      {adSlot ? <AdSlot format="auto" minHeight={90} /> : null}
       {footer ? <div className="space-y-2">{footer}</div> : null}
     </div>
   );
