@@ -51,6 +51,7 @@
     "i18next": "^25.7.3",
     "i18next-browser-languagedetector": "^8.2.0",
     "i18next-http-backend": "^3.0.2",
+    "js-sha3": "^0.13.0",
     "js-tiktoken": "^1.0.21",
     "js-yaml": "^4.1.1",
     "jsoneditor": "^10.4.2",
