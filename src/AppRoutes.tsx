@@ -265,6 +265,16 @@ import SslCertificateChecker from "@/pages/tools/SslCertificateChecker";
 import ColorPicker from "@/pages/tools/ColorPicker";
 import GradientGenerator from "@/pages/tools/GradientGenerator";
 import BoxShadowGenerator from "@/pages/tools/BoxShadowGenerator";
+import CssLoaderGenerator from "@/pages/tools/css/CssLoaderGenerator";
+import CssCheckboxGenerator from "@/pages/tools/css/CssCheckboxGenerator";
+import CssSwitchGenerator from "@/pages/tools/css/CssSwitchGenerator";
+import CssClipPathGenerator from "@/pages/tools/css/CssClipPathGenerator";
+import CssBackgroundPatternGenerator from "@/pages/tools/css/CssBackgroundPatternGenerator";
+import CssCubicBezierGenerator from "@/pages/tools/css/CssCubicBezierGenerator";
+import CssGlassmorphismGenerator from "@/pages/tools/css/CssGlassmorphismGenerator";
+import CssTextGlitchGenerator from "@/pages/tools/css/CssTextGlitchGenerator";
+import CssTriangleGenerator from "@/pages/tools/css/CssTriangleGenerator";
+import CssBorderRadiusGenerator from "@/pages/tools/css/CssBorderRadiusGenerator";
 import ExifViewer from "@/pages/tools/ExifViewer";
 import XmlFormatter from "@/pages/tools/XmlFormatter";
 import YamlValidator from "@/pages/tools/YamlValidator";
@@ -684,6 +694,16 @@ export function AppRoutes() {
         <Route path="/color-picker" element={<ColorPicker />} />
         <Route path="/gradient-generator" element={<GradientGenerator />} />
         <Route path="/box-shadow-generator" element={<BoxShadowGenerator />} />
+        <Route path="/css-loader-generator" element={<CssLoaderGenerator />} />
+        <Route path="/css-checkbox-generator" element={<CssCheckboxGenerator />} />
+        <Route path="/css-switch-generator" element={<CssSwitchGenerator />} />
+        <Route path="/css-clip-path-generator" element={<CssClipPathGenerator />} />
+        <Route path="/css-background-pattern-generator" element={<CssBackgroundPatternGenerator />} />
+        <Route path="/css-cubic-bezier-generator" element={<CssCubicBezierGenerator />} />
+        <Route path="/css-glassmorphism-generator" element={<CssGlassmorphismGenerator />} />
+        <Route path="/css-text-glitch-generator" element={<CssTextGlitchGenerator />} />
+        <Route path="/css-triangle-generator" element={<CssTriangleGenerator />} />
+        <Route path="/css-border-radius-generator" element={<CssBorderRadiusGenerator />} />
         <Route path="/exif-viewer" element={<ExifViewer />} />
         <Route path="/xml-formatter" element={<XmlFormatter />} />
         <Route path="/yaml-validator" element={<YamlValidator />} />
