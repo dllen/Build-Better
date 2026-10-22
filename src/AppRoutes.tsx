@@ -283,6 +283,7 @@ import AutoRefresh from "@/pages/tools/AutoRefresh";
 import BarcodeGenerator from "@/pages/tools/BarcodeGenerator";
 import ListRandomizer from "@/pages/tools/ListRandomizer";
 import FakeIbanGenerator from "@/pages/tools/FakeIbanGenerator";
+import ProductFinder from "@/pages/tools/ProductFinder";
 import NotFound from "@/pages/NotFound";
 
 
@@ -381,6 +382,7 @@ export function AppRoutes() {
         <Route path="/p2p-chat" element={<P2pChat />} />
         <Route path="/manual-chat" element={<ManualChat />} />
         <Route path="/english-name" element={<EnglishNameGenerator />} />
+        <Route path="/product-finder" element={<ProductFinder />} />
         <Route path="/image-compressor" element={<ImageCompressor />} />
         <Route path="/image-resizer" element={<ImageResizer />} />
         <Route path="/image-converter" element={<ImageConverter />} />

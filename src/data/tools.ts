@@ -106,6 +106,7 @@ import {
   FileLock,
   Router,
   ScanLine,
+  Compass,
 } from "lucide-react";
 
 /**
@@ -1990,6 +1991,17 @@ export const TOOL_REGISTRY: ToolMeta[] = [
   },
 
   // ============ Life ============
+  {
+    id: "product-finder",
+    path: "/product-finder",
+    category: "life",
+    icon: Compass,
+    color: "text-orange-600",
+    bgColor: "bg-orange-100",
+    name: "Product Finder",
+    description: "Discover 400+ indie products, tools, and SaaS — filter by category, pricing, and tags.",
+    keywords: ["product", "finder", "saas", "indie", "tools", "discover"],
+  },
   {
     id: "perpetual-calendar",
     path: "/perpetual-calendar",
