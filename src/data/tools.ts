@@ -105,6 +105,7 @@ import {
   CheckCircle,
   FileLock,
   Router,
+  ScanLine,
 } from "lucide-react";
 
 /**
@@ -1265,6 +1266,17 @@ export const TOOL_REGISTRY: ToolMeta[] = [
     keywords: ["serial", "number", "流水号", "序号", "编号"],
     isNew: true,
   },
+  {
+    id: "list-randomizer",
+    path: "/list-randomizer",
+    category: "text",
+    icon: Shuffle,
+    color: "text-fuchsia-600",
+    bgColor: "bg-fuchsia-100",
+    name: "List Randomizer",
+    description: "Randomize lists, pick winners, remove duplicates — supports comma, semicolon, and space formats.",
+    keywords: ["list", "random", "shuffle", "pick", "lottery"],
+  },
 
   // ============ Image ============
   {
@@ -1293,6 +1305,17 @@ export const TOOL_REGISTRY: ToolMeta[] = [
     nameKey: "tools.wifi-qr.title",
     descKey: "tools.wifi-qr.desc",
     keywords: ["wifi", "qr", "二维码"],
+  },
+  {
+    id: "barcode-generator",
+    path: "/barcode-generator",
+    category: "image",
+    icon: ScanLine,
+    color: "text-teal-600",
+    bgColor: "bg-teal-100",
+    name: "Barcode Generator",
+    description: "Generate barcodes in 10+ formats — Code 128, EAN, UPC, Code 39, and more. Download as PNG.",
+    keywords: ["barcode", "ean", "upc", "code128", "条形码"],
   },
   {
     id: "image-compressor",
@@ -1953,6 +1976,17 @@ export const TOOL_REGISTRY: ToolMeta[] = [
     nameKey: "tools.domain-valuation.name",
     descKey: "tools.domain-valuation.desc",
     keywords: ["domain", "valuation", "域名"],
+  },
+  {
+    id: "fake-iban-generator",
+    path: "/fake-iban-generator",
+    category: "finance",
+    icon: Landmark,
+    color: "text-indigo-600",
+    bgColor: "bg-indigo-100",
+    name: "Fake IBAN Generator",
+    description: "Generate structurally valid fake IBANs for 60+ countries with correct mod-97 check digits.",
+    keywords: ["iban", "bank", "account", "test", "fake"],
   },
 
   // ============ Life ============

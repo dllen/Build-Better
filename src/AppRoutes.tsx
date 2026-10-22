@@ -280,6 +280,9 @@ import RobotsGenerator from "@/pages/tools/RobotsGenerator";
 import MetaGenerator from "@/pages/tools/MetaGenerator";
 import HtaccessToNginx from "@/pages/tools/HtaccessToNginx";
 import AutoRefresh from "@/pages/tools/AutoRefresh";
+import BarcodeGenerator from "@/pages/tools/BarcodeGenerator";
+import ListRandomizer from "@/pages/tools/ListRandomizer";
+import FakeIbanGenerator from "@/pages/tools/FakeIbanGenerator";
 import NotFound from "@/pages/NotFound";
 
 
@@ -372,6 +375,7 @@ export function AppRoutes() {
         <Route path="/qr-generator" element={<QrGenerator />} />
         <Route path="/otp-generator" element={<OtpGenerator />} />
         <Route path="/wifi-qr-generator" element={<WifiQrGenerator />} />
+        <Route path="/barcode-generator" element={<BarcodeGenerator />} />
         {/* Chat */}
         <Route path="/webchat" element={<WebChat />} />
         <Route path="/p2p-chat" element={<P2pChat />} />
@@ -419,6 +423,7 @@ export function AppRoutes() {
         <Route path="/password-generator" element={<PasswordGenerator />} />
         <Route path="/text-diff" element={<TextDiff />} />
         <Route path="/text-deduper" element={<TextDeduper />} />
+        <Route path="/list-randomizer" element={<ListRandomizer />} />
         <Route path="/dedup-sort-diff" element={<DedupSortDiff />} />
         <Route path="/text-stats" element={<TextStats />} />
         <Route path="/text-cipher" element={<TextCipher />} />
@@ -506,6 +511,7 @@ export function AppRoutes() {
         <Route path="/sql-table-extractor" element={<SqlTableExtractor />} />
         
         {/* Finance Tools */}
+        <Route path="/fake-iban-generator" element={<FakeIbanGenerator />} />
         <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
         <Route path="/investment-return" element={<InvestmentReturnCalculator />} />
         <Route path="/roi-calculator" element={<ROICalculator />} />

@@ -54,6 +54,7 @@
     "js-sha3": "^0.13.0",
     "js-tiktoken": "^1.0.21",
     "js-yaml": "^4.1.1",
+    "jsbarcode": "^3.12.3",
     "jsoneditor": "^10.4.2",
     "jszip": "^3.10.1",
     "lucide-react": "^0.511.0",
