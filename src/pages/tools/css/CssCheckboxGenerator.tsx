@@ -8,13 +8,14 @@ const CHECK_SVG =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='4 12 10 18 20 6'/%3E%3C/svg%3E";
 
 function buildCss(color: string, size: number, radius: number, borderWidth: number): string {
+  const r = Math.min(radius, Math.floor(size / 2));
   return `.my-checkbox {
   appearance: none;
   -webkit-appearance: none;
   width: ${size}px;
   height: ${size}px;
   border: ${borderWidth}px solid #d1d5db;
-  border-radius: ${radius}px;
+  border-radius: ${r}px;
   background: #ffffff;
   cursor: pointer;
   vertical-align: middle;

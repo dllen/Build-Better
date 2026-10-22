@@ -14,7 +14,7 @@ function buildCss(style: SwitchStyle, color: string, width: number): string {
   const height = Math.round(width / 2);
   const pad = 3;
   const knob = height - pad * 2;
-  const travel = width - knob - pad * 2 - pad;
+  const travel = width - knob - pad * 2;
   const trackRadius = style === "rounded" ? `${height / 2}px` : "4px";
   const knobRadius = style === "rounded" ? "50%" : "2px";
 
