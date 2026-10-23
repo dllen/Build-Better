@@ -331,6 +331,12 @@ import DrawHilbertFractal from "@/pages/tools/DrawHilbertFractal";
 import ConvertTextToAsciiArt from "@/pages/tools/ConvertTextToAsciiArt";
 import ConvertAsciiToImage from "@/pages/tools/ConvertAsciiToImage";
 import LSystemGenerator from "@/pages/tools/LSystemGenerator";
+import DrawDragonCurve from "@/pages/tools/DrawDragonCurve";
+import DrawMooreCurve from "@/pages/tools/DrawMooreCurve";
+import DrawGosperCurve from "@/pages/tools/DrawGosperCurve";
+import DrawSierpinskiCarpet from "@/pages/tools/DrawSierpinskiCarpet";
+import DrawKochSnowflake from "@/pages/tools/DrawKochSnowflake";
+import DrawCantorSet from "@/pages/tools/DrawCantorSet";
 import GeneratePascalsTriangle from "@/pages/tools/GeneratePascalsTriangle";
 import GeneratePiDigits from "@/pages/tools/GeneratePiDigits";
 import DrawMementoMoriCalendar from "@/pages/tools/DrawMementoMoriCalendar";
@@ -351,6 +357,30 @@ import EnumerateIntegers from "@/pages/tools/EnumerateIntegers";
 import AddCommasToInteger from "@/pages/tools/AddCommasToInteger";
 import ObfuscateJson from "@/pages/tools/ObfuscateJson";
 import AnalyzeJson from "@/pages/tools/AnalyzeJson";
+
+// Math tools — number
+import GeneratePrimeNumbers from "@/pages/tools/GeneratePrimeNumbers";
+import GenerateFibonacciNumbers from "@/pages/tools/GenerateFibonacciNumbers";
+import GenerateRandomNumbers from "@/pages/tools/GenerateRandomNumbers";
+import CalculatePrimeFactors from "@/pages/tools/CalculatePrimeFactors";
+import FindDivisors from "@/pages/tools/FindDivisors";
+import TestPrimeNumbers from "@/pages/tools/TestPrimeNumbers";
+import TestFibonacciNumbers from "@/pages/tools/TestFibonacciNumbers";
+import CalculateFactorial from "@/pages/tools/CalculateFactorial";
+
+// Math tools — matrix
+import TransposeMatrix from "@/pages/tools/TransposeMatrix";
+import InvertMatrix from "@/pages/tools/InvertMatrix";
+import DeterminantMatrix from "@/pages/tools/DeterminantMatrix";
+import MultiplyMatrices from "@/pages/tools/MultiplyMatrices";
+import AddSubtractMatrices from "@/pages/tools/AddSubtractMatrices";
+import GenerateIdentityMatrix from "@/pages/tools/GenerateIdentityMatrix";
+
+// Math tools — fun
+import ClassifyNumber from "@/pages/tools/ClassifyNumber";
+import GenerateLookAndSaySequence from "@/pages/tools/GenerateLookAndSaySequence";
+import GenerateEDigits from "@/pages/tools/GenerateEDigits";
+import GeneratePhiDigits from "@/pages/tools/GeneratePhiDigits";
 import NotFound from "@/pages/NotFound";
 
 
@@ -923,6 +953,12 @@ export function AppRoutes() {
         {/* onlinetools.com golden tools */}
         <Route path="/hilbert-fractal" element={<DrawHilbertFractal />} />
         <Route path="/lsystem-generator" element={<LSystemGenerator />} />
+        <Route path="/dragon-curve" element={<DrawDragonCurve />} />
+        <Route path="/moore-curve" element={<DrawMooreCurve />} />
+        <Route path="/gosper-curve" element={<DrawGosperCurve />} />
+        <Route path="/sierpinski-carpet" element={<DrawSierpinskiCarpet />} />
+        <Route path="/koch-snowflake" element={<DrawKochSnowflake />} />
+        <Route path="/cantor-set" element={<DrawCantorSet />} />
         <Route path="/generate-pascals-triangle" element={<GeneratePascalsTriangle />} />
         <Route path="/generate-pi-digits" element={<GeneratePiDigits />} />
         <Route path="/draw-memento-mori-calendar" element={<DrawMementoMoriCalendar />} />
@@ -945,6 +981,31 @@ export function AppRoutes() {
         <Route path="/add-commas-to-integer" element={<AddCommasToInteger />} />
         <Route path="/obfuscate-json" element={<ObfuscateJson />} />
         <Route path="/analyze-json" element={<AnalyzeJson />} />
+
+{/* Math tools — number */}
+<Route path="/generate-prime-numbers" element={<GeneratePrimeNumbers />} />
+<Route path="/generate-fibonacci-numbers" element={<GenerateFibonacciNumbers />} />
+<Route path="/generate-random-numbers" element={<GenerateRandomNumbers />} />
+<Route path="/calculate-prime-factors" element={<CalculatePrimeFactors />} />
+<Route path="/find-divisors" element={<FindDivisors />} />
+<Route path="/test-prime-numbers" element={<TestPrimeNumbers />} />
+<Route path="/test-fibonacci-numbers" element={<TestFibonacciNumbers />} />
+<Route path="/calculate-factorial" element={<CalculateFactorial />} />
+
+{/* Math tools — matrix */}
+<Route path="/transpose-matrix" element={<TransposeMatrix />} />
+<Route path="/invert-matrix" element={<InvertMatrix />} />
+<Route path="/determinant-matrix" element={<DeterminantMatrix />} />
+<Route path="/multiply-matrices" element={<MultiplyMatrices />} />
+<Route path="/add-subtract-matrices" element={<AddSubtractMatrices />} />
+<Route path="/generate-identity-matrix" element={<GenerateIdentityMatrix />} />
+
+{/* Math tools — fun */}
+<Route path="/classify-number" element={<ClassifyNumber />} />
+<Route path="/generate-look-and-say-sequence" element={<GenerateLookAndSaySequence />} />
+<Route path="/generate-e-digits" element={<GenerateEDigits />} />
+<Route path="/generate-phi-digits" element={<GeneratePhiDigits />} />
+
         <Route path="/tools/hilbert-fractal" element={<Navigate to="/hilbert-fractal" replace />} />
         <Route path="/tools/lsystem-generator" element={<Navigate to="/lsystem-generator" replace />} />
         <Route path="/tools/generate-pascals-triangle" element={<Navigate to="/generate-pascals-triangle" replace />} />
@@ -969,6 +1030,27 @@ export function AppRoutes() {
         <Route path="/tools/add-commas-to-integer" element={<Navigate to="/add-commas-to-integer" replace />} />
         <Route path="/tools/obfuscate-json" element={<Navigate to="/obfuscate-json" replace />} />
         <Route path="/tools/analyze-json" element={<Navigate to="/analyze-json" replace />} />
+        {/* Math tools — number */}
+        <Route path="/tools/generate-prime-numbers" element={<Navigate to="/generate-prime-numbers" replace />} />
+        <Route path="/tools/generate-fibonacci-numbers" element={<Navigate to="/generate-fibonacci-numbers" replace />} />
+        <Route path="/tools/generate-random-numbers" element={<Navigate to="/generate-random-numbers" replace />} />
+        <Route path="/tools/calculate-prime-factors" element={<Navigate to="/calculate-prime-factors" replace />} />
+        <Route path="/tools/find-divisors" element={<Navigate to="/find-divisors" replace />} />
+        <Route path="/tools/test-prime-numbers" element={<Navigate to="/test-prime-numbers" replace />} />
+        <Route path="/tools/test-fibonacci-numbers" element={<Navigate to="/test-fibonacci-numbers" replace />} />
+        <Route path="/tools/calculate-factorial" element={<Navigate to="/calculate-factorial" replace />} />
+        {/* Math tools — matrix */}
+        <Route path="/tools/transpose-matrix" element={<Navigate to="/transpose-matrix" replace />} />
+        <Route path="/tools/invert-matrix" element={<Navigate to="/invert-matrix" replace />} />
+        <Route path="/tools/determinant-matrix" element={<Navigate to="/determinant-matrix" replace />} />
+        <Route path="/tools/multiply-matrices" element={<Navigate to="/multiply-matrices" replace />} />
+        <Route path="/tools/add-subtract-matrices" element={<Navigate to="/add-subtract-matrices" replace />} />
+        <Route path="/tools/generate-identity-matrix" element={<Navigate to="/generate-identity-matrix" replace />} />
+        {/* Math tools — fun */}
+        <Route path="/tools/classify-number" element={<Navigate to="/classify-number" replace />} />
+        <Route path="/tools/generate-look-and-say-sequence" element={<Navigate to="/generate-look-and-say-sequence" replace />} />
+        <Route path="/tools/generate-e-digits" element={<Navigate to="/generate-e-digits" replace />} />
+        <Route path="/tools/generate-phi-digits" element={<Navigate to="/generate-phi-digits" replace />} />
 
         {/* 404 Catch-All */}
         <Route path="*" element={<NotFound />} />
