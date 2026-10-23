@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Terminal, Copy, Check, Plus, Trash2, Shield } from "lucide-react";
+import { Terminal, Copy, Plus, Trash2, Shield } from "lucide-react";
 
 interface HeaderPair {
   key: string;
@@ -56,7 +56,6 @@ export default function CurlBuilder() {
   const [body, setBody] = useState("");
   const [flags, setFlags] = useState<string[]>([]);
   const [copied, setCopied] = useState(false);
-  const [showBody, setShowBody] = useState(false);
 
   const curl = buildCurl(url, method, headers, body, flags);
 
@@ -109,11 +108,7 @@ export default function CurlBuilder() {
                 <select
                   className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
                   value={method}
-                  onChange={(e) => {
-                    setMethod(e.target.value as HttpMethod);
-                    const m = e.target.value as HttpMethod;
-                    setShowBody(m !== "GET" && m !== "HEAD" && m !== "OPTIONS");
-                  }}
+                  onChange={(e) => setMethod(e.target.value as HttpMethod)}
                 >
                   {METHODS.map((m) => (
                     <option key={m} value={m}>

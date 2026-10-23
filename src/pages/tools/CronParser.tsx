@@ -90,7 +90,7 @@ function parseCron(expr: string): { fields: FieldDesc[]; error: string | null } 
 
   for (let i = 0; i < 5; i++) {
     const p = parts[i].trim();
-    if (p !== "*" && !/^[\d,\-*\/]+$/.test(p)) {
+    if (p !== "*" && !/^[\d,\-*/]+$/.test(p)) {
       return { fields: [], error: `Invalid character in field ${i + 1}: "${p}"` };
     }
     // check numeric range

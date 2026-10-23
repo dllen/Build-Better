@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Globe, Copy, Check, AlertTriangle } from "lucide-react";
+import { Globe, Copy, Check } from "lucide-react";
 import { EditorSplitLayout } from "@/components/common/EditorSplitLayout";
 import { SEO } from "@/components/seo";
 

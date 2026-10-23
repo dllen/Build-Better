@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Copy, Check, Plus, Trash2, Shield } from "lucide-react";
+import { Box, Copy, Plus, Trash2, Shield } from "lucide-react";
 
 type ResourceType = "pod" | "deployment" | "service" | "configmap" | "secret" | "ingress" | "namespace" | "node";
 type Operation = "get" | "describe" | "create" | "apply" | "delete" | "logs" | "exec" | "port-forward";
