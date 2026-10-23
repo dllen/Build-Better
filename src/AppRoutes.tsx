@@ -27,11 +27,14 @@ import HashTools from "@/pages/tools/HashTools";
 import DateTimeTools from "@/pages/tools/DateTimeTools";
 import NetworkTools from "@/pages/tools/NetworkTools";
 import BaseConverter from "@/pages/tools/BaseConverter";
+import ByteConverter from "@/pages/tools/ByteConverter";
+import CurlBuilder from "@/pages/tools/CurlBuilder";
 import ColorHunt from "@/pages/tools/ColorHunt";
 import TextDeduper from "@/pages/tools/TextDeduper";
 import DedupSortDiff from "@/pages/tools/DedupSortDiff";
 import TextTranspose from "@/pages/tools/TextTranspose";
 import CronQuartz from "@/pages/tools/CronQuartz";
+import CronParser from "@/pages/tools/CronParser";
 import CalculatorTool from "@/pages/tools/Calculator";
 import BcryptTool from "@/pages/tools/BcryptTool";
 import UlidTool from "@/pages/tools/UlidTool";
@@ -245,8 +248,10 @@ import JsonSchemaGenerator from "@/pages/tools/JsonSchemaGenerator";
 import DataFaker from "@/pages/tools/DataFaker";
 import DockerRunBuilder from "@/pages/tools/DockerRunBuilder";
 import DockerComposeGenerator from "@/pages/tools/DockerComposeGenerator";
+import DockerfileGenerator from "@/pages/tools/DockerfileGenerator";
 import K8sYamlGenerator from "@/pages/tools/K8sYamlGenerator";
 import K8sResourceCalculator from "@/pages/tools/K8sResourceCalculator";
+import KubectlBuilder from "@/pages/tools/KubectlBuilder";
 import SystemdGenerator from "@/pages/tools/SystemdGenerator";
 import Base64Tool from "@/pages/tools/Base64Tool";
 import UrlEncoder from "@/pages/tools/UrlEncoder";
@@ -283,6 +288,7 @@ import IpGenerator from "@/pages/tools/IpGenerator";
 import IpIntConverter from "@/pages/tools/IpIntConverter";
 import SubnetCalculator from "@/pages/tools/SubnetCalculator";
 import UrlParser from "@/pages/tools/UrlParser";
+import HttpHeaderAnalyzer from "@/pages/tools/HttpHeaderAnalyzer";
 import UaParser from "@/pages/tools/UaParser";
 import UaGenerator from "@/pages/tools/UaGenerator";
 import BadgeGenerator from "@/pages/tools/BadgeGenerator";
@@ -294,6 +300,19 @@ import BarcodeGenerator from "@/pages/tools/BarcodeGenerator";
 import ListRandomizer from "@/pages/tools/ListRandomizer";
 import FakeIbanGenerator from "@/pages/tools/FakeIbanGenerator";
 import ProductFinder from "@/pages/tools/ProductFinder";
+import CountryNameGenerator from "@/pages/tools/data/CountryNameGenerator";
+import RandomNumberGenerator from "@/pages/tools/data/RandomNumberGenerator";
+import MultiDiceRoller from "@/pages/tools/data/MultiDiceRoller";
+import PercentageCalculator from "@/pages/tools/data/PercentageCalculator";
+import AreaCalculator from "@/pages/tools/data/AreaCalculator";
+import CoefficientOfVariation from "@/pages/tools/data/CoefficientOfVariation";
+import SampleSizeCalculator from "@/pages/tools/data/SampleSizeCalculator";
+import BinaryDivisionCalculator from "@/pages/tools/data/BinaryDivisionCalculator";
+import NumberListGenerator from "@/pages/tools/data/NumberListGenerator";
+import NumberSorter from "@/pages/tools/data/NumberSorter";
+import EmptyRowRemover from "@/pages/tools/data/EmptyRowRemover";
+import EmailExtractor from "@/pages/tools/data/EmailExtractor";
+import UrlMetadataExtractor from "@/pages/tools/data/UrlMetadataExtractor";
 import NotFound from "@/pages/NotFound";
 
 
@@ -449,8 +468,11 @@ export function AppRoutes() {
         <Route path="/date-time" element={<DateTimeTools />} />
         <Route path="/network-tools" element={<NetworkTools />} />
         <Route path="/base-converter" element={<BaseConverter />} />
+        <Route path="/byte-converter" element={<ByteConverter />} />
+        <Route path="/curl-builder" element={<CurlBuilder />} />
         <Route path="/color-hunt" element={<ColorHunt />} />
         <Route path="/cron-quartz" element={<CronQuartz />} />
+        <Route path="/cron-parser" element={<CronParser />} />
         <Route path="/calculator" element={<CalculatorTool />} />
         <Route path="/bcrypt" element={<BcryptTool />} />
         <Route path="/ulid" element={<UlidTool />} />
@@ -563,7 +585,22 @@ export function AppRoutes() {
         <Route path="/ai-seo" element={<AIProductSEOOptimizer />} />
         <Route path="/ai-whatsapp" element={<AIWhatsAppAutoReply />} />
         <Route path="/margin-calculator" element={<MarginCalculator />} />
-        
+
+        {/* Data Tools Batch (freetools.org) */}
+        <Route path="/country-name-generator" element={<CountryNameGenerator />} />
+        <Route path="/random-number-generator" element={<RandomNumberGenerator />} />
+        <Route path="/multi-dice-roller" element={<MultiDiceRoller />} />
+        <Route path="/percentage-calculator" element={<PercentageCalculator />} />
+        <Route path="/area-calculator" element={<AreaCalculator />} />
+        <Route path="/coefficient-of-variation" element={<CoefficientOfVariation />} />
+        <Route path="/sample-size-calculator" element={<SampleSizeCalculator />} />
+        <Route path="/binary-division-calculator" element={<BinaryDivisionCalculator />} />
+        <Route path="/number-list-generator" element={<NumberListGenerator />} />
+        <Route path="/number-sorter" element={<NumberSorter />} />
+        <Route path="/empty-row-remover" element={<EmptyRowRemover />} />
+        <Route path="/email-extractor" element={<EmailExtractor />} />
+        <Route path="/url-metadata-extractor" element={<UrlMetadataExtractor />} />
+
         {/* ========== GAMES ========== */}
         <Route path="/games/snake" element={<Snake />} />
         <Route path="/games/tetris" element={<Tetris />} />
@@ -714,6 +751,7 @@ export function AppRoutes() {
         <Route path="/ip-int-converter" element={<IpIntConverter />} />
         <Route path="/subnet-calculator" element={<SubnetCalculator />} />
         <Route path="/url-parser" element={<UrlParser />} />
+        <Route path="/http-header-analyzer" element={<HttpHeaderAnalyzer />} />
         <Route path="/ua-parser" element={<UaParser />} />
         <Route path="/ua-generator" element={<UaGenerator />} />
         <Route path="/badge-generator" element={<BadgeGenerator />} />
@@ -725,8 +763,10 @@ export function AppRoutes() {
         {/* Phase D — DevOps Tools */}
         <Route path="/docker-run-builder" element={<DockerRunBuilder />} />
         <Route path="/docker-compose-generator" element={<DockerComposeGenerator />} />
+        <Route path="/dockerfile-generator" element={<DockerfileGenerator />} />
         <Route path="/k8s-yaml-generator" element={<K8sYamlGenerator />} />
         <Route path="/k8s-resource-calculator" element={<K8sResourceCalculator />} />
+        <Route path="/kubectl-builder" element={<KubectlBuilder />} />
         <Route path="/systemd-generator" element={<SystemdGenerator />} />
     
         {/* Phase C+D Legacy */}
