@@ -299,6 +299,19 @@ import AutoRefresh from "@/pages/tools/AutoRefresh";
 import BarcodeGenerator from "@/pages/tools/BarcodeGenerator";
 import ListRandomizer from "@/pages/tools/ListRandomizer";
 import FakeIbanGenerator from "@/pages/tools/FakeIbanGenerator";
+import SplitFiles from "@/pages/tools/SplitFiles";
+import JoinFiles from "@/pages/tools/JoinFiles";
+import RandomFileGenerator from "@/pages/tools/RandomFileGenerator";
+import CorruptFileGenerator from "@/pages/tools/CorruptFileGenerator";
+import CorruptAFile from "@/pages/tools/CorruptAFile";
+import CoinFlipper from "@/pages/tools/CoinFlipper";
+import GaussianRandomNumberGenerator from "@/pages/tools/GaussianRandomNumberGenerator";
+import RandomStringGenerator from "@/pages/tools/RandomStringGenerator";
+import RandomColor from "@/pages/tools/RandomColor";
+import AddNoiseToImage from "@/pages/tools/AddNoiseToImage";
+import RandomBitmapGenerator from "@/pages/tools/RandomBitmapGenerator";
+import BulkAddNoiseImage from "@/pages/tools/BulkAddNoiseImage";
+import BulkRandomBitmapGenerator from "@/pages/tools/BulkRandomBitmapGenerator";
 import ProductFinder from "@/pages/tools/ProductFinder";
 import CountryNameGenerator from "@/pages/tools/data/CountryNameGenerator";
 import RandomNumberGenerator from "@/pages/tools/data/RandomNumberGenerator";
@@ -313,6 +326,31 @@ import NumberSorter from "@/pages/tools/data/NumberSorter";
 import EmptyRowRemover from "@/pages/tools/data/EmptyRowRemover";
 import EmailExtractor from "@/pages/tools/data/EmailExtractor";
 import UrlMetadataExtractor from "@/pages/tools/data/UrlMetadataExtractor";
+// onlinetools.com golden tools — fractals, images, webp, text, data
+import DrawHilbertFractal from "@/pages/tools/DrawHilbertFractal";
+import ConvertTextToAsciiArt from "@/pages/tools/ConvertTextToAsciiArt";
+import ConvertAsciiToImage from "@/pages/tools/ConvertAsciiToImage";
+import LSystemGenerator from "@/pages/tools/LSystemGenerator";
+import GeneratePascalsTriangle from "@/pages/tools/GeneratePascalsTriangle";
+import GeneratePiDigits from "@/pages/tools/GeneratePiDigits";
+import DrawMementoMoriCalendar from "@/pages/tools/DrawMementoMoriCalendar";
+import DrawDigitalClock from "@/pages/tools/DrawDigitalClock";
+import PixelateImage from "@/pages/tools/PixelateImage";
+import BlurImage from "@/pages/tools/BlurImage";
+import SharpenImage from "@/pages/tools/SharpenImage";
+import ResizeImage from "@/pages/tools/ResizeImage";
+import FlipImage from "@/pages/tools/FlipImage";
+import ConvertEmojiToImage from "@/pages/tools/ConvertEmojiToImage";
+import SpoofUnicodeText from "@/pages/tools/SpoofUnicodeText";
+import ConvertWebpToPng from "@/pages/tools/ConvertWebpToPng";
+import ConvertWebpToJpg from "@/pages/tools/ConvertWebpToJpg";
+import ConvertPngToWebp from "@/pages/tools/ConvertPngToWebp";
+import ConvertJpgToWebp from "@/pages/tools/ConvertJpgToWebp";
+import ConvertBmpToWebp from "@/pages/tools/ConvertBmpToWebp";
+import EnumerateIntegers from "@/pages/tools/EnumerateIntegers";
+import AddCommasToInteger from "@/pages/tools/AddCommasToInteger";
+import ObfuscateJson from "@/pages/tools/ObfuscateJson";
+import AnalyzeJson from "@/pages/tools/AnalyzeJson";
 import NotFound from "@/pages/NotFound";
 
 
@@ -400,12 +438,22 @@ export function AppRoutes() {
         <Route path="/markdown-html" element={<MarkdownHtml />} />
         <Route path="/email-md" element={<EmailMarkdown />} />
         <Route path="/jwt-decode" element={<JwtDecodeTool />} />
-        
+        <Route path="/split-files" element={<SplitFiles />} />
+        <Route path="/join-files" element={<JoinFiles />} />
+        <Route path="/random-file-generator" element={<RandomFileGenerator />} />
+        <Route path="/corrupt-file-generator" element={<CorruptFileGenerator />} />
+        <Route path="/corrupt-a-file" element={<CorruptAFile />} />
+
         {/* Image Tools */}
         <Route path="/qr-generator" element={<QrGenerator />} />
         <Route path="/otp-generator" element={<OtpGenerator />} />
         <Route path="/wifi-qr-generator" element={<WifiQrGenerator />} />
         <Route path="/barcode-generator" element={<BarcodeGenerator />} />
+        <Route path="/random-color" element={<RandomColor />} />
+        <Route path="/add-noise-image" element={<AddNoiseToImage />} />
+        <Route path="/random-bitmap-generator" element={<RandomBitmapGenerator />} />
+        <Route path="/bulk-batch-add-noise-image" element={<BulkAddNoiseImage />} />
+        <Route path="/bulk-batch-random-bitmap-generator" element={<BulkRandomBitmapGenerator />} />
         {/* Chat */}
         <Route path="/webchat" element={<WebChat />} />
         <Route path="/p2p-chat" element={<P2pChat />} />
@@ -600,6 +648,9 @@ export function AppRoutes() {
         <Route path="/empty-row-remover" element={<EmptyRowRemover />} />
         <Route path="/email-extractor" element={<EmailExtractor />} />
         <Route path="/url-metadata-extractor" element={<UrlMetadataExtractor />} />
+        <Route path="/coin-flipper" element={<CoinFlipper />} />
+        <Route path="/gaussian-random-number-generator" element={<GaussianRandomNumberGenerator />} />
+        <Route path="/random-string-generator" element={<RandomStringGenerator />} />
 
         {/* ========== GAMES ========== */}
         <Route path="/games/snake" element={<Snake />} />
@@ -868,6 +919,56 @@ export function AppRoutes() {
         <Route path="/tools/ai-seo" element={<Navigate to="/ai-seo" replace />} />
         <Route path="/tools/ai-whatsapp" element={<Navigate to="/ai-whatsapp" replace />} />
         <Route path="/tools/margin-calculator" element={<Navigate to="/margin-calculator" replace />} />
+
+        {/* onlinetools.com golden tools */}
+        <Route path="/hilbert-fractal" element={<DrawHilbertFractal />} />
+        <Route path="/lsystem-generator" element={<LSystemGenerator />} />
+        <Route path="/generate-pascals-triangle" element={<GeneratePascalsTriangle />} />
+        <Route path="/generate-pi-digits" element={<GeneratePiDigits />} />
+        <Route path="/draw-memento-mori-calendar" element={<DrawMementoMoriCalendar />} />
+        <Route path="/draw-digital-clock" element={<DrawDigitalClock />} />
+        <Route path="/convert-text-to-ascii-art" element={<ConvertTextToAsciiArt />} />
+        <Route path="/convert-ascii-to-image" element={<ConvertAsciiToImage />} />
+        <Route path="/spoof-unicode-text" element={<SpoofUnicodeText />} />
+        <Route path="/pixelate-image" element={<PixelateImage />} />
+        <Route path="/blur-image" element={<BlurImage />} />
+        <Route path="/sharpen-image" element={<SharpenImage />} />
+        <Route path="/resize-image" element={<ResizeImage />} />
+        <Route path="/flip-image" element={<FlipImage />} />
+        <Route path="/convert-emoji-to-image" element={<ConvertEmojiToImage />} />
+        <Route path="/convert-webp-to-png" element={<ConvertWebpToPng />} />
+        <Route path="/convert-webp-to-jpg" element={<ConvertWebpToJpg />} />
+        <Route path="/convert-png-to-webp" element={<ConvertPngToWebp />} />
+        <Route path="/convert-jpg-to-webp" element={<ConvertJpgToWebp />} />
+        <Route path="/convert-bmp-to-webp" element={<ConvertBmpToWebp />} />
+        <Route path="/enumerate-integers" element={<EnumerateIntegers />} />
+        <Route path="/add-commas-to-integer" element={<AddCommasToInteger />} />
+        <Route path="/obfuscate-json" element={<ObfuscateJson />} />
+        <Route path="/analyze-json" element={<AnalyzeJson />} />
+        <Route path="/tools/hilbert-fractal" element={<Navigate to="/hilbert-fractal" replace />} />
+        <Route path="/tools/lsystem-generator" element={<Navigate to="/lsystem-generator" replace />} />
+        <Route path="/tools/generate-pascals-triangle" element={<Navigate to="/generate-pascals-triangle" replace />} />
+        <Route path="/tools/generate-pi-digits" element={<Navigate to="/generate-pi-digits" replace />} />
+        <Route path="/tools/draw-memento-mori-calendar" element={<Navigate to="/draw-memento-mori-calendar" replace />} />
+        <Route path="/tools/draw-digital-clock" element={<Navigate to="/draw-digital-clock" replace />} />
+        <Route path="/tools/convert-text-to-ascii-art" element={<Navigate to="/convert-text-to-ascii-art" replace />} />
+        <Route path="/tools/convert-ascii-to-image" element={<Navigate to="/convert-ascii-to-image" replace />} />
+        <Route path="/tools/spoof-unicode-text" element={<Navigate to="/spoof-unicode-text" replace />} />
+        <Route path="/tools/pixelate-image" element={<Navigate to="/pixelate-image" replace />} />
+        <Route path="/tools/blur-image" element={<Navigate to="/blur-image" replace />} />
+        <Route path="/tools/sharpen-image" element={<Navigate to="/sharpen-image" replace />} />
+        <Route path="/tools/resize-image" element={<Navigate to="/resize-image" replace />} />
+        <Route path="/tools/flip-image" element={<Navigate to="/flip-image" replace />} />
+        <Route path="/tools/convert-emoji-to-image" element={<Navigate to="/convert-emoji-to-image" replace />} />
+        <Route path="/tools/convert-webp-to-png" element={<Navigate to="/convert-webp-to-png" replace />} />
+        <Route path="/tools/convert-webp-to-jpg" element={<Navigate to="/convert-webp-to-jpg" replace />} />
+        <Route path="/tools/convert-png-to-webp" element={<Navigate to="/convert-png-to-webp" replace />} />
+        <Route path="/tools/convert-jpg-to-webp" element={<Navigate to="/convert-jpg-to-webp" replace />} />
+        <Route path="/tools/convert-bmp-to-webp" element={<Navigate to="/convert-bmp-to-webp" replace />} />
+        <Route path="/tools/enumerate-integers" element={<Navigate to="/enumerate-integers" replace />} />
+        <Route path="/tools/add-commas-to-integer" element={<Navigate to="/add-commas-to-integer" replace />} />
+        <Route path="/tools/obfuscate-json" element={<Navigate to="/obfuscate-json" replace />} />
+        <Route path="/tools/analyze-json" element={<Navigate to="/analyze-json" replace />} />
 
         {/* 404 Catch-All */}
         <Route path="*" element={<NotFound />} />
