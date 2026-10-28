@@ -18,6 +18,18 @@ const TIGER = 6;
 const LION = 7;
 const ELEPHANT = 8;
 
+/** The animal each rank is, for the piece's accessible name. */
+const ANIMAL_NAMES: Record<number, string> = {
+  [RAT]: "Rat",
+  [CAT]: "Cat",
+  [DOG]: "Dog",
+  [WOLF]: "Wolf",
+  [LEOPARD]: "Leopard",
+  [TIGER]: "Tiger",
+  [LION]: "Lion",
+  [ELEPHANT]: "Elephant",
+};
+
 // Players
 const PLAYER_BLUE = 0; // AI (Top)
 const PLAYER_RED = 1;  // User (Bottom)
@@ -60,24 +72,33 @@ const getTerrain = (r: number, c: number) => {
 };
 
 // Initial Board Setup
+//
+// The pieces are emoji, and that is deliberate. The rest of the site uses
+// lucide icons instead, because an emoji standing in for a UI icon is a
+// generated look. A Jungle Chess piece is not an icon: the animal is the
+// piece, the same way a character is the content of an emoji picker. Letters
+// (E L T P W D C R) were tried first and made the board unreadable without
+// the rules table; the emoji are legible in every one of the site's eleven
+// languages. The player is carried by the ring drawn around each piece, not
+// by the glyph, so blue and red stay distinguishable.
 const initialPieces: { [key: string]: Piece } = {
-  "0,0": { player: PLAYER_BLUE, rank: LION, label: "L" },
-  "0,6": { player: PLAYER_BLUE, rank: TIGER, label: "T" },
-  "1,1": { player: PLAYER_BLUE, rank: DOG, label: "D" },
-  "1,5": { player: PLAYER_BLUE, rank: CAT, label: "C" },
-  "2,0": { player: PLAYER_BLUE, rank: RAT, label: "R" },
-  "2,2": { player: PLAYER_BLUE, rank: LEOPARD, label: "P" },
-  "2,4": { player: PLAYER_BLUE, rank: WOLF, label: "W" },
-  "2,6": { player: PLAYER_BLUE, rank: ELEPHANT, label: "E" },
+  "0,0": { player: PLAYER_BLUE, rank: LION, label: "🦁" },
+  "0,6": { player: PLAYER_BLUE, rank: TIGER, label: "🐯" },
+  "1,1": { player: PLAYER_BLUE, rank: DOG, label: "🐕" },
+  "1,5": { player: PLAYER_BLUE, rank: CAT, label: "🐈" },
+  "2,0": { player: PLAYER_BLUE, rank: RAT, label: "🐀" },
+  "2,2": { player: PLAYER_BLUE, rank: LEOPARD, label: "🐆" },
+  "2,4": { player: PLAYER_BLUE, rank: WOLF, label: "🐺" },
+  "2,6": { player: PLAYER_BLUE, rank: ELEPHANT, label: "🐘" },
 
-  "8,6": { player: PLAYER_RED, rank: LION, label: "L" },
-  "8,0": { player: PLAYER_RED, rank: TIGER, label: "T" },
-  "7,5": { player: PLAYER_RED, rank: DOG, label: "D" },
-  "7,1": { player: PLAYER_RED, rank: CAT, label: "C" },
-  "6,6": { player: PLAYER_RED, rank: RAT, label: "R" },
-  "6,4": { player: PLAYER_RED, rank: LEOPARD, label: "P" },
-  "6,2": { player: PLAYER_RED, rank: WOLF, label: "W" },
-  "6,0": { player: PLAYER_RED, rank: ELEPHANT, label: "E" },
+  "8,6": { player: PLAYER_RED, rank: LION, label: "🦁" },
+  "8,0": { player: PLAYER_RED, rank: TIGER, label: "🐯" },
+  "7,5": { player: PLAYER_RED, rank: DOG, label: "🐕" },
+  "7,1": { player: PLAYER_RED, rank: CAT, label: "🐈" },
+  "6,6": { player: PLAYER_RED, rank: RAT, label: "🐀" },
+  "6,4": { player: PLAYER_RED, rank: LEOPARD, label: "🐆" },
+  "6,2": { player: PLAYER_RED, rank: WOLF, label: "🐺" },
+  "6,0": { player: PLAYER_RED, rank: ELEPHANT, label: "🐘" },
 };
 
 const Jungle: React.FC = () => {
@@ -387,13 +408,27 @@ const Jungle: React.FC = () => {
         )}
         
         {piece && (
-          <div className={`
-            text-xl md:text-2xl font-medium tracking-tight
-            select-none motion-safe:transition-transform
-            ${piece.player === PLAYER_RED ? "text-piece-red" : "text-piece-blue"}
-            ${isSelected ? "scale-125" : "hover:scale-110"}
-          `}>
-            {piece.label}
+          <div
+            className={`
+              flex items-center justify-center w-full h-full
+              text-2xl md:text-3xl leading-none select-none
+              motion-safe:transition-transform
+              ${isSelected ? "scale-110" : "hover:scale-105"}
+            `}
+          >
+            <span
+              role="img"
+              aria-label={ANIMAL_NAMES[piece.rank] ?? "Piece"}
+              className={`
+                flex items-center justify-center w-[80%] h-[80%] rounded-full
+                border-[2.5px]
+                ${piece.player === PLAYER_RED
+                  ? "border-piece-red bg-piece-red-wash"
+                  : "border-piece-blue bg-piece-blue-wash"}
+              `}
+            >
+              {piece.label}
+            </span>
           </div>
         )}
       </div>

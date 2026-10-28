@@ -1128,7 +1128,7 @@
       "blue_win": "블루 승리!",
       "den": "굴",
       "trap": "함정",
-      "rules": "순위: E > L > T > P > W > D > C > R (> E)"
+      "rules": "순위: 🐘 > 🦁 > 🐯 > 🐆 > 🐺 > 🐕 > 🐈 > 🐀 (> 🐘)"
     },
     "flying_chess": {
       "title": "플라잉 체스",

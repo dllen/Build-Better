@@ -98,8 +98,10 @@
   --board-trap: oklch(72% 0.012 250);
   --board-den-blue: oklch(80% 0.07 245);
   --board-den-red: oklch(82% 0.07 25);
-  --piece-blue: oklch(38% 0.13 250);
-  --piece-red: oklch(40% 0.16 25);
+  --piece-blue: oklch(55% 0.17 250);
+  --piece-red: oklch(54% 0.20 25);
+  --piece-blue-wash: oklch(94% 0.03 250);
+  --piece-red-wash: oklch(94% 0.035 25);
 
   /* A Go stone is black or white porcelain with a highlight; these hold in
      both colourways because the stone is the game's material. */

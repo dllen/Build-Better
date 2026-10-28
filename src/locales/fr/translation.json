@@ -1128,7 +1128,7 @@
       "blue_win": "Bleu gagne !",
       "den": "TANIÈRE",
       "trap": "PIÈGE",
-      "rules": "Rang: E > L > T > P > W > D > C > R (> E)"
+      "rules": "Rang: 🐘 > 🦁 > 🐯 > 🐆 > 🐺 > 🐕 > 🐈 > 🐀 (> 🐘)"
     },
     "flying_chess": {
       "title": "Échecs volants",

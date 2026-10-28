@@ -98,6 +98,8 @@ export default {
         piece: {
           blue: "var(--piece-blue)",
           red: "var(--piece-red)",
+          "blue-wash": "var(--piece-blue-wash)",
+          "red-wash": "var(--piece-red-wash)",
         },
 
         // The greyscale is remapped onto the theme's own surfaces, so a

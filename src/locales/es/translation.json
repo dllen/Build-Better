@@ -930,7 +930,7 @@
       "blue_win": "¡Azul gana!",
       "den": "CUEVA",
       "trap": "TRAMPA",
-      "rules": "Rango: E > L > T > P > W > D > C > R (> E)",
+      "rules": "Rango: 🐘 > 🦁 > 🐯 > 🐆 > 🐺 > 🐕 > 🐈 > 🐀 (> 🐘)",
       "rule1": "Moverse a una casilla vacía.",
       "rule2": "Saltar sobre una pieza para una casilla vacía.",
       "rule3": "Los saltos en cadena son permitidos.",
