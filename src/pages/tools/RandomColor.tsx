@@ -61,33 +61,33 @@ export default function RandomColor() {
   return (
     <div className="max-w-3xl mx-auto py-8 px-4">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2 bg-pink-100 text-pink-600 rounded-lg">
+        <div className="p-2 bg-destructive/10 text-destructive rounded-lg">
           <Palette className="h-5 w-5" />
         </div>
-        <h1 className="text-2xl font-bold text-gray-900">Random Color Generator</h1>
+        <h1 className="text-2xl font-bold text-foreground">Random Color Generator</h1>
       </div>
 
-      <p className="text-sm text-gray-500 mb-6">
+      <p className="text-sm text-muted-foreground mb-6">
         Generate random colors and copy them in HEX, RGB, or HSL format.
       </p>
 
-      <div className="space-y-4 p-6 rounded-xl border border-gray-200 bg-white">
+      <div className="space-y-4 p-6 rounded-xl border border-border bg-card">
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-1.5 text-sm">
-            <label className="text-gray-600 font-medium">Count:</label>
+            <label className="text-muted-foreground font-medium">Count:</label>
             <input
               type="number"
               min={1}
               max={100}
               value={count}
               onChange={(e) => setCount(Math.max(1, Math.min(100, Number(e.target.value))))}
-              className="w-20 rounded-lg border border-gray-300 px-2 py-1.5 text-sm text-center focus:border-pink-500 focus:ring-1 focus:ring-pink-500 outline-none"
+              className="w-20 rounded-lg border border-border px-2 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none"
             />
           </div>
           <select
             value={format}
             onChange={(e) => setFormat(e.target.value as Format)}
-            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-pink-500 focus:ring-1 focus:ring-pink-500 outline-none bg-white"
+            className="rounded-lg px-3 py-1.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-muted"
           >
             <option value="hex">HEX</option>
             <option value="rgb">RGB</option>
@@ -95,7 +95,7 @@ export default function RandomColor() {
           </select>
           <button
             onClick={handleGenerate}
-            className="inline-flex items-center gap-2 px-5 py-2 bg-pink-600 text-white text-sm font-medium rounded-lg hover:bg-pink-700 transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2 bg-destructive text-destructive-foreground text-sm font-medium rounded-lg hover:bg-destructive transition-colors"
           >
             <RefreshCw className="h-4 w-4" />
             Generate
@@ -107,21 +107,21 @@ export default function RandomColor() {
             {colors.map((c, i) => (
               <div
                 key={i}
-                className="relative group rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+                className="relative group rounded-xl overflow-hidden border border-border transition-shadow"
               >
                 <div
                   className="h-24 w-full cursor-pointer"
                   style={{ backgroundColor: c.hex }}
                   onClick={() => copyColor(c[format], i)}
                 />
-                <div className="p-2 bg-white">
+                <div className="p-2 bg-muted">
                   <button
                     onClick={() => copyColor(c[format], i)}
-                    className="w-full text-center text-xs font-mono text-gray-700 hover:text-pink-600 transition-colors flex items-center justify-center gap-1"
+                    className="w-full text-center text-xs font-mono text-muted-foreground hover:text-destructive transition-colors flex items-center justify-center gap-1"
                   >
                     {copiedIndex === i ? (
                       <>
-                        <Check className="h-3 w-3 text-green-600" />
+                        <Check className="h-3 w-3 text-success" />
                         Copied!
                       </>
                     ) : (

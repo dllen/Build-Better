@@ -96,7 +96,7 @@ export default function Base64Tool() {
       <EditorSplitLayout
         title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <Binary className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">Base64 编码/解码</h1>
@@ -104,23 +104,15 @@ export default function Base64Tool() {
       }
       toolbar={
           <>
-            <div className="inline-flex rounded-md border border-gray-300 overflow-hidden">
+            <div className="inline-flex rounded-md border border-border overflow-hidden">
               <button
-                className={`px-4 py-2 text-sm inline-flex items-center gap-1 ${
-                  mode === "encode"
-                    ? "bg-blue-600 text-white"
-                    : "bg-white text-gray-700"
-                }`}
+                className={`px-4 py-2 text-sm inline-flex items-center gap-1 ${ mode === "encode" ? "bg-primary text-primary-foreground" : "text-muted-foreground" }`}
                 onClick={() => switchMode("encode")}
               >
                 编码
               </button>
               <button
-                className={`px-4 py-2 text-sm inline-flex items-center gap-1 ${
-                  mode === "decode"
-                    ? "bg-blue-600 text-white"
-                    : "bg-white text-gray-700"
-                }`}
+                className={`px-4 py-2 text-sm inline-flex items-center gap-1 ${ mode === "decode" ? "bg-primary text-primary-foreground" : "text-muted-foreground" }`}
                 onClick={() => switchMode("decode")}
               >
                 解码
@@ -136,7 +128,7 @@ export default function Base64Tool() {
             </label>
             <div className="flex flex-wrap gap-3">
               <button
-                className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+                className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
                 onClick={() => convert(input, mode, urlSafe)}
                 disabled={!input.trim()}
               >
@@ -144,19 +136,19 @@ export default function Base64Tool() {
                 转换
               </button>
               <button
-                className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+                className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
                 onClick={copy}
                 disabled={!result}
               >
                 {copied ? (
-                  <Check className="h-4 w-4 text-green-600" />
+                  <Check className="h-4 w-4 text-success" />
                 ) : (
                   <Copy className="h-4 w-4" />
                 )}
                 {copied ? "已复制 ✓" : "复制"}
               </button>
               <button
-                className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+                className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
                 onClick={clear}
                 disabled={!input && !result}
               >
@@ -185,32 +177,32 @@ export default function Base64Tool() {
             value={result}
             readOnly
             placeholder="转换结果会显示在这里"
-            className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-gray-50 focus:outline-none"
+            className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-muted focus:outline-none"
           />
         }
         footer={
           <>
-            {error && <div className="text-sm text-red-600">{error}</div>}
-            <div className="text-xs text-gray-500">
+            {error && <div className="text-sm text-destructive">{error}</div>}
+            <div className="text-xs text-muted-foreground">
               数据仅在浏览器本地处理，不会上传到服务器。
             </div>
           </>
         }
       />
-      <div className="mt-8 p-6 bg-white rounded-xl border border-gray-200">
+      <div className="mt-8 p-6 bg-card rounded-xl border border-border">
         <h2 className="text-lg font-semibold mb-4">Related Tools</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          <Link to="/url-encoder" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">URL 编码/解码</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/url-encoder" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">URL 编码/解码</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
-          <Link to="/regex-tester" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">Regex Tester</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/regex-tester" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">Regex Tester</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
-          <Link to="/hash-tools" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">Hash Tools</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/hash-tools" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">Hash Tools</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
         </div>
       </div>

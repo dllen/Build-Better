@@ -110,10 +110,10 @@ export default function BulkAddNoiseImage() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-orange-100 text-orange-600 rounded-lg">
+          <div className="p-2 bg-primary/10 text-primary rounded-lg">
             <Layers className="h-5 w-5" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Batch Add Noise to Images</h1>
+          <h1 className="text-2xl font-bold text-foreground">Batch Add Noise to Images</h1>
         </div>
       }
       toolbar={
@@ -124,19 +124,19 @@ export default function BulkAddNoiseImage() {
             accept="image/*"
             multiple
             onChange={handleFilesAdded}
-            className="text-sm text-gray-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-orange-100 file:text-orange-700 hover:file:bg-orange-200 file:cursor-pointer"
+            className="text-sm text-muted-foreground file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-primary/10 file:text-primary hover:file:bg-primary/10 file:cursor-pointer"
           />
 
           <select
             value={noiseType}
             onChange={(e) => setNoiseType(e.target.value as NoiseType)}
-            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none bg-white"
+            className="rounded-lg border border-border px-3 py-1.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card"
           >
             <option value="saltpepper">Salt &amp; Pepper</option>
             <option value="gaussian">Gaussian</option>
           </select>
 
-          <div className="flex items-center gap-2 text-sm text-gray-600">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <span>Intensity:</span>
             <input
               type="range"
@@ -144,7 +144,7 @@ export default function BulkAddNoiseImage() {
               max={100}
               value={intensity}
               onChange={(e) => setIntensity(Number(e.target.value))}
-              className="w-24 accent-orange-600"
+              className="w-24 accent-primary"
             />
             <span className="text-xs w-8">{intensity}%</span>
           </div>
@@ -152,7 +152,7 @@ export default function BulkAddNoiseImage() {
           <button
             onClick={handleProcess}
             disabled={files.length === 0 || processing}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-orange-600 text-white text-sm font-medium rounded-lg hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <ImagePlus className="h-3.5 w-3.5" />
             {processing ? `Processing ${progress}%...` : "Process All"}
@@ -162,7 +162,7 @@ export default function BulkAddNoiseImage() {
       inputLabel={
         files.length > 0 ? (
           <span>
-            Images <span className="text-xs font-normal text-gray-400">({files.length} files)</span>
+            Images <span className="text-xs font-normal text-muted-foreground">({files.length} files)</span>
           </span>
         ) : (
           "Images"
@@ -176,7 +176,7 @@ export default function BulkAddNoiseImage() {
               setFiles([]);
               setZipReady(null);
             }}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-red-600 rounded transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-destructive rounded transition-colors"
           >
             <X className="h-3 w-3" />
             Clear all
@@ -184,28 +184,28 @@ export default function BulkAddNoiseImage() {
         ) : undefined
       }
       input={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-3">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-3">
           {files.length > 0 ? (
             <div className="grid grid-cols-3 gap-2">
               {files.map((f, i) => (
-                <div key={i} className="relative group rounded-lg overflow-hidden border border-gray-200 aspect-square">
+                <div key={i} className="relative group rounded-lg overflow-hidden border border-border aspect-square">
                   <img src={f.url} alt={f.file.name} className="w-full h-full object-cover" />
                   <button
                     onClick={() => removeFile(i)}
-                    className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute top-1 right-1 p-1 bg-destructive text-destructive-foreground rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                   >
                     <X className="h-3 w-3" />
                   </button>
-                  <div className="absolute bottom-0 left-0 right-0 bg-black/50 p-1">
-                    <p className="text-[10px] text-white truncate">{f.file.name}</p>
+                  <div className="absolute bottom-0 left-0 right-0 bg-foreground/50 p-1">
+                    <p className="text-[10px] text-card-foreground truncate">{f.file.name}</p>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               <div className="text-center space-y-2">
-                <Upload className="h-12 w-12 text-gray-300 mx-auto" />
+                <Upload className="h-12 w-12 text-muted-foreground mx-auto" />
                 <p>Add multiple images to batch-process with noise</p>
               </div>
             </div>
@@ -217,7 +217,7 @@ export default function BulkAddNoiseImage() {
         zipReady ? (
           <button
             onClick={handleDownload}
-            className="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors"
+            className="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-foreground bg-success rounded-lg hover:bg-success transition-colors"
           >
             <Download className="h-4 w-4" />
             Download ZIP
@@ -225,32 +225,32 @@ export default function BulkAddNoiseImage() {
         ) : undefined
       }
       output={
-        <div className="h-full flex items-center justify-center rounded-lg border border-gray-200 bg-gray-50/50 p-4">
+        <div className="h-full flex items-center justify-center rounded-lg border border-border bg-muted/50 p-4">
           {processing ? (
             <div className="text-center space-y-3">
-              <div className="w-16 h-16 border-4 border-orange-200 border-t-orange-600 rounded-full animate-spin mx-auto" />
-              <p className="text-sm text-gray-600">Processing... {progress}%</p>
-              <div className="w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div className="w-16 h-16 border-4 border-border border-t-orange-600 rounded-full animate-spin mx-auto" />
+              <p className="text-sm text-muted-foreground">Processing... {progress}%</p>
+              <div className="w-48 h-2 bg-border rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-orange-600 rounded-full transition-all duration-300"
+                  className="h-full bg-primary rounded-full transition-colors duration-300"
                   style={{ width: `${progress}%` }}
                 />
               </div>
             </div>
           ) : zipReady ? (
             <div className="text-center space-y-3">
-              <Layers className="h-12 w-12 text-green-500 mx-auto" />
-              <p className="text-sm font-medium text-gray-700">
+              <Layers className="h-12 w-12 text-success mx-auto" />
+              <p className="text-sm font-medium text-muted-foreground">
                 {files.length} images processed
               </p>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-muted-foreground">
                 Ready to download as ZIP
               </p>
             </div>
           ) : (
             <div className="text-center space-y-2">
-              <Layers className="h-12 w-12 text-gray-300 mx-auto" />
-              <p className="text-sm text-gray-500">
+              <Layers className="h-12 w-12 text-muted-foreground mx-auto" />
+              <p className="text-sm text-muted-foreground">
                 {files.length > 0 ? "Click Process All to add noise" : "Add images to begin"}
               </p>
             </div>

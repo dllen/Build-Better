@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Sparkles, Search, Check } from 'lucide-react';
 
 const CATEGORIES = {
-  'Common': ['©', '®', '™', '•', '€', '£', '¥', '¢', '§', '¶', '°', '∞', '≠', '≈', '±'],
-  'Math': ['∀', '∃', '∅', '∇', '∈', '∉', '∋', '∏', '∑', '−', '∗', '√', '∝', '∞', '∠', '∧', '∨', '∩', '∪', '∫', '∴', '∼', '≅', '≈', '≠', '≡', '≤', '≥', '⊂', '⊃', '⊄', '⊆', '⊇', '⊕', '⊗', '⊥', '⋅'],
-  'Arrows': ['←', '↑', '→', '↓', '↔', '↕', '↖', '↗', '↘', '↙', '⇐', '⇑', '⇒', '⇓', '⇔', '⇕', '⇖', '⇗', '⇘', '⇙', '➔', '➜', '➝', '➞', '➤'],
-  'Currency': ['$', '€', '£', '¥', '¢', '₽', '₹', '₩', '₺', '₱', '฿', '₫', '₦', '₴', '₵', '₭', '₪'],
-  'Punctuation': ['—', '–', '…', '“', '”', '‘', '’', '«', '»', '‹', '›', '¡', '¿', '†', '‡', '•', '·'],
-  'Greek': ['α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 'ν', 'ξ', 'ο', 'π', 'ρ', 'σ', 'τ', 'υ', 'φ', 'χ', 'ψ', 'ω', 'Α', 'Β', 'Γ', 'Δ', 'Ε', 'Ζ', 'Η', 'Θ', 'Ι', 'Κ', 'Λ', 'Μ', 'Ν', 'Ξ', 'Ο', 'Π', 'Ρ', 'Σ', 'Τ', 'Υ', 'Φ', 'Χ', 'Ψ', 'Ω'],
-  'Superscript': ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', '⁺', '⁻', '⁼', '⁽', '⁾', 'ⁿ'],
-  'Subscript': ['₀', '₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉', '₊', '₋', '₌', '₍', '₎', 'ₐ', 'ₑ', 'ₒ', 'ₓ', 'ₔ']
+  'Common': "© ® ™ • € £ ¥ ¢ § ¶ ° ∞ ≠ ≈ ±".split(" "),
+  'Math': "∀ ∃ ∅ ∇ ∈ ∉ ∋ ∏ ∑ − ∗ √ ∝ ∞ ∠ ∧ ∨ ∩ ∪ ∫ ∴ ∼ ≅ ≈ ≠ ≡ ≤ ≥ ⊂ ⊃ ⊄ ⊆ ⊇ ⊕ ⊗ ⊥ ⋅".split(" "),
+  'Arrows': "← ↑ → ↓ ↔ ↕ ↖ ↗ ↘ ↙ ⇐ ⇑ ⇒ ⇓ ⇔ ⇕ ⇖ ⇗ ⇘ ⇙ ➔ ➜ ➝ ➞ ➤".split(" "),
+  'Currency': "$ € £ ¥ ¢ ₽ ₹ ₩ ₺ ₱ ฿ ₫ ₦ ₴ ₵ ₭ ₪".split(" "),
+  'Punctuation': "— – … “ ” ‘ ’ « » ‹ › ¡ ¿ † ‡ • ·".split(" "),
+  'Greek': "α β γ δ ε ζ η θ ι κ λ μ ν ξ ο π ρ σ τ υ φ χ ψ ω Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω".split(" "),
+  'Superscript': "⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻ ⁼ ⁽ ⁾ ⁿ".split(" "),
+  'Subscript': "₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋ ₌ ₍ ₎ ₐ ₑ ₒ ₓ ₔ".split(" ")
 };
 
 export default function SymbolPicker() {
@@ -37,33 +37,29 @@ export default function SymbolPicker() {
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-6">
       <div className="flex items-center gap-2 mb-6">
-        <div className="p-2 bg-yellow-100 text-yellow-600 rounded-lg">
+        <div className="p-2 bg-primary/10 text-primary rounded-lg">
           <Sparkles size={24} />
         </div>
         <h1 className="text-2xl font-bold">Special Symbols</h1>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <div className="bg-card rounded-xl border border-border p-6">
         <div className="flex flex-col md:flex-row gap-4 mb-6">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search symbols..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
             />
           </div>
           
           <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
             <button
               onClick={() => setActiveCategory('All')}
-              className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
-                activeCategory === 'All' 
-                  ? 'bg-yellow-100 text-yellow-700' 
-                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-              }`}
+              className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${ activeCategory === 'All' ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground hover:bg-muted' }`}
             >
               All
             </button>
@@ -71,11 +67,7 @@ export default function SymbolPicker() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
-                  activeCategory === cat 
-                    ? 'bg-yellow-100 text-yellow-700' 
-                    : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-                }`}
+                className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${ activeCategory === cat ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground hover:bg-muted' }`}
               >
                 {cat}
               </button>
@@ -88,12 +80,14 @@ export default function SymbolPicker() {
             <button
               key={`${symbol}-${i}`}
               onClick={() => handleCopy(symbol)}
-              className="aspect-square flex items-center justify-center text-xl bg-gray-50 hover:bg-yellow-50 border border-gray-100 hover:border-yellow-200 rounded-lg transition-all relative group"
+              className="aspect-square flex items-center justify-center text-xl bg-muted hover:bg-primary/10 border border-border hover:border-border rounded-lg transition-colors relative group"
             >
-              {symbol}
+              <span role="img" aria-label={`Symbol ${symbol}`}>
+                {symbol}
+              </span>
               {copied === symbol && (
-                <div className="absolute inset-0 bg-yellow-100 rounded-lg flex items-center justify-center animate-in fade-in zoom-in duration-200">
-                  <Check size={16} className="text-yellow-600" />
+                <div className="absolute inset-0 bg-primary/10 rounded-lg flex items-center justify-center animate-in fade-in zoom-in duration-200">
+                  <Check size={16} className="text-primary" />
                 </div>
               )}
             </button>
@@ -101,7 +95,7 @@ export default function SymbolPicker() {
         </div>
         
         {uniqueSymbols.length === 0 && (
-          <div className="text-center py-12 text-gray-500">
+          <div className="text-center py-12 text-muted-foreground">
             No symbols found matching your criteria.
           </div>
         )}

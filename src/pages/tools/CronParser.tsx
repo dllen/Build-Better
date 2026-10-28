@@ -198,7 +198,7 @@ export default function CronParser() {
       <EditorSplitLayout
         title={
           <>
-            <div className="p-2 bg-amber-100 text-amber-600 rounded-lg">
+            <div className="p-2 bg-primary/10 text-primary rounded-lg">
               <Clock className="h-5 w-5" />
             </div>
             <h1 className="text-2xl font-bold">Cron Parser</h1>
@@ -206,16 +206,12 @@ export default function CronParser() {
         }
         toolbar={
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-xs text-gray-500">Quick:</span>
+            <span className="text-xs text-muted-foreground">Quick:</span>
             {presets.map((p) => (
               <button
                 key={p.expr}
                 onClick={() => setInput(p.expr)}
-                className={`px-2 py-1 text-xs rounded-md transition-colors ${
-                  input === p.expr
-                    ? "bg-amber-100 text-amber-700"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
+                className={`px-2 py-1 text-xs rounded-md transition-colors ${ input === p.expr ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground hover:bg-border" }`}
               >
                 {p.label}
               </button>
@@ -223,7 +219,7 @@ export default function CronParser() {
             <button
               onClick={handleCopy}
               disabled={!humanText}
-              className="ml-auto flex items-center gap-2 px-3 py-1.5 bg-amber-600 text-white rounded-lg hover:bg-amber-700 text-sm disabled:opacity-50"
+              className="ml-auto flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-lg hover:bg-primary text-sm disabled:opacity-50"
             >
               {copied ? <Check size={14} /> : <Copy size={14} />}
               {copied ? "Copied!" : "Copy Result"}
@@ -244,40 +240,40 @@ export default function CronParser() {
         output={
           <div className="h-full overflow-y-auto">
             {error ? (
-              <div className="p-2 bg-red-50 border-b border-red-200 text-red-700 text-xs flex items-center gap-1">
+              <div className="p-2 bg-destructive/10 border-b border-border text-destructive text-xs flex items-center gap-1">
                 <AlertTriangle className="h-3 w-3 flex-shrink-0" />
                 <span>{error}</span>
               </div>
             ) : fields.length === 0 ? (
-              <div className="p-6 text-sm text-gray-400">
+              <div className="p-6 text-sm text-muted-foreground">
                 Enter a 5-field cron expression to see its meaning.
               </div>
             ) : (
               <div className="p-4 space-y-4">
                 {/* Human-readable summary */}
-                <div className="rounded-lg bg-amber-50 border border-amber-200 p-3">
-                  <div className="text-xs font-semibold text-amber-700 uppercase tracking-wide mb-1">
+                <div className="rounded-lg bg-primary/10 border border-border p-3">
+                  <div className="text-xs font-semibold text-primary tracking-wide mb-1">
                     Meaning
                   </div>
-                  <div className="text-sm font-medium text-amber-900">{humanText}</div>
+                  <div className="text-sm font-medium text-primary">{humanText}</div>
                 </div>
 
                 {/* Field breakdown */}
                 <div>
-                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+                  <h3 className="text-xs font-semibold text-muted-foreground tracking-wide mb-2">
                     Field breakdown
                   </h3>
-                  <div className="rounded-lg border border-gray-200 divide-y divide-gray-100">
+                  <div className="rounded-lg border border-border divide-y divide-border">
                     {fields.map((f) => (
                       <div key={f.field} className="px-3 py-2 flex items-center justify-between gap-3">
-                        <span className="text-xs text-gray-500 flex-shrink-0 capitalize">
+                        <span className="text-xs text-muted-foreground flex-shrink-0 capitalize">
                           {f.field}
                         </span>
                         <div className="text-right">
-                          <code className="font-mono text-xs text-gray-800 bg-gray-100 px-1.5 py-0.5 rounded">
+                          <code className="font-mono text-xs text-foreground bg-muted px-1.5 py-0.5 rounded">
                             {f.raw}
                           </code>
-                          <span className="text-xs text-gray-400 ml-2">{f.text}</span>
+                          <span className="text-xs text-muted-foreground ml-2">{f.text}</span>
                         </div>
                       </div>
                     ))}

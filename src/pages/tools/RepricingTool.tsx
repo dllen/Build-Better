@@ -61,19 +61,19 @@ export default function RepricingTool() {
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.repricing.suggested")}</p>
-            <p className="text-4xl font-bold text-blue-600">{fmt(result.suggested)}</p>
-            <p className="text-xs text-gray-500 mt-1">{t("tools.repricing.margin")}: {result.margin.toFixed(1)}%</p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.repricing.suggested")}</p>
+            <p className="text-4xl font-bold text-primary">{fmt(result.suggested)}</p>
+            <p className="text-xs text-muted-foreground mt-1">{t("tools.repricing.margin")}: {result.margin.toFixed(1)}%</p>
           </div>
-          <div className="bg-blue-50 p-3 rounded-lg text-sm text-blue-800">
+          <div className="bg-primary/10 p-3 rounded-lg text-sm text-primary">
             <strong>{t("tools.repricing.strategy")}:</strong> {result.rules}
           </div>
-          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary">
             <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.repricing.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <TrendingUp className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("tools.repricing.enter_values")}</p>
         </div>
@@ -86,29 +86,29 @@ export default function RepricingTool() {
       title={t("tools.repricing.title")}
       subtitle={t("tools.repricing.subtitle")}
       icon={TrendingUp}
-      iconBgColor="bg-orange-100"
-      iconColor="text-orange-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["repricing tool", "competitive pricing", "dynamic pricing", "ecommerce pricing"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.repricing.comp_price")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.repricing.comp_price")}</label>
           <input type="number" step="0.01" min="0" value={compPrice} onChange={e => setCompPrice(e.target.value)} placeholder="50"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.repricing.my_cost")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.repricing.my_cost")}</label>
           <input type="number" step="0.01" min="0" value={myCost} onChange={e => setMyCost(e.target.value)} placeholder="20"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.repricing.target_margin")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.repricing.target_margin")}</label>
           <input type="number" min="0" max="90" value={targetMargin} onChange={e => setTargetMargin(e.target.value)} placeholder="30"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">{t("tools.repricing.strategy")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">{t("tools.repricing.strategy")}</label>
           <div className="grid grid-cols-2 gap-2">
             {[
               { id: "match", label: t("tools.repricing.match") },
@@ -116,7 +116,7 @@ export default function RepricingTool() {
               { id: "above", label: t("tools.repricing.above") },
               { id: "premium", label: t("tools.repricing.premium") },
             ].map(s => (
-              <button key={s.id} onClick={() => setStrategy(s.id as typeof strategy)} className={`px-3 py-2 text-sm font-medium rounded-lg ${strategy === s.id ? "bg-orange-600 text-white" : "bg-gray-100 hover:bg-gray-200"}`}>{s.label}</button>
+              <button key={s.id} onClick={() => setStrategy(s.id as typeof strategy)} className={`px-3 py-2 text-sm font-medium rounded-lg ${strategy === s.id ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-border"}`}>{s.label}</button>
             ))}
           </div>
         </div>

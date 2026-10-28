@@ -34,7 +34,7 @@ export default function TextSimilarity() {
     <EditorSplitLayout
       title={
         <>
-          <div className="p-2 bg-cyan-100 text-cyan-600 rounded-lg">
+          <div className="p-2 bg-info/10 text-info rounded-lg">
             <GitCompare className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-bold">Text Similarity Detector</h1>
@@ -42,14 +42,14 @@ export default function TextSimilarity() {
       }
       toolbar={
         <div className="flex items-center gap-4">
-          <span className="font-semibold text-gray-700">Similarity:</span>
-          <div className="flex-1 max-w-xs bg-gray-200 rounded-full h-2.5">
+          <span className="font-semibold text-muted-foreground">Similarity:</span>
+          <div className="flex-1 max-w-xs bg-border rounded-full h-2.5">
             <div
-              className={`h-2.5 rounded-full ${similarity > 80 ? "bg-green-600" : similarity > 50 ? "bg-yellow-600" : "bg-red-600"}`}
+              className={`h-2.5 rounded-full ${similarity > 80 ? "bg-success" : similarity > 50 ? "bg-primary" : "bg-destructive"}`}
               style={{ width: `${similarity}%` }}
             />
           </div>
-          <span className={`text-lg font-bold ${similarity > 80 ? "text-green-600" : similarity > 50 ? "text-yellow-600" : "text-red-600"}`}>
+          <span className={`text-lg font-bold ${similarity > 80 ? "text-success" : similarity > 50 ? "text-primary" : "text-destructive"}`}>
             {similarity}%
           </span>
         </div>
@@ -73,29 +73,29 @@ export default function TextSimilarity() {
         />
       }
       footer={
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-card rounded-lg border border-border p-4">
           <div className="font-medium mb-2">Comparison View</div>
-          <div className="p-4 bg-gray-50 rounded-lg border border-gray-200 font-mono text-sm whitespace-pre-wrap break-words min-h-[100px]">
+          <div className="p-4 bg-muted rounded-lg border border-border font-mono text-sm whitespace-pre-wrap break-words min-h-[100px]">
             {diffs.map((part, i) => {
               const color = part.added
-                ? "bg-green-200 text-green-800"
+                ? "bg-success/10 text-success"
                 : part.removed
-                  ? "bg-red-200 text-red-800 line-through decoration-red-500"
-                  : "text-gray-700";
+                  ? "bg-destructive/10 text-destructive line-through decoration-border"
+                  : "text-muted-foreground";
               return (
                 <span key={i} className={color}>
                   {part.value}
                 </span>
               );
             })}
-            {diffs.length === 0 && <span className="text-gray-400 italic">Enter text in both fields to compare</span>}
+            {diffs.length === 0 && <span className="text-muted-foreground italic">Enter text in both fields to compare</span>}
           </div>
-          <div className="flex gap-4 text-xs text-gray-500 mt-2">
+          <div className="flex gap-4 text-xs text-muted-foreground mt-2">
             <div className="flex items-center gap-1">
-              <span className="w-3 h-3 bg-red-200 inline-block rounded" /> Removed from A
+              <span className="w-3 h-3 bg-destructive/10 inline-block rounded" /> Removed from A
             </div>
             <div className="flex items-center gap-1">
-              <span className="w-3 h-3 bg-green-200 inline-block rounded" /> Added in B
+              <span className="w-3 h-3 bg-success/10 inline-block rounded" /> Added in B
             </div>
           </div>
         </div>

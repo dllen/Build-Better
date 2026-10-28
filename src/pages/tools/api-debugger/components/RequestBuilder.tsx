@@ -35,13 +35,13 @@ export function RequestBuilder({ tab, onUpdate, onSend }: RequestBuilderProps) {
         <select
           value={tab.method}
           onChange={(e) => onUpdate({ method: e.target.value as HttpMethod })}
-          className="shrink-0 px-3 py-1.5 text-xs font-mono font-bold rounded-lg border border-border bg-muted/50 outline-none focus:ring-1 focus:ring-cyan-500/30 cursor-pointer"
+          className="shrink-0 px-3 py-1.5 text-xs font-mono font-bold rounded-lg border border-border bg-muted/50 outline-none focus:ring-1 focus:ring-ring/30 cursor-pointer"
         >
           {HTTP_METHODS.map((m) => (
             <option key={m} value={m}>{m}</option>
           ))}
         </select>
-        <div className="flex-1 flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-muted/50 focus-within:ring-1 focus-within:ring-cyan-500/30">
+        <div className="flex-1 flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-muted/50 focus-within:ring-1 focus-within:ring-ring/30">
           <input
             type="text"
             value={tab.url}
@@ -60,11 +60,7 @@ export function RequestBuilder({ tab, onUpdate, onSend }: RequestBuilderProps) {
         <button
           onClick={onSend}
           disabled={tab.isLoading}
-          className={`shrink-0 flex items-center gap-1.5 px-4 py-1.5 text-xs font-medium rounded-lg transition-colors ${
-            tab.isLoading
-              ? "bg-muted text-muted-foreground cursor-not-allowed"
-              : "bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/25"
-          }`}
+          className={`shrink-0 flex items-center gap-1.5 px-4 py-1.5 text-xs font-medium rounded-lg transition-colors ${ tab.isLoading ? "bg-muted text-muted-foreground cursor-not-allowed" : "bg-info/15 text-info border border-border/30 hover:bg-info/25" }`}
         >
           {tab.isLoading ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -88,9 +84,7 @@ export function RequestBuilder({ tab, onUpdate, onSend }: RequestBuilderProps) {
           <button
             key={t.key}
             onClick={() => setActiveTab(t.key)}
-            className={`flex items-center gap-1.5 px-4 py-2 text-[11px] font-medium transition-colors border-b-2 -mb-px ${
-              activeTab === t.key ? "text-cyan-400 border-cyan-400" : "text-muted-foreground border-transparent hover:text-foreground"
-            }`}
+            className={`flex items-center gap-1.5 px-4 py-2 text-[11px] font-medium transition-colors border-b-2 -mb-px ${ activeTab === t.key ? "text-info border-border" : "text-muted-foreground border-transparent hover:text-foreground" }`}
           >
             {t.label}
             {t.count !== undefined && t.count > 0 && (
@@ -126,11 +120,7 @@ export function RequestBuilder({ tab, onUpdate, onSend }: RequestBuilderProps) {
                 <button
                   key={bt}
                   onClick={() => onUpdate({ bodyType: bt })}
-                  className={`px-2.5 py-1 text-[11px] rounded-md border transition-colors ${
-                    tab.bodyType === bt
-                      ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400"
-                      : "border-border/50 text-muted-foreground hover:bg-secondary/80"
-                  }`}
+                  className={`px-2.5 py-1 text-[11px] rounded-md border transition-colors ${ tab.bodyType === bt ? "bg-info/10 border-border/30 text-info" : "border-border/50 text-muted-foreground hover:bg-secondary/80" }`}
                 >
                   {bt === "none" ? "None" : bt.toUpperCase()}
                 </button>
@@ -141,7 +131,7 @@ export function RequestBuilder({ tab, onUpdate, onSend }: RequestBuilderProps) {
                 value={tab.body}
                 onChange={(e) => onUpdate({ body: e.target.value })}
                 placeholder={tab.bodyType === "json" ? '{\n  "key": "value"\n}' : ""}
-                className="w-full h-40 text-xs font-mono bg-muted/50 border border-border/30 rounded-lg p-3 resize-none outline-none focus:border-cyan-500/30"
+                className="w-full h-40 text-xs font-mono bg-muted/50 border border-border/30 rounded-lg p-3 resize-none outline-none focus:border-border/30"
                 spellCheck={false}
               />
             )}

@@ -56,7 +56,7 @@ export default function TextCipher() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-slate-100 text-slate-700">
+          <div className="inline-flex p-2 rounded-lg bg-muted text-muted-foreground">
             <Lock className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">加密/解密文本</h1>
@@ -67,7 +67,7 @@ export default function TextCipher() {
         <div className="flex flex-col h-full p-3 gap-3 overflow-auto">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <select
-              className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+              className="rounded-md border border-border px-3 py-2 text-sm"
               value={alg}
               onChange={(e) => setAlg(e.target.value as Alg)}
             >
@@ -77,36 +77,36 @@ export default function TextCipher() {
               <option value="RC4">RC4</option>
             </select>
             <input
-              className="rounded-md border border-gray-300 px-3 py-2 text-sm sm:col-span-2"
+              className="rounded-md border border-border px-3 py-2 text-sm sm:col-span-2"
               placeholder="密钥"
               value={key}
               onChange={(e) => setKey(e.target.value)}
             />
           </div>
           <textarea
-            className="flex-1 w-full rounded-md border border-gray-300 px-3 py-2 font-mono text-sm resize-none focus:outline-none"
+            className="flex-1 w-full rounded-md border border-border px-3 py-2 font-mono text-sm resize-none focus:outline-none"
             placeholder="输入明文"
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
           <button
-            className="inline-flex items-center justify-center gap-2 px-3 py-2 bg-slate-700 text-white rounded-md text-sm hover:bg-slate-800 disabled:opacity-50"
+            className="inline-flex items-center justify-center gap-2 px-3 py-2 bg-secondary text-secondary-foreground rounded-md text-sm hover:bg-muted disabled:opacity-50"
             onClick={doEncrypt}
             disabled={!text || !key}
           >
             加密
           </button>
           <div className="flex items-center gap-2">
-            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all min-h-[2.5rem]">
+            <div className="flex-1 rounded-md border border-border px-3 py-2 font-mono text-sm break-all min-h-[2.5rem]">
               {cipher || "—"}
             </div>
             <button
-              className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-50"
+              className="inline-flex items-center gap-1.5 px-3 py-2 border border-border rounded-md text-sm hover:bg-muted"
               onClick={() => copy(cipher, "enc")}
               disabled={!cipher}
             >
               <ClipboardCopy className="h-4 w-4" />
-              {copiedEnc ? <Check className="h-4 w-4 text-green-600" /> : "复制"}
+              {copiedEnc ? <Check className="h-4 w-4 text-success" /> : "复制"}
             </button>
           </div>
         </div>
@@ -116,7 +116,7 @@ export default function TextCipher() {
         <div className="flex flex-col h-full p-3 gap-3 overflow-auto">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <select
-              className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+              className="rounded-md border border-border px-3 py-2 text-sm"
               value={dAlg}
               onChange={(e) => setDAlg(e.target.value as Alg)}
             >
@@ -126,36 +126,36 @@ export default function TextCipher() {
               <option value="RC4">RC4</option>
             </select>
             <input
-              className="rounded-md border border-gray-300 px-3 py-2 text-sm sm:col-span-2"
+              className="rounded-md border border-border px-3 py-2 text-sm sm:col-span-2"
               placeholder="密钥"
               value={dKey}
               onChange={(e) => setDKey(e.target.value)}
             />
           </div>
           <textarea
-            className="flex-1 w-full rounded-md border border-gray-300 px-3 py-2 font-mono text-sm resize-none focus:outline-none"
+            className="flex-1 w-full rounded-md border border-border px-3 py-2 font-mono text-sm resize-none focus:outline-none"
             placeholder="输入密文（Base64）"
             value={dCipher}
             onChange={(e) => setDCipher(e.target.value)}
           />
           <button
-            className="inline-flex items-center justify-center gap-2 px-3 py-2 bg-slate-700 text-white rounded-md text-sm hover:bg-slate-800 disabled:opacity-50"
+            className="inline-flex items-center justify-center gap-2 px-3 py-2 bg-secondary text-secondary-foreground rounded-md text-sm hover:bg-muted disabled:opacity-50"
             onClick={doDecrypt}
             disabled={!dCipher || !dKey}
           >
             解密
           </button>
           <div className="flex items-center gap-2">
-            <div className={`flex-1 rounded-md border px-3 py-2 text-sm font-mono break-all min-h-[2.5rem] ${plain === null ? "border-gray-200" : "border-green-200 bg-green-50 text-green-700"}`}>
+            <div className={`flex-1 rounded-md border px-3 py-2 text-sm font-mono break-all min-h-[2.5rem] ${plain === null ? "border-border" : "border-border bg-success/10 text-success"}`}>
               {plain ?? "—"}
             </div>
             <button
-              className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-50"
+              className="inline-flex items-center gap-1.5 px-3 py-2 border border-border rounded-md text-sm hover:bg-muted"
               onClick={() => copy(plain || "", "dec")}
               disabled={!plain}
             >
               <ClipboardCopy className="h-4 w-4" />
-              {copiedDec ? <Check className="h-4 w-4 text-green-600" /> : "复制"}
+              {copiedDec ? <Check className="h-4 w-4 text-success" /> : "复制"}
             </button>
           </div>
         </div>

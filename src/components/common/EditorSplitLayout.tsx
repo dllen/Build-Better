@@ -83,9 +83,9 @@ function Pane({
   children: ReactNode;
 }) {
   return (
-    <section className="flex h-[40vh] min-h-[280px] flex-col overflow-hidden rounded-lg border border-gray-200 bg-white lg:h-auto lg:min-h-0">
-      <header className="flex items-center justify-between gap-2 border-b border-gray-200 px-3 py-2">
-        <span className="text-sm font-medium text-gray-700">{label}</span>
+    <section className="flex h-[40dvh] min-h-[280px] flex-col overflow-hidden rounded-card border border-border bg-card lg:h-auto lg:min-h-0">
+      <header className="flex items-center justify-between gap-2 border-b border-border px-3 py-2">
+        <span className="text-sm font-medium text-muted-foreground">{label}</span>
         {actions ? <div className="flex items-center gap-2">{actions}</div> : null}
       </header>
       <div className="min-h-0 flex-1">{children}</div>

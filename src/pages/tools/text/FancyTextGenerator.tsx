@@ -48,21 +48,21 @@ export default function FancyTextGenerator() {
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-6">
       <div className="flex items-center gap-2 mb-6">
-        <div className="p-2 bg-purple-100 text-purple-600 rounded-lg">
+        <div className="p-2 bg-primary/10 text-primary rounded-lg">
           <Wand2 size={24} />
         </div>
         <h1 className="text-2xl font-bold">Fancy Text Generator</h1>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <div className="bg-card rounded-xl border border-border p-6">
         <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-2">Your Text</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">Your Text</label>
           <input
             type="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Type something..."
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-lg"
+            className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent text-lg"
           />
         </div>
 
@@ -70,12 +70,12 @@ export default function FancyTextGenerator() {
           {STYLES.map((style, index) => {
             const result = convertSafe(text, index);
             return (
-              <div key={style.name} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg border border-gray-100 hover:border-purple-200 transition-colors group">
-                <div className="w-32 text-xs text-gray-500 font-medium">{style.name}</div>
+              <div key={style.name} className="flex items-center gap-4 p-4 bg-muted rounded-lg border border-border hover:border-border transition-colors group">
+                <div className="w-32 text-xs text-muted-foreground font-medium">{style.name}</div>
                 <div className="flex-1 font-medium text-lg truncate">{result}</div>
                 <button
                   onClick={() => handleCopy(result, index)}
-                  className="p-2 text-gray-400 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                  className="p-2 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
                 >
                   {copied === index ? <Check size={20} /> : <Copy size={20} />}
                 </button>

@@ -91,7 +91,7 @@ export default function TextDeduper() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-amber-100 text-amber-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <Filter className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">Text Deduper</h1>
@@ -100,7 +100,7 @@ export default function TextDeduper() {
       toolbar={
         <>
           <select
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            className="rounded-md border border-border px-3 py-2 text-sm"
             value={mode}
             onChange={(e) => setMode(e.target.value as Mode)}
           >
@@ -109,7 +109,7 @@ export default function TextDeduper() {
           </select>
           {mode === "token" && (
             <input
-              className="rounded-md border border-gray-300 px-3 py-2 text-sm w-32"
+              className="rounded-md border border-border px-3 py-2 text-sm w-32"
               placeholder="分隔符"
               value={delimiter}
               onChange={(e) => setDelimiter(e.target.value)}
@@ -132,7 +132,7 @@ export default function TextDeduper() {
             保留出现顺序
           </label>
           <select
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            className="rounded-md border border-border px-3 py-2 text-sm"
             value={sortMode}
             onChange={(e) => setSortMode(e.target.value as SortMode)}
             disabled={keepOrder}
@@ -142,7 +142,7 @@ export default function TextDeduper() {
             <option value="freq">按频次</option>
           </select>
           <select
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            className="rounded-md border border-border px-3 py-2 text-sm"
             value={String(sortAsc)}
             onChange={(e) => setSortAsc(e.target.value === "true")}
             disabled={keepOrder || sortMode === "none"}
@@ -151,7 +151,7 @@ export default function TextDeduper() {
             <option value="false">降序</option>
           </select>
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm w-32"
+            className="rounded-md border border-border px-3 py-2 text-sm w-32"
             placeholder="输出分隔符"
             value={outDelimiter === "\n" ? "" : outDelimiter}
             onChange={(e) => setOutDelimiter(e.target.value || "\n")}
@@ -170,12 +170,12 @@ export default function TextDeduper() {
       outputLabel="去重结果"
       outputActions={
         <button
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-xs hover:bg-gray-50"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-xs hover:bg-muted"
           onClick={() => copyText(uniqueText)}
           disabled={!uniqueText}
         >
           <ClipboardCopy className="h-3.5 w-3.5" /> 复制
-          {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : null}
+          {copied ? <Check className="h-3.5 w-3.5 text-success" /> : null}
         </button>
       }
       output={
@@ -186,15 +186,15 @@ export default function TextDeduper() {
       footer={
         <>
           <div className="flex gap-4 text-sm mb-3">
-            <div className="rounded-md border border-gray-200 px-3 py-2">输入项: {stats.input}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">唯一项: {stats.unique}</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">重复项: {stats.duplicates}</div>
+            <div className="rounded-md border border-border px-3 py-2">输入项: {stats.input}</div>
+            <div className="rounded-md border border-border px-3 py-2">唯一项: {stats.unique}</div>
+            <div className="rounded-md border border-border px-3 py-2">重复项: {stats.duplicates}</div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-card rounded-lg border border-border p-4">
             <div className="flex items-center justify-between mb-2">
               <div className="font-medium">频次统计</div>
               <button
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-gray-300 rounded-md text-xs hover:bg-gray-50"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-border rounded-md text-xs hover:bg-muted"
                 onClick={() => copyText(countsText)}
                 disabled={!countsText}
               >
@@ -206,7 +206,7 @@ export default function TextDeduper() {
                 ? uniqueList.map((x, i) => (
                     <div key={i} className="text-sm font-mono flex items-center justify-between">
                       <span className="truncate">{x.value}</span>
-                      <span className="text-gray-600">{x.count}</span>
+                      <span className="text-muted-foreground">{x.count}</span>
                     </div>
                   ))
                 : "—"}

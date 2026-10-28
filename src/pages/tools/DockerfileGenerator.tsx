@@ -197,13 +197,13 @@ export default function DockerfileGenerator() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-cyan-100 text-cyan-600">
+        <div className="inline-flex p-2 rounded-lg bg-info/10 text-info">
           <Container className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Dockerfile Generator</h1>
       </div>
 
-      <div className="flex items-center gap-2 text-sm text-gray-500 bg-gray-50 rounded-lg px-3 py-2">
+      <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted rounded-lg px-3 py-2">
         <Shield className="h-4 w-4" />
         Data stays in your browser. Nothing is sent to a server.
       </div>
@@ -212,18 +212,18 @@ export default function DockerfileGenerator() {
         {/* Form */}
         <div className="lg:col-span-2 space-y-4">
           {/* Base Image */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
-            <span className="text-sm font-medium text-gray-700">Base Image</span>
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3">
+            <span className="text-sm font-medium text-muted-foreground">Base Image</span>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="space-y-1">
-                <label className="text-xs text-gray-500">Image</label>
+                <label className="text-xs text-muted-foreground">Image</label>
                 <div className="relative">
                   <input
                     type="text"
                     value={image}
                     onChange={(e) => setImage(e.target.value)}
                     placeholder="node"
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                     list="popular-images"
                   />
                   <datalist id="popular-images">
@@ -234,46 +234,46 @@ export default function DockerfileGenerator() {
                 </div>
               </div>
               <div className="space-y-1">
-                <label className="text-xs text-gray-500">Tag</label>
+                <label className="text-xs text-muted-foreground">Tag</label>
                 <input
                   type="text"
                   value={tag}
                   onChange={(e) => setTag(e.target.value)}
                   placeholder="20-alpine"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
             </div>
           </div>
 
           {/* WORKDIR + USER */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-card rounded-lg border border-border p-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">WORKDIR</label>
+                <label className="text-sm font-medium text-muted-foreground">WORKDIR</label>
                 <input
                   type="text"
                   value={workdir}
                   onChange={(e) => setWorkdir(e.target.value)}
                   placeholder="/app"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">USER</label>
+                <label className="text-sm font-medium text-muted-foreground">USER</label>
                 <input
                   type="text"
                   value={user}
                   onChange={(e) => setUser(e.target.value)}
                   placeholder="node (optional)"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
             </div>
           </div>
 
           {/* Multi-stage toggle */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3">
             <label className="inline-flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
@@ -281,28 +281,28 @@ export default function DockerfileGenerator() {
                 onChange={(e) => setUseMultiStage(e.target.checked)}
                 className="rounded"
               />
-              <span className="text-sm font-medium text-gray-700">Multi-stage build</span>
+              <span className="text-sm font-medium text-muted-foreground">Multi-stage build</span>
             </label>
             {useMultiStage && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-xs text-gray-500">Builder Image</label>
+                  <label className="text-xs text-muted-foreground">Builder Image</label>
                   <input
                     type="text"
                     value={builderImage}
                     onChange={(e) => setBuilderImage(e.target.value)}
                     placeholder="node"
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs text-gray-500">Builder Tag</label>
+                  <label className="text-xs text-muted-foreground">Builder Tag</label>
                   <input
                     type="text"
                     value={builderTag}
                     onChange={(e) => setBuilderTag(e.target.value)}
                     placeholder="20-alpine"
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                 </div>
               </div>
@@ -310,11 +310,11 @@ export default function DockerfileGenerator() {
           </div>
 
           {/* RUN commands */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700">RUN Commands</span>
+              <span className="text-sm font-medium text-muted-foreground">RUN Commands</span>
               <button
-                className="text-xs text-cyan-600 hover:text-cyan-700 inline-flex items-center gap-1"
+                className="text-xs text-info hover:text-info inline-flex items-center gap-1"
                 onClick={addRunCmd}
               >
                 <Plus className="h-3 w-3" /> Add
@@ -327,11 +327,11 @@ export default function DockerfileGenerator() {
                   value={cmd}
                   onChange={(e) => updateRunCmd(i, e.target.value)}
                   placeholder="npm run build"
-                  className="flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  className="flex-1 rounded-md border border-border px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
                 {runCommands.length > 1 && (
                   <button
-                    className="text-gray-400 hover:text-red-500"
+                    className="text-muted-foreground hover:text-destructive"
                     onClick={() => removeRunCmd(i)}
                   >
                     <Trash2 className="h-4 w-4" />
@@ -342,37 +342,37 @@ export default function DockerfileGenerator() {
           </div>
 
           {/* COPY */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-card rounded-lg border border-border p-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">COPY Source</label>
+                <label className="text-sm font-medium text-muted-foreground">COPY Source</label>
                 <input
                   type="text"
                   value={copySrc}
                   onChange={(e) => setCopySrc(e.target.value)}
                   placeholder="."
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">COPY Destination</label>
+                <label className="text-sm font-medium text-muted-foreground">COPY Destination</label>
                 <input
                   type="text"
                   value={copyDst}
                   onChange={(e) => setCopyDst(e.target.value)}
                   placeholder="."
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
             </div>
           </div>
 
           {/* EXPOSE */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700">EXPOSE Ports</span>
+              <span className="text-sm font-medium text-muted-foreground">EXPOSE Ports</span>
               <button
-                className="text-xs text-cyan-600 hover:text-cyan-700 inline-flex items-center gap-1"
+                className="text-xs text-info hover:text-info inline-flex items-center gap-1"
                 onClick={addPort}
               >
                 <Plus className="h-3 w-3" /> Add
@@ -385,11 +385,11 @@ export default function DockerfileGenerator() {
                   value={p.container}
                   onChange={(e) => updatePort(i, "container", e.target.value)}
                   placeholder="3000"
-                  className="flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  className="flex-1 rounded-md border border-border px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
                 {ports.length > 1 && (
                   <button
-                    className="text-gray-400 hover:text-red-500"
+                    className="text-muted-foreground hover:text-destructive"
                     onClick={() => removePort(i)}
                   >
                     <Trash2 className="h-4 w-4" />
@@ -400,11 +400,11 @@ export default function DockerfileGenerator() {
           </div>
 
           {/* ENV */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700">ENV Variables</span>
+              <span className="text-sm font-medium text-muted-foreground">ENV Variables</span>
               <button
-                className="text-xs text-cyan-600 hover:text-cyan-700 inline-flex items-center gap-1"
+                className="text-xs text-info hover:text-info inline-flex items-center gap-1"
                 onClick={addEnv}
               >
                 <Plus className="h-3 w-3" /> Add
@@ -417,19 +417,19 @@ export default function DockerfileGenerator() {
                   value={env.key}
                   onChange={(e) => updateEnv(i, "key", e.target.value)}
                   placeholder="KEY"
-                  className="flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  className="flex-1 rounded-md border border-border px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
-                <span className="text-gray-400">=</span>
+                <span className="text-muted-foreground">=</span>
                 <input
                   type="text"
                   value={env.value}
                   onChange={(e) => updateEnv(i, "value", e.target.value)}
                   placeholder="value"
-                  className="flex-[2] rounded-md border border-gray-300 px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  className="flex-[2] rounded-md border border-border px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
                 {envVars.length > 1 && (
                   <button
-                    className="text-gray-400 hover:text-red-500"
+                    className="text-muted-foreground hover:text-destructive"
                     onClick={() => removeEnv(i)}
                   >
                     <Trash2 className="h-4 w-4" />
@@ -440,39 +440,39 @@ export default function DockerfileGenerator() {
           </div>
 
           {/* CMD / ENTRYPOINT / HEALTHCHECK */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-4">
             <div className="space-y-1">
-              <label className="text-sm font-medium text-gray-700">CMD</label>
+              <label className="text-sm font-medium text-muted-foreground">CMD</label>
               <input
                 type="text"
                 value={cmd}
                 onChange={(e) => setCmd(e.target.value)}
                 placeholder='["node", "server.js"]'
-                className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
             <div className="space-y-1">
-              <label className="text-sm font-medium text-gray-700">
-                ENTRYPOINT <span className="text-gray-400 font-normal">(optional)</span>
+              <label className="text-sm font-medium text-muted-foreground">
+                ENTRYPOINT <span className="text-muted-foreground font-normal">(optional)</span>
               </label>
               <input
                 type="text"
                 value={entrypoint}
                 onChange={(e) => setEntrypoint(e.target.value)}
                 placeholder='["docker-entrypoint.sh"]'
-                className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
             <div className="space-y-1">
-              <label className="text-sm font-medium text-gray-700">
-                HEALTHCHECK <span className="text-gray-400 font-normal">(optional)</span>
+              <label className="text-sm font-medium text-muted-foreground">
+                HEALTHCHECK <span className="text-muted-foreground font-normal">(optional)</span>
               </label>
               <input
                 type="text"
                 value={healthCheck}
                 onChange={(e) => setHealthCheck(e.target.value)}
                 placeholder="--interval=30s CMD curl -f http://localhost:3000/ || exit 1"
-                className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
           </div>
@@ -480,19 +480,19 @@ export default function DockerfileGenerator() {
 
         {/* Output */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3 sticky top-4">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3 sticky top-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700">Dockerfile</span>
+              <span className="text-sm font-medium text-muted-foreground">Dockerfile</span>
               <div className="flex gap-1.5">
                 <button
-                  className="px-2.5 py-1.5 rounded-md bg-gray-100 text-gray-700 text-xs inline-flex items-center gap-1 disabled:opacity-50"
+                  className="px-2.5 py-1.5 rounded-md bg-muted text-muted-foreground text-xs inline-flex items-center gap-1 disabled:opacity-50"
                   onClick={copy}
                 >
                   <Copy className="h-3 h-3" />
                   {copied ? "✓" : "Copy"}
                 </button>
                 <button
-                  className="px-2.5 py-1.5 rounded-md bg-green-600 text-white text-xs inline-flex items-center gap-1"
+                  className="px-2.5 py-1.5 rounded-md bg-success text-success-foreground text-xs inline-flex items-center gap-1"
                   onClick={download}
                 >
                   <Download className="h-3 w-3" />
@@ -500,7 +500,7 @@ export default function DockerfileGenerator() {
                 </button>
               </div>
             </div>
-            <pre className="font-mono text-xs whitespace-pre-wrap break-words bg-gray-900 text-green-400 rounded-md p-3 overflow-x-auto">
+            <pre className="font-mono text-xs whitespace-pre-wrap break-words bg-muted text-success rounded-md p-3 overflow-x-auto">
               {output || "# Fill in the form to generate..."}
             </pre>
           </div>

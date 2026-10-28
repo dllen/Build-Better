@@ -183,50 +183,50 @@ export default function DockerRunBuilder() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Container className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Docker Run 命令构建器</h1>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="bg-card rounded-lg border border-border p-4">
         <div className="flex items-center gap-2 mb-4">
-          <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">客户端处理</span>
-          <span className="text-xs text-gray-500">数据仅在浏览器本地处理，不会上传到服务器。</span>
+          <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">客户端处理</span>
+          <span className="text-xs text-muted-foreground">数据仅在浏览器本地处理，不会上传到服务器。</span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="space-y-5">
             {/* 镜像名 */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
-                镜像名 <span className="text-red-500">*</span>
+              <label className="text-sm font-medium text-muted-foreground">
+                镜像名 <span className="text-destructive">*</span>
               </label>
               <input
                 type="text"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
                 placeholder="例如：nginx:latest"
-                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono"
+                className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono"
               />
             </div>
 
             {/* 容器名 */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">容器名 (--name)</label>
+              <label className="text-sm font-medium text-muted-foreground">容器名 (--name)</label>
               <input
                 type="text"
                 value={containerName}
                 onChange={(e) => setContainerName(e.target.value)}
                 placeholder="例如：my-nginx"
-                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
 
             {/* 端口映射 */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">端口映射 (-p host:container)</label>
-              {portError && <p className="text-xs text-red-500">{portError}</p>}
+              <label className="text-sm font-medium text-muted-foreground">端口映射 (-p host:container)</label>
+              {portError && <p className="text-xs text-destructive">{portError}</p>}
               {ports.map((p) => (
                 <div key={p.id} className="flex items-center gap-2">
                   <input
@@ -234,20 +234,20 @@ export default function DockerRunBuilder() {
                     value={p.host}
                     onChange={(e) => updatePort(p.id, "host", e.target.value)}
                     placeholder="主机端口"
-                    className="flex-1 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="flex-1 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
                   />
-                  <span className="text-gray-400">:</span>
+                  <span className="text-muted-foreground">:</span>
                   <input
                     type="text"
                     value={p.container}
                     onChange={(e) => updatePort(p.id, "container", e.target.value)}
                     placeholder="容器端口"
-                    className="flex-1 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="flex-1 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                   {ports.length > 1 && (
                     <button
                       onClick={() => removePort(p.id)}
-                      className="text-gray-400 hover:text-red-500 p-2"
+                      className="text-muted-foreground hover:text-destructive p-2"
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>
@@ -256,7 +256,7 @@ export default function DockerRunBuilder() {
               ))}
               <button
                 onClick={addPort}
-                className="text-sm text-blue-600 hover:text-blue-700"
+                className="text-sm text-primary hover:text-primary"
               >
                 + 添加端口
               </button>
@@ -264,7 +264,7 @@ export default function DockerRunBuilder() {
 
             {/* 卷挂载 */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">卷挂载 (-v host:container)</label>
+              <label className="text-sm font-medium text-muted-foreground">卷挂载 (-v host:container)</label>
               {volumes.map((v) => (
                 <div key={v.id} className="flex items-center gap-2">
                   <input
@@ -272,17 +272,17 @@ export default function DockerRunBuilder() {
                     value={v.host}
                     onChange={(e) => updateVolume(v.id, "host", e.target.value)}
                     placeholder="/path/host"
-                    className="flex-1 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono"
+                    className="flex-1 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono"
                   />
-                  <span className="text-gray-400">:</span>
+                  <span className="text-muted-foreground">:</span>
                   <input
                     type="text"
                     value={v.container}
                     onChange={(e) => updateVolume(v.id, "container", e.target.value)}
                     placeholder="/path/container"
-                    className="flex-1 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono"
+                    className="flex-1 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono"
                   />
-                  <label className="flex items-center gap-1 text-xs text-gray-500 whitespace-nowrap">
+                  <label className="flex items-center gap-1 text-xs text-muted-foreground whitespace-nowrap">
                     <input
                       type="checkbox"
                       checked={v.readOnly}
@@ -293,7 +293,7 @@ export default function DockerRunBuilder() {
                   {volumes.length > 1 && (
                     <button
                       onClick={() => removeVolume(v.id)}
-                      className="text-gray-400 hover:text-red-500 p-2"
+                      className="text-muted-foreground hover:text-destructive p-2"
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>
@@ -302,7 +302,7 @@ export default function DockerRunBuilder() {
               ))}
               <button
                 onClick={addVolume}
-                className="text-sm text-blue-600 hover:text-blue-700"
+                className="text-sm text-primary hover:text-primary"
               >
                 + 添加卷
               </button>
@@ -310,8 +310,8 @@ export default function DockerRunBuilder() {
 
             {/* 环境变量 */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">环境变量 (-e key=value)</label>
-              {envError && <p className="text-xs text-red-500">{envError}</p>}
+              <label className="text-sm font-medium text-muted-foreground">环境变量 (-e key=value)</label>
+              {envError && <p className="text-xs text-destructive">{envError}</p>}
               {envVars.map((e) => (
                 <div key={e.id} className="flex items-center gap-2">
                   <input
@@ -319,20 +319,20 @@ export default function DockerRunBuilder() {
                     value={e.key}
                     onChange={(ev) => updateEnvVar(e.id, "key", ev.target.value)}
                     placeholder="KEY"
-                    className="flex-1 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono"
+                    className="flex-1 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono"
                   />
-                  <span className="text-gray-400">=</span>
+                  <span className="text-muted-foreground">=</span>
                   <input
                     type="text"
                     value={e.value}
                     onChange={(ev) => updateEnvVar(e.id, "value", ev.target.value)}
                     placeholder="value"
-                    className="flex-1 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono"
+                    className="flex-1 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono"
                   />
                   {envVars.length > 1 && (
                     <button
                       onClick={() => removeEnvVar(e.id)}
-                      className="text-gray-400 hover:text-red-500 p-2"
+                      className="text-muted-foreground hover:text-destructive p-2"
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>
@@ -341,7 +341,7 @@ export default function DockerRunBuilder() {
               ))}
               <button
                 onClick={addEnvVar}
-                className="text-sm text-blue-600 hover:text-blue-700"
+                className="text-sm text-primary hover:text-primary"
               >
                 + 添加环境变量
               </button>
@@ -349,11 +349,11 @@ export default function DockerRunBuilder() {
 
             {/* 重启策略 */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">重启策略 (--restart)</label>
+              <label className="text-sm font-medium text-muted-foreground">重启策略 (--restart)</label>
               <select
                 value={restart}
                 onChange={(e) => setRestart(e.target.value as RestartPolicy)}
-                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
               >
                 <option value="no">no - 不自动重启</option>
                 <option value="always">always - 始终重启</option>
@@ -364,11 +364,11 @@ export default function DockerRunBuilder() {
 
             {/* 网络模式 */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">网络模式 (--network)</label>
+              <label className="text-sm font-medium text-muted-foreground">网络模式 (--network)</label>
               <select
                 value={network}
                 onChange={(e) => setNetwork(e.target.value as NetworkMode)}
-                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
               >
                 <option value="bridge">bridge - 默认桥接网络</option>
                 <option value="host">host - 主机网络模式</option>
@@ -378,39 +378,39 @@ export default function DockerRunBuilder() {
 
             {/* 用户 */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">用户 (--user)</label>
+              <label className="text-sm font-medium text-muted-foreground">用户 (--user)</label>
               <input
                 type="text"
                 value={user}
                 onChange={(e) => setUser(e.target.value)}
                 placeholder="例如：1000:1000"
-                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono"
+                className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono"
               />
             </div>
 
             {/* 其他选项 */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">其他选项</label>
+              <label className="text-sm font-medium text-muted-foreground">其他选项</label>
               <input
                 type="text"
                 value={extraOptions}
                 onChange={(e) => setExtraOptions(e.target.value)}
                 placeholder="例如：--privileged -it --rm"
-                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono"
+                className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono"
               />
             </div>
           </div>
 
           {/* 输出区域 */}
           <div className="space-y-4">
-            <div className="bg-white rounded-lg border border-gray-200 p-4 h-full">
+            <div className="bg-muted rounded-lg p-4 h-full">
               <div className="font-medium mb-2">生成的命令</div>
               {command ? (
-                <pre className="font-mono text-sm whitespace-pre-wrap break-words bg-gray-50 rounded-md p-3 min-h-[200px]">
+                <pre className="font-mono text-sm whitespace-pre-wrap break-words bg-muted rounded-md p-3 min-h-[200px]">
                   {command}
                 </pre>
               ) : (
-                <div className="text-sm text-gray-500 bg-gray-50 rounded-md p-3 min-h-[200px] flex items-center justify-center">
+                <div className="text-sm text-muted-foreground bg-muted rounded-md p-3 min-h-[200px] flex items-center justify-center">
                   请填写镜像名以生成命令
                 </div>
               )}
@@ -418,7 +418,7 @@ export default function DockerRunBuilder() {
 
             <div className="flex gap-3">
               <button
-                className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+                className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
                 onClick={copyCommand}
                 disabled={!command}
               >
@@ -435,7 +435,7 @@ export default function DockerRunBuilder() {
                 )}
               </button>
               <button
-                className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2"
+                className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2"
                 onClick={clearForm}
               >
                 <Trash2 className="h-4 w-4" />

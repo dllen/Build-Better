@@ -26,7 +26,7 @@ export function ContextMenu({ state, onClose }: { state: ContextMenuState; onClo
 
   return (
     <div ref={menuRef}
-      className="fixed z-50 min-w-[180px] py-1 bg-card border border-border rounded-lg shadow-xl backdrop-blur-sm"
+      className="fixed z-50 min-w-[180px] py-1 bg-card border border-border rounded-lg"
       style={{ left: x, top: y }}>
       {state.items.map((item, i) => (
         <div key={i}>

@@ -68,13 +68,13 @@ export default function JsonToXml() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-2 text-xl font-semibold">
-          <FileCode className="h-5 w-5 text-blue-600" />
+          <FileCode className="h-5 w-5 text-primary" />
           <span>JSON ↔ XML</span>
         </div>
       }
       toolbar={
         <div className="flex items-center gap-2 flex-wrap">
-          <label className="text-sm text-gray-700 dark:text-gray-300">方向:</label>
+          <label className="text-sm text-muted-foreground dark:text-muted-foreground">方向:</label>
           <select
             value={direction}
             onChange={(e) => setDirection(e.target.value as "json-xml" | "xml-json")}
@@ -85,7 +85,7 @@ export default function JsonToXml() {
           </select>
           {direction === "json-xml" && (
             <>
-              <label className="text-sm text-gray-700 dark:text-gray-300">根元素:</label>
+              <label className="text-sm text-muted-foreground dark:text-muted-foreground">根元素:</label>
               <input
                 type="text"
                 value={rootName}
@@ -95,14 +95,14 @@ export default function JsonToXml() {
               />
             </>
           )}
-          <button onClick={clear} className="ml-auto inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
+          <button onClick={clear} className="ml-auto inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
             <Eraser className="h-3 w-3" />清空
           </button>
         </div>
       }
       inputLabel={direction === "json-xml" ? "JSON 输入" : "XML 输入"}
       inputActions={
-        <span className="text-xs text-gray-500">{input.length} 字符</span>
+        <span className="text-xs text-muted-foreground">{input.length} 字符</span>
       }
       input={
         <textarea
@@ -114,8 +114,8 @@ export default function JsonToXml() {
       }
       outputLabel={direction === "json-xml" ? "XML 输出" : "JSON 输出"}
       outputActions={
-        <button onClick={copy} className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-          {copied ? <Check className="h-3 w-3 text-green-600" /> : <Copy className="h-3 w-3" />}
+        <button onClick={copy} className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
+          {copied ? <Check className="h-3 w-3 text-success" /> : <Copy className="h-3 w-3" />}
           {copied ? "已复制" : "复制"}
         </button>
       }
@@ -124,7 +124,7 @@ export default function JsonToXml() {
           <code>{result || "// 输出将显示在这里"}</code>
         </pre>
       }
-      footer={error ? <div className="text-sm text-red-600">{error}</div> : null}
+      footer={error ? <div className="text-sm text-destructive">{error}</div> : null}
     />
   );
 }

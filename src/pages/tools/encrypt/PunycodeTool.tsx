@@ -29,15 +29,15 @@ export default function Punycode() {
 
   return (
     <EditorSplitLayout
-      title={<><div className="inline-flex p-2 rounded-lg bg-rose-100 text-rose-600"><Globe className="h-5 w-5" /></div><h1 className="text-2xl font-semibold">Punycode</h1></>}
-      toolbar={<select className="rounded-md border border-gray-300 px-3 py-2 text-sm" value={direction} onChange={(e) => setDirection(e.target.value as Direction)}>
+      title={<><div className="inline-flex p-2 rounded-lg bg-destructive/10 text-destructive"><Globe className="h-5 w-5" /></div><h1 className="text-2xl font-semibold">Punycode</h1></>}
+      toolbar={<select className="rounded-md border border-border px-3 py-2 text-sm" value={direction} onChange={(e) => setDirection(e.target.value as Direction)}>
         <option value="encode">Encode (→ xn--)</option><option value="decode">Decode (xn-- →)</option>
       </select>}
       inputLabel="Input"
       input={<textarea className="w-full h-full p-4 font-mono text-sm resize-none border-0 focus:outline-none" placeholder="Enter domain name..." value={input} onChange={(e) => setInput(e.target.value)} />}
       outputLabel="Output"
-      output={<pre className="w-full h-full p-4 font-mono text-sm whitespace-pre-wrap break-words overflow-auto bg-gray-50">{error || result}</pre>}
-      outputActions={<button onClick={() => copy(result)} className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-rose-600 text-white hover:bg-rose-700">{copied ? <Check className="h-4 w-4" /> : <ClipboardCopy className="h-4 w-4" />} Copy</button>}
+      output={<pre className="w-full h-full p-4 font-mono text-sm whitespace-pre-wrap break-words overflow-auto bg-muted">{error || result}</pre>}
+      outputActions={<button onClick={() => copy(result)} className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-destructive text-destructive-foreground hover:bg-destructive">{copied ? <Check className="h-4 w-4" /> : <ClipboardCopy className="h-4 w-4" />} Copy</button>}
     />
   );
 }

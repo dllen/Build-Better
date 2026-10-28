@@ -69,37 +69,37 @@ export function LanguageSelector() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1 text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-md hover:bg-gray-100"
+        className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors p-2 rounded-pill hover:bg-muted"
         title="Change Language"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        <Globe className="h-5 w-5" />
+        <Globe className="h-5 w-5" aria-hidden="true" />
         <span className="text-sm font-medium hidden sm:inline">{currentLangInfo.nativeName}</span>
-        {currentLangInfo.dir === "rtl" && <Languages className="h-4 w-4 text-blue-500" />}
+        {currentLangInfo.dir === "rtl" && <Languages className="h-4 w-4 text-primary" aria-hidden="true" />}
       </button>
 
       {isOpen && (
         <div
-          className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 border border-gray-100 z-50 max-h-80 overflow-y-auto"
+          className="absolute right-0 mt-2 w-48 bg-popover rounded-card py-1 border border-border z-dropdown max-h-80 overflow-y-auto"
           role="listbox"
         >
           {SUPPORTED_LANGUAGES.map((lang) => (
             <button
               key={lang.code}
               onClick={() => handleLanguageChange(lang.code)}
-              className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors flex items-center justify-between gap-2
-                ${currentLang === lang.code ? "text-blue-600 font-medium bg-blue-50" : "text-gray-700"}
+              className={`block w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors flex items-center justify-between gap-2
+                ${currentLang === lang.code ? "text-primary font-medium bg-accent" : "text-ink-2"}
               `}
               role="option"
               aria-selected={currentLang === lang.code}
             >
               <span className="flex items-center gap-2">
                 {lang.nativeName}
-                {lang.dir === "rtl" && <span className="text-xs text-gray-400">RTL</span>}
+                {lang.dir === "rtl" && <span className="text-xs text-muted-foreground">RTL</span>}
               </span>
               {currentLang === lang.code && (
-                <span className="text-blue-600 text-xs font-medium">✓</span>
+                <span className="text-primary text-xs font-medium" aria-hidden="true">✓</span>
               )}
             </button>
           ))}

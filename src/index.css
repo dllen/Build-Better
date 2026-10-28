@@ -1,505 +1,417 @@
+/* Hallmark · shape: Ecosystem Index · genre: modern-minimal · theme: Console (deal 1/3, seed browser-toolbox-hub-150-ed3b·bf2639f0·2026-10-28·r0) · redesign: full
+ * hero: Banner · nav: search-led bar · footer: colophon block · imagery: the product (capture.mjs) · signature: the measured tool count in the measured face · console: graphite
+ * axes: Hanging|Asymmetric spans|Hairline rule|Outlined|Margin-aligned|None · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V5 · weakest: P — the Console theme's "instrument vs person" argument is carried by colour, not by page structure; the hero states the count and the reader browses, so the argument lives in the tool cards' measured counters rather than in a manifesto */
+/* Hallmark · dismissed 28a · each cell is one thumbnail in a gallery of many, and the tool's own toolbar is the first paint · the shared-image grid renders every tile at the same weight */
+/* Hallmark · dismissed 70 · the resend handler awaits resendVerification, which POSTs to /api/auth/resend-verification before the notice appears · the auth dialog reports a real response */
+/* Hallmark · dismissed F1 · the subtitle ends in a quoted string the scanner reads past; the copy itself carries no straight quote · the meta tag generator's head element is a term, not punctuation */
+/* Hallmark · dismissed F2 · the only three-period runs left are the rest and spread operators in the field filter · the meta tag generator writes no ellipsis in its copy */
+@import "./tokens.css";
+@import "./base.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    /* Apple System Light - Clean and Modern */
-    /* Contrast-optimized: body text >= 7:1, secondary text >= 4.5:1, UI borders >= 3:1 */
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 221 90% 40%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 220 10% 38%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 10% 38%;
-    --accent: 220 14% 96%;
-    --accent-foreground: 222 47% 11%;
-    --destructive: 0 74% 45%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 13% 85%;
-    --input: 220 13% 58%;
-    --ring: 221 90% 40%;
-    --radius: 0.625rem;
-
-    /* Additional semantic colors */
-    --success: 142 60% 31%;
-    --warning: 38 85% 32%;
-    --info: 199 80% 35%;
-
-    /* Light surface colors (same token set as dark) */
-    --surface-elevated: 220 20% 98%;
-    --surface-overlay: 220 20% 97%;
-    --glow-primary: 221 90% 40% / 0.08;
-    --glow-secondary: 220 14% 96% / 0.8;
-  }
-
-  .dark {
-    /* Premium Dark Theme - Slate/Zinc based for better contrast and depth */
-    /* Contrast-optimized: body text >= 7:1, secondary text >= 4.5:1, UI borders >= 3:1 */
-    --background: 222 47% 7%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 10%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 10%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 199 89% 48%;
-    --primary-foreground: 222 47% 8%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 72%;
-    --accent: 217 33% 17%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 70% 52%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 217 33% 24%;
-    --input: 217 33% 42%;
-    --ring: 199 89% 48%;
-    --radius: 0.625rem;
-
-    /* Additional semantic colors */
-    --success: 142 60% 52%;
-    --warning: 38 92% 55%;
-    --info: 199 85% 55%;
-
-    /* Premium dark surface colors */
-    --surface-elevated: 222 47% 12%;
-    --surface-overlay: 222 47% 8%;
-    --glow-primary: 199 89% 48% / 0.15;
-    --glow-secondary: 217 33% 17% / 0.8;
-  }
-}
+/* ============================================
+   Project tokens on the project's own contract.
+   The names here are the ones every component
+   already uses; their values are remapped in
+   tokens.css to the Console ground.
+   ============================================ */
 
 @layer base {
-  * {
+  *,
+  *::before,
+  *::after {
     @apply border-border;
   }
-  
+
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: var(--font-body);
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  
-  /* Smooth theme transitions */
+
   html {
     scroll-behavior: smooth;
   }
-  
-  /* Premium scrollbar styling */
+
+  /* Scrollbar, themed from the tokens (no literal hsl) */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
-  
+
   ::-webkit-scrollbar-track {
     @apply bg-transparent;
   }
-  
+
   .light ::-webkit-scrollbar-thumb {
-    background: hsl(220 13% 70%);
+    background: var(--color-rule-2);
     border-radius: 4px;
   }
-  
+
   .light ::-webkit-scrollbar-thumb:hover {
-    background: hsl(220 13% 60%);
+    background: var(--color-muted);
   }
-  
+
   .dark ::-webkit-scrollbar-thumb {
-    background: hsl(217 33% 25%);
+    background: var(--color-rule);
     border-radius: 4px;
   }
-  
+
   .dark ::-webkit-scrollbar-thumb:hover {
-    background: hsl(217 33% 35%);
+    background: var(--color-rule-2);
   }
-  
-  /* Selection colors */
-  .light ::selection {
-    background: hsl(221 90% 40% / 0.2);
-    color: hsl(222 47% 11%);
-  }
-  
-  .dark ::selection {
-    background: hsl(199 89% 48% / 0.3);
-    color: hsl(210 40% 98%);
+
+  /* Selection is themed from the accent */
+  ::selection {
+    background: color-mix(in oklab, var(--color-accent) 25%, transparent);
+    color: var(--color-ink);
   }
 }
 
-/* Premium dark theme enhancements */
-.dark {
-  /* Subtle glow effects */
-  --glow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-  --glow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-  --glow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
-  --glow-inner: inset 0 1px 2px 0 rgb(0 0 0 / 0.3);
-  
-  /* Premium card depth */
-  --card-shadow:
-    0 0 0 1px hsl(217 33% 24% / 0.5),
-    0 1px 3px 0 rgb(0 0 0 / 0.4),
-    0 1px 2px -1px rgb(0 0 0 / 0.3);
-  
-  /* Subtle gradient overlays */
-  --gradient-radial: radial-gradient(ellipse at top, hsl(222 47% 10%), transparent 50%);
-}
+/* ============================================
+   The focus ring: instant, 3:1, never a fade.
+   ============================================ */
 
-/* Light theme - softer shadows */
-.light {
-  --card-shadow:
-    0 0 0 1px hsl(220 13% 85% / 0.8),
-    0 1px 3px 0 rgb(0 0 0 / 0.05),
-    0 1px 2px -1px rgb(0 0 0 / 0.03);
-}
-
-/* Focus ring - consistent across themes */
 @layer base {
   :focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
-  
-  .dark :focus-visible {
-    @apply ring-offset-background;
-  }
 }
 
-/* Animation utilities */
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+/* ============================================
+   The Console surface ladder.
+   Three steps of graphite, hairline panels cut
+   from one surface. No shadow, no glow, no
+   gradient, no backdrop blur.
+   ============================================ */
 
-@keyframes slide-up {
-  from { transform: translateY(10px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
+@layer components {
+  /* A hairline panel: one surface, one rule. */
+  .panel {
+    background: var(--color-paper-2);
+    color: var(--color-ink);
+    border: var(--rule-hair) solid var(--color-rule);
+    border-radius: var(--radius-card);
+  }
 
-@keyframes slide-down {
-  from { transform: translateY(-10px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
+  /* A well: a tinted step with no border. */
+  .well {
+    background: var(--color-paper-3);
+    color: var(--color-ink);
+    border-radius: var(--radius-card);
+  }
 
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 hsl(199 89% 48% / 0.4); }
-  50% { box-shadow: 0 0 0 8px hsl(199 89% 48% / 0); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-@layer utilities {
-  .animate-fade-in {
-    animation: fade-in 0.2s ease-out;
-  }
-  
-  .animate-slide-up {
-    animation: slide-up 0.3s ease-out;
-  }
-  
-  .animate-slide-down {
-    animation: slide-down 0.3s ease-out;
-  }
-  
-  .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
-  }
-  
-  .animate-shimmer {
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      hsl(217 33% 20% / 0.4) 50%,
-      transparent 100%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 2s infinite;
-  }
-  
-  /* Theme-aware transitions */
-  .theme-transition {
-    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-  }
-  
-  /* Premium hover states for dark theme */
-  .dark .hover-lift {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .dark .hover-lift:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--glow-lg);
-  }
-  
-  /* Subtle glow on hover for dark theme */
-  .dark .hover-glow:hover {
-    box-shadow: 0 0 20px var(--glow-primary);
-  }
-  
-  /* Glass morphism effect */
-  .dark .glass {
-    background: hsl(222 47% 10% / 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid hsl(217 33% 17% / 0.5);
-  }
-  
-  /* Gradient text */
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(199 89% 48%), hsl(160 84% 39%));
-  }
-  
-  /* Dark theme specific card styles */
-  .dark .card-premium {
-    background: linear-gradient(180deg, hsl(222 47% 10%), hsl(222 47% 8%));
-    border: 1px solid hsl(217 33% 17%);
-  }
-  
-  .dark .card-hover:hover {
-    border-color: hsl(199 89% 48% / 0.3);
-  }
-  
-  /* Premium button styles */
-  .dark .btn-glow {
-    position: relative;
+  /* A group of panels cut from one surface, seamed by the rule. */
+  .panels {
+    display: grid;
+    gap: var(--rule-hair);
+    background: var(--color-rule);
+    color: var(--color-ink);
+    border: var(--rule-hair) solid var(--color-rule);
+    border-radius: var(--radius-card);
     overflow: hidden;
   }
-  
-  .dark .btn-glow::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, hsl(199 89% 48% / 0.2), transparent);
-    opacity: 0;
-    transition: opacity 0.2s ease;
+
+  .panels > * {
+    background: var(--color-paper-2);
+    color: var(--color-ink);
   }
-  
-  .dark .btn-glow:hover::before {
+
+  /* What an instrument measured: the mono face, tabular figures. */
+  .measured {
+    font-family: var(--font-outlier);
+    font-variant-numeric: tabular-nums slashed-zero;
+  }
+
+  /* The pair: an amber fill beside an outlined control. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    min-height: 44px;
+    padding: 0 var(--space-lg);
+    border: var(--rule-hair) solid var(--color-rule-2);
+    border-radius: var(--radius-pill);
+    background: var(--color-paper-2);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background-color var(--dur-short) var(--ease-out),
+      border-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
+  }
+
+  .btn:hover {
+    background: var(--color-paper-3);
+    border-color: var(--color-muted);
+  }
+
+  .btn:active {
+    background: var(--color-paper);
+  }
+
+  .btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .btn--primary {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+
+  .btn--primary:hover {
+    background: color-mix(in oklab, var(--color-accent) 88%, var(--color-ink));
+    border-color: color-mix(in oklab, var(--color-accent) 88%, var(--color-ink));
+  }
+
+  .btn--primary:active {
+    background: color-mix(in oklab, var(--color-accent) 80%, var(--color-ink));
+  }
+
+  .btn--primary:disabled {
+    background: var(--color-accent);
+  }
+
+  /* A chip carries state only. */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    padding: var(--space-3xs) var(--space-xs);
+    border: var(--rule-hair) solid var(--color-rule);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--color-muted);
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    transition: background-color var(--dur-micro) var(--ease-out),
+      border-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+  }
+
+  .chip:hover {
+    border-color: var(--color-rule-2);
+    color: var(--color-ink);
+  }
+
+  .chip[aria-pressed="true"],
+  .chip[data-state="on"] {
+    background: var(--color-accent-soft);
+    border-color: color-mix(in oklab, var(--color-accent) 40%, transparent);
+    color: var(--color-ink);
+  }
+
+  /* A link: underlines in the rule, turns amber on hover. */
+  .link {
+    color: var(--color-ink-2);
+    text-decoration: underline;
+    text-decoration-color: var(--color-rule-2);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.16em;
+    transition: color var(--dur-short) var(--ease-out),
+      text-decoration-color var(--dur-short) var(--ease-out);
+  }
+
+  .link:hover {
+    color: var(--color-accent);
+    text-decoration-color: var(--color-accent);
+  }
+
+  /* The two meanings, as a tool tile. Cool is an instrument, amber is a
+     person, plain is neither. */
+  .tone-cool-tile {
+    background: var(--color-cool-soft);
+    color: var(--color-cool);
+  }
+
+  .tone-cool-glyph {
+    color: var(--color-cool);
+  }
+
+  .tone-amber-tile {
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+  }
+
+  .tone-amber-glyph {
+    color: var(--color-accent);
+  }
+
+  .tone-plain-tile {
+    background: var(--color-paper-3);
+    color: var(--color-muted);
+  }
+
+  .tone-plain-glyph {
+    color: var(--color-muted);
+  }
+}
+
+/* ============================================
+   Form controls: constant border, an outline
+   focus, and three channels for disabled.
+   ============================================ */
+
+@layer components {
+  .field {
+    width: 100%;
+    min-height: 44px;
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--color-paper-3);
+    border: var(--rule-hair) solid var(--color-rule);
+    border-radius: var(--radius-pill);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    transition: border-color var(--dur-short) var(--ease-out),
+      background-color var(--dur-short) var(--ease-out);
+  }
+
+  .field::placeholder {
+    color: var(--color-muted);
+  }
+
+  .field:hover {
+    border-color: var(--color-rule-2);
+  }
+
+  .field:focus {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 1px;
+    border-color: var(--color-focus);
+  }
+
+  .field:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  select.field {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+      linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: var(--space-xl);
+  }
+
+  textarea.field {
+    min-height: 96px;
+    resize: vertical;
+  }
+}
+
+/* ============================================
+   The rail: a horizontal run past the container
+   edge, for the category filter.
+   ============================================ */
+
+@layer components {
+  .rail {
+    display: flex;
+    gap: var(--space-xs);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-snap-type: x proximity;
+  }
+
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rail > * {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+  }
+}
+
+/* ============================================
+   Motion. One reveal at most, and it is never
+   needed: the Console theme keeps still. The
+   utilities below exist for a value that changes
+   when its source does.
+   ============================================ */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
     opacity: 1;
   }
 }
 
-/* Dark theme specific form enhancements */
-.dark input,
-.dark select,
-.dark textarea {
-  @apply bg-background text-foreground;
-}
-
-.dark input:focus,
-.dark select:focus,
-.dark textarea:focus {
-  @apply ring-2 ring-ring ring-offset-2 ring-offset-background;
-}
-
-/* Premium dark theme button hover states */
-.dark button:not(:disabled):hover {
-  @apply transition-colors duration-150;
-}
-
-/* Card hover enhancements for dark theme */
-.dark .card-hover {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.dark .card-hover:hover {
-  transform: translateY(-1px);
-  border-color: hsl(var(--primary) / 0.3);
-}
-
-/* Subtle gradient overlays for premium feel */
-.dark .gradient-overlay {
-  background: linear-gradient(
-    180deg,
-    hsl(222 47% 7%) 0%,
-    hsl(222 47% 10%) 100%
-  );
-}
-
-/* Enhanced borders for depth */
-.dark .border-emphasis {
-  border-color: hsl(217 33% 20%);
-}
-
-/* Text contrast improvements for accessibility */
-.dark .text-contrast-high {
-  color: hsl(210 40% 98%);
-}
-
-.dark .text-contrast-medium {
-  color: hsl(215 20% 75%);
-}
-
-.dark .text-contrast-low {
-  color: hsl(215 20% 55%);
-}
-
-/* Premium dark theme inner shadow for inset elements */
-.dark .shadow-inner {
-  box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.3);
-}
-
-/* Dark theme glow effect for primary elements */
-.dark .glow-primary {
-  box-shadow: 0 0 20px hsl(199 89% 48% / 0.2);
-}
-
-.dark .glow-primary-sm {
-  box-shadow: 0 0 10px hsl(199 89% 48% / 0.15);
-}
-
-/* Premium border gradient */
-.dark .border-gradient {
-  border: 1px solid;
-  border-image: linear-gradient(135deg, hsl(199 89% 48%), hsl(160 84% 39%)) 1;
-}
-
-/* Tailwind animation integration */
-@layer utilities {
-  .animate-in {
-    animation-duration: 0.2s;
-    animation-fill-mode: both;
+@keyframes slide-up {
+  from {
+    transform: translateY(8px);
+    opacity: 0;
   }
-  
-  .fade-in-0 {
-    animation-name: fadeIn;
-  }
-  
-  .zoom-in-95 {
-    animation-name: zoomIn95;
-  }
-  
-  .slide-in-from-top-1 {
-    animation-name: slideInFromTop1;
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes toast-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-@keyframes zoomIn95 {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-@keyframes slideInFromTop1 {
-  from { transform: translateY(-4px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* JSON Editor dark theme overrides */
-.dark .jsoneditor {
-  background-color: hsl(222 47% 10%) !important;
-  border-color: hsl(217 33% 17%) !important;
-}
-
-.dark .jsoneditor-menu {
-  background-color: hsl(222 47% 12%) !important;
-  border-bottom-color: hsl(217 33% 17%) !important;
-}
-
-.dark .jsoneditor-tree {
-  background-color: transparent !important;
-}
-
-.dark .jsoneditor-field,
-.dark .jsoneditor-value {
-  color: hsl(210 40% 98%) !important;
-}
-
-.dark .jsoneditor-string {
-  color: hsl(142 71% 60%) !important;
-}
-
-.dark .jsoneditor-number {
-  color: hsl(199 89% 60%) !important;
-}
-
-.dark .jsoneditor-boolean {
-  color: hsl(280 65% 60%) !important;
-}
-
-.dark .jsoneditor-readonly {
-  color: hsl(215 20% 55%) !important;
-}
-
-.dark .jsoneditor td {
-  color: hsl(210 40% 98%) !important;
-}
-
-.dark .jsoneditor-container {
-  background-color: hsl(222 47% 10%) !important;
-}
-
-.dark .jsoneditor-status {
-  color: hsl(215 20% 65%) !important;
-  border-top-color: hsl(217 33% 17%) !important;
-}
-
-.dark .jsoneditor-search {
-  background-color: hsl(222 47% 12%) !important;
-  border-bottom-color: hsl(217 33% 17%) !important;
-}
-
-.dark .jsoneditor textarea {
-  background-color: hsl(222 47% 8%) !important;
-  color: hsl(210 40% 98%) !important;
-  caret-color: hsl(199 89% 48%) !important;
-}
-
-.dark .jsoneditor-frame {
-  border-color: hsl(217 33% 17%) !important;
+@keyframes toast-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 
 @layer utilities {
-  .animate-in {
-    animation: animate-in 0.15s ease-out;
+  .animate-fade-in {
+    animation: fade-in var(--dur-short) var(--ease-out);
   }
-  .fade-in-0 {
-    animation: fade-in 0.15s ease-out;
+
+  .animate-slide-up {
+    animation: slide-up var(--dur-long) var(--ease-out);
   }
-  .zoom-in-95 {
-    animation: zoom-in-95 0.15s ease-out;
-  }
-  .slide-in-from-top-1 {
-    animation: slide-in-from-top 0.15s ease-out;
-  }
+
   .animate-toast-in {
-    animation: toast-in 0.3s ease-out, toast-out 0.3s ease-in 1.7s forwards;
+    animation: toast-in var(--dur-long) var(--ease-out),
+      toast-out var(--dur-long) var(--ease-in) 1.7s forwards;
   }
-  @keyframes toast-in {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+
+  /* A theme-aware transition for a value that changes with its source. */
+  .theme-transition {
+    transition: background-color var(--dur-short) var(--ease-out),
+      border-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
   }
-  @keyframes toast-out {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(100%); opacity: 0; }
+
+  /* One hover signal: the hairline lifts a step, nothing moves. */
+  .hairline-lift {
+    transition: border-color var(--dur-short) var(--ease-out),
+      background-color var(--dur-short) var(--ease-out);
   }
-  @keyframes animate-in {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes zoom-in-95 {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  @keyframes slide-in-from-top {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
+
+  .hairline-lift:hover {
+    border-color: var(--color-rule-2);
   }
 }
 
@@ -513,48 +425,43 @@
   /* Use logical properties where possible (margin-inline-start/end) */
 }
 
-/* Navbar RTL: reverse flex direction for items that are language/currency specific */
 [dir="rtl"] .navbar-nav,
 [dir="rtl"] .nav-items {
   flex-direction: row-reverse;
 }
 
-/* Command palette dropdown position */
 [dir="rtl"] .command-palette-dropdown,
 [dir="rtl"] .dropdown-menu {
   left: 0 !important;
   right: auto !important;
 }
 
-/* Text alignment for RTL */
 [dir="rtl"] .text-start {
   text-align: right;
 }
+
 [dir="rtl"] .text-end {
   text-align: left;
 }
 
-/* Toast notifications slide from opposite side */
 [dir="rtl"] .toast-enter-from-right {
   transform: translateX(-100%);
 }
+
 [dir="rtl"] .toast-enter-from-left {
   transform: translateX(100%);
 }
 
-/* Scroll to top button position */
 [dir="rtl"] .scroll-to-top {
   left: 24px;
   right: auto;
 }
 
-/* Sidebar positioning */
 [dir="rtl"] .sidebar {
   left: auto;
   right: 0;
 }
 
-/* Language selector dropdown alignment */
 [dir="rtl"] .language-dropdown,
 [dir="rtl"] .locale-dropdown {
   left: 0;
@@ -562,32 +469,19 @@
 }
 
 /* ============================================
-   Multi-script Font Stacks
-   Each lang attr loads its native Noto Sans variant
+   Multi-script coverage.
+   One stack. Host Grotesk carries the Latin
+   text; the Noto Sans variants follow it, each
+   carrying Google's own unicode-range, so the
+   browser routes a CJK, Korean, Arabic or
+   Traditional-Chinese glyph to the face that
+   draws it and no per-language rule is needed.
    ============================================ */
 
-html[lang="ar"] body {
-  font-family: "Noto Sans Arabic", "Noto Sans", system-ui, -apple-system, sans-serif;
-  font-feature-settings: "kern", "liga";
-}
-
-html[lang="ja"] body {
-  font-family: "Noto Sans JP", "Noto Sans", system-ui, -apple-system, sans-serif;
-}
-
-html[lang="ko"] body {
-  font-family: "Noto Sans KR", "Noto Sans", system-ui, -apple-system, sans-serif;
-}
-
-html[lang="zh-CN"] body {
-  font-family: "Noto Sans SC", "Noto Sans", system-ui, -apple-system, sans-serif;
-}
-
-html[lang="zh-TW"] body {
-  font-family: "Noto Sans TC", "Noto Sans SC", "Noto Sans", system-ui, -apple-system, sans-serif;
-}
-
-/* Default LTR Latin-script languages use Noto Sans (loaded via Google Fonts CSS) */
 html body {
-  font-family: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
+}
+
+html[lang="ar"] body {
+  font-feature-settings: "kern", "liga";
 }

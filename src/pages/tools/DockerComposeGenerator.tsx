@@ -195,14 +195,14 @@ export default function DockerComposeGenerator() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-cyan-100 text-cyan-600">
+        <div className="inline-flex p-2 rounded-lg bg-info/10 text-info">
           <Container className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Docker Compose YAML 生成器</h1>
       </div>
 
       {/* Privacy hint */}
-      <div className="flex items-center gap-2 text-sm text-gray-500 bg-gray-50 rounded-lg px-3 py-2">
+      <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted rounded-lg px-3 py-2">
         <Shield className="h-4 w-4" />
         数据仅在浏览器本地处理，不会上传到服务器。
       </div>
@@ -210,9 +210,9 @@ export default function DockerComposeGenerator() {
       {/* Version selector + actions */}
       <div className="flex flex-wrap items-center gap-3">
         <div className="flex items-center gap-2">
-          <label className="text-sm font-medium text-gray-700">Compose 版本</label>
+          <label className="text-sm font-medium text-muted-foreground">Compose 版本</label>
           <select
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            className="rounded-md border border-border px-3 py-2 text-sm"
             value={version}
             onChange={(e) => setVersion(e.target.value as ComposeVersion)}
           >
@@ -224,7 +224,7 @@ export default function DockerComposeGenerator() {
           </select>
         </div>
         <button
-          className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+          className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
           onClick={generate}
         >
           生成
@@ -234,14 +234,14 @@ export default function DockerComposeGenerator() {
       {/* Services */}
       <div className="space-y-4">
         {services.map((svc, svcIdx) => (
-          <div key={svc.id} className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+          <div key={svc.id} className="bg-card rounded-lg border border-border p-4 space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-600">
+              <span className="text-sm font-medium text-muted-foreground">
                 服务 {svcIdx + 1}
               </span>
               {services.length > 1 && (
                 <button
-                  className="text-gray-400 hover:text-red-500 transition-colors"
+                  className="text-muted-foreground hover:text-destructive transition-colors"
                   onClick={() => removeService(svc.id)}
                   title="移除服务"
                 >
@@ -253,23 +253,23 @@ export default function DockerComposeGenerator() {
             {/* Service name + image */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">服务名 *</label>
+                <label className="text-sm font-medium text-muted-foreground">服务名 *</label>
                 <input
                   type="text"
                   value={svc.name}
                   onChange={(e) => updateService(svc.id, "name", e.target.value)}
                   placeholder="例如 web"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">镜像 *</label>
+                <label className="text-sm font-medium text-muted-foreground">镜像 *</label>
                 <input
                   type="text"
                   value={svc.image}
                   onChange={(e) => updateService(svc.id, "image", e.target.value)}
                   placeholder="例如 nginx:latest"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
             </div>
@@ -277,19 +277,19 @@ export default function DockerComposeGenerator() {
             {/* Ports + Restart */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">端口映射</label>
+                <label className="text-sm font-medium text-muted-foreground">端口映射</label>
                 <input
                   type="text"
                   value={svc.ports}
                   onChange={(e) => updateService(svc.id, "ports", e.target.value)}
                   placeholder="8080:80, 多条用逗号分隔"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">重启策略</label>
+                <label className="text-sm font-medium text-muted-foreground">重启策略</label>
                 <select
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm"
                   value={svc.restart}
                   onChange={(e) => updateService(svc.id, "restart", e.target.value)}
                 >
@@ -304,9 +304,9 @@ export default function DockerComposeGenerator() {
             {/* Environment variables */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <label className="text-sm font-medium text-gray-700">环境变量</label>
+                <label className="text-sm font-medium text-muted-foreground">环境变量</label>
                 <button
-                  className="text-xs text-blue-600 hover:text-blue-700 inline-flex items-center gap-1"
+                  className="text-xs text-primary hover:text-primary inline-flex items-center gap-1"
                   onClick={() => addEnvVar(svc.id)}
                 >
                   <Plus className="h-3 w-3" />
@@ -314,7 +314,7 @@ export default function DockerComposeGenerator() {
                 </button>
               </div>
               {svc.envVars.length === 0 && (
-                <div className="text-xs text-gray-400">暂无环境变量（可选）</div>
+                <div className="text-xs text-muted-foreground">暂无环境变量（可选）</div>
               )}
               {svc.envVars.map((envVar, envIdx) => (
                 <div key={envIdx} className="flex items-center gap-2">
@@ -323,18 +323,18 @@ export default function DockerComposeGenerator() {
                     value={envVar.key}
                     onChange={(e) => updateEnvVar(svc.id, envIdx, "key", e.target.value)}
                     placeholder="KEY"
-                    className="flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="flex-1 rounded-md border border-border px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                   />
-                  <span className="text-gray-400">=</span>
+                  <span className="text-muted-foreground">=</span>
                   <input
                     type="text"
                     value={envVar.value}
                     onChange={(e) => updateEnvVar(svc.id, envIdx, "value", e.target.value)}
                     placeholder="value"
-                    className="flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="flex-1 rounded-md border border-border px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                   <button
-                    className="text-gray-400 hover:text-red-500 transition-colors"
+                    className="text-muted-foreground hover:text-destructive transition-colors"
                     onClick={() => removeEnvVar(svc.id, envIdx)}
                   >
                     <Trash2 className="h-4 w-4" />
@@ -346,23 +346,23 @@ export default function DockerComposeGenerator() {
             {/* Volumes + depends_on */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">卷挂载</label>
+                <label className="text-sm font-medium text-muted-foreground">卷挂载</label>
                 <input
                   type="text"
                   value={svc.volumes}
                   onChange={(e) => updateService(svc.id, "volumes", e.target.value)}
                   placeholder="./data:/var/lib/data, 多条用逗号"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">依赖服务</label>
+                <label className="text-sm font-medium text-muted-foreground">依赖服务</label>
                 <input
                   type="text"
                   value={svc.dependsOn}
                   onChange={(e) => updateService(svc.id, "dependsOn", e.target.value)}
                   placeholder="db, redis, 多条用逗号"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
             </div>
@@ -372,7 +372,7 @@ export default function DockerComposeGenerator() {
         {/* Add service button */}
         {services.length < 5 && (
           <button
-            className="w-full py-3 rounded-lg border-2 border-dashed border-gray-300 text-gray-500 hover:border-blue-400 hover:text-blue-600 transition-colors inline-flex items-center justify-center gap-2"
+            className="w-full py-3 rounded-lg border-2 border-dashed border-border text-muted-foreground hover:border-border hover:text-primary transition-colors inline-flex items-center justify-center gap-2"
             onClick={addService}
           >
             <Plus className="h-4 w-4" />
@@ -383,7 +383,7 @@ export default function DockerComposeGenerator() {
 
       {/* Error */}
       {error && (
-        <div className="flex items-center gap-2 text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">
+        <div className="flex items-center gap-2 text-sm text-destructive bg-destructive/10 rounded-lg px-3 py-2">
           <AlertCircle className="h-4 w-4" />
           {error}
         </div>
@@ -391,26 +391,26 @@ export default function DockerComposeGenerator() {
 
       {/* Output */}
       {output && (
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-gray-700">生成结果</span>
+            <span className="text-sm font-medium text-muted-foreground">生成结果</span>
             <div className="flex gap-2">
               <button
-                className="px-3 py-1.5 rounded-md bg-gray-100 text-gray-700 text-sm inline-flex items-center gap-1.5 disabled:opacity-50"
+                className="px-3 py-1.5 rounded-md bg-muted text-muted-foreground text-sm inline-flex items-center gap-1.5 disabled:opacity-50"
                 onClick={copy}
               >
                 <Copy className="h-3.5 w-3.5" />
                 {copied ? "已复制 ✓" : "复制"}
               </button>
               <button
-                className="px-3 py-1.5 rounded-md bg-green-600 text-white text-sm inline-flex items-center gap-1.5"
+                className="px-3 py-1.5 rounded-md bg-success text-success-foreground text-sm inline-flex items-center gap-1.5"
                 onClick={download}
               >
                 <Download className="h-3.5 w-3.5" />
                 下载 .yml
               </button>
               <button
-                className="px-3 py-1.5 rounded-md bg-gray-100 text-gray-700 text-sm inline-flex items-center gap-1.5"
+                className="px-3 py-1.5 rounded-md bg-muted text-muted-foreground text-sm inline-flex items-center gap-1.5"
                 onClick={clear}
               >
                 <Trash2 className="h-3.5 w-3.5" />
@@ -418,7 +418,7 @@ export default function DockerComposeGenerator() {
               </button>
             </div>
           </div>
-          <pre className="font-mono text-sm whitespace-pre-wrap break-words bg-gray-50 rounded-md p-4 overflow-x-auto">
+          <pre className="font-mono text-sm whitespace-pre-wrap break-words bg-muted rounded-md p-4 overflow-x-auto">
             {output}
           </pre>
         </div>

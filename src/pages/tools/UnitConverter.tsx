@@ -124,17 +124,17 @@ export default function UnitConverter() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-teal-100 text-teal-600">
+        <div className="inline-flex p-2 rounded-lg bg-info/10 text-info">
           <Box className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">单位转换</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="space-y-3 bg-white rounded-lg border border-gray-200 p-4">
+        <div className="space-y-3 bg-card rounded-lg border border-border p-4">
           <div className="font-medium">类别</div>
           <select
-            className="rounded-md border border-gray-300 px-3 py-2"
+            className="rounded-md border border-border px-3 py-2"
             value={category}
             onChange={(e) => setCategory(e.target.value as Category)}
           >
@@ -145,11 +145,11 @@ export default function UnitConverter() {
             <option value="storage">存储单位</option>
           </select>
         </div>
-        <div className="space-y-3 bg-white rounded-lg border border-gray-200 p-4">
+        <div className="space-y-3 bg-card rounded-lg border border-border p-4">
           <div className="font-medium">输入</div>
           {category === "temperature" ? (
             <select
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               value={unit}
               onChange={(e) => setUnit(e.target.value)}
             >
@@ -161,7 +161,7 @@ export default function UnitConverter() {
             </select>
           ) : (
             <select
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               value={unit}
               onChange={(e) => setUnit(e.target.value)}
             >
@@ -173,38 +173,38 @@ export default function UnitConverter() {
             </select>
           )}
           <input
-            className="w-full rounded-md border border-gray-300 px-3 py-2"
+            className="w-full rounded-md border border-border px-3 py-2"
             value={value}
             onChange={(e) => setValue(e.target.value)}
             placeholder="输入数值"
           />
         </div>
-        <div className="space-y-3 bg-white rounded-lg border border-gray-200 p-4">
+        <div className="space-y-3 bg-card rounded-lg border border-border p-4">
           <div className="font-medium">结果摘要</div>
           <div className="flex items-center gap-2">
-            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-words whitespace-pre-wrap">
+            <div className="flex-1 rounded-md border border-border px-3 py-2 font-mono text-sm break-words whitespace-pre-wrap">
               {summary || "—"}
             </div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => copy(summary)}
               disabled={!summary}
             >
               <ClipboardCopy className="h-4 w-4" /> 复制{" "}
-              {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+              {copied ? <Check className="h-4 w-4 text-success" /> : null}
             </button>
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+      <div className="bg-card rounded-lg border border-border p-4 space-y-3">
         <div className="font-medium">转换结果</div>
-        <div className="rounded-md border border-gray-200 overflow-x-auto">
+        <div className="rounded-md border border-border overflow-x-auto">
           <table className="min-w-full text-sm">
-            <thead className="bg-gray-50">
+            <thead className="bg-muted">
               <tr>
-                <th className="text-left px-3 py-2 font-medium text-gray-700">单位</th>
-                <th className="text-left px-3 py-2 font-medium text-gray-700">数值</th>
+                <th className="text-left px-3 py-2 font-medium text-muted-foreground">单位</th>
+                <th className="text-left px-3 py-2 font-medium text-muted-foreground">数值</th>
               </tr>
             </thead>
             <tbody>

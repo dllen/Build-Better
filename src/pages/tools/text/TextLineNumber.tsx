@@ -59,7 +59,7 @@ export default function TextLineNumber() {
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-6">
       <div className="flex items-center gap-2 mb-6">
-        <div className="p-2 bg-indigo-100 text-indigo-600 rounded-lg">
+        <div className="p-2 bg-primary/10 text-primary rounded-lg">
           <ListOrdered size={24} />
         </div>
         <h1 className="text-2xl font-bold">Add Line Numbers</h1>
@@ -67,18 +67,18 @@ export default function TextLineNumber() {
 
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-4">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+          <div className="bg-card rounded-xl border border-border p-4">
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Paste your text here..."
-              className="w-full h-96 p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none font-mono text-sm"
+              className="w-full h-96 p-4 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent resize-none font-mono text-sm"
             />
             <div className="flex justify-between items-center mt-4">
                <div className="flex gap-2">
                  <button
                     onClick={removeNumbers}
-                    className="flex items-center gap-2 px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 rounded-lg"
+                    className="flex items-center gap-2 px-3 py-1.5 text-sm text-destructive hover:bg-destructive/10 rounded-lg"
                   >
                     <X size={14} /> Remove Numbers
                   </button>
@@ -86,14 +86,14 @@ export default function TextLineNumber() {
                <div className="flex gap-2">
                 <button
                   onClick={() => setText('')}
-                  className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 text-muted-foreground hover:bg-muted rounded-lg transition-colors"
                 >
                   <RotateCcw size={16} />
                   Clear
                 </button>
                 <button
                   onClick={handleCopy}
-                  className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary transition-colors"
                 >
                   <Copy size={16} />
                   {message || 'Copy'}
@@ -104,21 +104,21 @@ export default function TextLineNumber() {
         </div>
 
         <div className="space-y-4">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 space-y-4">
-            <h3 className="font-semibold text-gray-700">Settings</h3>
+          <div className="bg-card rounded-xl border border-border p-4 space-y-4">
+            <h3 className="font-semibold text-muted-foreground">Settings</h3>
             
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">Mode</label>
+              <label className="text-sm font-medium text-muted-foreground">Mode</label>
               <div className="grid grid-cols-2 gap-2">
                 <button
                   onClick={() => setMode('line')}
-                  className={`px-3 py-2 text-sm rounded-lg border ${mode === 'line' ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'border-gray-200 hover:bg-gray-50'}`}
+                  className={`px-3 py-2 text-sm rounded-lg border ${mode === 'line' ? 'bg-primary/10 border-border text-primary' : 'border-border hover:bg-muted'}`}
                 >
                   Line by Line
                 </button>
                 <button
                   onClick={() => setMode('paragraph')}
-                  className={`px-3 py-2 text-sm rounded-lg border ${mode === 'paragraph' ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'border-gray-200 hover:bg-gray-50'}`}
+                  className={`px-3 py-2 text-sm rounded-lg border ${mode === 'paragraph' ? 'bg-primary/10 border-border text-primary' : 'border-border hover:bg-muted'}`}
                 >
                   Paragraphs
                 </button>
@@ -126,21 +126,21 @@ export default function TextLineNumber() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">Start Number</label>
+              <label className="text-sm font-medium text-muted-foreground">Start Number</label>
               <input
                 type="number"
                 value={start}
                 onChange={(e) => setStart(parseInt(e.target.value) || 0)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">Format Style</label>
+              <label className="text-sm font-medium text-muted-foreground">Format Style</label>
               <select
                 value={format}
                 onChange={(e) => setFormat(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring"
               >
                 <option value=".">1.</option>
                 <option value=")">1)</option>
@@ -149,19 +149,19 @@ export default function TextLineNumber() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">Separator</label>
+              <label className="text-sm font-medium text-muted-foreground">Separator</label>
               <input
                 type="text"
                 value={separator}
                 onChange={(e) => setSeparator(e.target.value)}
                 placeholder="Space"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring"
               />
             </div>
 
             <button
               onClick={processText}
-              className="w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium transition-colors"
+              className="w-full py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary font-medium transition-colors"
             >
               Add Numbers
             </button>

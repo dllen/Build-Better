@@ -208,18 +208,18 @@ export default function CronQuartz() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Clock className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Cron & Quartz Scheduler Config</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">表达式</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <select
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               value={mode}
               onChange={(e) => setMode(e.target.value as Mode)}
             >
@@ -227,20 +227,20 @@ export default function CronQuartz() {
               <option value="quartz">Quartz (6/7段)</option>
             </select>
             <input
-              className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2"
+              className="rounded-md border border-border px-3 py-2 md:col-span-2"
               placeholder={mode === "unix" ? "m h dom mon dow" : "s m h dom mon dow [year]"}
               value={expr}
               onChange={(e) => setExpr(e.target.value)}
             />
           </div>
-          <div className={`text-sm ${valid ? "text-green-600" : "text-red-600"}`}>
+          <div className={`text-sm ${valid ? "text-success" : "text-destructive"}`}>
             {valid ? describe(spec) : "无效表达式"}
           </div>
           <div className="flex flex-wrap gap-2">
             {presets.map((p) => (
               <button
                 key={p.label}
-                className="px-2 py-1 text-xs rounded border border-gray-300 hover:bg-gray-100"
+                className="px-2 py-1 text-xs rounded border border-border hover:bg-muted"
                 onClick={() => {
                   setMode(p.mode);
                   setExpr(p.value);
@@ -252,17 +252,17 @@ export default function CronQuartz() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">起始与时区</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <input
               type="datetime-local"
-              className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2"
+              className="rounded-md border border-border px-3 py-2 md:col-span-2"
               value={start}
               onChange={(e) => setStart(e.target.value)}
             />
             <select
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               value={tz}
               onChange={(e) => setTz(Number(e.target.value))}
             >
@@ -273,12 +273,12 @@ export default function CronQuartz() {
               ))}
             </select>
           </div>
-          <div className="rounded-md border border-gray-200 p-3 space-y-2">
+          <div className="rounded-md border border-border p-3 space-y-2">
             {runs.length
               ? runs.map((d, i) => (
                   <div key={i} className="flex items-center justify-between text-sm">
                     <span className="font-mono">{format(d, "YYYY-MM-DD HH:mm:ss Z", tz)}</span>
-                    <span className="text-gray-600">{relativeTime(d)}</span>
+                    <span className="text-muted-foreground">{relativeTime(d)}</span>
                   </div>
                 ))
               : "—"}
@@ -287,36 +287,36 @@ export default function CronQuartz() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-medium">Spring @Scheduled</div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => copy(springScheduled)}
               disabled={!springScheduled}
             >
               <ClipboardCopy className="h-4 w-4" /> 复制
             </button>
           </div>
-          <div className="rounded-md border border-gray-200 p-3">
+          <div className="rounded-md border border-border p-3">
             <pre className="whitespace-pre-wrap break-words text-sm font-mono">
               {springScheduled || "—"}
             </pre>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-medium">Quartz Trigger Builder</div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => copy(quartzTrigger)}
               disabled={!quartzTrigger}
             >
               <ClipboardCopy className="h-4 w-4" /> 复制
             </button>
           </div>
-          <div className="rounded-md border border-gray-200 p-3">
+          <div className="rounded-md border border-border p-3">
             <pre className="whitespace-pre-wrap break-words text-sm font-mono">
               {quartzTrigger || "—"}
             </pre>

@@ -159,16 +159,16 @@ export default function DeterminantMatrix() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-emerald-100 text-emerald-600 rounded-lg">
+          <div className="p-2 bg-success/10 text-success rounded-lg">
             <Sigma className="h-5 w-5" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Matrix Determinant</h1>
+          <h1 className="text-2xl font-bold text-foreground">Matrix Determinant</h1>
         </div>
       }
       toolbar={
         <button
           onClick={handleCompute}
-          className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-emerald-600 text-white text-sm font-medium rounded-lg hover:bg-emerald-700 transition-colors"
+          className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-success text-success-foreground text-sm font-medium rounded-lg hover:bg-success transition-colors"
         >
           <Sigma className="h-3.5 w-3.5" />
           Compute
@@ -184,7 +184,7 @@ export default function DeterminantMatrix() {
             setError("");
           }}
           placeholder={`1 2 3\n4 5 6\n7 8 9\n\nEnter a square matrix. For 3x3 or smaller, step-by-step calculation is shown.`}
-          className="h-full w-full resize-none rounded-lg border border-gray-200 bg-white p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-400"
+          className="h-full w-full resize-none rounded-lg border border-border bg-card p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-border"
           spellCheck={false}
         />
       }
@@ -193,7 +193,7 @@ export default function DeterminantMatrix() {
         output ? (
           <button
             onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors"
           >
             <Copy className="h-3.5 w-3.5" />
             Copy
@@ -201,15 +201,15 @@ export default function DeterminantMatrix() {
         ) : undefined
       }
       output={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-4">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4">
           {output ? (
-            <pre className="text-sm font-mono text-gray-800 leading-relaxed whitespace-pre-wrap">
+            <pre className="text-sm font-mono text-foreground leading-relaxed whitespace-pre-wrap">
               {output}
             </pre>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               {error ? (
-                <span className="text-red-500">{error}</span>
+                <span className="text-destructive">{error}</span>
               ) : (
                 "Determinant will appear here"
               )}

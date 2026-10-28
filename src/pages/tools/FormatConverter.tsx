@@ -104,14 +104,14 @@ export default function FormatConverter() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-orange-100 text-orange-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <ArrowRightLeft className="h-5 w-5" />
           </div>
           <div>
             <h1 className="text-2xl font-semibold">
               {t("tools.format-converter.title", "Format Converter")}
             </h1>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-muted-foreground">
               {t("tools.format-converter.description", "Convert between JSON, YAML, TOML, and XML formats.")}
             </p>
           </div>
@@ -125,13 +125,13 @@ export default function FormatConverter() {
       toolbar={
         <>
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700">
+            <label className="text-sm font-medium text-muted-foreground">
               {t("tools.format-converter.input_label", "Input")}
             </label>
             <select
               value={inputFormat}
               onChange={(e) => setInputFormat(e.target.value as Format)}
-              className="rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="rounded-md border border-border px-3 py-2 text-sm focus:border-border focus:ring-ring"
             >
               {formats.map((f) => (
                 <option key={f} value={f}>
@@ -141,16 +141,16 @@ export default function FormatConverter() {
             </select>
           </div>
 
-          <ArrowRightLeft className="h-4 w-4 text-gray-400" />
+          <ArrowRightLeft className="h-4 w-4 text-muted-foreground" />
 
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700">
+            <label className="text-sm font-medium text-muted-foreground">
               {t("tools.format-converter.output_label", "Output")}
             </label>
             <select
               value={outputFormat}
               onChange={(e) => setOutputFormat(e.target.value as Format)}
-              className="rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="rounded-md border border-border px-3 py-2 text-sm focus:border-border focus:ring-ring"
             >
               {formats.map((f) => (
                 <option key={f} value={f}>
@@ -163,7 +163,7 @@ export default function FormatConverter() {
       }
       inputLabel={t("tools.format-converter.input_label", "Input")}
       input={
-        <Suspense fallback={<div className="flex items-center justify-center h-full text-gray-400"><Loader2 className="h-6 w-6 animate-spin" /></div>}>
+        <Suspense fallback={<div className="flex items-center justify-center h-full text-muted-foreground"><Loader2 className="h-6 w-6 animate-spin" /></div>}>
           <Editor
             height="100%"
             defaultLanguage="json"
@@ -186,11 +186,11 @@ export default function FormatConverter() {
         <button
           onClick={handleCopy}
           disabled={!outputContent}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50 transition-colors"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md bg-muted text-muted-foreground hover:bg-border disabled:opacity-50 transition-colors"
         >
           {copied ? (
             <>
-              <Check className="w-3.5 h-3.5 text-green-600" />
+              <Check className="w-3.5 h-3.5 text-success" />
               {t("tools.format-converter.copied", "Copied")}
             </>
           ) : (
@@ -203,7 +203,7 @@ export default function FormatConverter() {
       }
       output={
         <div className="relative h-full">
-          <Suspense fallback={<div className="flex items-center justify-center h-full text-gray-400"><Loader2 className="h-6 w-6 animate-spin" /></div>}>
+          <Suspense fallback={<div className="flex items-center justify-center h-full text-muted-foreground"><Loader2 className="h-6 w-6 animate-spin" /></div>}>
             <Editor
               height="100%"
               defaultLanguage="yaml"
@@ -221,12 +221,12 @@ export default function FormatConverter() {
             />
           </Suspense>
           {error && (
-            <div className="absolute inset-0 bg-white/90 flex items-center justify-center p-4">
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4 max-w-md w-full">
+            <div className="absolute inset-0 bg-card/90 flex items-center justify-center p-4">
+              <div className="bg-destructive/10 border border-border rounded-lg p-4 max-w-md w-full">
                 <div className="flex items-start gap-3">
                   <div>
-                    <h3 className="text-sm font-medium text-red-800">Conversion Error</h3>
-                    <p className="mt-1 text-sm text-red-700 font-mono break-all">{error}</p>
+                    <h3 className="text-sm font-medium text-destructive">Conversion Error</h3>
+                    <p className="mt-1 text-sm text-destructive font-mono break-all">{error}</p>
                   </div>
                 </div>
               </div>

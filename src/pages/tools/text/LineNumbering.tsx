@@ -45,7 +45,7 @@ export default function LineNumbering() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-pink-100 text-pink-600">
+          <div className="inline-flex p-2 rounded-lg bg-destructive/10 text-destructive">
             <ListOrdered className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">序号工具</h1>
@@ -54,7 +54,7 @@ export default function LineNumbering() {
       toolbar={
         <>
           <select
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            className="rounded-md border border-border px-3 py-2 text-sm"
             value={action}
             onChange={(e) => setAction(e.target.value as Action)}
           >
@@ -64,7 +64,7 @@ export default function LineNumbering() {
           {action === "add" && (
             <>
               <select
-                className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+                className="rounded-md border border-border px-3 py-2 text-sm"
                 value={format}
                 onChange={(e) => setFormat(e.target.value as Format)}
               >
@@ -74,7 +74,7 @@ export default function LineNumbering() {
                 <option value="A.">A. 大写字母</option>
               </select>
               <input
-                className="rounded-md border border-gray-300 px-3 py-2 text-sm w-20"
+                className="rounded-md border border-border px-3 py-2 text-sm w-20"
                 type="number"
                 min={0}
                 value={startNum}
@@ -83,12 +83,12 @@ export default function LineNumbering() {
             </>
           )}
           <button
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-xs hover:bg-gray-50"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-xs hover:bg-muted"
             onClick={() => copy(result)}
             disabled={!result}
           >
             <ClipboardCopy className="h-3.5 w-3.5" /> 复制
-            {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : null}
+            {copied ? <Check className="h-3.5 w-3.5 text-success" /> : null}
           </button>
         </>
       }

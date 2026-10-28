@@ -29,23 +29,19 @@ export default function MultiDiceRoller() {
       title="Multi Dice Roller"
       subtitle="Roll multiple dice for games or probability calculations."
       icon={Dice6}
-      iconBgColor="bg-purple-100"
-      iconColor="text-purple-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["dice", "roller", "probability", "random", "dnd"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Dice type</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Dice type</label>
             <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
               {DIE_OPTIONS.map((d) => (
                 <button
                   key={d.value}
                   onClick={() => setDieType(d.value)}
-                  className={`py-2 rounded-lg border text-sm font-medium transition-colors ${
-                    dieType === d.value
-                      ? "border-purple-500 bg-purple-50 text-purple-700"
-                      : "border-gray-300 text-gray-600 hover:border-gray-400"
-                  }`}
+                  className={`py-2 rounded-lg border text-sm font-medium transition-colors ${ dieType === d.value ? "border-border bg-primary/10 text-primary" : "border-border text-muted-foreground hover:border-border" }`}
                 >
                   {d.label}
                 </button>
@@ -54,7 +50,7 @@ export default function MultiDiceRoller() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">
               Number of dice: {count}
             </label>
             <input
@@ -63,16 +59,16 @@ export default function MultiDiceRoller() {
               max={50}
               value={count}
               onChange={(e) => setCount(Number(e.target.value))}
-              className="w-full accent-purple-600"
+              className="w-full accent-primary"
             />
-            <div className="flex justify-between text-xs text-gray-400 mt-1">
+            <div className="flex justify-between text-xs text-muted-foreground mt-1">
               <span>1</span>
               <span>50</span>
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Roll mode</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Roll mode</label>
             <div className="grid grid-cols-2 gap-2">
               {[
                 { id: "sum", label: "Sum" },
@@ -81,11 +77,7 @@ export default function MultiDiceRoller() {
                 <button
                   key={m.id}
                   onClick={() => setMode(m.id as "sum" | "individual")}
-                  className={`py-2 px-3 rounded-lg border text-sm font-medium transition-colors ${
-                    mode === m.id
-                      ? "border-purple-500 bg-purple-50 text-purple-700"
-                      : "border-gray-300 text-gray-600 hover:border-gray-400"
-                  }`}
+                  className={`py-2 px-3 rounded-lg border text-sm font-medium transition-colors ${ mode === m.id ? "border-border bg-primary/10 text-primary" : "border-border text-muted-foreground hover:border-border" }`}
                 >
                   {m.label}
                 </button>
@@ -95,7 +87,7 @@ export default function MultiDiceRoller() {
 
           <button
             onClick={() => setRoll((r) => r + 1)}
-            className="w-full py-2.5 px-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium"
+            className="w-full py-2.5 px-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary transition-colors text-sm font-medium"
           >
             Roll Dice
           </button>
@@ -103,20 +95,20 @@ export default function MultiDiceRoller() {
       }
       result={
         <div className="space-y-4 text-center">
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Result</p>
+          <p className="text-xs font-medium text-muted-foreground tracking-wide">Result</p>
           <div className="flex flex-wrap items-center justify-center gap-2">
             {result.dice[0].rolls.map((v, i) => (
               <span
                 key={i}
-                className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-purple-50 text-purple-700 font-bold text-lg border border-purple-100"
+                className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary font-bold text-lg border border-border"
               >
                 {v}
               </span>
             ))}
           </div>
           <div className="pt-2">
-            <p className="text-3xl font-bold text-gray-900">{result.total}</p>
-            <p className="text-sm text-gray-500">Total</p>
+            <p className="text-3xl font-bold text-foreground">{result.total}</p>
+            <p className="text-sm text-muted-foreground">Total</p>
           </div>
         </div>
       }

@@ -56,25 +56,25 @@ export default function QrGenerator() {
       {toolSEOContent["qr-generator"] && <ToolPageSEO data={toolSEOContent["qr-generator"]} />}
       <div className="max-w-4xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">QR Code Generator</h1>
+        <h1 className="text-2xl font-bold text-foreground">QR Code Generator</h1>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Configuration */}
-        <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-6">
+        <div className="bg-card rounded-xl border border-border p-6 space-y-6">
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-gray-700">Content</label>
+            <label className="text-sm font-semibold text-muted-foreground">Content</label>
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Enter URL or text"
-              className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 h-32 resize-none"
+              className="w-full border border-border rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring h-32 resize-none"
             />
           </div>
 
           <div className="space-y-4">
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-gray-700">Size (px): {size}</label>
+              <label className="text-sm font-semibold text-muted-foreground">Size (px): {size}</label>
               <input
                 type="range"
                 min="100"
@@ -88,37 +88,37 @@ export default function QrGenerator() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-gray-700">Foreground</label>
+                <label className="text-sm font-semibold text-muted-foreground">Foreground</label>
                 <div className="flex items-center gap-2">
                   <input
                     type="color"
                     value={color}
                     onChange={(e) => setColor(e.target.value)}
-                    className="h-10 w-10 rounded border border-gray-300 cursor-pointer"
+                    className="h-10 w-10 rounded border border-border cursor-pointer"
                   />
                   <input
                     type="text"
                     value={color}
                     onChange={(e) => setColor(e.target.value)}
-                    className="flex-1 border border-gray-300 rounded px-2 py-1 text-sm uppercase"
+                    className="flex-1 border border-border rounded px-2 py-1 text-sm"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-gray-700">Background</label>
+                <label className="text-sm font-semibold text-muted-foreground">Background</label>
                 <div className="flex items-center gap-2">
                   <input
                     type="color"
                     value={bgColor}
                     onChange={(e) => setBgColor(e.target.value)}
-                    className="h-10 w-10 rounded border border-gray-300 cursor-pointer"
+                    className="h-10 w-10 rounded border border-border cursor-pointer"
                   />
                   <input
                     type="text"
                     value={bgColor}
                     onChange={(e) => setBgColor(e.target.value)}
-                    className="flex-1 border border-gray-300 rounded px-2 py-1 text-sm uppercase"
+                    className="flex-1 border border-border rounded px-2 py-1 text-sm"
                   />
                 </div>
               </div>
@@ -127,8 +127,8 @@ export default function QrGenerator() {
         </div>
 
         {/* Preview */}
-        <div className="bg-gray-50 rounded-xl border border-gray-200 p-6 flex flex-col items-center justify-center space-y-6">
-          <div className="relative bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-muted rounded-xl border border-border p-6 flex flex-col items-center justify-center space-y-6">
+          <div className="relative bg-card p-4 rounded-lg border border-border">
             {qrUrl ? (
               <img
                 src={qrUrl}
@@ -137,7 +137,7 @@ export default function QrGenerator() {
                 style={{ width: size > 300 ? "100%" : size, maxWidth: "300px" }}
               />
             ) : (
-              <div className="w-[200px] h-[200px] flex items-center justify-center text-gray-400 text-sm text-center px-4">
+              <div className="w-[200px] h-[200px] flex items-center justify-center text-muted-foreground text-sm text-center px-4">
                 {loading ? (
                   <Loader2 className="h-8 w-8 animate-spin" />
                 ) : (
@@ -146,8 +146,8 @@ export default function QrGenerator() {
               </div>
             )}
             {loading && (
-              <div className="absolute inset-0 bg-white/80 flex items-center justify-center">
-                <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+              <div className="absolute inset-0 bg-card/80 flex items-center justify-center">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
               </div>
             )}
           </div>
@@ -155,31 +155,31 @@ export default function QrGenerator() {
           <button
             onClick={handleDownload}
             disabled={!qrUrl}
-            className="bg-blue-600 text-white px-8 py-2.5 rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-sm transition-all hover:shadow-md"
+            className="bg-primary text-primary-foreground px-8 py-2.5 rounded-lg font-medium hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors transition-opacity"
           >
             <Download className="h-4 w-4" />
             Download PNG
           </button>
         </div>
       </div>
-      <div className="inline-flex items-center gap-1 mt-2 text-xs text-gray-500">
+      <div className="inline-flex items-center gap-1 mt-2 text-xs text-muted-foreground">
         <Shield className="h-3 w-3" />
         数据仅在浏览器本地处理，不会上传到服务器。
       </div>
-      <div className="mt-8 p-6 bg-white rounded-xl border border-gray-200">
+      <div className="mt-8 p-6 bg-card rounded-xl border border-border">
         <h2 className="text-lg font-semibold mb-4">Related Tools</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          <Link to="/image-compressor" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">Image Compressor</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/image-compressor" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">Image Compressor</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
-          <Link to="/url-encoder" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">URL 编码/解码</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/url-encoder" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">URL 编码/解码</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
-          <Link to="/base64" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">Base64 编码/解码</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/base64" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">Base64 编码/解码</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
         </div>
       </div>

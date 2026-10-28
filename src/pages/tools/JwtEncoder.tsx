@@ -90,7 +90,7 @@ export default function JwtEncoder() {
     <EditorSplitLayout
       title={
         <>
-          <div className="p-2 bg-emerald-100 text-emerald-600 rounded-lg">
+          <div className="p-2 bg-success/10 text-success rounded-lg">
             <ShieldCheck className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-bold">JWT Encoder / Decoder</h1>
@@ -104,12 +104,12 @@ export default function JwtEncoder() {
               value={secret}
               onChange={(e) => setSecret(e.target.value)}
               placeholder="Secret key"
-              className="px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-emerald-500 w-48"
+              className="px-3 py-1.5 border border-border rounded-md text-sm focus:ring-2 focus:ring-ring w-48"
             />
           </div>
           <button
             onClick={decodeJwt}
-            className="ml-auto flex items-center gap-2 px-3 py-1.5 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors text-sm"
+            className="ml-auto flex items-center gap-2 px-3 py-1.5 text-muted-foreground hover:bg-muted rounded-lg transition-colors text-sm"
           >
             Decode JWT ↓
           </button>
@@ -118,42 +118,42 @@ export default function JwtEncoder() {
       inputLabel="Encode: Header + Payload"
       input={
         <div className="h-full flex flex-col overflow-auto p-3 gap-3">
-          <div className="text-xs text-gray-500 mb-1">Header (JSON)</div>
+          <div className="text-xs text-muted-foreground mb-1">Header (JSON)</div>
           <textarea
             value={headerJson}
             onChange={(e) => setHeaderJson(e.target.value)}
-            className="w-full h-24 resize-none px-3 py-2 border border-gray-300 rounded-md font-mono text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+            className="w-full h-24 resize-none px-3 py-2 border border-border rounded-md font-mono text-sm focus:ring-2 focus:ring-ring focus:outline-none"
             spellCheck={false}
           />
           {headerError && (
-            <div className="text-xs text-red-600 flex items-center gap-1">
+            <div className="text-xs text-destructive flex items-center gap-1">
               <AlertTriangle className="h-3 w-3" /> {headerError}
             </div>
           )}
-          <div className="text-xs text-gray-500 mb-1">Payload (JSON)</div>
+          <div className="text-xs text-muted-foreground mb-1">Payload (JSON)</div>
           <textarea
             value={payloadJson}
             onChange={(e) => setPayloadJson(e.target.value)}
-            className="flex-1 min-h-[120px] w-full resize-none px-3 py-2 border border-gray-300 rounded-md font-mono text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+            className="flex-1 min-h-[120px] w-full resize-none px-3 py-2 border border-border rounded-md font-mono text-sm focus:ring-2 focus:ring-ring focus:outline-none"
             spellCheck={false}
           />
           {payloadError && (
-            <div className="text-xs text-red-600 flex items-center gap-1">
+            <div className="text-xs text-destructive flex items-center gap-1">
               <AlertTriangle className="h-3 w-3" /> {payloadError}
             </div>
           )}
           {token && (
             <div className="mt-1">
-              <div className="text-xs text-gray-500 mb-1">Generated JWT</div>
+              <div className="text-xs text-muted-foreground mb-1">Generated JWT</div>
               <div className="flex items-center gap-2">
-                <pre className="flex-1 text-xs font-mono bg-gray-50 border border-gray-200 rounded-md p-2 overflow-auto whitespace-pre-wrap break-all">
+                <pre className="flex-1 text-xs font-mono bg-muted border border-border rounded-md p-2 overflow-auto whitespace-pre-wrap break-all">
                   {token}
                 </pre>
-                <button onClick={copyToken} className="p-2 rounded-md hover:bg-gray-100">
-                  {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4 text-gray-500" />}
+                <button onClick={copyToken} className="p-2 rounded-md hover:bg-muted">
+                  {copied ? <Check className="h-4 w-4 text-success" /> : <Copy className="h-4 w-4 text-muted-foreground" />}
                 </button>
               </div>
-              <p className="text-xs text-amber-600 mt-1">
+              <p className="text-xs text-primary mt-1">
                 ⚠ Browser-only encoding (no real HMAC signing). Use for structure/payload testing only.
               </p>
             </div>
@@ -167,24 +167,24 @@ export default function JwtEncoder() {
             value={inputJwt}
             onChange={(e) => setInputJwt(e.target.value)}
             placeholder="Paste a JWT token here..."
-            className="w-full h-24 resize-none px-3 py-2 border border-gray-300 rounded-md font-mono text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+            className="w-full h-24 resize-none px-3 py-2 border border-border rounded-md font-mono text-sm focus:ring-2 focus:ring-ring focus:outline-none"
             spellCheck={false}
           />
           {decodeError && (
-            <div className="text-xs text-red-600">{decodeError}</div>
+            <div className="text-xs text-destructive">{decodeError}</div>
           )}
           {decodedHeader && (
             <div>
-              <div className="text-xs text-gray-500 mb-1">Header</div>
-              <pre className="text-xs font-mono bg-gray-50 border border-gray-200 rounded-md p-2 overflow-auto whitespace-pre-wrap">
+              <div className="text-xs text-muted-foreground mb-1">Header</div>
+              <pre className="text-xs font-mono bg-muted border border-border rounded-md p-2 overflow-auto whitespace-pre-wrap">
                 {decodedHeader}
               </pre>
             </div>
           )}
           {decodedPayload && (
             <div className="flex-1">
-              <div className="text-xs text-gray-500 mb-1">Payload</div>
-              <pre className="text-xs font-mono bg-gray-50 border border-gray-200 rounded-md p-2 overflow-auto whitespace-pre-wrap h-full">
+              <div className="text-xs text-muted-foreground mb-1">Payload</div>
+              <pre className="text-xs font-mono bg-muted border border-border rounded-md p-2 overflow-auto whitespace-pre-wrap h-full">
                 {decodedPayload}
               </pre>
             </div>

@@ -102,105 +102,105 @@ export default function PromptBuilder() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-purple-100 text-purple-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <MessageSquare className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Prompt 构建器</h1>
       </div>
 
-      <div className="text-sm text-gray-500 flex items-center gap-1">
+      <div className="text-sm text-muted-foreground flex items-center gap-1">
         <span>数据仅在浏览器本地处理，不会上传到服务器。</span>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-4">
           {/* 角色设定 */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-2">
-            <label className="text-sm font-medium text-gray-700">角色设定 (System Prompt)</label>
+          <div className="bg-card rounded-lg border border-border p-4 space-y-2">
+            <label className="text-sm font-medium text-muted-foreground">角色设定 (System Prompt)</label>
             <textarea
               value={sections.role}
               onChange={(e) => updateSection("role", e.target.value)}
               placeholder="例如：你是一位资深后端工程师，擅长 Python 和系统架构设计..."
-              className="w-full h-24 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-y"
+              className="w-full h-24 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring resize-y"
             />
           </div>
 
           {/* 任务描述 */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-2">
-            <label className="text-sm font-medium text-gray-700">任务描述 (User Task)</label>
+          <div className="bg-card rounded-lg border border-border p-4 space-y-2">
+            <label className="text-sm font-medium text-muted-foreground">任务描述 (User Task)</label>
             <textarea
               value={sections.task}
               onChange={(e) => updateSection("task", e.target.value)}
               placeholder="描述需要完成的具体任务..."
-              className="w-full h-24 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-y"
+              className="w-full h-24 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring resize-y"
             />
           </div>
 
           {/* 约束条件 */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-2">
-            <label className="text-sm font-medium text-gray-700">约束条件 (Constraints)</label>
+          <div className="bg-card rounded-lg border border-border p-4 space-y-2">
+            <label className="text-sm font-medium text-muted-foreground">约束条件 (Constraints)</label>
             <textarea
               value={sections.constraints}
               onChange={(e) => updateSection("constraints", e.target.value)}
               placeholder="例如：输出格式为 JSON、字数不超过 500..."
-              className="w-full h-24 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-y"
+              className="w-full h-24 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring resize-y"
             />
           </div>
 
           {/* 示例 */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-2">
-            <label className="text-sm font-medium text-gray-700">示例 (Few-shot Examples)</label>
+          <div className="bg-card rounded-lg border border-border p-4 space-y-2">
+            <label className="text-sm font-medium text-muted-foreground">示例 (Few-shot Examples)</label>
             <textarea
               value={sections.examples}
               onChange={(e) => updateSection("examples", e.target.value)}
               placeholder="输入示例：xxx&#10;输出示例：xxx&#10;&#10;输入示例：yyy&#10;输出示例：yyy"
-              className="w-full h-24 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-y font-mono text-sm"
+              className="w-full h-24 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring resize-y font-mono text-sm"
             />
           </div>
 
           {/* 格式要求 */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-2">
-            <label className="text-sm font-medium text-gray-700">格式要求 (Output Format)</label>
+          <div className="bg-card rounded-lg border border-border p-4 space-y-2">
+            <label className="text-sm font-medium text-muted-foreground">格式要求 (Output Format)</label>
             <textarea
               value={sections.format}
               onChange={(e) => updateSection("format", e.target.value)}
               placeholder="例如：使用 Markdown 表格返回结果..."
-              className="w-full h-24 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-y"
+              className="w-full h-24 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring resize-y"
             />
           </div>
 
           {/* Action buttons */}
           <div className="flex flex-wrap gap-3">
             <button
-              className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2"
+              className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2"
               onClick={generate}
             >
               <FileText className="h-4 w-4" />
               生成 Prompt
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2"
               onClick={saveDraft}
             >
               <Save className="h-4 w-4" />
               保存草稿
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2"
               onClick={loadDraft}
             >
               <FolderOpen className="h-4 w-4" />
               加载草稿
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2"
               onClick={clear}
             >
               <Trash2 className="h-4 w-4" />
               清空
             </button>
             {feedback && (
-              <span className="inline-flex items-center gap-1 text-sm text-green-600 self-center">
+              <span className="inline-flex items-center gap-1 text-sm text-success self-center">
                 <Check className="h-4 w-4" />
                 {feedback}
               </span>
@@ -209,17 +209,17 @@ export default function PromptBuilder() {
         </div>
 
         {/* Output */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-card rounded-lg border border-border p-4">
           <div className="font-medium mb-2">生成的 Prompt</div>
           <textarea
             readOnly
             value={output}
             placeholder="点击上方「生成 Prompt」按钮组装各区块内容..."
-            className="w-full h-64 rounded-md border border-gray-300 px-3 py-2 resize-y font-mono text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full h-64 rounded-md border border-border px-3 py-2 resize-y font-mono text-sm bg-muted focus:outline-none focus:ring-2 focus:ring-ring"
           />
           <div className="flex gap-3 mt-3">
             <button
-              className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
               onClick={copy}
               disabled={!output}
             >
@@ -227,7 +227,7 @@ export default function PromptBuilder() {
               {copied ? "已复制" : "复制"}
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
               onClick={download}
               disabled={!output}
             >

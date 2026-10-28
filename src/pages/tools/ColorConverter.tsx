@@ -105,33 +105,31 @@ export default function ColorConverter() {
       title="Color Converter"
       subtitle="Convert between HEX, RGB, and HSL color formats instantly."
       icon={Droplets}
-      iconBgColor="bg-blue-100"
-      iconColor="text-blue-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["color converter", "hex to rgb", "rgb to hsl", "color code", "color picker"]}
       children={
         <div className="space-y-6">
           {/* Color preview */}
           <div className="flex items-center gap-4">
             <div
-              className="w-20 h-20 rounded-xl border-2 border-gray-200 shadow-inner"
+              className="w-20 h-20 rounded-xl border-2 border-border shadow-inner"
               style={{ backgroundColor: hexValid ? hex : "#ccc" }}
             />
             <div>
-              <div className="font-mono text-sm text-gray-700">{hexValid ? hex : "Invalid HEX"}</div>
-              <div className="text-xs text-gray-500 mt-1">{rgbStr}</div>
-              <div className="text-xs text-gray-500">{hslStr}</div>
+              <div className="font-mono text-sm text-muted-foreground">{hexValid ? hex : "Invalid HEX"}</div>
+              <div className="text-xs text-muted-foreground mt-1">{rgbStr}</div>
+              <div className="text-xs text-muted-foreground">{hslStr}</div>
             </div>
           </div>
 
           {/* Mode tabs */}
-          <div className="flex rounded-lg border border-gray-300 overflow-hidden text-sm">
+          <div className="flex rounded-lg border border-border overflow-hidden text-sm">
             {(["hex", "rgb", "hsl"] as InputMode[]).map((m) => (
               <button
                 key={m}
                 onClick={() => setMode(m)}
-                className={`flex-1 py-2 font-medium transition-colors ${
-                  mode === m ? "bg-blue-600 text-white" : "bg-white text-gray-700 hover:bg-gray-50"
-                }`}
+                className={`flex-1 py-2 font-medium transition-colors ${ mode === m ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted" }`}
               >
                 {m.toUpperCase()}
               </button>
@@ -141,12 +139,12 @@ export default function ColorConverter() {
           {/* Input fields */}
           {mode === "hex" && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">HEX</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-1">HEX</label>
               <input
                 type="text"
                 value={hex}
                 onChange={(e) => setHex(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg font-mono text-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-3 border border-border rounded-lg font-mono text-lg focus:ring-2 focus:ring-ring focus:border-border"
                 placeholder="#3b82f6"
               />
             </div>
@@ -160,14 +158,14 @@ export default function ColorConverter() {
                 { label: "B", value: b, set: setB, max: 255 },
               ].map(({ label, value, set, max }) => (
                 <div key={label}>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                  <label className="block text-sm font-medium text-muted-foreground mb-1">{label}</label>
                   <input
                     type="number"
                     min={0}
                     max={max}
                     value={value}
                     onChange={(e) => set(Number(e.target.value))}
-                    className="w-full px-3 py-3 border border-gray-300 rounded-lg font-mono text-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-3 border border-border rounded-lg font-mono text-lg focus:ring-2 focus:ring-ring"
                   />
                   <input
                     type="range"
@@ -175,7 +173,7 @@ export default function ColorConverter() {
                     max={max}
                     value={value}
                     onChange={(e) => set(Number(e.target.value))}
-                    className="w-full mt-1 accent-blue-600"
+                    className="w-full mt-1 accent-primary"
                   />
                 </div>
               ))}
@@ -190,14 +188,14 @@ export default function ColorConverter() {
                 { label: "L (Lightness)", value: l, set: setL, max: 100, suffix: "%" },
               ].map(({ label, value, set, max, suffix }) => (
                 <div key={label}>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">{label}: {value}{suffix}</label>
+                  <label className="block text-sm font-medium text-muted-foreground mb-1">{label}: {value}{suffix}</label>
                   <input
                     type="range"
                     min={0}
                     max={max}
                     value={value}
                     onChange={(e) => set(Number(e.target.value))}
-                    className="w-full accent-blue-600"
+                    className="w-full accent-primary"
                   />
                 </div>
               ))}
@@ -207,24 +205,24 @@ export default function ColorConverter() {
       }
       result={
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Output Formats</h3>
+          <h3 className="text-sm font-semibold text-muted-foreground tracking-wide">Output Formats</h3>
           {[
             { label: "HEX", value: hexValid ? hex : "—", key: "hex" },
             { label: "RGB", value: rgbStr, key: "rgb" },
             { label: "HSL", value: hslStr, key: "hsl" },
             { label: "CSS Variable", value: hexValid ? `--color: ${hex};` : "—", key: "css" },
           ].map(({ label, value, key }) => (
-            <div key={key} className="flex items-center justify-between bg-gray-50 rounded-lg px-4 py-3">
+            <div key={key} className="flex items-center justify-between bg-muted rounded-lg px-4 py-3">
               <div>
-                <div className="text-xs text-gray-500 mb-0.5">{label}</div>
-                <div className="font-mono text-sm text-gray-800">{value}</div>
+                <div className="text-xs text-muted-foreground mb-0.5">{label}</div>
+                <div className="font-mono text-sm text-foreground">{value}</div>
               </div>
               <button
                 onClick={() => copyValue(value, key)}
-                className="p-2 rounded-md hover:bg-gray-200 transition-colors"
+                className="p-2 rounded-md hover:bg-border transition-colors"
                 disabled={value === "—"}
               >
-                {copied === key ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4 text-gray-500" />}
+                {copied === key ? <Check className="h-4 w-4 text-success" /> : <Copy className="h-4 w-4 text-muted-foreground" />}
               </button>
             </div>
           ))}

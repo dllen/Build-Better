@@ -134,24 +134,20 @@ export default function CssTextGlitchGenerator() {
       title="CSS Text Glitch Effect Generator"
       subtitle="Add glitch effects to text — RGB split, shake, or sliced displacement with pure CSS animations."
       icon={Zap}
-      iconBgColor="bg-amber-100"
-      iconColor="text-amber-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["glitch effect", "css glitch", "text animation", "rgb split", "cyberpunk text"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Effect type</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Effect type</label>
             <div className="grid grid-cols-3 gap-2">
               {TYPES.map((t) => (
                 <button
                   key={t.id}
                   type="button"
                   onClick={() => setType(t.id)}
-                  className={`py-2 px-2 text-sm rounded-lg border transition-colors ${
-                    type === t.id
-                      ? "border-amber-500 bg-amber-50 text-amber-700 font-medium"
-                      : "border-gray-300 text-gray-600 hover:border-gray-400"
-                  }`}
+                  className={`py-2 px-2 text-sm rounded-lg border transition-colors ${ type === t.id ? "border-border bg-primary/10 text-primary font-medium" : "border-border text-muted-foreground hover:border-border" }`}
                 >
                   {t.label}
                 </button>
@@ -160,18 +156,18 @@ export default function CssTextGlitchGenerator() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Text</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Text</label>
             <input
               type="text"
               value={text}
               onChange={(e) => setText(e.target.value)}
               maxLength={20}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none bg-white"
+              className="w-full rounded-lg border border-border px-3 py-2.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">
               Speed: {speed.toFixed(1)}s per cycle
             </label>
             <input
@@ -181,22 +177,22 @@ export default function CssTextGlitchGenerator() {
               step={0.1}
               value={speed}
               onChange={(e) => setSpeed(Number(e.target.value))}
-              className="w-full accent-amber-600"
+              className="w-full accent-primary"
             />
           </div>
         </div>
       }
       result={
         <div>
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Live preview</p>
-          <div className="flex items-center justify-center rounded-lg border border-gray-200 bg-gray-950 py-10 mb-4">
+          <p className="text-xs font-medium text-muted-foreground tracking-wide mb-2">Live preview</p>
+          <div className="flex items-center justify-center rounded-lg border border-border bg-background py-10 mb-4">
             <style>{previewCss}</style>
             {type === "slices" ? (
-              <div className="glitch text-4xl tracking-wider" data-text={text || "GLITCH"}>
+              <div className="glitch text-4xl" data-text={text || "GLITCH"}>
                 {text || "GLITCH"}
               </div>
             ) : (
-              <div className="glitch text-4xl tracking-wider">{text || "GLITCH"}</div>
+              <div className="glitch text-4xl">{text || "GLITCH"}</div>
             )}
           </div>
           <div className="space-y-3">

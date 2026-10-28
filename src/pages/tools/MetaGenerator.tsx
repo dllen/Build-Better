@@ -45,45 +45,45 @@ export default function MetaGenerator() {
   return (
     <CalculatorShell
       title="Meta Tag Generator"
-      subtitle="Generate SEO, Open Graph and Twitter Card meta tags — ready to paste into your <head>."
+      subtitle="Generate SEO, Open Graph and Twitter Card meta tags, ready to paste into your head element."
       icon={FileSignature}
-      iconBgColor="bg-rose-100"
-      iconColor="text-rose-600"
+      iconBgColor="bg-destructive/10"
+      iconColor="text-destructive"
       keywords={["meta tag generator", "open graph generator", "twitter card", "seo meta tags", "og image meta"]}
       children={
         <div className="space-y-5">
           {GROUPS.map((group) => (
             <div key={group}>
-              <h3 className="text-sm font-semibold text-gray-700 mb-3">
+              <h3 className="text-sm font-semibold text-muted-foreground mb-3">
                 {group === "Basic" ? "Basic SEO" : group === "Open Graph" ? "Open Graph (Facebook, LinkedIn…)" : "Twitter / X Card"}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {FIELDS.filter((f) => f.group === group).map((f) => (
                   <div key={f.key}>
-                    <label className="block text-xs text-gray-500 mb-1">{f.label}</label>
+                    <label className="block text-xs text-muted-foreground mb-1">{f.label}</label>
                     <input value={(values[f.key] as string) || ""}
                       onChange={(e) => setValues((v) => ({ ...v, [f.key]: e.target.value }))}
                       placeholder={f.placeholder}
-                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-rose-500" />
+                      className="w-full px-3 py-2.5 border border-border rounded-lg text-sm focus:ring-2 focus:ring-ring" />
                   </div>
                 ))}
               </div>
             </div>
           ))}
-          <p className="text-xs text-gray-400">Empty fields are omitted. Title/description/image auto-fallback between SEO / OG / Twitter.</p>
+          <p className="text-xs text-muted-foreground">Empty fields are omitted. Title/description/image auto-fallback between SEO / OG / Twitter.</p>
         </div>
       }
       result={
         <div>
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-sm font-semibold text-gray-700">Generated HTML</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground">Generated HTML</h3>
             <button onClick={handleCopy}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
+              className="flex items-center gap-1.5 px-3 py-1.5 text-muted-foreground hover:bg-muted rounded-lg text-sm">
               {copied ? <Check size={14} /> : <Copy size={14} />} {copied ? "Copied!" : "Copy"}
             </button>
           </div>
           <textarea readOnly value={output} rows={16}
-            className="w-full px-3 py-2.5 border border-gray-200 rounded-lg font-mono text-xs bg-gray-50 leading-relaxed" />
+            className="w-full px-3 py-2.5 border border-border rounded-lg font-mono text-xs bg-muted leading-relaxed" />
         </div>
       }
     />

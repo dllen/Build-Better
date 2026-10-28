@@ -32,22 +32,22 @@ export default function EncryptTools() {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Encryption & Encoding Suite</h1>
-        <p className="text-gray-600">Client-side encryption, hashing, encoding, and password tools.</p>
+        <h1 className="text-3xl font-bold text-foreground mb-2">Encryption & Encoding Suite</h1>
+        <p className="text-muted-foreground">Client-side encryption, hashing, encoding, and password tools.</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {TOOLS.map((tool) => {
           const Icon = tool.icon;
           return (
             <Link key={tool.path} to={tool.path}
-              className="group bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md hover:border-indigo-300 transition-all">
+              className="group bg-card p-6 rounded-xl border border-border hover:border-border transition-colors">
               <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-indigo-50 text-indigo-600 rounded-lg group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                <div className="p-3 bg-primary/10 text-primary rounded-lg group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                   <Icon className="h-5 w-5" />
                 </div>
-                <h3 className="font-semibold text-gray-900">{tool.title}</h3>
+                <h3 className="font-semibold text-foreground">{tool.title}</h3>
               </div>
-              <p className="text-sm text-gray-500">{tool.desc}</p>
+              <p className="text-sm text-muted-foreground">{tool.desc}</p>
             </Link>
           );
         })}

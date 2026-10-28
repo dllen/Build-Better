@@ -30,7 +30,7 @@ export default function MarkdownHtml() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-green-100 text-green-600">
+          <div className="inline-flex p-2 rounded-lg bg-success/10 text-success">
             <FileText className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">Markdown ↔ HTML Converter</h1>
@@ -39,13 +39,13 @@ export default function MarkdownHtml() {
       toolbar={
         <>
           <button
-            className="px-4 py-2 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700"
+            className="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm hover:bg-primary"
             onClick={() => setHtml(htmlFromMarkdown)}
           >
             Convert → HTML
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700"
+            className="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm hover:bg-primary"
             onClick={() => setMarkdown(markdownFromHtml)}
           >
             Convert → Markdown
@@ -55,11 +55,11 @@ export default function MarkdownHtml() {
       inputLabel="Markdown"
       inputActions={
         <button
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-xs hover:bg-gray-50"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-xs hover:bg-muted"
           onClick={() => copyText(markdown, "md")}
           disabled={!markdown}
         >
-          {copied === "md" ? <Check className="h-3.5 w-3.5 text-green-600" /> : <Copy className="h-3.5 w-3.5" />}
+          {copied === "md" ? <Check className="h-3.5 w-3.5 text-success" /> : <Copy className="h-3.5 w-3.5" />}
           Copy
         </button>
       }
@@ -74,11 +74,11 @@ export default function MarkdownHtml() {
       outputLabel="HTML"
       outputActions={
         <button
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-xs hover:bg-gray-50"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-xs hover:bg-muted"
           onClick={() => copyText(html, "html")}
           disabled={!html}
         >
-          {copied === "html" ? <Check className="h-3.5 w-3.5 text-green-600" /> : <Copy className="h-3.5 w-3.5" />}
+          {copied === "html" ? <Check className="h-3.5 w-3.5 text-success" /> : <Copy className="h-3.5 w-3.5" />}
           Copy
         </button>
       }
@@ -92,13 +92,13 @@ export default function MarkdownHtml() {
       }
       footer={
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-card rounded-lg border border-border p-4">
             <div className="font-medium mb-2 text-sm">HTML Preview (from Markdown)</div>
             <pre className="text-xs overflow-auto max-h-48 whitespace-pre-wrap break-words">
               {htmlFromMarkdown}
             </pre>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-card rounded-lg border border-border p-4">
             <div className="font-medium mb-2 text-sm">Markdown Preview (from HTML)</div>
             <pre className="text-xs overflow-auto max-h-48 whitespace-pre-wrap break-words">
               {markdownFromHtml}

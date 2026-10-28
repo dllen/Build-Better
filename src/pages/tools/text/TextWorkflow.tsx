@@ -106,7 +106,7 @@ export default function TextWorkflow() {
   return (
     <div className="max-w-6xl mx-auto p-4 space-y-6">
       <div className="flex items-center gap-2 mb-6">
-        <div className="p-2 bg-slate-100 text-slate-600 rounded-lg">
+        <div className="p-2 bg-muted text-muted-foreground rounded-lg">
           <Workflow size={24} />
         </div>
         <h1 className="text-2xl font-bold">Text Workflow Automation</h1>
@@ -114,18 +114,18 @@ export default function TextWorkflow() {
 
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-1 space-y-4">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 h-full flex flex-col">
-            <h3 className="font-semibold text-gray-700 mb-4">Workflow Steps</h3>
+          <div className="bg-card rounded-xl border border-border p-4 h-full flex flex-col">
+            <h3 className="font-semibold text-muted-foreground mb-4">Workflow Steps</h3>
             
             <div className="flex-1 space-y-3 overflow-y-auto min-h-[300px] mb-4">
               {steps.map((step, index) => (
                 <div key={step.id} className="relative">
-                  <div className="p-3 bg-slate-50 rounded-lg border border-slate-200 group">
+                  <div className="p-3 bg-muted rounded-lg border border-border group">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium text-sm text-slate-700">
+                      <span className="font-medium text-sm text-muted-foreground">
                         {index + 1}. {OPERATIONS.find(op => op.value === step.type)?.label}
                       </span>
-                      <button onClick={() => removeStep(step.id)} className="text-slate-400 hover:text-red-500">
+                      <button onClick={() => removeStep(step.id)} className="text-muted-foreground hover:text-destructive">
                         <Trash2 size={14} />
                       </button>
                     </div>
@@ -147,7 +147,7 @@ export default function TextWorkflow() {
                           onChange={e => updateStepParam(step.id, 'replace', e.target.value)}
                           className="w-full px-2 py-1 text-xs border rounded"
                         />
-                        <label className="flex items-center gap-1 text-xs text-slate-600">
+                        <label className="flex items-center gap-1 text-xs text-muted-foreground">
                           <input 
                             type="checkbox" 
                             checked={Boolean(step.params.regex || false)}
@@ -158,7 +158,7 @@ export default function TextWorkflow() {
                     )}
                     
                     {step.type === 'sort' && (
-                      <label className="flex items-center gap-1 text-xs text-slate-600">
+                      <label className="flex items-center gap-1 text-xs text-muted-foreground">
                         <input 
                           type="checkbox" 
                           checked={Boolean(step.params.desc || false)}
@@ -179,7 +179,7 @@ export default function TextWorkflow() {
                     )}
                   </div>
                   {index < steps.length - 1 && (
-                    <div className="flex justify-center my-1 text-slate-300">
+                    <div className="flex justify-center my-1 text-muted-foreground">
                       <ArrowDown size={16} />
                     </div>
                   )}
@@ -187,7 +187,7 @@ export default function TextWorkflow() {
               ))}
               
               {steps.length === 0 && (
-                <div className="text-center py-8 text-slate-400 text-sm">
+                <div className="text-center py-8 text-muted-foreground text-sm">
                   No steps added. Add operations to build your workflow.
                 </div>
               )}
@@ -198,7 +198,7 @@ export default function TextWorkflow() {
                 <button
                   key={op.value}
                   onClick={() => addStep(op.value)}
-                  className="px-2 py-1.5 text-xs bg-white border border-slate-200 hover:border-slate-400 rounded text-slate-700 transition-colors text-left flex items-center gap-1"
+                  className="px-2 py-1.5 text-xs bg-muted hover:border-border rounded text-muted-foreground transition-colors text-left flex items-center gap-1"
                 >
                   <Plus size={12} /> {op.label}
                 </button>
@@ -208,10 +208,10 @@ export default function TextWorkflow() {
         </div>
 
         <div className="lg:col-span-2 space-y-4">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+          <div className="bg-card rounded-xl border border-border p-4">
             <div className="flex justify-between items-center mb-2">
-              <label className="text-sm font-medium text-gray-700">Input</label>
-              <button onClick={() => setInput('')} className="text-xs text-slate-500 hover:text-slate-700 flex items-center gap-1">
+              <label className="text-sm font-medium text-muted-foreground">Input</label>
+              <button onClick={() => setInput('')} className="text-xs text-muted-foreground hover:text-muted-foreground flex items-center gap-1">
                 <RotateCcw size={12} /> Clear
               </button>
             </div>
@@ -219,23 +219,23 @@ export default function TextWorkflow() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Enter text to process..."
-              className="w-full h-48 p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent resize-none font-mono text-sm"
+              className="w-full h-48 p-3 border border-border rounded-lg focus:ring-2 focus:ring-border focus:border-transparent resize-none font-mono text-sm"
             />
           </div>
 
           <div className="flex justify-center">
             <button
               onClick={runWorkflow}
-              className="flex items-center gap-2 px-6 py-2 bg-slate-800 text-white rounded-full hover:bg-slate-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="flex items-center gap-2 px-6 py-2 bg-card text-secondary-foreground rounded-full hover:bg-secondary transition-colors transform hover:-translate-y-0.5"
             >
               <Play size={18} fill="currentColor" /> Run Workflow
             </button>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+          <div className="bg-card rounded-xl border border-border p-4">
             <div className="flex justify-between items-center mb-2">
-              <label className="text-sm font-medium text-gray-700">Output</label>
-              <button onClick={handleCopy} className="text-xs text-slate-500 hover:text-slate-700 flex items-center gap-1">
+              <label className="text-sm font-medium text-muted-foreground">Output</label>
+              <button onClick={handleCopy} className="text-xs text-muted-foreground hover:text-muted-foreground flex items-center gap-1">
                 {copied ? <Check size={12} /> : <Copy size={12} />} {copied ? 'Copied' : 'Copy'}
               </button>
             </div>
@@ -243,7 +243,7 @@ export default function TextWorkflow() {
               readOnly
               value={output}
               placeholder="Result will appear here..."
-              className="w-full h-48 p-3 border border-gray-200 rounded-lg bg-slate-50 font-mono text-sm resize-none"
+              className="w-full h-48 p-3 border border-border rounded-lg bg-muted font-mono text-sm resize-none"
             />
           </div>
         </div>

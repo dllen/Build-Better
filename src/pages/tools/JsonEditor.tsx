@@ -111,8 +111,8 @@ export default function JsonEditorTool() {
       <div className="flex-shrink-0 mb-3">
         <TrustBanner />
         <div className="flex items-center gap-3 mt-2">
-          <div className="p-2 rounded-lg bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 border border-cyan-500/30">
-            <FileCode2 className="w-5 h-5 text-cyan-400" />
+          <div className="p-2 rounded-lg bg-gradient-to-br from-primary/20 to-primary/20 border border-border/30">
+            <FileCode2 className="w-5 h-5 text-info" />
           </div>
           <div className="flex-1">
             <h1 className="text-lg font-bold">{t("tools.json-editor.name", "JSON Editor")}</h1>
@@ -122,18 +122,18 @@ export default function JsonEditorTool() {
       </div>
 
       {wasFixed && (
-        <div className="flex-shrink-0 mb-3 p-2 rounded-lg bg-amber-500/10 border border-amber-500/20 text-xs text-amber-400 flex items-center gap-2">
+        <div className="flex-shrink-0 mb-3 p-2 rounded-lg bg-primary/10 border border-border/20 text-xs text-primary flex items-center gap-2">
           <AlertCircle className="w-3.5 h-3.5 shrink-0" />
           检测到并自动修复了 JSON 格式问题（尾部逗号、注释等）
         </div>
       )}
 
       {parseError && (
-        <div className="flex-shrink-0 mb-3 p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+        <div className="flex-shrink-0 mb-3 p-3 rounded-lg bg-destructive/10 border border-border/20">
           <div className="flex items-start gap-2">
-            <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+            <AlertCircle className="w-4 h-4 text-destructive shrink-0 mt-0.5" />
             <div>
-              <p className="text-sm font-medium text-red-400">JSON 解析错误</p>
+              <p className="text-sm font-medium text-destructive">JSON 解析错误</p>
               <p className="text-xs text-muted-foreground mt-1 font-mono bg-muted/50 p-2 rounded">{parseError}</p>
             </div>
           </div>
@@ -146,9 +146,7 @@ export default function JsonEditorTool() {
           <button
             key={mode}
             onClick={() => setMode(mode)}
-            className={`flex-shrink-0 px-2 py-1 text-[11px] rounded-md transition-colors ${
-              currentMode === mode ? "bg-cyan-500/15 text-cyan-400" : "text-muted-foreground"
-            }`}
+            className={`flex-shrink-0 px-2 py-1 text-[11px] rounded-md transition-colors ${ currentMode === mode ? "bg-cool/15 text-cool" : "text-muted-foreground" }`}
           >
             {MODE_CONFIG[mode].label}
           </button>
@@ -156,7 +154,7 @@ export default function JsonEditorTool() {
         <span className="flex-shrink-0 w-px h-4 bg-border" />
         <button onClick={handleCopy} className="flex-shrink-0 px-2 py-1 text-[11px] text-muted-foreground">复制</button>
         <button onClick={handleFormat} className="flex-shrink-0 px-2 py-1 text-[11px] text-muted-foreground">格式</button>
-        <button onClick={() => setPanelOpen(!panelOpen)} className="flex-shrink-0 px-2 py-1 text-[11px] text-cyan-400">
+        <button onClick={() => setPanelOpen(!panelOpen)} className="flex-shrink-0 px-2 py-1 text-[11px] text-info">
           {panelOpen ? "隐藏" : "面板"}
         </button>
       </div>

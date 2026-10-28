@@ -80,28 +80,28 @@ export default function BarcodeGenerator() {
       title="Barcode Generator"
       subtitle="Generate barcodes in 10+ formats — Code 128, EAN, UPC, Code 39, and more."
       icon={ScanLine}
-      iconBgColor="bg-teal-100"
-      iconColor="text-teal-600"
+      iconBgColor="bg-info/10"
+      iconColor="text-info"
       keywords={["barcode", "ean", "upc", "code128", "条形码"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Barcode Value</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Barcode Value</label>
             <input
               type="text"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none"
+              className="w-full rounded-lg border border-border px-3 py-2.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none"
               placeholder="Enter text or number..."
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Barcode Format</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Barcode Format</label>
             <select
               value={format}
               onChange={(e) => setFormat(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none bg-white"
+              className="w-full rounded-lg border border-border px-3 py-2.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card"
             >
               {BARCODE_FORMATS.map((f) => (
                 <option key={f.value} value={f.value}>{f.label}</option>
@@ -111,7 +111,7 @@ export default function BarcodeGenerator() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label className="block text-sm font-medium text-muted-foreground mb-1.5">
                 Line Width: {lineWidth}px
               </label>
               <input
@@ -120,11 +120,11 @@ export default function BarcodeGenerator() {
                 max={5}
                 value={lineWidth}
                 onChange={(e) => setLineWidth(Number(e.target.value))}
-                className="w-full accent-teal-600"
+                className="w-full accent-primary"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label className="block text-sm font-medium text-muted-foreground mb-1.5">
                 Height: {height}px
               </label>
               <input
@@ -133,23 +133,23 @@ export default function BarcodeGenerator() {
                 max={200}
                 value={height}
                 onChange={(e) => setHeight(Number(e.target.value))}
-                className="w-full accent-teal-600"
+                className="w-full accent-primary"
               />
             </div>
           </div>
 
-          <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+          <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
             <input
               type="checkbox"
               checked={displayValue}
               onChange={(e) => setDisplayValue(e.target.checked)}
-              className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
+              className="rounded border-border text-info focus:ring-ring"
             />
             Display value below barcode
           </label>
 
           {error && (
-            <p className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">{error}</p>
+            <p className="text-sm text-destructive bg-destructive/10 rounded-lg px-3 py-2">{error}</p>
           )}
         </div>
       }
@@ -157,17 +157,17 @@ export default function BarcodeGenerator() {
         <div className="text-center">
           {!error && value.trim() ? (
             <>
-              <svg ref={svgRef} className="max-w-full mx-auto" />
+              <svg ref={svgRef} className="max-w-full mx-auto" aria-hidden="true"/>
               <button
                 onClick={handleDownload}
-                className="mt-6 inline-flex items-center gap-2 px-4 py-2.5 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-700 transition-colors"
+                className="mt-6 inline-flex items-center gap-2 px-4 py-2.5 bg-info text-info-foreground text-sm font-medium rounded-lg hover:bg-info transition-colors"
               >
                 <Download className="h-4 w-4" />
                 Download PNG
               </button>
             </>
           ) : (
-            <p className="text-gray-400 text-sm">Enter a value to generate barcode</p>
+            <p className="text-muted-foreground text-sm">Enter a value to generate barcode</p>
           )}
         </div>
       }

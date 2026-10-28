@@ -62,13 +62,13 @@ export default function JsonToSql() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-2 text-xl font-semibold">
-          <Database className="h-5 w-5 text-blue-600" />
+          <Database className="h-5 w-5 text-primary" />
           <span>JSON → SQL</span>
         </div>
       }
       toolbar={
         <div className="flex items-center gap-2 flex-wrap">
-          <label className="text-sm text-gray-700 dark:text-gray-300">方言:</label>
+          <label className="text-sm text-muted-foreground dark:text-muted-foreground">方言:</label>
           <select
             value={dialect}
             onChange={(e) => setDialect(e.target.value)}
@@ -78,7 +78,7 @@ export default function JsonToSql() {
             <option value="postgresql">PostgreSQL</option>
             <option value="sqlite">SQLite</option>
           </select>
-          <label className="text-sm text-gray-700 dark:text-gray-300">表名:</label>
+          <label className="text-sm text-muted-foreground dark:text-muted-foreground">表名:</label>
           <input
             type="text"
             value={tableName}
@@ -86,14 +86,14 @@ export default function JsonToSql() {
             className="px-2 py-1 text-sm border rounded font-mono w-32"
             placeholder="items"
           />
-          <button onClick={clear} className="ml-auto inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
+          <button onClick={clear} className="ml-auto inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
             <Eraser className="h-3 w-3" />清空
           </button>
         </div>
       }
       inputLabel="JSON 输入"
       inputActions={
-        <span className="text-xs text-gray-500">{input.length} 字符</span>
+        <span className="text-xs text-muted-foreground">{input.length} 字符</span>
       }
       input={
         <textarea
@@ -105,8 +105,8 @@ export default function JsonToSql() {
       }
       outputLabel="SQL 输出"
       outputActions={
-        <button onClick={copy} className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-          {copied ? <Check className="h-3 w-3 text-green-600" /> : <Copy className="h-3 w-3" />}
+        <button onClick={copy} className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
+          {copied ? <Check className="h-3 w-3 text-success" /> : <Copy className="h-3 w-3" />}
           {copied ? "已复制" : "复制"}
         </button>
       }
@@ -115,7 +115,7 @@ export default function JsonToSql() {
           <code>{result || "-- 输出将显示在这里"}</code>
         </pre>
       }
-      footer={error ? <div className="text-sm text-red-600">{error}</div> : null}
+      footer={error ? <div className="text-sm text-destructive">{error}</div> : null}
     />
   );
 }

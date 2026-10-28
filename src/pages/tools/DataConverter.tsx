@@ -204,23 +204,23 @@ export default function DataConverter() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-cyan-100 text-cyan-600">
+          <div className="inline-flex p-2 rounded-lg bg-info/10 text-info">
             <RefreshCw className="h-5 w-5" />
           </div>
           <div>
             <h1 className="text-2xl font-semibold">Data Converter</h1>
-            <p className="text-sm text-gray-500">CSV / Excel → JSON, XML, MySQL, HTML, and more</p>
+            <p className="text-sm text-muted-foreground">CSV / Excel → JSON, XML, MySQL, HTML, and more</p>
           </div>
         </>
       }
       toolbar={
         <>
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700">Delimiter</label>
+            <label className="text-sm font-medium text-muted-foreground">Delimiter</label>
             <select
               value={delimiter}
               onChange={(e) => setDelimiter(e.target.value)}
-              className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             >
               <option value="auto">Auto Detect</option>
               <option value=",">Comma</option>
@@ -229,11 +229,11 @@ export default function DataConverter() {
           </div>
 
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700">Output</label>
+            <label className="text-sm font-medium text-muted-foreground">Output</label>
             <select
               value={outputFormat}
               onChange={(e) => setOutputFormat(e.target.value as OutputFormat)}
-              className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             >
               {formats.map((f) => (
                 <option key={f.id} value={f.id}>{f.name}</option>
@@ -243,13 +243,13 @@ export default function DataConverter() {
 
           {outputFormat === "mysql" && (
             <div className="flex items-center gap-2">
-              <label className="text-sm font-medium text-gray-700">Table</label>
+              <label className="text-sm font-medium text-muted-foreground">Table</label>
               <input
                 type="text"
                 value={tableName}
                 onChange={(e) => setTableName(e.target.value)}
                 placeholder="table_name"
-                className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 w-32"
+                className="rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring w-32"
               />
             </div>
           )}
@@ -273,23 +273,23 @@ export default function DataConverter() {
         <span className="flex items-center gap-2">
           <Terminal className="w-4 h-4" />
           Output
-          {loading && <RefreshCw className="w-3.5 h-3.5 text-gray-400 animate-spin" />}
+          {loading && <RefreshCw className="w-3.5 h-3.5 text-muted-foreground animate-spin" />}
         </span>
       }
       outputActions={
         <button
           onClick={handleCopy}
           disabled={!outputText}
-          className="px-3 py-1.5 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-1.5 text-xs disabled:opacity-50 hover:bg-gray-200"
+          className="px-3 py-1.5 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-1.5 text-xs disabled:opacity-50 hover:bg-border"
         >
-          {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : <Copy className="h-3.5 w-3.5" />}
+          {copied ? <Check className="h-3.5 w-3.5 text-success" /> : <Copy className="h-3.5 w-3.5" />}
           {copied ? "Copied" : "Copy"}
         </button>
       }
       output={
         error ? (
           <div className="h-full flex items-center justify-center p-4">
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-sm text-red-700">
+            <div className="bg-destructive/10 border border-border rounded-lg p-4 text-sm text-destructive">
               {error}
             </div>
           </div>
@@ -298,7 +298,7 @@ export default function DataConverter() {
             readOnly
             value={outputText}
             placeholder="Waiting for input..."
-            className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-gray-50 focus:outline-none"
+            className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-muted focus:outline-none"
           />
         )
       }

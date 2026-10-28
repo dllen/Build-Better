@@ -66,20 +66,20 @@ export default function I18nManager() {
       />
 
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-indigo-100 text-indigo-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Globe className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Translation Manager</h1>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-6">
+      <div className="bg-card rounded-xl border border-border p-6 space-y-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="flex items-center gap-4">
-            <label className="font-medium text-gray-700">Select Language:</label>
+            <label className="font-medium text-muted-foreground">Select Language:</label>
             <select
               value={selectedLang}
               onChange={(e) => setSelectedLang(e.target.value)}
-              className="rounded-md border border-gray-300 px-3 py-2 bg-white"
+              className="rounded-md px-3 py-2 bg-muted"
             >
               {languages.map((lang) => (
                 <option key={lang.code} value={lang.code}>
@@ -92,12 +92,7 @@ export default function I18nManager() {
           <div className="flex items-center gap-2">
             <button
               onClick={handleCopy}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors
-                ${
-                  copied
-                    ? "bg-green-100 text-green-700 border border-green-200"
-                    : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
-                }`}
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${ copied ? "bg-success/10 text-success border border-border" : "text-muted-foreground border border-border hover:bg-muted" }`}
             >
               {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
               {copied ? "Copied!" : "Copy JSON"}
@@ -107,27 +102,26 @@ export default function I18nManager() {
 
         <div className="space-y-2">
           <div className="flex justify-between items-center">
-            <label className="text-sm font-medium text-gray-700">Translation JSON</label>
-            {error && <span className="text-sm text-red-600">{error}</span>}
+            <label className="text-sm font-medium text-muted-foreground">Translation JSON</label>
+            {error && <span className="text-sm text-destructive">{error}</span>}
           </div>
           <textarea
             value={jsonContent}
             onChange={handleJsonChange}
-            className={`w-full h-[500px] font-mono text-sm p-4 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none
-              ${error ? "border-red-300 bg-red-50" : "border-gray-200 bg-gray-50"}`}
+            className={`w-full h-[500px] font-mono text-sm p-4 rounded-lg border focus:ring-2 focus:ring-ring focus:border-transparent outline-none ${error ? "border-border bg-destructive/10" : "border-border bg-muted"}`}
             spellCheck={false}
           />
         </div>
 
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-800">
+        <div className="bg-primary/10 border border-border rounded-lg p-4 text-sm text-primary">
           <h3 className="font-semibold mb-1">How to use:</h3>
           <ol className="list-decimal list-inside space-y-1">
             <li>Select the language you want to edit.</li>
             <li>Modify the JSON content in the editor above.</li>
-            <li>Click "Copy JSON" to copy the updated content.</li>
+            <li>Click “Copy JSON” to copy the updated content.</li>
             <li>
               Paste the content into the corresponding file in{" "}
-              <code className="bg-blue-100 px-1 rounded">
+              <code className="bg-primary/10 px-1 rounded">
                 src/locales/&#123;lang&#125;/translation.json
               </code>
               .

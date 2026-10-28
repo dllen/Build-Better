@@ -28,7 +28,7 @@ export default function StrokeOrder() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <Pen className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">汉字笔划</h1>

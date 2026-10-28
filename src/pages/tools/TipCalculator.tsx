@@ -37,17 +37,17 @@ export default function TipCalculator() {
       {billAmt > 0 ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.tip-calculator.tip_amount")}</p>
-            <p className="text-4xl font-bold text-green-600">{fmt(tipAmt)}</p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.tip-calculator.tip_amount")}</p>
+            <p className="text-4xl font-bold text-success">{fmt(tipAmt)}</p>
           </div>
-          <div className="grid grid-cols-2 gap-4 pt-6 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-4 pt-6 border-t border-border">
             <div className="text-center">
-              <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.tip-calculator.total")}</p>
-              <p className="text-2xl font-bold text-gray-900">{fmt(total)}</p>
+              <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.tip-calculator.total")}</p>
+              <p className="text-2xl font-bold text-foreground">{fmt(total)}</p>
             </div>
             <div className="text-center">
-              <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.tip-calculator.per_person")}</p>
-              <p className="text-2xl font-bold text-blue-600 flex items-center justify-center gap-1">
+              <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.tip-calculator.per_person")}</p>
+              <p className="text-2xl font-bold text-primary flex items-center justify-center gap-1">
                 <Users className="h-5 w-5" />{fmt(perPerson)}
               </p>
             </div>
@@ -55,20 +55,20 @@ export default function TipCalculator() {
           <div className="flex gap-3 pt-4">
             <button
               onClick={copy}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary"
             >
               <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.tip-calculator.copy")}
             </button>
             <button
               onClick={() => { setBill(""); setTipPct("15"); setCustomTip(""); setPeople("1"); }}
-              className="flex-1 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200"
+              className="flex-1 px-4 py-2 bg-muted rounded-lg hover:bg-border"
             >
               {t("tools.tip-calculator.reset")}
             </button>
           </div>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Coins className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("tools.tip-calculator.enter_bill")}</p>
         </div>
@@ -81,35 +81,35 @@ export default function TipCalculator() {
       title={t("tools.tip-calculator.title")}
       subtitle={t("tools.tip-calculator.subtitle")}
       icon={Coins}
-      iconBgColor="bg-amber-100"
-      iconColor="text-amber-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["tip calculator", "restaurant tip", "tip per person", "bill split"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.tip-calculator.bill_amount")} ($)</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.tip-calculator.bill_amount")} ($)</label>
           <input
             type="number" step="0.01" min="0" value={bill}
             onChange={e => setBill(e.target.value)} placeholder="0.00"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm py-3 px-4 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-3 px-4 border"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">{t("tools.tip-calculator.tip_percent")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">{t("tools.tip-calculator.tip_percent")}</label>
           <div className="flex flex-wrap gap-2 mb-2">
             {QUICK_TIPS.map(p => (
               <button
                 key={p}
                 onClick={() => { setTipPct(String(p)); setUseCustom(false); }}
-                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${!useCustom && tipPct === String(p) ? "bg-amber-500 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${!useCustom && tipPct === String(p) ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-border"}`}
               >
                 {p}%
               </button>
             ))}
             <button
               onClick={() => setUseCustom(true)}
-              className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${useCustom ? "bg-amber-500 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+              className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${useCustom ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-border"}`}
             >
               {t("tools.tip-calculator.custom")}
             </button>
@@ -118,16 +118,16 @@ export default function TipCalculator() {
             <input
               type="number" step="1" min="0" max="100" value={customTip}
               onChange={e => setCustomTip(e.target.value)} placeholder="Enter %"
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm py-2 px-3 border"
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
             />
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.tip-calculator.split_between")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.tip-calculator.split_between")}</label>
           <input
             type="number" step="1" min="1" max="50" value={people}
             onChange={e => setPeople(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm py-3 px-4 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-3 px-4 border"
           />
         </div>
       </div>

@@ -8,7 +8,7 @@ import { OllamaModelPicker } from "./OllamaModelPicker";
 export function OllamaModelBadge() {
   return (
     <div className="flex items-center justify-end pt-1">
-      <span className="text-xs text-gray-500 mr-2">Model:</span>
+      <span className="text-xs text-muted-foreground mr-2">Model:</span>
       <OllamaModelPicker />
     </div>
   );

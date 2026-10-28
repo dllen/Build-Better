@@ -32,18 +32,18 @@ export default function CommitMessageGenerator() {
 
   const getColorClass = (color: string) => {
     const colors: Record<string, string> = {
-      emerald: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
-      red: "bg-red-500/10 text-red-400 border-red-500/30",
-      cyan: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30",
-      purple: "bg-purple-500/10 text-purple-400 border-purple-500/30",
-      pink: "bg-pink-500/10 text-pink-400 border-pink-500/30",
-      orange: "bg-orange-500/10 text-orange-400 border-orange-500/30",
-      blue: "bg-blue-500/10 text-blue-400 border-blue-500/30",
-      gray: "bg-gray-500/10 text-gray-400 border-gray-500/30",
-      indigo: "bg-indigo-500/10 text-indigo-400 border-indigo-500/30",
-      amber: "bg-amber-500/10 text-amber-400 border-amber-500/30",
-      rose: "bg-rose-500/10 text-rose-400 border-rose-500/30",
-      teal: "bg-teal-500/10 text-teal-400 border-teal-500/30",
+      emerald: "bg-success/10 text-success border-border/30",
+      red: "bg-destructive/10 text-destructive border-border/30",
+      cyan: "bg-info/10 text-info border-border/30",
+      purple: "bg-primary/10 text-primary border-border/30",
+      pink: "bg-destructive/10 text-destructive border-border/30",
+      orange: "bg-primary/10 text-primary border-border/30",
+      blue: "bg-primary/10 text-primary border-border/30",
+      gray: "bg-muted-foreground/10 text-muted-foreground border-border/30",
+      indigo: "bg-primary/10 text-primary border-border/30",
+      amber: "bg-primary/10 text-primary border-border/30",
+      rose: "bg-destructive/10 text-destructive border-border/30",
+      teal: "bg-info/10 text-info border-border/30",
     };
     return colors[color] || colors.gray;
   };
@@ -86,8 +86,8 @@ export default function CommitMessageGenerator() {
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2.5 rounded-lg bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30">
-          <FileText className="w-5 h-5 text-emerald-400" />
+        <div className="p-2.5 rounded-lg bg-gradient-to-br from-primary/20 to-primary/20 border border-border/30">
+          <FileText className="w-5 h-5 text-success" />
         </div>
         <div>
           <h1 className="text-2xl font-bold">Git Commit Message Generator</h1>
@@ -98,10 +98,10 @@ export default function CommitMessageGenerator() {
       </div>
 
       {/* Trust Banner */}
-      <div className="flex items-center gap-2 px-4 py-3 rounded-lg border border-emerald-500/20 bg-emerald-500/5">
-        <Zap className="w-4 h-4 text-emerald-400" />
-        <p className="text-sm text-emerald-400">
-          100% Local Processing — all messages are generated in your browser
+      <div className="flex items-center gap-2 px-4 py-3 rounded-lg border border-border/20 bg-success/5">
+        <Zap className="w-4 h-4 text-success" />
+        <p className="text-sm text-success">
+          100% Local Processing: all messages are generated in your browser
         </p>
       </div>
 
@@ -116,11 +116,7 @@ export default function CommitMessageGenerator() {
                 <button
                   key={commitType.value}
                   onClick={() => setType(commitType.value)}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-mono border transition-all ${
-                    type === commitType.value
-                      ? getColorClass(commitType.color)
-                      : "bg-muted/50 border-transparent hover:bg-muted"
-                  }`}
+                  className={`px-3 py-1.5 rounded-lg text-sm font-mono border transition-colors ${ type === commitType.value ? getColorClass(commitType.color) : "bg-muted/50 border-transparent hover:bg-muted" }`}
                 >
                   {commitType.label}
                 </button>
@@ -163,7 +159,7 @@ export default function CommitMessageGenerator() {
               className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             />
             <p className="text-xs text-muted-foreground mt-1">
-              Use imperative mood: "add" not "added" or "adds"
+              Use imperative mood: “add” not “added” or “adds”
             </p>
           </div>
 
@@ -197,10 +193,10 @@ export default function CommitMessageGenerator() {
               type="checkbox"
               checked={breaking}
               onChange={(e) => setBreaking(e.target.checked)}
-              className="w-5 h-5 rounded border-border bg-background text-red-500 focus:ring-red-500"
+              className="w-5 h-5 rounded border-border bg-background text-destructive focus:ring-ring"
             />
             <span className="text-sm">
-              <span className="font-medium text-red-400">Breaking Change</span>
+              <span className="font-medium text-destructive">Breaking Change</span>
               <span className="text-muted-foreground ml-2">This commit contains breaking changes</span>
             </span>
           </label>
@@ -238,8 +234,8 @@ export default function CommitMessageGenerator() {
               >
                 {copied ? (
                   <>
-                    <Check className="w-3 h-3 text-emerald-400" />
-                    <span className="text-emerald-400">Copied!</span>
+                    <Check className="w-3 h-3 text-success" />
+                    <span className="text-success">Copied!</span>
                   </>
                 ) : (
                   <>
@@ -257,27 +253,27 @@ export default function CommitMessageGenerator() {
           {/* Examples */}
           {showExamples && (
             <div className="rounded-lg border border-border bg-card p-4 space-y-3">
-              <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Example Messages</h3>
+              <h3 className="text-xs font-medium text-muted-foreground tracking-wide">Example Messages</h3>
               <div className="space-y-2 font-mono text-xs">
                 <div className="p-2 rounded bg-muted/50">
-                  <span className="text-emerald-400">feat</span>
+                  <span className="text-success">feat</span>
                   <span className="text-muted-foreground">:</span> add user authentication
                 </div>
                 <div className="p-2 rounded bg-muted/50">
-                  <span className="text-red-400">fix</span>
+                  <span className="text-destructive">fix</span>
                   <span className="text-muted-foreground">(</span>
-                  <span className="text-cyan-400">api</span>
+                  <span className="text-info">api</span>
                   <span className="text-muted-foreground">):</span> resolve login timeout issue
                 </div>
                 <div className="p-2 rounded bg-muted/50">
-                  <span className="text-purple-400">refactor</span>
+                  <span className="text-primary">refactor</span>
                   <span className="text-muted-foreground">!</span>
                   <span className="text-muted-foreground">:</span> rename UserService to AccountService
                 </div>
                 <div className="p-2 rounded bg-muted/50">
-                  <span className="text-amber-400">build</span>
+                  <span className="text-primary">build</span>
                   <span className="text-muted-foreground">(</span>
-                  <span className="text-cyan-400">deps</span>
+                  <span className="text-info">deps</span>
                   <span className="text-muted-foreground">):</span> upgrade dependencies
                 </div>
               </div>
@@ -285,13 +281,13 @@ export default function CommitMessageGenerator() {
           )}
 
           {/* Tips */}
-          <div className="rounded-lg border border-cyan-500/20 bg-cyan-500/5 p-4">
-            <h3 className="text-xs font-medium text-cyan-400 uppercase tracking-wide mb-2">Tips</h3>
+          <div className="rounded-lg border border-border/20 bg-info/5 p-4">
+            <h3 className="text-xs font-medium text-info tracking-wide mb-2">Tips</h3>
             <ul className="text-xs text-muted-foreground space-y-1">
-              <li>• Use imperative mood: "add" not "added"</li>
+              <li>Use imperative mood: “add” not “added”</li>
               <li>• Keep subject line under 50 characters</li>
               <li>• Separate subject from body with blank line</li>
-              <li>• Reference issues: "Closes #123"</li>
+              <li>Reference issues: “Closes #123”</li>
             </ul>
           </div>
         </div>
@@ -305,7 +301,7 @@ export default function CommitMessageGenerator() {
             href="https://www.conventionalcommits.org/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-cyan-400 hover:underline"
+            className="text-info hover:underline"
           >
             Conventional Commits v1.0.0
           </a>

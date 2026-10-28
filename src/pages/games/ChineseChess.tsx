@@ -510,17 +510,17 @@ export default function ChineseChess() {
       />
 
       <div className="mb-6 text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <h1 className="text-3xl font-bold text-foreground mb-2">
           {t("games.chinese-chess.title", "Chinese Chess")}
         </h1>
-        <p className="text-gray-600">
+        <p className="text-muted-foreground">
           {t("games.chinese-chess.subtitle", "Challenge the AI in this classic strategy game.")}
         </p>
       </div>
 
       <div className="flex flex-col md:flex-row gap-8 items-start">
         {/* Game Board */}
-        <div className="relative bg-[#dcb35c] p-1 rounded shadow-lg select-none">
+        <div className="relative bg-board-wood p-1 rounded select-none">
           {/* Grid Lines */}
           <div className="absolute inset-4 border-2 border-black pointer-events-none">
             {/* Horizontal Lines */}
@@ -537,14 +537,14 @@ export default function ChineseChess() {
             {/* Palace Diagonals */}
             {/* Top Palace */}
             <div className="absolute w-[25%] h-[22.22%] top-0 left-[37.5%] pointer-events-none">
-              <svg width="100%" height="100%">
+              <svg width="100%" height="100%" aria-hidden="true">
                 <line x1="0" y1="0" x2="100%" y2="100%" stroke="black" strokeWidth="1" />
                 <line x1="100%" y1="0" x2="0" y2="100%" stroke="black" strokeWidth="1" />
               </svg>
             </div>
             {/* Bottom Palace */}
             <div className="absolute w-[25%] h-[22.22%] bottom-0 left-[37.5%] pointer-events-none">
-              <svg width="100%" height="100%">
+              <svg width="100%" height="100%" aria-hidden="true">
                 <line x1="0" y1="0" x2="100%" y2="100%" stroke="black" strokeWidth="1" />
                 <line x1="100%" y1="0" x2="0" y2="100%" stroke="black" strokeWidth="1" />
               </svg>
@@ -573,26 +573,26 @@ export default function ChineseChess() {
                   >
                     {/* Highlight valid move target */}
                     {isValidTarget && !piece && (
-                      <div className="w-3 h-3 bg-green-500 rounded-full opacity-50 absolute" />
+                      <div className="w-3 h-3 bg-success rounded-full opacity-50 absolute" />
                     )}
                     
                     {/* Highlight valid capture target */}
                     {isValidTarget && piece && (
-                      <div className="w-[80%] h-[80%] border-4 border-green-500 rounded-full absolute opacity-50" />
+                      <div className="w-[80%] h-[80%] border-4 border-success rounded-full absolute opacity-50" />
                     )}
 
                     {/* Last Move Highlight */}
                     {(isLastFrom || isLastTo) && (
-                      <div className="w-full h-full bg-blue-200 opacity-30 absolute" />
+                      <div className="w-full h-full bg-cool/20 opacity-30 absolute" />
                     )}
 
                     {/* Piece */}
                     {piece && (
                       <div
                         className={`
-                          w-[85%] h-[85%] rounded-full border-2 flex items-center justify-center shadow-md text-xl sm:text-2xl font-bold bg-[#f3d99d]
-                          ${piece.color === "r" ? "text-red-600 border-red-600" : "text-black border-black"}
-                          ${isSelected ? "ring-4 ring-blue-400 scale-110 z-20" : ""}
+                          w-[85%] h-[85%] rounded-full border-2 flex items-center justify-center text-xl sm:text-2xl font-bold bg-board-wood-2
+                          ${piece.color === "r" ? "text-destructive border-destructive" : "text-black border-black"}
+                          ${isSelected ? "ring-4 ring-ring scale-110 z-20" : ""}
                         `}
                       >
                         {getPieceLabel(piece)}
@@ -607,15 +607,15 @@ export default function ChineseChess() {
 
         {/* Controls */}
         <div className="w-full md:w-64 space-y-6">
-          <div className="bg-white p-4 rounded-xl shadow border border-gray-200">
-            <h3 className="font-semibold text-gray-900 flex items-center gap-2 mb-4">
+          <div className="bg-card p-4 rounded-xl border border-border">
+            <h3 className="font-semibold text-foreground flex items-center gap-2 mb-4">
               <Settings size={18} />
               {t("games.chinese-chess.settings", "Game Settings")}
             </h3>
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-ink-2 mb-2">
                   {t("games.chinese-chess.difficulty", "Difficulty")}
                 </label>
                 <div className="flex gap-2">
@@ -626,10 +626,10 @@ export default function ChineseChess() {
                         setDifficulty(d);
                         resetGame();
                       }}
-                      className={`flex-1 py-1.5 text-sm rounded border ${
+                      className={`flex-1 py-1.5 text-sm rounded border transition-colors ${
                         difficulty === d
-                          ? "bg-indigo-50 border-indigo-500 text-indigo-700"
-                          : "border-gray-300 hover:bg-gray-50"
+                          ? "bg-accent/10 border-ring text-primary"
+                          : "border-border hover:bg-muted"
                       }`}
                     >
                       {t(`games.chinese-chess.${d}`, d.charAt(0).toUpperCase() + d.slice(1))}
@@ -640,9 +640,9 @@ export default function ChineseChess() {
 
               <div className="pt-4 border-t">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-gray-700">Status</span>
+                  <span className="text-sm font-medium text-ink-2">Status</span>
                   <span className={`text-sm font-bold ${
-                    turn === "r" ? "text-red-600" : "text-black"
+                    turn === "r" ? "text-destructive" : "text-black"
                   }`}>
                     {gameStatus === "playing" 
                       ? (turn === "r" ? t("games.chinese-chess.red_turn", "Red's Turn") : t("games.chinese-chess.black_turn", "Black's Turn (AI)"))
@@ -650,15 +650,15 @@ export default function ChineseChess() {
                   </span>
                 </div>
                 {aiThinking && (
-                  <div className="text-xs text-center text-gray-500 animate-pulse">
-                    AI is thinking...
+                  <div className="text-xs text-center text-muted-foreground animate-pulse">
+                    AI is thinking…
                   </div>
                 )}
               </div>
 
               <button
                 onClick={resetGame}
-                className="w-full flex items-center justify-center gap-2 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors"
               >
                 <RefreshCw size={18} />
                 {t("common.restart", "Restart Game")}
@@ -666,7 +666,7 @@ export default function ChineseChess() {
             </div>
           </div>
 
-          <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 text-sm text-blue-800">
+          <div className="bg-accent/10 p-4 rounded-xl border border-border text-sm text-ink-2">
             <h4 className="font-semibold mb-2 flex items-center gap-2">
               <AlertCircle size={16} />
               {t("common.how_to_play", "How to Play")}

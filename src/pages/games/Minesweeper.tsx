@@ -128,17 +128,17 @@ export default function Minesweeper() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-red-100 text-red-600">
+        <div className="inline-flex p-2 rounded-lg bg-destructive/10 text-destructive">
           <Bomb className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Minesweeper</h1>
       </div>
 
       <div className="flex items-center gap-3">
-        <div className="text-sm text-gray-600">Mines: {MINES}</div>
-        <div className="text-sm text-gray-600">Hidden: {remaining}</div>
+        <div className="text-sm text-ink-2">Mines: {MINES}</div>
+        <div className="text-sm text-ink-2">Hidden: {remaining}</div>
         <button
-          className="px-3 py-2 bg-blue-600 text-white rounded-md flex items-center gap-2"
+          className="px-3 py-2 bg-primary text-primary-foreground rounded-md flex items-center gap-2 transition-colors hover:bg-primary/90"
           onClick={reset}
         >
           <RotateCcw className="h-4 w-4" /> Reset
@@ -146,7 +146,7 @@ export default function Minesweeper() {
       </div>
 
       <div
-        className="inline-grid bg-gray-100 p-1 rounded-md border border-gray-200"
+        className="inline-grid bg-muted p-1 rounded-md border border-border"
         style={{
           gridTemplateColumns: `repeat(${COLS}, 28px)`,
           gridTemplateRows: `repeat(${ROWS}, 28px)`,
@@ -156,9 +156,9 @@ export default function Minesweeper() {
           row.map((cell, c) => {
             const base =
               "w-[26px] h-[26px] m-[1px] text-xs font-semibold flex items-center justify-center rounded";
-            const unrevealed = "bg-gray-300 hover:bg-gray-400 cursor-pointer";
-            const revealed = cell.mine ? "bg-red-600 text-white" : "bg-white text-gray-800";
-            const flagged = "bg-yellow-200 text-yellow-900";
+            const unrevealed = "bg-muted hover:bg-accent cursor-pointer transition-colors";
+            const revealed = cell.mine ? "bg-destructive text-destructive-foreground" : "bg-card text-foreground";
+            const flagged = "bg-warning/20 text-foreground";
             return (
               <div
                 key={`${r}-${c}`}
@@ -169,15 +169,19 @@ export default function Minesweeper() {
                   toggleFlag(r, c);
                 }}
               >
-                {cell.revealed
-                  ? cell.mine
-                    ? "💣"
-                    : cell.count > 0
-                      ? cell.count
-                      : ""
-                  : cell.flagged
-                    ? "⚑"
-                    : ""}
+                {cell.revealed ? (
+                  cell.mine ? (
+                    <Bomb className="h-4 w-4 mx-auto" aria-label="Mine" />
+                  ) : cell.count > 0 ? (
+                    cell.count
+                  ) : (
+                    ""
+                  )
+                ) : cell.flagged ? (
+                  <span aria-label="Flagged">⚑</span>
+                ) : (
+                  ""
+                )}
               </div>
             );
           })
@@ -185,7 +189,7 @@ export default function Minesweeper() {
       </div>
 
       {(gameOver || win) && (
-        <div className={`text-lg font-bold ${win ? "text-green-600" : "text-red-600"}`}>
+        <div className={`text-lg font-bold ${win ? "text-success" : "text-destructive"}`}>
           {win ? "You Win!" : "Game Over"}
         </div>
       )}

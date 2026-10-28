@@ -86,13 +86,13 @@ export default function CurlBuilder() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-indigo-100 text-indigo-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Terminal className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Curl Builder</h1>
       </div>
 
-      <div className="flex items-center gap-2 text-sm text-gray-500 bg-gray-50 rounded-lg px-3 py-2">
+      <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted rounded-lg px-3 py-2">
         <Shield className="h-4 w-4" />
         Data stays in your browser. Nothing is sent to a server.
       </div>
@@ -101,12 +101,12 @@ export default function CurlBuilder() {
         {/* Form */}
         <div className="lg:col-span-2 space-y-4">
           {/* URL */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
               <div className="sm:col-span-1 space-y-1">
-                <label className="text-sm font-medium text-gray-700">Method</label>
+                <label className="text-sm font-medium text-muted-foreground">Method</label>
                 <select
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm"
                   value={method}
                   onChange={(e) => setMethod(e.target.value as HttpMethod)}
                 >
@@ -118,24 +118,24 @@ export default function CurlBuilder() {
                 </select>
               </div>
               <div className="sm:col-span-3 space-y-1">
-                <label className="text-sm font-medium text-gray-700">URL</label>
+                <label className="text-sm font-medium text-muted-foreground">URL</label>
                 <input
                   type="text"
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
                   placeholder="https://api.example.com/v1/users"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
             </div>
           </div>
 
           {/* Headers */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700">Headers</span>
+              <span className="text-sm font-medium text-muted-foreground">Headers</span>
               <button
-                className="text-xs text-indigo-600 hover:text-indigo-700 inline-flex items-center gap-1"
+                className="text-xs text-primary hover:text-primary inline-flex items-center gap-1"
                 onClick={addHeader}
               >
                 <Plus className="h-3 w-3" /> Add header
@@ -148,19 +148,19 @@ export default function CurlBuilder() {
                   value={h.key}
                   onChange={(e) => updateHeader(i, "key", e.target.value)}
                   placeholder="Content-Type"
-                  className="flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  className="flex-1 rounded-md border border-border px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
-                <span className="text-gray-400">:</span>
+                <span className="text-muted-foreground">:</span>
                 <input
                   type="text"
                   value={h.value}
                   onChange={(e) => updateHeader(i, "value", e.target.value)}
                   placeholder="application/json"
-                  className="flex-[2] rounded-md border border-gray-300 px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  className="flex-[2] rounded-md border border-border px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
                 {headers.length > 1 && (
                   <button
-                    className="text-gray-400 hover:text-red-500 transition-colors"
+                    className="text-muted-foreground hover:text-destructive transition-colors"
                     onClick={() => removeHeader(i)}
                   >
                     <Trash2 className="h-4 w-4" />
@@ -172,22 +172,22 @@ export default function CurlBuilder() {
 
           {/* Body */}
           {hasBody && (
-            <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-2">
-              <label className="text-sm font-medium text-gray-700">Request Body</label>
+            <div className="bg-card rounded-lg border border-border p-4 space-y-2">
+              <label className="text-sm font-medium text-muted-foreground">Request Body</label>
               <textarea
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
                 placeholder='{"key": "value"}'
                 rows={4}
-                className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-y"
+                className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring resize-y"
                 spellCheck={false}
               />
             </div>
           )}
 
           {/* Flags */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-2">
-            <span className="text-sm font-medium text-gray-700">Flags</span>
+          <div className="bg-card rounded-lg border border-border p-4 space-y-2">
+            <span className="text-sm font-medium text-muted-foreground">Flags</span>
             <div className="flex flex-wrap gap-2">
               {[
                 { flag: "silent", label: "-s (silent)" },
@@ -198,11 +198,7 @@ export default function CurlBuilder() {
               ].map(({ flag, label }) => (
                 <label
                   key={flag}
-                  className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs border cursor-pointer transition-colors ${
-                    flags.includes(flag)
-                      ? "bg-indigo-50 border-indigo-300 text-indigo-700"
-                      : "bg-white border-gray-200 text-gray-600 hover:border-gray-300"
-                  }`}
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs border cursor-pointer transition-colors ${ flags.includes(flag) ? "bg-primary/10 border-border text-primary" : "border-border text-muted-foreground" }`}
                 >
                   <input
                     type="checkbox"
@@ -219,11 +215,11 @@ export default function CurlBuilder() {
 
         {/* Output */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3 sticky top-4">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3 sticky top-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700">Command</span>
+              <span className="text-sm font-medium text-muted-foreground">Command</span>
               <button
-                className="px-3 py-1.5 rounded-md bg-indigo-600 text-white text-sm inline-flex items-center gap-1.5 disabled:opacity-50"
+                className="px-3 py-1.5 rounded-md bg-primary text-primary-foreground text-sm inline-flex items-center gap-1.5 disabled:opacity-50"
                 onClick={copy}
                 disabled={!url}
               >
@@ -231,7 +227,7 @@ export default function CurlBuilder() {
                 {copied ? "Copied ✓" : "Copy"}
               </button>
             </div>
-            <pre className="font-mono text-xs whitespace-pre-wrap break-words bg-gray-900 text-green-400 rounded-md p-3 overflow-x-auto">
+            <pre className="font-mono text-xs whitespace-pre-wrap break-words bg-muted text-success rounded-md p-3 overflow-x-auto">
               {curl}
             </pre>
           </div>

@@ -63,7 +63,7 @@ export default function UrlEncoder() {
       <EditorSplitLayout
         title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <Link2 className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">URL 编码 / 解码</h1>
@@ -123,22 +123,22 @@ export default function UrlEncoder() {
 
           <div className="flex flex-wrap gap-3">
             <button
-              className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
               onClick={convert}
               disabled={!input.trim()}
             >
               转换
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
               onClick={copy}
               disabled={!result}
             >
-              {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+              {copied ? <Check className="h-4 w-4 text-success" /> : <Copy className="h-4 w-4" />}
               {copied ? "已复制" : "复制"}
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
               onClick={clear}
               disabled={!input && !result && !error}
             >
@@ -168,33 +168,33 @@ export default function UrlEncoder() {
             {result}
           </pre>
         ) : (
-          <div className="px-3 py-2 text-sm text-gray-500">输入内容后点击“转换”查看结果</div>
+          <div className="px-3 py-2 text-sm text-muted-foreground">输入内容后点击“转换”查看结果</div>
         )
       }
       footer={
         <>
-          {error && <div className="text-sm text-red-600">{error}</div>}
-          <div className="inline-flex items-center gap-2 text-sm text-gray-500">
+          {error && <div className="text-sm text-destructive">{error}</div>}
+          <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
             <Shield className="h-4 w-4" />
             数据仅在浏览器本地处理，不会上传到服务器。
           </div>
         </>
       }
     />
-    <div className="mt-8 p-6 bg-white rounded-xl border border-gray-200">
+    <div className="mt-8 p-6 bg-card rounded-xl border border-border">
       <h2 className="text-lg font-semibold mb-4">相关工具</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        <Link to="/base64" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-          <span className="text-sm font-medium text-gray-700">Base64 编码/解码</span>
-          <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+        <Link to="/base64" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+          <span className="text-sm font-medium text-muted-foreground">Base64 编码/解码</span>
+          <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
         </Link>
-        <Link to="/regex-tester" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-          <span className="text-sm font-medium text-gray-700">Regex Tester</span>
-          <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+        <Link to="/regex-tester" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+          <span className="text-sm font-medium text-muted-foreground">Regex Tester</span>
+          <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
         </Link>
-        <Link to="/jwt-decode" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-          <span className="text-sm font-medium text-gray-700">JWT 解码</span>
-          <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+        <Link to="/jwt-decode" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+          <span className="text-sm font-medium text-muted-foreground">JWT 解码</span>
+          <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
         </Link>
       </div>
     </div>

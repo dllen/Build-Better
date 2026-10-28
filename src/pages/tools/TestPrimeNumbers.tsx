@@ -70,14 +70,14 @@ export default function TestPrimeNumbers() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-emerald-100 text-emerald-600 rounded-lg"><ShieldCheck className="h-5 w-5" /></div>
-          <h1 className="text-2xl font-bold text-gray-900">Test Prime Numbers</h1>
+          <div className="p-2 bg-success/10 text-success rounded-lg"><ShieldCheck className="h-5 w-5" /></div>
+          <h1 className="text-2xl font-bold text-foreground">Test Prime Numbers</h1>
         </div>
       }
       toolbar={
         <div className="flex flex-wrap items-center gap-3">
           <button onClick={handleTest}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-emerald-600 text-white text-sm font-medium rounded-lg hover:bg-emerald-700 transition-colors">
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-success text-success-foreground text-sm font-medium rounded-lg hover:bg-success transition-colors">
             <ShieldCheck className="h-3.5 w-3.5" />Test
           </button>
         </div>
@@ -86,24 +86,24 @@ export default function TestPrimeNumbers() {
       input={
         <textarea value={input} onChange={(e) => { setInput(e.target.value); setOutput(""); }}
           placeholder={"Enter numbers, one per line:\n2\n17\n60\n97\n100"}
-          className="h-full w-full resize-none rounded-lg border border-gray-200 bg-white p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-400"
+          className="h-full w-full resize-none rounded-lg border border-border bg-card p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-border"
           spellCheck={false} />
       }
       outputLabel="Results"
       outputActions={
         output && !output.startsWith("Error") ? (
           <button onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors">
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors">
             <Copy className="h-3.5 w-3.5" />Copy
           </button>
         ) : undefined
       }
       output={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-4">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4">
           {output ? (
-            <pre className={`font-mono text-sm whitespace-pre-wrap leading-relaxed ${output.startsWith("Error") ? "text-red-500" : "text-gray-800"}`}>{output}</pre>
+            <pre className={`font-mono text-sm whitespace-pre-wrap leading-relaxed ${output.startsWith("Error") ? "text-destructive" : "text-foreground"}`}>{output}</pre>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               Results will appear here
             </div>
           )}

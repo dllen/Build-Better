@@ -79,87 +79,87 @@ export default function KeycodeInfo() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-gray-100 text-gray-600">
+        <div className="inline-flex p-2 rounded-lg bg-muted text-muted-foreground">
           <Keyboard className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Keycode 信息</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">按键捕获</div>
           <div
             ref={boxRef}
             tabIndex={0}
-            className="rounded-md border border-dashed border-gray-300 px-3 py-16 text-center select-none outline-none focus:ring-2 focus:ring-blue-400"
+            className="rounded-md border border-dashed border-border px-3 py-16 text-center select-none outline-none focus:ring-2 focus:ring-ring"
           >
             按下任意键
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               type: {last?.type || "—"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               key: {last?.key || "—"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               code: {last?.code || "—"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               keyCode: {last?.keyCode ?? "—"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               which: {last?.which ?? "—"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               location: {last ? `${last.location} (${locName(last.location)})` : "—"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               alt: {last?.altKey ? "true" : "false"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               ctrl: {last?.ctrlKey ? "true" : "false"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               shift: {last?.shiftKey ? "true" : "false"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               meta: {last?.metaKey ? "true" : "false"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               repeat: {last?.repeat ? "true" : "false"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               isComposing: {last?.isComposing ? "true" : "false"}
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-xs break-all">
+            <div className="flex-1 rounded-md border border-border px-3 py-2 font-mono text-xs break-all">
               {json || "—"}
             </div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => copy(json)}
               disabled={!json}
             >
               <ClipboardCopy className="h-4 w-4" /> 复制{" "}
-              {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+              {copied ? <Check className="h-4 w-4 text-success" /> : null}
             </button>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-medium">历史记录</div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => setHistory([])}
               disabled={!history.length}
             >
               清空
             </button>
           </div>
-          <div className="rounded-md border border-gray-200 p-3 space-y-2">
+          <div className="rounded-md border border-border p-3 space-y-2">
             {history.length
               ? history.map((e, i) => (
                   <div key={i} className="text-xs font-mono grid grid-cols-2 gap-2">

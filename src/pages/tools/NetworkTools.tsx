@@ -218,32 +218,32 @@ export default function NetworkTools() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-cyan-100 text-cyan-600">
+        <div className="inline-flex p-2 rounded-lg bg-info/10 text-info">
           <Globe className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Network Tools</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">URL 解析</div>
           <input
-            className="w-full rounded-md border border-gray-300 px-3 py-2"
+            className="w-full rounded-md border border-border px-3 py-2"
             placeholder="输入 URL，如 https://example.com/path?a=1#frag"
             value={urlInput}
             onChange={(e) => setUrlInput(e.target.value)}
           />
           {urlParsed ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+              <div className="rounded-md border border-border px-3 py-2 text-sm">
                 <div>scheme: {urlParsed.protocol || "—"}</div>
                 <div>host: {urlParsed.host || "—"}</div>
                 <div>port: {urlParsed.port || "—"}</div>
                 <div>path: {urlParsed.pathname || "—"}</div>
                 <div>hash: {urlParsed.hash || "—"}</div>
               </div>
-              <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
-                <div className="text-gray-500 mb-1">query:</div>
+              <div className="rounded-md border border-border px-3 py-2 text-sm">
+                <div className="text-muted-foreground mb-1">query:</div>
                 {urlParsed.searchParams.length
                   ? urlParsed.searchParams.map((p, i) => (
                       <div key={i} className="font-mono">
@@ -254,12 +254,12 @@ export default function NetworkTools() {
               </div>
             </div>
           ) : (
-            <div className="text-sm text-red-600">无效 URL</div>
+            <div className="text-sm text-destructive">无效 URL</div>
           )}
           <div className="flex items-center gap-2">
             <div className="flex-1 font-mono text-sm break-all">{urlBuilt || "—"}</div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 bg-cyan-600 text-white rounded-md text-sm hover:bg-cyan-700 disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-info text-info-foreground rounded-md text-sm hover:bg-info disabled:opacity-50"
               disabled={!urlBuilt}
               onClick={() => copy(urlBuilt)}
             >
@@ -268,11 +268,11 @@ export default function NetworkTools() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">HTTP 延迟测试</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <input
-              className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2"
+              className="rounded-md border border-border px-3 py-2 md:col-span-2"
               value={latencyUrl}
               onChange={(e) => setLatencyUrl(e.target.value)}
             />
@@ -280,31 +280,31 @@ export default function NetworkTools() {
               type="number"
               min={1}
               max={20}
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               value={latencyCount}
               onChange={(e) => setLatencyCount(Number(e.target.value))}
             />
           </div>
           <button
-            className="inline-flex items-center gap-2 px-3 py-2 bg-cyan-600 text-white rounded-md text-sm hover:bg-cyan-700 disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-3 py-2 bg-info text-info-foreground rounded-md text-sm hover:bg-info disabled:opacity-50"
             onClick={runLatency}
             disabled={latencyRunning}
           >
             <Activity className="h-4 w-4" /> Run
           </button>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               min: {latencyResult?.min ?? "—"} ms
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               avg: {latencyResult?.avg ?? "—"} ms
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+            <div className="rounded-md border border-border px-3 py-2 text-sm">
               max: {latencyResult?.max ?? "—"} ms
             </div>
           </div>
-          <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
-            <div className="text-gray-500 mb-1">状态码统计</div>
+          <div className="rounded-md border border-border px-3 py-2 text-sm">
+            <div className="text-muted-foreground mb-1">状态码统计</div>
             {codesList.length
               ? codesList.map(([code, cnt]) => (
                   <div key={code} className="font-mono">
@@ -317,11 +317,11 @@ export default function NetworkTools() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">IPv4 CIDR 计算</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <input
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               placeholder="IP，如 192.168.1.10"
               value={ipInput}
               onChange={(e) => setIpInput(e.target.value)}
@@ -330,13 +330,13 @@ export default function NetworkTools() {
               type="number"
               min={0}
               max={32}
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               placeholder="CIDR"
               value={cidrInput}
               onChange={(e) => setCidrInput(Number(e.target.value))}
             />
             <input
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               placeholder="子网掩码(可选)"
               value={maskInput}
               onChange={(e) => setMaskInput(e.target.value)}
@@ -344,52 +344,52 @@ export default function NetworkTools() {
           </div>
           {cidrOut ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-              <div className="rounded-md border border-gray-200 px-3 py-2">
+              <div className="rounded-md border border-border px-3 py-2">
                 网络地址: {cidrOut.network}
               </div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">
+              <div className="rounded-md border border-border px-3 py-2">
                 广播地址: {cidrOut.broadcast}
               </div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">
+              <div className="rounded-md border border-border px-3 py-2">
                 首个主机: {cidrOut.firstHost}
               </div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">
+              <div className="rounded-md border border-border px-3 py-2">
                 最后主机: {cidrOut.lastHost}
               </div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">
+              <div className="rounded-md border border-border px-3 py-2">
                 掩码: {cidrOut.mask} /{cidrOut.cidr}
               </div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">
+              <div className="rounded-md border border-border px-3 py-2">
                 可用主机数: {cidrOut.hosts}
               </div>
             </div>
           ) : (
-            <div className="text-sm text-red-600">输入无效</div>
+            <div className="text-sm text-destructive">输入无效</div>
           )}
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="flex items-center gap-2">
-            <Server className="h-5 w-5 text-gray-600" />
+            <Server className="h-5 w-5 text-muted-foreground" />
             <div className="font-medium">客户端网络信息</div>
           </div>
-          <div className="rounded-md border border-gray-200 px-3 py-2 text-sm">
+          <div className="rounded-md border border-border px-3 py-2 text-sm">
             Public IP: {ipInfo || "—"}
           </div>
-          <div className="rounded-md border border-gray-200 px-3 py-2 text-sm break-all">
+          <div className="rounded-md border border-border px-3 py-2 text-sm break-all">
             User-Agent: {ua || "—"}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-            <div className="rounded-md border border-gray-200 px-3 py-2">
+            <div className="rounded-md border border-border px-3 py-2">
               类型: {conn?.type || "—"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
+            <div className="rounded-md border border-border px-3 py-2">
               有效类型: {conn?.effectiveType || "—"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
+            <div className="rounded-md border border-border px-3 py-2">
               下行: {conn?.downlink ?? "—"} Mbps
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
+            <div className="rounded-md border border-border px-3 py-2">
               RTT: {conn?.rtt ?? "—"} ms
             </div>
           </div>

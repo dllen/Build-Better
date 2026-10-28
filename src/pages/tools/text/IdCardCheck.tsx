@@ -68,7 +68,7 @@ export default function IdCardCheck() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-yellow-100 text-yellow-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <IdCard className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">身份证校验</h1>
@@ -78,14 +78,14 @@ export default function IdCardCheck() {
       input={
         <div className="flex flex-col p-3 gap-3">
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 font-mono text-sm"
+            className="rounded-md border border-border px-3 py-2 font-mono text-sm"
             placeholder="输入18位身份证号码"
             maxLength={18}
             value={id}
             onChange={(e) => setId(e.target.value.replace(/[^0-9Xx]/g, ""))}
           />
           {id.length > 0 && id.length < 18 && (
-            <p className="text-xs text-gray-500">已输入 {id.length}/18 位</p>
+            <p className="text-xs text-muted-foreground">已输入 {id.length}/18 位</p>
           )}
         </div>
       }
@@ -94,31 +94,31 @@ export default function IdCardCheck() {
         <div className="h-full overflow-auto px-3 py-3">
           {result ? (
             <div className="space-y-3">
-              <div className={`p-4 rounded-lg ${result.valid ? "bg-green-50 border border-green-200" : "bg-red-50 border border-red-200"}`}>
-                <div className={`font-bold text-lg ${result.valid ? "text-green-700" : "text-red-700"}`}>
+              <div className={`p-4 rounded-lg ${result.valid ? "bg-success/10 border border-border" : "bg-destructive/10 border border-border"}`}>
+                <div className={`font-bold text-lg ${result.valid ? "text-success" : "text-destructive"}`}>
                   {result.valid ? "✓ 校验通过" : "✗ 校验失败"}
                 </div>
-                {!result.valid && <div className="text-sm text-red-600 mt-1">{result.reason}</div>}
+                {!result.valid && <div className="text-sm text-destructive mt-1">{result.reason}</div>}
               </div>
               {result.valid && (
                 <div className="grid grid-cols-2 gap-2">
-                  <div className="p-2 bg-gray-50 rounded border">
-                    <div className="text-xs text-gray-500">地区</div>
+                  <div className="p-2 bg-muted rounded border">
+                    <div className="text-xs text-muted-foreground">地区</div>
                     <div className="font-medium">{result.region}</div>
                   </div>
-                  <div className="p-2 bg-gray-50 rounded border">
-                    <div className="text-xs text-gray-500">性别</div>
+                  <div className="p-2 bg-muted rounded border">
+                    <div className="text-xs text-muted-foreground">性别</div>
                     <div className="font-medium">{result.gender}</div>
                   </div>
-                  <div className="p-2 bg-gray-50 rounded border col-span-2">
-                    <div className="text-xs text-gray-500">出生日期</div>
+                  <div className="p-2 bg-muted rounded border col-span-2">
+                    <div className="text-xs text-muted-foreground">出生日期</div>
                     <div className="font-medium">{result.birthday}</div>
                   </div>
                 </div>
               )}
             </div>
           ) : (
-            <span className="text-gray-400">输入18位号码后自动校验</span>
+            <span className="text-muted-foreground">输入18位号码后自动校验</span>
           )}
         </div>
       }

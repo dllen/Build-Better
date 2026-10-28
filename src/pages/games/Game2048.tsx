@@ -216,18 +216,18 @@ export default function Game2048() {
       </div>
 
       <div className="flex items-center gap-8">
-        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 min-w-[120px] text-center">
-          <div className="text-sm text-gray-500 mb-1">Score</div>
-          <div className="text-2xl font-bold text-blue-600">{score}</div>
+        <div className="bg-card p-4 rounded-xl border border-border min-w-[120px] text-center">
+          <div className="text-sm text-muted-foreground mb-1">Score</div>
+          <div className="text-2xl font-bold text-primary">{score}</div>
         </div>
-        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 min-w-[120px] text-center">
-          <div className="text-sm text-gray-500 mb-1 flex items-center justify-center gap-1">
-            <Trophy className="h-4 w-4 text-yellow-500" /> Best
+        <div className="bg-card p-4 rounded-xl border border-border min-w-[120px] text-center">
+          <div className="text-sm text-muted-foreground mb-1 flex items-center justify-center gap-1">
+            <Trophy className="h-4 w-4 text-primary" /> Best
           </div>
-          <div className="text-2xl font-bold text-purple-600">{best}</div>
+          <div className="text-2xl font-bold text-cool">{best}</div>
         </div>
         <button
-          className="px-3 py-2 bg-blue-600 text-white rounded-md flex items-center gap-2"
+          className="px-3 py-2 bg-primary text-primary-foreground rounded-md flex items-center gap-2 transition-colors hover:bg-primary/90"
           onClick={reset}
         >
           <RotateCcw className="h-4 w-4" /> Reset
@@ -235,7 +235,7 @@ export default function Game2048() {
       </div>
 
       <div
-        className="inline-grid bg-gray-100 p-2 rounded-md border border-gray-200 gap-2"
+        className="inline-grid bg-muted p-2 rounded-md border border-border gap-2"
         style={{
           gridTemplateColumns: `repeat(${SIZE}, 80px)`,
           gridTemplateRows: `repeat(${SIZE}, 80px)`,
@@ -245,7 +245,7 @@ export default function Game2048() {
           row.map((v, c) => (
             <div
               key={`${r}-${c}`}
-              className={`w-[80px] h-[80px] rounded-md flex items-center justify-center font-bold text-xl text-gray-800 ${tileColor(v)}`}
+              className={`w-[80px] h-[80px] rounded-md flex items-center justify-center font-bold text-xl text-foreground ${tileColor(v)}`}
             >
               {v || ""}
             </div>
@@ -253,7 +253,7 @@ export default function Game2048() {
         )}
       </div>
 
-      {gameOver && <div className="text-lg font-bold text-red-600">Game Over</div>}
+      {gameOver && <div className="text-lg font-bold text-destructive">Game Over</div>}
     </div>
   );
 }

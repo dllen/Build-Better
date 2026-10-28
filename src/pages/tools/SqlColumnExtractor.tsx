@@ -137,7 +137,7 @@ export default function SqlColumnExtractor() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-purple-100 text-purple-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <Columns className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">SQL 列提取</h1>
@@ -155,14 +155,14 @@ export default function SqlColumnExtractor() {
             去除表前缀
           </label>
           <button
-            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={extract}
             disabled={!sqlInput.trim()}
           >
             提取
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50 hover:bg-gray-200"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50 hover:bg-border"
             onClick={copyToClipboard}
             disabled={columns.length === 0}
           >
@@ -170,7 +170,7 @@ export default function SqlColumnExtractor() {
             {copied ? "已复制" : "复制"}
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 hover:bg-gray-200"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 hover:bg-border"
             onClick={clear}
           >
             <Trash2 className="h-4 w-4" />
@@ -191,33 +191,33 @@ export default function SqlColumnExtractor() {
         <span>
           提取结果
           {columns.length > 0 && (
-            <span className="ml-2 text-xs text-gray-500">共 {columns.length} 个列</span>
+            <span className="ml-2 text-xs text-muted-foreground">共 {columns.length} 个列</span>
           )}
         </span>
       }
       output={
         <div className="h-full overflow-auto p-3">
           {emptyMsg && (
-            <div className="text-sm text-gray-500 bg-gray-50 rounded p-2 mb-2">{emptyMsg}</div>
+            <div className="text-sm text-muted-foreground bg-muted rounded p-2 mb-2">{emptyMsg}</div>
           )}
           {columns.length === 0 && !emptyMsg && (
-            <div className="text-sm text-gray-400 py-8 text-center">
+            <div className="text-sm text-muted-foreground py-8 text-center">
               输入 SQL 后点击「提取」
             </div>
           )}
           {displayColumns.map((col, i) => (
             <div
               key={i}
-              className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0"
+              className="flex items-center justify-between py-2 border-b border-border last:border-0"
             >
-              <span className="font-mono text-sm text-gray-800">{col.displayName}</span>
-              <span className="text-xs text-gray-400">出现 {col.count} 次</span>
+              <span className="font-mono text-sm text-foreground">{col.displayName}</span>
+              <span className="text-xs text-muted-foreground">出现 {col.count} 次</span>
             </div>
           ))}
         </div>
       }
       footer={
-        <p className="text-xs text-gray-500">数据仅在浏览器本地处理，不会上传到服务器。</p>
+        <p className="text-xs text-muted-foreground">数据仅在浏览器本地处理，不会上传到服务器。</p>
       }
     />
   );

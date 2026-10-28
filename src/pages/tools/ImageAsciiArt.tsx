@@ -113,7 +113,7 @@ export default function ImageAsciiArt() {
       />
       
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100 flex items-center gap-3">
+        <h1 className="text-3xl font-bold mb-6 text-foreground dark:text-muted-foreground flex items-center gap-3">
           <FileText className="h-8 w-8 text-primary" />
           {t('tools.image-ascii.title', 'Image to ASCII Art')}
         </h1>
@@ -122,7 +122,7 @@ export default function ImageAsciiArt() {
           {/* Controls & Upload */}
           <div className="lg:col-span-1 space-y-6">
             <div 
-              className="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-6 text-center hover:border-primary transition-colors cursor-pointer bg-white dark:bg-gray-800"
+              className="border-2 border-dashed border-border dark:border-border rounded-lg p-6 text-center hover:border-primary transition-colors cursor-pointer bg-card dark:bg-muted"
               onDragOver={(e) => e.preventDefault()}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
@@ -134,23 +134,23 @@ export default function ImageAsciiArt() {
                 accept="image/*"
                 onChange={handleImageUpload}
               />
-              <Upload className="h-10 w-10 mx-auto text-gray-400 mb-2" />
-              <p className="text-sm text-gray-500 font-medium">
+              <Upload className="h-10 w-10 mx-auto text-muted-foreground mb-2" />
+              <p className="text-sm text-muted-foreground font-medium">
                 {t('tools.image-ascii.drag_drop', 'Click or drag image here')}
               </p>
-              <p className="text-xs text-gray-400 mt-1">JPG, PNG, GIF</p>
+              <p className="text-xs text-muted-foreground mt-1">JPG, PNG, GIF</p>
             </div>
 
             {imageSrc && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-gray-700 space-y-4">
-                <h3 className="font-medium text-gray-900 dark:text-gray-100 flex items-center gap-2">
+              <div className="bg-card dark:bg-muted rounded-lg p-4 border border-border dark:border-border space-y-4">
+                <h3 className="font-medium text-foreground dark:text-muted-foreground flex items-center gap-2">
                   <RefreshCw className="h-4 w-4" />
                   {t('tools.image-ascii.settings', 'Settings')}
                 </h3>
                 
                 <div className="space-y-3">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-muted-foreground dark:text-muted-foreground mb-1">
                       {t('tools.image-ascii.width', 'Width (chars)')}: {width}
                     </label>
                     <input 
@@ -164,13 +164,13 @@ export default function ImageAsciiArt() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-muted-foreground dark:text-muted-foreground mb-1">
                       {t('tools.image-ascii.mode', 'Color Mode')}
                     </label>
                     <select 
                       value={colorMode} 
                       onChange={(e) => setColorMode(e.target.value as 'black-white' | 'gray' | 'color')}
-                      className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600"
+                      className="w-full rounded-md border-border focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 dark:bg-secondary dark:border-border"
                     >
                       <option value="black-white">{t('tools.image-ascii.mode_bw', 'Black & White')}</option>
                       <option value="gray">{t('tools.image-ascii.mode_gray', 'Grayscale')}</option>
@@ -179,13 +179,13 @@ export default function ImageAsciiArt() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-muted-foreground dark:text-muted-foreground mb-1">
                       {t('tools.image-ascii.charset', 'Character Set')}
                     </label>
                     <select 
                       value={charSet} 
                       onChange={(e) => setCharSet(e.target.value as keyof typeof DENSITY_SETS | 'custom')}
-                      className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600"
+                      className="w-full rounded-md border-border focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 dark:bg-secondary dark:border-border"
                     >
                       <option value="standard">Standard (@%#*+=-:. )</option>
                       <option value="simple">Simple (#+-. )</option>
@@ -202,7 +202,7 @@ export default function ImageAsciiArt() {
                         value={customChars}
                         onChange={(e) => setCustomChars(e.target.value)}
                         placeholder="Enter characters..."
-                        className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600"
+                        className="w-full rounded-md border-border focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 dark:bg-secondary dark:border-border"
                       />
                     </div>
                   )}
@@ -213,19 +213,19 @@ export default function ImageAsciiArt() {
                       id="inverted" 
                       checked={inverted} 
                       onChange={(e) => setInverted(e.target.checked)}
-                      className="rounded border-gray-300 text-primary focus:ring-primary"
+                      className="rounded border-border text-primary focus:ring-primary"
                     />
-                    <label htmlFor="inverted" className="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                    <label htmlFor="inverted" className="ml-2 text-sm text-muted-foreground dark:text-muted-foreground">
                       {t('tools.image-ascii.inverted', 'Inverted')}
                     </label>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-gray-200 dark:border-gray-700 flex gap-2">
+                <div className="pt-4 border-t border-border dark:border-border flex gap-2">
                   <button 
                     onClick={downloadText}
                     disabled={!asciiResult}
-                    className="flex-1 flex items-center justify-center gap-2 bg-primary text-white py-2 px-4 rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground py-2 px-4 rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Download className="h-4 w-4" />
                     {t('common.download', 'Download')}
@@ -233,7 +233,7 @@ export default function ImageAsciiArt() {
                   <button 
                     onClick={copyToClipboard}
                     disabled={!asciiResult}
-                    className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                    className="flex items-center justify-center gap-2 bg-muted text-muted-foreground py-2 px-4 rounded-md hover:bg-border transition-colors disabled:opacity-50 disabled:cursor-not-allowed dark:bg-secondary dark:text-muted-foreground dark:hover:bg-muted-foreground"
                   >
                     {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   </button>
@@ -243,8 +243,8 @@ export default function ImageAsciiArt() {
             
             {/* Original Image Preview (Small) */}
             {imageSrc && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-gray-700">
-                <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-2 text-sm">
+              <div className="bg-card dark:bg-muted rounded-lg p-4 border border-border dark:border-border">
+                <h3 className="font-medium text-foreground dark:text-muted-foreground mb-2 text-sm">
                   {t('tools.image-ascii.original', 'Original Image')}
                 </h3>
                 <img src={imageSrc} alt="Original" className="w-full rounded object-contain max-h-48" />
@@ -254,17 +254,17 @@ export default function ImageAsciiArt() {
 
           {/* Output Area */}
           <div className="lg:col-span-2">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 h-full flex flex-col min-h-[500px]">
-              <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-gray-50 dark:bg-gray-900/50 rounded-t-lg">
-                <h2 className="font-semibold text-gray-900 dark:text-gray-100">
+            <div className="bg-card dark:bg-muted rounded-lg border border-border dark:border-border h-full flex flex-col min-h-[500px]">
+              <div className="p-4 border-b border-border dark:border-border flex justify-between items-center bg-muted dark:bg-muted/50 rounded-t-lg">
+                <h2 className="font-semibold text-foreground dark:text-muted-foreground">
                   {t('tools.image-ascii.preview', 'ASCII Preview')}
                 </h2>
-                {isProcessing && <span className="text-sm text-gray-500">Processing...</span>}
+                {isProcessing && <span className="text-sm text-muted-foreground">Processing…</span>}
               </div>
               
-              <div className="flex-1 p-4 overflow-auto bg-black rounded-b-lg flex items-center justify-center">
+              <div className="flex-1 p-4 overflow-auto bg-foreground rounded-b-lg flex items-center justify-center">
                 {!imageSrc ? (
-                  <div className="text-center text-gray-500">
+                  <div className="text-center text-muted-foreground">
                     <ImageIcon className="h-16 w-16 mx-auto mb-4 opacity-20" />
                     <p>{t('tools.image-ascii.placeholder', 'Upload an image to see the magic')}</p>
                   </div>
@@ -277,7 +277,7 @@ export default function ImageAsciiArt() {
                     }}
                   >
                     {colorMode === 'black-white' ? (
-                      <span className="text-white">{asciiResult?.text}</span>
+                      <span className="text-card-foreground">{asciiResult?.text}</span>
                     ) : (
                       <div dangerouslySetInnerHTML={{ __html: asciiResult?.html || '' }} />
                     )}
@@ -290,7 +290,7 @@ export default function ImageAsciiArt() {
       </div>
       
       {/* Hidden Canvas for Processing */}
-      <canvas ref={canvasRef} className="hidden" />
+      <canvas ref={canvasRef} className="hidden" role="img" aria-label="Drawing output"/>
     </div>
   );
 }

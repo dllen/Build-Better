@@ -66,7 +66,7 @@ export default function TextToHtml() {
     <EditorSplitLayout
       title={
         <>
-          <div className="p-2 bg-orange-100 text-orange-600 rounded-lg">
+          <div className="p-2 bg-primary/10 text-primary rounded-lg">
             <Code className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-bold">Text to HTML Converter</h1>
@@ -75,11 +75,11 @@ export default function TextToHtml() {
       toolbar={
         <>
           <div className="flex items-center gap-2">
-            <span className="text-sm font-medium text-gray-700">Wrap with:</span>
+            <span className="text-sm font-medium text-muted-foreground">Wrap with:</span>
             <select
               value={wrapTag}
               onChange={(e) => setWrapTag(e.target.value)}
-              className="px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-orange-500"
+              className="px-3 py-1.5 border border-border rounded-md text-sm focus:ring-2 focus:ring-ring"
             >
               <option value="p">&lt;p&gt;</option>
               <option value="div">&lt;div&gt;</option>
@@ -91,48 +91,48 @@ export default function TextToHtml() {
             </select>
           </div>
 
-          <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+          <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
             <input
               type="checkbox"
               checked={convertNewlines}
               onChange={(e) => setConvertNewlines(e.target.checked)}
-              className="rounded text-orange-600 focus:ring-orange-500"
+              className="rounded text-primary focus:ring-ring"
             />
             Convert newlines to &lt;br/&gt;
           </label>
 
-          <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+          <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
             <input
               type="checkbox"
               checked={escapeHtml}
               onChange={(e) => setEscapeHtml(e.target.checked)}
-              className="rounded text-orange-600 focus:ring-orange-500"
+              className="rounded text-primary focus:ring-ring"
             />
             Escape HTML characters
           </label>
 
           <div className="flex items-center gap-2">
-            <span className="text-sm font-medium text-gray-700">Attributes:</span>
+            <span className="text-sm font-medium text-muted-foreground">Attributes:</span>
             <input
               type="text"
               value={addAttributes}
               onChange={(e) => setAddAttributes(e.target.value)}
               placeholder='class="text-red"'
-              className="px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-orange-500"
+              className="px-3 py-1.5 border border-border rounded-md text-sm focus:ring-2 focus:ring-ring"
             />
           </div>
 
           <div className="ml-auto flex items-center gap-2">
             <button
               onClick={() => setText("")}
-              className="flex items-center gap-2 px-3 py-1.5 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors text-sm"
+              className="flex items-center gap-2 px-3 py-1.5 text-muted-foreground hover:bg-muted rounded-lg transition-colors text-sm"
             >
               <RotateCcw size={14} />
               Clear
             </button>
             <button
               onClick={handleCopy}
-              className="flex items-center gap-2 px-3 py-1.5 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors text-sm"
+              className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-lg hover:bg-primary transition-colors text-sm"
             >
               {copied ? <Check size={14} /> : <Copy size={14} />}
               {copied ? "Copied!" : "Copy HTML"}
@@ -154,7 +154,7 @@ export default function TextToHtml() {
         <textarea
           readOnly
           value={html}
-          className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-gray-50 focus:outline-none"
+          className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-muted focus:outline-none"
         />
       }
     />

@@ -193,41 +193,40 @@ export default function Dino() {
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] space-y-6 outline-none"
+      className="flex flex-col items-center justify-center min-h-[calc(100dvh-200px)] space-y-6 outline-none"
       tabIndex={0}
     >
       <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold text-gray-900">Chrome Dino</h1>
-        <p className="text-gray-600">Space or Arrow Up to jump</p>
+        <h1 className="text-3xl font-bold text-foreground">Chrome Dino</h1>
+        <p className="text-muted-foreground">Space or Arrow Up to jump</p>
       </div>
 
       <div className="flex items-center gap-8">
-        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 min-w-[120px] text-center">
-          <div className="text-sm text-gray-500 mb-1">Score</div>
-          <div className="text-2xl font-bold text-blue-600">{score}</div>
+        <div className="bg-card p-4 rounded-xl border border-border min-w-[120px] text-center">
+          <div className="text-sm text-muted-foreground mb-1">Score</div>
+          <div className="text-2xl font-bold text-primary">{score}</div>
         </div>
-        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 min-w-[120px] text-center">
-          <div className="text-sm text-gray-500 mb-1 flex items-center justify-center gap-1">
-            <Trophy className="h-4 w-4 text-yellow-500" /> Best
+        <div className="bg-card p-4 rounded-xl border border-border min-w-[120px] text-center">
+          <div className="text-sm text-muted-foreground mb-1 flex items-center justify-center gap-1">
+            <Trophy className="h-4 w-4 text-primary" /> Best
           </div>
-          <div className="text-2xl font-bold text-purple-600">{highScore}</div>
+          <div className="text-2xl font-bold text-cool">{highScore}</div>
         </div>
       </div>
 
-      <div className="relative bg-white rounded-lg shadow-lg p-4 border border-gray-200 overflow-hidden">
+      <div className="relative bg-card rounded-lg p-4 border border-border overflow-hidden">
         <canvas
           ref={canvasRef}
           width={GAME_WIDTH}
           height={GAME_HEIGHT}
-          className="bg-gray-50 rounded border border-gray-100"
-        />
+          className="bg-muted rounded border border-border" role="img" aria-label="Drawing output"/>
 
         {(!isPlaying || gameOver) && (
-          <div className="absolute inset-0 bg-black/10 flex flex-col items-center justify-center backdrop-blur-[1px]">
-            {gameOver && <div className="text-3xl font-bold text-gray-800 mb-4">Game Over</div>}
+          <div className="absolute inset-0 bg-scrim/15 flex flex-col items-center justify-center">
+            {gameOver && <div className="text-3xl font-bold text-foreground mb-4">Game Over</div>}
             <button
               onClick={resetGame}
-              className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold transition-colors shadow-lg"
+              className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full font-bold transition-colors"
             >
               {gameOver ? <RotateCcw className="w-5 h-5" /> : <Play className="w-5 h-5" />}
               {gameOver ? "Try Again" : "Start Game"}

@@ -111,10 +111,10 @@ export default function OtpGenerator() {
       <div className="max-w-4xl mx-auto space-y-8">
         <div className="text-center">
           <h1 className="text-3xl font-bold mb-4 flex items-center justify-center gap-2">
-            <ShieldCheck className="w-8 h-8 text-blue-600" />
+            <ShieldCheck className="w-8 h-8 text-primary" />
             {t("tools.otp-generator.title", "OTP Generator")}
           </h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             {t(
               "tools.otp-generator.subtitle",
               "Secure 2FA token generator and validator"
@@ -124,7 +124,7 @@ export default function OtpGenerator() {
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Configuration */}
-          <div className="bg-white p-6 rounded-lg shadow-md space-y-6">
+          <div className="bg-card p-6 rounded-lg space-y-6">
             <div className="flex items-center gap-2 text-xl font-semibold border-b pb-2">
               <Settings className="w-5 h-5" />
               {t("tools.otp-generator.config", "Configuration")}
@@ -132,7 +132,7 @@ export default function OtpGenerator() {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-muted-foreground mb-1">
                   {t("tools.otp-generator.secret", "Secret Key (Base32)")}
                 </label>
                 <div className="flex gap-2">
@@ -145,7 +145,7 @@ export default function OtpGenerator() {
                   />
                   <button
                     onClick={generateRandomSecret}
-                    className="p-2 bg-gray-100 rounded hover:bg-gray-200 text-gray-600"
+                    className="p-2 bg-muted rounded hover:bg-border text-muted-foreground"
                     title={t("tools.otp-generator.generate_new", "Generate New")}
                   >
                     <RefreshCw className="w-5 h-5" />
@@ -155,7 +155,7 @@ export default function OtpGenerator() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-muted-foreground mb-1">
                     {t("tools.otp-generator.account", "Account")}
                   </label>
                   <input
@@ -167,7 +167,7 @@ export default function OtpGenerator() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-muted-foreground mb-1">
                     {t("tools.otp-generator.issuer", "Issuer")}
                   </label>
                   <input
@@ -182,7 +182,7 @@ export default function OtpGenerator() {
 
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-muted-foreground mb-1">
                     {t("tools.otp-generator.digits", "Digits")}
                   </label>
                   <select
@@ -195,7 +195,7 @@ export default function OtpGenerator() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-muted-foreground mb-1">
                     {t("tools.otp-generator.period", "Period (s)")}
                   </label>
                   <input
@@ -206,7 +206,7 @@ export default function OtpGenerator() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-muted-foreground mb-1">
                     {t("tools.otp-generator.algo", "Algorithm")}
                   </label>
                   <select
@@ -225,28 +225,28 @@ export default function OtpGenerator() {
 
           {/* Display & QR */}
           <div className="space-y-6">
-            <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center text-center">
-              <div className="text-sm text-gray-500 mb-2">
+            <div className="bg-card p-6 rounded-lg flex flex-col items-center justify-center text-center">
+              <div className="text-sm text-muted-foreground mb-2">
                 {t("tools.otp-generator.current_code", "Current Code")}
               </div>
-              <div className="text-5xl font-mono font-bold tracking-wider text-blue-600 mb-4 relative group cursor-pointer" onClick={() => copyToClipboard(token)}>
+              <div className="text-5xl font-mono font-bold text-primary mb-4 relative group cursor-pointer" onClick={() => copyToClipboard(token)}>
                 {token || "------"}
-                <Copy className="w-5 h-5 absolute -right-8 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-gray-400" />
+                <Copy className="w-5 h-5 absolute -right-8 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground" />
               </div>
               
-              <div className="flex items-center gap-2 text-gray-500 text-sm">
+              <div className="flex items-center gap-2 text-muted-foreground text-sm">
                 <Clock className="w-4 h-4" />
                 <span>{timeLeft}s</span>
-                <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div className="w-24 h-2 bg-border rounded-full overflow-hidden">
                   <div 
-                    className="h-full bg-blue-500 transition-all duration-1000 ease-linear"
+                    className="h-full bg-primary transition-colors duration-1000 ease-linear"
                     style={{ width: `${(timeLeft / period) * 100}%` }}
                   />
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
+            <div className="bg-card p-6 rounded-lg flex flex-col items-center">
                <div className="flex items-center gap-2 text-lg font-semibold mb-4 w-full border-b pb-2">
                 <QrCode className="w-5 h-5" />
                 {t("tools.otp-generator.qr_code", "QR Code")}
@@ -254,7 +254,7 @@ export default function OtpGenerator() {
               {qrCodeUrl && (
                 <img src={qrCodeUrl} alt="TOTP QR Code" className="w-48 h-48 border rounded" />
               )}
-              <p className="text-xs text-gray-400 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 {t("tools.otp-generator.scan_desc", "Scan this with your authenticator app (Google Authenticator, Authy, etc.)")}
               </p>
             </div>
@@ -262,7 +262,7 @@ export default function OtpGenerator() {
         </div>
 
         {/* Verification */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        <div className="bg-card p-6 rounded-lg">
            <div className="flex items-center gap-2 text-xl font-semibold border-b pb-2 mb-4">
               <ShieldCheck className="w-5 h-5" />
               {t("tools.otp-generator.verify", "Verify Token")}
@@ -270,7 +270,7 @@ export default function OtpGenerator() {
             
             <div className="flex gap-4 items-end">
               <div className="flex-1 max-w-xs">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-muted-foreground mb-1">
                    {t("tools.otp-generator.enter_code", "Enter Code")}
                 </label>
                 <input
@@ -284,13 +284,13 @@ export default function OtpGenerator() {
               </div>
               <button
                 onClick={handleVerify}
-                className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 font-medium"
+                className="px-6 py-2 bg-primary text-primary-foreground rounded hover:bg-primary font-medium"
               >
                 {t("tools.otp-generator.check", "Check")}
               </button>
               
               {verifyResult !== null && (
-                <div className={`flex items-center gap-2 px-4 py-2 rounded ${verifyResult ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                <div className={`flex items-center gap-2 px-4 py-2 rounded ${verifyResult ? 'bg-success/10 text-success' : 'bg-destructive/10 text-destructive'}`}>
                   {verifyResult ? <Check className="w-5 h-5" /> : <X className="w-5 h-5" />}
                   <span className="font-medium">
                     {verifyResult 

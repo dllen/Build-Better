@@ -558,18 +558,18 @@ function CommandBlock({ cmd, hint }: CommandBlockProps) {
   };
   return (
     <div className="relative group">
-      <pre className="bg-gray-900 text-green-400 text-xs font-mono p-3 rounded-md overflow-x-auto">
+      <pre className="bg-card text-success text-xs font-mono p-3 rounded-md overflow-x-auto border border-border">
         {cmd}
       </pre>
       <button
         onClick={copy}
-        className="absolute top-2 right-2 p-1.5 bg-gray-700 hover:bg-gray-600 text-gray-200 rounded text-xs flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
+        className="absolute top-2 right-2 p-1.5 bg-muted hover:bg-accent text-foreground rounded text-xs flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
         aria-label="Copy command"
       >
         <Copy className="h-3 w-3" />
-        {copied ? <CheckCircle2 className="h-3 w-3 text-green-400" /> : <span>Copy</span>}
+        {copied ? <CheckCircle2 className="h-3 w-3 text-success" /> : <span>Copy</span>}
       </button>
-      {hint && <p className="text-xs text-gray-500 mt-1">{hint}</p>}
+      {hint && <p className="text-xs text-muted-foreground mt-1">{hint}</p>}
     </div>
   );
 }
@@ -578,10 +578,10 @@ function OSTab({ icon, label, selected, onClick }: { icon: React.ReactNode; labe
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-all ${
+      className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
         selected
-          ? "bg-amber-600 text-white shadow-sm"
-          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+          ? "bg-primary text-primary-foreground"
+          : "bg-muted text-ink-2 hover:bg-accent"
       }`}
     >
       {icon}
@@ -598,26 +598,26 @@ function OSSection({ data }: OSSectionProps) {
   return (
     <div className="space-y-4">
       <div>
-        <p className="text-xs font-semibold text-gray-500 mb-1">System Requirements</p>
-        <p className="text-sm text-gray-700">{data.requirements}</p>
+        <p className="text-xs font-semibold text-muted-foreground mb-1">System Requirements</p>
+        <p className="text-sm text-ink-2">{data.requirements}</p>
       </div>
       <div>
-        <p className="text-xs font-semibold text-gray-500 mb-1">Install</p>
-        <p className="text-sm text-gray-700 mb-2">{data.install}</p>
+        <p className="text-xs font-semibold text-muted-foreground mb-1">Install</p>
+        <p className="text-sm text-ink-2 mb-2">{data.install}</p>
         <CommandBlock cmd="$ ollama --version" hint="(Verify install — should print version number)" />
-        <p className="text-xs text-gray-500 mt-1">{data.installSubtext}</p>
+        <p className="text-xs text-muted-foreground mt-1">{data.installSubtext}</p>
       </div>
       <div>
-        <p className="text-xs font-semibold text-gray-500 mb-1">Start / Manage</p>
+        <p className="text-xs font-semibold text-muted-foreground mb-1">Start / Manage</p>
         <CommandBlock cmd="$ ollama serve" hint={data.start} />
       </div>
       <div>
-        <p className="text-xs font-semibold text-gray-500 mb-1">Verify</p>
+        <p className="text-xs font-semibold text-muted-foreground mb-1">Verify</p>
         <CommandBlock cmd="$ curl http://localhost:11434/api/tags" hint="Should return JSON with installed models list" />
       </div>
       <div>
-        <p className="text-xs font-semibold text-gray-500 mb-1">Notes</p>
-        <p className="text-sm text-gray-700">{data.notes}</p>
+        <p className="text-xs font-semibold text-muted-foreground mb-1">Notes</p>
+        <p className="text-sm text-ink-2">{data.notes}</p>
       </div>
     </div>
   );
@@ -648,18 +648,18 @@ export default function OllamaSetup() {
       title="Set up Ollama locally"
       subtitle="Run AI models on your machine — no API keys, no cloud"
       icon={Cpu}
-      iconBgColor="bg-amber-100"
-      iconColor="text-amber-600"
+      iconBgColor="bg-accent/10"
+      iconColor="text-primary"
       keywords={["ollama", "local ai", "llama", "setup", "install"]}
       result={
         <div className="space-y-6">
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-900">
+          <div className="bg-accent/10 border border-border rounded-lg p-3 text-sm text-foreground">
             {c.intro}
           </div>
 
           {/* OS-specific installation */}
           <div>
-            <p className="text-xs font-bold text-gray-500 mb-2">{c.selectOs}</p>
+            <p className="text-xs font-bold text-muted-foreground mb-2">{c.selectOs}</p>
             <div className="flex gap-2 mb-4 flex-wrap">
               <OSTab icon={<Apple className="h-4 w-4" />} label={c.macos.label} selected={os === "macos"} onClick={() => setOs("macos")} />
               <OSTab icon={<Monitor className="h-4 w-4" />} label={c.windows.label} selected={os === "windows"} onClick={() => setOs("windows")} />
@@ -671,13 +671,13 @@ export default function OllamaSetup() {
           {/* Model recommendations */}
           <div>
             <h3 className="text-sm font-bold mb-2 flex items-center gap-2">
-              <Cpu className="h-4 w-4 text-amber-600" />
+              <Cpu className="h-4 w-4 text-primary" />
               {c.modelSection.title}
             </h3>
-            <p className="text-xs text-gray-600 mb-2">{c.modelSection.intro}</p>
+            <p className="text-xs text-ink-2 mb-2">{c.modelSection.intro}</p>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
-                <thead className="bg-gray-50">
+                <thead className="bg-muted">
                   <tr>
                     <th className="px-2 py-1 text-left">Model</th>
                     <th className="px-2 py-1 text-left">Size</th>
@@ -688,7 +688,7 @@ export default function OllamaSetup() {
                 </thead>
                 <tbody>
                   {MODEL_RECOMMENDATIONS.map((m, i) => (
-                    <tr key={i} className="border-t border-gray-100">
+                    <tr key={i} className="border-t border-border">
                       <td className="px-2 py-1.5 font-mono">{m.name}</td>
                       <td className="px-2 py-1.5">{m.size}</td>
                       <td className="px-2 py-1.5">{m.speed}</td>
@@ -699,7 +699,7 @@ export default function OllamaSetup() {
                 </tbody>
               </table>
             </div>
-            <p className="text-xs text-gray-500 mt-2">{c.modelSection.recommended}:</p>
+            <p className="text-xs text-muted-foreground mt-2">{c.modelSection.recommended}:</p>
             <CommandBlock cmd="$ ollama pull llama3.2:latest" hint="Download your first model" />
           </div>
 
@@ -708,19 +708,19 @@ export default function OllamaSetup() {
             <h3 className="text-sm font-bold mb-2">{c.faqTitle}</h3>
             <div className="space-y-2">
               {c.faqs.map((f, i) => (
-                <details key={i} className="bg-gray-50 border border-gray-200 rounded-md p-2 group">
+                <details key={i} className="bg-muted border border-border rounded-md p-2 group">
                   <summary className="cursor-pointer font-medium text-xs flex items-center justify-between">
                     <span>{f.q}</span>
-                    <span className="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    <span className="text-muted-foreground group-open:rotate-180 transition-transform">▼</span>
                   </summary>
-                  <p className="text-xs text-gray-700 mt-2 leading-relaxed">{f.a}</p>
+                  <p className="text-xs text-ink-2 mt-2 leading-relaxed">{f.a}</p>
                 </details>
               ))}
             </div>
           </div>
 
           {/* Official references */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-900 space-y-1">
+          <div className="bg-accent/10 border border-border rounded-lg p-3 text-xs text-foreground space-y-1">
             <p className="font-semibold mb-1">Official references (canonical source):</p>
             <p>• Download: <a href={OLLAMA_URLS.download} target="_blank" rel="noopener noreferrer" className="underline">{OLLAMA_URLS.download}</a></p>
             <p>• Documentation: <a href={OLLAMA_URLS.docs} target="_blank" rel="noopener noreferrer" className="underline">{OLLAMA_URLS.docs}</a></p>
@@ -731,17 +731,17 @@ export default function OllamaSetup() {
       }
     >
       <div className="space-y-3">
-        <div className="bg-white border border-gray-200 rounded-lg p-3">
+        <div className="bg-card border border-border rounded-lg p-3">
           <p className="text-sm font-semibold mb-2">Read this guide in:</p>
           <div className="flex flex-wrap gap-1.5">
             {LANG_ORDER.map(l => (
               <button
                 key={l}
                 onClick={() => i18n.changeLanguage(l)}
-                className={`px-2 py-1 text-xs rounded transition ${
+                className={`px-2 py-1 text-xs rounded transition-colors ${
                   langKey === l || (langKey as string).startsWith(l as string)
-                    ? "bg-amber-600 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-ink-2 hover:bg-accent"
                 }`}
               >
                 {l}
@@ -749,19 +749,19 @@ export default function OllamaSetup() {
             ))}
           </div>
         </div>
-        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs space-y-1 text-amber-900">
+        <div className="bg-accent/10 border border-border rounded-lg p-3 text-xs space-y-1 text-foreground">
           <p className="font-semibold">Why Ollama?</p>
           <p>• Free and open-source</p>
-          <p>• Runs entirely on your machine — data stays private</p>
+          <p>Runs entirely on your machine, and the data stays private</p>
           <p>• No API keys, no rate limits, no monthly fees</p>
           <p>• Works offline once models are downloaded</p>
         </div>
         <a href={OLLAMA_URLS.download} target="_blank" rel="noopener noreferrer"
-          className="block w-full text-center px-4 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors font-medium">
+          className="block w-full text-center px-4 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium">
           <Download className="inline h-4 w-4 mr-2" />
           Download Ollama <ExternalLink className="inline h-3 w-3 ml-1" />
         </a>
-        <Link to="/ai-customer-reply" className="block w-full text-center px-4 py-2 border border-blue-300 text-blue-700 rounded-lg hover:bg-blue-50 text-sm">
+        <Link to="/ai-customer-reply" className="block w-full text-center px-4 py-2 border border-border text-primary rounded-lg hover:bg-accent transition-colors text-sm">
           Try an AI tool <MessageSquare className="inline h-3 w-3 ml-1" />
         </Link>
       </div>

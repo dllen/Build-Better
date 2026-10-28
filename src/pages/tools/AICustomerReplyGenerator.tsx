@@ -74,20 +74,20 @@ export default function AICustomerReplyGenerator() {
     <div className="space-y-4">
       {loading ? (
         <div className="text-center py-12">
-          <Sparkles className="h-10 w-10 mx-auto mb-4 text-blue-500 animate-pulse" />
-          <p className="text-sm text-gray-600">{t("tools.ai-customer-reply.generating")}</p>
+          <Sparkles className="h-10 w-10 mx-auto mb-4 text-primary animate-pulse" />
+          <p className="text-sm text-muted-foreground">{t("tools.ai-customer-reply.generating")}</p>
         </div>
       ) : reply ? (
         <>
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <pre className="whitespace-pre-wrap text-sm text-gray-900 font-sans">{reply}</pre>
+          <div className="bg-primary/10 border border-border rounded-lg p-4">
+            <pre className="whitespace-pre-wrap text-sm text-foreground font-sans">{reply}</pre>
           </div>
-          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary">
             <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.ai-customer-reply.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <MessageSquare className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-sm">{t("tools.ai-customer-reply.enter_values")}</p>
           {ollamaOk === false && <div className="mt-3"><OllamaHelpBanner /></div>}
@@ -101,43 +101,43 @@ export default function AICustomerReplyGenerator() {
       title={t("tools.ai-customer-reply.title")}
       subtitle={t("tools.ai-customer-reply.subtitle")}
       icon={MessageSquare}
-      iconBgColor="bg-blue-100"
-      iconColor="text-blue-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["ai customer reply", "chatbot", "customer service", "auto reply"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.ai-customer-reply.customer_msg")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.ai-customer-reply.customer_msg")}</label>
           <textarea value={customerMsg} onChange={e => setCustomerMsg(e.target.value)} rows={3} placeholder={t("tools.ai-customer-reply.msg_placeholder")}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <div className="grid grid-cols-2 gap-2">
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.ai-customer-reply.scenario")}</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">{t("tools.ai-customer-reply.scenario")}</label>
             <select value={scenario} onChange={e => { setScenario(e.target.value); }}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border">
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
               {SCENARIOS.map(s => <option key={s.id} value={s.id}>{s.id}</option>)}
             </select>
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.ai-customer-reply.tone")}</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">{t("tools.ai-customer-reply.tone")}</label>
             <select value={tone} onChange={e => setTone(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border">
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
               {TONES.map(tn => <option key={tn} value={tn}>{tn}</option>)}
             </select>
           </div>
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.ai-customer-reply.language")}</label>
+          <label className="block text-xs font-medium text-muted-foreground mb-1">{t("tools.ai-customer-reply.language")}</label>
           <select value={language} onChange={e => setLanguage(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border">
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
             {LANGS.map(l => <option key={l.name} value={l.name}>{l.native}</option>)}
           </select>
         </div>
         <OllamaModelBadge />
         <button onClick={generate} disabled={loading || !customerMsg.trim()}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50">
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary disabled:opacity-50">
           <Sparkles className="h-4 w-4" />{loading ? t("tools.ai-customer-reply.generating_btn") : t("tools.ai-customer-reply.generate")}
         </button>
       </div>

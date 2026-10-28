@@ -15,7 +15,7 @@ export function ResponseViewer({ response, error, isLoading }: ResponseViewerPro
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-full text-xs text-muted-foreground">
-        发送请求中...
+        发送请求中…
       </div>
     );
   }
@@ -23,8 +23,8 @@ export function ResponseViewer({ response, error, isLoading }: ResponseViewerPro
   if (error) {
     return (
       <div className="flex flex-col items-center justify-center h-full p-6 text-center">
-        <AlertCircle className="w-8 h-8 text-red-400 mb-3" />
-        <p className="text-sm font-medium text-red-400">请求失败</p>
+        <AlertCircle className="w-8 h-8 text-destructive mb-3" />
+        <p className="text-sm font-medium text-destructive">请求失败</p>
         <p className="text-xs text-muted-foreground mt-2 font-mono bg-muted/50 p-2 rounded">{error}</p>
       </div>
     );
@@ -39,9 +39,9 @@ export function ResponseViewer({ response, error, isLoading }: ResponseViewerPro
   }
 
   const statusClass =
-    response.status < 300 ? "text-emerald-400 bg-emerald-500/10" :
-    response.status < 400 ? "text-amber-400 bg-amber-500/10" :
-    "text-red-400 bg-red-500/10";
+    response.status < 300 ? "text-success bg-success/10" :
+    response.status < 400 ? "text-primary bg-primary/10" :
+    "text-destructive bg-destructive/10";
 
   const isJson = typeof response.data === "object" && response.data !== null;
 
@@ -65,18 +65,14 @@ export function ResponseViewer({ response, error, isLoading }: ResponseViewerPro
       <div className="flex border-b border-border/50 bg-muted/10">
         <button
           onClick={() => setActiveTab("body")}
-          className={`flex items-center gap-1.5 px-4 py-2 text-[11px] font-medium transition-colors border-b-2 -mb-px ${
-            activeTab === "body" ? "text-cyan-400 border-cyan-400" : "text-muted-foreground border-transparent hover:text-foreground"
-          }`}
+          className={`flex items-center gap-1.5 px-4 py-2 text-[11px] font-medium transition-colors border-b-2 -mb-px ${ activeTab === "body" ? "text-info border-border" : "text-muted-foreground border-transparent hover:text-foreground" }`}
         >
           {isJson ? <FileJson className="w-3 h-3" /> : <FileText className="w-3 h-3" />}
           Body
         </button>
         <button
           onClick={() => setActiveTab("headers")}
-          className={`flex items-center gap-1.5 px-4 py-2 text-[11px] font-medium transition-colors border-b-2 -mb-px ${
-            activeTab === "headers" ? "text-cyan-400 border-cyan-400" : "text-muted-foreground border-transparent hover:text-foreground"
-          }`}
+          className={`flex items-center gap-1.5 px-4 py-2 text-[11px] font-medium transition-colors border-b-2 -mb-px ${ activeTab === "headers" ? "text-info border-border" : "text-muted-foreground border-transparent hover:text-foreground" }`}
         >
           Headers ({Object.keys(response.headers).length})
         </button>
@@ -104,7 +100,7 @@ export function ResponseViewer({ response, error, isLoading }: ResponseViewerPro
             <div className="text-xs font-mono">
               {Object.entries(response.headers).map(([key, value]) => (
                 <div key={key} className="flex gap-2 py-1 border-b border-border/20">
-                  <span className="text-cyan-400 shrink-0">{key}:</span>
+                  <span className="text-info shrink-0">{key}:</span>
                   <span className="text-muted-foreground break-all">{value}</span>
                 </div>
               ))}

@@ -65,8 +65,8 @@ export default function TextTools() {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Text Processing Suite</h1>
-        <p className="text-gray-600">A comprehensive collection of tools for manipulating, analyzing, and formatting text.</p>
+        <h1 className="text-3xl font-bold text-foreground mb-2">Text Processing Suite</h1>
+        <p className="text-muted-foreground">A comprehensive collection of tools for manipulating, analyzing, and formatting text.</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -74,15 +74,15 @@ export default function TextTools() {
           <Link 
             key={tool.path} 
             to={tool.path}
-            className="group bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md hover:border-blue-300 transition-all"
+            className="group bg-card p-6 rounded-xl border border-border hover:border-border transition-colors"
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="p-3 bg-blue-50 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-colors">
+              <div className="p-3 bg-primary/10 text-primary rounded-lg group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                 <tool.icon size={24} />
               </div>
-              <h3 className="font-semibold text-gray-900">{tool.title}</h3>
+              <h3 className="font-semibold text-foreground">{tool.title}</h3>
             </div>
-            <p className="text-sm text-gray-500 leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               {tool.desc}
             </p>
           </Link>

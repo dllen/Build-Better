@@ -15,7 +15,7 @@ export default function Privacy() {
           <p className="text-sm text-muted-foreground">Last updated: {lastUpdated}</p>
         </header>
 
-        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6 shadow-sm">
+        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6">
           <h2 className="text-xl font-semibold">Google AdSense</h2>
           <p className="text-muted-foreground leading-relaxed">
             Build Better uses Google AdSense, a web advertising service provided by Google.
@@ -29,7 +29,7 @@ export default function Privacy() {
               href="https://www.google.com/settings/ads"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline underline-offset-4 hover:text-primary/80"
+              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
             >
               Google Ads Settings
             </a>
@@ -37,7 +37,7 @@ export default function Privacy() {
           </p>
         </section>
 
-        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6 shadow-sm">
+        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6">
           <h2 className="text-xl font-semibold">Cookies We Use</h2>
           <ul className="list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
             <li>
@@ -57,7 +57,7 @@ export default function Privacy() {
           </ul>
         </section>
 
-        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6 shadow-sm">
+        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6">
           <h2 className="text-xl font-semibold">Analytics</h2>
           <p className="text-muted-foreground leading-relaxed">
             We use anonymous analytics to understand how visitors use the site (pages viewed,
@@ -67,7 +67,7 @@ export default function Privacy() {
           </p>
         </section>
 
-        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6 shadow-sm">
+        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6">
           <h2 className="text-xl font-semibold">Data Storage</h2>
           <p className="text-muted-foreground leading-relaxed">
             Cloudflare KV is used for short URL generation. Cloudflare D1 (the SharePool
@@ -76,7 +76,7 @@ export default function Privacy() {
           </p>
         </section>
 
-        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6 shadow-sm">
+        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6">
           <h2 className="text-xl font-semibold">Your Rights (GDPR / CCPA)</h2>
           <p className="text-muted-foreground leading-relaxed">
             If you are in the EEA, UK, or California, you have the right to request access
@@ -85,13 +85,13 @@ export default function Privacy() {
           </p>
         </section>
 
-        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6 shadow-sm">
+        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6">
           <h2 className="text-xl font-semibold">Contact</h2>
           <p className="text-muted-foreground leading-relaxed">
             For privacy concerns or questions, contact:{" "}
             <a
               href="mailto:privacy@buildbetter.app"
-              className="text-primary underline underline-offset-4 hover:text-primary/80"
+              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
             >
               privacy@buildbetter.app
             </a>

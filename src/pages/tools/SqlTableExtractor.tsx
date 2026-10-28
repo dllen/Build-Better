@@ -124,7 +124,7 @@ export default function SqlTableExtractor() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-indigo-100 text-indigo-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <Database className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">SQL 表提取工具</h1>
@@ -133,7 +133,7 @@ export default function SqlTableExtractor() {
       toolbar={
         <>
           <button
-            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={extract}
             disabled={!canExtract}
           >
@@ -141,15 +141,15 @@ export default function SqlTableExtractor() {
             提取
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50 hover:bg-gray-200"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50 hover:bg-border"
             onClick={copyList}
             disabled={!tables || tables.length === 0}
           >
-            {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+            {copied ? <Check className="h-4 w-4 text-success" /> : <Copy className="h-4 w-4" />}
             {copied ? "已复制 ✓" : "复制"}
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50 hover:bg-gray-200"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50 hover:bg-border"
             onClick={clear}
             disabled={!canExtract && !tables}
           >
@@ -171,24 +171,24 @@ export default function SqlTableExtractor() {
         <span>
           提取结果
           {tables && tables.length > 0 && (
-            <span className="ml-2 text-xs text-gray-500">共 {tables.length} 张表</span>
+            <span className="ml-2 text-xs text-muted-foreground">共 {tables.length} 张表</span>
           )}
         </span>
       }
       output={
         <div className="h-full overflow-auto p-3">
           {tables === null && (
-            <div className="text-sm text-gray-500">粘贴 SQL 后点击"提取"，将列出所有涉及的表名。</div>
+            <div className="text-sm text-muted-foreground">粘贴 SQL 后点击"提取"，将列出所有涉及的表名。</div>
           )}
           {tables !== null && tables.length === 0 && (
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-muted-foreground">
               未找到任何表名。请确认 SQL 中包含 FROM / JOIN / UPDATE / INTO / TABLE 等关键字。
             </div>
           )}
           {tables && tables.length > 0 && (
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-gray-500 border-b border-gray-200">
+                <tr className="text-left text-muted-foreground border-b border-border">
                   <th className="py-2 pr-4 font-medium">表名</th>
                   <th className="py-2 pr-4 font-medium">出现次数</th>
                   <th className="py-2 font-medium">语句类型</th>
@@ -196,7 +196,7 @@ export default function SqlTableExtractor() {
               </thead>
               <tbody>
                 {tables.map((t) => (
-                  <tr key={t.name.toLowerCase()} className="border-b border-gray-100">
+                  <tr key={t.name.toLowerCase()} className="border-b border-border">
                     <td className="py-2 pr-4 font-mono break-all">{t.name}</td>
                     <td className="py-2 pr-4">{t.count}</td>
                     <td className="py-2">
@@ -204,13 +204,7 @@ export default function SqlTableExtractor() {
                         {Array.from(t.types).map((ty) => (
                           <span
                             key={ty}
-                            className={
-                              ty === "查询"
-                                ? "px-2 py-0.5 rounded-full text-xs bg-blue-100 text-blue-700"
-                                : ty === "写入"
-                                  ? "px-2 py-0.5 rounded-full text-xs bg-amber-100 text-amber-700"
-                                  : "px-2 py-0.5 rounded-full text-xs bg-purple-100 text-purple-700"
-                            }
+                            className={ty === "查询" ? "px-2 py-0.5 rounded-full text-xs bg-primary/10 text-primary" : ty === "写入" ? "px-2 py-0.5 rounded-full text-xs bg-primary/10 text-primary" : "px-2 py-0.5 rounded-full text-xs bg-primary/10 text-primary"}
                           >
                             {ty}
                           </span>
@@ -225,7 +219,7 @@ export default function SqlTableExtractor() {
         </div>
       }
       footer={
-        <p className="text-xs text-gray-500">数据仅在浏览器本地处理，不会上传到服务器。</p>
+        <p className="text-xs text-muted-foreground">数据仅在浏览器本地处理，不会上传到服务器。</p>
       }
     />
   );

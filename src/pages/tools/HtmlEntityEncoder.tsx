@@ -56,7 +56,7 @@ export default function HtmlEntityEncoder() {
     <EditorSplitLayout
       title={
         <>
-          <div className="p-2 bg-orange-100 text-orange-600 rounded-lg">
+          <div className="p-2 bg-primary/10 text-primary rounded-lg">
             <Braces className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-bold">HTML Entity Encoder / Decoder</h1>
@@ -64,16 +64,16 @@ export default function HtmlEntityEncoder() {
       }
       toolbar={
         <>
-          <div className="flex rounded-lg border border-gray-300 overflow-hidden text-sm">
+          <div className="flex rounded-lg border border-border overflow-hidden text-sm">
             <button
               onClick={() => setMode("encode")}
-              className={`px-4 py-1.5 font-medium ${mode === "encode" ? "bg-orange-600 text-white" : "bg-white text-gray-700 hover:bg-gray-50"}`}
+              className={`px-4 py-1.5 font-medium ${mode === "encode" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted"}`}
             >
               Encode →
             </button>
             <button
               onClick={() => setMode("decode")}
-              className={`px-4 py-1.5 font-medium ${mode === "decode" ? "bg-orange-600 text-white" : "bg-white text-gray-700 hover:bg-gray-50"}`}
+              className={`px-4 py-1.5 font-medium ${mode === "decode" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted"}`}
             >
               ← Decode
             </button>
@@ -81,14 +81,14 @@ export default function HtmlEntityEncoder() {
           <div className="ml-auto flex items-center gap-2">
             <button
               onClick={() => setInput("")}
-              className="flex items-center gap-2 px-3 py-1.5 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors text-sm"
+              className="flex items-center gap-2 px-3 py-1.5 text-muted-foreground hover:bg-muted rounded-lg transition-colors text-sm"
             >
               <RotateCcw size={14} />
               Clear
             </button>
             <button
               onClick={handleCopy}
-              className="flex items-center gap-2 px-3 py-1.5 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors text-sm"
+              className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-lg hover:bg-primary transition-colors text-sm"
             >
               {copied ? <Check size={14} /> : <Copy size={14} />}
               {copied ? "Copied!" : "Copy Output"}
@@ -111,7 +111,7 @@ export default function HtmlEntityEncoder() {
         <textarea
           readOnly
           value={output}
-          className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-gray-50 focus:outline-none"
+          className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-muted focus:outline-none"
           placeholder="Output will appear here..."
         />
       }

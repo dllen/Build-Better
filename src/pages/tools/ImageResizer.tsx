@@ -340,10 +340,10 @@ export default function ImageResizer() {
       />
 
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <h1 className="text-3xl font-bold text-foreground mb-2">
           {t("tools.image-resizer.title", "Image Resizer & Cropper")}
         </h1>
-        <p className="text-gray-600">
+        <p className="text-muted-foreground">
           {t("tools.image-resizer.subtitle", "Batch resize images or crop them individually. Supports custom dimensions and presets.")}
         </p>
       </div>
@@ -353,21 +353,21 @@ export default function ImageResizer() {
         <div className="mb-6 flex items-center gap-4">
           <button 
             onClick={() => { setSelectedImageId(null); setMode("batch-resize"); }}
-            className="text-gray-600 hover:text-gray-900 flex items-center gap-1"
+            className="text-muted-foreground hover:text-foreground flex items-center gap-1"
           >
             <X className="w-4 h-4" /> {t("common.back", "Back")}
           </button>
           <h2 className="text-xl font-semibold">{t("tools.image-resizer.crop_mode", "Crop Image")}</h2>
         </div>
       ) : (
-        <div className="flex gap-4 mb-6 border-b border-gray-200">
+        <div className="flex gap-4 mb-6 border-b border-border">
           <button
-            className={`px-4 py-2 border-b-2 transition-colors ${mode === "batch-resize" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700"}`}
+            className={`px-4 py-2 border-b-2 transition-colors ${mode === "batch-resize" ? "border-border text-primary" : "border-transparent text-muted-foreground hover:text-muted-foreground"}`}
             onClick={() => setMode("batch-resize")}
           >
             {t("tools.image-resizer.batch_mode", "Batch Resize")}
           </button>
-          <div className="px-4 py-2 text-gray-400">
+          <div className="px-4 py-2 text-muted-foreground">
              {t("tools.image-resizer.crop_hint", "Select an image below to Crop")}
           </div>
         </div>
@@ -375,9 +375,9 @@ export default function ImageResizer() {
 
       {/* Main Content */}
       {mode === "crop" && selectedImageItem ? (
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <div className="bg-card p-6 rounded-xl border border-border">
           <div className="flex flex-col md:flex-row gap-6">
-            <div className="flex-grow bg-gray-100 rounded-lg flex items-center justify-center p-4 min-h-[400px]">
+            <div className="flex-grow bg-muted rounded-lg flex items-center justify-center p-4 min-h-[400px]">
               <ReactCrop
                 crop={crop}
                 onChange={(_, percentCrop) => setCrop(percentCrop)}
@@ -397,31 +397,31 @@ export default function ImageResizer() {
             
             <div className="w-full md:w-64 flex-shrink-0 space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   {t("tools.image-resizer.aspect_ratio", "Aspect Ratio")}
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     onClick={() => handleAspectChange(undefined)}
-                    className={`px-3 py-2 text-sm rounded-md border ${aspect === undefined ? "bg-blue-50 border-blue-500 text-blue-700" : "border-gray-300 hover:bg-gray-50"}`}
+                    className={`px-3 py-2 text-sm rounded-md border ${aspect === undefined ? "bg-primary/10 border-border text-primary" : "border-border hover:bg-muted"}`}
                   >
                     {t("tools.image-resizer.free", "Free")}
                   </button>
                   <button
                     onClick={() => handleAspectChange(1)}
-                    className={`px-3 py-2 text-sm rounded-md border ${aspect === 1 ? "bg-blue-50 border-blue-500 text-blue-700" : "border-gray-300 hover:bg-gray-50"}`}
+                    className={`px-3 py-2 text-sm rounded-md border ${aspect === 1 ? "bg-primary/10 border-border text-primary" : "border-border hover:bg-muted"}`}
                   >
                     1:1 (Square)
                   </button>
                   <button
                     onClick={() => handleAspectChange(4/3)}
-                    className={`px-3 py-2 text-sm rounded-md border ${aspect === 4/3 ? "bg-blue-50 border-blue-500 text-blue-700" : "border-gray-300 hover:bg-gray-50"}`}
+                    className={`px-3 py-2 text-sm rounded-md border ${aspect === 4/3 ? "bg-primary/10 border-border text-primary" : "border-border hover:bg-muted"}`}
                   >
                     4:3
                   </button>
                   <button
                     onClick={() => handleAspectChange(16/9)}
-                    className={`px-3 py-2 text-sm rounded-md border ${aspect === 16/9 ? "bg-blue-50 border-blue-500 text-blue-700" : "border-gray-300 hover:bg-gray-50"}`}
+                    className={`px-3 py-2 text-sm rounded-md border ${aspect === 16/9 ? "bg-primary/10 border-border text-primary" : "border-border hover:bg-muted"}`}
                   >
                     16:9
                   </button>
@@ -429,12 +429,12 @@ export default function ImageResizer() {
               </div>
 
               <div>
-                <p className="text-sm text-gray-500 mb-2">
+                <p className="text-sm text-muted-foreground mb-2">
                   {t("tools.image-resizer.crop_info", "Drag on image to select area.")}
                 </p>
                 <button
                   onClick={saveCrop}
-                  className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center justify-center gap-2"
+                  className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary flex items-center justify-center gap-2"
                 >
                   <Check className="w-4 h-4" />
                   {t("tools.image-resizer.apply_crop", "Apply Crop")}
@@ -446,27 +446,27 @@ export default function ImageResizer() {
       ) : (
         <>
           {/* Batch Settings */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center gap-2">
-              <Sliders className="w-5 h-5 text-gray-500" />
+          <div className="bg-card p-6 rounded-xl border border-border mb-6">
+            <h3 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
+              <Sliders className="w-5 h-5 text-muted-foreground" />
               {t("tools.image-resizer.resize_settings", "Resize Settings")}
             </h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   {t("tools.image-resizer.method", "Method")}
                 </label>
                 <div className="flex gap-2">
                   <button
                     onClick={() => setResizeType("preset")}
-                    className={`flex-1 px-3 py-2 text-sm rounded-md border ${resizeType === "preset" ? "bg-blue-50 border-blue-500 text-blue-700" : "border-gray-300 hover:bg-gray-50"}`}
+                    className={`flex-1 px-3 py-2 text-sm rounded-md border ${resizeType === "preset" ? "bg-primary/10 border-border text-primary" : "border-border hover:bg-muted"}`}
                   >
                     {t("tools.image-resizer.presets", "Presets")}
                   </button>
                   <button
                     onClick={() => setResizeType("custom")}
-                    className={`flex-1 px-3 py-2 text-sm rounded-md border ${resizeType === "custom" ? "bg-blue-50 border-blue-500 text-blue-700" : "border-gray-300 hover:bg-gray-50"}`}
+                    className={`flex-1 px-3 py-2 text-sm rounded-md border ${resizeType === "custom" ? "bg-primary/10 border-border text-primary" : "border-border hover:bg-muted"}`}
                   >
                     {t("tools.image-resizer.custom", "Custom")}
                   </button>
@@ -475,13 +475,13 @@ export default function ImageResizer() {
 
               {resizeType === "preset" ? (
                 <div className="lg:col-span-3">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
                     {t("tools.image-resizer.select_preset", "Select Preset")}
                   </label>
                   <select
                     value={preset}
                     onChange={(e) => setPreset(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:ring-2 focus:ring-ring focus:outline-none"
                   >
                     {Object.entries(presets).map(([key, val]) => (
                       <option key={key} value={key}>{val.label}</option>
@@ -491,34 +491,34 @@ export default function ImageResizer() {
               ) : (
                 <>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-muted-foreground mb-2">
                       {t("tools.image-resizer.width", "Width (px)")}
                     </label>
                     <input
                       type="number"
                       value={customWidth}
                       onChange={(e) => setCustomWidth(Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                      className="w-full px-3 py-2 border border-border rounded-md focus:ring-2 focus:ring-ring focus:outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-muted-foreground mb-2">
                       {t("tools.image-resizer.height", "Height (px)")}
                     </label>
                     <input
                       type="number"
                       value={customHeight}
                       onChange={(e) => setCustomHeight(Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                      className="w-full px-3 py-2 border border-border rounded-md focus:ring-2 focus:ring-ring focus:outline-none"
                     />
                   </div>
                   <div className="flex items-end pb-2">
-                    <label className="flex items-center gap-2 cursor-pointer text-sm text-gray-700">
+                    <label className="flex items-center gap-2 cursor-pointer text-sm text-muted-foreground">
                       <input
                         type="checkbox"
                         checked={maintainAspect}
                         onChange={(e) => setMaintainAspect(e.target.checked)}
-                        className="rounded text-blue-600 focus:ring-blue-500"
+                        className="rounded text-primary focus:ring-ring"
                       />
                       {t("tools.image-resizer.maintain_aspect", "Maintain Aspect Ratio")}
                     </label>
@@ -530,13 +530,13 @@ export default function ImageResizer() {
 
           {/* File Upload */}
           <div
-            className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-500 transition-colors cursor-pointer bg-gray-50 mb-6"
+            className="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-border transition-colors cursor-pointer bg-muted mb-6"
             onDragOver={(e) => e.preventDefault()}
             onDrop={handleDrop}
             onClick={() => fileInputRef.current?.click()}
           >
-            <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-lg font-medium text-gray-700 mb-1">
+            <Upload className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+            <p className="text-lg font-medium text-muted-foreground mb-1">
               {t("tools.image-resizer.drag_drop", "Drag & drop images here, or click to select")}
             </p>
             <input
@@ -552,14 +552,14 @@ export default function ImageResizer() {
           {/* Action Bar */}
           {images.length > 0 && (
             <div className="flex justify-between items-center mb-6">
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-muted-foreground">
                 {images.length} {t("tools.image-resizer.images_selected", "images selected")}
               </div>
               <div className="space-x-4">
                 <button
                   onClick={processBatch}
                   disabled={isProcessing}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2 inline-flex"
+                  className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary disabled:opacity-50 flex items-center gap-2 inline-flex"
                 >
                   <Layers className={`w-4 h-4 ${isProcessing ? "animate-spin" : ""}`} />
                   {t("tools.image-resizer.resize_all", "Resize All")}
@@ -567,14 +567,14 @@ export default function ImageResizer() {
                 <button
                   onClick={downloadAll}
                   disabled={images.filter(i => i.status === "done").length === 0}
-                  className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 disabled:opacity-50 flex items-center gap-2 inline-flex"
+                  className="px-4 py-2 bg-success text-success-foreground rounded-md hover:bg-success disabled:opacity-50 flex items-center gap-2 inline-flex"
                 >
                   <Download className="w-4 h-4" />
                   {t("tools.image-resizer.download_all", "Download All")}
                 </button>
                 <button
                   onClick={() => setImages([])}
-                  className="px-4 py-2 text-red-600 border border-red-200 rounded-md hover:bg-red-50 flex items-center gap-2 inline-flex"
+                  className="px-4 py-2 text-destructive border border-border rounded-md hover:bg-destructive/10 flex items-center gap-2 inline-flex"
                 >
                   <X className="w-4 h-4" />
                   {t("common.clear", "Clear")}
@@ -586,17 +586,17 @@ export default function ImageResizer() {
           {/* Image Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {images.map((img) => (
-              <div key={img.id} className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex items-start gap-4">
-                <div className="w-24 h-24 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden relative group">
+              <div key={img.id} className="bg-card p-4 rounded-lg border border-border flex items-start gap-4">
+                <div className="w-24 h-24 flex-shrink-0 bg-muted rounded-md overflow-hidden relative group">
                   <img
                     src={img.processedPreview || img.preview}
                     alt="Preview"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-center justify-center">
+                  <div className="absolute inset-0 bg-foreground bg-opacity-0 group-hover:bg-opacity-30 transition-colors flex items-center justify-center">
                     <button 
                       onClick={(e) => { e.stopPropagation(); onSelectImage(img.id); }}
-                      className="opacity-0 group-hover:opacity-100 p-2 bg-white rounded-full text-gray-800 shadow-sm hover:text-blue-600"
+                      className="opacity-0 group-hover:opacity-100 p-2 bg-muted rounded-full text-foreground hover:text-primary"
                       title={t("tools.image-resizer.crop_this", "Crop this image")}
                     >
                       <CropIcon className="w-4 h-4" />
@@ -605,27 +605,27 @@ export default function ImageResizer() {
                 </div>
 
                 <div className="flex-grow min-w-0">
-                  <h3 className="font-medium text-gray-900 truncate" title={img.file.name}>
+                  <h3 className="font-medium text-foreground truncate" title={img.file.name}>
                     {img.file.name}
                   </h3>
-                  <div className="text-sm text-gray-500 mt-1">
+                  <div className="text-sm text-muted-foreground mt-1">
                      {img.width} x {img.height} px
                   </div>
                   {img.status === "done" && (
-                    <div className="text-sm text-green-600 mt-1 flex items-center gap-1">
+                    <div className="text-sm text-success mt-1 flex items-center gap-1">
                       <Check className="w-3 h-3" />
                       {t("tools.image-resizer.resized", "Processed")}
                     </div>
                   )}
                   {img.status === "error" && (
-                     <div className="text-sm text-red-500 mt-1">Error processing</div>
+                     <div className="text-sm text-destructive mt-1">Error processing</div>
                   )}
                 </div>
 
                 <div className="flex flex-col gap-2">
                   <button
                     onClick={() => onSelectImage(img.id)}
-                    className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-colors"
+                    className="p-2 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
                     title={t("tools.image-resizer.crop_this", "Crop")}
                   >
                     <CropIcon className="w-5 h-5" />
@@ -633,7 +633,7 @@ export default function ImageResizer() {
                   {img.status === "done" && (
                     <button
                       onClick={() => downloadImage(img)}
-                      className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-colors"
+                      className="p-2 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
                       title={t("common.download", "Download")}
                     >
                       <Download className="w-5 h-5" />
@@ -641,7 +641,7 @@ export default function ImageResizer() {
                   )}
                   <button
                     onClick={() => removeImage(img.id)}
-                    className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-full transition-colors"
+                    className="p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-full transition-colors"
                     title={t("common.remove", "Remove")}
                   >
                     <X className="w-5 h-5" />

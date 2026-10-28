@@ -65,16 +65,16 @@ export default function LotterySsq() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-red-100 text-red-600">
+        <div className="inline-flex p-2 rounded-lg bg-destructive/10 text-destructive">
           <Dice6 className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">福利彩票 · 双色球随机选号</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">注数: {count}</label>
+            <label className="text-sm font-medium text-muted-foreground">注数: {count}</label>
             <input
               type="range"
               min={1}
@@ -103,14 +103,14 @@ export default function LotterySsq() {
           </div>
           <div className="flex gap-3">
             <button
-              className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2"
+              className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2"
               onClick={generate}
             >
               <RefreshCw className="h-4 w-4" />
               随机生成
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
               onClick={copyAll}
               disabled={formatted.length === 0}
             >
@@ -118,10 +118,10 @@ export default function LotterySsq() {
               复制全部
             </button>
           </div>
-          <div className="text-xs text-gray-500">规则: 6个红球(1-33), 1个蓝球(1-16)</div>
+          <div className="text-xs text-muted-foreground">规则: 6个红球(1-33), 1个蓝球(1-16)</div>
         </div>
 
-        <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200 p-4">
+        <div className="lg:col-span-2 bg-card rounded-lg border border-border p-4">
           <div className="font-medium mb-3">结果</div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {tickets.map((t, idx) => {
@@ -132,13 +132,13 @@ export default function LotterySsq() {
                     {reds.map((n, i) => (
                       <span
                         key={i}
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-red-100 text-red-700 font-semibold"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-destructive/10 text-destructive font-semibold"
                       >
                         {String(n).padStart(2, "0")}
                       </span>
                     ))}
-                    <span className="mx-1 text-gray-400">|</span>
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-700 font-semibold">
+                    <span className="mx-1 text-muted-foreground">|</span>
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold">
                       {String(t.blue).padStart(2, "0")}
                     </span>
                   </div>
@@ -146,12 +146,12 @@ export default function LotterySsq() {
               );
             })}
             {tickets.length === 0 && (
-              <div className="text-sm text-gray-500">点击“随机生成”获取号码</div>
+              <div className="text-sm text-muted-foreground">点击“随机生成”获取号码</div>
             )}
           </div>
           {formatted.length > 0 && (
-            <div className="mt-4 bg-gray-50 rounded-md border border-gray-200 p-3">
-              <div className="text-xs text-gray-500 mb-1">文本格式</div>
+            <div className="mt-4 bg-muted rounded-md border border-border p-3">
+              <div className="text-xs text-muted-foreground mb-1">文本格式</div>
               <div className="font-mono text-sm whitespace-pre-wrap break-words">
                 {formatted.join("\n")}
               </div>

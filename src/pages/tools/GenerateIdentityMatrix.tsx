@@ -39,15 +39,15 @@ export default function GenerateIdentityMatrix() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-teal-100 text-teal-600 rounded-lg">
+          <div className="p-2 bg-info/10 text-info rounded-lg">
             <Scaling className="h-5 w-5" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Identity Matrix Generator</h1>
+          <h1 className="text-2xl font-bold text-foreground">Identity Matrix Generator</h1>
         </div>
       }
       toolbar={
         <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-1.5 text-sm text-gray-600">
+          <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
             <span className="font-medium">Size (N):</span>
             <input
               type="number"
@@ -58,12 +58,12 @@ export default function GenerateIdentityMatrix() {
                 setSize(Math.max(1, Math.min(50, Number(e.target.value))));
                 setOutput("");
               }}
-              className="w-20 rounded-lg border border-gray-300 px-2 py-1.5 text-sm text-center focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none"
+              className="w-20 rounded-lg border border-border px-2 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none"
             />
           </div>
           <button
             onClick={handleGenerate}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-700 transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-info text-info-foreground text-sm font-medium rounded-lg hover:bg-info transition-colors"
           >
             <Scaling className="h-3.5 w-3.5" />
             Generate
@@ -72,9 +72,9 @@ export default function GenerateIdentityMatrix() {
       }
       inputLabel="Settings"
       input={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-4 space-y-3 text-sm">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4 space-y-3 text-sm">
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">
+            <label className="block text-xs font-medium text-muted-foreground mb-1">
               Matrix Size
             </label>
             <input
@@ -86,9 +86,9 @@ export default function GenerateIdentityMatrix() {
                 setSize(Math.max(1, Math.min(50, Number(e.target.value))));
                 setOutput("");
               }}
-              className="w-full rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none"
+              className="w-full rounded-lg border border-border px-3 py-1.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none"
             />
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               An identity matrix has 1s on the main diagonal and 0s elsewhere.
             </p>
           </div>
@@ -99,7 +99,7 @@ export default function GenerateIdentityMatrix() {
         output ? (
           <button
             onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors"
           >
             <Copy className="h-3.5 w-3.5" />
             Copy
@@ -107,11 +107,11 @@ export default function GenerateIdentityMatrix() {
         ) : undefined
       }
       output={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-4">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4">
           {output ? (
-            <pre className="text-sm font-mono text-gray-800 leading-relaxed">{output}</pre>
+            <pre className="text-sm font-mono text-foreground leading-relaxed">{output}</pre>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               Click Generate to create an identity matrix
             </div>
           )}

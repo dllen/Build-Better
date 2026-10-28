@@ -66,16 +66,16 @@ function SortableItem({
     <div
       ref={setNodeRef}
       style={style}
-      className="flex items-center gap-3 p-2 bg-white rounded-lg border border-gray-200 shadow-sm group"
+      className="flex items-center gap-3 p-2 bg-card rounded-lg border border-border group"
     >
       <div
         {...attributes}
         {...listeners}
-        className="cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600"
+        className="cursor-grab active:cursor-grabbing text-muted-foreground hover:text-muted-foreground"
       >
         <GripVertical size={20} />
       </div>
-      <div className="w-12 h-12 bg-gray-100 rounded overflow-hidden flex-shrink-0">
+      <div className="w-12 h-12 bg-muted rounded overflow-hidden flex-shrink-0">
         <img
           src={image.src}
           alt="preview"
@@ -83,16 +83,16 @@ function SortableItem({
         />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium text-gray-700 truncate">
+        <p className="text-sm font-medium text-muted-foreground truncate">
           {image.file.name}
         </p>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-muted-foreground">
           {image.width} x {image.height}
         </p>
       </div>
       <button
         onClick={() => onRemove(id)}
-        className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded transition-colors"
+        className="p-1.5 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded transition-colors"
       >
         <X size={18} />
       </button>
@@ -282,10 +282,10 @@ export default function ImageJoiner() {
       />
 
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
+        <h1 className="text-3xl font-bold text-foreground mb-4">
           {t("tools.image-joiner.title", "Image Joiner")}
         </h1>
-        <p className="text-lg text-gray-600">
+        <p className="text-lg text-muted-foreground">
           {t("tools.image-joiner.subtitle", "Combine multiple photos into one long image. Drag to sort, auto resize, and customize spacing.")}
         </p>
       </div>
@@ -296,7 +296,7 @@ export default function ImageJoiner() {
           
           {/* Upload Area */}
           <div
-            className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-indigo-500 transition-colors cursor-pointer bg-gray-50"
+            className="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-border transition-colors cursor-pointer bg-muted"
             onClick={() => fileInputRef.current?.click()}
           >
             <input
@@ -307,46 +307,38 @@ export default function ImageJoiner() {
               multiple
               accept="image/*"
             />
-            <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-            <p className="text-sm font-medium text-gray-900">
+            <Upload className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
+            <p className="text-sm font-medium text-foreground">
               {t("tools.image-joiner.click_upload", "Click to upload images")}
             </p>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               {t("tools.image-joiner.drag_hint", "Support multiple selection")}
             </p>
           </div>
 
           {/* Settings */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
-            <h3 className="font-semibold text-gray-900 flex items-center gap-2">
+          <div className="bg-card rounded-xl border border-border p-6 space-y-4">
+            <h3 className="font-semibold text-foreground flex items-center gap-2">
               <Settings size={18} />
               {t("tools.image-joiner.settings", "Settings")}
             </h3>
 
             {/* Direction */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
                 {t("tools.image-joiner.direction", "Direction")}
               </label>
               <div className="flex gap-2">
                 <button
                   onClick={() => setDirection("vertical")}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg border ${
-                    direction === "vertical"
-                      ? "bg-indigo-50 border-indigo-500 text-indigo-700"
-                      : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                  }`}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg border ${ direction === "vertical" ? "bg-primary/10 border-border text-primary" : "border-border text-muted-foreground hover:bg-muted" }`}
                 >
                   <ArrowDown size={18} />
                   {t("tools.image-joiner.vertical", "Vertical")}
                 </button>
                 <button
                   onClick={() => setDirection("horizontal")}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg border ${
-                    direction === "horizontal"
-                      ? "bg-indigo-50 border-indigo-500 text-indigo-700"
-                      : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                  }`}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg border ${ direction === "horizontal" ? "bg-primary/10 border-border text-primary" : "border-border text-muted-foreground hover:bg-muted" }`}
                 >
                   <ArrowRight size={18} />
                   {t("tools.image-joiner.horizontal", "Horizontal")}
@@ -356,20 +348,20 @@ export default function ImageJoiner() {
 
             {/* Auto Scale */}
             <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-muted-foreground">
                 {t("tools.image-joiner.auto_scale", "Auto Scale")}
               </label>
               <input
                 type="checkbox"
                 checked={autoScale}
                 onChange={(e) => setAutoScale(e.target.checked)}
-                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                className="h-4 w-4 text-primary focus:ring-ring border-border rounded"
               />
             </div>
 
             {/* Spacing */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-muted-foreground mb-1">
                 {t("tools.image-joiner.spacing", "Spacing")}: {spacing}px
               </label>
               <input
@@ -384,7 +376,7 @@ export default function ImageJoiner() {
 
             {/* Background Color */}
             <div>
-               <label className="block text-sm font-medium text-gray-700 mb-1">
+               <label className="block text-sm font-medium text-muted-foreground mb-1">
                 {t("tools.image-joiner.bg_color", "Background Color")}
               </label>
               <div className="flex items-center gap-2">
@@ -394,33 +386,25 @@ export default function ImageJoiner() {
                   onChange={(e) => setBackgroundColor(e.target.value)}
                   className="h-8 w-14 p-0 border-0 rounded cursor-pointer"
                 />
-                <span className="text-sm text-gray-500">{backgroundColor}</span>
+                <span className="text-sm text-muted-foreground">{backgroundColor}</span>
               </div>
             </div>
 
             {/* Output Format */}
              <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
                 {t("tools.image-joiner.format", "Output Format")}
               </label>
               <div className="flex gap-2">
                  <button
                   onClick={() => setOutputFormat("png")}
-                  className={`flex-1 py-1.5 px-3 rounded-lg border text-sm ${
-                    outputFormat === "png"
-                      ? "bg-indigo-50 border-indigo-500 text-indigo-700"
-                      : "border-gray-300 text-gray-700"
-                  }`}
+                  className={`flex-1 py-1.5 px-3 rounded-lg border text-sm ${ outputFormat === "png" ? "bg-primary/10 border-border text-primary" : "border-border text-muted-foreground" }`}
                 >
                   PNG
                 </button>
                 <button
                   onClick={() => setOutputFormat("jpeg")}
-                  className={`flex-1 py-1.5 px-3 rounded-lg border text-sm ${
-                    outputFormat === "jpeg"
-                      ? "bg-indigo-50 border-indigo-500 text-indigo-700"
-                      : "border-gray-300 text-gray-700"
-                  }`}
+                  className={`flex-1 py-1.5 px-3 rounded-lg border text-sm ${ outputFormat === "jpeg" ? "bg-primary/10 border-border text-primary" : "border-border text-muted-foreground" }`}
                 >
                   JPEG
                 </button>
@@ -430,7 +414,7 @@ export default function ImageJoiner() {
              <button
               onClick={handleDownload}
               disabled={images.length === 0}
-              className="w-full flex items-center justify-center gap-2 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
+              className="w-full flex items-center justify-center gap-2 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
             >
               <Download size={20} />
               {t("tools.image-joiner.download", "Download Image")}
@@ -441,12 +425,12 @@ export default function ImageJoiner() {
           {images.length > 0 && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-gray-900">
+                <h3 className="font-semibold text-foreground">
                   {t("tools.image-joiner.images", "Images")} ({images.length})
                 </h3>
                 <button
                   onClick={clearAll}
-                  className="text-sm text-red-500 hover:text-red-600 flex items-center gap-1"
+                  className="text-sm text-destructive hover:text-destructive flex items-center gap-1"
                 >
                   <Trash2 size={14} />
                   {t("tools.image-joiner.clear", "Clear All")}
@@ -480,22 +464,21 @@ export default function ImageJoiner() {
 
         {/* Right Area: Preview */}
         <div className="lg:col-span-2">
-          <div className="bg-gray-100 rounded-xl p-4 min-h-[600px] flex items-center justify-center overflow-auto border border-gray-200">
+          <div className="bg-muted rounded-xl p-4 min-h-[600px] flex items-center justify-center overflow-auto border border-border">
             {images.length === 0 ? (
-              <div className="text-center text-gray-400">
+              <div className="text-center text-muted-foreground">
                 <p>{t("tools.image-joiner.preview_hint", "Upload images to see preview")}</p>
               </div>
             ) : (
-              <div className="shadow-lg max-w-full max-h-full overflow-auto bg-white">
+              <div className="shadow-lg max-w-full max-h-full overflow-auto bg-card">
                 <canvas
                   ref={canvasRef}
-                  className="max-w-full h-auto block"
-                />
+                  className="max-w-full h-auto block" role="img" aria-label="Drawing output"/>
               </div>
             )}
           </div>
           {images.length > 0 && (
-             <div className="mt-2 text-right text-sm text-gray-500">
+             <div className="mt-2 text-right text-sm text-muted-foreground">
                {canvasRef.current && `${canvasRef.current.width} x ${canvasRef.current.height} px`}
              </div>
           )}

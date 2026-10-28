@@ -38,9 +38,9 @@ interface ProductData {
 }
 
 const PRICING_COLORS: Record<string, string> = {
-  Free: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
-  Freemium: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
-  Paid: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
+  Free: "bg-success/10 text-success dark:bg-success/30 dark:text-success",
+  Freemium: "bg-primary/10 text-primary dark:bg-primary/30 dark:text-primary",
+  Paid: "bg-primary/10 text-primary dark:bg-primary/30 dark:text-primary",
 };
 
 export default function ProductFinder() {
@@ -98,7 +98,7 @@ export default function ProductFinder() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <div className="text-foreground font-sans">
       <SEO
         title={toolSEOContent["product-finder"]?.title || "Product Finder"}
         description={
@@ -115,8 +115,8 @@ export default function ProductFinder() {
         {/* Header */}
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-6">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-orange-100 dark:bg-orange-900/20 rounded-xl border border-orange-200 dark:border-orange-800/30">
-              <Compass className="w-8 h-8 text-orange-600 dark:text-orange-400" />
+            <div className="p-3 bg-primary/10 dark:bg-primary/20 rounded-xl border border-border dark:border-border/30">
+              <Compass className="w-8 h-8 text-primary dark:text-primary" />
             </div>
             <div>
               <h1 className="text-3xl font-bold tracking-tight">Product Finder</h1>
@@ -145,11 +145,7 @@ export default function ProductFinder() {
           <div className="flex items-center gap-2 overflow-x-auto pb-1">
             <button
               onClick={() => setSelectedPricing(null)}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
-                !selectedPricing
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:text-foreground"
-              }`}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${ !selectedPricing ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:text-foreground" }`}
               type="button"
             >
               All
@@ -158,11 +154,7 @@ export default function ProductFinder() {
               <button
                 key={pricing}
                 onClick={() => setSelectedPricing(selectedPricing === pricing ? null : pricing)}
-                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
-                  selectedPricing === pricing
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:text-foreground"
-                }`}
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${ selectedPricing === pricing ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:text-foreground" }`}
                 type="button"
               >
                 {pricing}
@@ -175,11 +167,7 @@ export default function ProductFinder() {
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
               <button
                 onClick={() => setSelectedCategory(null)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors whitespace-nowrap ${
-                  !selectedCategory
-                    ? "bg-secondary text-secondary-foreground"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent"
-                }`}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors whitespace-nowrap ${ !selectedCategory ? "bg-secondary text-secondary-foreground" : "text-muted-foreground hover:text-foreground hover:bg-accent" }`}
                 type="button"
               >
                 All Categories
@@ -192,11 +180,7 @@ export default function ProductFinder() {
                     onClick={() =>
                       setSelectedCategory(selectedCategory === cat.slug ? null : cat.slug)
                     }
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors whitespace-nowrap ${
-                      selectedCategory === cat.slug
-                        ? "bg-secondary text-secondary-foreground"
-                        : "text-muted-foreground hover:text-foreground hover:bg-accent"
-                    }`}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors whitespace-nowrap ${ selectedCategory === cat.slug ? "bg-secondary text-secondary-foreground" : "text-muted-foreground hover:text-foreground hover:bg-accent" }`}
                     type="button"
                   >
                     {cat.name}
@@ -244,7 +228,7 @@ export default function ProductFinder() {
           <div className="flex items-center justify-center h-64 text-muted-foreground">
             <div className="flex flex-col items-center gap-3">
               <Compass className="w-8 h-8 animate-pulse text-primary" />
-              <p>Loading products...</p>
+              <p>Loading products…</p>
             </div>
           </div>
         ) : filtered.length > 0 ? (
@@ -252,7 +236,7 @@ export default function ProductFinder() {
             {filtered.map((product) => (
               <article
                 key={product.slug}
-                className="group bg-card border border-border rounded-xl p-5 hover:border-primary/30 hover:shadow-md transition-all duration-300 flex flex-col"
+                className="group bg-card border border-border rounded-xl p-5 hover:border-primary/30 transition-colors duration-300 flex flex-col"
               >
                 {/* Logo + header */}
                 <div className="flex items-start gap-3 mb-3">
@@ -283,9 +267,7 @@ export default function ProductFinder() {
                   </div>
                   {product.pricing_type && (
                     <span
-                      className={`text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0 ${
-                        PRICING_COLORS[product.pricing_type] || "bg-gray-100 text-gray-600"
-                      }`}
+                      className={`text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0 ${ PRICING_COLORS[product.pricing_type] || "bg-muted text-muted-foreground" }`}
                     >
                       {product.pricing_type}
                     </span>
@@ -306,11 +288,7 @@ export default function ProductFinder() {
                       <button
                         key={tag}
                         onClick={() => toggleTag(tag)}
-                        className={`text-xs px-1.5 py-0.5 rounded transition-colors ${
-                          selectedTags.has(tag)
-                            ? "bg-primary/10 text-primary"
-                            : "bg-muted text-muted-foreground hover:text-foreground hover:bg-accent"
-                        }`}
+                        className={`text-xs px-1.5 py-0.5 rounded transition-colors ${ selectedTags.has(tag) ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground hover:text-foreground hover:bg-accent" }`}
                         type="button"
                       >
                         {tag}

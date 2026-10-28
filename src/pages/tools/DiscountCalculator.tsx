@@ -51,36 +51,36 @@ export default function DiscountCalculator() {
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.discount-calculator.you_save")}</p>
-            <p className="text-4xl font-bold text-green-600">{fmt(result.savings)}</p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.discount-calculator.you_save")}</p>
+            <p className="text-4xl font-bold text-success">{fmt(result.savings)}</p>
           </div>
-          <div className="grid grid-cols-2 gap-4 pt-6 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-4 pt-6 border-t border-border">
             <div className="text-center">
-              <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.discount-calculator.final_price")}</p>
-              <p className="text-2xl font-bold text-gray-900">{fmt(result.final)}</p>
+              <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.discount-calculator.final_price")}</p>
+              <p className="text-2xl font-bold text-foreground">{fmt(result.final)}</p>
             </div>
             <div className="text-center">
-              <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.discount-calculator.discount_percent")}</p>
-              <p className="text-2xl font-bold text-green-600">{result.pct.toFixed(1)}%</p>
+              <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.discount-calculator.discount_percent")}</p>
+              <p className="text-2xl font-bold text-success">{result.pct.toFixed(1)}%</p>
             </div>
           </div>
           <div className="flex gap-3 pt-4">
             <button
               onClick={copy}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-success text-success-foreground rounded-lg hover:bg-success transition-colors"
             >
               <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.discount-calculator.copy")}
             </button>
             <button
               onClick={() => { setOriginal(""); setDiscountPct(""); setFinalPrice(""); }}
-              className="flex-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+              className="flex-1 px-4 py-2 bg-muted text-muted-foreground rounded-lg hover:bg-border transition-colors"
             >
               {t("tools.discount-calculator.reset")}
             </button>
           </div>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Tag className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("tools.discount-calculator.enter_original")}</p>
         </div>
@@ -93,32 +93,32 @@ export default function DiscountCalculator() {
       title={t("tools.discount-calculator.title")}
       subtitle={t("tools.discount-calculator.subtitle")}
       icon={Percent}
-      iconBgColor="bg-green-100"
-      iconColor="text-green-600"
+      iconBgColor="bg-success/10"
+      iconColor="text-success"
       keywords={["discount calculator", "percentage off", "price calculator", "sale calculator"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.discount-calculator.original_price")} ($)</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.discount-calculator.original_price")} ($)</label>
           <input
             type="number" step="0.01" min="0" value={original}
             onChange={e => setOriginal(e.target.value)} placeholder="0.00"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm py-3 px-4 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-3 px-4 border"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">{t("tools.discount-calculator.calculate_by")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">{t("tools.discount-calculator.calculate_by")}</label>
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={() => { setMode("percent"); setFinalPrice(""); }}
-              className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${mode === "percent" ? "bg-green-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+              className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${mode === "percent" ? "bg-success text-success-foreground" : "bg-muted text-muted-foreground hover:bg-border"}`}
             >
               {t("tools.discount-calculator.percent_off")}
             </button>
             <button
               onClick={() => { setMode("final"); setDiscountPct(""); }}
-              className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${mode === "final" ? "bg-green-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+              className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${mode === "final" ? "bg-success text-success-foreground" : "bg-muted text-muted-foreground hover:bg-border"}`}
             >
               Pay $
             </button>
@@ -126,18 +126,18 @@ export default function DiscountCalculator() {
         </div>
         {mode === "percent" ? (
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.discount-calculator.discount_percent")} (%)</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.discount-calculator.discount_percent")} (%)</label>
             <input
               type="number" step="1" min="0" max="100" value={discountPct}
               onChange={e => setDiscountPct(e.target.value)} placeholder="0"
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm py-3 px-4 border"
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-3 px-4 border"
             />
             <div className="flex gap-2 mt-2">
               {quickButtons.map(p => (
                 <button
                   key={p}
                   onClick={() => setDiscountPct(String(p))}
-                  className="flex-1 px-2 py-1 text-xs bg-gray-100 rounded hover:bg-gray-200 transition-colors"
+                  className="flex-1 px-2 py-1 text-xs bg-muted rounded hover:bg-border transition-colors"
                 >
                   {p}%
                 </button>
@@ -146,16 +146,16 @@ export default function DiscountCalculator() {
           </div>
         ) : (
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.discount-calculator.final_price")} ($)</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.discount-calculator.final_price")} ($)</label>
             <input
               type="number" step="0.01" min="0" value={finalPrice}
               onChange={e => setFinalPrice(e.target.value)} placeholder="0.00"
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm py-3 px-4 border"
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-3 px-4 border"
             />
           </div>
         )}
         {original && finalPrice && mode === "final" && parseFloat(finalPrice) > parseFloat(original) && (
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-700">
+          <div className="bg-primary/10 border border-border rounded-lg p-3 text-sm text-primary">
             {t("tools.discount-calculator.final_higher")}
           </div>
         )}

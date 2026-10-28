@@ -63,10 +63,10 @@ export default function ListRandomizer() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-fuchsia-100 text-fuchsia-600 rounded-lg">
+          <div className="p-2 bg-primary/10 text-primary rounded-lg">
             <Shuffle className="h-5 w-5" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">List Randomizer</h1>
+          <h1 className="text-2xl font-bold text-foreground">List Randomizer</h1>
         </div>
       }
       toolbar={
@@ -74,7 +74,7 @@ export default function ListRandomizer() {
           <select
             value={format}
             onChange={(e) => setFormat(e.target.value as ListFormat)}
-            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500 outline-none bg-white"
+            className="rounded-lg border border-border px-3 py-1.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card"
           >
             <option value="newline">One per line</option>
             <option value="comma">Comma (,) </option>
@@ -82,17 +82,17 @@ export default function ListRandomizer() {
             <option value="space">Space</option>
           </select>
 
-          <label className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer select-none">
+          <label className="flex items-center gap-1.5 text-sm text-muted-foreground cursor-pointer select-none">
             <input
               type="checkbox"
               checked={removeDupes}
               onChange={(e) => setRemoveDupes(e.target.checked)}
-              className="rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500"
+              className="rounded border-border text-primary focus:ring-ring"
             />
             Remove duplicates
           </label>
 
-          <div className="flex items-center gap-2 text-sm text-gray-600">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <span>Pick</span>
             <input
               type="number"
@@ -100,7 +100,7 @@ export default function ListRandomizer() {
               max={items.length || 999}
               value={selectCount}
               onChange={(e) => setSelectCount(Math.max(0, Number(e.target.value)))}
-              className="w-16 rounded-lg border border-gray-300 px-2 py-1 text-center text-sm focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500 outline-none"
+              className="w-16 rounded-lg border border-border px-2 py-1 text-center text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none"
             />
             <span>of {items.length}</span>
           </div>
@@ -108,7 +108,7 @@ export default function ListRandomizer() {
           <button
             onClick={handleRandomize}
             disabled={items.length === 0}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-fuchsia-600 text-white text-sm font-medium rounded-lg hover:bg-fuchsia-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <Shuffle className="h-3.5 w-3.5" />
             Randomize
@@ -118,7 +118,7 @@ export default function ListRandomizer() {
       inputLabel={
         <span>
           Your List{" "}
-          <span className="text-xs font-normal text-gray-400">
+          <span className="text-xs font-normal text-muted-foreground">
             ({stats.total} total · {stats.unique} unique{stats.duplicate > 0 ? ` · ${stats.duplicate} dupes` : ""})
           </span>
         </span>
@@ -132,7 +132,7 @@ export default function ListRandomizer() {
             setSelected([]);
           }}
           placeholder={`Enter your list items here...\n\nOne item per line, or use comma/semicolon/space format`}
-          className="h-full w-full resize-none rounded-lg border border-gray-200 bg-white p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-fuchsia-500/20 focus:border-fuchsia-400"
+          className="h-full w-full resize-none rounded-lg border border-border bg-card p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-border"
           spellCheck={false}
         />
       }
@@ -140,7 +140,7 @@ export default function ListRandomizer() {
         randomized.length > 0 ? (
           <span>
             Result{" "}
-            <span className="text-xs font-normal text-gray-400">
+            <span className="text-xs font-normal text-muted-foreground">
               ({selected.length > 0 && selected.length < randomized.length
                 ? `${selected.length} picked of ${randomized.length}`
                 : `${randomized.length} shuffled`})
@@ -154,30 +154,30 @@ export default function ListRandomizer() {
         randomized.length > 0 ? (
           <button
             onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors"
           >
-            {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : <Copy className="h-3.5 w-3.5" />}
+            {copied ? <Check className="h-3.5 w-3.5 text-success" /> : <Copy className="h-3.5 w-3.5" />}
             {copied ? "Copied" : "Copy"}
           </button>
         ) : undefined
       }
       output={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card">
           {randomized.length > 0 ? (
             <ol className="list-decimal list-inside p-4 space-y-0.5 text-sm font-mono">
               {randomized.map((item, i) => {
                 const isPicked = selected.includes(item);
-                const pickedColor = selectCount > 0 && isPicked ? "text-green-700 font-semibold" : "";
-                const notPickedColor = selectCount > 0 && !isPicked ? "text-red-400" : "";
+                const pickedColor = selectCount > 0 && isPicked ? "text-success font-semibold" : "";
+                const notPickedColor = selectCount > 0 && !isPicked ? "text-destructive" : "";
                 return (
-                  <li key={i} className={`${pickedColor || notPickedColor || "text-gray-700"}`}>
+                  <li key={i} className={`${pickedColor || notPickedColor || "text-muted-foreground"}`}>
                     {item}
                   </li>
                 );
               })}
             </ol>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               Click Randomize to shuffle your list
             </div>
           )}

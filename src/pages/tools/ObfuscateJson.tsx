@@ -86,19 +86,19 @@ export default function ObfuscateJson() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-red-100 text-red-600 rounded-lg"><Shield className="h-5 w-5" /></div>
-          <h1 className="text-2xl font-bold text-gray-900">Obfuscate JSON</h1>
+          <div className="p-2 bg-destructive/10 text-destructive rounded-lg"><Shield className="h-5 w-5" /></div>
+          <h1 className="text-2xl font-bold text-foreground">Obfuscate JSON</h1>
         </div>
       }
       toolbar={
         <div className="flex flex-wrap items-center gap-3">
           <button onClick={obfuscate}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition-colors">
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-destructive text-destructive-foreground text-sm font-medium rounded-lg hover:bg-destructive transition-colors">
             <Shield className="h-3.5 w-3.5" />Obfuscate
           </button>
           {output && (
             <button onClick={() => { setInput(output); setOutput(""); }}
-              className="inline-flex items-center gap-1 px-3 py-1.5 text-sm text-gray-600 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+              className="inline-flex items-center gap-1 px-3 py-1.5 text-sm text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded-lg transition-colors">
               <RefreshCw className="h-3.5 w-3.5" />Re-obfuscate
             </button>
           )}
@@ -108,26 +108,26 @@ export default function ObfuscateJson() {
       input={
         <textarea value={input} onChange={(e) => { setInput(e.target.value); setOutput(""); setError(""); }}
           placeholder='Paste JSON to obfuscate (e.g. {"name":"John","email":"john@example.com"})...'
-          className="h-full w-full resize-none rounded-lg border border-gray-200 bg-white p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+          className="h-full w-full resize-none rounded-lg border border-border bg-card p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-border"
           spellCheck={false} />
       }
       outputLabel="Obfuscated JSON"
       outputActions={
         output ? (
           <button onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors">
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors">
             <Copy className="h-3.5 w-3.5" />Copy
           </button>
         ) : undefined
       }
       output={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-4">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4">
           {error ? (
-            <p className="text-sm text-red-500">{error}</p>
+            <p className="text-sm text-destructive">{error}</p>
           ) : output ? (
-            <pre className="text-sm font-mono text-gray-800 whitespace-pre">{output}</pre>
+            <pre className="text-sm font-mono text-foreground whitespace-pre">{output}</pre>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               Obfuscated JSON will appear here
             </div>
           )}

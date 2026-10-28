@@ -119,7 +119,7 @@ const MortgageCalculator: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="py-12 px-4 sm:px-6 lg:px-8">
       <SEO
         title={t("tools.mortgage-calculator.title")}
         description={t("tools.mortgage-calculator.desc")}
@@ -135,23 +135,23 @@ const MortgageCalculator: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <div className="flex justify-center mb-4">
-            <div className="p-3 bg-blue-100 rounded-full">
-              <Calculator className="h-8 w-8 text-blue-600" />
+            <div className="p-3 bg-primary/10 rounded-full">
+              <Calculator className="h-8 w-8 text-primary" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">
+          <h1 className="text-3xl font-bold text-foreground sm:text-4xl mb-4">
             {t("tools.mortgage-calculator.title")}
           </h1>
-          <p className="text-lg text-gray-600">{t("tools.mortgage-calculator.subtitle")}</p>
+          <p className="text-lg text-muted-foreground">{t("tools.mortgage-calculator.subtitle")}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Section */}
-          <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+          <div className="bg-card rounded-2xl p-6 md:p-8">
             <div className="space-y-6">
               {/* Loan Type */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   {t("tools.mortgage-calculator.loan_type")}
                 </label>
                 <div className="grid grid-cols-3 gap-2">
@@ -159,11 +159,7 @@ const MortgageCalculator: React.FC = () => {
                     <button
                       key={type}
                       onClick={() => setLoanType(type)}
-                      className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
-                        loanType === type
-                          ? "bg-blue-600 text-white"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      }`}
+                      className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${ loanType === type ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-border" }`}
                     >
                       {t(`tools.mortgage-calculator.type_${type}`)}
                     </button>
@@ -174,19 +170,19 @@ const MortgageCalculator: React.FC = () => {
               {/* Loan Amounts */}
               {(loanType === "commercial" || loanType === "combination") && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-muted-foreground mb-1">
                     {t("tools.mortgage-calculator.commercial_amount")} (
                     {t("tools.mortgage-calculator.unit_wan")})
                   </label>
-                  <div className="relative rounded-md shadow-sm">
+                  <div className="relative rounded-md">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                      <span className="text-gray-500 sm:text-sm">¥</span>
+                      <span className="text-muted-foreground sm:text-sm">¥</span>
                     </div>
                     <input
                       type="number"
                       value={commercialAmount}
                       onChange={(e) => setCommercialAmount(Number(e.target.value))}
-                      className="block w-full rounded-md border-gray-300 pl-7 focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 border"
+                      className="block w-full rounded-md border-border pl-7 focus:border-border focus:ring-ring sm:text-sm py-2 border"
                     />
                   </div>
                 </div>
@@ -194,19 +190,19 @@ const MortgageCalculator: React.FC = () => {
 
               {(loanType === "provident" || loanType === "combination") && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-muted-foreground mb-1">
                     {t("tools.mortgage-calculator.provident_amount")} (
                     {t("tools.mortgage-calculator.unit_wan")})
                   </label>
-                  <div className="relative rounded-md shadow-sm">
+                  <div className="relative rounded-md">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                      <span className="text-gray-500 sm:text-sm">¥</span>
+                      <span className="text-muted-foreground sm:text-sm">¥</span>
                     </div>
                     <input
                       type="number"
                       value={providentAmount}
                       onChange={(e) => setProvidentAmount(Number(e.target.value))}
-                      className="block w-full rounded-md border-gray-300 pl-7 focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 border"
+                      className="block w-full rounded-md border-border pl-7 focus:border-border focus:ring-ring sm:text-sm py-2 border"
                     />
                   </div>
                 </div>
@@ -214,13 +210,13 @@ const MortgageCalculator: React.FC = () => {
 
               {/* Term */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-muted-foreground mb-1">
                   {t("tools.mortgage-calculator.years")}
                 </label>
                 <select
                   value={years}
                   onChange={(e) => setYears(Number(e.target.value))}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 border px-3"
+                  className="block w-full rounded-md border-border focus:border-border focus:ring-ring sm:text-sm py-2 border px-3"
                 >
                   {[5, 10, 15, 20, 25, 30].map((y) => (
                     <option key={y} value={y}>
@@ -234,7 +230,7 @@ const MortgageCalculator: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {(loanType === "commercial" || loanType === "combination") && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">
                       {t("tools.mortgage-calculator.commercial_rate")} (%)
                     </label>
                     <input
@@ -242,13 +238,13 @@ const MortgageCalculator: React.FC = () => {
                       step="0.01"
                       value={commercialRate}
                       onChange={(e) => setCommercialRate(Number(e.target.value))}
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 border px-3"
+                      className="block w-full rounded-md border-border focus:border-border focus:ring-ring sm:text-sm py-2 border px-3"
                     />
                   </div>
                 )}
                 {(loanType === "provident" || loanType === "combination") && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-muted-foreground mb-1">
                       {t("tools.mortgage-calculator.provident_rate")} (%)
                     </label>
                     <input
@@ -256,7 +252,7 @@ const MortgageCalculator: React.FC = () => {
                       step="0.01"
                       value={providentRate}
                       onChange={(e) => setProvidentRate(Number(e.target.value))}
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 border px-3"
+                      className="block w-full rounded-md border-border focus:border-border focus:ring-ring sm:text-sm py-2 border px-3"
                     />
                   </div>
                 )}
@@ -264,27 +260,19 @@ const MortgageCalculator: React.FC = () => {
 
               {/* Payment Method */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   {t("tools.mortgage-calculator.payment_method")}
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     onClick={() => setPaymentMethod("equal_principal_interest")}
-                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
-                      paymentMethod === "equal_principal_interest"
-                        ? "bg-blue-600 text-white"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
+                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${ paymentMethod === "equal_principal_interest" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-border" }`}
                   >
                     {t("tools.mortgage-calculator.method_interest")}
                   </button>
                   <button
                     onClick={() => setPaymentMethod("equal_principal")}
-                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
-                      paymentMethod === "equal_principal"
-                        ? "bg-blue-600 text-white"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
+                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${ paymentMethod === "equal_principal" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-border" }`}
                   >
                     {t("tools.mortgage-calculator.method_principal")}
                   </button>
@@ -294,20 +282,20 @@ const MortgageCalculator: React.FC = () => {
           </div>
 
           {/* Result Section */}
-          <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 flex flex-col justify-center">
+          <div className="bg-card rounded-2xl p-6 md:p-8 flex flex-col justify-center">
             {result && (
               <div className="space-y-8">
                 <div className="text-center">
-                  <p className="text-sm font-medium text-gray-500 mb-1">
+                  <p className="text-sm font-medium text-muted-foreground mb-1">
                     {paymentMethod === "equal_principal_interest"
                       ? t("tools.mortgage-calculator.monthly_payment")
                       : t("tools.mortgage-calculator.first_month_payment")}
                   </p>
-                  <p className="text-4xl font-bold text-blue-600">
+                  <p className="text-4xl font-bold text-primary">
                     {formatCurrency(result.monthlyPayment)}
                   </p>
                   {paymentMethod === "equal_principal" && result.monthlyPaymentDecrease && (
-                    <p className="text-sm text-gray-500 mt-2">
+                    <p className="text-sm text-muted-foreground mt-2">
                       {t("tools.mortgage-calculator.monthly_decrease", {
                         amount: formatCurrency(result.monthlyPaymentDecrease),
                       })}
@@ -315,29 +303,29 @@ const MortgageCalculator: React.FC = () => {
                   )}
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 pt-8 border-t border-gray-100">
+                <div className="grid grid-cols-2 gap-4 pt-8 border-t border-border">
                   <div className="text-center">
-                    <p className="text-sm font-medium text-gray-500 mb-1">
+                    <p className="text-sm font-medium text-muted-foreground mb-1">
                       {t("tools.mortgage-calculator.total_interest")}
                     </p>
-                    <p className="text-xl font-bold text-gray-900">
+                    <p className="text-xl font-bold text-foreground">
                       {formatCurrency(result.totalInterest)}
                     </p>
                   </div>
                   <div className="text-center">
-                    <p className="text-sm font-medium text-gray-500 mb-1">
+                    <p className="text-sm font-medium text-muted-foreground mb-1">
                       {t("tools.mortgage-calculator.total_payment")}
                     </p>
-                    <p className="text-xl font-bold text-gray-900">
+                    <p className="text-xl font-bold text-foreground">
                       {formatCurrency(result.totalPayment)}
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-blue-50 rounded-lg p-4 mt-6">
+                <div className="bg-primary/10 rounded-lg p-4 mt-6">
                   <div className="flex items-start">
-                    <Info className="h-5 w-5 text-blue-500 mt-0.5 mr-3 flex-shrink-0" />
-                    <p className="text-sm text-blue-700">
+                    <Info className="h-5 w-5 text-primary mt-0.5 mr-3 flex-shrink-0" />
+                    <p className="text-sm text-primary">
                       {paymentMethod === "equal_principal_interest"
                         ? t("tools.mortgage-calculator.tip_interest")
                         : t("tools.mortgage-calculator.tip_principal")}

@@ -62,13 +62,13 @@ export default function JsonToPostman() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-2 text-xl font-semibold">
-          <FileCode className="h-5 w-5 text-blue-600" />
+          <FileCode className="h-5 w-5 text-primary" />
           <span>JSON → Postman Collection</span>
         </div>
       }
       toolbar={
         <div className="flex items-center gap-2 flex-wrap">
-          <label className="text-sm text-gray-700 dark:text-gray-300">集合名称:</label>
+          <label className="text-sm text-muted-foreground dark:text-muted-foreground">集合名称:</label>
           <input
             type="text"
             value={collectionName}
@@ -76,14 +76,14 @@ export default function JsonToPostman() {
             className="px-2 py-1 text-sm border rounded font-mono w-48"
             placeholder="Collection Name"
           />
-          <button onClick={clear} className="ml-auto inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
+          <button onClick={clear} className="ml-auto inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
             <Eraser className="h-3 w-3" />清空
           </button>
         </div>
       }
       inputLabel="JSON 输入"
       inputActions={
-        <span className="text-xs text-gray-500">{input.length} 字符</span>
+        <span className="text-xs text-muted-foreground">{input.length} 字符</span>
       }
       input={
         <textarea
@@ -95,8 +95,8 @@ export default function JsonToPostman() {
       }
       outputLabel="Postman Collection (v2.1)"
       outputActions={
-        <button onClick={copy} className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-          {copied ? <Check className="h-3 w-3 text-green-600" /> : <Copy className="h-3 w-3" />}
+        <button onClick={copy} className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
+          {copied ? <Check className="h-3 w-3 text-success" /> : <Copy className="h-3 w-3" />}
           {copied ? "已复制" : "复制"}
         </button>
       }
@@ -105,7 +105,7 @@ export default function JsonToPostman() {
           <code>{result || "// 输出将显示在这里"}</code>
         </pre>
       }
-      footer={error ? <div className="text-sm text-red-600">{error}</div> : null}
+      footer={error ? <div className="text-sm text-destructive">{error}</div> : null}
     />
   );
 }

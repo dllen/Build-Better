@@ -101,18 +101,18 @@ export default function Bip39Tool() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-sky-100 text-sky-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <KeyRound className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">BIP39 密码生成器</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">随机助记符 → 密码短语</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <select
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               value={rndWords}
               onChange={(e) => setRndWords(Number(e.target.value))}
             >
@@ -123,68 +123,68 @@ export default function Bip39Tool() {
               <option value={24}>24词</option>
             </select>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 bg-sky-600 text-white rounded-md text-sm hover:bg-sky-700"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary"
               onClick={genRandom}
             >
               生成助记符
             </button>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => copy(rndMnemonic, "rnd")}
               disabled={!rndMnemonic}
             >
               <ClipboardCopy className="h-4 w-4" /> 复制{" "}
-              {copiedRnd ? <Check className="h-4 w-4 text-green-600" /> : null}
+              {copiedRnd ? <Check className="h-4 w-4 text-success" /> : null}
             </button>
           </div>
-          <div className="rounded-md border border-gray-200 p-3 font-mono text-sm break-words">
+          <div className="rounded-md border border-border p-3 font-mono text-sm break-words">
             {rndMnemonic || "—"}
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">助记符 + 密码短语 → 种子</div>
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 w-full font-mono"
+            className="rounded-md border border-border px-3 py-2 w-full font-mono"
             placeholder="输入助记符（英文）"
             value={mnemonicIn}
             onChange={(e) => setMnemonicIn(e.target.value)}
           />
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 w-full"
+            className="rounded-md border border-border px-3 py-2 w-full"
             placeholder="输入密码短语（可选）"
             value={pass}
             onChange={(e) => setPass(e.target.value)}
           />
           <button
-            className="inline-flex items-center gap-2 px-3 py-2 bg-sky-600 text-white rounded-md text-sm hover:bg-sky-700"
+            className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary"
             onClick={computeSeed}
             disabled={!mnemonicIn}
           >
             生成种子
           </button>
           <div className="flex items-center gap-2">
-            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all">
+            <div className="flex-1 rounded-md border border-border px-3 py-2 font-mono text-sm break-all">
               {seedHex || "—"}
             </div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => copy(seedHex, "seed")}
               disabled={!seedHex}
             >
               <ClipboardCopy className="h-4 w-4" /> 复制{" "}
-              {copiedSeed ? <Check className="h-4 w-4 text-green-600" /> : null}
+              {copiedSeed ? <Check className="h-4 w-4 text-success" /> : null}
             </button>
           </div>
-          <div className="text-xs text-gray-600">长度：{seedBits} 位</div>
+          <div className="text-xs text-muted-foreground">长度：{seedBits} 位</div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+      <div className="bg-card rounded-lg border border-border p-4 space-y-3">
         <div className="font-medium">密码短语 → 助记符（非标准）</div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <select
-            className="rounded-md border border-gray-300 px-3 py-2"
+            className="rounded-md border border-border px-3 py-2"
             value={fromPassWords}
             onChange={(e) => setFromPassWords(Number(e.target.value))}
           >
@@ -195,33 +195,33 @@ export default function Bip39Tool() {
             <option value={24}>24词</option>
           </select>
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2"
+            className="rounded-md border border-border px-3 py-2 md:col-span-2"
             placeholder="输入密码短语"
             value={fromPass}
             onChange={(e) => setFromPass(e.target.value)}
           />
         </div>
         <button
-          className="inline-flex items-center gap-2 px-3 py-2 bg-sky-600 text-white rounded-md text-sm hover:bg-sky-700"
+          className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary"
           onClick={passToMnemonic}
           disabled={!fromPass}
         >
           生成助记符
         </button>
         <div className="flex items-center gap-2">
-          <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-words">
+          <div className="flex-1 rounded-md border border-border px-3 py-2 font-mono text-sm break-words">
             {fromPassMnemonic || "—"}
           </div>
           <button
-            className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+            className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
             onClick={() => copy(fromPassMnemonic, "pass")}
             disabled={!fromPassMnemonic}
           >
             <ClipboardCopy className="h-4 w-4" /> 复制{" "}
-            {copiedFromPass ? <Check className="h-4 w-4 text-green-600" /> : null}
+            {copiedFromPass ? <Check className="h-4 w-4 text-success" /> : null}
           </button>
         </div>
-        <div className="text-xs text-gray-600">此转换非BIP39标准，仅用于实验或演示。</div>
+        <div className="text-xs text-muted-foreground">此转换非BIP39标准，仅用于实验或演示。</div>
       </div>
     </div>
   );

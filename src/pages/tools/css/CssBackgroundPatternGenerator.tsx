@@ -81,24 +81,20 @@ export default function CssBackgroundPatternGenerator() {
       title="CSS Background Pattern Generator"
       subtitle="Generate repeating background patterns with pure CSS gradients — stripes, checkers, dots, and grids."
       icon={LayoutGrid}
-      iconBgColor="bg-cyan-100"
-      iconColor="text-cyan-600"
+      iconBgColor="bg-info/10"
+      iconColor="text-info"
       keywords={["css pattern", "background pattern", "stripes css", "checkerboard css", "dots background"]}
       children={
       <div className="space-y-5">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Pattern</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">Pattern</label>
           <div className="grid grid-cols-2 gap-2">
             {PATTERNS.map((p) => (
               <button
                 key={p.id}
                 type="button"
                 onClick={() => setType(p.id)}
-                className={`py-2 px-3 text-sm rounded-lg border transition-colors ${
-                  type === p.id
-                    ? "border-cyan-500 bg-cyan-50 text-cyan-700 font-medium"
-                    : "border-gray-300 text-gray-600 hover:border-gray-400"
-                }`}
+                className={`py-2 px-3 text-sm rounded-lg border transition-colors ${ type === p.id ? "border-border bg-info/10 text-info font-medium" : "border-border text-muted-foreground hover:border-border" }`}
               >
                 {p.label}
               </button>
@@ -108,43 +104,43 @@ export default function CssBackgroundPatternGenerator() {
 
         <div className="flex gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Primary</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Primary</label>
             <input
               type="color"
               value={c1}
               onChange={(e) => setC1(e.target.value)}
-              className="h-10 w-20 rounded-lg border border-gray-300 cursor-pointer bg-white p-1"
+              className="h-10 w-20 rounded-lg border border-border cursor-pointer bg-card p-1"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Background</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Background</label>
             <input
               type="color"
               value={c2}
               onChange={(e) => setC2(e.target.value)}
-              className="h-10 w-20 rounded-lg border border-gray-300 cursor-pointer bg-white p-1"
+              className="h-10 w-20 rounded-lg border border-border cursor-pointer bg-card p-1"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Pattern size: {size}px</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">Pattern size: {size}px</label>
           <input
             type="range"
             min={8}
             max={48}
             value={size}
             onChange={(e) => setSize(Number(e.target.value))}
-            className="w-full accent-cyan-600"
+            className="w-full accent-primary"
           />
         </div>
       </div>
       }
       result={
       <div>
-        <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Live preview</p>
+        <p className="text-xs font-medium text-muted-foreground tracking-wide mb-2">Live preview</p>
         <div
-          className="rounded-lg border border-gray-200 mb-4 overflow-hidden"
+          className="rounded-lg border border-border mb-4 overflow-hidden"
           style={{ height: 220, width: "100%" }}
         >
           <div style={{ ...style, width: "100%", height: "100%" }} />

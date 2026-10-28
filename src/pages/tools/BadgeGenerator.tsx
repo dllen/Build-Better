@@ -26,40 +26,40 @@ export default function BadgeGenerator() {
       title="Shield Badge Generator"
       subtitle="Design shields.io badges with live preview — get the URL, Markdown or HTML snippet."
       icon={ShieldCheck}
-      iconBgColor="bg-emerald-100"
-      iconColor="text-emerald-600"
+      iconBgColor="bg-success/10"
+      iconColor="text-success"
       keywords={["badge generator", "shields.io", "markdown badge", "status badge", "readme badge"]}
       children={
         <div className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div><label className="block text-xs text-gray-500 mb-1">Label (left)</label>
+            <div><label className="block text-xs text-muted-foreground mb-1">Label (left)</label>
               <input value={label} onChange={(e) => setLabel(e.target.value)} placeholder="build"
-                className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500" /></div>
-            <div><label className="block text-xs text-gray-500 mb-1">Message (right)</label>
+                className="w-full px-3 py-2.5 border border-border rounded-lg text-sm focus:ring-2 focus:ring-ring" /></div>
+            <div><label className="block text-xs text-muted-foreground mb-1">Message (right)</label>
               <input value={message} onChange={(e) => setMessage(e.target.value)} placeholder="passing"
-                className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500" /></div>
-            <div><label className="block text-xs text-gray-500 mb-1">Color</label>
+                className="w-full px-3 py-2.5 border border-border rounded-lg text-sm focus:ring-2 focus:ring-ring" /></div>
+            <div><label className="block text-xs text-muted-foreground mb-1">Color</label>
               <select value={color} onChange={(e) => setColor(e.target.value)}
-                className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500">
+                className="w-full px-3 py-2.5 border border-border rounded-lg text-sm focus:ring-2 focus:ring-ring">
                 {BADGE_PRESET_COLORS.map((c) => <option key={c} value={c}>{c}</option>)}
               </select></div>
-            <div><label className="block text-xs text-gray-500 mb-1">Style</label>
+            <div><label className="block text-xs text-muted-foreground mb-1">Style</label>
               <select value={style} onChange={(e) => setStyle(e.target.value as BadgeInput["style"])}
-                className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500">
+                className="w-full px-3 py-2.5 border border-border rounded-lg text-sm focus:ring-2 focus:ring-ring">
                 {BADGE_STYLES.map((s) => <option key={s} value={s}>{s}</option>)}
               </select></div>
-            <div><label className="block text-xs text-gray-500 mb-1">Logo (optional)</label>
+            <div><label className="block text-xs text-muted-foreground mb-1">Logo (optional)</label>
               <input value={logo} onChange={(e) => setLogo(e.target.value)} placeholder="github"
-                className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm" /></div>
-            <div><label className="block text-xs text-gray-500 mb-1">Label color (optional)</label>
+                className="w-full px-3 py-2.5 border border-border rounded-lg text-sm" /></div>
+            <div><label className="block text-xs text-muted-foreground mb-1">Label color (optional)</label>
               <input value={labelColor} onChange={(e) => setLabelColor(e.target.value)} placeholder="555"
-                className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm" /></div>
+                className="w-full px-3 py-2.5 border border-border rounded-lg text-sm" /></div>
           </div>
         </div>
       }
       result={
         <div className="space-y-4">
-          <div className="flex items-center justify-center p-6 bg-gray-50 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-center p-6 bg-muted rounded-lg border border-border">
             <img src={url} alt={`${label}: ${message}`} className="max-w-full" />
           </div>
           {[
@@ -69,16 +69,16 @@ export default function BadgeGenerator() {
           ].map(({ key, lbl, val }) => (
             <div key={key}>
               <div className="flex items-center justify-between mb-1">
-                <label className="text-xs text-gray-500">{lbl}</label>
+                <label className="text-xs text-muted-foreground">{lbl}</label>
                 <button onClick={() => copy(key, val)}
-                  className="flex items-center gap-1 px-2 py-1 text-gray-500 hover:bg-gray-100 rounded text-xs">
+                  className="flex items-center gap-1 px-2 py-1 text-muted-foreground hover:bg-muted rounded text-xs">
                   {copied === key ? <Check size={12} /> : <Copy size={12} />} {copied === key ? "Copied" : "Copy"}
                 </button>
               </div>
-              <input readOnly value={val} className="w-full px-3 py-2 border border-gray-200 rounded-lg font-mono text-xs bg-gray-50" />
+              <input readOnly value={val} className="w-full px-3 py-2 border border-border rounded-lg font-mono text-xs bg-muted" />
             </div>
           ))}
-          <p className="text-xs text-gray-400">Preview is rendered by shields.io.</p>
+          <p className="text-xs text-muted-foreground">Preview is rendered by shields.io.</p>
         </div>
       }
     />

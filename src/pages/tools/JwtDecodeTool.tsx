@@ -112,7 +112,7 @@ export default function JwtDecodeTool() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-violet-100 text-violet-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <Shield className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">JWT Decode</h1>
@@ -121,33 +121,33 @@ export default function JwtDecodeTool() {
       toolbar={
         <>
           <button
-            className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+            className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
             onClick={() => copy(pretty(headerParsed.value), "header")}
             disabled={!headerParsed.ok}
           >
             <ClipboardCopy className="h-4 w-4" /> Copy Header{" "}
             {copied.part === "header" && copied.ok ? (
-              <Check className="h-4 w-4 text-green-600" />
+              <Check className="h-4 w-4 text-success" />
             ) : null}
           </button>
           <button
-            className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+            className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
             onClick={() => copy(pretty(payloadParsed.value), "payload")}
             disabled={!payloadParsed.ok}
           >
             <ClipboardCopy className="h-4 w-4" /> Copy Payload{" "}
             {copied.part === "payload" && copied.ok ? (
-              <Check className="h-4 w-4 text-green-600" />
+              <Check className="h-4 w-4 text-success" />
             ) : null}
           </button>
           <button
-            className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+            className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
             onClick={() => copy(summary, "all")}
             disabled={!summary}
           >
             <ClipboardCopy className="h-4 w-4" /> Copy All{" "}
             {copied.part === "all" && copied.ok ? (
-              <Check className="h-4 w-4 text-green-600" />
+              <Check className="h-4 w-4 text-success" />
             ) : null}
           </button>
         </>
@@ -166,48 +166,48 @@ export default function JwtDecodeTool() {
       output={
         <div className="h-full overflow-auto px-3 py-2 space-y-4">
           <section>
-            <div className="font-medium text-sm text-gray-700 mb-1">Header</div>
+            <div className="font-medium text-sm text-muted-foreground mb-1">Header</div>
             {headerParsed.ok ? (
-              <pre className="rounded-md border border-gray-200 px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words bg-gray-50">
+              <pre className="rounded-md border border-border px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words bg-muted">
                 {pretty(headerParsed.value)}
               </pre>
             ) : (
-              <div className="text-sm text-red-600">Invalid header</div>
+              <div className="text-sm text-destructive">Invalid header</div>
             )}
           </section>
           <section>
-            <div className="font-medium text-sm text-gray-700 mb-1">Payload</div>
+            <div className="font-medium text-sm text-muted-foreground mb-1">Payload</div>
             {payloadParsed.ok ? (
-              <pre className="rounded-md border border-gray-200 px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words bg-gray-50">
+              <pre className="rounded-md border border-border px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words bg-muted">
                 {pretty(payloadParsed.value)}
               </pre>
             ) : (
-              <div className="text-sm text-red-600">Invalid payload</div>
+              <div className="text-sm text-destructive">Invalid payload</div>
             )}
           </section>
           <section>
-            <div className="font-medium text-sm text-gray-700 mb-1">Signature</div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-all bg-gray-50">
+            <div className="font-medium text-sm text-muted-foreground mb-1">Signature</div>
+            <div className="rounded-md border border-border px-3 py-2 font-mono text-sm break-all bg-muted">
               {signatureStr || "—"}
             </div>
-            <div className="text-sm text-gray-600 mt-1">
+            <div className="text-sm text-muted-foreground mt-1">
               bytes: {signatureBytes || 0}
             </div>
           </section>
         </div>
       }
       footer={
-        <div className="rounded-lg border border-gray-200 bg-white p-3">
+        <div className="rounded-lg border border-border bg-card p-3">
           <div className="font-medium text-sm mb-2">Claims</div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
-            <div className="rounded border border-gray-200 px-2 py-1">alg: {alg || "—"}</div>
-            <div className="rounded border border-gray-200 px-2 py-1">iss: {claims.iss || "—"}</div>
-            <div className="rounded border border-gray-200 px-2 py-1">sub: {claims.sub || "—"}</div>
-            <div className="rounded border border-gray-200 px-2 py-1">aud: {claims.aud || "—"}</div>
-            <div className="rounded border border-gray-200 px-2 py-1">exp: {tsToDateString(claims.exp)} {tsRelative(claims.exp)}</div>
-            <div className="rounded border border-gray-200 px-2 py-1">nbf: {tsToDateString(claims.nbf)} {tsRelative(claims.nbf)}</div>
-            <div className="rounded border border-gray-200 px-2 py-1">iat: {tsToDateString(claims.iat)} {tsRelative(claims.iat)}</div>
-            <div className="rounded border border-gray-200 px-2 py-1">jti: {claims.jti || "—"}</div>
+            <div className="rounded border border-border px-2 py-1">alg: {alg || "—"}</div>
+            <div className="rounded border border-border px-2 py-1">iss: {claims.iss || "—"}</div>
+            <div className="rounded border border-border px-2 py-1">sub: {claims.sub || "—"}</div>
+            <div className="rounded border border-border px-2 py-1">aud: {claims.aud || "—"}</div>
+            <div className="rounded border border-border px-2 py-1">exp: {tsToDateString(claims.exp)} {tsRelative(claims.exp)}</div>
+            <div className="rounded border border-border px-2 py-1">nbf: {tsToDateString(claims.nbf)} {tsRelative(claims.nbf)}</div>
+            <div className="rounded border border-border px-2 py-1">iat: {tsToDateString(claims.iat)} {tsRelative(claims.iat)}</div>
+            <div className="rounded border border-border px-2 py-1">jti: {claims.jti || "—"}</div>
           </div>
         </div>
       }

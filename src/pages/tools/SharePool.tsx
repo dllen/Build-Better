@@ -34,12 +34,10 @@ function ToastContainer({ toasts, removeToast }: { toasts: Toast[]; removeToast:
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className={`flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg text-white animate-in slide-in-from-right ${
-            toast.type === "success" ? "bg-green-600" : toast.type === "error" ? "bg-red-600" : "bg-blue-600"
-          }`}
+          className={`flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg text-primary-foreground animate-in slide-in-from-right ${ toast.type === "success" ? "bg-success" : toast.type === "error" ? "bg-destructive" : "bg-primary" }`}
         >
           <span>{toast.message}</span>
-          <button onClick={() => removeToast(toast.id)} className="p-1 hover:bg-white/20 rounded">
+          <button onClick={() => removeToast(toast.id)} className="p-1 hover:bg-muted/20 rounded">
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -66,19 +64,17 @@ function ImageCell({ item, selected, onSelect, onClick, selectMode }: ImageCellP
 
   return (
     <div
-      className={`relative group aspect-square rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${
-        selected ? "border-blue-500 ring-2 ring-blue-200" : "border-transparent hover:border-gray-300"
-      }`}
+      className={`relative group aspect-square rounded-lg overflow-hidden cursor-pointer border-2 transition-colors ${ selected ? "border-border ring-2 ring-border" : "border-transparent hover:border-border" }`}
       onClick={() => (selectMode ? onSelect(item.id) : onClick(item))}
     >
       {!loaded && !error && (
-        <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center">
-          <ImageIcon className="h-8 w-8 text-gray-300" />
+        <div className="absolute inset-0 bg-muted animate-pulse flex items-center justify-center">
+          <ImageIcon className="h-8 w-8 text-muted-foreground" />
         </div>
       )}
       {error ? (
-        <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-          <span className="text-xs text-gray-400">Failed</span>
+        <div className="absolute inset-0 bg-muted flex items-center justify-center">
+          <span className="text-xs text-muted-foreground">Failed</span>
         </div>
       ) : (
         <img
@@ -91,12 +87,12 @@ function ImageCell({ item, selected, onSelect, onClick, selectMode }: ImageCellP
         />
       )}
       {selected && (
-        <div className="absolute top-2 left-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-          <Check className="h-4 w-4 text-white" />
+        <div className="absolute top-2 left-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+          <Check className="h-4 w-4 text-card-foreground" />
         </div>
       )}
       {selectMode && !selected && (
-        <div className="absolute top-2 left-2 w-6 h-6 border-2 border-white rounded-full bg-black/20" />
+        <div className="absolute top-2 left-2 w-6 h-6 border-2 border-border rounded-full bg-foreground/20" />
       )}
     </div>
   );
@@ -129,30 +125,28 @@ function TextCell({ item, selected, onSelect, onClick, selectMode, getText }: Te
 
   return (
     <div
-      className={`p-4 bg-white rounded-lg border-2 transition-all cursor-pointer ${
-        selected ? "border-blue-500 ring-2 ring-blue-200" : "border-gray-100 hover:border-gray-300"
-      }`}
+      className={`p-4 bg-card rounded-lg border-2 transition-colors cursor-pointer ${ selected ? "border-border ring-2 ring-border" : "border-border hover:border-border" }`}
       onClick={() => (selectMode ? onSelect(item.id) : onClick(item))}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-2">
-            <FileText className="h-4 w-4 text-gray-400" />
-            <span className="text-xs text-gray-500">{date}</span>
+            <FileText className="h-4 w-4 text-muted-foreground" />
+            <span className="text-xs text-muted-foreground">{date}</span>
           </div>
           {loading ? (
-            <div className="h-4 bg-gray-100 rounded animate-pulse w-3/4" />
+            <div className="h-4 bg-muted rounded animate-pulse w-3/4" />
           ) : (
-            <p className="text-sm text-gray-700 line-clamp-3">{preview || "Empty note"}</p>
+            <p className="text-sm text-muted-foreground line-clamp-3">{preview || "Empty note"}</p>
           )}
         </div>
         {selected && (
-          <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-            <Check className="h-4 w-4 text-white" />
+          <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+            <Check className="h-4 w-4 text-card-foreground" />
           </div>
         )}
         {selectMode && !selected && (
-          <div className="w-6 h-6 border-2 border-gray-300 rounded-full flex-shrink-0" />
+          <div className="w-6 h-6 border-2 border-border rounded-full flex-shrink-0" />
         )}
       </div>
     </div>
@@ -217,29 +211,29 @@ function ViewerModal({ item, onClose, onShare, onDelete, getText, showToast }: V
   const isImage = item.contentType.startsWith("image/");
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/90 flex flex-col" onClick={onClose}>
+    <div className="fixed inset-0 z-50 bg-foreground/90 flex flex-col" onClick={onClose}>
       {/* Header */}
-      <div className="flex items-center justify-between p-4 bg-black/50">
+      <div className="flex items-center justify-between p-4 bg-foreground/50">
         <div className="flex items-center gap-4">
-          <span className="text-white text-sm">{new Date(item.time).toLocaleString()}</span>
+          <span className="text-card-foreground text-sm">{new Date(item.time).toLocaleString()}</span>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={(e) => { e.stopPropagation(); handleShare(); }}
             disabled={sharing}
-            className="p-2 text-white hover:bg-white/20 rounded-lg flex items-center gap-2"
+            className="p-2 text-card-foreground hover:bg-muted/20 rounded-lg flex items-center gap-2"
           >
             {sharing ? <Loader2 className="h-5 w-5 animate-spin" /> : <Share2 className="h-5 w-5" />}
             Share
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); handleDelete(); }}
-            className="p-2 text-red-400 hover:bg-red-500/20 rounded-lg flex items-center gap-2"
+            className="p-2 text-destructive hover:bg-destructive/20 rounded-lg flex items-center gap-2"
           >
             <Trash2 className="h-5 w-5" />
             Delete
           </button>
-          <button onClick={onClose} className="p-2 text-white hover:bg-white/20 rounded-lg">
+          <button onClick={onClose} className="p-2 text-card-foreground hover:bg-muted/20 rounded-lg">
             <X className="h-6 w-6" />
           </button>
         </div>
@@ -252,17 +246,17 @@ function ViewerModal({ item, onClose, onShare, onDelete, getText, showToast }: V
             <img
               src={getImageUrl(item.id, "full")}
               alt=""
-              className="max-w-full max-h-[80vh] object-contain rounded-lg"
+              className="max-w-full max-h-[80dvh] object-contain rounded-lg"
             />
           </div>
         ) : (
-          <div className="w-full max-w-3xl bg-white rounded-lg p-6 overflow-auto max-h-[80vh]">
+          <div className="w-full max-w-3xl bg-card rounded-lg p-6 overflow-auto max-h-[80dvh]">
             {loading ? (
               <div className="flex items-center justify-center py-12">
-                <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+                <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
               </div>
             ) : (
-              <pre className="whitespace-pre-wrap font-mono text-sm text-gray-700">{text}</pre>
+              <pre className="whitespace-pre-wrap font-mono text-sm text-muted-foreground">{text}</pre>
             )}
           </div>
         )}
@@ -300,14 +294,14 @@ function TextComposeModal({ open, onClose, onSubmit }: TextComposeModalProps) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-50 bg-foreground/50 flex items-center justify-center p-4" onClick={onClose}>
       <div
-        className="w-full max-w-2xl bg-white rounded-xl shadow-xl"
+        className="w-full max-w-2xl bg-card rounded-xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between p-4 border-b">
           <h2 className="text-lg font-semibold">Compose Text Note</h2>
-          <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded">
+          <button onClick={onClose} className="p-1 hover:bg-muted rounded">
             <X className="h-5 w-5" />
           </button>
         </div>
@@ -317,22 +311,22 @@ function TextComposeModal({ open, onClose, onSubmit }: TextComposeModalProps) {
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Write your note here..."
-              className="w-full h-64 p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none resize-none"
+              className="w-full h-64 p-3 rounded-lg border border-border focus:ring-2 focus:ring-ring focus:border-border outline-none resize-none"
               autoFocus
             />
           </div>
-          <div className="flex justify-end gap-3 p-4 border-t bg-gray-50 rounded-b-xl">
+          <div className="flex justify-end gap-3 p-4 border-t bg-muted rounded-b-xl">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-gray-600 hover:bg-gray-200 rounded-lg"
+              className="px-4 py-2 text-muted-foreground hover:bg-border rounded-lg"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={!text.trim() || submitting}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
+              className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary disabled:opacity-50 flex items-center gap-2"
             >
               {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
               Save Note
@@ -517,8 +511,8 @@ export default function SharePool() {
     return (
       <div className="container mx-auto px-4 py-8">
         <SEO title="SharePool" description="Share images and text across devices" />
-        <div className="min-h-[60vh] flex items-center justify-center">
-          <div className="w-full max-w-md p-8 bg-card rounded-xl shadow-sm border border-border">
+        <div className="min-h-[60dvh] flex items-center justify-center">
+          <div className="w-full max-w-md p-8 bg-card rounded-xl border border-border">
             <AuthForm notice={verifiedNotice} expired={expired} />
           </div>
         </div>
@@ -533,15 +527,15 @@ export default function SharePool() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <div className="p-3 rounded-xl bg-blue-100">
-            <ImageIcon className="h-8 w-8 text-blue-600" />
+          <div className="p-3 rounded-xl bg-primary/10">
+            <ImageIcon className="h-8 w-8 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">SharePool</h1>
-            <p className="text-sm text-gray-500">
+            <h1 className="text-2xl font-bold text-foreground">SharePool</h1>
+            <p className="text-sm text-muted-foreground">
               {items.length} items
               {tokenExp > 0 && (
-                <span className="ml-2 text-xs text-gray-400">
+                <span className="ml-2 text-xs text-muted-foreground">
                   · token valid until {formatTokenExpiry(tokenExp)}
                 </span>
               )}
@@ -552,29 +546,27 @@ export default function SharePool() {
           <button
             onClick={() => refresh()}
             disabled={loading}
-            className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+            className="p-2 text-muted-foreground hover:bg-muted rounded-lg"
             title="Refresh"
           >
             <RefreshCw className={`h-5 w-5 ${loading ? "animate-spin" : ""}`} />
           </button>
           <button
             onClick={() => { setSelectMode(!selectMode); setSelected(new Set()); }}
-            className={`px-4 py-2 rounded-lg flex items-center gap-2 ${
-              selectMode ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-100"
-            }`}
+            className={`px-4 py-2 rounded-lg flex items-center gap-2 ${ selectMode ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted" }`}
           >
             {selectMode ? "Cancel Selection" : "Select"}
           </button>
           {selectMode && selected.size > 0 && (
             <button
               onClick={handleBatchDelete}
-              className="px-4 py-2 bg-red-600 text-white rounded-lg flex items-center gap-2 hover:bg-red-700"
+              className="px-4 py-2 bg-destructive text-destructive-foreground rounded-lg flex items-center gap-2 hover:bg-destructive"
             >
               <Trash2 className="h-4 w-4" />
               Delete ({selected.size})
             </button>
           )}
-          <button onClick={logout} className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg" title="Logout">
+          <button onClick={logout} className="p-2 text-muted-foreground hover:bg-muted rounded-lg" title="Logout">
             <LogOut className="h-5 w-5" />
           </button>
         </div>
@@ -586,11 +578,7 @@ export default function SharePool() {
           <button
             key={tabName}
             onClick={() => setTab(tabName)}
-            className={`px-4 py-2 border-b-2 transition-colors ${
-              tab === tabName
-                ? "border-blue-600 text-blue-600"
-                : "border-transparent text-gray-500 hover:text-gray-700"
-            }`}
+            className={`px-4 py-2 border-b-2 transition-colors ${ tab === tabName ? "border-border text-primary" : "border-transparent text-muted-foreground hover:text-muted-foreground" }`}
           >
             {tabName === "all" ? "All" : tabName === "image" ? "Images" : "Text"}
             <span className="ml-2 text-xs">
@@ -602,9 +590,7 @@ export default function SharePool() {
 
       {/* Upload Area */}
       <div
-        className={`mb-6 border-2 border-dashed rounded-xl p-8 text-center transition-colors ${
-          dragOver ? "border-blue-500 bg-blue-50" : "border-gray-300 hover:border-gray-400"
-        }`}
+        className={`mb-6 border-2 border-dashed rounded-xl p-8 text-center transition-colors ${ dragOver ? "border-border bg-primary/10" : "border-border hover:border-border" }`}
         onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
         onDragLeave={() => setDragOver(false)}
         onDrop={(e) => {
@@ -624,22 +610,22 @@ export default function SharePool() {
         <div className="flex flex-col items-center gap-3">
           {uploading ? (
             <>
-              <Loader2 className="h-10 w-10 text-blue-600 animate-spin" />
-              <p className="text-gray-600">Uploading...</p>
+              <Loader2 className="h-10 w-10 text-primary animate-spin" />
+              <p className="text-muted-foreground">Uploading…</p>
             </>
           ) : (
             <>
-              <Upload className="h-10 w-10 text-gray-400" />
+              <Upload className="h-10 w-10 text-muted-foreground" />
               <div>
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  className="text-blue-600 hover:underline font-medium"
+                  className="text-primary hover:underline font-medium"
                 >
                   Click to upload
                 </button>
-                <span className="text-gray-500"> or drag and drop</span>
+                <span className="text-muted-foreground"> or drag and drop</span>
               </div>
-              <p className="text-xs text-gray-400">Images (HEIC, PNG, JPEG, WebP, GIF)</p>
+              <p className="text-xs text-muted-foreground">Images (HEIC, PNG, JPEG, WebP, GIF)</p>
             </>
           )}
         </div>
@@ -649,7 +635,7 @@ export default function SharePool() {
       <div className="flex items-center gap-3 mb-6">
         <button
           onClick={() => setComposeOpen(true)}
-          className="px-4 py-2 bg-green-600 text-white rounded-lg flex items-center gap-2 hover:bg-green-700"
+          className="px-4 py-2 bg-success text-success-foreground rounded-lg flex items-center gap-2 hover:bg-success"
         >
           <Plus className="h-4 w-4" />
           Compose Note
@@ -659,7 +645,7 @@ export default function SharePool() {
       {/* Content Grid */}
       {(tab === "all" || tab === "image") && imageItems.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-lg font-medium text-gray-700 mb-4">
+          <h2 className="text-lg font-medium text-muted-foreground mb-4">
             {tab === "all" ? "Images" : ""}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
@@ -680,7 +666,7 @@ export default function SharePool() {
       {/* Text Notes */}
       {(tab === "all" || tab === "text") && textItems.length > 0 && (
         <div>
-          <h2 className="text-lg font-medium text-gray-700 mb-4">
+          <h2 className="text-lg font-medium text-muted-foreground mb-4">
             {tab === "all" ? "Text Notes" : ""}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -701,8 +687,8 @@ export default function SharePool() {
 
       {/* Empty State */}
       {filteredItems.length === 0 && !loading && (
-        <div className="text-center py-12 text-gray-500">
-          <ImageIcon className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+        <div className="text-center py-12 text-muted-foreground">
+          <ImageIcon className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
           <p>No items yet. Upload an image or compose a note to get started.</p>
         </div>
       )}

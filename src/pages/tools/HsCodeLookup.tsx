@@ -52,28 +52,28 @@ export default function HsCodeLookup() {
     <div className="space-y-4">
       {searched ? (
         results.length === 0 ? (
-          <div className="text-center py-12 text-gray-400">
+          <div className="text-center py-12 text-muted-foreground">
             <Search className="h-12 w-12 mx-auto mb-4 opacity-40" />
             <p>{t("tools.hs-code.no_results")}</p>
           </div>
         ) : (
           <div className="space-y-2 max-h-72 overflow-y-auto">
             {results.map(r => (
-              <div key={r.code} className="border border-gray-200 rounded-lg p-3 hover:border-blue-300 transition-colors">
+              <div key={r.code} className="border border-border rounded-lg p-3 hover:border-border transition-colors">
                 <div className="flex justify-between items-start mb-1">
                   <span className="font-mono font-bold text-sm">{r.code}</span>
-                  <button onClick={() => copy(r.code)} className="text-xs text-blue-600 hover:underline">
+                  <button onClick={() => copy(r.code)} className="text-xs text-primary hover:underline">
                     <Copy className="h-3 w-3 inline" /> {copied ? t("common.copied") : "Copy"}
                   </button>
                 </div>
-                <p className="text-sm text-gray-700 mb-1">{r.desc}</p>
-                <p className="text-xs text-gray-500">{t("tools.hs-code.duty_to")} {country}: <strong>{r.duty[country]}%</strong></p>
+                <p className="text-sm text-muted-foreground mb-1">{r.desc}</p>
+                <p className="text-xs text-muted-foreground">{t("tools.hs-code.duty_to")} {country}: <strong>{r.duty[country]}%</strong></p>
               </div>
             ))}
           </div>
         )
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Search className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("tools.hs-code.enter_values")}</p>
         </div>
@@ -86,25 +86,25 @@ export default function HsCodeLookup() {
       title={t("tools.hs-code.title")}
       subtitle={t("tools.hs-code.subtitle")}
       icon={Search}
-      iconBgColor="bg-indigo-100"
-      iconColor="text-indigo-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["hs code", "harmonized code", "customs code", "hs code lookup"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.hs-code.query")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.hs-code.query")}</label>
           <input value={query} onChange={e => setQuery(e.target.value)} placeholder={t("tools.hs-code.placeholder")} onKeyDown={e => e.key === "Enter" && search()}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.hs-code.destination")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.hs-code.destination")}</label>
           <select value={country} onChange={e => setCountry(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-2 px-3 border">
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
             {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
         </div>
-        <button onClick={search} className="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+        <button onClick={search} className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary">
           {t("tools.hs-code.search")}
         </button>
       </div>

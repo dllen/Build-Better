@@ -25,7 +25,7 @@ export default function StrokeCount() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-cyan-100 text-cyan-600">
+          <div className="inline-flex p-2 rounded-lg bg-info/10 text-info">
             <Hash className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">汉字笔划统计</h1>
@@ -44,26 +44,26 @@ export default function StrokeCount() {
       output={
         <div className="h-full overflow-auto px-3 py-3">
           <div className="grid grid-cols-3 gap-2 mb-4">
-            <div className="p-2 bg-gray-50 rounded border text-center">
-              <div className="text-gray-500 text-xs">总笔划</div>
+            <div className="p-2 bg-muted rounded border text-center">
+              <div className="text-muted-foreground text-xs">总笔划</div>
               <div className="font-mono font-bold text-xl">{totalStrokes}</div>
             </div>
-            <div className="p-2 bg-gray-50 rounded border text-center">
-              <div className="text-gray-500 text-xs">汉字数</div>
+            <div className="p-2 bg-muted rounded border text-center">
+              <div className="text-muted-foreground text-xs">汉字数</div>
               <div className="font-mono font-bold text-xl">{charCount}</div>
             </div>
-            <div className="p-2 bg-gray-50 rounded border text-center">
-              <div className="text-gray-500 text-xs">平均笔划</div>
+            <div className="p-2 bg-muted rounded border text-center">
+              <div className="text-muted-foreground text-xs">平均笔划</div>
               <div className="font-mono font-bold text-xl">{charCount ? (totalStrokes / charCount).toFixed(1) : "—"}</div>
             </div>
           </div>
-          <div className="space-y-1 max-h-[50vh] overflow-auto">
+          <div className="space-y-1 max-h-[50dvh] overflow-auto">
             {charData.length ? charData.map((c, i) => (
-              <div key={i} className="flex items-center justify-between py-1 px-2 hover:bg-gray-50 rounded text-sm">
+              <div key={i} className="flex items-center justify-between py-1 px-2 hover:bg-muted rounded text-sm">
                 <span className="font-medium text-lg">{c.char}</span>
-                <span className="font-mono text-gray-600">{c.strokes} 画</span>
+                <span className="font-mono text-muted-foreground">{c.strokes} 画</span>
               </div>
-            )) : <span className="text-gray-400">—</span>}
+            )) : <span className="text-muted-foreground">—</span>}
           </div>
         </div>
       }

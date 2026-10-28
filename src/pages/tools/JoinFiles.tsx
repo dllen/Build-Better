@@ -74,10 +74,10 @@ export default function JoinFiles() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-indigo-100 text-indigo-600 rounded-lg">
+          <div className="p-2 bg-primary/10 text-primary rounded-lg">
             <Link2 className="h-5 w-5" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Join Files</h1>
+          <h1 className="text-2xl font-bold text-foreground">Join Files</h1>
         </div>
       }
       toolbar={
@@ -87,16 +87,16 @@ export default function JoinFiles() {
             type="file"
             multiple
             onChange={handleFilesAdded}
-            className="text-sm text-gray-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-indigo-100 file:text-indigo-700 hover:file:bg-indigo-200 file:cursor-pointer"
+            className="text-sm text-muted-foreground file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-primary/10 file:text-primary hover:file:bg-primary/10 file:cursor-pointer"
           />
 
-          <div className="flex items-center gap-1.5 text-sm text-gray-600">
+          <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
             <span>Output name:</span>
             <input
               type="text"
               value={outputName}
               onChange={(e) => setOutputName(e.target.value)}
-              className="w-36 rounded-lg border border-gray-300 px-2 py-1.5 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none"
+              className="w-36 rounded-lg border border-border px-2 py-1.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none"
               placeholder="merged"
             />
           </div>
@@ -104,7 +104,7 @@ export default function JoinFiles() {
           <button
             onClick={handleJoin}
             disabled={files.length < 2}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <Link2 className="h-3.5 w-3.5" />
             Join
@@ -115,7 +115,7 @@ export default function JoinFiles() {
         files.length > 0 ? (
           <span>
             Files to Join{" "}
-            <span className="text-xs font-normal text-gray-400">
+            <span className="text-xs font-normal text-muted-foreground">
               ({files.length} files · {formatSize(totalSize)})
             </span>
           </span>
@@ -130,7 +130,7 @@ export default function JoinFiles() {
               setFiles([]);
               setMergedBlob(null);
             }}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-red-600 rounded transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-destructive rounded transition-colors"
           >
             <X className="h-3 w-3" />
             Clear all
@@ -138,39 +138,39 @@ export default function JoinFiles() {
         ) : undefined
       }
       input={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card">
           {files.length > 0 ? (
             <div className="p-2 space-y-1">
               {files.map((f, i) => (
                 <div
                   key={`${f.name}-${i}`}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors group"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-muted hover:bg-muted transition-colors group"
                 >
                   <div className="flex items-center gap-0.5 shrink-0">
                     <button
                       onClick={() => moveFile(i, -1)}
                       disabled={i === 0}
-                      className="p-0.5 text-gray-400 hover:text-gray-600 disabled:opacity-30 rounded"
+                      className="p-0.5 text-muted-foreground hover:text-muted-foreground disabled:opacity-30 rounded"
                     >
                       <ArrowUp className="h-3 w-3" />
                     </button>
                     <button
                       onClick={() => moveFile(i, 1)}
                       disabled={i === files.length - 1}
-                      className="p-0.5 text-gray-400 hover:text-gray-600 disabled:opacity-30 rounded"
+                      className="p-0.5 text-muted-foreground hover:text-muted-foreground disabled:opacity-30 rounded"
                     >
                       <ArrowDown className="h-3 w-3" />
                     </button>
                   </div>
-                  <GripVertical className="h-4 w-4 text-gray-300 shrink-0" />
-                  <File className="h-4 w-4 text-indigo-400 shrink-0" />
-                  <span className="text-sm font-mono text-gray-700 truncate flex-1 min-w-0">
+                  <GripVertical className="h-4 w-4 text-muted-foreground shrink-0" />
+                  <File className="h-4 w-4 text-primary shrink-0" />
+                  <span className="text-sm font-mono text-muted-foreground truncate flex-1 min-w-0">
                     {f.name}
                   </span>
-                  <span className="text-xs text-gray-400 shrink-0">{formatSize(f.size)}</span>
+                  <span className="text-xs text-muted-foreground shrink-0">{formatSize(f.size)}</span>
                   <button
                     onClick={() => removeFile(i)}
-                    className="shrink-0 p-1 text-gray-400 hover:text-red-500 rounded opacity-0 group-hover:opacity-100 transition-all"
+                    className="shrink-0 p-1 text-muted-foreground hover:text-destructive rounded opacity-0 group-hover:opacity-100 transition-colors transition-opacity"
                   >
                     <X className="h-3.5 w-3.5" />
                   </button>
@@ -178,9 +178,9 @@ export default function JoinFiles() {
               ))}
             </div>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               <div className="text-center space-y-2">
-                <Upload className="h-12 w-12 text-gray-300 mx-auto" />
+                <Upload className="h-12 w-12 text-muted-foreground mx-auto" />
                 <p>Add files to join them together</p>
                 <p className="text-xs">Files are joined in the order shown above</p>
               </div>
@@ -192,7 +192,7 @@ export default function JoinFiles() {
         mergedBlob ? (
           <span>
             Merged File{" "}
-            <span className="text-xs font-normal text-gray-400">
+            <span className="text-xs font-normal text-muted-foreground">
               ({formatSize(mergedBlob.size)})
             </span>
           </span>
@@ -204,7 +204,7 @@ export default function JoinFiles() {
         mergedBlob ? (
           <button
             onClick={download}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors"
           >
             <Download className="h-3.5 w-3.5" />
             Download
@@ -212,22 +212,22 @@ export default function JoinFiles() {
         ) : undefined
       }
       output={
-        <div className="h-full flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50/50 p-6">
+        <div className="h-full flex items-center justify-center rounded-lg border-2 border-dashed border-border bg-muted/50 p-6">
           {mergedBlob ? (
             <div className="text-center space-y-3">
-              <File className="h-12 w-12 text-indigo-400 mx-auto" />
+              <File className="h-12 w-12 text-primary mx-auto" />
               <div>
-                <p className="text-sm font-medium text-gray-700">{mergedName}</p>
-                <p className="text-xs text-gray-500">{formatSize(mergedBlob.size)}</p>
+                <p className="text-sm font-medium text-muted-foreground">{mergedName}</p>
+                <p className="text-xs text-muted-foreground">{formatSize(mergedBlob.size)}</p>
               </div>
-              <p className="text-xs text-green-600 font-medium">
+              <p className="text-xs text-success font-medium">
                 ✓ {files.length} files joined successfully
               </p>
             </div>
           ) : (
             <div className="text-center space-y-2">
-              <Link2 className="h-12 w-12 text-gray-300 mx-auto" />
-              <p className="text-sm text-gray-500">
+              <Link2 className="h-12 w-12 text-muted-foreground mx-auto" />
+              <p className="text-sm text-muted-foreground">
                 {files.length > 0
                   ? `Click Join to merge ${files.length} files`
                   : "Add at least 2 files to join"}

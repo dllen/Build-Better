@@ -188,32 +188,32 @@ export default function WebChat() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
       <div className="mb-2 flex items-center gap-3">
-        <div className="rounded-xl bg-violet-100 p-3">
-          <Globe size={28} className="text-violet-600" />
+        <div className="rounded-xl bg-primary/10 p-3">
+          <Globe size={28} className="text-primary" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">WebChat</h1>
-          <p className="text-sm text-gray-500">同页匿名 P2P 聊天</p>
+          <h1 className="text-2xl font-bold text-foreground">WebChat</h1>
+          <p className="text-sm text-muted-foreground">同页匿名 P2P 聊天</p>
         </div>
       </div>
 
       {/* User Profile Section */}
-      <div className="mb-4 flex items-center gap-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+      <div className="mb-4 flex items-center gap-4 rounded-lg border border-border bg-card p-4">
         {profile && (
           <>
             <div className="relative group">
               <img
                 src={profile.avatar}
                 alt="Avatar"
-                className="h-16 w-16 rounded-full bg-gray-100"
+                className="h-16 w-16 rounded-full bg-muted"
               />
               <button
                 type="button"
                 onClick={handleRefreshAvatar}
-                className="absolute -bottom-1 -right-1 rounded-full bg-white p-1 shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute -bottom-1 -right-1 rounded-full bg-muted p-1 opacity-0 group-hover:opacity-100 transition-opacity"
                 title="换头像"
               >
-                <RefreshCw size={14} className="text-gray-600" />
+                <RefreshCw size={14} className="text-muted-foreground" />
               </button>
             </div>
             <div className="flex-1">
@@ -224,17 +224,17 @@ export default function WebChat() {
                   onChange={(e) => setNameInput(e.target.value)}
                   onBlur={handleSaveName}
                   onKeyDown={handleNameKeyDown}
-                  className="w-full rounded border border-violet-300 px-2 py-1 text-lg font-medium outline-none focus:border-violet-500"
+                  className="w-full rounded border border-border px-2 py-1 text-lg font-medium outline-none focus:border-border"
                   autoFocus
                   maxLength={20}
                 />
               ) : (
                 <div className="flex items-center gap-2">
-                  <span className="text-lg font-medium text-gray-900">{profile.name}</span>
+                  <span className="text-lg font-medium text-foreground">{profile.name}</span>
                   <button
                     type="button"
                     onClick={handleEditName}
-                    className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+                    className="rounded p-1 text-muted-foreground hover:bg-muted hover:text-muted-foreground"
                     title="修改昵称"
                   >
                     <Pencil size={14} />
@@ -242,44 +242,44 @@ export default function WebChat() {
                   <button
                     type="button"
                     onClick={handleRefreshNickname}
-                    className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+                    className="rounded p-1 text-muted-foreground hover:bg-muted hover:text-muted-foreground"
                     title="随机昵称"
                   >
                     <RefreshCw size={14} />
                   </button>
                 </div>
               )}
-              <p className="text-xs text-gray-500">Your anonymous identity</p>
+              <p className="text-xs text-muted-foreground">Your anonymous identity</p>
             </div>
           </>
         )}
       </div>
 
-      <p className="mb-4 text-sm text-gray-500">
+      <p className="mb-4 text-sm text-muted-foreground">
         Chat anonymously with visitors on this page. No registration, no server storage. Share this link to invite others.
       </p>
 
-      <div className="mb-4 flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm shadow-sm">
-        <span className="text-gray-500">房间：</span>
-        <code className="flex-1 truncate font-mono text-gray-800">{pageUrl}</code>
+      <div className="mb-4 flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm">
+        <span className="text-muted-foreground">房间：</span>
+        <code className="flex-1 truncate font-mono text-foreground">{pageUrl}</code>
         <button
           type="button"
           onClick={copyLink}
-          className="rounded p-1.5 text-gray-500 hover:bg-gray-100"
+          className="rounded p-1.5 text-muted-foreground hover:bg-muted"
           title="复制链接"
           aria-label="复制链接"
         >
-          {copied ? <Check size={16} className="text-green-600" /> : <Copy size={16} />}
+          {copied ? <Check size={16} className="text-success" /> : <Copy size={16} />}
         </button>
       </div>
 
       {timedOut && connState === "connecting" && (
-        <div className="mb-3 flex items-center justify-between rounded-lg border border-yellow-200 bg-yellow-50 px-4 py-2 text-sm text-yellow-800">
+        <div className="mb-3 flex items-center justify-between rounded-lg border border-border bg-primary/10 px-4 py-2 text-sm text-primary">
           <span>暂无其他访客，发送链接邀请他人加入。</span>
           <button
             type="button"
             onClick={handleRetry}
-            className="inline-flex items-center gap-1 rounded border border-yellow-300 px-2 py-1 text-xs hover:bg-yellow-100"
+            className="inline-flex items-center gap-1 rounded border border-border px-2 py-1 text-xs hover:bg-primary/10"
           >
             刷新
           </button>
@@ -292,14 +292,14 @@ export default function WebChat() {
         onSend={handleSend}
         header={
           <div className="flex items-center gap-2">
-            <Users size={14} className="text-gray-400" />
-            <span className="text-xs text-gray-500">
+            <Users size={14} className="text-muted-foreground" />
+            <span className="text-xs text-muted-foreground">
               {peerCountRef.current > 0 ? `${peerCountRef.current} 人在线` : "等待中"}
             </span>
             <button
               type="button"
               onClick={handleLeave}
-              className="inline-flex items-center gap-1 rounded px-2 py-1 text-xs text-gray-500 hover:bg-gray-100"
+              className="inline-flex items-center gap-1 rounded px-2 py-1 text-xs text-muted-foreground hover:bg-muted"
             >
               <LogOut size={12} />
               离开
@@ -308,7 +308,7 @@ export default function WebChat() {
         }
       />
 
-      <div className="mt-4 flex items-center gap-2 text-xs text-gray-400">
+      <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
         <Globe size={12} />
         <span>消息端到端加密，仅存储于双方浏览器</span>
       </div>

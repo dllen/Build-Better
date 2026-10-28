@@ -62,35 +62,35 @@ export default function TextCaseConverter() {
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-6">
       <div className="flex items-center gap-2 mb-6">
-        <div className="p-2 bg-blue-100 text-blue-600 rounded-lg">
+        <div className="p-2 bg-primary/10 text-primary rounded-lg">
           <Type size={24} />
         </div>
         <h1 className="text-2xl font-bold">Text Case Converter</h1>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <div className="bg-card rounded-xl border border-border p-6">
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Enter text here..."
-          className="w-full h-64 p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none font-mono text-sm"
+          className="w-full h-64 p-4 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent resize-none font-mono text-sm"
         />
 
         <div className="flex justify-between items-center mt-4">
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-muted-foreground">
             {text.length} characters | {text.split(/\s+/).filter(w => w.length > 0).length} words
           </div>
           <div className="flex gap-2">
             <button
               onClick={() => setText('')}
-              className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-muted-foreground hover:bg-muted rounded-lg transition-colors"
             >
               <RotateCcw size={16} />
               Clear
             </button>
             <button
               onClick={handleCopy}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary transition-colors"
             >
               <Copy size={16} />
               {message || 'Copy'}
@@ -100,14 +100,14 @@ export default function TextCaseConverter() {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <button onClick={toUpperCase} className="p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all font-medium">UPPERCASE</button>
-        <button onClick={toLowerCase} className="p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all font-medium">lowercase</button>
-        <button onClick={toTitleCase} className="p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all font-medium">Title Case</button>
-        <button onClick={toSentenceCase} className="p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all font-medium">Sentence case</button>
-        <button onClick={toToggleCase} className="p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all font-medium">tOGGLE cASE</button>
-        <button onClick={toCamelCase} className="p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all font-medium">camelCase</button>
-        <button onClick={toSnakeCase} className="p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all font-medium">snake_case</button>
-        <button onClick={toKebabCase} className="p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all font-medium">kebab-case</button>
+        <button onClick={toUpperCase} className="p-3 bg-card border border-border rounded-lg hover:border-border hover:text-primary transition-colors font-medium">UPPERCASE</button>
+        <button onClick={toLowerCase} className="p-3 bg-card border border-border rounded-lg hover:border-border hover:text-primary transition-colors font-medium">lowercase</button>
+        <button onClick={toTitleCase} className="p-3 bg-card border border-border rounded-lg hover:border-border hover:text-primary transition-colors font-medium">Title Case</button>
+        <button onClick={toSentenceCase} className="p-3 bg-card border border-border rounded-lg hover:border-border hover:text-primary transition-colors font-medium">Sentence case</button>
+        <button onClick={toToggleCase} className="p-3 bg-card border border-border rounded-lg hover:border-border hover:text-primary transition-colors font-medium">tOGGLE cASE</button>
+        <button onClick={toCamelCase} className="p-3 bg-card border border-border rounded-lg hover:border-border hover:text-primary transition-colors font-medium">camelCase</button>
+        <button onClick={toSnakeCase} className="p-3 bg-card border border-border rounded-lg hover:border-border hover:text-primary transition-colors font-medium">snake_case</button>
+        <button onClick={toKebabCase} className="p-3 bg-card border border-border rounded-lg hover:border-border hover:text-primary transition-colors font-medium">kebab-case</button>
       </div>
     </div>
   );

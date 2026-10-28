@@ -96,7 +96,7 @@ return (
       {/* Floating help button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed right-4 bottom-4 z-40 p-3 rounded-full bg-gradient-to-br from-cyan-500 to-emerald-500 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 group"
+        className="fixed right-4 bottom-4 z-tooltip p-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-short ease-out group"
         title="使用帮助"
       >
         <HelpCircle className="w-5 h-5" />
@@ -108,14 +108,14 @@ return (
       {/* Modal overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 backdrop-blur-sm pt-[10vh] px-4"
+          className="fixed inset-0 z-50 flex items-start justify-center bg-scrim/55 pt-[10vh] px-4"
           onClick={(e) => {
             if (e.target === e.currentTarget) setIsOpen(false);
           }}
         >
-          <div className="bg-card border border-border rounded-xl shadow-2xl w-full max-w-lg max-h-[75vh] overflow-auto animate-in zoom-in-95 fade-in-0">
+          <div className="bg-card border border-border rounded-card w-full max-w-lg max-h-[75vh] overflow-auto animate-in zoom-in-95 fade-in-0">
             {/* Modal header */}
-            <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-4 border-b border-border/50 bg-card/95 backdrop-blur-sm rounded-t-xl">
+            <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-4 border-b border-border/50 bg-card/95 rounded-t-xl">
               <div>
                 <h2 className="text-base font-semibold">{title}</h2>
                 <p className="text-xs text-muted-foreground mt-0.5">{description}</p>
@@ -133,13 +133,13 @@ return (
               {howToSteps.length > 0 && (
                 <div>
                   <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-cool" />
                     使用步骤
                   </h3>
                   <ol className="space-y-2">
                     {howToSteps.map((step, i) => (
                       <li key={i} className="flex gap-3">
-                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-medium flex items-center justify-center">
+                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-cool/10 text-cool text-xs font-medium flex items-center justify-center">
                           {i + 1}
                         </span>
                         <div>
@@ -156,14 +156,14 @@ return (
               {features.length > 0 && (
                 <div>
                   <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-success" />
                     功能特性
                   </h3>
                   <ul className="grid grid-cols-1 gap-1.5">
                     {features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm">
-                        <span className="text-emerald-400 mt-0.5 shrink-0">
-                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <span className="text-success mt-0.5 shrink-0">
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
                         </span>
@@ -178,7 +178,7 @@ return (
               {faqs.length > 0 && (
                 <div>
                   <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                     常见问题
                   </h3>
                   <div className="space-y-1.5">

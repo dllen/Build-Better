@@ -81,19 +81,17 @@ export function EnvironmentSwitcher({
         className="flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-md border border-border/50 bg-card hover:bg-secondary/80 transition-colors"
       >
         <span className="text-muted-foreground">环境:</span>
-        <span className="font-medium text-cyan-400">{active?.name ?? "No Env"}</span>
+        <span className="font-medium text-info">{active?.name ?? "No Env"}</span>
         <ChevronDown className="w-3 h-3 text-muted-foreground" />
       </button>
 
       {open && !manageOpen && !editingVarsId && (
-        <div className="absolute right-0 top-full mt-1 w-52 py-1 bg-popover border border-border rounded-lg shadow-xl z-30">
+        <div className="absolute right-0 top-full mt-1 w-52 py-1 bg-popover border border-border rounded-card z-dropdown">
           {environments.map((env) => (
             <button
               key={env.id}
               onClick={() => { onSelect(env.id); setOpen(false); }}
-              className={`flex items-center justify-between w-full px-3 py-2 text-xs hover:bg-muted/80 transition-colors ${
-                env.id === activeId ? "text-cyan-400" : "text-muted-foreground"
-              }`}
+              className={`flex items-center justify-between w-full px-3 py-2 text-xs hover:bg-muted/80 transition-colors ${ env.id === activeId ? "text-info" : "text-muted-foreground" }`}
             >
               {env.name}
               {env.id === activeId && <Check className="w-3.5 h-3.5" />}
@@ -110,7 +108,7 @@ export function EnvironmentSwitcher({
       )}
 
       {open && manageOpen && !editingVarsId && (
-        <div className="absolute right-0 top-full mt-1 w-64 py-2 px-2 bg-popover border border-border rounded-lg shadow-xl z-30">
+        <div className="absolute right-0 top-full mt-1 w-64 py-2 px-2 bg-popover border border-border rounded-card z-dropdown">
           <div className="flex items-center gap-1 mb-2">
             <input
               value={newName}
@@ -128,7 +126,7 @@ export function EnvironmentSwitcher({
               onClick={() => {
                 if (newName.trim()) { onAdd(newName.trim()); setNewName(""); }
               }}
-              className="p-1 rounded text-cyan-400 hover:bg-cyan-500/10"
+              className="p-1 rounded text-info hover:bg-info/10"
             >
               <Plus className="w-4 h-4" />
             </button>
@@ -157,14 +155,14 @@ export function EnvironmentSwitcher({
                 )}
                 <button
                   onClick={() => openVarEditor(env)}
-                  className="p-0.5 rounded text-muted-foreground hover:text-cyan-400"
+                  className="p-0.5 rounded text-muted-foreground hover:text-info"
                   title="编辑变量"
                 >
                   <Settings className="w-3 h-3" />
                 </button>
                 <button
                   onClick={() => onDelete(env.id)}
-                  className="p-0.5 rounded text-muted-foreground hover:text-red-400"
+                  className="p-0.5 rounded text-muted-foreground hover:text-destructive"
                 >
                   <Trash2 className="w-3 h-3" />
                 </button>
@@ -182,9 +180,9 @@ export function EnvironmentSwitcher({
 
       {/* Variable editor */}
       {open && editingVarsId && (
-        <div className="absolute right-0 top-full mt-1 w-72 py-2 px-2 bg-popover border border-border rounded-lg shadow-xl z-30">
+        <div className="absolute right-0 top-full mt-1 w-72 py-2 px-2 bg-popover border border-border rounded-card z-dropdown">
           <div className="text-[11px] font-medium text-foreground mb-2 px-1">
-            {environments.find((e) => e.id === editingVarsId)?.name} — 变量
+            {environments.find((e) => e.id === editingVarsId)?.name}, 变量
           </div>
           <div className="space-y-1 max-h-56 overflow-auto mb-2">
             {editingVars.map((v, i) => (
@@ -205,7 +203,7 @@ export function EnvironmentSwitcher({
                 />
                 <button
                   onClick={() => removeVarRow(i)}
-                  className="p-0.5 rounded text-muted-foreground hover:text-red-400 shrink-0"
+                  className="p-0.5 rounded text-muted-foreground hover:text-destructive shrink-0"
                 >
                   <Trash2 className="w-3 h-3" />
                 </button>
@@ -227,7 +225,7 @@ export function EnvironmentSwitcher({
             </button>
             <button
               onClick={saveVars}
-              className="flex-1 py-1 text-[10px] bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 rounded-md hover:bg-cyan-500/25"
+              className="flex-1 py-1 text-[10px] bg-info/15 text-info border border-border/30 rounded-md hover:bg-info/25"
             >
               保存变量
             </button>

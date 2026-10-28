@@ -102,7 +102,8 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
     if (isOpen) {
       setQuery("");
       setSelectedIndex(0);
-      setTimeout(() => inputRef.current?.focus(), 50);
+      const timer = window.setTimeout(() => inputRef.current?.focus(), 50);
+      return () => window.clearTimeout(timer);
     }
   }, [isOpen]);
 
@@ -188,71 +189,74 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh]"
+      className="fixed inset-0 z-modal flex items-start justify-center pt-[15vh]"
       onClick={onClose}
     >
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+      {/* Backdrop: a flat scrim, no blur, no glow. */}
+      <div className="absolute inset-0 bg-scrim/65" aria-hidden="true" />
 
       {/* Modal */}
       <div
-        className="relative w-full max-w-xl mx-4 bg-popover border border-border rounded-xl shadow-2xl overflow-hidden"
+        className="relative w-full max-w-xl mx-4 bg-popover border border-border rounded-card overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input */}
         <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
-          <Search className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+          <Search className="w-4 h-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
           <input
             ref={inputRef}
             type="text"
-            placeholder="Search tools, games, pages..."
+            name="command"
+            autoComplete="off"
+            placeholder="Search tools, games, pages…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent outline-none text-foreground placeholder:text-muted-foreground"
+            className="flex-1 min-w-0 bg-transparent outline-none text-foreground placeholder:text-muted-foreground"
+            aria-label="Search tools, games, pages"
           />
-          <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground bg-muted rounded border border-border">
+          <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground bg-muted rounded border border-border measured">
             ESC
           </kbd>
           <button
+            type="button"
             onClick={onClose}
-            className="p-1 text-muted-foreground hover:text-foreground"
+            aria-label="Close"
+            className="p-1 text-muted-foreground hover:text-foreground transition-colors"
           >
-            <X className="w-4 h-4" />
+            <X className="w-4 h-4" aria-hidden="true" />
           </button>
         </div>
 
         {/* Results */}
         <div ref={listRef} className="max-h-[60vh] overflow-y-auto py-2">
           {!query.trim() && favorites.length > 0 && (
-            <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
-              <Heart className="w-3 h-3 fill-current" />
+            <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground flex items-center gap-1.5">
+              <Heart className="w-3 h-3 fill-current" aria-hidden="true" />
               Favorites
             </div>
           )}
           {!query.trim() && favorites.length === 0 && recentPaths.length > 0 && (
-            <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
-              <Clock className="w-3 h-3" />
+            <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground flex items-center gap-1.5">
+              <Clock className="w-3 h-3" aria-hidden="true" />
               Recent
             </div>
           )}
           {query.trim() && (
-            <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground uppercase tracking-wider">
-              Results
-            </div>
+            <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground">Results</div>
           )}
 
           {filteredCommands.length === 0 && (
             <div className="px-4 py-8 text-center text-muted-foreground">
-              <p>No results found for "{query}"</p>
+              <p>No results found for “{query}”</p>
             </div>
           )}
 
           {Object.entries(groupedCommands).map(([category, commands]) => (
             <div key={category}>
               {query.trim() && (
-                <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
-                  <Star className="w-3 h-3" />
+                <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground flex items-center gap-1.5">
+                  <Star className="w-3 h-3" aria-hidden="true" />
                   {categoryLabels[category] || category}
                 </div>
               )}
@@ -261,22 +265,33 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                 const Icon = command.icon;
                 const isFav = isFavorite(command.path);
                 const isRecent = !query.trim() && recentPaths.includes(command.path);
-                
+                const isSelected = globalIndex === selectedIndex;
+
                 return (
                   <div
                     key={command.id}
+                    role="option"
+                    aria-selected={isSelected}
+                    tabIndex={0}
                     className={`w-full flex items-center gap-3 px-4 py-2.5 transition-colors group cursor-pointer ${
-                      globalIndex === selectedIndex
-                        ? "bg-primary/10 text-primary"
+                      isSelected
+                        ? "bg-accent-soft text-foreground"
                         : "text-foreground hover:bg-muted"
                     }`}
                     onClick={() => handleSelect(command)}
                     onMouseEnter={() => setSelectedIndex(globalIndex)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        handleSelect(command);
+                      }
+                    }}
                   >
                     <Icon
                       className={`w-5 h-5 flex-shrink-0 ${
-                        globalIndex === selectedIndex ? "text-primary" : "text-muted-foreground"
+                        isSelected ? "text-primary" : "text-muted-foreground"
                       }`}
+                      aria-hidden="true"
                     />
                     <div className="flex-1 min-w-0">
                       <div className="font-medium truncate">{command.name}</div>
@@ -285,19 +300,21 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                       </div>
                     </div>
                     <button
+                      type="button"
                       onClick={(e) => handleToggleFavorite(e, command)}
-                      className={`p-1.5 rounded-full hover:bg-muted transition-colors ${
-                        isFav ? "text-red-500" : "text-muted-foreground opacity-0 group-hover:opacity-100"
+                      className={`p-1.5 rounded-pill hover:bg-muted transition-colors ${
+                        isFav ? "text-primary" : "text-muted-foreground opacity-0 group-hover:opacity-100 focus-visible:opacity-100"
                       }`}
                       title={isFav ? "Remove from favorites" : "Add to favorites"}
+                      aria-label={isFav ? `Remove ${command.name} from favorites` : `Add ${command.name} to favorites`}
                     >
-                      <Heart className={`w-4 h-4 ${isFav ? "fill-current" : ""}`} />
+                      <Heart className={`w-4 h-4 ${isFav ? "fill-current" : ""}`} aria-hidden="true" />
                     </button>
                     {isRecent && !isFav && (
-                      <Clock className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                      <Clock className="w-4 h-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
                     )}
-                    {globalIndex === selectedIndex && (
-                      <ArrowRight className="w-4 h-4 text-primary flex-shrink-0" />
+                    {isSelected && (
+                      <ArrowRight className="w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" />
                     )}
                   </div>
                 );
@@ -310,17 +327,17 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
         <div className="flex items-center justify-between px-4 py-2 border-t border-border text-xs text-muted-foreground">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 bg-muted rounded border border-border">↑↓</kbd>
+              <kbd className="px-1.5 py-0.5 bg-muted rounded border border-border measured">↑↓</kbd>
               Navigate
             </span>
             <span className="flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 bg-muted rounded border border-border">↵</kbd>
+              <kbd className="px-1.5 py-0.5 bg-muted rounded border border-border measured">↵</kbd>
               Select
             </span>
           </div>
           <span className="flex items-center gap-1">
-            <CommandIcon className="w-3 h-3" />
-            <kbd className="px-1.5 py-0.5 bg-muted rounded border border-border">K</kbd>
+            <CommandIcon className="w-3 h-3" aria-hidden="true" />
+            <kbd className="px-1.5 py-0.5 bg-muted rounded border border-border measured">K</kbd>
             to toggle
           </span>
         </div>

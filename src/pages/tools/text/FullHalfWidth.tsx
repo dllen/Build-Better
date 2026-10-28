@@ -46,7 +46,7 @@ export default function FullHalfWidth() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-violet-100 text-violet-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <Text className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">全角半角转换</h1>
@@ -55,7 +55,7 @@ export default function FullHalfWidth() {
       toolbar={
         <>
           <select
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            className="rounded-md border border-border px-3 py-2 text-sm"
             value={direction}
             onChange={(e) => setDirection(e.target.value as "to-full" | "to-half")}
           >
@@ -63,12 +63,12 @@ export default function FullHalfWidth() {
             <option value="to-half">全角 → 半角</option>
           </select>
           <button
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-xs hover:bg-gray-50"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-xs hover:bg-muted"
             onClick={() => copy(result)}
             disabled={!result}
           >
             <ClipboardCopy className="h-3.5 w-3.5" /> 复制
-            {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : null}
+            {copied ? <Check className="h-3.5 w-3.5 text-success" /> : null}
           </button>
         </>
       }

@@ -30,23 +30,23 @@ export default function DbPassword() {
 
   return (
     <EditorSplitLayout
-      title={<><div className="inline-flex p-2 rounded-lg bg-stone-100 text-stone-600"><Database className="h-5 w-5" /></div><h1 className="text-2xl font-semibold">DB Password Hash</h1></>}
+      title={<><div className="inline-flex p-2 rounded-lg bg-muted text-muted-foreground"><Database className="h-5 w-5" /></div><h1 className="text-2xl font-semibold">DB Password Hash</h1></>}
       toolbar={<>
-        <select className="rounded-md border border-gray-300 px-3 py-2 text-sm" value={dbType} onChange={(e) => setDbType(e.target.value as DbType)}>
+        <select className="rounded-md border border-border px-3 py-2 text-sm" value={dbType} onChange={(e) => setDbType(e.target.value as DbType)}>
           <option value="mysql">MySQL</option>
           <option value="postgresql">PostgreSQL</option>
           <option value="mariadb">MariaDB</option>
         </select>
-        <input className="rounded-md border border-gray-300 px-3 py-2 text-sm w-40" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-        <input className="rounded-md border border-gray-300 px-3 py-2 text-sm w-40" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input className="rounded-md border border-border px-3 py-2 text-sm w-40" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <input className="rounded-md border border-border px-3 py-2 text-sm w-40" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
       </>}
       inputLabel="Credentials"
-      input={<div className="w-full h-full p-4 font-mono text-sm bg-gray-50 whitespace-pre-wrap">DB: {dbType}
+      input={<div className="w-full h-full p-4 font-mono text-sm bg-muted whitespace-pre-wrap">DB: {dbType}
 Username: {username || "(enter above)"}
 Password: {password || "(enter above)"}</div>}
       outputLabel="Output"
-      output={<pre className="w-full h-full p-4 font-mono text-sm whitespace-pre-wrap break-words overflow-auto bg-gray-50">{result}</pre>}
-      outputActions={<button onClick={() => copy(result)} className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-stone-600 text-white hover:bg-stone-700">{copied ? <Check className="h-4 w-4" /> : <ClipboardCopy className="h-4 w-4" />} Copy</button>}
+      output={<pre className="w-full h-full p-4 font-mono text-sm whitespace-pre-wrap break-words overflow-auto bg-muted">{result}</pre>}
+      outputActions={<button onClick={() => copy(result)} className="btn text-sm">{copied ? <Check className="h-4 w-4" /> : <ClipboardCopy className="h-4 w-4" />} Copy</button>}
     />
   );
 }

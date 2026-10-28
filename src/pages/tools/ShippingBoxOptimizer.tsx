@@ -73,24 +73,24 @@ export default function ShippingBoxOptimizer() {
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.shipping-box.total_cost")}</p>
-            <p className="text-4xl font-bold text-blue-600">{fmt(result.totalCost)}</p>
-            <p className="text-xs text-gray-500 mt-1">{result.boxesUsed.length} {t("tools.shipping-box.boxes_used")} · {result.totalWeight.toFixed(1)}kg</p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.shipping-box.total_cost")}</p>
+            <p className="text-4xl font-bold text-primary">{fmt(result.totalCost)}</p>
+            <p className="text-xs text-muted-foreground mt-1">{result.boxesUsed.length} {t("tools.shipping-box.boxes_used")} · {result.totalWeight.toFixed(1)}kg</p>
           </div>
           <div className="space-y-2 max-h-48 overflow-y-auto">
             {result.boxesUsed.map((p, i) => (
-              <div key={i} className={`p-2 rounded-lg text-sm flex justify-between ${p.box ? "bg-green-50" : "bg-red-50"}`}>
+              <div key={i} className={`p-2 rounded-lg text-sm flex justify-between ${p.box ? "bg-success/10" : "bg-destructive/10"}`}>
                 <span>{p.box ? `${p.box.name} (${p.box.l}×${p.box.w}×${p.box.h}cm)` : t("tools.shipping-box.no_fit")}</span>
                 <span className="font-semibold">{p.box ? fmt(p.box.cost) : "—"}</span>
               </div>
             ))}
           </div>
-          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary">
             <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.shipping-box.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Package className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("tools.shipping-box.enter_values")}</p>
         </div>
@@ -103,14 +103,14 @@ export default function ShippingBoxOptimizer() {
       title={t("tools.shipping-box.title")}
       subtitle={t("tools.shipping-box.subtitle")}
       icon={Package}
-      iconBgColor="bg-amber-100"
-      iconColor="text-amber-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["shipping box", "box size", "packaging calculator", "ecommerce shipping"]}
       result={resultNode}
     >
       <div className="space-y-3">
         {items.map(item => (
-          <div key={item.id} className="border border-gray-200 rounded-lg p-3 space-y-2">
+          <div key={item.id} className="border border-border rounded-lg p-3 space-y-2">
             <div className="grid grid-cols-4 gap-1">
               <input type="number" min="1" value={item.l} onChange={e => updateItem(item.id, "l", +e.target.value)} placeholder={t("tools.shipping-box.l")} className="border rounded px-1 py-1 text-sm" />
               <input type="number" min="1" value={item.w} onChange={e => updateItem(item.id, "w", +e.target.value)} placeholder={t("tools.shipping-box.w")} className="border rounded px-1 py-1 text-sm" />
@@ -119,11 +119,11 @@ export default function ShippingBoxOptimizer() {
             </div>
             <div className="flex justify-between items-center">
               <input type="number" min="1" value={item.qty} onChange={e => updateItem(item.id, "qty", +e.target.value)} className="border rounded px-2 py-1 text-sm w-20" />
-              <button onClick={() => removeItem(item.id)} className="text-red-600 text-sm">× {t("tools.shipping-box.remove")}</button>
+              <button onClick={() => removeItem(item.id)} className="text-destructive text-sm">× {t("tools.shipping-box.remove")}</button>
             </div>
           </div>
         ))}
-        <button onClick={addItem} className="w-full px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 text-sm">+ {t("tools.shipping-box.add_item")}</button>
+        <button onClick={addItem} className="w-full px-3 py-2 bg-muted rounded-lg hover:bg-border text-sm">+ {t("tools.shipping-box.add_item")}</button>
       </div>
     </CalculatorShell>
   );

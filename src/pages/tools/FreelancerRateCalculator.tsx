@@ -51,24 +51,24 @@ export default function FreelancerRateCalculator() {
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.freelancer-rate-calc.hourly_rate")}</p>
-            <p className="text-4xl font-bold text-blue-600">{fmt(result.hourly)}</p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.freelancer-rate-calc.hourly_rate")}</p>
+            <p className="text-4xl font-bold text-primary">{fmt(result.hourly)}</p>
           </div>
-          <div className="grid grid-cols-2 gap-3 pt-6 border-t border-gray-100">
-            <div className="text-center"><p className="text-xs text-gray-500">{t("tools.freelancer-rate-calc.daily")}</p><p className="text-lg font-bold">{fmt(result.daily)}</p></div>
-            <div className="text-center"><p className="text-xs text-gray-500">{t("tools.freelancer-rate-calc.weekly")}</p><p className="text-lg font-bold">{fmt(result.weekly)}</p></div>
-            <div className="text-center"><p className="text-xs text-gray-500">{t("tools.freelancer-rate-calc.monthly")}</p><p className="text-lg font-bold">{fmt(result.monthly)}</p></div>
-            <div className="text-center"><p className="text-xs text-gray-500">{t("tools.freelancer-rate-calc.yearly")}</p><p className="text-lg font-bold">{fmt(result.yearly)}</p></div>
+          <div className="grid grid-cols-2 gap-3 pt-6 border-t border-border">
+            <div className="text-center"><p className="text-xs text-muted-foreground">{t("tools.freelancer-rate-calc.daily")}</p><p className="text-lg font-bold">{fmt(result.daily)}</p></div>
+            <div className="text-center"><p className="text-xs text-muted-foreground">{t("tools.freelancer-rate-calc.weekly")}</p><p className="text-lg font-bold">{fmt(result.weekly)}</p></div>
+            <div className="text-center"><p className="text-xs text-muted-foreground">{t("tools.freelancer-rate-calc.monthly")}</p><p className="text-lg font-bold">{fmt(result.monthly)}</p></div>
+            <div className="text-center"><p className="text-xs text-muted-foreground">{t("tools.freelancer-rate-calc.yearly")}</p><p className="text-lg font-bold">{fmt(result.yearly)}</p></div>
           </div>
-          <div className="bg-green-50 p-3 rounded-lg text-sm text-green-800">
+          <div className="bg-success/10 p-3 rounded-lg text-sm text-success">
             {t("tools.freelancer-rate-calc.after_tax")}: <strong>{fmt(result.afterTax)}</strong>
           </div>
-          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary">
             <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.freelancer-rate-calc.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Briefcase className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("tools.freelancer-rate-calc.enter_values")}</p>
         </div>
@@ -81,49 +81,49 @@ export default function FreelancerRateCalculator() {
       title={t("tools.freelancer-rate-calc.title")}
       subtitle={t("tools.freelancer-rate-calc.subtitle")}
       icon={Briefcase}
-      iconBgColor="bg-teal-100"
-      iconColor="text-teal-600"
+      iconBgColor="bg-info/10"
+      iconColor="text-info"
       keywords={["freelancer rate calculator", "hourly rate", "consulting rate", "self employed"]}
       result={resultNode}
     >
       <div className="space-y-3">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.freelancer-rate-calc.target_income")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.freelancer-rate-calc.target_income")}</label>
           <input type="number" min="0" value={targetIncome} onChange={e => setTargetIncome(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <div className="grid grid-cols-3 gap-2">
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.freelancer-rate-calc.hours_per_day")}</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">{t("tools.freelancer-rate-calc.hours_per_day")}</label>
             <input type="number" min="1" max="16" value={hoursPerDay} onChange={e => setHoursPerDay(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm py-2 px-3 border" />
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.freelancer-rate-calc.days_per_week")}</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">{t("tools.freelancer-rate-calc.days_per_week")}</label>
             <input type="number" min="1" max="7" value={daysPerWeek} onChange={e => setDaysPerWeek(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm py-2 px-3 border" />
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.freelancer-rate-calc.weeks_per_year")}</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">{t("tools.freelancer-rate-calc.weeks_per_year")}</label>
             <input type="number" min="1" max="52" value={weeksPerYear} onChange={e => setWeeksPerYear(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm py-2 px-3 border" />
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2">
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.freelancer-rate-calc.platform_fee")} %</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">{t("tools.freelancer-rate-calc.platform_fee")} %</label>
             <input type="number" min="0" max="50" value={platformFee} onChange={e => setPlatformFee(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm py-2 px-3 border" />
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.freelancer-rate-calc.tax")} %</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">{t("tools.freelancer-rate-calc.tax")} %</label>
             <input type="number" min="0" max="70" value={taxRate} onChange={e => setTaxRate(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm py-2 px-3 border" />
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.freelancer-rate-calc.other_costs")}</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">{t("tools.freelancer-rate-calc.other_costs")}</label>
             <input type="number" min="0" value={otherCosts} onChange={e => setOtherCosts(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm py-2 px-3 border" />
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
           </div>
         </div>
       </div>

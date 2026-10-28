@@ -81,10 +81,10 @@ export default function AddNoiseToImage() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-orange-100 text-orange-600 rounded-lg">
+          <div className="p-2 bg-primary/10 text-primary rounded-lg">
             <ImagePlus className="h-5 w-5" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Add Noise to Image</h1>
+          <h1 className="text-2xl font-bold text-foreground">Add Noise to Image</h1>
         </div>
       }
       toolbar={
@@ -94,19 +94,19 @@ export default function AddNoiseToImage() {
             type="file"
             accept="image/*"
             onChange={handleFile}
-            className="text-sm text-gray-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-orange-100 file:text-orange-700 hover:file:bg-orange-200 file:cursor-pointer"
+            className="text-sm text-muted-foreground file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-primary/10 file:text-primary hover:file:bg-primary/10 file:cursor-pointer"
           />
 
           <select
             value={noiseType}
             onChange={(e) => setNoiseType(e.target.value as NoiseType)}
-            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none bg-white"
+            className="rounded-lg border border-border px-3 py-1.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card"
           >
             <option value="saltpepper">Salt &amp; Pepper</option>
             <option value="gaussian">Gaussian</option>
           </select>
 
-          <div className="flex items-center gap-2 text-sm text-gray-600">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <span>Intensity:</span>
             <input
               type="range"
@@ -114,7 +114,7 @@ export default function AddNoiseToImage() {
               max={100}
               value={intensity}
               onChange={(e) => setIntensity(Number(e.target.value))}
-              className="w-24 accent-orange-600"
+              className="w-24 accent-primary"
             />
             <span className="text-xs w-8">{intensity}%</span>
           </div>
@@ -122,7 +122,7 @@ export default function AddNoiseToImage() {
           <button
             onClick={handleAddNoise}
             disabled={!original || processing}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-orange-600 text-white text-sm font-medium rounded-lg hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <ImagePlus className="h-3.5 w-3.5" />
             {processing ? "Processing..." : "Add Noise"}
@@ -131,13 +131,13 @@ export default function AddNoiseToImage() {
       }
       inputLabel={original ? `Original (${original.file.name})` : "Original"}
       input={
-        <div className="h-full flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50/50 p-4">
+        <div className="h-full flex items-center justify-center rounded-lg border-2 border-dashed border-border bg-muted/50 p-4">
           {original ? (
             <img src={original.url} alt="Original" className="max-h-full max-w-full object-contain rounded" />
           ) : (
             <div className="text-center space-y-2">
-              <Upload className="h-12 w-12 text-gray-300 mx-auto" />
-              <p className="text-sm text-gray-500">Upload an image to add noise</p>
+              <Upload className="h-12 w-12 text-muted-foreground mx-auto" />
+              <p className="text-sm text-muted-foreground">Upload an image to add noise</p>
             </div>
           )}
         </div>
@@ -147,7 +147,7 @@ export default function AddNoiseToImage() {
         noisyUrl ? (
           <button
             onClick={handleDownload}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors"
           >
             <Download className="h-3.5 w-3.5" />
             Download
@@ -155,13 +155,13 @@ export default function AddNoiseToImage() {
         ) : undefined
       }
       output={
-        <div className="h-full flex items-center justify-center rounded-lg border border-gray-200 bg-gray-50/50 p-4">
+        <div className="h-full flex items-center justify-center rounded-lg border border-border bg-muted/50 p-4">
           {noisyUrl ? (
             <img src={noisyUrl} alt="Noisy result" className="max-h-full max-w-full object-contain rounded" />
           ) : (
             <div className="text-center space-y-2">
-              <ImagePlus className="h-12 w-12 text-gray-300 mx-auto" />
-              <p className="text-sm text-gray-500">{original ? "Click Add Noise to process" : "Awaiting image..."}</p>
+              <ImagePlus className="h-12 w-12 text-muted-foreground mx-auto" />
+              <p className="text-sm text-muted-foreground">{original ? "Click Add Noise to process" : "Awaiting image..."}</p>
             </div>
           )}
         </div>

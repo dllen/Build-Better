@@ -41,30 +41,26 @@ export function HistoryPanel({
       <div className="flex border-b border-border/50">
         <button
           onClick={() => setActiveSection("history")}
-          className={`flex items-center gap-1.5 px-3 py-2 text-[11px] font-medium transition-colors border-b-2 -mb-px ${
-            activeSection === "history" ? "text-cyan-400 border-cyan-400" : "text-muted-foreground border-transparent hover:text-foreground"
-          }`}
+          className={`flex items-center gap-1.5 px-3 py-2 text-[11px] font-medium transition-colors border-b-2 -mb-px ${ activeSection === "history" ? "text-info border-border" : "text-muted-foreground border-transparent hover:text-foreground" }`}
         >
           <Clock className="w-3 h-3" /> 历史
         </button>
         <button
           onClick={() => setActiveSection("collections")}
-          className={`flex items-center gap-1.5 px-3 py-2 text-[11px] font-medium transition-colors border-b-2 -mb-px ${
-            activeSection === "collections" ? "text-cyan-400 border-cyan-400" : "text-muted-foreground border-transparent hover:text-foreground"
-          }`}
+          className={`flex items-center gap-1.5 px-3 py-2 text-[11px] font-medium transition-colors border-b-2 -mb-px ${ activeSection === "collections" ? "text-info border-border" : "text-muted-foreground border-transparent hover:text-foreground" }`}
         >
           <FolderOpen className="w-3 h-3" /> 集合
         </button>
         <div className="flex-1" />
         {activeSection === "history" && history.length > 0 && (
-          <button onClick={onClearHistory} className="px-2 py-1 text-[10px] text-muted-foreground hover:text-red-400">
+          <button onClick={onClearHistory} className="px-2 py-1 text-[10px] text-muted-foreground hover:text-destructive">
             清空
           </button>
         )}
         {activeSection === "collections" && currentTab && (
           <button
             onClick={() => onSaveToCollection(currentTab)}
-            className="px-2 py-1 text-[10px] text-cyan-400 hover:text-cyan-300"
+            className="px-2 py-1 text-[10px] text-info hover:text-info"
           >
             + 保存
           </button>
@@ -88,16 +84,13 @@ export function HistoryPanel({
                   </span>
                   <span className="truncate text-muted-foreground flex-1">{entry.tab.url || "(empty)"}</span>
                   {entry.responseStatus && (
-                    <span className={`text-[10px] shrink-0 ${
-                      entry.responseStatus < 300 ? "text-emerald-400" :
-                      entry.responseStatus < 400 ? "text-amber-400" : "text-red-400"
-                    }`}>
+                    <span className={`text-[10px] shrink-0 ${ entry.responseStatus < 300 ? "text-success" : entry.responseStatus < 400 ? "text-primary" : "text-destructive" }`}>
                       {entry.responseStatus}
                     </span>
                   )}
                   <button
                     onClick={(e) => { e.stopPropagation(); onRemoveHistory(entry.id); }}
-                    className="p-0.5 rounded opacity-0 group-hover:opacity-100 hover:bg-secondary/80 transition-all"
+                    className="p-0.5 rounded opacity-0 group-hover:opacity-100 hover:bg-secondary/80 transition-colors transition-opacity"
                   >
                     <Trash2 className="w-3 h-3 text-muted-foreground" />
                   </button>
@@ -122,7 +115,7 @@ export function HistoryPanel({
                     ) : (
                       <ChevronRight className="w-3 h-3" />
                     )}
-                    <FolderOpen className="w-3 h-3 text-amber-400" />
+                    <FolderOpen className="w-3 h-3 text-primary" />
                     <span className="flex-1">{folder.name}</span>
                     <span className="text-[10px]">{folderItems.length}</span>
                   </div>
@@ -138,7 +131,7 @@ export function HistoryPanel({
                       <span className="truncate text-muted-foreground flex-1">{item.name}</span>
                       <button
                         onClick={(e) => { e.stopPropagation(); onRemoveCollection(item.id); }}
-                        className="p-0.5 rounded opacity-0 group-hover:opacity-100 hover:bg-secondary/80 transition-all"
+                        className="p-0.5 rounded opacity-0 group-hover:opacity-100 hover:bg-secondary/80 transition-colors transition-opacity"
                       >
                         <Trash2 className="w-3 h-3 text-muted-foreground" />
                       </button>
@@ -159,7 +152,7 @@ export function HistoryPanel({
                 <span className="truncate text-muted-foreground flex-1">{item.name}</span>
                 <button
                   onClick={(e) => { e.stopPropagation(); onRemoveCollection(item.id); }}
-                  className="p-0.5 rounded opacity-0 group-hover:opacity-100 hover:bg-secondary/80 transition-all"
+                  className="p-0.5 rounded opacity-0 group-hover:opacity-100 hover:bg-secondary/80 transition-colors transition-opacity"
                 >
                   <Trash2 className="w-3 h-3 text-muted-foreground" />
                 </button>

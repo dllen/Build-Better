@@ -151,14 +151,14 @@ export default function EmailMarkdown() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-purple-100 text-purple-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <Mail className="h-5 w-5" />
           </div>
           <div>
             <h1 className="text-2xl font-semibold">Markdown → Email HTML</h1>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-muted-foreground">
               Powered by{" "}
-              <a href="https://github.com/anypost/emailmd" target="_blank" rel="noreferrer" className="underline hover:text-purple-600">emailmd</a>
+              <a href="https://github.com/anypost/emailmd" target="_blank" rel="noreferrer" className="underline hover:text-primary">emailmd</a>
               {" "}— renders to MJML, works in Gmail, Outlook, Apple Mail.
             </p>
           </div>
@@ -170,25 +170,25 @@ export default function EmailMarkdown() {
           <div className="relative" ref={templateRef}>
             <button
               onClick={() => setTemplatesOpen((o) => !o)}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-md border border-gray-300 text-sm hover:bg-gray-50"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-md border border-border text-sm hover:bg-muted"
             >
               <LayoutTemplate className="h-3.5 w-3.5" />
               Templates
               <ChevronDown className="h-3 w-3" />
             </button>
             {templatesOpen && (
-              <div className="absolute left-0 top-full mt-1 z-20 w-72 rounded-lg border border-gray-200 bg-white shadow-lg max-h-80 overflow-y-auto">
-                <div className="px-3 py-2 text-xs font-medium text-gray-500 border-b border-gray-100">
+              <div className="absolute left-0 top-full mt-1 z-20 w-72 rounded-lg border border-border bg-card max-h-80 overflow-y-auto">
+                <div className="px-3 py-2 text-xs font-medium text-muted-foreground border-b border-border">
                   Choose a starter template
                 </div>
                 {groupTemplatesByCategory().map(([category, templates]) => (
                   <div key={category}>
-                    <div className="px-3 pt-2 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wider">{category}</div>
+                    <div className="px-3 pt-2 pb-1 text-xs font-semibold text-muted-foreground">{category}</div>
                     {templates.map((t) => (
                       <button
                         key={t.id}
                         onClick={() => loadTemplate(t)}
-                        className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-700"
+                        className="w-full text-left px-3 py-2 text-sm text-muted-foreground hover:bg-primary/10 hover:text-primary"
                       >
                         {t.title}
                       </button>
@@ -200,7 +200,7 @@ export default function EmailMarkdown() {
           </div>
 
           {(subject || from) && (
-            <div className="flex items-center gap-3 text-sm text-gray-600">
+            <div className="flex items-center gap-3 text-sm text-muted-foreground">
               {subject && <span><strong>Subject:</strong> {subject}</span>}
               {from && <span><strong>From:</strong> {from}</span>}
             </div>
@@ -209,7 +209,7 @@ export default function EmailMarkdown() {
           <button
             onClick={downloadEmail}
             disabled={!html}
-            className="ml-auto inline-flex items-center gap-2 px-4 py-2 rounded-md bg-purple-600 text-white text-sm hover:bg-purple-700 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="ml-auto inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm hover:bg-primary disabled:opacity-40 disabled:cursor-not-allowed"
           >
             <Download className="h-4 w-4" />
             Download .eml
@@ -220,7 +220,7 @@ export default function EmailMarkdown() {
         <span className="flex items-center gap-2">
           <FileText className="h-4 w-4" />
           Markdown
-          <span className="text-xs text-gray-400">{markdown.length} chars</span>
+          <span className="text-xs text-muted-foreground">{markdown.length} chars</span>
         </span>
       }
       input={
@@ -233,7 +233,7 @@ export default function EmailMarkdown() {
         />
       }
       outputLabel={
-        <div className="inline-flex rounded-md border border-gray-300 overflow-hidden text-sm">
+        <div className="inline-flex rounded-md border border-border overflow-hidden text-sm">
           {([
             { id: "html", label: "HTML", icon: Code },
             { id: "text", label: "Plain Text", icon: FileText },
@@ -245,7 +245,7 @@ export default function EmailMarkdown() {
               <button
                 key={t.id}
                 onClick={() => setTab(t.id)}
-                className={`inline-flex items-center gap-1.5 px-2.5 py-1 ${active ? "bg-purple-600 text-white" : "bg-white text-gray-700 hover:bg-gray-50"}`}
+                className={`inline-flex items-center gap-1.5 px-2.5 py-1 ${active ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted"}`}
               >
                 <Icon className="h-3.5 w-3.5" />
                 {t.label}
@@ -256,15 +256,15 @@ export default function EmailMarkdown() {
       }
       outputActions={
         <div className="flex items-center gap-2">
-          {loading && <Loader2 className="h-4 w-4 animate-spin text-purple-500" />}
+          {loading && <Loader2 className="h-4 w-4 animate-spin text-primary" />}
           {tab !== "preview" && (
             <button
               onClick={() => copy(activeOutput, tab)}
               disabled={!activeOutput}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-sm hover:bg-gray-50 disabled:opacity-40"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-sm hover:bg-muted disabled:opacity-40"
             >
               {copied === tab ? (
-                <><Check className="h-3.5 w-3.5 text-green-600" /> Copied</>
+                <><Check className="h-3.5 w-3.5 text-success" /> Copied</>
               ) : (
                 <><Copy className="h-3.5 w-3.5" /> Copy</>
               )}
@@ -274,11 +274,11 @@ export default function EmailMarkdown() {
       }
       output={
         tab === "preview" ? (
-          <div className="h-full overflow-hidden bg-white">
+          <div className="h-full overflow-hidden bg-card">
             <iframe
               title="Email preview"
               srcDoc={html}
-              className="w-full h-full bg-white"
+              className="w-full h-full bg-card"
               sandbox=""
             />
           </div>
@@ -291,13 +291,13 @@ export default function EmailMarkdown() {
       footer={
         <>
           {error && (
-            <div className="p-3 rounded-md bg-red-50 border border-red-200 text-red-700 text-sm">
+            <div className="p-3 rounded-md bg-destructive/10 border border-border text-destructive text-sm">
               <div className="font-medium">Render error</div>
               <pre className="mt-1 whitespace-pre-wrap break-words">{error}</pre>
             </div>
           )}
           {warnings.length > 0 && (
-            <div className="p-3 rounded-md bg-amber-50 border border-amber-200 text-amber-800 text-sm">
+            <div className="p-3 rounded-md bg-primary/10 border border-border text-primary text-sm">
               <div className="flex items-center gap-2 font-medium">
                 <AlertTriangle className="h-4 w-4" />
                 Warnings ({warnings.length})
@@ -306,11 +306,11 @@ export default function EmailMarkdown() {
                 {warnings.slice(0, 5).map((w, i) => (
                   <li key={i}>[{w.stage}] {w.message}</li>
                 ))}
-                {warnings.length > 5 && <li className="text-amber-600">…and {warnings.length - 5} more</li>}
+                {warnings.length > 5 && <li className="text-primary">…and {warnings.length - 5} more</li>}
               </ul>
             </div>
           )}
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-muted-foreground">
             Tip: pick a <strong>template</strong> above, or include YAML frontmatter with <code>subject</code> / <code>from</code>, and use <code>{"{button}"}</code> for a CTA.
           </p>
         </>

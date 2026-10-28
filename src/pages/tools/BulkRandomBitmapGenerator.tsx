@@ -64,59 +64,59 @@ export default function BulkRandomBitmapGenerator() {
   return (
     <div className="max-w-4xl mx-auto py-8 px-4">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2 bg-violet-100 text-violet-600 rounded-lg">
+        <div className="p-2 bg-primary/10 text-primary rounded-lg">
           <Layers3 className="h-5 w-5" />
         </div>
-        <h1 className="text-2xl font-bold text-gray-900">Batch Random Bitmap Generator</h1>
+        <h1 className="text-2xl font-bold text-foreground">Batch Random Bitmap Generator</h1>
       </div>
 
-      <p className="text-sm text-gray-500 mb-6">
+      <p className="text-sm text-muted-foreground mb-6">
         Generate multiple random bitmap images at once and download them as a ZIP file.
       </p>
 
-      <div className="space-y-4 p-6 rounded-xl border border-gray-200 bg-white">
+      <div className="space-y-4 p-6 rounded-xl border border-border bg-card">
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-1.5 text-sm">
-            <label className="text-gray-600 font-medium">Width:</label>
+            <label className="text-muted-foreground font-medium">Width:</label>
             <input
               type="number"
               min={1}
               max={1024}
               value={width}
               onChange={(e) => setWidth(Math.max(1, Math.min(1024, Number(e.target.value))))}
-              className="w-20 rounded-lg border border-gray-300 px-2 py-1.5 text-sm text-center focus:border-violet-500 focus:ring-1 focus:ring-violet-500 outline-none"
+              className="w-20 rounded-lg border border-border px-2 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none"
             />
           </div>
           <div className="flex items-center gap-1.5 text-sm">
-            <label className="text-gray-600 font-medium">Height:</label>
+            <label className="text-muted-foreground font-medium">Height:</label>
             <input
               type="number"
               min={1}
               max={1024}
               value={height}
               onChange={(e) => setHeight(Math.max(1, Math.min(1024, Number(e.target.value))))}
-              className="w-20 rounded-lg border border-gray-300 px-2 py-1.5 text-sm text-center focus:border-violet-500 focus:ring-1 focus:ring-violet-500 outline-none"
+              className="w-20 rounded-lg border border-border px-2 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none"
             />
           </div>
           <div className="flex items-center gap-1.5 text-sm">
-            <label className="text-gray-600 font-medium">Count:</label>
+            <label className="text-muted-foreground font-medium">Count:</label>
             <input
               type="number"
               min={1}
               max={500}
               value={count}
               onChange={(e) => setCount(Math.max(1, Math.min(500, Number(e.target.value))))}
-              className="w-20 rounded-lg border border-gray-300 px-2 py-1.5 text-sm text-center focus:border-violet-500 focus:ring-1 focus:ring-violet-500 outline-none"
+              className="w-20 rounded-lg border border-border px-2 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none"
             />
           </div>
-          <span className="text-xs text-gray-400">{width}×{height} × {count}</span>
+          <span className="text-xs text-muted-foreground">{width}×{height} × {count}</span>
         </div>
 
         <div className="flex items-center gap-3">
           <button
             onClick={handleGenerate}
             disabled={generating}
-            className="inline-flex items-center gap-2 px-5 py-2 bg-violet-600 text-white text-sm font-medium rounded-lg hover:bg-violet-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <RefreshCw className={`h-4 w-4 ${generating ? "animate-spin" : ""}`} />
             {generating ? `Generating ${progress}%...` : "Generate"}
@@ -124,7 +124,7 @@ export default function BulkRandomBitmapGenerator() {
           {zipBlob && (
             <button
               onClick={handleDownload}
-              className="inline-flex items-center gap-2 px-5 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2 bg-success text-success-foreground text-sm font-medium rounded-lg hover:bg-success transition-colors"
             >
               <Download className="h-4 w-4" />
               Download ZIP
@@ -133,9 +133,9 @@ export default function BulkRandomBitmapGenerator() {
         </div>
 
         {generating && (
-          <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+          <div className="w-full h-2 bg-border rounded-full overflow-hidden">
             <div
-              className="h-full bg-violet-600 rounded-full transition-all duration-300"
+              className="h-full bg-primary rounded-full transition-colors duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -143,7 +143,7 @@ export default function BulkRandomBitmapGenerator() {
 
         {previews.length > 0 && (
           <div>
-            <p className="text-sm font-medium text-gray-700 mb-2">
+            <p className="text-sm font-medium text-muted-foreground mb-2">
               Preview (first {Math.min(previews.length, 12)} of {count})
             </p>
             <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
@@ -152,7 +152,7 @@ export default function BulkRandomBitmapGenerator() {
                   key={i}
                   src={p}
                   alt={`Bitmap ${i + 1}`}
-                  className="w-full aspect-square object-cover rounded border border-gray-200 image-pixelated"
+                  className="w-full aspect-square object-cover rounded border border-border image-pixelated"
                 />
               ))}
             </div>
@@ -160,11 +160,11 @@ export default function BulkRandomBitmapGenerator() {
         )}
 
         {zipBlob && !generating && (
-          <div className="p-4 rounded-lg bg-green-50 border border-green-200 flex items-center gap-3">
-            <Layers3 className="h-8 w-8 text-green-500" />
+          <div className="p-4 rounded-lg bg-success/10 border border-border flex items-center gap-3">
+            <Layers3 className="h-8 w-8 text-success" />
             <div>
-              <p className="text-sm font-medium text-green-800">{count} bitmaps generated</p>
-              <p className="text-xs text-green-600">{width}×{height} px each · Ready to download</p>
+              <p className="text-sm font-medium text-success">{count} bitmaps generated</p>
+              <p className="text-xs text-success">{width}×{height} px each · Ready to download</p>
             </div>
           </div>
         )}

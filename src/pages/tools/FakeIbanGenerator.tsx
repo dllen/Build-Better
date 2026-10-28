@@ -2,67 +2,67 @@ import { useState } from "react";
 import { Landmark, Copy, Check } from "lucide-react";
 import { CalculatorShell } from "@/components/common/CalculatorShell";
 
-// IBAN country data: [country name, country code, length, flag emoji]
-const COUNTRIES: [string, string, number, string][] = [
-  ["Albania", "AL", 28, "🇦🇱"],
-  ["Andorra", "AD", 24, "🇦🇩"],
-  ["Austria", "AT", 20, "🇦🇹"],
-  ["Azerbaijan", "AZ", 28, "🇦🇿"],
-  ["Bahrain", "BH", 22, "🇧🇭"],
-  ["Belgium", "BE", 16, "🇧🇪"],
-  ["Bosnia and Herzegovina", "BA", 20, "🇧🇦"],
-  ["Brazil", "BR", 29, "🇧🇷"],
-  ["Bulgaria", "BG", 22, "🇧🇬"],
-  ["Costa Rica", "CR", 22, "🇨🇷"],
-  ["Croatia", "HR", 21, "🇭🇷"],
-  ["Cyprus", "CY", 28, "🇨🇾"],
-  ["Czech Republic", "CZ", 24, "🇨🇿"],
-  ["Denmark", "DK", 18, "🇩🇰"],
-  ["Dominican Republic", "DO", 28, "🇩🇴"],
-  ["Egypt", "EG", 29, "🇪🇬"],
-  ["Estonia", "EE", 20, "🇪🇪"],
-  ["Finland", "FI", 18, "🇫🇮"],
-  ["France", "FR", 27, "🇫🇷"],
-  ["Georgia", "GE", 22, "🇬🇪"],
-  ["Germany", "DE", 22, "🇩🇪"],
-  ["Greece", "GR", 27, "🇬🇷"],
-  ["Hungary", "HU", 28, "🇭🇺"],
-  ["Iceland", "IS", 26, "🇮🇸"],
-  ["Ireland", "IE", 22, "🇮🇪"],
-  ["Italy", "IT", 27, "🇮🇹"],
-  ["Jordan", "JO", 30, "🇯🇴"],
-  ["Kazakhstan", "KZ", 20, "🇰🇿"],
-  ["Kuwait", "KW", 30, "🇰🇼"],
-  ["Latvia", "LV", 21, "🇱🇻"],
-  ["Lebanon", "LB", 28, "🇱🇧"],
-  ["Liechtenstein", "LI", 21, "🇱🇮"],
-  ["Lithuania", "LT", 20, "🇱🇹"],
-  ["Luxembourg", "LU", 20, "🇱🇺"],
-  ["Malta", "MT", 31, "🇲🇹"],
-  ["Mauritania", "MR", 27, "🇲🇷"],
-  ["Mauritius", "MU", 30, "🇲🇺"],
-  ["Monaco", "MC", 27, "🇲🇨"],
-  ["Montenegro", "ME", 22, "🇲🇪"],
-  ["Netherlands", "NL", 18, "🇳🇱"],
-  ["Norway", "NO", 15, "🇳🇴"],
-  ["Pakistan", "PK", 24, "🇵🇰"],
-  ["Poland", "PL", 28, "🇵🇱"],
-  ["Portugal", "PT", 25, "🇵🇹"],
-  ["Qatar", "QA", 29, "🇶🇦"],
-  ["Romania", "RO", 24, "🇷🇴"],
-  ["San Marino", "SM", 27, "🇸🇲"],
-  ["Saudi Arabia", "SA", 24, "🇸🇦"],
-  ["Serbia", "RS", 22, "🇷🇸"],
-  ["Slovakia", "SK", 24, "🇸🇰"],
-  ["Slovenia", "SI", 19, "🇸🇮"],
-  ["Spain", "ES", 24, "🇪🇸"],
-  ["Sweden", "SE", 24, "🇸🇪"],
-  ["Switzerland", "CH", 21, "🇨🇭"],
-  ["Timor-Leste", "TL", 23, "🇹🇱"],
-  ["Tunisia", "TN", 24, "🇹🇳"],
-  ["Turkey", "TR", 26, "🇹🇷"],
-  ["UAE", "AE", 23, "🇦🇪"],
-  ["UK", "GB", 22, "🇬🇧"],
+// IBAN country data: [country name, country code, length]
+const COUNTRIES: [string, string, number][] = [
+  ["Albania", "AL", 28],
+  ["Andorra", "AD", 24],
+  ["Austria", "AT", 20],
+  ["Azerbaijan", "AZ", 28],
+  ["Bahrain", "BH", 22],
+  ["Belgium", "BE", 16],
+  ["Bosnia and Herzegovina", "BA", 20],
+  ["Brazil", "BR", 29],
+  ["Bulgaria", "BG", 22],
+  ["Costa Rica", "CR", 22],
+  ["Croatia", "HR", 21],
+  ["Cyprus", "CY", 28],
+  ["Czech Republic", "CZ", 24],
+  ["Denmark", "DK", 18],
+  ["Dominican Republic", "DO", 28],
+  ["Egypt", "EG", 29],
+  ["Estonia", "EE", 20],
+  ["Finland", "FI", 18],
+  ["France", "FR", 27],
+  ["Georgia", "GE", 22],
+  ["Germany", "DE", 22],
+  ["Greece", "GR", 27],
+  ["Hungary", "HU", 28],
+  ["Iceland", "IS", 26],
+  ["Ireland", "IE", 22],
+  ["Italy", "IT", 27],
+  ["Jordan", "JO", 30],
+  ["Kazakhstan", "KZ", 20],
+  ["Kuwait", "KW", 30],
+  ["Latvia", "LV", 21],
+  ["Lebanon", "LB", 28],
+  ["Liechtenstein", "LI", 21],
+  ["Lithuania", "LT", 20],
+  ["Luxembourg", "LU", 20],
+  ["Malta", "MT", 31],
+  ["Mauritania", "MR", 27],
+  ["Mauritius", "MU", 30],
+  ["Monaco", "MC", 27],
+  ["Montenegro", "ME", 22],
+  ["Netherlands", "NL", 18],
+  ["Norway", "NO", 15],
+  ["Pakistan", "PK", 24],
+  ["Poland", "PL", 28],
+  ["Portugal", "PT", 25],
+  ["Qatar", "QA", 29],
+  ["Romania", "RO", 24],
+  ["San Marino", "SM", 27],
+  ["Saudi Arabia", "SA", 24],
+  ["Serbia", "RS", 22],
+  ["Slovakia", "SK", 24],
+  ["Slovenia", "SI", 19],
+  ["Spain", "ES", 24],
+  ["Sweden", "SE", 24],
+  ["Switzerland", "CH", 21],
+  ["Timor-Leste", "TL", 23],
+  ["Tunisia", "TN", 24],
+  ["Turkey", "TR", 26],
+  ["UAE", "AE", 23],
+  ["UK", "GB", 22],
 ];
 
 // Random digits helper
@@ -151,31 +151,31 @@ export default function FakeIbanGenerator() {
       title="Fake IBAN Generator"
       subtitle="Generate structurally valid fake IBANs for 60+ countries with correct mod-97 check digits."
       icon={Landmark}
-      iconBgColor="bg-indigo-100"
-      iconColor="text-indigo-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["iban", "bank", "account", "test", "fake"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Country</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Country</label>
             <select
               value={countryIndex}
               onChange={(e) => setCountryIndex(Number(e.target.value))}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none bg-white"
+              className="w-full rounded-lg border border-border px-3 py-2.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card"
             >
               {COUNTRIES.map((c, i) => (
                 <option key={c[1]} value={i}>
-                  {c[3]} {c[0]} ({c[1]})
+                  {c[0]} ({c[1]})
                 </option>
               ))}
             </select>
-            <p className="mt-1 text-xs text-gray-400">
+            <p className="mt-1 text-xs text-muted-foreground">
               {selectedCountry[0]} IBANs are {selectedCountry[2]} characters long
             </p>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">
               Number of IBANs: {count}
             </label>
             <input
@@ -184,9 +184,9 @@ export default function FakeIbanGenerator() {
               max={50}
               value={count}
               onChange={(e) => setCount(Number(e.target.value))}
-              className="w-full accent-indigo-600"
+              className="w-full accent-primary"
             />
-            <div className="flex justify-between text-xs text-gray-400 mt-1">
+            <div className="flex justify-between text-xs text-muted-foreground mt-1">
               <span>1</span>
               <span>50</span>
             </div>
@@ -194,7 +194,7 @@ export default function FakeIbanGenerator() {
 
           <button
             onClick={handleGenerate}
-            className="w-full py-2.5 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
+            className="w-full py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary transition-colors"
           >
             Generate {count} IBAN{count > 1 ? "s" : ""}
           </button>
@@ -205,26 +205,26 @@ export default function FakeIbanGenerator() {
           {ibans.length > 0 ? (
             <>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-sm text-gray-500">
-                  {selectedCountry[3]} {selectedCountry[0]} · {ibans.length} IBAN{ibans.length > 1 ? "s" : ""}
+                <span className="text-sm text-muted-foreground">
+                  {selectedCountry[0]}, {ibans.length} IBAN{ibans.length > 1 ? "s" : ""}
                 </span>
                 <button
                   onClick={handleCopyAll}
-                  className="text-xs text-indigo-600 hover:text-indigo-800 font-medium"
+                  className="text-xs text-primary hover:text-primary font-medium"
                 >
                   Copy all
                 </button>
               </div>
               <ul className="space-y-1.5 max-h-96 overflow-auto">
                 {ibans.map((iban, i) => (
-                  <li key={i} className="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2 group">
-                    <code className="text-xs text-gray-800 font-mono select-all">{iban}</code>
+                  <li key={i} className="flex items-center justify-between bg-muted rounded-lg px-3 py-2 group">
+                    <code className="text-xs text-foreground font-mono select-all">{iban}</code>
                     <button
                       onClick={() => handleCopy(iban, i)}
-                      className="ml-2 p-1 text-gray-400 hover:text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
+                      className="ml-2 p-1 text-muted-foreground hover:text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
                     >
                       {copiedIdx === i ? (
-                        <Check className="h-3.5 w-3.5 text-green-600" />
+                        <Check className="h-3.5 w-3.5 text-success" />
                       ) : (
                         <Copy className="h-3.5 w-3.5" />
                       )}
@@ -234,10 +234,10 @@ export default function FakeIbanGenerator() {
               </ul>
             </>
           ) : (
-            <div className="text-center text-gray-400 text-sm py-8">
+            <div className="text-center text-muted-foreground text-sm py-8">
               <Landmark className="h-8 w-8 mx-auto mb-2 opacity-50" />
               <p>Select a country and click Generate</p>
-              <p className="text-xs mt-1 text-gray-300">IBANs are structurally valid but not linked to real accounts</p>
+              <p className="text-xs mt-1 text-muted-foreground">IBANs are structurally valid but not linked to real accounts</p>
             </div>
           )}
         </div>

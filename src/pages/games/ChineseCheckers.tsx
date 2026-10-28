@@ -472,24 +472,24 @@ const ChineseCheckers: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
+    <div className="flex flex-col items-center justify-center p-4">
       <div className="max-w-4xl w-full">
         <div className="flex items-center mb-6">
           <Link to="/games" className="mr-4">
-            <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full">
+            <button className="p-2 hover:bg-muted rounded-full transition-colors">
               <ArrowLeft className="w-6 h-6" />
             </button>
           </Link>
           <h1 className="text-3xl font-bold flex items-center gap-2">
-            <Hexagon className="w-8 h-8 text-emerald-600" />
+            <Hexagon className="w-8 h-8 text-primary" />
             {t("games.chinese_checkers.title", "Chinese Checkers")}
           </h1>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Game Board */}
-          <div className="lg:col-span-2 aspect-square relative bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden border-4 border-slate-200 dark:border-slate-700 flex items-center justify-center">
-            <svg viewBox="0 0 100 100" className="w-full h-full select-none">
+          <div className="lg:col-span-2 aspect-square relative bg-card rounded-xl overflow-hidden border-4 border-border flex items-center justify-center">
+            <svg viewBox="0 0 100 100" className="w-full h-full select-none" aria-hidden="true">
               {/* Board Holes */}
               {boardPoints.map((pt, _i) => {
                 const { x, y } = hexToPixel(pt.q, pt.r);
@@ -532,7 +532,7 @@ const ChineseCheckers: React.FC = () => {
                     fill={color}
                     stroke={isSelected ? "white" : "none"}
                     strokeWidth={isSelected ? "0.5" : "0"}
-                    className={`transition-all duration-300 ${
+                    className={`transition-opacity duration-short ease-out ${
                       p.owner === "player" && turn === "player" ? "cursor-pointer hover:opacity-80" : ""
                     }`}
                     onClick={(e) => {
@@ -549,18 +549,18 @@ const ChineseCheckers: React.FC = () => {
 
             {/* Overlays */}
             {!gameStarted && !winner && (
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl text-center">
+              <div className="absolute inset-0 bg-scrim/55 flex items-center justify-center z-10">
+                <div className="bg-muted p-8 rounded-xl text-center">
                   <h2 className="text-2xl font-bold mb-4">{t("games.chinese_checkers.title", "Chinese Checkers")}</h2>
                   <div className="flex gap-4 mb-6 justify-center">
                     {(["easy", "medium", "hard"] as const).map((d) => (
                       <button
                         key={d}
                         onClick={() => setDifficulty(d)}
-                        className={`px-4 py-2 rounded-lg capitalize ${
+                        className={`px-4 py-2 rounded-lg capitalize transition-colors ${
                           difficulty === d 
-                            ? "bg-emerald-600 text-white" 
-                            : "bg-gray-200 dark:bg-gray-700"
+                            ? "bg-primary text-primary-foreground" 
+                            : "bg-muted text-ink-2 hover:bg-accent"
                         }`}
                       >
                         {t(`games.chinese_checkers.${d}`, d)}
@@ -569,7 +569,7 @@ const ChineseCheckers: React.FC = () => {
                   </div>
                   <button 
                     onClick={restartGame} 
-                    className="w-full bg-emerald-600 text-white px-6 py-3 rounded-lg flex items-center justify-center hover:bg-emerald-700"
+                    className="w-full bg-primary text-primary-foreground px-6 py-3 rounded-lg flex items-center justify-center hover:bg-primary/90 transition-colors"
                   >
                     <Play className="w-5 h-5 mr-2" />
                     {t("games.start", "Start Game")}
@@ -579,15 +579,15 @@ const ChineseCheckers: React.FC = () => {
             )}
 
             {winner && (
-               <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
-                 <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl text-center animate-in zoom-in">
-                   <Trophy className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
+               <div className="absolute inset-0 bg-scrim/55 flex items-center justify-center z-10">
+                 <div className="bg-muted p-8 rounded-xl text-center animate-in zoom-in">
+                   <Trophy className="w-16 h-16 text-primary mx-auto mb-4" />
                    <h2 className="text-2xl font-bold mb-2">
                      {winner === "player" ? t("games.chinese_checkers.win", "You Win!") : t("games.chinese_checkers.lose", "AI Wins!")}
                    </h2>
                    <button 
                      onClick={restartGame} 
-                     className="mt-4 px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
+                     className="mt-4 px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
                    >
                      {t("games.restart", "Play Again")}
                    </button>
@@ -598,35 +598,35 @@ const ChineseCheckers: React.FC = () => {
 
           {/* Controls & Status */}
           <div className="flex flex-col gap-4">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border">
+            <div className="bg-card p-6 rounded-xl border border-border">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-semibold">{t("games.chinese_checkers.status", "Game Status")}</h3>
                 <button 
                   onClick={() => setGameStarted(false)}
-                  className="p-2 border rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="p-2 border rounded hover:bg-muted transition-colors"
                 >
                   <RefreshCw className="w-4 h-4" />
                 </button>
               </div>
               
-              <div className="flex items-center justify-between mb-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+              <div className="flex items-center justify-between mb-6 p-4 bg-muted rounded-lg">
                 <div className="text-center">
-                  <div className="text-sm text-gray-500 mb-1">{t("games.chinese_checkers.turn", "Turn")}</div>
-                  <div className={`font-bold flex items-center gap-2 ${turn === "player" ? "text-emerald-600" : "text-red-600"}`}>
+                  <div className="text-sm text-muted-foreground mb-1">{t("games.chinese_checkers.turn", "Turn")}</div>
+                  <div className={`font-bold flex items-center gap-2 ${turn === "player" ? "text-success" : "text-destructive"}`}>
                     {turn === "player" ? t("games.chinese_checkers.you") : t("games.chinese_checkers.ai")}
                     {aiThinking && <RefreshCw className="w-3 h-3 animate-spin" />}
                   </div>
                 </div>
               </div>
 
-              <div className="text-sm text-gray-500 text-center">
+              <div className="text-sm text-muted-foreground text-center">
                  {t("games.chinese_checkers.desc", "Move all your pieces to the opposite triangle.")}
               </div>
             </div>
             
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border">
+            <div className="bg-card p-6 rounded-xl border border-border">
               <h3 className="font-semibold mb-2">{t("games.chinese_checkers.rules", "Rules")}</h3>
-              <ul className="text-sm text-gray-600 dark:text-gray-400 list-disc pl-4 space-y-1">
+              <ul className="text-sm text-ink-2 list-disc pl-4 space-y-1">
                 <li>{t("games.chinese_checkers.rule1", "Move to adjacent empty hole.")}</li>
                 <li>{t("games.chinese_checkers.rule2", "Jump over adjacent piece to empty hole.")}</li>
                 <li>{t("games.chinese_checkers.rule3", "Chain jumps are allowed.")}</li>

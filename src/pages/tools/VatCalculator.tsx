@@ -58,25 +58,25 @@ export default function VatCalculator() {
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">{mode === "add" ? t("tools.vat-calculator.total") : t("tools.vat-calculator.base")}</p>
-            <p className="text-4xl font-bold text-blue-600">{fmt(mode === "add" ? result.total : result.base)}</p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">{mode === "add" ? t("tools.vat-calculator.total") : t("tools.vat-calculator.base")}</p>
+            <p className="text-4xl font-bold text-primary">{fmt(mode === "add" ? result.total : result.base)}</p>
           </div>
-          <div className="grid grid-cols-2 gap-4 pt-6 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-4 pt-6 border-t border-border">
             <div className="text-center">
-              <p className="text-sm font-medium text-gray-500 mb-1">{mode === "add" ? t("tools.vat-calculator.base") : t("tools.vat-calculator.total")}</p>
-              <p className="text-2xl font-bold text-gray-900">{fmt(mode === "add" ? result.base : result.total)}</p>
+              <p className="text-sm font-medium text-muted-foreground mb-1">{mode === "add" ? t("tools.vat-calculator.base") : t("tools.vat-calculator.total")}</p>
+              <p className="text-2xl font-bold text-foreground">{fmt(mode === "add" ? result.base : result.total)}</p>
             </div>
             <div className="text-center">
-              <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.vat-calculator.tax")} ({rate}%)</p>
-              <p className="text-2xl font-bold text-orange-600">{fmt(result.tax)}</p>
+              <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.vat-calculator.tax")} ({rate}%)</p>
+              <p className="text-2xl font-bold text-primary">{fmt(result.tax)}</p>
             </div>
           </div>
-          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary">
             <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.vat-calculator.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Percent className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("tools.vat-calculator.enter_values")}</p>
         </div>
@@ -89,35 +89,35 @@ export default function VatCalculator() {
       title={t("tools.vat-calculator.title")}
       subtitle={t("tools.vat-calculator.subtitle")}
       icon={Percent}
-      iconBgColor="bg-blue-100"
-      iconColor="text-blue-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["vat calculator", "ppn calculator", "tax calculator", "gst calculator"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.vat-calculator.country")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.vat-calculator.country")}</label>
           <select value={country} onChange={e => setCountry(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border">
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
             {COUNTRIES.map(c => <option key={c.code} value={c.code}>{c.name} ({c.rate}%)</option>)}
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">{t("tools.vat-calculator.mode")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">{t("tools.vat-calculator.mode")}</label>
           <div className="grid grid-cols-2 gap-2">
-            <button onClick={() => setMode("add")} className={`px-4 py-2 text-sm font-medium rounded-lg ${mode === "add" ? "bg-blue-600 text-white" : "bg-gray-100 hover:bg-gray-200"}`}>+ {t("tools.vat-calculator.add_vat")}</button>
-            <button onClick={() => setMode("remove")} className={`px-4 py-2 text-sm font-medium rounded-lg ${mode === "remove" ? "bg-blue-600 text-white" : "bg-gray-100 hover:bg-gray-200"}`}>- {t("tools.vat-calculator.remove_vat")}</button>
+            <button onClick={() => setMode("add")} className={`px-4 py-2 text-sm font-medium rounded-lg ${mode === "add" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-border"}`}>+ {t("tools.vat-calculator.add_vat")}</button>
+            <button onClick={() => setMode("remove")} className={`px-4 py-2 text-sm font-medium rounded-lg ${mode === "remove" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-border"}`}>- {t("tools.vat-calculator.remove_vat")}</button>
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.vat-calculator.price")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.vat-calculator.price")}</label>
           <input type="number" step="0.01" min="0" value={price} onChange={e => setPrice(e.target.value)} placeholder="0.00"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.vat-calculator.rate")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.vat-calculator.rate")}</label>
           <input type="number" step="0.1" min="0" max="100" value={rate} onChange={e => setRate(e.target.value)} placeholder="15"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
       </div>
     </CalculatorShell>

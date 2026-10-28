@@ -103,10 +103,10 @@ export default function AddSubtractMatrices() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-amber-100 text-amber-600 rounded-lg">
+          <div className="p-2 bg-primary/10 text-primary rounded-lg">
             <Plus className="h-5 w-5" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Matrix Addition & Subtraction</h1>
+          <h1 className="text-2xl font-bold text-foreground">Matrix Addition & Subtraction</h1>
         </div>
       }
       toolbar={
@@ -118,14 +118,14 @@ export default function AddSubtractMatrices() {
               setOutput("");
               setError("");
             }}
-            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none bg-white"
+            className="rounded-lg border border-border px-3 py-1.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card"
           >
             <option value="add">Add (A + B)</option>
             <option value="subtract">Subtract (A - B)</option>
           </select>
           <button
             onClick={handleCompute}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-amber-600 text-white text-sm font-medium rounded-lg hover:bg-amber-700 transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary transition-colors"
           >
             <Plus className="h-3.5 w-3.5" />
             Compute
@@ -134,10 +134,10 @@ export default function AddSubtractMatrices() {
       }
       inputLabel="Matrices A and B"
       input={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card">
           <div className="flex flex-col h-full">
             <div className="flex-1 min-h-0 flex flex-col">
-              <label className="block px-4 pt-3 pb-1 text-xs font-medium text-gray-500">
+              <label className="block px-4 pt-3 pb-1 text-xs font-medium text-muted-foreground">
                 Matrix A
               </label>
               <textarea
@@ -152,8 +152,8 @@ export default function AddSubtractMatrices() {
                 spellCheck={false}
               />
             </div>
-            <div className="border-t border-gray-200 flex-1 min-h-0 flex flex-col">
-              <label className="block px-4 pt-3 pb-1 text-xs font-medium text-gray-500">
+            <div className="border-t border-border flex-1 min-h-0 flex flex-col">
+              <label className="block px-4 pt-3 pb-1 text-xs font-medium text-muted-foreground">
                 Matrix B
               </label>
               <textarea
@@ -176,7 +176,7 @@ export default function AddSubtractMatrices() {
         output ? (
           <button
             onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors"
           >
             <Copy className="h-3.5 w-3.5" />
             Copy
@@ -184,13 +184,13 @@ export default function AddSubtractMatrices() {
         ) : undefined
       }
       output={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-4">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4">
           {output ? (
-            <pre className="text-sm font-mono text-gray-800 leading-relaxed">{output}</pre>
+            <pre className="text-sm font-mono text-foreground leading-relaxed">{output}</pre>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               {error ? (
-                <span className="text-red-500">{error}</span>
+                <span className="text-destructive">{error}</span>
               ) : (
                 "Result matrix will appear here"
               )}

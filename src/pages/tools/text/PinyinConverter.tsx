@@ -35,7 +35,7 @@ export default function PinyinConverter() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-emerald-100 text-emerald-600">
+          <div className="inline-flex p-2 rounded-lg bg-success/10 text-success">
             <Type className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">汉字转拼音</h1>
@@ -44,7 +44,7 @@ export default function PinyinConverter() {
       toolbar={
         <>
           <select
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            className="rounded-md border border-border px-3 py-2 text-sm"
             value={toneMode}
             onChange={(e) => setToneMode(e.target.value as ToneMode)}
           >
@@ -53,7 +53,7 @@ export default function PinyinConverter() {
             <option value="none">无声调</option>
           </select>
           <select
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            className="rounded-md border border-border px-3 py-2 text-sm"
             value={separator}
             onChange={(e) => setSeparator(e.target.value)}
           >
@@ -63,12 +63,12 @@ export default function PinyinConverter() {
             <option value="">无分隔</option>
           </select>
           <button
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-xs hover:bg-gray-50"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-xs hover:bg-muted"
             onClick={() => copy(result)}
             disabled={!result}
           >
             <ClipboardCopy className="h-3.5 w-3.5" /> 复制
-            {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : null}
+            {copied ? <Check className="h-3.5 w-3.5 text-success" /> : null}
           </button>
         </>
       }

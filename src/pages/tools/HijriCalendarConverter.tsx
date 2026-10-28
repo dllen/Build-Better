@@ -101,24 +101,16 @@ export default function HijriCalendarConverter() {
   const ramadanPeriod = getEstimatedRamadan(currentYear);
 
   const renderTabs = () => (
-    <div className="flex rounded-lg bg-gray-100 p-1 mb-6">
+    <div className="flex rounded-lg bg-muted p-1 mb-6">
       <button
         onClick={() => setActiveTab("g2h")}
-        className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-          activeTab === "g2h"
-            ? "bg-white text-gray-900 shadow-sm"
-            : "text-gray-600 hover:text-gray-900"
-        }`}
+        className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${ activeTab === "g2h" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground" }`}
       >
         {t("tools.hijri.g2h")}
       </button>
       <button
         onClick={() => setActiveTab("h2g")}
-        className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-          activeTab === "h2g"
-            ? "bg-white text-gray-900 shadow-sm"
-            : "text-gray-600 hover:text-gray-900"
-        }`}
+        className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${ activeTab === "h2g" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground" }`}
       >
         {t("tools.hijri.h2g")}
       </button>
@@ -126,7 +118,7 @@ export default function HijriCalendarConverter() {
   );
 
   const inputGroupLabel = (label: string) => (
-    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+    <label className="block text-sm font-medium text-muted-foreground mb-1">{label}</label>
   );
 
   const inputGroup = (
@@ -143,7 +135,7 @@ export default function HijriCalendarConverter() {
       placeholder={placeholder}
       min={min}
       max={max}
-      className="block w-full border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm py-2 px-3 border"
+      className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
     />
   );
 
@@ -157,7 +149,7 @@ export default function HijriCalendarConverter() {
       </div>
       <button
         onClick={handleConvertG2H}
-        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 font-medium"
+        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-success text-success-foreground rounded-lg hover:bg-success font-medium"
       >
         <CalendarDays className="h-4 w-4" />
         {t("tools.hijri.convert")}
@@ -175,7 +167,7 @@ export default function HijriCalendarConverter() {
       </div>
       <button
         onClick={handleConvertH2G}
-        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 font-medium"
+        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-success text-success-foreground rounded-lg hover:bg-success font-medium"
       >
         <CalendarDays className="h-4 w-4" />
         {t("tools.hijri.convert")}
@@ -190,28 +182,28 @@ export default function HijriCalendarConverter() {
       return (
         <div className="space-y-6">
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-2">
+            <p className="text-sm font-medium text-muted-foreground mb-2">
               {t("tools.hijri.islamic_date")}
             </p>
-            <p className="text-3xl font-bold text-emerald-600">
+            <p className="text-3xl font-bold text-success">
               {hijriResult.day} {monthName} {hijriResult.year} AH
             </p>
-            <p className="text-lg text-gray-600 mt-2">
+            <p className="text-lg text-muted-foreground mt-2">
               {hijriResult.formatted}
             </p>
           </div>
-          <div className="bg-gray-50 rounded-lg p-4 text-center">
-            <p className="text-sm text-gray-500">{t("tools.hijri.day_of_week")}</p>
-            <p className="text-lg font-semibold text-gray-900">
+          <div className="bg-muted rounded-lg p-4 text-center">
+            <p className="text-sm text-muted-foreground">{t("tools.hijri.day_of_week")}</p>
+            <p className="text-lg font-semibold text-foreground">
               {hijriResult.dayOfWeek}
             </p>
           </div>
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-            <p className="text-sm font-medium text-amber-800 mb-1">
+          <div className="bg-primary/10 border border-border rounded-lg p-4">
+            <p className="text-sm font-medium text-primary mb-1">
               {t("tools.hijri.estimated_ramadan")}
             </p>
-            <p className="text-amber-700">
-              {ramadanPeriod.start} — {ramadanPeriod.end}
+            <p className="text-primary">
+              {ramadanPeriod.start} to {ramadanPeriod.end}
             </p>
           </div>
         </div>
@@ -223,19 +215,19 @@ export default function HijriCalendarConverter() {
       return (
         <div className="space-y-6">
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-2">
+            <p className="text-sm font-medium text-muted-foreground mb-2">
               {t("tools.hijri.gregorian_date")}
             </p>
-            <p className="text-3xl font-bold text-emerald-600">
+            <p className="text-3xl font-bold text-success">
               {gregorianResult.day} / {gregorianResult.month} / {gregorianResult.year}
             </p>
-            <p className="text-lg text-gray-600 mt-2">
+            <p className="text-lg text-muted-foreground mt-2">
               {gregorianResult.formatted}
             </p>
           </div>
-          <div className="bg-gray-50 rounded-lg p-4 text-center">
-            <p className="text-sm text-gray-500">{t("tools.hijri.day_of_week")}</p>
-            <p className="text-lg font-semibold text-gray-900">
+          <div className="bg-muted rounded-lg p-4 text-center">
+            <p className="text-sm text-muted-foreground">{t("tools.hijri.day_of_week")}</p>
+            <p className="text-lg font-semibold text-foreground">
               {gregorianResult.dayOfWeek}
             </p>
           </div>
@@ -245,7 +237,7 @@ export default function HijriCalendarConverter() {
 
     // Default empty state
     return (
-      <div className="text-center text-gray-400 py-12">
+      <div className="text-center text-muted-foreground py-12">
         <CalendarDays className="h-12 w-12 mx-auto mb-4 opacity-40" />
         <p className="text-lg">{t("tools.hijri.enter_date")}</p>
       </div>
@@ -257,8 +249,8 @@ export default function HijriCalendarConverter() {
       title={t("tools.hijri.title")}
       subtitle={t("tools.hijri.subtitle")}
       icon={CalendarDays}
-      iconBgColor="bg-emerald-100"
-      iconColor="text-emerald-600"
+      iconBgColor="bg-success/10"
+      iconColor="text-success"
       keywords={[
         "hijri calendar converter",
         "islamic calendar",

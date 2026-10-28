@@ -107,24 +107,24 @@ export default function RsaEncrypt() {
 
   return (
     <EditorSplitLayout
-      title={<><div className="inline-flex p-2 rounded-lg bg-yellow-100 text-yellow-600"><Key className="h-5 w-5" /></div><h1 className="text-2xl font-semibold">RSA Encrypt</h1></>}
+      title={<><div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary"><Key className="h-5 w-5" /></div><h1 className="text-2xl font-semibold">RSA Encrypt</h1></>}
       toolbar={<>
-        <select className="rounded-md border border-gray-300 px-3 py-2 text-sm" value={operation} onChange={(e) => setOperation(e.target.value as Operation)}>
+        <select className="rounded-md border border-border px-3 py-2 text-sm" value={operation} onChange={(e) => setOperation(e.target.value as Operation)}>
           <option value="encrypt">Encrypt</option>
           <option value="decrypt">Decrypt</option>
           <option value="sign">Sign</option>
           <option value="verify">Verify</option>
         </select>
-        <textarea className="rounded-md border border-gray-300 px-3 py-2 text-xs font-mono w-64 h-20 resize-none" placeholder="Public Key (PEM)" value={publicKey} onChange={(e) => setPublicKey(e.target.value)} />
+        <textarea className="rounded-md border border-border px-3 py-2 text-xs font-mono w-64 h-20 resize-none" placeholder="Public Key (PEM)" value={publicKey} onChange={(e) => setPublicKey(e.target.value)} />
         {(operation === "decrypt" || operation === "sign") && (
-          <textarea className="rounded-md border border-gray-300 px-3 py-2 text-xs font-mono w-64 h-20 resize-none" placeholder="Private Key (PEM)" value={privateKey} onChange={(e) => setPrivateKey(e.target.value)} />
+          <textarea className="rounded-md border border-border px-3 py-2 text-xs font-mono w-64 h-20 resize-none" placeholder="Private Key (PEM)" value={privateKey} onChange={(e) => setPrivateKey(e.target.value)} />
         )}
       </>}
       inputLabel="Input"
       input={<textarea className="w-full h-full p-4 font-mono text-sm resize-none border-0 focus:outline-none" placeholder={operation === "verify" ? "Message\n---SIG---\n<base64 signature>" : "Enter text..."} value={input} onChange={(e) => setInput(e.target.value)} />}
       outputLabel="Output"
-      output={<pre className="w-full h-full p-4 font-mono text-sm whitespace-pre-wrap break-words overflow-auto bg-gray-50">{loading ? "Processing..." : error || result}</pre>}
-      outputActions={<button onClick={() => copy(result)} className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-yellow-600 text-white hover:bg-yellow-700">{copied ? <Check className="h-4 w-4" /> : <ClipboardCopy className="h-4 w-4" />} Copy</button>}
+      output={<pre className="w-full h-full p-4 font-mono text-sm whitespace-pre-wrap break-words overflow-auto bg-muted">{loading ? "Processing..." : error || result}</pre>}
+      outputActions={<button onClick={() => copy(result)} className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground hover:bg-primary">{copied ? <Check className="h-4 w-4" /> : <ClipboardCopy className="h-4 w-4" />} Copy</button>}
     />
   );
 }

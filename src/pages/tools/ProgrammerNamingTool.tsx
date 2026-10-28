@@ -197,26 +197,26 @@ export default function ProgrammerNamingTool() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-indigo-100 text-indigo-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Code className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">程序员命名工具</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">输入与选项</div>
           <input
-            className="w-full rounded-md border border-gray-300 px-3 py-2"
+            className="w-full rounded-md border border-border px-3 py-2"
             placeholder="输入关键词，如 user token auth"
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="space-y-1">
-              <label className="text-sm text-gray-700">类型</label>
+              <label className="text-sm text-muted-foreground">类型</label>
               <select
-                className="rounded-md border border-gray-300 px-3 py-2"
+                className="rounded-md border border-border px-3 py-2"
                 value={kind}
                 onChange={(e) => {
                   const k = e.target.value as Kind;
@@ -232,9 +232,9 @@ export default function ProgrammerNamingTool() {
               </select>
             </div>
             <div className="space-y-1">
-              <label className="text-sm text-gray-700">风格</label>
+              <label className="text-sm text-muted-foreground">风格</label>
               <select
-                className="rounded-md border border-gray-300 px-3 py-2"
+                className="rounded-md border border-border px-3 py-2"
                 value={style}
                 onChange={(e) => setStyle(e.target.value as Style)}
               >
@@ -248,19 +248,19 @@ export default function ProgrammerNamingTool() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <input
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               placeholder="前缀（可选）"
               value={prefix}
               onChange={(e) => setPrefix(e.target.value)}
             />
             <input
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               placeholder="后缀（可选）"
               value={suffix}
               onChange={(e) => setSuffix(e.target.value)}
             />
             <div className="space-y-1">
-              <label className="text-sm text-gray-700">
+              <label className="text-sm text-muted-foreground">
                 随机性: {Math.round(randomness * 100)}%
               </label>
               <input
@@ -275,7 +275,7 @@ export default function ProgrammerNamingTool() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="space-y-1">
-              <label className="text-sm text-gray-700">数量: {count}</label>
+              <label className="text-sm text-muted-foreground">数量: {count}</label>
               <input
                 type="range"
                 min={4}
@@ -288,33 +288,33 @@ export default function ProgrammerNamingTool() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3 lg:col-span-2">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3 lg:col-span-2">
           <div className="font-medium">命名建议</div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
             {suggestions.map((s, i) => (
               <div
                 key={i}
-                className="flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2"
+                className="flex items-center gap-2 rounded-md border border-border px-3 py-2"
               >
                 <div className="flex-1 font-mono text-sm break-all">{s}</div>
                 <button
-                  className="inline-flex items-center gap-2 px-2 py-1 border border-gray-300 rounded-md text-xs"
+                  className="inline-flex items-center gap-2 px-2 py-1 border border-border rounded-md text-xs"
                   onClick={() => copy(s, "one", i)}
                 >
                   <ClipboardCopy className="h-4 w-4" /> 复制{" "}
-                  {copiedOne === i ? <Check className="h-4 w-4 text-green-600" /> : null}
+                  {copiedOne === i ? <Check className="h-4 w-4 text-success" /> : null}
                 </button>
               </div>
             ))}
           </div>
           <div className="flex items-center gap-2">
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => copy(suggestions.join("\n"), "all")}
               disabled={!suggestions.length}
             >
               <ClipboardCopy className="h-4 w-4" /> 复制全部{" "}
-              {copiedAll ? <Check className="h-4 w-4 text-green-600" /> : null}
+              {copiedAll ? <Check className="h-4 w-4 text-success" /> : null}
             </button>
           </div>
         </div>

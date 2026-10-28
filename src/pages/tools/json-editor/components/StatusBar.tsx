@@ -12,12 +12,16 @@ export function StatusBar({ isValid, parseError, contentLength, currentMode }: S
     <div className="flex items-center justify-between px-3 py-1.5 text-[11px] text-muted-foreground border-t border-border/50 bg-muted/20 rounded-b-lg flex-shrink-0">
       <div className="flex items-center gap-3">
         {isValid ? (
-          <span className="flex items-center gap-1 text-emerald-400">
+          <span className="flex items-center gap-1 text-success">
             <Check className="w-3 h-3" /> 有效
           </span>
         ) : (
-          <span className="flex items-center gap-1 text-red-400">
-            <AlertCircle className={`w-3 h-3 ${parseError ? "animate-pulse" : ""}`} /> 无效
+          <span
+            className="flex items-center gap-1 text-destructive"
+            title={parseError ?? undefined}
+          >
+            <AlertCircle className="w-3 h-3" /> 无效
+            {parseError ? <span className="truncate max-w-[22ch]">{parseError}</span> : null}
           </span>
         )}
         <span className="text-border/50">|</span>
@@ -30,7 +34,7 @@ export function StatusBar({ isValid, parseError, contentLength, currentMode }: S
         <span className="text-border/50">|</span>
         <span>2 空格</span>
         <span className="text-border/50">|</span>
-        <span className="text-cyan-400/70">按 ? 查看快捷键</span>
+        <span className="text-info/70">按 ? 查看快捷键</span>
       </div>
     </div>
   );

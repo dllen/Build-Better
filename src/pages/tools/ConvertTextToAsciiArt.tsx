@@ -72,19 +72,19 @@ export default function ConvertTextToAsciiArt() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-gray-100 text-gray-600 rounded-lg"><FileText className="h-5 w-5" /></div>
-          <h1 className="text-2xl font-bold text-gray-900">Text to ASCII Art</h1>
+          <div className="p-2 bg-muted text-muted-foreground rounded-lg"><FileText className="h-5 w-5" /></div>
+          <h1 className="text-2xl font-bold text-foreground">Text to ASCII Art</h1>
         </div>
       }
       toolbar={
         <div className="flex flex-wrap items-center gap-3">
           <select value={mode} onChange={(e) => setMode(e.target.value as "density" | "big")}
-            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-gray-500 focus:ring-1 focus:ring-gray-500 outline-none bg-white">
+            className="rounded-lg border border-border px-3 py-1.5 text-sm focus:border-border focus:ring-1 focus:ring-border outline-none bg-card">
             <option value="density">Density Map</option>
             <option value="big">Big ASCII</option>
           </select>
           <button onClick={handleConvert}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-gray-600 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition-colors">
+            className="btn">
             <RefreshCw className="h-3.5 w-3.5" />Convert
           </button>
         </div>
@@ -93,24 +93,24 @@ export default function ConvertTextToAsciiArt() {
       input={
         <textarea value={input} onChange={(e) => { setInput(e.target.value); setOutput(""); }}
           placeholder="Enter text to convert to ASCII art..."
-          className="h-full w-full resize-none rounded-lg border border-gray-200 bg-white p-4 text-sm focus:outline-none focus:ring-2 focus:ring-gray-500/20 focus:border-gray-400"
+          className="h-full w-full resize-none rounded-lg border border-border bg-card p-4 text-sm focus:outline-none focus:ring-2 focus:ring-border/20 focus:border-border"
           spellCheck={false} />
       }
       outputLabel="ASCII Art"
       outputActions={
         output ? (
           <button onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors">
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors">
             <Download className="h-3.5 w-3.5" />Copy
           </button>
         ) : undefined
       }
       output={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-gray-900 p-4">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4">
           {output ? (
-            <pre className="text-xs text-green-400 font-mono leading-tight whitespace-pre">{output}</pre>
+            <pre className="text-xs text-success font-mono leading-tight whitespace-pre">{output}</pre>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-500 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               ASCII art will appear here
             </div>
           )}

@@ -122,20 +122,20 @@ export const NesEmulator: React.FC<NesEmulatorProps> = ({ romUrl, core = 'fceumm
   };
 
   return (
-    <div className="flex flex-col items-center bg-gray-900 p-4 rounded-xl shadow-2xl w-full max-w-4xl mx-auto">
-      <div className="relative w-full aspect-[4/3] bg-black rounded-lg overflow-hidden border-4 border-gray-700 mb-4">
+    <div className="flex flex-col items-center bg-card p-4 rounded-xl border border-border w-full max-w-4xl mx-auto">
+      <div className="relative w-full aspect-[4/3] bg-black rounded-lg overflow-hidden border-4 border-border mb-4">
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center text-white">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
-            Loading Emulator...
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary mb-4"></div>
+            Loading Emulator…
           </div>
         )}
         
         {error && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-red-400 p-8 text-center bg-gray-900/90 z-10">
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-destructive p-8 text-center bg-background/90 z-10">
             <p className="text-xl font-bold mb-2">Error Loading Game</p>
             <p>{error}</p>
-            <p className="text-sm text-gray-400 mt-4">
+            <p className="text-sm text-muted-foreground mt-4">
               Note: This demo uses placeholder ROM URLs. To play, you need valid .nes files in your public/roms directory.
             </p>
           </div>
@@ -144,14 +144,13 @@ export const NesEmulator: React.FC<NesEmulatorProps> = ({ romUrl, core = 'fceumm
         <canvas 
           ref={canvasRef} 
           className="w-full h-full object-contain"
-          style={{ display: error ? 'none' : 'block' }}
-        />
+          style={{ display: error ? 'none' : 'block' }} role="img" aria-label="Drawing output"/>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
         <button 
           onClick={handlePauseResume}
-          className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
+          className="flex items-center justify-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded transition-colors"
         >
           {isPlaying ? <Pause size={18} /> : <Play size={18} />}
           {isPlaying ? 'Pause' : 'Resume'}
@@ -159,7 +158,7 @@ export const NesEmulator: React.FC<NesEmulatorProps> = ({ romUrl, core = 'fceumm
 
         <button 
           onClick={handleReset}
-          className="flex items-center justify-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded transition-colors"
+          className="flex items-center justify-center gap-2 px-4 py-2 bg-destructive hover:bg-destructive/90 text-destructive-foreground rounded transition-colors"
         >
           <RotateCcw size={18} />
           Reset
@@ -167,25 +166,25 @@ export const NesEmulator: React.FC<NesEmulatorProps> = ({ romUrl, core = 'fceumm
 
         <button 
           onClick={handleSaveState}
-          className="flex items-center justify-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded transition-colors"
+          className="flex items-center justify-center gap-2 px-4 py-2 bg-success hover:bg-success/90 text-white rounded transition-colors"
         >
           <Save size={18} />
           Save State
         </button>
 
-        <label className="flex items-center justify-center gap-2 px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded transition-colors cursor-pointer">
+        <label className="flex items-center justify-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded transition-colors cursor-pointer">
           <Upload size={18} />
           Load State
           <input type="file" onChange={handleLoadState} accept=".state" className="hidden" />
         </label>
       </div>
 
-      <div className="mt-4 flex justify-between w-full text-gray-400 text-sm px-2">
+      <div className="mt-4 flex justify-between w-full text-muted-foreground text-sm px-2">
         <div className="flex items-center gap-2">
           <Gamepad2 size={16} />
           <span>Controls: Arrows (Move), Z (A), X (B), Enter (Start), Shift (Select)</span>
         </div>
-        <button onClick={handleFullscreen} className="hover:text-white flex items-center gap-1">
+        <button onClick={handleFullscreen} className="hover:text-foreground transition-colors flex items-center gap-1">
           <Maximize size={16} /> Fullscreen
         </button>
       </div>

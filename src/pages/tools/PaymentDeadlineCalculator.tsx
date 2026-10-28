@@ -87,11 +87,11 @@ function getStatus(dueDate: Date): {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   if (diffDays < 0) {
-    return { status: "overdue", label: "Overdue", colorClass: "text-red-600 bg-red-50" };
+    return { status: "overdue", label: "Overdue", colorClass: "text-destructive bg-destructive/10" };
   } else if (diffDays === 0) {
-    return { status: "due_today", label: "Due Today", colorClass: "text-amber-600 bg-amber-50" };
+    return { status: "due_today", label: "Due Today", colorClass: "text-primary bg-primary/10" };
   } else {
-    return { status: "upcoming", label: "Upcoming", colorClass: "text-green-600 bg-green-50" };
+    return { status: "upcoming", label: "Upcoming", colorClass: "text-success bg-success/10" };
   }
 }
 
@@ -149,10 +149,10 @@ export default function PaymentDeadlineCalculator() {
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">
+            <p className="text-sm font-medium text-muted-foreground mb-1">
               {t("paymentDeadline.due_date")}
             </p>
-            <p className="text-4xl font-bold text-gray-900">
+            <p className="text-4xl font-bold text-foreground">
               {formatDate(result.dueDate)}
             </p>
           </div>
@@ -161,14 +161,14 @@ export default function PaymentDeadlineCalculator() {
             <span className="font-semibold">{result.statusLabel}</span>
           </div>
 
-          <div className="grid grid-cols-1 gap-3 pt-6 border-t border-gray-100">
+          <div className="grid grid-cols-1 gap-3 pt-6 border-t border-border">
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">{t("paymentDeadline.days_until_due")}</p>
-              <p className="text-3xl font-bold text-gray-900">
+              <p className="text-sm text-muted-foreground mb-1">{t("paymentDeadline.days_until_due")}</p>
+              <p className="text-3xl font-bold text-foreground">
                 {result.daysUntilDue < 0
                   ? Math.abs(result.daysUntilDue)
                   : result.daysUntilDue}
-                <span className="text-lg font-normal text-gray-500 ml-1">
+                <span className="text-lg font-normal text-muted-foreground ml-1">
                   {result.daysUntilDue < 0
                     ? t("paymentDeadline.days_overdue")
                     : result.daysUntilDue === 0
@@ -179,23 +179,23 @@ export default function PaymentDeadlineCalculator() {
             </div>
           </div>
 
-          <div className="bg-gray-50 p-3 rounded-lg text-sm">
-            <p className="text-gray-600">
+          <div className="bg-muted p-3 rounded-lg text-sm">
+            <p className="text-muted-foreground">
               <strong>{t("paymentDeadline.invoice_date")}:</strong>{" "}
               {formatDate(new Date(invoiceDate))}
             </p>
-            <p className="text-gray-600 mt-1">
+            <p className="text-muted-foreground mt-1">
               <strong>{t("paymentDeadline.payment_terms")}:</strong>{" "}
               {PAYMENT_TERMS.find((t) => t.id === paymentTerm)?.name}
             </p>
-            <p className="text-gray-600 mt-1">
+            <p className="text-muted-foreground mt-1">
               <strong>{t("paymentDeadline.market")}:</strong>{" "}
               {MARKETS[market]?.name}
             </p>
           </div>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Clock className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("paymentDeadline.enter_values")}</p>
         </div>
@@ -208,8 +208,8 @@ export default function PaymentDeadlineCalculator() {
       title={t("paymentDeadline.title")}
       subtitle={t("paymentDeadline.subtitle")}
       icon={Clock}
-      iconBgColor="bg-cyan-100"
-      iconColor="text-cyan-600"
+      iconBgColor="bg-info/10"
+      iconColor="text-info"
       keywords={[
         "payment deadline",
         "invoice due date",
@@ -222,25 +222,25 @@ export default function PaymentDeadlineCalculator() {
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             {t("paymentDeadline.invoice_date")}
           </label>
           <input
             type="date"
             value={invoiceDate}
             onChange={(e) => setInvoiceDate(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm py-2 px-3 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             {t("paymentDeadline.market")}
           </label>
           <select
             value={market}
             onChange={(e) => setMarket(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm py-2 px-3 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
           >
             {Object.entries(MARKETS).map(([key, config]) => (
               <option key={key} value={key}>
@@ -251,13 +251,13 @@ export default function PaymentDeadlineCalculator() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             {t("paymentDeadline.payment_terms")}
           </label>
           <select
             value={paymentTerm}
             onChange={(e) => setPaymentTerm(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm py-2 px-3 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
           >
             {PAYMENT_TERMS.map((term) => (
               <option key={term.id} value={term.id}>
@@ -269,7 +269,7 @@ export default function PaymentDeadlineCalculator() {
 
         <button
           onClick={calculate}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-colors"
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-info text-info-foreground rounded-lg hover:bg-info transition-colors"
         >
           {t("paymentDeadline.calculate")}
         </button>

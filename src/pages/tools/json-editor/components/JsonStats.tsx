@@ -6,11 +6,11 @@ interface JsonStatsProps {
 }
 
 const TYPE_CONFIG = [
-  { key: "objectCount" as const, label: "对象", color: "bg-cyan-500" },
-  { key: "arrayCount" as const, label: "数组", color: "bg-amber-500" },
-  { key: "stringCount" as const, label: "字符串", color: "bg-emerald-500" },
-  { key: "numberCount" as const, label: "数字", color: "bg-blue-500" },
-  { key: "booleanCount" as const, label: "布尔", color: "bg-purple-500" },
+  { key: "objectCount" as const, label: "对象", color: "bg-info" },
+  { key: "arrayCount" as const, label: "数组", color: "bg-primary" },
+  { key: "stringCount" as const, label: "字符串", color: "bg-success" },
+  { key: "numberCount" as const, label: "数字", color: "bg-primary" },
+  { key: "booleanCount" as const, label: "布尔", color: "bg-primary" },
   { key: "nullCount" as const, label: "Null", color: "bg-muted-foreground" },
 ];
 
@@ -45,7 +45,7 @@ export function JsonStats({ stats, onKeyClick }: JsonStatsProps) {
       </div>
 
       <div>
-        <div className="text-[10px] font-medium text-muted-foreground mb-2 uppercase tracking-wider">类型分布</div>
+        <div className="text-[10px] font-medium text-muted-foreground mb-2">类型分布</div>
         <div className="space-y-1.5">
           {TYPE_CONFIG.map(({ key, label, color }) => {
             const count = stats[key] as number;
@@ -54,7 +54,7 @@ export function JsonStats({ stats, onKeyClick }: JsonStatsProps) {
               <div key={key} className="flex items-center gap-2">
                 <span className="text-[10px] text-muted-foreground w-10 shrink-0">{label}</span>
                 <div className="flex-1 h-1.5 bg-muted/50 rounded-full overflow-hidden">
-                  <div className={`h-full rounded-full ${color} transition-all duration-500`}
+                  <div className={`h-full rounded-full ${color} transition-colors duration-500`}
                     style={{ width: `${pct}%` }} />
                 </div>
                 <span className="text-[10px] text-muted-foreground w-8 text-right shrink-0">{count}</span>
@@ -66,7 +66,7 @@ export function JsonStats({ stats, onKeyClick }: JsonStatsProps) {
 
       {stats.uniqueKeys.length > 0 && (
         <div>
-          <div className="text-[10px] font-medium text-muted-foreground mb-2 uppercase tracking-wider">
+          <div className="text-[10px] font-medium text-muted-foreground mb-2">
             字段列表 ({stats.uniqueKeys.length})
           </div>
           <div className="flex flex-wrap gap-1">

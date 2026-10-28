@@ -15,7 +15,7 @@ export default function About() {
           </p>
         </header>
 
-        <section className="space-y-4 bg-card text-card-foreground rounded-xl border border-border p-6 shadow-sm">
+        <section className="space-y-4 bg-card text-card-foreground rounded-xl border border-border p-6">
           <p className="text-muted-foreground leading-relaxed">
             Build Better is a free collection of 100+ online developer tools: formatters,
             encoders, generators, calculators, Web3 utilities, image tools, regex testers,
@@ -31,7 +31,7 @@ export default function About() {
           </p>
         </section>
 
-        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6 shadow-sm">
+        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6">
           <h2 className="text-xl font-semibold">Principles</h2>
           <ul className="list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
             <li>
@@ -53,13 +53,13 @@ export default function About() {
           </ul>
         </section>
 
-        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6 shadow-sm">
+        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6">
           <h2 className="text-xl font-semibold">Contact</h2>
           <p className="text-muted-foreground leading-relaxed">
             Questions or feedback? See the{" "}
             <a
               href="/contact"
-              className="text-primary underline underline-offset-4 hover:text-primary/80"
+              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
             >
               contact page
             </a>

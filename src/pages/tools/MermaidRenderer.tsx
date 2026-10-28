@@ -72,24 +72,24 @@ export default function MermaidRenderer() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-pink-100 text-pink-600">
+          <div className="inline-flex p-2 rounded-lg bg-destructive/10 text-destructive">
             <Code className="h-5 w-5" />
           </div>
           <div>
             <h1 className="text-2xl font-semibold">Mermaid Renderer</h1>
-            <p className="text-sm text-gray-500">Render Mermaid diagrams to SVG or ASCII</p>
+            <p className="text-sm text-muted-foreground">Render Mermaid diagrams to SVG or ASCII</p>
           </div>
         </>
       }
       toolbar={
         <>
           <div className="flex items-center gap-2">
-            <Palette className="w-4 h-4 text-gray-500" />
-            <label className="text-sm font-medium text-gray-700">Theme</label>
+            <Palette className="w-4 h-4 text-muted-foreground" />
+            <label className="text-sm font-medium text-muted-foreground">Theme</label>
             <select
               value={theme}
               onChange={(e) => setTheme(e.target.value)}
-              className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
               disabled={outputMode === "ascii"}
             >
               {themeOptions.map((t) => (
@@ -99,17 +99,17 @@ export default function MermaidRenderer() {
           </div>
 
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700">Format</label>
-            <div className="flex rounded-md border border-gray-300 overflow-hidden">
+            <label className="text-sm font-medium text-muted-foreground">Format</label>
+            <div className="flex rounded-md border border-border overflow-hidden">
               <button
                 onClick={() => setOutputMode("svg")}
-                className={`px-3 py-2 text-sm ${outputMode === "svg" ? "bg-blue-600 text-white" : "bg-white text-gray-700 hover:bg-gray-50"}`}
+                className={`px-3 py-2 text-sm ${outputMode === "svg" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted"}`}
               >
                 SVG
               </button>
               <button
                 onClick={() => setOutputMode("ascii")}
-                className={`px-3 py-2 text-sm border-l border-gray-300 ${outputMode === "ascii" ? "bg-blue-600 text-white" : "bg-white text-gray-700 hover:bg-gray-50"}`}
+                className={`px-3 py-2 text-sm border-l border-border ${outputMode === "ascii" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted"}`}
               >
                 ASCII
               </button>
@@ -136,23 +136,23 @@ export default function MermaidRenderer() {
         <span className="flex items-center gap-2">
           {outputMode === "svg" ? <ImageIcon className="w-4 h-4" /> : <Terminal className="w-4 h-4" />}
           Output
-          {loading && <span className="text-xs text-gray-400 animate-pulse">Rendering...</span>}
+          {loading && <span className="text-xs text-muted-foreground animate-pulse">Rendering...</span>}
         </span>
       }
       outputActions={
         <button
           onClick={handleCopy}
           disabled={!output}
-          className="px-3 py-1.5 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-1.5 text-xs disabled:opacity-50 hover:bg-gray-200"
+          className="px-3 py-1.5 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-1.5 text-xs disabled:opacity-50 hover:bg-border"
         >
-          {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : <Copy className="h-3.5 w-3.5" />}
+          {copied ? <Check className="h-3.5 w-3.5 text-success" /> : <Copy className="h-3.5 w-3.5" />}
           {copied ? "Copied" : "Copy"}
         </button>
       }
       output={
         error ? (
           <div className="h-full flex items-center justify-center p-4">
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-sm text-red-700">
+            <div className="bg-destructive/10 border border-border rounded-lg p-4 text-sm text-destructive">
               {error}
             </div>
           </div>

@@ -170,50 +170,50 @@ export default function DrawHilbertFractal() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-purple-100 text-purple-600 rounded-lg">
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          <div className="p-2 bg-primary/10 text-primary rounded-lg">
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Fractal Generator</h1>
+          <h1 className="text-2xl font-bold text-foreground">Fractal Generator</h1>
         </div>
       }
       toolbar={
         <div className="flex flex-wrap items-center gap-3">
           <select value={type} onChange={(e) => setType(e.target.value as FractalType)}
-            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 outline-none bg-white">
+            className="rounded-lg border border-border px-3 py-1.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card">
             {FRACTAL_TYPES.map(t => <option key={t} value={t}>{CONFIGS[t].name}</option>)}
           </select>
-          <div className="flex items-center gap-1.5 text-sm text-gray-600">
+          <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
             <span>Depth:</span>
             <input type="number" min={1} max={maxDepth[type]} value={depth}
               onChange={(e) => setDepth(Math.max(1, Math.min(maxDepth[type], Number(e.target.value))))}
-              className="w-16 rounded-lg border border-gray-300 px-2 py-1.5 text-sm text-center focus:border-purple-500 focus:ring-1 focus:ring-purple-500 outline-none" />
-            <span className="text-xs text-gray-400">/ {maxDepth[type]}</span>
+              className="w-16 rounded-lg border border-border px-2 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none" />
+            <span className="text-xs text-muted-foreground">/ {maxDepth[type]}</span>
           </div>
           <button onClick={draw}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors">
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary transition-colors">
             <RefreshCw className="h-3.5 w-3.5" />Draw
           </button>
         </div>
       }
       inputLabel={CONFIGS[type].name}
       input={
-        <div className="h-full flex items-center justify-center p-4 rounded-lg border border-gray-200 bg-gray-50/50">
+        <div className="h-full flex items-center justify-center p-4 rounded-lg border border-border bg-muted/50">
           <div className="text-center space-y-2 max-w-xs">
-            <p className="text-sm text-gray-600">{CONFIGS[type].description}</p>
-            <p className="text-xs text-gray-400">Adjust depth to control detail level. Higher depth = more detail but slower rendering.</p>
+            <p className="text-sm text-muted-foreground">{CONFIGS[type].description}</p>
+            <p className="text-xs text-muted-foreground">Adjust depth to control detail level. Higher depth = more detail but slower rendering.</p>
           </div>
         </div>
       }
       outputLabel="Fractal Output"
       outputActions={
         <button onClick={handleDownload}
-          className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors">
+          className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors">
           <Download className="h-3.5 w-3.5" />Download PNG
         </button>
       }
       output={
-        <div className="h-full flex items-center justify-center rounded-lg border border-gray-200 bg-[#1a1a2e] p-2">
-          <canvas ref={canvasRef} className="max-h-full max-w-full object-contain rounded" />
+        <div className="h-full flex items-center justify-center rounded-lg border border-border bg-paper-3 p-2">
+          <canvas ref={canvasRef} className="max-h-full max-w-full object-contain rounded" role="img" aria-label="Drawing output"/>
         </div>
       }
     />

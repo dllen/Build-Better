@@ -80,16 +80,16 @@ export default function TransposeMatrix() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-purple-100 text-purple-600 rounded-lg">
+          <div className="p-2 bg-primary/10 text-primary rounded-lg">
             <Grid3X3 className="h-5 w-5" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Matrix Transpose</h1>
+          <h1 className="text-2xl font-bold text-foreground">Matrix Transpose</h1>
         </div>
       }
       toolbar={
         <button
           onClick={handleTranspose}
-          className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors"
+          className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary transition-colors"
         >
           <Grid3X3 className="h-3.5 w-3.5" />
           Transpose
@@ -105,7 +105,7 @@ export default function TransposeMatrix() {
             setError("");
           }}
           placeholder={`1 2 3\n4 5 6\n7 8 9\n\nRows on separate lines, values separated by spaces, commas, or tabs.`}
-          className="h-full w-full resize-none rounded-lg border border-gray-200 bg-white p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400"
+          className="h-full w-full resize-none rounded-lg border border-border bg-card p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-border"
           spellCheck={false}
         />
       }
@@ -114,7 +114,7 @@ export default function TransposeMatrix() {
         output ? (
           <button
             onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors"
           >
             <Copy className="h-3.5 w-3.5" />
             Copy
@@ -122,13 +122,13 @@ export default function TransposeMatrix() {
         ) : undefined
       }
       output={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-4">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4">
           {output ? (
-            <pre className="text-sm font-mono text-gray-800 leading-relaxed">{output}</pre>
+            <pre className="text-sm font-mono text-foreground leading-relaxed">{output}</pre>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               {error ? (
-                <span className="text-red-500">{error}</span>
+                <span className="text-destructive">{error}</span>
               ) : (
                 "Transposed matrix will appear here"
               )}

@@ -56,10 +56,10 @@ export default function FormatToolPage({ config }: { config: FormatToolConfig })
       }
       toolbar={
         <>
-          <label className="text-sm text-gray-500 flex items-center gap-2">
+          <label className="text-sm text-muted-foreground flex items-center gap-2">
             Indent:{" "}
             <input
-              className="rounded border border-gray-300 px-2 py-1 text-sm w-16"
+              className="rounded border border-border px-2 py-1 text-sm w-16"
               type="number"
               min={1}
               max={8}
@@ -69,7 +69,7 @@ export default function FormatToolPage({ config }: { config: FormatToolConfig })
           </label>
           <button
             onClick={() => setInput(result)}
-            className={`px-3 py-1 text-sm rounded-md text-white ${buttonColorClass}`}
+            className={`px-3 py-1 text-sm rounded-md text-primary-foreground ${buttonColorClass}`}
           >
             Format
           </button>
@@ -86,14 +86,14 @@ export default function FormatToolPage({ config }: { config: FormatToolConfig })
       }
       outputLabel="Output"
       output={
-        <pre className="w-full h-full p-4 font-mono text-sm whitespace-pre-wrap break-words overflow-auto bg-gray-50">
+        <pre className="w-full h-full p-4 font-mono text-sm whitespace-pre-wrap break-words overflow-auto bg-muted">
           {result}
         </pre>
       }
       outputActions={
         <button
           onClick={copy}
-          className={`inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md text-white ${buttonColorClass}`}
+          className={`inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md text-primary-foreground ${buttonColorClass}`}
         >
           {copied ? <Check className="h-4 w-4" /> : <ClipboardCopy className="h-4 w-4" />} Copy
         </button>

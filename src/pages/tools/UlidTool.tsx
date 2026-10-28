@@ -90,40 +90,40 @@ export default function UlidTool() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-violet-100 text-violet-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Fingerprint className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">ULID 生成器</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">生成</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <input
               type="number"
               min={1}
               max={100}
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               value={count}
               onChange={(e) => setCount(Number(e.target.value))}
             />
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 bg-violet-600 text-white rounded-md text-sm hover:bg-violet-700"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary"
               onClick={generate}
             >
               生成
             </button>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => copy(joined)}
               disabled={!joined}
             >
               <ClipboardCopy className="h-4 w-4" /> 复制全部{" "}
-              {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+              {copied ? <Check className="h-4 w-4 text-success" /> : null}
             </button>
           </div>
-          <div className="rounded-md border border-gray-200 p-3 space-y-2">
+          <div className="rounded-md border border-border p-3 space-y-2">
             {list.length
               ? list.map((u, i) => {
                   const ts = decodeTime(u);
@@ -131,7 +131,7 @@ export default function UlidTool() {
                   return (
                     <div key={i} className="flex items-center justify-between text-sm">
                       <span className="font-mono break-all">{u}</span>
-                      <span className="text-gray-600">{show}</span>
+                      <span className="text-muted-foreground">{show}</span>
                     </div>
                   );
                 })
@@ -139,18 +139,18 @@ export default function UlidTool() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">解析时间戳</div>
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 w-full font-mono"
+            className="rounded-md border border-border px-3 py-2 w-full font-mono"
             placeholder="输入 ULID"
             value={decodeInput}
             onChange={(e) => setDecodeInput(e.target.value)}
           />
-          <div className="rounded-md border border-gray-200 px-3 py-2 text-sm font-mono">
+          <div className="rounded-md border border-border px-3 py-2 text-sm font-mono">
             {decodedTs || "—"}
           </div>
-          <div className="text-xs text-gray-600">ULID 前 10 位表示毫秒时间戳，后 16 位为随机。</div>
+          <div className="text-xs text-muted-foreground">ULID 前 10 位表示毫秒时间戳，后 16 位为随机。</div>
         </div>
       </div>
     </div>

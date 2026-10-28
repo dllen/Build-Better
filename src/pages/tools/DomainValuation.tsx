@@ -141,22 +141,22 @@ export default function DomainValuation() {
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
       <div className="flex items-center gap-3">
-        <div className="p-3 rounded-lg bg-emerald-100 text-emerald-600">
+        <div className="p-3 rounded-lg bg-success/10 text-success">
           <DollarSign className="h-6 w-6" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-foreground">
             {t("tools.domain-valuation.title", "Domain Valuation")}
           </h1>
-          <p className="text-gray-500">
+          <p className="text-muted-foreground">
             {t("tools.domain-valuation.subtitle", "Estimate the market value of your domain name")}
           </p>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-6">
+      <div className="bg-card rounded-xl border border-border p-6 space-y-6">
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-muted-foreground">
             {t("tools.domain-valuation.input_label", "Enter Domain Name")}
           </label>
           <div className="flex gap-2">
@@ -165,19 +165,19 @@ export default function DomainValuation() {
               value={domain}
               onChange={(e) => setDomain(e.target.value)}
               placeholder="example.com"
-              className="flex-1 rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
+              className="flex-1 rounded-lg border border-border px-4 py-3 focus:ring-2 focus:ring-ring focus:border-transparent outline-none transition-colors"
               onKeyDown={(e) => e.key === "Enter" && calculateValuation(domain)}
             />
             <button
               onClick={() => calculateValuation(domain)}
-              className="px-6 py-3 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2"
+              className="px-6 py-3 bg-success text-success-foreground rounded-lg font-medium hover:bg-success transition-colors flex items-center gap-2"
             >
               <TrendingUp className="h-5 w-5" />
               {t("tools.domain-valuation.analyze_btn", "Analyze")}
             </button>
           </div>
           {error && (
-            <p className="text-red-500 text-sm flex items-center gap-1">
+            <p className="text-destructive text-sm flex items-center gap-1">
               <AlertTriangle className="h-4 w-4" /> {error}
             </p>
           )}
@@ -185,14 +185,14 @@ export default function DomainValuation() {
 
         {result && (
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-6 border border-emerald-100 text-center">
-              <div className="text-sm text-emerald-600 font-medium uppercase tracking-wide mb-1">
+            <div className="bg-gradient-to-br from-primary/20 to-primary/20 rounded-xl p-6 border border-border text-center">
+              <div className="text-sm text-success font-medium tracking-wide mb-1">
                 {t("tools.domain-valuation.estimated_value", "Estimated Value")}
               </div>
-              <div className="text-5xl font-bold text-emerald-700 mb-2">
+              <div className="text-5xl font-bold text-success mb-2">
                 ${result.estimatedValue.toLocaleString()}
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-success/10 text-success text-sm font-medium">
                 <Info className="h-4 w-4" />
                 {result.summary}
               </div>
@@ -202,26 +202,26 @@ export default function DomainValuation() {
               {result.factors.map((factor, index) => (
                 <div
                   key={index}
-                  className="p-4 rounded-lg border border-gray-100 bg-gray-50 flex items-start gap-3"
+                  className="p-4 rounded-lg border border-border bg-muted flex items-start gap-3"
                 >
                   {factor.type === "positive" && (
-                    <CheckCircle className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-success shrink-0 mt-0.5" />
                   )}
                   {factor.type === "negative" && (
-                    <XCircle className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
+                    <XCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
                   )}
                   {factor.type === "neutral" && (
-                    <Info className="h-5 w-5 text-blue-500 shrink-0 mt-0.5" />
+                    <Info className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                   )}
                   <div>
-                    <div className="font-medium text-gray-900">{factor.name}</div>
-                    <div className="text-sm text-gray-500">{factor.description}</div>
+                    <div className="font-medium text-foreground">{factor.name}</div>
+                    <div className="text-sm text-muted-foreground">{factor.description}</div>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="text-xs text-gray-400 text-center mt-4">
+            <div className="text-xs text-muted-foreground text-center mt-4">
               *{" "}
               {t(
                 "tools.domain-valuation.disclaimer",

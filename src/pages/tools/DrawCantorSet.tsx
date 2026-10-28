@@ -122,11 +122,11 @@ export default function DrawCantorSet() {
   const totalLength = Math.pow(2 / 3, iterations);
 
   return (
-    <div className={`max-w-3xl mx-auto py-8 px-4 ${isDark ? "text-gray-100" : ""}`}>
+    <div className={`max-w-3xl mx-auto py-8 px-4 ${isDark ? "text-muted-foreground" : ""}`}>
       {/* Title */}
       <div className="flex items-center gap-3 mb-2">
-        <div className="p-2 bg-orange-100 text-orange-600 rounded-lg">
-          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <div className="p-2 bg-primary/10 text-primary rounded-lg">
+          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <line x1="4" y1="12" x2="9" y2="12" />
             <line x1="11" y1="12" x2="13" y2="12" />
             <line x1="15" y1="12" x2="20" y2="12" />
@@ -138,16 +138,16 @@ export default function DrawCantorSet() {
             <line x1="18.5" y1="18" x2="20" y2="18" />
           </svg>
         </div>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Cantor Set</h1>
+        <h1 className="text-2xl font-bold text-foreground dark:text-muted-foreground">Cantor Set</h1>
       </div>
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
-        The classic Cantor ternary set — repeatedly remove the middle third of each segment. Each row shows one iteration.
+      <p className="text-sm text-muted-foreground dark:text-muted-foreground mb-6">
+        The classic Cantor ternary set: repeatedly remove the middle third of each segment. Each row shows one iteration.
       </p>
 
       {/* Controls */}
-      <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 mb-6">
+      <div className="p-4 rounded-xl border border-border dark:border-border bg-card dark:bg-muted mb-6">
         <div className="flex flex-wrap items-center gap-4">
-          <div className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-300">
+          <div className="flex items-center gap-1.5 text-sm text-muted-foreground dark:text-muted-foreground">
             <span>Iterations:</span>
             <input
               type="number"
@@ -155,20 +155,20 @@ export default function DrawCantorSet() {
               max={8}
               value={iterations}
               onChange={(e) => setIterations(Math.max(0, Math.min(8, Number(e.target.value))))}
-              className="w-16 rounded-lg border border-gray-300 dark:border-gray-600 px-2 py-1.5 text-sm text-center focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none bg-white dark:bg-gray-700 dark:text-gray-100"
+              className="w-16 rounded-lg border border-border dark:border-border px-2 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card dark:bg-secondary dark:text-muted-foreground"
             />
-            <span className="text-xs text-gray-400 dark:text-gray-500">/ 8</span>
+            <span className="text-xs text-muted-foreground dark:text-muted-foreground">/ 8</span>
           </div>
-          <div className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-300">
+          <div className="flex items-center gap-1.5 text-sm text-muted-foreground dark:text-muted-foreground">
             <span>Color:</span>
             <input
               type="color"
               value={barColor}
               onChange={(e) => setBarColor(e.target.value)}
-              className="w-8 h-8 rounded border border-gray-300 dark:border-gray-600 cursor-pointer"
+              className="w-8 h-8 rounded border border-border dark:border-border cursor-pointer"
             />
           </div>
-          <div className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-300">
+          <div className="flex items-center gap-1.5 text-sm text-muted-foreground dark:text-muted-foreground">
             <span>Bar H:</span>
             <input
               type="number"
@@ -176,34 +176,36 @@ export default function DrawCantorSet() {
               max={60}
               value={barHeight}
               onChange={(e) => setBarHeight(Math.max(8, Math.min(60, Number(e.target.value))))}
-              className="w-16 rounded-lg border border-gray-300 dark:border-gray-600 px-2 py-1.5 text-sm text-center focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none bg-white dark:bg-gray-700 dark:text-gray-100"
+              className="w-16 rounded-lg border border-border dark:border-border px-2 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card dark:bg-secondary dark:text-muted-foreground"
             />
           </div>
           <button
             onClick={draw}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-orange-600 text-white text-sm font-medium rounded-lg hover:bg-orange-700 transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary transition-colors"
           >
             <RefreshCw className="h-3.5 w-3.5" />Draw
           </button>
         </div>
-        <p className="mt-3 text-xs text-gray-400 dark:text-gray-500">
-          Iteration: {iterations} &middot; Segments: {segments.toLocaleString()} &middot; Total length ratio: {totalLength.toFixed(3)}
-        </p>
+        <div className="mt-3 flex flex-wrap items-center text-xs text-muted-foreground">
+          <span className="px-3 first:pl-0 last:pr-0 border-l border-border first:border-l-0">Iteration: {iterations}</span>
+          <span className="px-3 first:pl-0 last:pr-0 border-l border-border first:border-l-0">Segments: {segments.toLocaleString()}</span>
+          <span className="px-3 first:pl-0 last:pr-0 border-l border-border first:border-l-0">Total length ratio: {totalLength.toFixed(3)}</span>
+        </div>
       </div>
 
       {/* Canvas */}
-      <div className="rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-        <div className="flex items-center justify-between px-4 py-2 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Cantor Set</span>
+      <div className="rounded-xl border border-border dark:border-border overflow-hidden">
+        <div className="flex items-center justify-between px-4 py-2 bg-muted dark:bg-muted border-b border-border dark:border-border">
+          <span className="text-sm font-medium text-muted-foreground dark:text-muted-foreground">Cantor Set</span>
           <button
             onClick={handleDownload}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground dark:text-muted-foreground dark:hover:text-muted-foreground hover:bg-muted dark:hover:bg-secondary rounded transition-colors"
           >
             <Download className="h-3.5 w-3.5" />Download PNG
           </button>
         </div>
-        <div ref={containerRef} className="flex items-center justify-center p-4 bg-[#1a1a2e] dark:bg-[#0d1117]">
-          <canvas ref={canvasRef} className="max-w-full h-auto rounded" />
+        <div ref={containerRef} className="flex items-center justify-center p-4 bg-paper-3">
+          <canvas ref={canvasRef} className="max-w-full h-auto rounded" role="img" aria-label="Drawing output" />
         </div>
       </div>
     </div>

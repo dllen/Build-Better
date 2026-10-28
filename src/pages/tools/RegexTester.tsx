@@ -61,7 +61,7 @@ export default function RegexTester() {
       return (
         <span>
           {text.slice(0, start)}
-          <mark className="bg-yellow-200 px-0.5">{text.slice(start, end)}</mark>
+          <mark className="bg-primary/10 px-0.5">{text.slice(start, end)}</mark>
           {text.slice(end)}
         </span>
       );
@@ -75,7 +75,7 @@ export default function RegexTester() {
       const end = start + m[0].length;
       parts.push(text.slice(lastIndex, start));
       parts.push(
-        <mark key={start} className="bg-yellow-200 px-0.5">
+        <mark key={start} className="bg-primary/10 px-0.5">
           {text.slice(start, end)}
         </mark>
       );
@@ -112,7 +112,7 @@ export default function RegexTester() {
       <EditorSplitLayout
         title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <Search className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">Regex Tester</h1>
@@ -121,7 +121,7 @@ export default function RegexTester() {
       toolbar={
         <>
           <input
-            className="rounded-md border border-gray-300 px-2 py-1 text-sm font-mono min-w-48"
+            className="rounded-md border border-border px-2 py-1 text-sm font-mono min-w-48"
             placeholder="(foo|bar)+"
             value={pattern}
             onChange={(e) => setPattern(e.target.value)}
@@ -138,7 +138,7 @@ export default function RegexTester() {
               </label>
             ))}
           </div>
-          <span className="text-xs text-gray-500 font-mono">
+          <span className="text-xs text-muted-foreground font-mono">
             /{pattern}/{flagsString}
           </span>
         </>
@@ -154,74 +154,74 @@ export default function RegexTester() {
       }
       outputLabel="Highlighted"
       output={
-        <div className="h-full overflow-auto px-3 py-3 text-sm text-gray-800 break-words whitespace-pre-wrap">
+        <div className="h-full overflow-auto px-3 py-3 text-sm text-foreground break-words whitespace-pre-wrap">
           {highlighted}
         </div>
       }
       footer={
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div className="rounded-lg border border-gray-200 bg-white p-3">
+            <div className="rounded-lg border border-border bg-card p-3">
               <div className="font-medium text-sm mb-1">Status</div>
               {!pattern.trim() ? (
-                <div className="text-gray-500 text-sm">Enter a pattern to begin testing</div>
+                <div className="text-muted-foreground text-sm">Enter a pattern to begin testing</div>
               ) : error ? (
-                <div className="text-red-600 text-sm">{error}</div>
+                <div className="text-destructive text-sm">{error}</div>
               ) : (
-                <div className="text-green-600 text-sm">Valid regular expression</div>
+                <div className="text-success text-sm">Valid regular expression</div>
               )}
             </div>
-            <div className="rounded-lg border border-gray-200 bg-white p-3">
+            <div className="rounded-lg border border-border bg-card p-3">
               <div className="flex items-center justify-between mb-1">
                 <div className="font-medium text-sm">Matches ({matches.length})</div>
                 <button
-                  className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-gray-700 disabled:opacity-50"
+                  className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-muted-foreground disabled:opacity-50"
                   onClick={copyResults}
                   disabled={matches.length === 0}
                 >
-                  {copied ? <Check className="h-3 w-3 text-green-600" /> : <Copy className="h-3 w-3" />}
+                  {copied ? <Check className="h-3 w-3 text-success" /> : <Copy className="h-3 w-3" />}
                   {copied ? "Copied" : "Copy"}
                 </button>
               </div>
               <div className="space-y-2 max-h-48 overflow-auto">
                 {matches.map((m, idx) => (
-                  <div key={idx} className="text-sm text-gray-700">
+                  <div key={idx} className="text-sm text-muted-foreground">
                     <div>
-                      <span className="font-mono bg-gray-100 px-1 rounded">{m.match}</span>
-                      <span className="text-xs text-gray-500 ml-2">@{m.index}</span>
+                      <span className="font-mono bg-muted px-1 rounded">{m.match}</span>
+                      <span className="text-xs text-muted-foreground ml-2">@{m.index}</span>
                     </div>
                     {m.groups.length > 0 && (
-                      <div className="text-xs text-gray-500">
+                      <div className="text-xs text-muted-foreground">
                         groups: {m.groups.map((g, i) => `#${i + 1}="${g}"`).join(", ")}
                       </div>
                     )}
                   </div>
                 ))}
-                {matches.length === 0 && <div className="text-sm text-gray-500">No matches</div>}
+                {matches.length === 0 && <div className="text-sm text-muted-foreground">No matches</div>}
               </div>
             </div>
           </div>
-          <div className="inline-flex items-center gap-1 mt-2 text-xs text-gray-500">
+          <div className="inline-flex items-center gap-1 mt-2 text-xs text-muted-foreground">
             <Shield className="h-3 w-3" />
             数据仅在浏览器本地处理，不会上传到服务器。
           </div>
         </>
       }
     />
-    <div className="mt-8 p-6 bg-white rounded-xl border border-gray-200">
+    <div className="mt-8 p-6 bg-card rounded-xl border border-border">
       <h2 className="text-lg font-semibold mb-4">Related Tools</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        <Link to="/base64" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-          <span className="text-sm font-medium text-gray-700">Base64 编码/解码</span>
-          <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+        <Link to="/base64" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+          <span className="text-sm font-medium text-muted-foreground">Base64 编码/解码</span>
+          <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
         </Link>
-        <Link to="/url-encoder" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-          <span className="text-sm font-medium text-gray-700">URL 编码/解码</span>
-          <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+        <Link to="/url-encoder" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+          <span className="text-sm font-medium text-muted-foreground">URL 编码/解码</span>
+          <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
         </Link>
-        <Link to="/code-formatter" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-          <span className="text-sm font-medium text-gray-700">代码格式化</span>
-          <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+        <Link to="/code-formatter" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+          <span className="text-sm font-medium text-muted-foreground">代码格式化</span>
+          <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
         </Link>
       </div>
     </div>

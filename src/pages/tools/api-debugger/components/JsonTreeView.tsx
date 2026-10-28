@@ -13,12 +13,12 @@ function getType(val: unknown): string {
 
 function getTypeColor(type: string): string {
   switch (type) {
-    case "string": return "text-emerald-400";
-    case "number": return "text-blue-400";
-    case "boolean": return "text-purple-400";
+    case "string": return "text-success";
+    case "number": return "text-primary";
+    case "boolean": return "text-primary";
     case "null": return "text-muted-foreground";
-    case "object": return "text-cyan-400";
-    case "array": return "text-amber-400";
+    case "object": return "text-info";
+    case "array": return "text-primary";
     default: return "text-muted-foreground";
   }
 }
@@ -67,7 +67,7 @@ function JsonNode({
           <span className="w-3 shrink-0" />
         )}
         {label !== "" && (
-          <span className="text-cyan-400 font-mono text-[11px] shrink-0">
+          <span className="text-info font-mono text-[11px] shrink-0">
             {typeof label === "number" ? `[${label}]` : label}
             <span className="text-muted-foreground">: </span>
           </span>
@@ -79,7 +79,7 @@ function JsonNode({
         ) : (
           <span className={getTypeColor(type)}>{preview}</span>
         )}
-        <button onClick={handleCopy} className="ml-auto p-0.5 rounded opacity-0 group-hover:opacity-100 hover:bg-secondary transition-all" title="复制值">
+        <button onClick={handleCopy} className="ml-auto p-0.5 rounded opacity-0 group-hover:opacity-100 hover:bg-secondary transition-colors transition-opacity" title="复制值">
           <Copy className="w-3 h-3 text-muted-foreground" />
         </button>
       </div>

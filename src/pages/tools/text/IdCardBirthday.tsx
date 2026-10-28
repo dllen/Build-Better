@@ -40,7 +40,7 @@ export default function IdCardBirthday() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-lime-100 text-lime-600">
+          <div className="inline-flex p-2 rounded-lg bg-success/10 text-success">
             <CakeSlice className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">身份证提取</h1>
@@ -50,7 +50,7 @@ export default function IdCardBirthday() {
       input={
         <div className="flex flex-col p-3 gap-3">
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 font-mono text-sm"
+            className="rounded-md border border-border px-3 py-2 font-mono text-sm"
             placeholder="输入18位身份证号码"
             maxLength={18}
             value={id}
@@ -63,25 +63,25 @@ export default function IdCardBirthday() {
         <div className="h-full overflow-auto px-3 py-3">
           {info ? (
             <div className="grid grid-cols-2 gap-3">
-              <div className="p-3 bg-gray-50 rounded border">
-                <div className="text-xs text-gray-500">出生日期</div>
+              <div className="p-3 bg-muted rounded border">
+                <div className="text-xs text-muted-foreground">出生日期</div>
                 <div className="font-medium text-lg">{info.birthday}</div>
               </div>
-              <div className="p-3 bg-gray-50 rounded border">
-                <div className="text-xs text-gray-500">性别</div>
+              <div className="p-3 bg-muted rounded border">
+                <div className="text-xs text-muted-foreground">性别</div>
                 <div className="font-medium text-lg">{info.gender}</div>
               </div>
-              <div className="p-3 bg-gray-50 rounded border">
-                <div className="text-xs text-gray-500">年龄</div>
+              <div className="p-3 bg-muted rounded border">
+                <div className="text-xs text-muted-foreground">年龄</div>
                 <div className="font-medium text-lg">{info.age} 岁</div>
               </div>
-              <div className="p-3 bg-gray-50 rounded border">
-                <div className="text-xs text-gray-500">生肖</div>
+              <div className="p-3 bg-muted rounded border">
+                <div className="text-xs text-muted-foreground">生肖</div>
                 <div className="font-medium text-lg">{info.zodiac}</div>
               </div>
             </div>
           ) : (
-            <span className="text-gray-400">{id ? "请输入有效的18位身份证号码" : "输入身份证号码后自动提取"}</span>
+            <span className="text-muted-foreground">{id ? "请输入有效的18位身份证号码" : "输入身份证号码后自动提取"}</span>
           )}
         </div>
       }

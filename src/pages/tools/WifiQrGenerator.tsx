@@ -148,10 +148,10 @@ export default function WifiQrGenerator() {
       <div className="max-w-4xl mx-auto space-y-8">
         <div className="text-center">
           <h1 className="text-3xl font-bold mb-4 flex items-center justify-center gap-2">
-            <Wifi className="w-8 h-8 text-blue-600" />
+            <Wifi className="w-8 h-8 text-primary" />
             {t("tools.wifi-qr.title", "WiFi QR Code Generator")}
           </h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             {t(
               "tools.wifi-qr.subtitle",
               "Create a QR code for your guests to connect to WiFi instantly"
@@ -161,10 +161,10 @@ export default function WifiQrGenerator() {
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Input Form */}
-          <div className="bg-white p-6 rounded-lg shadow-md space-y-6">
+          <div className="bg-card p-6 rounded-lg space-y-6">
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-muted-foreground mb-1">
                   {t("tools.wifi-qr.ssid", "Network Name (SSID)")}
                 </label>
                 <input
@@ -177,7 +177,7 @@ export default function WifiQrGenerator() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-muted-foreground mb-1">
                   {t("tools.wifi-qr.encryption", "Encryption")}
                 </label>
                 <select
@@ -193,7 +193,7 @@ export default function WifiQrGenerator() {
 
               {encryption !== "nopass" && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-muted-foreground mb-1">
                     {t("tools.wifi-qr.password", "Password")}
                   </label>
                   <div className="relative">
@@ -207,7 +207,7 @@ export default function WifiQrGenerator() {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-muted-foreground"
                     >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
@@ -221,9 +221,9 @@ export default function WifiQrGenerator() {
                   id="hidden"
                   checked={hidden}
                   onChange={(e) => setHidden(e.target.checked)}
-                  className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  className="rounded border-border text-primary focus:ring-ring"
                 />
-                <label htmlFor="hidden" className="text-sm text-gray-700">
+                <label htmlFor="hidden" className="text-sm text-muted-foreground">
                   {t("tools.wifi-qr.hidden", "Hidden Network")}
                 </label>
               </div>
@@ -231,17 +231,17 @@ export default function WifiQrGenerator() {
           </div>
 
           {/* Preview */}
-          <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center space-y-6">
+          <div className="bg-card p-6 rounded-lg flex flex-col items-center justify-center space-y-6">
             <div className="text-center w-full">
-              <h3 className="text-lg font-semibold mb-4 text-gray-700">
+              <h3 className="text-lg font-semibold mb-4 text-muted-foreground">
                 {t("tools.wifi-qr.preview", "Preview")}
               </h3>
               
-              <div className="bg-white p-4 border rounded-xl inline-block shadow-sm">
+              <div className="bg-muted p-4 border rounded-xl inline-block">
                 {qrCodeUrl ? (
                   <img src={qrCodeUrl} alt="WiFi QR Code" className="w-64 h-64" />
                 ) : (
-                  <div className="w-64 h-64 bg-gray-100 flex items-center justify-center rounded text-gray-400">
+                  <div className="w-64 h-64 bg-muted flex items-center justify-center rounded text-muted-foreground">
                     <Wifi className="w-16 h-16 opacity-20" />
                   </div>
                 )}
@@ -251,7 +251,7 @@ export default function WifiQrGenerator() {
                 <button
                   onClick={handleDownload}
                   disabled={!qrCodeUrl}
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   <Download className="w-4 h-4" />
                   {t("tools.wifi-qr.download", "Download")}
@@ -259,7 +259,7 @@ export default function WifiQrGenerator() {
                 <button
                   onClick={handlePrint}
                   disabled={!qrCodeUrl}
-                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-muted text-muted-foreground rounded hover:bg-border disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   <Printer className="w-4 h-4" />
                   {t("tools.wifi-qr.print", "Print")}
@@ -267,7 +267,7 @@ export default function WifiQrGenerator() {
               </div>
             </div>
             
-            <div className="w-full bg-blue-50 p-4 rounded-lg text-sm text-blue-800">
+            <div className="w-full bg-primary/10 p-4 rounded-lg text-sm text-primary">
               <p className="font-medium mb-1">How to use:</p>
               <ul className="list-disc pl-4 space-y-1 opacity-90">
                 <li>Enter your WiFi network details</li>

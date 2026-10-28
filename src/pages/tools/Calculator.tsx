@@ -268,25 +268,25 @@ export default function CalculatorTool() {
         ]}
       />
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-lime-100 text-lime-600">
+        <div className="inline-flex p-2 rounded-lg bg-success/10 text-success">
           <Calculator className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Calculator</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3 lg:col-span-2">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3 lg:col-span-2">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <input
-              className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2 font-mono"
+              className="rounded-md border border-border px-3 py-2 md:col-span-2 font-mono"
               placeholder="输入表达式，如 1+2*(3-4)"
               value={expr}
               onChange={(e) => setExpr(e.target.value)}
             />
-            <div className="rounded-md border border-gray-300 px-3 py-2 flex items-center justify-between">
-              <span className="text-sm text-gray-700">角度</span>
+            <div className="rounded-md border border-border px-3 py-2 flex items-center justify-between">
+              <span className="text-sm text-muted-foreground">角度</span>
               <select
-                className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+                className="rounded-md border border-border px-2 py-1 text-sm"
                 value={angle}
                 onChange={(e) => setAngle(e.target.value as AngleMode)}
               >
@@ -296,11 +296,11 @@ export default function CalculatorTool() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="rounded-md border border-gray-300 px-3 py-2 font-mono text-sm">
+            <div className="rounded-md border border-border px-3 py-2 font-mono text-sm">
               {result || "—"}
             </div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => copy(result)}
               disabled={!result}
             >
@@ -308,13 +308,13 @@ export default function CalculatorTool() {
             </button>
             <div className="flex items-center gap-2">
               <button
-                className={`px-3 py-2 rounded-md text-sm border ${mode === "basic" ? "bg-lime-600 text-white border-lime-600" : "border-gray-300"}`}
+                className={`px-3 py-2 rounded-md text-sm border ${mode === "basic" ? "bg-success text-success-foreground border-border" : "border-border"}`}
                 onClick={() => setMode("basic")}
               >
                 基础
               </button>
               <button
-                className={`px-3 py-2 rounded-md text-sm border ${mode === "scientific" ? "bg-lime-600 text-white border-lime-600" : "border-gray-300"}`}
+                className={`px-3 py-2 rounded-md text-sm border ${mode === "scientific" ? "bg-success text-success-foreground border-border" : "border-border"}`}
                 onClick={() => setMode("scientific")}
               >
                 科学
@@ -325,7 +325,7 @@ export default function CalculatorTool() {
             {(mode === "basic" ? basicKeys : sciKeys).flat().map((k, idx) => (
               <button
                 key={idx}
-                className="px-3 py-2 rounded-md border border-gray-300 hover:bg-gray-100 text-sm"
+                className="px-3 py-2 rounded-md border border-border hover:bg-muted text-sm"
                 onClick={() => {
                   if (k === "C") clear();
                   else if (k === "⌫") backspace();
@@ -360,11 +360,11 @@ export default function CalculatorTool() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-medium">历史记录</div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => setHistory([])}
               disabled={!history.length}
             >
@@ -374,18 +374,18 @@ export default function CalculatorTool() {
           <div className="space-y-2">
             {history.length
               ? history.map((h, i) => (
-                  <div key={i} className="rounded-md border border-gray-200 p-2 text-sm">
+                  <div key={i} className="rounded-md border border-border p-2 text-sm">
                     <div className="font-mono break-all">{h.e}</div>
-                    <div className="font-mono text-gray-600 break-all">{h.r}</div>
+                    <div className="font-mono text-muted-foreground break-all">{h.r}</div>
                     <div className="mt-1 flex items-center gap-2">
                       <button
-                        className="px-2 py-1 rounded border border-gray-300 text-xs"
+                        className="px-2 py-1 rounded border border-border text-xs"
                         onClick={() => setExpr(h.e)}
                       >
                         复用
                       </button>
                       <button
-                        className="px-2 py-1 rounded border border-gray-300 text-xs"
+                        className="px-2 py-1 rounded border border-border text-xs"
                         onClick={() => copy(h.r)}
                         disabled={!h.r}
                       >

@@ -76,7 +76,7 @@ export default function PerpetualCalendar() {
       />
 
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-red-100 text-red-600">
+        <div className="inline-flex p-2 rounded-lg bg-destructive/10 text-destructive">
           <CalendarIcon className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">万年历 (Perpetual Calendar)</h1>
@@ -84,20 +84,20 @@ export default function PerpetualCalendar() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Calendar Area */}
-        <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <div className="lg:col-span-2 bg-card rounded-xl border border-border p-6">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
               <button
                 onClick={handlePrevYear}
-                className="p-1 hover:bg-gray-100 rounded text-gray-500"
+                className="p-1 hover:bg-muted rounded text-muted-foreground"
                 title="Previous Year"
               >
                 <ChevronsLeft className="h-5 w-5" />
               </button>
               <button
                 onClick={handlePrevMonth}
-                className="p-1 hover:bg-gray-100 rounded text-gray-500"
+                className="p-1 hover:bg-muted rounded text-muted-foreground"
                 title="Previous Month"
               >
                 <ChevronLeft className="h-5 w-5" />
@@ -110,7 +110,7 @@ export default function PerpetualCalendar() {
               </span>
               <button
                 onClick={handleToday}
-                className="text-sm font-normal px-2 py-0.5 bg-red-50 text-red-600 rounded hover:bg-red-100 transition-colors"
+                className="text-sm font-normal px-2 py-0.5 bg-destructive/10 text-destructive rounded hover:bg-destructive/10 transition-colors"
               >
                 今
               </button>
@@ -119,14 +119,14 @@ export default function PerpetualCalendar() {
             <div className="flex items-center gap-2">
               <button
                 onClick={handleNextMonth}
-                className="p-1 hover:bg-gray-100 rounded text-gray-500"
+                className="p-1 hover:bg-muted rounded text-muted-foreground"
                 title="Next Month"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
               <button
                 onClick={handleNextYear}
-                className="p-1 hover:bg-gray-100 rounded text-gray-500"
+                className="p-1 hover:bg-muted rounded text-muted-foreground"
                 title="Next Year"
               >
                 <ChevronsRight className="h-5 w-5" />
@@ -139,7 +139,7 @@ export default function PerpetualCalendar() {
             {weekDays.map((d, i) => (
               <div
                 key={i}
-                className={`text-center text-sm font-medium py-2 ${i === 0 || i === 6 ? "text-red-500" : "text-gray-500"}`}
+                className={`text-center text-sm font-medium py-2 ${i === 0 || i === 6 ? "text-destructive" : "text-muted-foreground"}`}
               >
                 {d}
               </div>
@@ -164,23 +164,23 @@ export default function PerpetualCalendar() {
 
               if (lunar.getDay() === 1) {
                 lunarText = lunar.getMonthInChinese() + "月";
-                specialColor = "text-red-500 font-medium";
+                specialColor = "text-destructive font-medium";
               }
 
               if (solarTerm) {
                 lunarText = solarTerm;
-                specialColor = "text-blue-600 font-medium";
+                specialColor = "text-primary font-medium";
               }
 
               // Priority: Solar Festival > Lunar Festival > Solar Term > Lunar Day
               if (festivals.length > 0) {
                 lunarText = festivals[0];
-                specialColor = "text-red-500 font-medium";
+                specialColor = "text-destructive font-medium";
               }
               if (solarFestivals.length > 0) {
                 lunarText = solarFestivals[0];
                 if (lunarText.length > 4) lunarText = lunarText.substring(0, 4); // Truncate long names
-                specialColor = "text-red-500 font-medium";
+                specialColor = "text-destructive font-medium";
               }
 
               // Check for official holiday (simplified)
@@ -196,27 +196,22 @@ export default function PerpetualCalendar() {
                 <button
                   key={index}
                   onClick={() => setSelectedDate(item.date)}
-                  className={`
-                    relative flex flex-col items-center justify-center rounded-lg transition-all
-                    ${!item.isCurrentMonth ? "text-gray-300 bg-gray-50/50" : "text-gray-700 bg-white hover:bg-gray-50"}
-                    ${isSelected ? "ring-2 ring-red-500 z-10" : ""}
-                    ${isToday ? "bg-red-50" : ""}
-                  `}
+                  className={` relative flex flex-col items-center justify-center rounded-lg transition-colors ${!item.isCurrentMonth ? "text-muted-foreground bg-muted/50" : "text-muted-foreground hover:bg-muted"} ${isSelected ? "ring-2 ring-ring z-10" : ""} ${isToday ? "bg-destructive/10" : ""} `}
                 >
                   {/* Holiday/Work badge */}
                   {isHoliday && (
                     <div
-                      className={`absolute top-0.5 left-0.5 text-[10px] px-1 rounded ${isWork ? "bg-gray-200 text-gray-600" : "bg-red-100 text-red-600"}`}
+                      className={`absolute top-0.5 left-0.5 text-[10px] px-1 rounded ${isWork ? "bg-border text-muted-foreground" : "bg-destructive/10 text-destructive"}`}
                     >
                       {isWork ? "班" : "休"}
                     </div>
                   )}
 
-                  <span className={`text-lg font-medium ${isToday ? "text-red-600" : ""}`}>
+                  <span className={`text-lg font-medium ${isToday ? "text-destructive" : ""}`}>
                     {item.date.getDate()}
                   </span>
                   <span
-                    className={`text-xs truncate max-w-full px-1 ${specialColor || "text-gray-500"}`}
+                    className={`text-xs truncate max-w-full px-1 ${specialColor || "text-muted-foreground"}`}
                   >
                     {lunarText}
                   </span>
@@ -228,76 +223,76 @@ export default function PerpetualCalendar() {
 
         {/* Sidebar / Details */}
         <div className="space-y-6">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="bg-card rounded-xl border border-border p-6">
             <div className="flex flex-col items-center text-center space-y-4">
-              <div className="text-6xl font-bold text-red-600 font-mono">
+              <div className="text-6xl font-bold text-destructive font-mono">
                 {selectedDate.getDate()}
               </div>
-              <div className="text-xl text-gray-700 font-medium">
+              <div className="text-xl text-muted-foreground font-medium">
                 {selectedDate.getFullYear()}年 {selectedDate.getMonth() + 1}月
               </div>
-              <div className="text-lg text-gray-500">星期{weekDays[selectedDate.getDay()]}</div>
+              <div className="text-lg text-muted-foreground">星期{weekDays[selectedDate.getDay()]}</div>
 
-              <div className="w-full h-px bg-gray-200 my-4" />
+              <div className="w-full h-px bg-border my-4" />
 
               <div className="space-y-2 w-full">
                 <div className="flex justify-between">
-                  <span className="text-gray-500">农历</span>
-                  <span className="font-medium text-gray-900">
+                  <span className="text-muted-foreground">农历</span>
+                  <span className="font-medium text-foreground">
                     {selectedLunar.getMonthInChinese()}月{selectedLunar.getDayInChinese()}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">干支</span>
-                  <span className="font-medium text-gray-900">
+                  <span className="text-muted-foreground">干支</span>
+                  <span className="font-medium text-foreground">
                     {selectedLunar.getYearInGanZhi()}年 {selectedLunar.getMonthInGanZhi()}月{" "}
                     {selectedLunar.getDayInGanZhi()}日
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">生肖</span>
-                  <span className="font-medium text-gray-900">
+                  <span className="text-muted-foreground">生肖</span>
+                  <span className="font-medium text-foreground">
                     {selectedLunar.getYearShengXiao()}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">星座</span>
-                  <span className="font-medium text-gray-900">{selectedSolar.getXingZuo()}座</span>
+                  <span className="text-muted-foreground">星座</span>
+                  <span className="font-medium text-foreground">{selectedSolar.getXingZuo()}座</span>
                 </div>
                 {selectedLunar.getJieQi() && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">节气</span>
-                    <span className="font-medium text-blue-600">{selectedLunar.getJieQi()}</span>
+                    <span className="text-muted-foreground">节气</span>
+                    <span className="font-medium text-primary">{selectedLunar.getJieQi()}</span>
                   </div>
                 )}
               </div>
 
-              <div className="w-full h-px bg-gray-200 my-4" />
+              <div className="w-full h-px bg-border my-4" />
 
               <div className="w-full text-left space-y-3">
                 <div className="flex gap-3">
-                  <div className="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-success/10 text-success flex items-center justify-center font-bold shrink-0">
                     宜
                   </div>
-                  <div className="text-sm text-gray-600 leading-6">
+                  <div className="text-sm text-muted-foreground leading-6">
                     {selectedLunar.getDayYi().join("、") || "诸事不宜"}
                   </div>
                 </div>
                 <div className="flex gap-3">
-                  <div className="w-8 h-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center font-bold shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-destructive/10 text-destructive flex items-center justify-center font-bold shrink-0">
                     忌
                   </div>
-                  <div className="text-sm text-gray-600 leading-6">
+                  <div className="text-sm text-muted-foreground leading-6">
                     {selectedLunar.getDayJi().join("、") || "诸事无忌"}
                   </div>
                 </div>
               </div>
 
-              <div className="w-full h-px bg-gray-200 my-4" />
+              <div className="w-full h-px bg-border my-4" />
 
               <div className="w-full text-left">
-                <div className="text-sm font-medium text-gray-500 mb-1">彭祖百忌</div>
-                <div className="text-sm text-gray-700">
+                <div className="text-sm font-medium text-muted-foreground mb-1">彭祖百忌</div>
+                <div className="text-sm text-muted-foreground">
                   {selectedLunar.getPengZuGan()} <br />
                   {selectedLunar.getPengZuZhi()}
                 </div>

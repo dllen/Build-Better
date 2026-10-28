@@ -246,23 +246,23 @@ export default function TxHashIdentifier() {
   }
 
   const confidenceColor = (c: string) =>
-    c === "high" ? "text-green-600" : c === "medium" ? "text-yellow-600" : "text-red-600";
+    c === "high" ? "text-success" : c === "medium" ? "text-primary" : "text-destructive";
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Fingerprint className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">交易哈希识别</h1>
       </div>
 
       {/* Input */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+      <div className="bg-card rounded-lg border border-border p-4 space-y-3">
         <label className="font-medium text-sm">输入哈希</label>
         <textarea
-          className="w-full rounded-md border border-gray-300 px-3 py-2 font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full rounded-md border border-border px-3 py-2 font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring"
           rows={3}
           placeholder="粘贴交易哈希、区块哈希、TXID、ENS Namehash、IPFS CID、UUID..."
           value={input}
@@ -271,14 +271,14 @@ export default function TxHashIdentifier() {
         />
         <div className="flex flex-wrap gap-2">
           <button
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary"
             onClick={identify}
           >
             <Fingerprint className="h-4 w-4" />
             识别
           </button>
           <button
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm hover:bg-border"
             onClick={clear}
           >
             <Trash2 className="h-4 w-4" />
@@ -289,42 +289,40 @@ export default function TxHashIdentifier() {
 
       {/* Detection Result */}
       {result && (
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-medium text-sm">识别结果</div>
             <span
-              className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${confidenceColor(
-                result.confidence
-              )} bg-opacity-10`}
+              className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${confidenceColor( result.confidence )} bg-opacity-10`}
             >
               置信度: {result.confidence === "high" ? "高" : result.confidence === "medium" ? "中" : "低"}
             </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="bg-blue-50 rounded-md px-3 py-2">
-              <div className="text-xs text-gray-500 mb-1">类型</div>
-              <div className="text-sm font-medium text-blue-700">{result.label}</div>
+            <div className="bg-primary/10 rounded-md px-3 py-2">
+              <div className="text-xs text-muted-foreground mb-1">类型</div>
+              <div className="text-sm font-medium text-primary">{result.label}</div>
             </div>
-            <div className="bg-gray-50 rounded-md px-3 py-2">
-              <div className="text-xs text-gray-500 mb-1">前缀预览</div>
-              <div className="text-sm font-mono text-gray-800 truncate">{result.prefix}</div>
+            <div className="bg-muted rounded-md px-3 py-2">
+              <div className="text-xs text-muted-foreground mb-1">前缀预览</div>
+              <div className="text-sm font-mono text-foreground truncate">{result.prefix}</div>
             </div>
-            <div className="bg-gray-50 rounded-md px-3 py-2">
-              <div className="text-xs text-gray-500 mb-1">后缀预览</div>
-              <div className="text-sm font-mono text-gray-800 truncate">{result.suffix}</div>
+            <div className="bg-muted rounded-md px-3 py-2">
+              <div className="text-xs text-muted-foreground mb-1">后缀预览</div>
+              <div className="text-sm font-mono text-foreground truncate">{result.suffix}</div>
             </div>
           </div>
 
           <div className="flex gap-2">
             <button
-              className="inline-flex items-center gap-2 px-3 py-1.5 border border-gray-300 rounded-md text-sm hover:bg-gray-50"
+              className="inline-flex items-center gap-2 px-3 py-1.5 border border-border rounded-md text-sm hover:bg-muted"
               onClick={copyResult}
             >
               {copied ? (
                 <>
-                  <Check className="h-4 w-4 text-green-600" />
-                  <span className="text-green-600">已复制</span>
+                  <Check className="h-4 w-4 text-success" />
+                  <span className="text-success">已复制</span>
                 </>
               ) : (
                 <>
@@ -339,46 +337,46 @@ export default function TxHashIdentifier() {
 
       {/* Explorer fetch result */}
       {(loading || explorerInfo) && (
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="flex items-center gap-2">
             <div className="font-medium text-sm">链上信息 (可选)</div>
-            {loading && <Loader2 className="h-4 w-4 animate-spin text-gray-400" />}
+            {loading && <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />}
           </div>
           {explorerInfo && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
               {explorerInfo.blockNumber && (
                 <div className="flex gap-2">
-                  <span className="text-gray-500 shrink-0">区块:</span>
+                  <span className="text-muted-foreground shrink-0">区块:</span>
                   <span className="font-mono">{explorerInfo.blockNumber}</span>
                 </div>
               )}
               {explorerInfo.timestamp && (
                 <div className="flex gap-2">
-                  <span className="text-gray-500 shrink-0">时间:</span>
+                  <span className="text-muted-foreground shrink-0">时间:</span>
                   <span>{explorerInfo.timestamp}</span>
                 </div>
               )}
               {explorerInfo.from && (
                 <div className="flex gap-2 md:col-span-2">
-                  <span className="text-gray-500 shrink-0">From:</span>
+                  <span className="text-muted-foreground shrink-0">From:</span>
                   <span className="font-mono text-xs break-all">{explorerInfo.from}</span>
                 </div>
               )}
               {explorerInfo.to && (
                 <div className="flex gap-2 md:col-span-2">
-                  <span className="text-gray-500 shrink-0">To:</span>
+                  <span className="text-muted-foreground shrink-0">To:</span>
                   <span className="font-mono text-xs break-all">{explorerInfo.to}</span>
                 </div>
               )}
               {explorerInfo.value && (
                 <div className="flex gap-2">
-                  <span className="text-gray-500 shrink-0">金额:</span>
+                  <span className="text-muted-foreground shrink-0">金额:</span>
                   <span className="font-mono">{explorerInfo.value}</span>
                 </div>
               )}
               {explorerInfo.gasUsed && (
                 <div className="flex gap-2">
-                  <span className="text-gray-500 shrink-0">Gas:</span>
+                  <span className="text-muted-foreground shrink-0">Gas:</span>
                   <span className="font-mono">{explorerInfo.gasUsed}</span>
                 </div>
               )}
@@ -389,17 +387,17 @@ export default function TxHashIdentifier() {
 
       {/* Error */}
       {error && (
-        <div className="bg-white rounded-lg border border-red-200 p-4 flex items-start gap-2">
-          <AlertCircle className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
+        <div className="bg-card rounded-lg border border-border p-4 flex items-start gap-2">
+          <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
           <div>
-            <div className="font-medium text-sm text-red-700">识别失败</div>
-            <div className="text-sm text-red-600 mt-0.5">{error}</div>
+            <div className="font-medium text-sm text-destructive">识别失败</div>
+            <div className="text-sm text-destructive mt-0.5">{error}</div>
           </div>
         </div>
       )}
 
       {/* Privacy hint */}
-      <div className="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-800">
+      <div className="bg-primary/10 border border-border rounded-lg px-4 py-3 text-sm text-primary">
         <strong>隐私提示:</strong> 数据仅在浏览器本地处理，不会上传到服务器。请勿在此页面输入私钥或助记词。
       </div>
     </div>

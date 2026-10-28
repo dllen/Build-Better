@@ -46,7 +46,7 @@ export default function ListSum() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-orange-100 text-orange-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <Sigma className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">列表求和</h1>
@@ -55,18 +55,18 @@ export default function ListSum() {
       toolbar={
         <>
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm w-32"
+            className="rounded-md border border-border px-3 py-2 text-sm w-32"
             placeholder="分隔符（可选）"
             value={delimiter}
             onChange={(e) => setDelimiter(e.target.value)}
           />
           <button
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-xs hover:bg-gray-50"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-xs hover:bg-muted"
             onClick={() => copy(resultText)}
             disabled={!resultText}
           >
             <ClipboardCopy className="h-3.5 w-3.5" /> 复制数值
-            {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : null}
+            {copied ? <Check className="h-3.5 w-3.5 text-success" /> : null}
           </button>
         </>
       }
@@ -92,15 +92,15 @@ export default function ListSum() {
                   { label: "最大值", value: stats.max },
                   { label: "个数", value: stats.count },
                 ].map((s) => (
-                  <div key={s.label} className="p-3 bg-gray-50 rounded border border-gray-100">
-                    <div className="text-gray-500 text-xs uppercase">{s.label}</div>
+                  <div key={s.label} className="p-3 bg-muted rounded border border-border">
+                    <div className="text-muted-foreground text-xs">{s.label}</div>
                     <div className="font-mono font-medium text-lg">{s.value}</div>
                   </div>
                 ))}
               </div>
             </>
           ) : (
-            <span className="text-gray-400">—</span>
+            <span className="text-muted-foreground">—</span>
           )}
         </div>
       }

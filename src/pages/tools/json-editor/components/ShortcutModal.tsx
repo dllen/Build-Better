@@ -23,9 +23,9 @@ export function ShortcutModal({ show, shortcuts, onClose, isMac }: ShortcutModal
 
   return (
     <div ref={overlayRef}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/50"
       onClick={(e) => { if (e.target === overlayRef.current) onClose(); }}>
-      <div className="bg-card border border-border rounded-xl shadow-2xl w-[420px] max-w-[90vw] max-h-[80vh] overflow-auto animate-in zoom-in-95">
+      <div className="bg-card border border-border rounded-xl w-[420px] max-w-[90vw] max-h-[80dvh] overflow-auto animate-in zoom-in-95">
         <div className="flex items-center justify-between px-5 py-4 border-b border-border/50">
           <div>
             <h3 className="text-sm font-semibold">快捷键</h3>

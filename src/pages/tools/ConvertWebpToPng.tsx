@@ -32,38 +32,38 @@ export default function ConvertWebpToPng() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-100 text-blue-600 rounded-lg"><Image className="h-5 w-5" /></div>
-          <h1 className="text-2xl font-bold text-gray-900">WebP to PNG</h1>
+          <div className="p-2 bg-primary/10 text-primary rounded-lg"><Image className="h-5 w-5" /></div>
+          <h1 className="text-2xl font-bold text-foreground">WebP to PNG</h1>
         </div>
       }
       toolbar={
         <div className="flex flex-wrap items-center gap-3">
-          <label className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-600 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition-colors cursor-pointer">
+          <label className="inline-flex items-center gap-1.5 btn cursor-pointer">
             <Upload className="h-3.5 w-3.5" />Upload WebP
             <input type="file" accept="image/webp,.webp" onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])} className="hidden" />
           </label>
           <button onClick={convert} disabled={!original}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50">
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary transition-colors disabled:opacity-50">
             <Image className="h-3.5 w-3.5" />Convert
           </button>
         </div>
       }
       inputLabel="WebP Input"
       input={
-        <div className="h-full rounded-lg border border-gray-200 bg-gray-50/50 overflow-auto p-4"
+        <div className="h-full rounded-lg border border-border bg-muted/50 overflow-auto p-4"
           onDragOver={(e) => e.preventDefault()} onDrop={(e) => { e.preventDefault(); const f = e.dataTransfer.files[0]; if (f) handleFile(f); }}>
-          {original ? <img src={original} alt="Original" className="max-w-full h-auto rounded-lg shadow-sm" /> :
-            <div className="flex flex-col items-center justify-center h-full text-gray-400"><Upload className="h-10 w-10 mb-2" /><p className="text-sm">Drop a WebP image or click Upload</p></div>}
-          <canvas ref={canvasRef} className="hidden" />
+          {original ? <img src={original} alt="Original" className="max-w-full h-auto rounded-lg" /> :
+            <div className="flex flex-col items-center justify-center h-full text-muted-foreground"><Upload className="h-10 w-10 mb-2" /><p className="text-sm">Drop a WebP image or click Upload</p></div>}
+          <canvas ref={canvasRef} className="hidden" role="img" aria-label="Drawing output"/>
         </div>
       }
       outputLabel="PNG Output"
       outputActions={output ? <button onClick={() => { const a = document.createElement("a"); a.href = output; a.download = "converted.png"; a.click(); }}
-        className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"><Download className="h-3.5 w-3.5" />Download PNG</button> : undefined}
+        className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors"><Download className="h-3.5 w-3.5" />Download PNG</button> : undefined}
       output={
-        <div className="h-full rounded-lg border border-gray-200 bg-gray-50/50 overflow-auto p-4">
-          {output ? <img src={output} alt="Converted" className="max-w-full h-auto rounded-lg shadow-sm" /> :
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">Converted image will appear here</div>}
+        <div className="h-full rounded-lg border border-border bg-muted/50 overflow-auto p-4">
+          {output ? <img src={output} alt="Converted" className="max-w-full h-auto rounded-lg" /> :
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">Converted image will appear here</div>}
         </div>
       }
     />

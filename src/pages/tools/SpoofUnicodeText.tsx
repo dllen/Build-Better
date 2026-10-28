@@ -95,20 +95,20 @@ export default function SpoofUnicodeText() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-purple-100 text-purple-600 rounded-lg"><Type className="h-5 w-5" /></div>
-          <h1 className="text-2xl font-bold text-gray-900">Spoof Unicode Text</h1>
+          <div className="p-2 bg-primary/10 text-primary rounded-lg"><Type className="h-5 w-5" /></div>
+          <h1 className="text-2xl font-bold text-foreground">Spoof Unicode Text</h1>
         </div>
       }
       toolbar={
         <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-1.5 text-sm text-gray-600">
+          <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
             <span>Intensity: {intensity}%</span>
             <input type="range" min={10} max={100} value={intensity}
               onChange={(e) => setIntensity(Number(e.target.value))}
-              className="w-24 accent-purple-500" />
+              className="w-24 accent-primary" />
           </div>
           <button onClick={handleSpoof}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors">
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary transition-colors">
             <Type className="h-3.5 w-3.5" />Spoof
           </button>
         </div>
@@ -117,30 +117,30 @@ export default function SpoofUnicodeText() {
       input={
         <textarea value={input} onChange={(e) => { setInput(e.target.value); setOutput(""); }}
           placeholder="Enter text to spoof with Unicode homoglyphs..."
-          className="h-full w-full resize-none rounded-lg border border-gray-200 bg-white p-4 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400"
+          className="h-full w-full resize-none rounded-lg border border-border bg-card p-4 text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-border"
           spellCheck={false} />
       }
       outputLabel="Spoofed Text"
       outputActions={
         output ? (
           <button onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors">
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors">
             <Copy className="h-3.5 w-3.5" />Copy
           </button>
         ) : undefined
       }
       output={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-4">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4">
           {output ? (
             <div className="space-y-2">
-              <p className="text-lg font-mono text-gray-800 break-all leading-relaxed">{output}</p>
-              <details className="text-xs text-gray-400">
+              <p className="text-lg font-mono text-foreground break-all leading-relaxed">{output}</p>
+              <details className="text-xs text-muted-foreground">
                 <summary className="cursor-pointer">Show hex codes</summary>
                 <p className="font-mono mt-1">{Array.from(output).map(c => `U+${c.codePointAt(0)!.toString(16).toUpperCase().padStart(4, "0")}`).join(" ")}</p>
               </details>
             </div>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               Spoofed text will appear here
             </div>
           )}

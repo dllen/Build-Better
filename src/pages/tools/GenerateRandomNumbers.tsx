@@ -62,55 +62,55 @@ export default function GenerateRandomNumbers() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-violet-100 text-violet-600 rounded-lg"><Shuffle className="h-5 w-5" /></div>
-          <h1 className="text-2xl font-bold text-gray-900">Generate Random Numbers</h1>
+          <div className="p-2 bg-primary/10 text-primary rounded-lg"><Shuffle className="h-5 w-5" /></div>
+          <h1 className="text-2xl font-bold text-foreground">Generate Random Numbers</h1>
         </div>
       }
       toolbar={
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-1.5 text-sm">
-            <span className="text-gray-600 font-medium">Min:</span>
+            <span className="text-muted-foreground font-medium">Min:</span>
             <input type="number" value={min}
               onChange={(e) => { setMin(Number(e.target.value)); setOutput(""); }}
-              className="w-20 rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-center focus:border-violet-500 focus:ring-1 focus:ring-violet-500 outline-none" />
+              className="w-20 rounded-lg border border-border px-3 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none" />
           </div>
           <div className="flex items-center gap-1.5 text-sm">
-            <span className="text-gray-600 font-medium">Max:</span>
+            <span className="text-muted-foreground font-medium">Max:</span>
             <input type="number" value={max}
               onChange={(e) => { setMax(Number(e.target.value)); setOutput(""); }}
-              className="w-20 rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-center focus:border-violet-500 focus:ring-1 focus:ring-violet-500 outline-none" />
+              className="w-20 rounded-lg border border-border px-3 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none" />
           </div>
           <div className="flex items-center gap-1.5 text-sm">
-            <span className="text-gray-600 font-medium">Count:</span>
+            <span className="text-muted-foreground font-medium">Count:</span>
             <input type="number" min={1} max={10000} value={count}
               onChange={(e) => { setCount(Math.max(1, Math.min(10000, Number(e.target.value)))); setOutput(""); }}
-              className="w-20 rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-center focus:border-violet-500 focus:ring-1 focus:ring-violet-500 outline-none" />
+              className="w-20 rounded-lg border border-border px-3 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none" />
           </div>
           <div className="flex items-center gap-1.5 text-sm">
-            <span className="text-gray-600 font-medium">Seed:</span>
+            <span className="text-muted-foreground font-medium">Seed:</span>
             <input type="text" value={seed}
               onChange={(e) => { setSeed(e.target.value); setOutput(""); }}
               placeholder="optional"
-              className="w-24 rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-center focus:border-violet-500 focus:ring-1 focus:ring-violet-500 outline-none" />
+              className="w-24 rounded-lg border border-border px-3 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none" />
           </div>
           <select value={format} onChange={(e) => { setFormat(e.target.value as "comma" | "line"); setOutput(""); }}
-            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-violet-500 focus:ring-1 focus:ring-violet-500 outline-none bg-white">
+            className="rounded-lg border border-border px-3 py-1.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card">
             <option value="comma">Comma-separated</option>
             <option value="line">One per line</option>
           </select>
           <button onClick={handleGenerate}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-violet-600 text-white text-sm font-medium rounded-lg hover:bg-violet-700 transition-colors">
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary transition-colors">
             <Shuffle className="h-3.5 w-3.5" />Generate
           </button>
         </div>
       }
       inputLabel="Parameters"
       input={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-4">
-          <p className="text-sm text-gray-600">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4">
+          <p className="text-sm text-muted-foreground">
             Set the range, count, and optional seed above, then click <strong>Generate</strong>.
           </p>
-          <p className="text-sm text-gray-500 mt-2">
+          <p className="text-sm text-muted-foreground mt-2">
             Using the same seed produces the same sequence every time.
           </p>
         </div>
@@ -119,17 +119,17 @@ export default function GenerateRandomNumbers() {
       outputActions={
         output && !output.startsWith("Error") ? (
           <button onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors">
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors">
             <Copy className="h-3.5 w-3.5" />Copy
           </button>
         ) : undefined
       }
       output={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-4">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4">
           {output ? (
-            <pre className={`font-mono text-sm whitespace-pre-wrap leading-relaxed ${output.startsWith("Error") ? "text-red-500" : "text-gray-800"}`}>{output}</pre>
+            <pre className={`font-mono text-sm whitespace-pre-wrap leading-relaxed ${output.startsWith("Error") ? "text-destructive" : "text-foreground"}`}>{output}</pre>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               Random numbers will appear here
             </div>
           )}

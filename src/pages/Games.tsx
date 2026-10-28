@@ -12,8 +12,8 @@ const games = [
     description: "Classic NES games collection with emulator. Mario, Contra, Zelda and more!",
     icon: Gamepad2,
     path: "/games/nes",
-    color: "text-red-600",
-    bgColor: "bg-red-100",
+    color: "tone-cool-glyph",
+    bgColor: "tone-cool-tile",
   },
   {
     id: "snake",
@@ -21,8 +21,8 @@ const games = [
     description: "Classic snake game. Eat food, grow longer, don't hit the wall!",
     icon: Play,
     path: "/games/snake",
-    color: "text-green-600",
-    bgColor: "bg-green-100",
+    color: "tone-amber-glyph",
+    bgColor: "tone-amber-tile",
   },
   {
     id: "tetris",
@@ -30,8 +30,8 @@ const games = [
     description: "Classic block stacking game. Clear lines to score points.",
     icon: Box,
     path: "/games/tetris",
-    color: "text-blue-600",
-    bgColor: "bg-blue-100",
+    color: "tone-cool-glyph",
+    bgColor: "tone-cool-tile",
   },
   {
     id: "gomoku",
@@ -39,8 +39,8 @@ const games = [
     description: "Five in a row strategy game against an AI opponent.",
     icon: User,
     path: "/games/gomoku",
-    color: "text-purple-600",
-    bgColor: "bg-purple-100",
+    color: "tone-plain-glyph",
+    bgColor: "tone-plain-tile",
   },
   {
     id: "chinese-chess",
@@ -48,8 +48,8 @@ const games = [
     description: "Classic Chinese Chess (Xiangqi) against AI. Challenge different difficulty levels.",
     icon: User,
     path: "/games/chinese-chess",
-    color: "text-red-600",
-    bgColor: "bg-red-100",
+    color: "tone-cool-glyph",
+    bgColor: "tone-cool-tile",
   },
   {
     id: "go",
@@ -57,8 +57,8 @@ const games = [
     description: "Classic strategy board game. Surround territory to win.",
     icon: CircleDot,
     path: "/games/go",
-    color: "text-slate-700",
-    bgColor: "bg-slate-200",
+    color: "tone-plain-glyph",
+    bgColor: "tone-plain-tile",
   },
   {
     id: "jungle",
@@ -66,8 +66,8 @@ const games = [
     description: "Dou Shou Qi - Classic animal battle strategy game.",
     icon: PawPrint,
     path: "/games/jungle",
-    color: "text-amber-700",
-    bgColor: "bg-amber-200",
+    color: "tone-amber-glyph",
+    bgColor: "tone-amber-tile",
   },
   {
     id: "flying-chess",
@@ -75,8 +75,8 @@ const games = [
     description: "Classic Aeroplane Chess (Ludo Variant) with 3 AI opponents.",
     icon: Plane,
     path: "/games/flying-chess",
-    color: "text-sky-600",
-    bgColor: "bg-sky-100",
+    color: "tone-cool-glyph",
+    bgColor: "tone-cool-tile",
   },
   {
     id: "chinese-checkers",
@@ -84,8 +84,8 @@ const games = [
     description: "Classic Sternhalma. Move pieces to the opposite star point.",
     icon: Hexagon,
     path: "/games/chinese-checkers",
-    color: "text-emerald-600",
-    bgColor: "bg-emerald-100",
+    color: "tone-plain-glyph",
+    bgColor: "tone-plain-tile",
   },
   {
     id: "dino",
@@ -93,8 +93,8 @@ const games = [
     description: "The famous offline dinosaur runner game. Jump over obstacles!",
     icon: Gamepad2,
     path: "/games/dino",
-    color: "text-gray-600",
-    bgColor: "bg-gray-100",
+    color: "tone-plain-glyph",
+    bgColor: "tone-plain-tile",
   },
   {
     id: "minesweeper",
@@ -102,8 +102,8 @@ const games = [
     description: "Uncover all safe cells. Right-click to flag mines.",
     icon: Bomb,
     path: "/games/minesweeper",
-    color: "text-red-600",
-    bgColor: "bg-red-100",
+    color: "tone-cool-glyph",
+    bgColor: "tone-cool-tile",
   },
   {
     id: "game-2048",
@@ -111,8 +111,8 @@ const games = [
     description: "Combine tiles to reach 2048. Arrows to move.",
     icon: Grid2x2,
     path: "/games/2048",
-    color: "text-amber-600",
-    bgColor: "bg-amber-100",
+    color: "tone-amber-glyph",
+    bgColor: "tone-amber-tile",
   },
   {
     id: "link-match",
@@ -120,8 +120,8 @@ const games = [
     description: "字母数字连连看：最多两次拐弯连通即可消除。",
     icon: Link2,
     path: "/games/link-match",
-    color: "text-pink-600",
-    bgColor: "bg-pink-100",
+    color: "tone-cool-glyph",
+    bgColor: "tone-cool-tile",
   },
   {
     id: "sudoku",
@@ -129,8 +129,8 @@ const games = [
     description: "经典数独：填充1-9，行列与宫内不重复。",
     icon: Grid2x2,
     path: "/games/sudoku",
-    color: "text-amber-600",
-    bgColor: "bg-amber-100",
+    color: "tone-plain-glyph",
+    bgColor: "tone-plain-tile",
   },
   {
     id: "pacvim",
@@ -138,8 +138,8 @@ const games = [
     description: "用 Vim 键位在网格中闯关，按顺序收集字符。",
     icon: Keyboard,
     path: "/games/pacvim",
-    color: "text-teal-600",
-    bgColor: "bg-teal-100",
+    color: "tone-cool-glyph",
+    bgColor: "tone-cool-tile",
   },
 ];
 
@@ -150,8 +150,8 @@ const externalGameLinks = [
     description: "在线畅玩经典 FC、街机、掌机等复古游戏。",
     url: "https://www.yikm.net/",
     icon: ExternalLink,
-    color: "text-amber-600",
-    bgColor: "bg-amber-100",
+    color: "tone-amber-glyph",
+    bgColor: "tone-amber-tile",
   },
   {
     id: "wxiu",
@@ -159,8 +159,8 @@ const externalGameLinks = [
     description: "无需下载，直接在浏览器中玩各种小游戏。",
     url: "https://www.wxiu.com/",
     icon: ExternalLink,
-    color: "text-sky-600",
-    bgColor: "bg-sky-100",
+    color: "tone-cool-glyph",
+    bgColor: "tone-cool-tile",
   },
 ];
 
@@ -185,8 +185,8 @@ export default function Games() {
     <div className="space-y-12">
       <SEO title="Games & Relax - BuildBetter" description="Collection of mini games to relax." />
       <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-gray-900 tracking-tight">Games & Relax</h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        <h1 className="text-4xl font-bold text-foreground tracking-tight">Games & Relax</h1>
+        <p className="text-xl text-ink-2 max-w-2xl mx-auto">
           Take a break and enjoy some classic mini games.
         </p>
       </div>
@@ -198,23 +198,23 @@ export default function Games() {
           <Link
             key={game.id}
             to={game.path}
-            className="group block p-6 bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md hover:border-blue-300 transition-all duration-200"
+            className="group block p-6 bg-card rounded-xl border border-border hover:border-primary/40 transition-colors duration-200"
           >
             <div
-              className={`inline-flex p-3 rounded-lg ${game.bgColor} ${game.color} mb-4 group-hover:scale-110 transition-transform`}
+              className={`inline-flex p-3 rounded-lg ${game.bgColor} ${game.color} mb-4 transition-colors`}
             >
               <game.icon className="h-6 w-6" />
             </div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600">
+            <h2 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
               {game.name}
             </h2>
-            <p className="text-gray-600 text-sm">{game.description}</p>
+            <p className="text-ink-2 text-sm">{game.description}</p>
           </Link>
         ))}
       </div>
 
       <div className="space-y-6">
-        <h2 className="text-2xl font-bold text-gray-900 border-b pb-2">更多游戏</h2>
+        <h2 className="text-2xl font-bold text-foreground border-b border-border pb-2">更多游戏</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {externalGameLinks.map((link) => (
             <a
@@ -222,20 +222,20 @@ export default function Games() {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block p-6 bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md hover:border-blue-300 transition-all duration-200"
+              className="group block p-6 bg-card rounded-xl border border-border hover:border-primary/40 transition-colors duration-200"
             >
               <div
-                className={`inline-flex p-3 rounded-lg ${link.bgColor} ${link.color} mb-4 group-hover:scale-110 transition-transform`}
+                className={`inline-flex p-3 rounded-lg ${link.bgColor} ${link.color} mb-4 transition-colors`}
               >
                 <link.icon className="h-6 w-6" />
               </div>
               <div className="flex items-center gap-2 mb-2">
-                <h2 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600">
+                <h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   {link.name}
                 </h2>
-                <ExternalLink className="h-4 w-4 text-gray-400 group-hover:text-blue-600 transition-colors" />
+                <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
               </div>
-              <p className="text-gray-600 text-sm">{link.description}</p>
+              <p className="text-ink-2 text-sm">{link.description}</p>
             </a>
           ))}
         </div>

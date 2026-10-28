@@ -116,16 +116,16 @@ export default function MultiplyMatrices() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-100 text-blue-600 rounded-lg">
+          <div className="p-2 bg-primary/10 text-primary rounded-lg">
             <Crosshair className="h-5 w-5" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Matrix Multiplication</h1>
+          <h1 className="text-2xl font-bold text-foreground">Matrix Multiplication</h1>
         </div>
       }
       toolbar={
         <button
           onClick={handleMultiply}
-          className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+          className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary transition-colors"
         >
           <Crosshair className="h-3.5 w-3.5" />
           Multiply
@@ -133,10 +133,10 @@ export default function MultiplyMatrices() {
       }
       inputLabel="Matrices A and B"
       input={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card">
           <div className="flex flex-col h-full">
             <div className="flex-1 min-h-0 flex flex-col">
-              <label className="block px-4 pt-3 pb-1 text-xs font-medium text-gray-500">
+              <label className="block px-4 pt-3 pb-1 text-xs font-medium text-muted-foreground">
                 Matrix A
               </label>
               <textarea
@@ -151,8 +151,8 @@ export default function MultiplyMatrices() {
                 spellCheck={false}
               />
             </div>
-            <div className="border-t border-gray-200 flex-1 min-h-0 flex flex-col">
-              <label className="block px-4 pt-3 pb-1 text-xs font-medium text-gray-500">
+            <div className="border-t border-border flex-1 min-h-0 flex flex-col">
+              <label className="block px-4 pt-3 pb-1 text-xs font-medium text-muted-foreground">
                 Matrix B
               </label>
               <textarea
@@ -175,7 +175,7 @@ export default function MultiplyMatrices() {
         output ? (
           <button
             onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors"
           >
             <Copy className="h-3.5 w-3.5" />
             Copy
@@ -183,15 +183,15 @@ export default function MultiplyMatrices() {
         ) : undefined
       }
       output={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-4">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4">
           {output ? (
-            <pre className="text-sm font-mono text-gray-800 leading-relaxed whitespace-pre-wrap">
+            <pre className="text-sm font-mono text-foreground leading-relaxed whitespace-pre-wrap">
               {output}
             </pre>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               {error ? (
-                <span className="text-red-500">{error}</span>
+                <span className="text-destructive">{error}</span>
               ) : (
                 "Product matrix will appear here"
               )}

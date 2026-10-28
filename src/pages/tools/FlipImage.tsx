@@ -54,24 +54,24 @@ export default function FlipImage() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-orange-100 text-orange-600 rounded-lg"><FlipHorizontal className="h-5 w-5" /></div>
-          <h1 className="text-2xl font-bold text-gray-900">Flip Image</h1>
+          <div className="p-2 bg-primary/10 text-primary rounded-lg"><FlipHorizontal className="h-5 w-5" /></div>
+          <h1 className="text-2xl font-bold text-foreground">Flip Image</h1>
         </div>
       }
       toolbar={
         <div className="flex flex-wrap items-center gap-3">
-          <label className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-600 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition-colors cursor-pointer">
+          <label className="inline-flex items-center gap-1.5 btn cursor-pointer">
             <Upload className="h-3.5 w-3.5" />Upload
             <input type="file" accept="image/*" onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])} className="hidden" />
           </label>
           <select value={mode} onChange={(e) => setMode(e.target.value as typeof mode)}
-            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none bg-white">
+            className="rounded-lg border border-border px-3 py-1.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card">
             <option value="horizontal">Horizontal</option>
             <option value="vertical">Vertical</option>
             <option value="both">Both</option>
           </select>
           <button onClick={flip}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-orange-600 text-white text-sm font-medium rounded-lg hover:bg-orange-700 transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary transition-colors"
             disabled={!original}>
             <FlipHorizontal className="h-3.5 w-3.5" />Flip
           </button>
@@ -79,34 +79,34 @@ export default function FlipImage() {
       }
       inputLabel="Original"
       input={
-        <div className="h-full rounded-lg border border-gray-200 bg-gray-50/50 overflow-auto p-4"
+        <div className="h-full rounded-lg border border-border bg-muted/50 overflow-auto p-4"
           onDragOver={(e) => e.preventDefault()} onDrop={handleDrop}>
           {original ? (
-            <img src={original} alt="Original" className="max-w-full h-auto rounded-lg shadow-sm" />
+            <img src={original} alt="Original" className="max-w-full h-auto rounded-lg" />
           ) : (
-            <div className="flex flex-col items-center justify-center h-full text-gray-400">
+            <div className="flex flex-col items-center justify-center h-full text-muted-foreground">
               <Upload className="h-10 w-10 mb-2" />
               <p className="text-sm">Drop an image or click Upload</p>
             </div>
           )}
-          <canvas ref={canvasRef} className="hidden" />
+          <canvas ref={canvasRef} className="hidden" role="img" aria-label="Drawing output"/>
         </div>
       }
       outputLabel="Flipped"
       outputActions={
         output ? (
           <button onClick={() => { const a = document.createElement("a"); a.href = output; a.download = "flipped.png"; a.click(); }}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors">
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors">
             <Download className="h-3.5 w-3.5" />Download
           </button>
         ) : undefined
       }
       output={
-        <div className="h-full rounded-lg border border-gray-200 bg-gray-50/50 overflow-auto p-4">
+        <div className="h-full rounded-lg border border-border bg-muted/50 overflow-auto p-4">
           {output ? (
-            <img src={output} alt="Flipped" className="max-w-full h-auto rounded-lg shadow-sm" />
+            <img src={output} alt="Flipped" className="max-w-full h-auto rounded-lg" />
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               Flipped image will appear here
             </div>
           )}

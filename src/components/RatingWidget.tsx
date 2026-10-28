@@ -39,17 +39,17 @@ export function RatingWidget({ toolId, readonly }: Props) {
   }
 
   return (
-    <div className="border-t border-gray-200 pt-4 mt-6">
+    <div className="border-t border-border pt-4 mt-6">
       <RatingSummary ratings={ratings} />
 
       {submitted ? (
-        <p className="mt-3 text-sm text-green-600">Thanks for your feedback!</p>
+        <p className="mt-3 text-sm text-success">Thanks for your feedback!</p>
       ) : (
         <div className="mt-3">
-          <p className="text-sm text-gray-600 mb-1">Rate this tool:</p>
-          <div className="flex items-center gap-3">
+          <p className="text-sm text-muted-foreground mb-1">Rate this tool:</p>
+          <div className="flex flex-wrap items-center gap-3">
             <div className="flex">
-              {[1, 2, 3, 4, 5].map(n => (
+              {[1, 2, 3, 4, 5].map((n) => (
                 <button
                   key={n}
                   type="button"
@@ -57,31 +57,35 @@ export function RatingWidget({ toolId, readonly }: Props) {
                   onMouseLeave={() => setHoverStar(0)}
                   onClick={() => setPickedStar(n)}
                   aria-label={`Rate ${n} star${n > 1 ? "s" : ""}`}
-                  className="p-1"
+                  className="p-1 transition-colors"
                 >
                   <Star
                     className={`h-6 w-6 ${
-                      n <= (hoverStar || pickedStar) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
+                      n <= (hoverStar || pickedStar)
+                        ? "fill-primary text-primary"
+                        : "text-muted-foreground"
                     }`}
+                    aria-hidden="true"
                   />
                 </button>
               ))}
             </div>
             <input
               type="text"
+              name="comment"
               placeholder="Optional comment (max 280 chars)"
               maxLength={280}
               value={comment}
-              onChange={e => setComment(e.target.value)}
-              className="flex-1 text-sm border border-gray-300 rounded px-2 py-1 focus:border-blue-500 focus:outline-none"
+              onChange={(e) => setComment(e.target.value)}
+              className="field flex-1 min-w-[12rem]"
             />
             <button
               type="button"
               onClick={handleSubmit}
               disabled={pickedStar < 1}
-              className="inline-flex items-center gap-1 px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="btn btn--primary"
             >
-              <Send className="h-3.5 w-3.5" />
+              <Send className="h-3.5 w-3.5" aria-hidden="true" />
               Submit
             </button>
           </div>
@@ -93,20 +97,29 @@ export function RatingWidget({ toolId, readonly }: Props) {
 
 function RatingSummary({ ratings }: { ratings: ToolRatings }) {
   if (ratings.count === 0) {
-    return <p className="text-sm text-gray-500">No ratings yet. Be the first!</p>;
+    return <p className="text-sm text-muted-foreground">No ratings yet. Be the first!</p>;
   }
   return (
     <div className="flex items-center gap-2">
       <div className="flex">
-        {[1, 2, 3, 4, 5].map(n => (
+        {[1, 2, 3, 4, 5].map((n) => (
           <Star
             key={n}
-            className={`h-4 w-4 ${n <= Math.round(ratings.average) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
+            className={`h-4 w-4 ${
+              n <= Math.round(ratings.average)
+                ? "fill-primary text-primary"
+                : "text-muted-foreground"
+            }`}
+            aria-hidden="true"
           />
         ))}
       </div>
-      <span className="text-sm font-medium text-gray-900">{ratings.average.toFixed(1)}</span>
-      <span className="text-xs text-gray-500">({ratings.count} rating{ratings.count === 1 ? "" : "s"})</span>
+      <span className="text-sm font-medium text-foreground measured">
+        {ratings.average.toFixed(1)}
+      </span>
+      <span className="text-xs text-muted-foreground">
+        ({ratings.count} rating{ratings.count === 1 ? "" : "s"})
+      </span>
     </div>
   );
 }

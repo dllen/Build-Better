@@ -40,7 +40,7 @@ export default function TextDiff() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-orange-100 text-orange-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <GitCompare className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">Text Diff</h1>
@@ -53,9 +53,9 @@ export default function TextDiff() {
       }
       toolbar={
         <>
-          <label className="text-sm text-gray-700">Algorithm</label>
+          <label className="text-sm text-muted-foreground">Algorithm</label>
           <select
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            className="rounded-md border border-border px-3 py-2 text-sm"
             value={algo}
             onChange={(e) => setAlgo(e.target.value as Algo)}
           >
@@ -63,7 +63,7 @@ export default function TextDiff() {
             <option value="words">Words</option>
             <option value="lines">Lines</option>
           </select>
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-muted-foreground">
             added: {stats.added}, removed: {stats.removed}, unchanged: {stats.unchanged}
           </div>
         </>
@@ -85,16 +85,16 @@ export default function TextDiff() {
         />
       }
       footer={
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-card rounded-lg border border-border p-4">
           <div className="font-medium mb-2">Diff</div>
           <div className="font-mono whitespace-pre-wrap break-words">
             {parts.map((p, i) =>
               p.added ? (
-                <span key={i} className="bg-green-200 text-green-900">
+                <span key={i} className="bg-success/10 text-success">
                   {p.value}
                 </span>
               ) : p.removed ? (
-                <span key={i} className="bg-red-200 text-red-900 line-through">
+                <span key={i} className="bg-destructive/10 text-destructive line-through">
                   {p.value}
                 </span>
               ) : (

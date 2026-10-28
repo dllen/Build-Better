@@ -114,57 +114,53 @@ export default function ZakatCalculator() {
         <>
           {/* Zakat Due / Below Nisab */}
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">
+            <p className="text-sm font-medium text-muted-foreground mb-1">
               {result.isAboveNisab ? t("zakat.zakat_due") : t("zakat.below_nisab")}
             </p>
-            <p className={`text-4xl font-bold ${result.isAboveNisab ? "text-emerald-600" : "text-gray-400"}`}>
+            <p className={`text-4xl font-bold ${result.isAboveNisab ? "text-success" : "text-muted-foreground"}`}>
               {fmt(result.ZakatAmount, currency)}
             </p>
             {result.isAboveNisab && (
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 {t("zakat.rate")} {result.rate}%
               </p>
             )}
           </div>
 
           {/* Net Assets & Nisab */}
-          <div className="grid grid-cols-2 gap-3 pt-6 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-3 pt-6 border-t border-border">
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">{t("zakat.net_wealth")}</p>
+              <p className="text-sm text-muted-foreground mb-1">{t("zakat.net_wealth")}</p>
               <p className="text-xl font-bold">{fmt(result.netAssets, currency)}</p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">{t("zakat.nisab")}</p>
+              <p className="text-sm text-muted-foreground mb-1">{t("zakat.nisab")}</p>
               <p className="text-xl font-bold">{fmt(result.nisab, currency)}</p>
             </div>
           </div>
 
           {/* Nisab Status Indicator */}
           <div
-            className={`p-3 rounded-lg text-center ${
-              result.isAboveNisab
-                ? "bg-emerald-50 text-emerald-700"
-                : "bg-gray-50 text-gray-500"
-            }`}
+            className={`p-3 rounded-lg text-center ${ result.isAboveNisab ? "bg-success/10 text-success" : "bg-muted text-muted-foreground" }`}
           >
             <span className="text-lg mr-2">{result.isAboveNisab ? "✓" : "✗"}</span>
             {result.isAboveNisab ? t("zakat.above_nisab") : t("zakat.below_nisab_status")}
           </div>
 
           {/* Note */}
-          <p className="text-xs text-center text-gray-400">{t("zakat.rate_note")}</p>
+          <p className="text-xs text-center text-muted-foreground">{t("zakat.rate_note")}</p>
 
           {/* Copy Button */}
           <button
             onClick={copyResults}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-success text-success-foreground rounded-lg hover:bg-success transition-colors"
           >
             <Copy className="h-4 w-4" />
             {copied ? t("common.copied") : t("zakat.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Moon className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("zakat.enter_values")}</p>
         </div>
@@ -177,8 +173,8 @@ export default function ZakatCalculator() {
       title={t("zakat.title")}
       subtitle={t("zakat.subtitle")}
       icon={Moon}
-      iconBgColor="bg-emerald-100"
-      iconColor="text-emerald-600"
+      iconBgColor="bg-success/10"
+      iconColor="text-success"
       keywords={[
         "zakat calculator",
         "islamic finance",
@@ -194,13 +190,13 @@ export default function ZakatCalculator() {
         <div className="grid grid-cols-2 gap-3">
           {/* Currency Selector */}
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">
+            <label className="block text-xs font-medium text-muted-foreground mb-1">
               {t("zakat.currency")}
             </label>
             <select
               value={currency}
               onChange={(e) => setCurrency(e.target.value as Currency)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm py-2 px-3 border"
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
             >
               <option value="USD">USD ($)</option>
               <option value="SAR">SAR (ر.س)</option>
@@ -211,27 +207,19 @@ export default function ZakatCalculator() {
 
           {/* Nisab Mode */}
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">
+            <label className="block text-xs font-medium text-muted-foreground mb-1">
               {t("zakat.nisab_mode")}
             </label>
             <div className="flex gap-1">
               <button
                 onClick={() => setNisabMode("gold")}
-                className={`flex-1 px-2 py-2 text-xs font-medium rounded-md ${
-                  nisabMode === "gold"
-                    ? "bg-emerald-600 text-white"
-                    : "bg-gray-100 text-gray-700"
-                }`}
+                className={`flex-1 px-2 py-2 text-xs font-medium rounded-md ${ nisabMode === "gold" ? "bg-success text-success-foreground" : "bg-muted text-muted-foreground" }`}
               >
                 {t("zakat.nisab_gold")}
               </button>
               <button
                 onClick={() => setNisabMode("silver")}
-                className={`flex-1 px-2 py-2 text-xs font-medium rounded-md ${
-                  nisabMode === "silver"
-                    ? "bg-emerald-600 text-white"
-                    : "bg-gray-100 text-gray-700"
-                }`}
+                className={`flex-1 px-2 py-2 text-xs font-medium rounded-md ${ nisabMode === "silver" ? "bg-success text-success-foreground" : "bg-muted text-muted-foreground" }`}
               >
                 {t("zakat.nisab_silver")}
               </button>
@@ -242,7 +230,7 @@ export default function ZakatCalculator() {
         {/* Metal Prices */}
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">
+            <label className="block text-xs font-medium text-muted-foreground mb-1">
               {t("zakat.gold_price_per_gram")}
             </label>
             <input
@@ -252,11 +240,11 @@ export default function ZakatCalculator() {
               value={goldPrice}
               onChange={(e) => setGoldPrice(e.target.value)}
               placeholder={String(GOLD_PRICE_PER_G)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm py-2 px-3 border"
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">
+            <label className="block text-xs font-medium text-muted-foreground mb-1">
               {t("zakat.silver_price_per_gram")}
             </label>
             <input
@@ -266,23 +254,23 @@ export default function ZakatCalculator() {
               value={silverPrice}
               onChange={(e) => setSilverPrice(e.target.value)}
               placeholder={String(SILVER_PRICE_PER_G)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm py-2 px-3 border"
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
             />
           </div>
         </div>
 
         {/* Asset Inputs */}
-        <div className="border-t border-gray-200 pt-4">
-          <p className="text-xs font-semibold text-gray-500 mb-3 uppercase tracking-wide">
+        <div className="border-t border-border pt-4">
+          <p className="text-xs font-semibold text-muted-foreground mb-3 tracking-wide">
             {t("zakat.assets")}
           </p>
           {inputFields.map((field) => (
             <div key={field.key} className="mb-3">
-              <label className="block text-xs font-medium text-gray-700 mb-1">
+              <label className="block text-xs font-medium text-muted-foreground mb-1">
                 {field.label}
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">
                   $
                 </span>
                 <input
@@ -291,7 +279,7 @@ export default function ZakatCalculator() {
                   value={field.value}
                   onChange={(e) => field.set(e.target.value)}
                   placeholder={field.placeholder}
-                  className="block w-full pl-7 pr-3 border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm py-2 border"
+                  className="block w-full pl-7 pr-3 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 border"
                 />
               </div>
             </div>

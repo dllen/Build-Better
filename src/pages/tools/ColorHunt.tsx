@@ -200,20 +200,20 @@ export default function ColorHunt() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-fuchsia-100 text-fuchsia-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Palette className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Color Hunt</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-medium">Curated Palettes</div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {curated.map((p) => (
-              <div key={p.id} className="rounded-md border border-gray-200">
+              <div key={p.id} className="rounded-md border border-border">
                 <div className="flex h-16">
                   {p.colors.map((c, i) => (
                     <div key={i} className="flex-1" style={{ backgroundColor: hexNorm(c) }} />
@@ -225,7 +225,7 @@ export default function ColorHunt() {
                     {p.colors.map((c, i) => (
                       <button
                         key={i}
-                        className="inline-flex items-center gap-2 px-2 py-1 rounded-md border border-gray-300 text-sm font-mono"
+                        className="inline-flex items-center gap-2 px-2 py-1 rounded-md border border-border text-sm font-mono"
                         onClick={() => copy(hexNorm(c))}
                         style={{ backgroundColor: hexNorm(c), color: bestTextColor(c) }}
                       >
@@ -240,13 +240,13 @@ export default function ColorHunt() {
                   </div>
                   <div className="flex items-center gap-2">
                     <button
-                      className="inline-flex items-center gap-2 px-3 py-2 bg-fuchsia-600 text-white rounded-md text-sm hover:bg-fuchsia-700"
+                      className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary"
                       onClick={() => copy(cssVars(p.colors, p.id))}
                     >
                       <Copy className="h-4 w-4" /> Copy CSS Vars
                     </button>
                     <button
-                      className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                      className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
                       onClick={() => copy(JSON.stringify(p.colors))}
                     >
                       <Copy className="h-4 w-4" /> Copy JSON
@@ -258,17 +258,17 @@ export default function ColorHunt() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-medium">Generate Palette</div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 bg-fuchsia-600 text-white rounded-md text-sm hover:bg-fuchsia-700"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary"
               onClick={generate}
             >
               <Shuffle className="h-4 w-4" /> Shuffle
             </button>
           </div>
-          <div className="rounded-md border border-gray-200">
+          <div className="rounded-md border border-border">
             <div className="flex h-16">
               {gen.map((c, i) => (
                 <div key={i} className="flex-1" style={{ backgroundColor: c }} />
@@ -279,7 +279,7 @@ export default function ColorHunt() {
                 {gen.map((c, i) => (
                   <button
                     key={i}
-                    className="inline-flex items-center gap-2 px-2 py-1 rounded-md border border-gray-300 text-sm font-mono"
+                    className="inline-flex items-center gap-2 px-2 py-1 rounded-md border border-border text-sm font-mono"
                     onClick={() => copy(c)}
                     style={{ backgroundColor: c, color: bestTextColor(c) }}
                   >
@@ -290,13 +290,13 @@ export default function ColorHunt() {
               </div>
               <div className="flex items-center gap-2">
                 <button
-                  className="inline-flex items-center gap-2 px-3 py-2 bg-fuchsia-600 text-white rounded-md text-sm hover:bg-fuchsia-700"
+                  className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary"
                   onClick={() => copy(cssVars(gen, "generated"))}
                 >
                   <Copy className="h-4 w-4" /> Copy CSS Vars
                 </button>
                 <button
-                  className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                  className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
                   onClick={() => copy(JSON.stringify(gen))}
                 >
                   <Copy className="h-4 w-4" /> Copy JSON
@@ -308,16 +308,16 @@ export default function ColorHunt() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">Color Utilities</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <input
-              className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2"
+              className="rounded-md border border-border px-3 py-2 md:col-span-2"
               value={colorInput}
               onChange={(e) => setColorInput(e.target.value)}
             />
             <div
-              className="rounded-md border border-gray-200"
+              className="rounded-md border border-border"
               style={{ backgroundColor: hexNorm(colorInput) }}
             >
               <div
@@ -329,37 +329,37 @@ export default function ColorHunt() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-            <div className="rounded-md border border-gray-200 px-3 py-2">
+            <div className="rounded-md border border-border px-3 py-2">
               RGB: {rgb ? `${rgb.r}, ${rgb.g}, ${rgb.b}` : "—"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
+            <div className="rounded-md border border-border px-3 py-2">
               HSL: {hsl ? `${hsl.h}, ${hsl.s}%, ${hsl.l}%` : "—"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
+            <div className="rounded-md border border-border px-3 py-2">
               Contrast vs #ffffff: {contrastWhite ?? "—"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
+            <div className="rounded-md border border-border px-3 py-2">
               Contrast vs #000000: {contrastBlack ?? "—"}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
+            <div className="rounded-md border border-border px-3 py-2">
               Recommended Text: {recommendedText}
             </div>
           </div>
           <div className="flex items-center gap-2">
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 bg-fuchsia-600 text-white rounded-md text-sm hover:bg-fuchsia-700"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary"
               onClick={() => copy(hexNorm(colorInput))}
             >
               <Copy className="h-4 w-4" /> Copy HEX
             </button>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => rgb && copy(`${rgb.r},${rgb.g},${rgb.b}`)}
             >
               <Copy className="h-4 w-4" /> Copy RGB
             </button>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => hsl && copy(`${hsl.h},${hsl.s}%,${hsl.l}%`)}
             >
               <Copy className="h-4 w-4" /> Copy HSL
@@ -367,16 +367,16 @@ export default function ColorHunt() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">Gradient Maker</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <input
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               value={gradA}
               onChange={(e) => setGradA(e.target.value)}
             />
             <input
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               value={gradB}
               onChange={(e) => setGradB(e.target.value)}
             />
@@ -390,14 +390,14 @@ export default function ColorHunt() {
             />
           </div>
           <div
-            className="rounded-md border border-gray-200 h-24"
+            className="rounded-md border border-border h-24"
             style={{
               backgroundImage: `linear-gradient(${angle}deg, ${hexNorm(gradA)}, ${hexNorm(gradB)})`,
             }}
           />
           <div className="flex items-center gap-2">
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 bg-fuchsia-600 text-white rounded-md text-sm hover:bg-fuchsia-700"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary"
               onClick={() =>
                 copy(
                   `background-image: linear-gradient(${angle}deg, ${hexNorm(gradA)}, ${hexNorm(gradB)});`
@@ -407,7 +407,7 @@ export default function ColorHunt() {
               <Copy className="h-4 w-4" /> Copy CSS
             </button>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() =>
                 copy(JSON.stringify({ angle, colors: [hexNorm(gradA), hexNorm(gradB)] }))
               }

@@ -76,74 +76,74 @@ export default function DateDiffCalculator() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Calendar className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">日期差计算</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">选择日期</div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="space-y-1">
-              <label className="text-sm text-gray-700">开始日期</label>
+              <label className="text-sm text-muted-foreground">开始日期</label>
               <input
                 type="date"
-                className="w-full rounded-md border border-gray-300 px-3 py-2"
+                className="w-full rounded-md border border-border px-3 py-2"
                 value={start}
                 onChange={(e) => setStart(e.target.value)}
               />
             </div>
             <div className="space-y-1">
-              <label className="text-sm text-gray-700">结束日期</label>
+              <label className="text-sm text-muted-foreground">结束日期</label>
               <input
                 type="date"
-                className="w-full rounded-md border border-gray-300 px-3 py-2"
+                className="w-full rounded-md border border-border px-3 py-2"
                 value={end}
                 onChange={(e) => setEnd(e.target.value)}
               />
             </div>
           </div>
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-muted-foreground">
             开始: {fmtDate(startDate)}，结束: {fmtDate(endDate)}
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">结果</div>
           {result ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-              <div className="rounded-md border border-gray-200 px-3 py-2">
+              <div className="rounded-md border border-border px-3 py-2">
                 天（精确）: {Math.abs(result.daysExact).toFixed(6)}
               </div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">
+              <div className="rounded-md border border-border px-3 py-2">
                 天（向下取整）: {result.daysFloorAbs}
               </div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">
+              <div className="rounded-md border border-border px-3 py-2">
                 周（精确）: {Math.abs(result.weeksExact).toFixed(6)}
               </div>
-              <div className="rounded-md border border-gray-200 px-3 py-2">
+              <div className="rounded-md border border-border px-3 py-2">
                 周（向下取整）: {result.weeksFloorAbs}
               </div>
-              <div className="rounded-md border border-gray-200 px-3 py-2 md:col-span-2">
+              <div className="rounded-md border border-border px-3 py-2 md:col-span-2">
                 方向: {result.dir || "相同日期"}
               </div>
             </div>
           ) : (
-            <div className="text-sm text-red-600">无效日期</div>
+            <div className="text-sm text-destructive">无效日期</div>
           )}
           <div className="flex items-center gap-2">
-            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-words whitespace-pre-wrap">
+            <div className="flex-1 rounded-md border border-border px-3 py-2 font-mono text-sm break-words whitespace-pre-wrap">
               {summary || "—"}
             </div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => copy(summary)}
               disabled={!summary}
             >
               <ClipboardCopy className="h-4 w-4" /> 复制{" "}
-              {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+              {copied ? <Check className="h-4 w-4 text-success" /> : null}
             </button>
           </div>
         </div>

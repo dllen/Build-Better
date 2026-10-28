@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react";
-import { ImageIcon, Upload, Download, Eye, EyeOff } from "lucide-react";
+import { ImageIcon, Upload, Download, Eye, EyeOff, Lock } from "lucide-react";
 
 interface ExifData {
   [key: string]: string | number | undefined;
@@ -169,28 +169,28 @@ export default function ExifViewer() {
   const filteredEntries = showSensitive ? exifEntries : exifEntries.filter(([k]) => !sensitiveTags.has(k));
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center gap-3 mb-8">
-          <div className="p-2.5 rounded-lg bg-teal-100 text-teal-600">
+          <div className="p-2.5 rounded-lg bg-info/10 text-info">
             <ImageIcon className="h-6 w-6" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">EXIF Viewer & Stripper</h1>
-            <p className="text-gray-500 mt-1">View and remove EXIF metadata from JPEG images. Protect your privacy.</p>
+            <h1 className="text-2xl font-bold text-foreground">EXIF Viewer & Stripper</h1>
+            <p className="text-muted-foreground mt-1">View and remove EXIF metadata from JPEG images. Protect your privacy.</p>
           </div>
         </div>
 
         {/* Upload */}
         <div
-          className="bg-white rounded-xl border-2 border-dashed border-gray-300 hover:border-teal-400 p-10 mb-6 text-center cursor-pointer transition-colors"
+          className="bg-card rounded-xl border-2 border-dashed border-border hover:border-border p-10 mb-6 text-center cursor-pointer transition-colors"
           onClick={() => inputRef.current?.click()}
           onDragOver={(e) => e.preventDefault()}
           onDrop={handleDrop}
         >
-          <Upload className="h-10 w-10 mx-auto text-gray-400 mb-3" />
-          <p className="text-gray-600">Drop a JPEG image here, or click to browse</p>
-          <p className="text-xs text-gray-400 mt-1">Supports .jpg, .jpeg files</p>
+          <Upload className="h-10 w-10 mx-auto text-muted-foreground mb-3" />
+          <p className="text-muted-foreground">Drop a JPEG image here, or click to browse</p>
+          <p className="text-xs text-muted-foreground mt-1">Supports .jpg, .jpeg files</p>
           <input ref={inputRef} type="file" accept="image/jpeg,image/jpg" className="hidden"
             onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])} />
         </div>
@@ -198,12 +198,12 @@ export default function ExifViewer() {
         {image && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Preview */}
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-              <div className="text-sm font-medium text-gray-700 mb-3">{fileName}</div>
-              <img src={image} alt="Uploaded" className="w-full rounded-lg border border-gray-200" />
+            <div className="bg-card rounded-xl border border-border p-5">
+              <div className="text-sm font-medium text-muted-foreground mb-3">{fileName}</div>
+              <img src={image} alt="Uploaded" className="w-full rounded-lg border border-border" />
               <div className="flex gap-2 mt-4">
                 <button onClick={handleStrip}
-                  className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-medium transition-colors">
+                  className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-info hover:bg-info text-info-foreground rounded-lg font-medium transition-colors">
                   <Download className="h-4 w-4" />
                   Download without EXIF
                 </button>
@@ -211,34 +211,37 @@ export default function ExifViewer() {
             </div>
 
             {/* EXIF Data */}
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
+            <div className="bg-card rounded-xl border border-border p-5">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                <span className="text-sm font-semibold text-muted-foreground tracking-wide">
                   EXIF Data ({filteredEntries.length} fields)
                 </span>
                 <button onClick={() => setShowSensitive(!showSensitive)}
-                  className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-gray-700">
+                  className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-muted-foreground">
                   {showSensitive ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
                   {showSensitive ? "Hide" : "Show"} sensitive
                 </button>
               </div>
               {filteredEntries.length === 0 ? (
-                <p className="text-gray-400 text-sm py-4">
+                <p className="text-muted-foreground text-sm py-4">
                   {exifEntries.length === 0 ? "No EXIF data found in this image." : "All fields hidden. Click 'Show sensitive' to reveal."}
                 </p>
               ) : (
                 <div className="space-y-1 max-h-96 overflow-auto">
                   {filteredEntries.map(([key, value]) => (
-                    <div key={key} className="flex items-start justify-between py-1.5 border-b border-gray-100 last:border-0">
-                      <span className={`text-xs font-medium ${sensitiveTags.has(key) ? "text-amber-600" : "text-gray-500"} w-1/3`}>
-                        {key} {sensitiveTags.has(key) && "🔒"}
+                    <div key={key} className="flex items-start justify-between py-1.5 border-b border-border last:border-0">
+                      <span className={`text-xs font-medium ${sensitiveTags.has(key) ? "text-primary" : "text-muted-foreground"} w-1/3`}>
+                        {key}{" "}
+                        {sensitiveTags.has(key) && (
+                          <Lock className="inline h-3 w-3 text-primary" aria-label="Sensitive" />
+                        )}
                       </span>
-                      <span className="text-xs text-gray-800 font-mono text-right break-all w-2/3">{String(value)}</span>
+                      <span className="text-xs text-foreground font-mono text-right break-all w-2/3">{String(value)}</span>
                     </div>
                   ))}
                 </div>
               )}
-              <div className="mt-3 p-2 rounded bg-amber-50 border border-amber-200 text-amber-700 text-xs">
+              <div className="mt-3 p-2 rounded bg-primary/10 border border-border text-primary text-xs">
                 ⚠ EXIF data may include GPS location, camera serial numbers, and timestamps. Strip before sharing publicly.
               </div>
             </div>

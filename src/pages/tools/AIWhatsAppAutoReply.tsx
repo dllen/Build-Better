@@ -76,17 +76,17 @@ export default function AIWhatsAppAutoReply() {
     <div className="space-y-4">
       {loading ? (
         <div className="text-center py-12">
-          <Sparkles className="h-10 w-10 mx-auto mb-4 text-emerald-500 animate-pulse" />
-          <p className="text-sm text-gray-600">{t("tools.ai-whatsapp.generating")}</p>
+          <Sparkles className="h-10 w-10 mx-auto mb-4 text-success animate-pulse" />
+          <p className="text-sm text-muted-foreground">{t("tools.ai-whatsapp.generating")}</p>
         </div>
       ) : variants.length > 0 ? (
         <>
           <div className="space-y-2 max-h-96 overflow-y-auto">
             {variants.map((v, i) => (
-              <div key={i} className="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
+              <div key={i} className="bg-success/10 border border-border rounded-lg p-3">
                 <div className="flex items-center justify-between mb-1">
-                  <p className="text-xs font-bold text-emerald-700">VARIANT {i + 1}</p>
-                  <button onClick={() => copyVariant(v)} className="text-xs text-emerald-700 hover:underline">
+                  <p className="text-xs font-bold text-success">VARIANT {i + 1}</p>
+                  <button onClick={() => copyVariant(v)} className="text-xs text-success hover:underline">
                     {copied ? t("common.copied") : "Copy"}
                   </button>
                 </div>
@@ -94,12 +94,12 @@ export default function AIWhatsAppAutoReply() {
               </div>
             ))}
           </div>
-          <button onClick={copyAll} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700">
+          <button onClick={copyAll} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-success text-success-foreground rounded-lg hover:bg-success">
             <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.ai-whatsapp.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <MessageCircle className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-sm">{t("tools.ai-whatsapp.enter_values")}</p>
           {ollamaOk === false && <div className="mt-3"><OllamaHelpBanner /></div>}
@@ -113,41 +113,41 @@ export default function AIWhatsAppAutoReply() {
       title={t("tools.ai-whatsapp.title")}
       subtitle={t("tools.ai-whatsapp.subtitle")}
       icon={MessageCircle}
-      iconBgColor="bg-emerald-100"
-      iconColor="text-emerald-600"
+      iconBgColor="bg-success/10"
+      iconColor="text-success"
       keywords={["whatsapp auto reply", "whatsapp business", "auto reply", "message template"]}
       result={resultNode}
     >
       <div className="space-y-3">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.ai-whatsapp.trigger")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.ai-whatsapp.trigger")}</label>
           <select value={trigger} onChange={e => setTrigger(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm py-2 px-3 border">
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
             {TRIGGERS.map(t => <option key={t}>{t}</option>)}
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.ai-whatsapp.business_name")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.ai-whatsapp.business_name")}</label>
           <input value={businessName} onChange={e => setBusinessName(e.target.value)} placeholder="My Shop"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.ai-whatsapp.product")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.ai-whatsapp.product")}</label>
           <input value={product} onChange={e => setProduct(e.target.value)} placeholder="Fashion accessories"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <div className="grid grid-cols-2 gap-2">
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.ai-whatsapp.language")}</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">{t("tools.ai-whatsapp.language")}</label>
             <select value={language} onChange={e => setLanguage(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm py-2 px-3 border">
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
               {LANGS.map(l => <option key={l}>{l}</option>)}
             </select>
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.ai-whatsapp.tone")}</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">{t("tools.ai-whatsapp.tone")}</label>
             <select value={tone} onChange={e => setTone(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm py-2 px-3 border">
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
               {TONES.map(t => <option key={t}>{t}</option>)}
             </select>
           </div>
@@ -158,7 +158,7 @@ export default function AIWhatsAppAutoReply() {
         </div>
         <OllamaModelBadge />
         <button onClick={generate} disabled={loading}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50">
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-success text-success-foreground rounded-lg hover:bg-success disabled:opacity-50">
           <Sparkles className="h-4 w-4" />{loading ? "..." : t("tools.ai-whatsapp.generate")}
         </button>
       </div>

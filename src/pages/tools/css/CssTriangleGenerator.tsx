@@ -94,24 +94,20 @@ export default function CssTriangleGenerator() {
       title="CSS Triangle Generator"
       subtitle="Create triangles with the CSS border trick — pick a direction, size, and color. No images needed."
       icon={Triangle}
-      iconBgColor="bg-purple-100"
-      iconColor="text-purple-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["css triangle", "border triangle", "triangle generator", "arrow css", "chevron css"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Direction</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Direction</label>
             <div className="grid grid-cols-2 gap-2">
               {DIRECTIONS.map((d) => (
                 <button
                   key={d.id}
                   type="button"
                   onClick={() => setDir(d.id)}
-                  className={`py-2 px-3 text-sm rounded-lg border transition-colors ${
-                    dir === d.id
-                      ? "border-purple-500 bg-purple-50 text-purple-700 font-medium"
-                      : "border-gray-300 text-gray-600 hover:border-gray-400"
-                  }`}
+                  className={`py-2 px-3 text-sm rounded-lg border transition-colors ${ dir === d.id ? "border-border bg-primary/10 text-primary font-medium" : "border-border text-muted-foreground hover:border-border" }`}
                 >
                   {d.label}
                 </button>
@@ -120,44 +116,44 @@ export default function CssTriangleGenerator() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Width: {width}px</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Width: {width}px</label>
             <input
               type="range"
               min={10}
               max={200}
               value={width}
               onChange={(e) => setWidth(Number(e.target.value))}
-              className="w-full accent-purple-600"
+              className="w-full accent-primary"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Height: {height}px</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Height: {height}px</label>
             <input
               type="range"
               min={10}
               max={200}
               value={height}
               onChange={(e) => setHeight(Number(e.target.value))}
-              className="w-full accent-purple-600"
+              className="w-full accent-primary"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Color</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Color</label>
             <input
               type="color"
               value={color}
               onChange={(e) => setColor(e.target.value)}
-              className="h-10 w-20 rounded-lg border border-gray-300 cursor-pointer bg-white p-1"
+              className="h-10 w-20 rounded-lg border border-border cursor-pointer bg-card p-1"
             />
           </div>
         </div>
       }
       result={
         <div>
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Live preview</p>
-          <div className="flex items-center justify-center rounded-lg border border-gray-200 bg-gray-50 py-12 mb-4 overflow-hidden">
+          <p className="text-xs font-medium text-muted-foreground tracking-wide mb-2">Live preview</p>
+          <div className="flex items-center justify-center rounded-lg border border-border bg-muted py-12 mb-4 overflow-hidden">
             <style>{css}</style>
             <div className="triangle" />
           </div>

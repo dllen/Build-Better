@@ -69,45 +69,45 @@ export default function TextTypesetter() {
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-6">
       <div className="flex items-center gap-2 mb-6">
-        <div className="p-2 bg-teal-100 text-teal-600 rounded-lg">
+        <div className="p-2 bg-info/10 text-info rounded-lg">
           <AlignLeft size={24} />
         </div>
         <h1 className="text-2xl font-bold">Text Typesetter</h1>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <div className="bg-card rounded-xl border border-border p-6">
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Paste mixed English/Chinese text here..."
-          className="w-full h-64 p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none font-mono text-sm mb-4"
+          className="w-full h-64 p-4 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent resize-none font-mono text-sm mb-4"
         />
 
         <div className="flex flex-wrap items-center gap-6 mb-6">
-          <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+          <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
             <input
               type="checkbox"
               checked={opts.spacing}
               onChange={(e) => setOpts({ ...opts, spacing: e.target.checked })}
-              className="rounded text-teal-600 focus:ring-teal-500"
+              className="rounded text-info focus:ring-ring"
             />
             Auto Spacing (CJK-English)
           </label>
-          <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+          <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
             <input
               type="checkbox"
               checked={opts.punctuation}
               onChange={(e) => setOpts({ ...opts, punctuation: e.target.checked })}
-              className="rounded text-teal-600 focus:ring-teal-500"
+              className="rounded text-info focus:ring-ring"
             />
             Convert to Full-width Punctuation
           </label>
-          <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+          <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
             <input
               type="checkbox"
               checked={opts.trim}
               onChange={(e) => setOpts({ ...opts, trim: e.target.checked })}
-              className="rounded text-teal-600 focus:ring-teal-500"
+              className="rounded text-info focus:ring-ring"
             />
             Cleanup Whitespace
           </label>
@@ -116,21 +116,21 @@ export default function TextTypesetter() {
         <div className="flex justify-end gap-2">
           <button
             onClick={() => setText('')}
-            className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+            className="flex items-center gap-2 px-4 py-2 text-muted-foreground hover:bg-muted rounded-lg transition-colors"
           >
             <RotateCcw size={16} />
             Clear
           </button>
           <button
             onClick={processText}
-            className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-info text-info-foreground rounded-lg hover:bg-info transition-colors"
           >
             <AlignLeft size={16} />
             Format
           </button>
           <button
             onClick={handleCopy}
-            className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 border border-border text-muted-foreground rounded-lg hover:bg-muted transition-colors"
           >
             <Copy size={16} />
             {message || 'Copy'}

@@ -39,7 +39,7 @@ export function MatrixInput({ value, onChange, placeholder }: MatrixInputProps) 
             return (
               <tr key={rowIdx}>
                 {cells.slice(0, maxCols).map((cell, colIdx) => (
-                  <td key={colIdx} className="border border-gray-300 dark:border-gray-700">
+                  <td key={colIdx} className="border border-border">
                     <input
                       type="text"
                       value={cell}
@@ -52,7 +52,7 @@ export function MatrixInput({ value, onChange, placeholder }: MatrixInputProps) 
                 <td>
                   <button
                     onClick={() => removeRow(rowIdx)}
-                    className="p-1 text-gray-400 hover:text-red-600"
+                    className="p-1 text-muted-foreground hover:text-destructive transition-colors"
                     aria-label="Delete row"
                   >
                     <X className="h-3 w-3" />
@@ -65,7 +65,7 @@ export function MatrixInput({ value, onChange, placeholder }: MatrixInputProps) 
       </table>
       <button
         onClick={addRow}
-        className="mt-2 inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+        className="mt-2 inline-flex items-center gap-1 px-3 py-1.5 text-sm border border-border rounded-pill text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
       >
         <Plus className="h-3 w-3" /> Add Row
       </button>

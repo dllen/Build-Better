@@ -128,14 +128,14 @@ export default function LlmRequestBuilder() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-amber-100 text-amber-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Bot className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">LLM 请求构建器</h1>
       </div>
 
       {/* Privacy notice */}
-      <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-sm text-green-700">
+      <div className="bg-success/10 border border-border rounded-lg p-3 text-sm text-success">
         此工具仅生成请求文本，不会实际发送请求。数据仅在浏览器本地处理，不会上传到服务器。
       </div>
 
@@ -143,23 +143,23 @@ export default function LlmRequestBuilder() {
         {/* Left column: form */}
         <div className="lg:col-span-2 space-y-4">
           {/* API Endpoint & Model */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">API Endpoint</label>
+              <label className="text-sm font-medium text-muted-foreground">API Endpoint</label>
               <input
                 type="text"
                 value={endpoint}
                 onChange={(e) => setEndpoint(e.target.value)}
                 placeholder="https://api.openai.com/v1/chat/completions"
-                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono text-sm"
+                className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">模型</label>
+              <label className="text-sm font-medium text-muted-foreground">模型</label>
               <select
                 value={model}
                 onChange={(e) => setModel(e.target.value)}
-                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
               >
                 {MODELS.map((m) => (
                   <option key={m} value={m}>
@@ -171,24 +171,24 @@ export default function LlmRequestBuilder() {
           </div>
 
           {/* Messages */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-4">
             <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-gray-700">消息列表</label>
+              <label className="text-sm font-medium text-muted-foreground">消息列表</label>
               <button
                 onClick={addMessage}
-                className="px-3 py-1 rounded-md bg-blue-600 text-white text-sm inline-flex items-center gap-1"
+                className="px-3 py-1 rounded-md bg-primary text-primary-foreground text-sm inline-flex items-center gap-1"
               >
                 + 添加消息
               </button>
             </div>
             <div className="space-y-3">
               {messages.map((msg) => (
-                <div key={msg.id} className="border border-gray-200 rounded-lg p-3 space-y-2">
+                <div key={msg.id} className="border border-border rounded-lg p-3 space-y-2">
                   <div className="flex items-center gap-2">
                     <select
                       value={msg.role}
                       onChange={(e) => updateMessage(msg.id, "role", e.target.value)}
-                      className="rounded-md border border-gray-300 px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="rounded-md border border-border px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                     >
                       <option value="system">system</option>
                       <option value="user">user</option>
@@ -197,7 +197,7 @@ export default function LlmRequestBuilder() {
                     {messages.length > 1 && (
                       <button
                         onClick={() => removeMessage(msg.id)}
-                        className="ml-auto p-1 text-gray-400 hover:text-red-500"
+                        className="ml-auto p-1 text-muted-foreground hover:text-destructive"
                         title="删除"
                       >
                         <Trash2 className="h-4 w-4" />
@@ -209,7 +209,7 @@ export default function LlmRequestBuilder() {
                     onChange={(e) => updateMessage(msg.id, "content", e.target.value)}
                     placeholder="输入消息内容..."
                     rows={3}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono resize-none"
+                    className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring font-mono resize-none"
                   />
                 </div>
               ))}
@@ -217,11 +217,11 @@ export default function LlmRequestBuilder() {
           </div>
 
           {/* Parameters */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
-            <label className="text-sm font-medium text-gray-700">请求参数</label>
+          <div className="bg-card rounded-lg border border-border p-4 space-y-4">
+            <label className="text-sm font-medium text-muted-foreground">请求参数</label>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-xs text-gray-500">
+                <label className="text-xs text-muted-foreground">
                   Temperature: <span className="font-mono">{temperature}</span>
                 </label>
                 <input
@@ -235,17 +235,17 @@ export default function LlmRequestBuilder() {
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-xs text-gray-500">Max Tokens</label>
+                <label className="text-xs text-muted-foreground">Max Tokens</label>
                 <input
                   type="number"
                   value={maxTokens}
                   onChange={(e) => setMaxTokens(parseInt(e.target.value) || 0)}
                   min={1}
-                  className="w-full rounded-md border border-gray-300 px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full rounded-md border border-border px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-xs text-gray-500">
+                <label className="text-xs text-muted-foreground">
                   Top P: <span className="font-mono">{topP}</span>
                 </label>
                 <input
@@ -259,7 +259,7 @@ export default function LlmRequestBuilder() {
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-xs text-gray-500">
+                <label className="text-xs text-muted-foreground">
                   Frequency Penalty: <span className="font-mono">{frequencyPenalty}</span>
                 </label>
                 <input
@@ -273,7 +273,7 @@ export default function LlmRequestBuilder() {
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-xs text-gray-500">
+                <label className="text-xs text-muted-foreground">
                   Presence Penalty: <span className="font-mono">{presencePenalty}</span>
                 </label>
                 <input
@@ -292,27 +292,19 @@ export default function LlmRequestBuilder() {
 
         {/* Right column: output */}
         <div className="space-y-4">
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700">输出格式</span>
+              <span className="text-sm font-medium text-muted-foreground">输出格式</span>
               <div className="flex gap-1">
                 <button
                   onClick={() => setOutputFormat("json")}
-                  className={`px-3 py-1 rounded-md text-sm ${
-                    outputFormat === "json"
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-100 text-gray-700"
-                  }`}
+                  className={`px-3 py-1 rounded-md text-sm ${ outputFormat === "json" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground" }`}
                 >
                   JSON
                 </button>
                 <button
                   onClick={() => setOutputFormat("curl")}
-                  className={`px-3 py-1 rounded-md text-sm ${
-                    outputFormat === "curl"
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-100 text-gray-700"
-                  }`}
+                  className={`px-3 py-1 rounded-md text-sm ${ outputFormat === "curl" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground" }`}
                 >
                   curl
                 </button>
@@ -320,12 +312,12 @@ export default function LlmRequestBuilder() {
             </div>
 
             {!validation.valid && (
-              <div className="text-sm text-red-500 bg-red-50 border border-red-200 rounded-md px-3 py-2">
+              <div className="text-sm text-destructive bg-destructive/10 border border-border rounded-md px-3 py-2">
                 {validation.error}
               </div>
             )}
 
-            <pre className="font-mono text-sm bg-gray-50 border border-gray-200 rounded-md p-3 whitespace-pre-wrap break-all min-h-[200px] max-h-[500px] overflow-auto">
+            <pre className="font-mono text-sm bg-muted border border-border rounded-md p-3 whitespace-pre-wrap break-all min-h-[200px] max-h-[500px] overflow-auto">
               {output || "填写表单生成请求..."}
             </pre>
 
@@ -333,7 +325,7 @@ export default function LlmRequestBuilder() {
               <button
                 onClick={copyOutput}
                 disabled={!output}
-                className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50 text-sm"
+                className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50 text-sm"
               >
                 {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                 {copied ? "已复制" : "复制"}
@@ -341,14 +333,14 @@ export default function LlmRequestBuilder() {
               <button
                 onClick={downloadOutput}
                 disabled={!output}
-                className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50 text-sm"
+                className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50 text-sm"
               >
                 <Download className="h-4 w-4" />
                 下载
               </button>
               <button
                 onClick={clearAll}
-                className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 text-sm"
+                className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 text-sm"
               >
                 <Trash2 className="h-4 w-4" />
                 清空

@@ -78,21 +78,21 @@ export default function CorruptAFile() {
   };
 
   const getLevelColor = (level: number) => {
-    if (level <= 2) return "bg-yellow-500";
-    if (level <= 4) return "bg-orange-500";
-    if (level <= 6) return "bg-red-500";
-    if (level <= 8) return "bg-red-600";
-    return "bg-red-800";
+    if (level <= 2) return "bg-primary";
+    if (level <= 4) return "bg-primary";
+    if (level <= 6) return "bg-destructive";
+    if (level <= 8) return "bg-destructive";
+    return "bg-destructive";
   };
 
   return (
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-red-100 text-red-600 rounded-lg">
+          <div className="p-2 bg-destructive/10 text-destructive rounded-lg">
             <Bug className="h-5 w-5" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Corrupt a File</h1>
+          <h1 className="text-2xl font-bold text-foreground">Corrupt a File</h1>
         </div>
       }
       toolbar={
@@ -101,12 +101,12 @@ export default function CorruptAFile() {
             ref={fileInputRef}
             type="file"
             onChange={handleFileChange}
-            className="text-sm text-gray-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-red-100 file:text-red-700 hover:file:bg-red-200 file:cursor-pointer"
+            className="text-sm text-muted-foreground file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-destructive/10 file:text-destructive hover:file:bg-destructive/10 file:cursor-pointer"
           />
 
           {file && (
             <>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <span>Corruption:</span>
                 <input
                   type="range"
@@ -114,9 +114,9 @@ export default function CorruptAFile() {
                   max={10}
                   value={corruptionLevel}
                   onChange={(e) => setCorruptionLevel(Number(e.target.value))}
-                  className="w-32 accent-red-600"
+                  className="w-32 accent-primary"
                 />
-                <span className={`text-xs font-medium text-white px-2 py-0.5 rounded-full ${getLevelColor(corruptionLevel)}`}>
+                <span className={`text-xs font-medium text-card-foreground px-2 py-0.5 rounded-full ${getLevelColor(corruptionLevel)}`}>
                   {getLevelLabel(corruptionLevel)} ({corruptionLevel}/10)
                 </span>
               </div>
@@ -124,7 +124,7 @@ export default function CorruptAFile() {
               <button
                 onClick={handleCorrupt}
                 disabled={corrupting}
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-destructive text-destructive-foreground text-sm font-medium rounded-lg hover:bg-destructive disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 <Bug className={`h-3.5 w-3.5 ${corrupting ? "animate-pulse" : ""}`} />
                 {corrupting ? "Corrupting..." : "Corrupt"}
@@ -137,7 +137,7 @@ export default function CorruptAFile() {
         file ? (
           <span>
             Original File{" "}
-            <span className="text-xs font-normal text-gray-400">
+            <span className="text-xs font-normal text-muted-foreground">
               ({file.name} · {formatSize(file.size)})
             </span>
           </span>
@@ -146,27 +146,27 @@ export default function CorruptAFile() {
         )
       }
       input={
-        <div className="h-full flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50/50 p-6">
+        <div className="h-full flex items-center justify-center rounded-lg border-2 border-dashed border-border bg-muted/50 p-6">
           {file ? (
             <div className="text-center space-y-2">
-              <File className="h-12 w-12 text-red-400 mx-auto" />
-              <p className="text-sm font-medium text-gray-700">{file.name}</p>
-              <p className="text-xs text-gray-500">{formatSize(file.size)}</p>
+              <File className="h-12 w-12 text-destructive mx-auto" />
+              <p className="text-sm font-medium text-muted-foreground">{file.name}</p>
+              <p className="text-xs text-muted-foreground">{formatSize(file.size)}</p>
               <button
                 onClick={() => {
                   setFile(null);
                   setCorrupted(null);
                   if (fileInputRef.current) fileInputRef.current.value = "";
                 }}
-                className="text-xs text-red-600 hover:text-red-700 underline"
+                className="text-xs text-destructive hover:text-destructive underline"
               >
                 Choose different file
               </button>
             </div>
           ) : (
             <div className="text-center space-y-2">
-              <Upload className="h-12 w-12 text-gray-300 mx-auto" />
-              <p className="text-sm text-gray-500">Choose a file to corrupt it</p>
+              <Upload className="h-12 w-12 text-muted-foreground mx-auto" />
+              <p className="text-sm text-muted-foreground">Choose a file to corrupt it</p>
             </div>
           )}
         </div>
@@ -175,7 +175,7 @@ export default function CorruptAFile() {
         corrupted ? (
           <span>
             Corrupted File{" "}
-            <span className="text-xs font-normal text-gray-400">
+            <span className="text-xs font-normal text-muted-foreground">
               ({formatSize(corrupted.blob.size)})
             </span>
           </span>
@@ -187,7 +187,7 @@ export default function CorruptAFile() {
         corrupted ? (
           <button
             onClick={handleDownload}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors"
           >
             <Download className="h-3.5 w-3.5" />
             Download
@@ -195,22 +195,22 @@ export default function CorruptAFile() {
         ) : undefined
       }
       output={
-        <div className="h-full flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50/50 p-6">
+        <div className="h-full flex items-center justify-center rounded-lg border-2 border-dashed border-border bg-muted/50 p-6">
           {corrupted ? (
             <div className="text-center space-y-3">
-              <Bug className="h-12 w-12 text-red-400 mx-auto" />
+              <Bug className="h-12 w-12 text-destructive mx-auto" />
               <div>
-                <p className="text-sm font-medium text-gray-700">{corrupted.name}</p>
-                <p className="text-xs text-gray-500">{formatSize(corrupted.blob.size)}</p>
+                <p className="text-sm font-medium text-muted-foreground">{corrupted.name}</p>
+                <p className="text-xs text-muted-foreground">{formatSize(corrupted.blob.size)}</p>
               </div>
-              <p className={`text-xs font-medium ${corruptionLevel <= 3 ? "text-yellow-600" : "text-red-600"}`}>
+              <p className={`text-xs font-medium ${corruptionLevel <= 3 ? "text-primary" : "text-destructive"}`}>
                 Corrupted at level {corruptionLevel}/10 ({getLevelLabel(corruptionLevel)})
               </p>
             </div>
           ) : (
             <div className="text-center space-y-2">
-              <Bug className="h-12 w-12 text-gray-300 mx-auto" />
-              <p className="text-sm text-gray-500">
+              <Bug className="h-12 w-12 text-muted-foreground mx-auto" />
+              <p className="text-sm text-muted-foreground">
                 {file ? "Adjust corruption level and click Corrupt" : "Upload a file first"}
               </p>
             </div>

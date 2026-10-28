@@ -37,17 +37,17 @@ export default function AreaCalculator() {
       title="Area Calculator"
       subtitle="Calculate the area of common geometric shapes."
       icon={Shapes}
-      iconBgColor="bg-orange-100"
-      iconColor="text-orange-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["area", "calculator", "geometry", "shape", "rectangle", "circle"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Shape</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Shape</label>
             <select
               value={shape}
               onChange={(e) => setShape(e.target.value as AreaShape)}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none bg-white"
+              className="w-full rounded-lg border border-border px-3 py-2.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card"
             >
               {SHAPES.map((s) => (
                 <option key={s.value} value={s.value}>
@@ -58,11 +58,11 @@ export default function AreaCalculator() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Unit</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Unit</label>
             <select
               value={unit}
               onChange={(e) => setUnit(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none bg-white"
+              className="w-full rounded-lg border border-border px-3 py-2.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card"
             >
               {UNITS.map((u) => (
                 <option key={u} value={u}>
@@ -74,39 +74,39 @@ export default function AreaCalculator() {
 
           <div className="grid grid-cols-1 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">{shapeDef.fields[0]}</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-1.5">{shapeDef.fields[0]}</label>
               <input
                 type="number"
                 min={0}
                 step="any"
                 value={a}
                 onChange={(e) => setA(Number(e.target.value))}
-                className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none"
+                className="w-full rounded-lg border border-border px-3 py-2.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none"
               />
             </div>
             {shapeDef.fields[1] && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">{shapeDef.fields[1]}</label>
+                <label className="block text-sm font-medium text-muted-foreground mb-1.5">{shapeDef.fields[1]}</label>
                 <input
                   type="number"
                   min={0}
                   step="any"
                   value={b}
                   onChange={(e) => setB(Number(e.target.value))}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none"
+                  className="w-full rounded-lg border border-border px-3 py-2.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none"
                 />
               </div>
             )}
             {shapeDef.fields[2] && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">{shapeDef.fields[2]}</label>
+                <label className="block text-sm font-medium text-muted-foreground mb-1.5">{shapeDef.fields[2]}</label>
                 <input
                   type="number"
                   min={0}
                   step="any"
                   value={c}
                   onChange={(e) => setC(Number(e.target.value))}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none"
+                  className="w-full rounded-lg border border-border px-3 py-2.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none"
                 />
               </div>
             )}
@@ -117,14 +117,14 @@ export default function AreaCalculator() {
         <div className="text-center">
           {result ? (
             <>
-              <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Area</p>
-              <p className="text-4xl font-bold text-gray-900">
+              <p className="text-xs font-medium text-muted-foreground tracking-wide mb-2">Area</p>
+              <p className="text-4xl font-bold text-foreground">
                 {Number.isInteger(result.area) ? result.area : result.area.toFixed(4)} {result.unit}²
               </p>
-              <p className="text-sm text-gray-500 mt-2">Formula: {result.formula}</p>
+              <p className="text-sm text-muted-foreground mt-2">Formula: {result.formula}</p>
             </>
           ) : (
-            <p className="text-gray-400 text-sm">Enter dimensions to calculate</p>
+            <p className="text-muted-foreground text-sm">Enter dimensions to calculate</p>
           )}
         </div>
       }

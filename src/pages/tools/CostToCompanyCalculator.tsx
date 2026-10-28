@@ -200,48 +200,48 @@ export default function CostToCompanyCalculator() {
         <>
           {/* Employer Total vs Employee Net */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="text-center p-4 bg-blue-50 rounded-lg">
-              <p className="text-sm font-medium text-blue-600 mb-1">
+            <div className="text-center p-4 bg-primary/10 rounded-lg">
+              <p className="text-sm font-medium text-primary mb-1">
                 {t("costToCompany.employer_total")}
               </p>
-              <p className="text-2xl font-bold text-blue-700">{fmt(result.employerTotal)}</p>
-              <p className="text-xs text-blue-500 mt-1">
+              <p className="text-2xl font-bold text-primary">{fmt(result.employerTotal)}</p>
+              <p className="text-xs text-primary mt-1">
                 {t("costToCompany.per_month")}
               </p>
             </div>
-            <div className="text-center p-4 bg-green-50 rounded-lg">
-              <p className="text-sm font-medium text-green-600 mb-1">
+            <div className="text-center p-4 bg-success/10 rounded-lg">
+              <p className="text-sm font-medium text-success mb-1">
                 {t("costToCompany.employee_net")}
               </p>
-              <p className="text-2xl font-bold text-green-700">{fmt(result.employeeNet)}</p>
-              <p className="text-xs text-green-500 mt-1">
+              <p className="text-2xl font-bold text-success">{fmt(result.employeeNet)}</p>
+              <p className="text-xs text-success mt-1">
                 {t("costToCompany.per_month")}
               </p>
             </div>
           </div>
 
           {/* Gross */}
-          <div className="text-center py-3 border-t border-b border-gray-100">
-            <p className="text-sm text-gray-500">{t("costToCompany.gross_salary")}</p>
+          <div className="text-center py-3 border-t border-b border-border">
+            <p className="text-sm text-muted-foreground">{t("costToCompany.gross_salary")}</p>
             <p className="text-xl font-semibold">{fmt(result.gross)}</p>
           </div>
 
           {/* Employer Costs Breakdown */}
           {result.employerCosts.length > 0 && (
             <div>
-              <p className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">
+              <p className="text-xs font-semibold text-muted-foreground mb-2 tracking-wide">
                 {t("costToCompany.employer_costs")}
               </p>
               <div className="space-y-2">
                 {result.employerCosts.map((cost, idx) => (
                   <div
                     key={idx}
-                    className="flex justify-between items-center py-2 px-3 bg-gray-50 rounded"
+                    className="flex justify-between items-center py-2 px-3 bg-muted rounded"
                   >
-                    <span className="text-sm text-gray-700">{cost.name}</span>
+                    <span className="text-sm text-muted-foreground">{cost.name}</span>
                     <div className="text-right">
                       <span className="text-sm font-medium">{fmt(cost.amount)}</span>
-                      <span className="text-xs text-gray-400 ml-2">{cost.rate}</span>
+                      <span className="text-xs text-muted-foreground ml-2">{cost.rate}</span>
                     </div>
                   </div>
                 ))}
@@ -252,21 +252,21 @@ export default function CostToCompanyCalculator() {
           {/* Employee Deductions */}
           {result.employeeDeductions.length > 0 && (
             <div>
-              <p className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">
+              <p className="text-xs font-semibold text-muted-foreground mb-2 tracking-wide">
                 {t("costToCompany.employee_deductions")}
               </p>
               <div className="space-y-2">
                 {result.employeeDeductions.map((deduction, idx) => (
                   <div
                     key={idx}
-                    className="flex justify-between items-center py-2 px-3 bg-gray-50 rounded"
+                    className="flex justify-between items-center py-2 px-3 bg-muted rounded"
                   >
-                    <span className="text-sm text-gray-700">{deduction.name}</span>
+                    <span className="text-sm text-muted-foreground">{deduction.name}</span>
                     <div className="text-right">
-                      <span className="text-sm font-medium text-red-600">
+                      <span className="text-sm font-medium text-destructive">
                         -{fmt(deduction.amount)}
                       </span>
-                      <span className="text-xs text-gray-400 ml-2">{deduction.rate}</span>
+                      <span className="text-xs text-muted-foreground ml-2">{deduction.rate}</span>
                     </div>
                   </div>
                 ))}
@@ -277,14 +277,14 @@ export default function CostToCompanyCalculator() {
           {/* Copy Button */}
           <button
             onClick={copyResults}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary transition-colors"
           >
             <Copy className="h-4 w-4" />
             {copied ? t("common.copied") : t("costToCompany.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Users className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("costToCompany.enter_values")}</p>
         </div>
@@ -297,8 +297,8 @@ export default function CostToCompanyCalculator() {
       title={t("costToCompany.title")}
       subtitle={t("costToCompany.subtitle")}
       icon={Users}
-      iconBgColor="bg-blue-100"
-      iconColor="text-blue-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={[
         "cost to company calculator",
         "employer cost",
@@ -315,13 +315,13 @@ export default function CostToCompanyCalculator() {
       <div className="space-y-4">
         {/* Country Selector */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             {t("costToCompany.country")}
           </label>
           <select
             value={country}
             onChange={(e) => setCountry(e.target.value as Country)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
           >
             <option value="indonesia">{t("costToCountry.indonesia")}</option>
             <option value="vietnam">{t("costToCompany.country_vietnam")}</option>
@@ -333,27 +333,19 @@ export default function CostToCompanyCalculator() {
 
         {/* Mode Toggle */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             {t("costToCompany.mode")}
           </label>
           <div className="flex gap-1">
             <button
               onClick={() => setMode("grossToTotal")}
-              className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg ${
-                mode === "grossToTotal"
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-100 text-gray-700"
-              }`}
+              className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg ${ mode === "grossToTotal" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground" }`}
             >
               {t("costToCompany.gross_to_total")}
             </button>
             <button
               onClick={() => setMode("totalToGross")}
-              className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg ${
-                mode === "totalToGross"
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-100 text-gray-700"
-              }`}
+              className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg ${ mode === "totalToGross" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground" }`}
             >
               {t("costToCompany.total_to_gross")}
             </button>
@@ -362,13 +354,13 @@ export default function CostToCompanyCalculator() {
 
         {/* Input Amount */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             {mode === "grossToTotal"
               ? t("costToCompany.monthly_gross")
               : t("costToCompany.monthly_total")}
           </label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
               $
             </span>
             <input
@@ -377,7 +369,7 @@ export default function CostToCompanyCalculator() {
               value={inputAmount}
               onChange={(e) => setInputAmount(e.target.value)}
               placeholder="5000"
-              className="block w-full pl-7 pr-3 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 border"
+              className="block w-full pl-7 pr-3 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 border"
             />
           </div>
         </div>
@@ -385,7 +377,7 @@ export default function CostToCompanyCalculator() {
         {/* Custom Employer Rate (only for Generic) */}
         {country === "generic" && (
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted-foreground mb-1">
               {t("costToCompany.employer_rate")}
             </label>
             <div className="relative">
@@ -396,9 +388,9 @@ export default function CostToCompanyCalculator() {
                 value={customEmployerRate}
                 onChange={(e) => setCustomEmployerRate(e.target.value)}
                 placeholder="20"
-                className="block w-full pl-3 pr-8 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 border"
+                className="block w-full pl-3 pr-8 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 border"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
                 %
               </span>
             </div>
@@ -406,7 +398,7 @@ export default function CostToCompanyCalculator() {
         )}
 
         {/* Country Info Note */}
-        <div className="p-3 bg-blue-50 rounded-lg text-xs text-blue-700">
+        <div className="p-3 bg-primary/10 rounded-lg text-xs text-primary">
           {country === "indonesia" && t("costToCompany.info_indonesia")}
           {country === "vietnam" && t("costToCompany.info_vietnam")}
           {country === "saudi" && t("costToCompany.info_saudi")}

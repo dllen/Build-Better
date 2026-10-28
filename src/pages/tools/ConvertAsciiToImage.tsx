@@ -44,23 +44,23 @@ export default function ConvertAsciiToImage() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-gray-100 text-gray-600 rounded-lg"><Image className="h-5 w-5" /></div>
-          <h1 className="text-2xl font-bold text-gray-900">ASCII to Image</h1>
+          <div className="p-2 bg-muted text-muted-foreground rounded-lg"><Image className="h-5 w-5" /></div>
+          <h1 className="text-2xl font-bold text-foreground">ASCII to Image</h1>
         </div>
       }
       toolbar={
         <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-1.5 text-sm text-gray-600">
+          <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
             <span>Font:</span>
             <input type="number" min={6} max={48} value={fontSize}
               onChange={(e) => setFontSize(Math.max(6, Math.min(48, Number(e.target.value))))}
-              className="w-16 rounded-lg border border-gray-300 px-2 py-1.5 text-sm text-center focus:border-gray-500 focus:ring-1 focus:ring-gray-500 outline-none" />
+              className="w-16 rounded-lg border border-border px-2 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-border outline-none" />
           </div>
-          <label className="flex items-center gap-1 text-sm text-gray-600">
+          <label className="flex items-center gap-1 text-sm text-muted-foreground">
             <input type="color" value={fgColor} onChange={(e) => setFgColor(e.target.value)} className="w-6 h-6 rounded cursor-pointer" />
             Text
           </label>
-          <label className="flex items-center gap-1 text-sm text-gray-600">
+          <label className="flex items-center gap-1 text-sm text-muted-foreground">
             <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-6 h-6 rounded cursor-pointer" />
             BG
           </label>
@@ -70,21 +70,21 @@ export default function ConvertAsciiToImage() {
       input={
         <textarea value={input} onChange={(e) => setInput(e.target.value)}
           placeholder="Paste your ASCII art here..."
-          className="h-full w-full resize-none rounded-lg border border-gray-200 bg-gray-900 text-green-400 p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-gray-500/20 focus:border-gray-400"
+          className="h-full w-full resize-none rounded-lg border border-border bg-card text-success p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-border/20 focus:border-border"
           spellCheck={false} />
       }
       outputLabel="Preview"
       outputActions={
         input.trim() ? (
           <button onClick={handleDownload}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors">
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors">
             <Download className="h-3.5 w-3.5" />Download PNG
           </button>
         ) : undefined
       }
       output={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-gray-100 p-4 flex items-start justify-center">
-          <canvas ref={canvasRef} className="max-w-full shadow-lg rounded" />
+        <div className="h-full overflow-auto rounded-lg border border-border bg-muted p-4 flex items-start justify-center">
+          <canvas ref={canvasRef} className="max-w-full rounded" role="img" aria-label="Drawing output"/>
         </div>
       }
     />

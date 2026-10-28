@@ -60,15 +60,15 @@ export default function SSSPhilHealthPagibigCalculator() {
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.sss.net_salary")}</p>
-            <p className="text-4xl font-bold text-green-600">{fmt(result.net)}</p>
-            <p className="text-xs text-gray-500 mt-1">{t("tools.sss.total_ded")}: {fmt(result.totalDeductions)}</p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.sss.net_salary")}</p>
+            <p className="text-4xl font-bold text-success">{fmt(result.net)}</p>
+            <p className="text-xs text-muted-foreground mt-1">{t("tools.sss.total_ded")}: {fmt(result.totalDeductions)}</p>
           </div>
-          <div className="space-y-2 pt-4 border-t border-gray-100">
+          <div className="space-y-2 pt-4 border-t border-border">
             {[
-              { name: "SSS", data: result.sss, color: "bg-blue-100 text-blue-800" },
-              { name: "PhilHealth", data: result.philhealth, color: "bg-green-100 text-green-800" },
-              { name: "Pag-IBIG", data: result.pagibig, color: "bg-yellow-100 text-yellow-800" },
+              { name: "SSS", data: result.sss, color: "bg-primary/10 text-primary" },
+              { name: "PhilHealth", data: result.philhealth, color: "bg-success/10 text-success" },
+              { name: "Pag-IBIG", data: result.pagibig, color: "bg-primary/10 text-primary" },
             ].map(contrib => (
               <div key={contrib.name} className={`p-3 rounded-lg ${contrib.color}`}>
                 <div className="flex justify-between items-center">
@@ -82,12 +82,12 @@ export default function SSSPhilHealthPagibigCalculator() {
               </div>
             ))}
           </div>
-          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary">
             <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.sss.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Calculator className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("tools.sss.enter_values")}</p>
         </div>
@@ -100,18 +100,18 @@ export default function SSSPhilHealthPagibigCalculator() {
       title={t("tools.sss.title")}
       subtitle={t("tools.sss.subtitle")}
       icon={Calculator}
-      iconBgColor="bg-yellow-100"
-      iconColor="text-yellow-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["sss calculator", "philhealth", "pag-ibig", "philippines benefits"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.sss.monthly_salary")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.sss.monthly_salary")}</label>
           <input type="number" min="0" value={monthlySalary} onChange={e => setMonthlySalary(e.target.value)} placeholder="30000"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
-        <div className="bg-blue-50 p-3 rounded-lg text-xs text-blue-800 space-y-1">
+        <div className="bg-primary/10 p-3 rounded-lg text-xs text-primary space-y-1">
           <p><strong>SSS:</strong> 4.5% EE / 9.5% ER (MSC cap 30,000)</p>
           <p><strong>PhilHealth:</strong> 2% EE / 2% ER (10k-90k bracket)</p>
           <p><strong>Pag-IBIG:</strong> 1% EE / 2% ER (cap 5,000)</p>

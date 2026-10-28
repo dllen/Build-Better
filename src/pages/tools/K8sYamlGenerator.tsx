@@ -246,21 +246,21 @@ ${portLines}
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-purple-100 text-purple-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Box className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Kubernetes YAML 生成器</h1>
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg px-4 py-3 text-sm text-blue-700">
+      <div className="bg-primary/10 border border-border rounded-lg px-4 py-3 text-sm text-primary">
         数据仅在浏览器本地处理，不会上传到服务器。
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-5">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-5">
           {/* Resource type selector */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">资源类型</label>
+            <label className="text-sm font-medium text-muted-foreground">资源类型</label>
             <div className="flex gap-2">
               {(["Deployment", "Service"] as ResourceType[]).map((type) => (
                 <button
@@ -270,11 +270,7 @@ ${portLines}
                     setResult("");
                     setErrors({});
                   }}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                    resourceType === type
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${ resourceType === type ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-border" }`}
                 >
                   {type}
                 </button>
@@ -286,64 +282,64 @@ ${portLines}
             <>
               {/* Deployment: name */}
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">名称</label>
+                <label className="text-sm font-medium text-muted-foreground">名称</label>
                 <input
                   type="text"
                   value={deploymentName}
                   onChange={(e) => setDeploymentName(e.target.value)}
                   placeholder="my-deployment"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 />
                 {errors.deploymentName && (
-                  <p className="text-xs text-red-500">{errors.deploymentName}</p>
+                  <p className="text-xs text-destructive">{errors.deploymentName}</p>
                 )}
               </div>
 
               {/* Deployment: image */}
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">镜像</label>
+                <label className="text-sm font-medium text-muted-foreground">镜像</label>
                 <input
                   type="text"
                   value={image}
                   onChange={(e) => setImage(e.target.value)}
                   placeholder="nginx:latest"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 />
                 {errors.image && (
-                  <p className="text-xs text-red-500">{errors.image}</p>
+                  <p className="text-xs text-destructive">{errors.image}</p>
                 )}
               </div>
 
               {/* Deployment: replicas + containerPort */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-sm font-medium text-gray-700">副本数</label>
+                  <label className="text-sm font-medium text-muted-foreground">副本数</label>
                   <input
                     type="number"
                     min="1"
                     value={replicas}
                     onChange={(e) => setReplicas(e.target.value)}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-sm font-medium text-gray-700">容器端口</label>
+                  <label className="text-sm font-medium text-muted-foreground">容器端口</label>
                   <input
                     type="text"
                     value={containerPort}
                     onChange={(e) => setContainerPort(e.target.value)}
                     placeholder="80"
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                   {errors.containerPort && (
-                    <p className="text-xs text-red-500">{errors.containerPort}</p>
+                    <p className="text-xs text-destructive">{errors.containerPort}</p>
                   )}
                 </div>
               </div>
 
               {/* Deployment: labels */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">标签</label>
+                <label className="text-sm font-medium text-muted-foreground">标签</label>
                 {labels.map((label, i) => (
                   <div key={i} className="flex items-center gap-2">
                     <input
@@ -351,20 +347,20 @@ ${portLines}
                       value={label.key}
                       onChange={(e) => updateLabel(i, "key", e.target.value)}
                       placeholder="key"
-                      className="flex-1 rounded-md border border-gray-300 px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="flex-1 rounded-md border border-border px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                     />
-                    <span className="text-gray-400 text-sm">=</span>
+                    <span className="text-muted-foreground text-sm">=</span>
                     <input
                       type="text"
                       value={label.value}
                       onChange={(e) => updateLabel(i, "value", e.target.value)}
                       placeholder="value"
-                      className="flex-1 rounded-md border border-gray-300 px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="flex-1 rounded-md border border-border px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                     {labels.length > 1 && (
                       <button
                         onClick={() => removeLabel(i)}
-                        className="text-gray-400 hover:text-red-500"
+                        className="text-muted-foreground hover:text-destructive"
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -373,7 +369,7 @@ ${portLines}
                 ))}
                 <button
                   onClick={addLabel}
-                  className="text-sm text-blue-600 hover:underline"
+                  className="text-sm text-primary hover:underline"
                 >
                   + 添加标签
                 </button>
@@ -381,46 +377,46 @@ ${portLines}
 
               {/* Deployment: resources */}
               <div className="space-y-3">
-                <label className="text-sm font-medium text-gray-700">资源限制（可选）</label>
+                <label className="text-sm font-medium text-muted-foreground">资源限制（可选）</label>
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <p className="text-xs text-gray-500 mb-1">CPU 请求</p>
+                    <p className="text-xs text-muted-foreground mb-1">CPU 请求</p>
                     <input
                       type="text"
                       value={cpuRequest}
                       onChange={(e) => setCpuRequest(e.target.value)}
                       placeholder="100m"
-                      className="w-full rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="w-full rounded-md border border-border px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 mb-1">CPU 限制</p>
+                    <p className="text-xs text-muted-foreground mb-1">CPU 限制</p>
                     <input
                       type="text"
                       value={cpuLimit}
                       onChange={(e) => setCpuLimit(e.target.value)}
                       placeholder="200m"
-                      className="w-full rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="w-full rounded-md border border-border px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 mb-1">内存请求</p>
+                    <p className="text-xs text-muted-foreground mb-1">内存请求</p>
                     <input
                       type="text"
                       value={memRequest}
                       onChange={(e) => setMemRequest(e.target.value)}
                       placeholder="128Mi"
-                      className="w-full rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="w-full rounded-md border border-border px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 mb-1">内存限制</p>
+                    <p className="text-xs text-muted-foreground mb-1">内存限制</p>
                     <input
                       type="text"
                       value={memLimit}
                       onChange={(e) => setMemLimit(e.target.value)}
                       placeholder="256Mi"
-                      className="w-full rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="w-full rounded-md border border-border px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                   </div>
                 </div>
@@ -430,53 +426,53 @@ ${portLines}
             <>
               {/* Service: name */}
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">名称</label>
+                <label className="text-sm font-medium text-muted-foreground">名称</label>
                 <input
                   type="text"
                   value={serviceName}
                   onChange={(e) => setServiceName(e.target.value)}
                   placeholder="my-service"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 />
                 {errors.serviceName && (
-                  <p className="text-xs text-red-500">{errors.serviceName}</p>
+                  <p className="text-xs text-destructive">{errors.serviceName}</p>
                 )}
               </div>
 
               {/* Service: selector */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-sm font-medium text-gray-700">选择器 Key</label>
+                  <label className="text-sm font-medium text-muted-foreground">选择器 Key</label>
                   <input
                     type="text"
                     value={selectorKey}
                     onChange={(e) => setSelectorKey(e.target.value)}
                     placeholder="app"
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-sm font-medium text-gray-700">选择器 Value</label>
+                  <label className="text-sm font-medium text-muted-foreground">选择器 Value</label>
                   <input
                     type="text"
                     value={selectorValue}
                     onChange={(e) => setSelectorValue(e.target.value)}
                     placeholder="my-app"
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                   {errors.selectorValue && (
-                    <p className="text-xs text-red-500">{errors.selectorValue}</p>
+                    <p className="text-xs text-destructive">{errors.selectorValue}</p>
                   )}
                 </div>
               </div>
 
               {/* Service: type */}
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">类型</label>
+                <label className="text-sm font-medium text-muted-foreground">类型</label>
                 <select
                   value={serviceType}
                   onChange={(e) => setServiceType(e.target.value as ServiceType)}
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 >
                   <option value="ClusterIP">ClusterIP</option>
                   <option value="NodePort">NodePort</option>
@@ -486,7 +482,7 @@ ${portLines}
 
               {/* Service: port mappings */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">端口映射</label>
+                <label className="text-sm font-medium text-muted-foreground">端口映射</label>
                 {portMappings.map((pm, i) => (
                   <div key={i} className="flex items-center gap-2">
                     <input
@@ -494,20 +490,20 @@ ${portLines}
                       value={pm.port}
                       onChange={(e) => updatePortMapping(i, "port", e.target.value)}
                       placeholder="port"
-                      className="w-20 rounded-md border border-gray-300 px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="w-20 rounded-md border border-border px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                     />
-                    <span className="text-gray-400">:</span>
+                    <span className="text-muted-foreground">:</span>
                     <input
                       type="text"
                       value={pm.targetPort}
                       onChange={(e) => updatePortMapping(i, "targetPort", e.target.value)}
                       placeholder="target"
-                      className="w-20 rounded-md border border-gray-300 px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="w-20 rounded-md border border-border px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                     <select
                       value={pm.protocol}
                       onChange={(e) => updatePortMapping(i, "protocol", e.target.value)}
-                      className="rounded-md border border-gray-300 px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="rounded-md border border-border px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                     >
                       <option value="TCP">TCP</option>
                       <option value="UDP">UDP</option>
@@ -515,7 +511,7 @@ ${portLines}
                     {portMappings.length > 1 && (
                       <button
                         onClick={() => removePortMapping(i)}
-                        className="text-gray-400 hover:text-red-500"
+                        className="text-muted-foreground hover:text-destructive"
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -524,12 +520,12 @@ ${portLines}
                 ))}
                 <button
                   onClick={addPortMapping}
-                  className="text-sm text-blue-600 hover:underline"
+                  className="text-sm text-primary hover:underline"
                 >
                   + 添加端口
                 </button>
                 {(errors["port-0"] || errors["targetPort-0"]) && (
-                  <p className="text-xs text-red-500">
+                  <p className="text-xs text-destructive">
                     {errors["port-0"] || errors["targetPort-0"]}
                   </p>
                 )}
@@ -541,14 +537,14 @@ ${portLines}
           <div className="flex flex-wrap gap-2 pt-2">
             <button
               onClick={generate}
-              className="px-4 py-2 rounded-md bg-blue-600 text-white text-sm inline-flex items-center gap-2"
+              className="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm inline-flex items-center gap-2"
             >
               生成 YAML
             </button>
             <button
               onClick={copy}
               disabled={!hasResult}
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 text-sm inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground text-sm inline-flex items-center gap-2 disabled:opacity-50"
             >
               {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
               {copied ? "已复制" : "复制"}
@@ -556,14 +552,14 @@ ${portLines}
             <button
               onClick={download}
               disabled={!hasResult}
-              className="px-4 py-2 rounded-md bg-green-600 text-white text-sm inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-success text-success-foreground text-sm inline-flex items-center gap-2 disabled:opacity-50"
             >
               <Download className="h-4 w-4" />
               下载
             </button>
             <button
               onClick={clear}
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 text-sm inline-flex items-center gap-2"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground text-sm inline-flex items-center gap-2"
             >
               <Trash2 className="h-4 w-4" />
               清空
@@ -571,11 +567,11 @@ ${portLines}
           </div>
         </div>
 
-        <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200 p-4">
+        <div className="lg:col-span-2 bg-card rounded-lg border border-border p-4">
           <div className="font-medium mb-2">生成的 YAML</div>
           <pre className="font-mono text-sm whitespace-pre-wrap break-words min-h-32">
             {result || (
-              <span className="text-gray-400">填写表单后点击"生成 YAML"</span>
+              <span className="text-muted-foreground">填写表单后点击"生成 YAML"</span>
             )}
           </pre>
         </div>

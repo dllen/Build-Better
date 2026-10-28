@@ -153,48 +153,48 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">{t("landedCost.total_landed_cost")}</p>
-            <p className="text-4xl font-bold text-green-600">{fmt(result.totalLandedCost)}</p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t("landedCost.total_landed_cost")}</p>
+            <p className="text-4xl font-bold text-success">{fmt(result.totalLandedCost)}</p>
             {result.perUnitCost && (
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 {t("landedCost.per_unit")}: {fmt(result.perUnitCost)}
               </p>
             )}
           </div>
-          <div className="grid grid-cols-2 gap-3 pt-6 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-3 pt-6 border-t border-border">
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">{t("landedCost.fob_value")}</p>
-              <p className="text-xl font-bold text-gray-900">{fmt(result.fobValue)}</p>
+              <p className="text-sm text-muted-foreground mb-1">{t("landedCost.fob_value")}</p>
+              <p className="text-xl font-bold text-foreground">{fmt(result.fobValue)}</p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">{t("landedCost.shipping_cost")}</p>
-              <p className="text-xl font-bold text-gray-900">{fmt(result.shippingCost)}</p>
+              <p className="text-sm text-muted-foreground mb-1">{t("landedCost.shipping_cost")}</p>
+              <p className="text-xl font-bold text-foreground">{fmt(result.shippingCost)}</p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">{t("landedCost.customs_duty")}</p>
-              <p className="text-xl font-bold text-gray-900">{fmt(result.customsDuty)}</p>
+              <p className="text-sm text-muted-foreground mb-1">{t("landedCost.customs_duty")}</p>
+              <p className="text-xl font-bold text-foreground">{fmt(result.customsDuty)}</p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">{t("landedCost.import_vat")}</p>
-              <p className="text-xl font-bold text-gray-900">{fmt(result.importVat)}</p>
+              <p className="text-sm text-muted-foreground mb-1">{t("landedCost.import_vat")}</p>
+              <p className="text-xl font-bold text-foreground">{fmt(result.importVat)}</p>
             </div>
           </div>
-          <div className="bg-gray-50 p-3 rounded-lg">
+          <div className="bg-muted p-3 rounded-lg">
             <div className="flex justify-between text-sm">
-              <span className="text-gray-500">{t("landedCost.clearance_other")}</span>
+              <span className="text-muted-foreground">{t("landedCost.clearance_other")}</span>
               <span className="font-medium">{fmt(result.clearanceFee + result.otherCosts)}</span>
             </div>
           </div>
           <button
             onClick={copyResults}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary"
           >
             <Copy className="h-4 w-4" />
             {copied ? t("common.copied") : t("landedCost.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Package className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("landedCost.enter_values")}</p>
         </div>
@@ -207,8 +207,8 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
       title={t("landedCost.title")}
       subtitle={t("landedCost.subtitle")}
       icon={Package}
-      iconBgColor="bg-blue-100"
-      iconColor="text-blue-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={[
         "landed cost calculator",
         "import cost calculator",
@@ -222,9 +222,9 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
       <div className="space-y-4">
         {/* Product Value */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("landedCost.product_value")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("landedCost.product_value")}</label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
             <input
               type="number"
               min="0"
@@ -232,38 +232,34 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
               value={productValue}
               onChange={(e) => setProductValue(e.target.value)}
               placeholder="1000"
-              className="block w-full pl-8 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+              className="block w-full pl-8 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
             />
           </div>
         </div>
 
         {/* Quantity */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("landedCost.quantity")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("landedCost.quantity")}</label>
           <input
             type="number"
             min="1"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
             placeholder="100"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
           />
         </div>
 
         {/* Shipping Method */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">{t("landedCost.shipping_method.label")}</label>
-          <div className="flex rounded-md shadow-sm" role="group">
+          <label className="block text-sm font-medium text-muted-foreground mb-2">{t("landedCost.shipping_method.label")}</label>
+          <div className="flex rounded-md" role="group">
             {shippingMethods.map((method, idx) => (
               <button
                 key={method.value}
                 type="button"
                 onClick={() => setShippingMethod(method.value)}
-                className={`flex-1 py-2 px-4 text-sm font-medium border ${
-                  shippingMethod === method.value
-                    ? "bg-blue-600 text-white border-blue-600"
-                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-                } ${idx === 0 ? "rounded-l-lg" : ""} ${idx === shippingMethods.length - 1 ? "rounded-r-lg" : ""}`}
+                className={`flex-1 py-2 px-4 text-sm font-medium border ${ shippingMethod === method.value ? "bg-primary text-primary-foreground border-border" : "bg-card text-muted-foreground border-border hover:bg-muted" } ${idx === 0 ? "rounded-l-lg" : ""} ${idx === shippingMethods.length - 1 ? "rounded-r-lg" : ""}`}
               >
                 {method.label}
               </button>
@@ -274,7 +270,7 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
         {/* Weight & Volume */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">{t("landedCost.weight")}</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">{t("landedCost.weight")}</label>
             <div className="relative">
               <input
                 type="number"
@@ -283,13 +279,13 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
                 value={weight}
                 onChange={(e) => setWeight(e.target.value)}
                 placeholder="10"
-                className="block w-full pr-8 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+                className="block w-full pr-8 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">kg</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">kg</span>
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">{t("landedCost.volume")}</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">{t("landedCost.volume")}</label>
             <div className="relative">
               <input
                 type="number"
@@ -298,20 +294,20 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
                 value={volume}
                 onChange={(e) => setVolume(e.target.value)}
                 placeholder="0.5"
-                className="block w-full pr-8 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+                className="block w-full pr-8 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">m³</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">m³</span>
             </div>
           </div>
         </div>
 
         {/* Destination Country */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("landedCost.destination")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("landedCost.destination")}</label>
           <select
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
           >
             {DESTINATION_COUNTRIES.map((country) => (
               <option key={country} value={country}>
@@ -323,20 +319,20 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
 
         {/* HS Code */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("landedCost.hs_code")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("landedCost.hs_code")}</label>
           <input
             type="text"
             value={hsCode}
             onChange={(e) => setHsCode(e.target.value)}
             placeholder="8471.30"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
           />
         </div>
 
         {/* Duty & VAT Rates */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">{t("landedCost.duty_rate")}</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">{t("landedCost.duty_rate")}</label>
             <div className="relative">
               <input
                 type="number"
@@ -345,13 +341,13 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
                 step="0.1"
                 value={dutyRate}
                 onChange={(e) => setDutyRate(e.target.value)}
-                className="block w-full pr-8 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+                className="block w-full pr-8 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">%</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">%</span>
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">{t("landedCost.vat_rate")}</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">{t("landedCost.vat_rate")}</label>
             <div className="relative">
               <input
                 type="number"
@@ -360,9 +356,9 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
                 step="0.1"
                 value={vatRate}
                 onChange={(e) => setVatRate(e.target.value)}
-                className="block w-full pr-8 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+                className="block w-full pr-8 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">%</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">%</span>
             </div>
           </div>
         </div>
@@ -370,9 +366,9 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
         {/* Optional Costs */}
         <div className="grid grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">{t("landedCost.insurance")}</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">{t("landedCost.insurance")}</label>
             <div className="relative">
-              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">$</span>
+              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">$</span>
               <input
                 type="number"
                 min="0"
@@ -380,14 +376,14 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
                 value={insurance}
                 onChange={(e) => setInsurance(e.target.value)}
                 placeholder="0"
-                className="block w-full pl-6 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+                className="block w-full pl-6 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
               />
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">{t("landedCost.clearance_fee")}</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">{t("landedCost.clearance_fee")}</label>
             <div className="relative">
-              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">$</span>
+              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">$</span>
               <input
                 type="number"
                 min="0"
@@ -395,14 +391,14 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
                 value={clearanceFee}
                 onChange={(e) => setClearanceFee(e.target.value)}
                 placeholder="50"
-                className="block w-full pl-6 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+                className="block w-full pl-6 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
               />
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">{t("landedCost.other_costs")}</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">{t("landedCost.other_costs")}</label>
             <div className="relative">
-              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">$</span>
+              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">$</span>
               <input
                 type="number"
                 min="0"
@@ -410,7 +406,7 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
                 value={otherCosts}
                 onChange={(e) => setOtherCosts(e.target.value)}
                 placeholder="0"
-                className="block w-full pl-6 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+                className="block w-full pl-6 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
               />
             </div>
           </div>
@@ -419,7 +415,7 @@ ${result.perUnitCost ? `Per Unit Cost (${quantity} units): $${result.perUnitCost
         {/* Calculate Button */}
         <button
           onClick={calculate}
-          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700"
+          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary"
         >
           <Calculator className="h-5 w-5" />
           {t("landedCost.calculate")}

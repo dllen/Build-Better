@@ -78,17 +78,17 @@ const skills = [
 ];
 
 const riskColors: Record<string, string> = {
-  Low: "text-emerald-400 border-emerald-400/30 bg-emerald-400/10",
-  Medium: "text-amber-400 border-amber-400/30 bg-amber-400/10",
-  High: "text-orange-400 border-orange-400/30 bg-orange-400/10",
-  Critical: "text-red-400 border-red-400/30 bg-red-400/10",
+  Low: "text-success border-success/30 bg-success/10",
+  Medium: "text-primary border-primary/30 bg-primary/10",
+  High: "text-warning border-warning/30 bg-warning/10",
+  Critical: "text-destructive border-destructive/30 bg-destructive/10",
 };
 
 const maturityColors: Record<string, string> = {
-  Official: "text-cyan-400 border-cyan-400/30 bg-cyan-400/10",
-  Stable: "text-emerald-400 border-emerald-400/30 bg-emerald-400/10",
-  Experimental: "text-amber-400 border-amber-400/30 bg-amber-400/10",
-  Community: "text-purple-400 border-purple-400/30 bg-purple-400/10",
+  Official: "text-cool border-cool/30 bg-cool/10",
+  Stable: "text-success border-success/30 bg-success/10",
+  Experimental: "text-primary border-primary/30 bg-primary/10",
+  Community: "text-info border-info/30 bg-info/10",
 };
 
 type TabType = "overview" | "templates" | "tools" | "guides" | "skills";
@@ -104,27 +104,23 @@ export default function LoopEngineering() {
   return (
     <div className="space-y-10">
       {/* Hero Section - Loopengineering.app style */}
-      <div className="relative">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-cyan-500/10 via-transparent to-transparent rounded-full blur-3xl" />
-        </div>
-        
+      <div>
         <div className="space-y-5">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-xs uppercase tracking-wider text-cyan-400 font-mono">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cool/30 bg-cool/10 text-xs text-cool font-mono">
+            <span className="w-1.5 h-1.5 rounded-full bg-cool" aria-hidden="true" />
             AI Agent Workflows
           </div>
           
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
             Loop Engineering
-            <span className="block mt-2 bg-gradient-to-r from-cyan-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent">
+            <span className="block mt-2 text-primary">
               for Safe, Verifiable Workflows
             </span>
           </h1>
           
           <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
             Build copyable AI agent workflows with evidence, stop rules, budget limits, fallbacks, and human approval gates. 
-            Everything runs in your browser — nothing is uploaded.
+            Everything runs in your browser. Nothing is uploaded.
           </p>
           
           <div className="flex flex-wrap gap-3 pt-2">
@@ -132,7 +128,7 @@ export default function LoopEngineering() {
               href="https://loopengineering.app/loop-goal-generator/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-cyan-500 text-white font-medium hover:bg-cyan-600 transition-all hover:shadow-lg hover:shadow-cyan-500/25"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
             >
               <Target className="w-4 h-4" />
               Build a Loop Goal
@@ -142,9 +138,9 @@ export default function LoopEngineering() {
               href="https://loopengineering.app/templates/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border hover:border-cool/50 hover:bg-cool/5 transition-colors"
             >
-              <FileText className="w-4 h-4 text-cyan-400" />
+              <FileText className="w-4 h-4 text-cool" />
               Browse 20+ Templates
               <ExternalLink className="w-3 h-3 opacity-50" />
             </a>
@@ -155,10 +151,10 @@ export default function LoopEngineering() {
       {/* Features Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-xl border border-border bg-card/50">
         {[
-          { icon: Zap, text: "Browser-only generators", color: "text-cyan-400" },
-          { icon: FileText, text: "Copyable outputs", color: "text-emerald-400" },
-          { icon: Shield, text: "Explicit stop rules", color: "text-amber-400" },
-          { icon: Repeat, text: "Human approval gates", color: "text-purple-400" },
+          { icon: Zap, text: "Browser-only generators", color: "text-cool" },
+          { icon: FileText, text: "Copyable outputs", color: "text-success" },
+          { icon: Shield, text: "Explicit stop rules", color: "text-primary" },
+          { icon: Repeat, text: "Human approval gates", color: "text-info" },
         ].map((feature, i) => (
           <div key={i} className="flex items-center gap-3 text-sm">
             <feature.icon className={`w-5 h-5 ${feature.color}`} />
@@ -180,9 +176,9 @@ export default function LoopEngineering() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as TabType)}
-              className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                 activeTab === tab.id
-                  ? "border-cyan-500 text-cyan-400 bg-cyan-500/5"
+                  ? "border-primary text-primary bg-primary/5"
                   : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50"
               }`}
             >
@@ -190,7 +186,7 @@ export default function LoopEngineering() {
               {tab.label}
               {tab.count && (
                 <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                  activeTab === tab.id ? "bg-cyan-500/20" : "bg-muted"
+                  activeTab === tab.id ? "bg-primary/20" : "bg-muted"
                 }`}>
                   {tab.count}
                 </span>
@@ -209,30 +205,30 @@ export default function LoopEngineering() {
               href="https://loopengineering.app/loop-goal-generator/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-5 rounded-xl border border-border bg-card hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all"
+              className="group p-5 rounded-xl border border-border bg-card hover:border-cool/50 hover:bg-cool/5 transition-colors"
             >
-              <Target className="w-8 h-8 text-cyan-400 mb-3" />
-              <h3 className="font-semibold mb-2 group-hover:text-cyan-400 transition-colors">Goal Generator</h3>
+              <Target className="w-8 h-8 text-cool mb-3" />
+              <h3 className="font-semibold mb-2 group-hover:text-cool transition-colors">Goal Generator</h3>
               <p className="text-sm text-muted-foreground">Build loop goals with hypothesis, objective, validation, and stop rules.</p>
             </a>
             <a
               href="https://loopengineering.app/methodology-skill-generator/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-5 rounded-xl border border-border bg-card hover:border-purple-500/50 hover:bg-purple-500/5 transition-all"
+              className="group p-5 rounded-xl border border-border bg-card hover:border-info/50 hover:bg-info/5 transition-colors"
             >
-              <Sparkles className="w-8 h-8 text-purple-400 mb-3" />
-              <h3 className="font-semibold mb-2 group-hover:text-purple-400 transition-colors">Skills Generator</h3>
+              <Sparkles className="w-8 h-8 text-info mb-3" />
+              <h3 className="font-semibold mb-2 group-hover:text-info transition-colors">Skills Generator</h3>
               <p className="text-sm text-muted-foreground">Turn 5 Whys, SMART, PDCA into agent prompts and SKILL.md files.</p>
             </a>
             <a
               href="https://loopengineering.app/loop-budget-calculator/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-5 rounded-xl border border-border bg-card hover:border-amber-500/50 hover:bg-amber-500/5 transition-all"
+              className="group p-5 rounded-xl border border-border bg-card hover:border-primary/50 hover:bg-primary/5 transition-colors"
             >
-              <Clock className="w-8 h-8 text-amber-400 mb-3" />
-              <h3 className="font-semibold mb-2 group-hover:text-amber-400 transition-colors">Budget Calculator</h3>
+              <Clock className="w-8 h-8 text-primary mb-3" />
+              <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">Budget Calculator</h3>
               <p className="text-sm text-muted-foreground">Estimate token costs for long-running loops.</p>
             </a>
           </div>
@@ -240,7 +236,7 @@ export default function LoopEngineering() {
           {/* Five Moves Section */}
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
-              <Repeat className="w-5 h-5 text-cyan-400" />
+              <Repeat className="w-5 h-5 text-cool" />
               The Five Moves of a Loop
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -257,7 +253,7 @@ export default function LoopEngineering() {
                       <ChevronRight className="w-4 h-4 text-muted-foreground/50" />
                     </div>
                   )}
-                  <div className="w-12 h-12 rounded-full bg-cyan-500/20 text-cyan-400 font-bold flex items-center justify-center mx-auto mb-3 text-lg">
+                  <div className="w-12 h-12 rounded-full bg-cool/20 text-cool font-bold flex items-center justify-center mx-auto mb-3 text-lg">
                     {move.num}
                   </div>
                   <div className="font-semibold mb-1">{move.title}</div>
@@ -269,10 +265,10 @@ export default function LoopEngineering() {
 
           {/* Works With */}
           <div>
-            <div className="text-xs uppercase tracking-wider text-muted-foreground mb-4 font-mono">Works with</div>
+            <div className="text-xs text-muted-foreground mb-4 font-mono">Works with</div>
             <div className="flex flex-wrap gap-2">
               {["Claude Code", "Codex", "Cursor", "GitHub Actions", "Ralphify", "Generic Agent"].map((tool) => (
-                <span key={tool} className="px-3 py-1.5 rounded-full border border-border bg-muted/30 text-sm font-medium hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-colors cursor-default">
+                <span key={tool} className="px-3 py-1.5 rounded-full border border-border bg-muted/30 text-sm font-medium hover:border-cool/50 hover:bg-cool/5 transition-colors cursor-default">
                   {tool}
                 </span>
               ))}
@@ -292,13 +288,13 @@ export default function LoopEngineering() {
                 placeholder="Search templates..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-9 pr-4 py-2.5 rounded-lg border border-border bg-background focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                className="w-full pl-9 pr-4 py-2.5 rounded-lg border border-border bg-background focus:border-ring focus:ring-2 focus:ring-ring/20 transition-colors"
               />
             </div>
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="px-4 py-2.5 rounded-lg border border-border bg-background focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+              className="px-4 py-2.5 rounded-lg border border-border bg-background focus:border-ring focus:ring-2 focus:ring-ring/20 transition-colors"
             >
               {templateCategories.map((cat) => (
                 <option key={cat} value={cat}>{cat}</option>
@@ -328,22 +324,22 @@ export default function LoopEngineering() {
                   href={`https://loopengineering.app/templates/${template.name.toLowerCase().replace(/\s+/g, "-")}-loop/`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col p-5 rounded-xl border border-white/5 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-cyan-500/40 transition-all"
+                  className="group flex flex-col p-5 rounded-xl border border-border bg-card hover:border-cool/40 transition-colors"
                 >
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs uppercase tracking-wider text-muted-foreground font-mono">{template.category}</span>
+                    <span className="text-xs text-muted-foreground font-mono">{template.category}</span>
                     <span className={`text-[10px] px-2 py-0.5 rounded-full border font-mono ${riskColors[template.risk]}`}>
                       {template.risk}
                     </span>
                   </div>
-                  <h3 className="font-semibold mb-2 group-hover:text-cyan-400 transition-colors">{template.name}</h3>
+                  <h3 className="font-semibold mb-2 group-hover:text-cool transition-colors">{template.name}</h3>
                   <p className="text-sm text-muted-foreground mb-4 flex-1">{template.desc}</p>
-                  <div className="flex items-center justify-between pt-3 border-t border-white/5">
+                  <div className="flex items-center justify-between pt-3 border-t border-border">
                     <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                      <Repeat className="w-3 h-3 text-cyan-400" />
+                      <Repeat className="w-3 h-3 text-cool" />
                       <span>Run: {template.cadence}</span>
                     </div>
-                    <div className="flex items-center gap-1 text-xs text-cyan-400 font-medium">
+                    <div className="flex items-center gap-1 text-xs text-cool font-medium">
                       Open template <ChevronRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
                     </div>
                   </div>
@@ -356,11 +352,11 @@ export default function LoopEngineering() {
       {activeTab === "tools" && (
         <div className="space-y-6 animate-fade-in">
           {/* Warning Banner */}
-          <div className="flex gap-3 rounded-xl p-4 border border-amber-500/20 bg-amber-500/5">
-            <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+          <div className="flex gap-3 rounded-xl p-4 border border-warning/20 bg-warning/5">
+            <AlertTriangle className="w-5 h-5 text-warning shrink-0 mt-0.5" />
             <div>
-              <p className="text-sm text-amber-200 font-medium">Verify before production use</p>
-              <p className="text-xs text-amber-200/70 mt-1">
+              <p className="text-sm text-foreground font-medium">Verify before production use</p>
+              <p className="text-xs text-muted-foreground mt-1">
                 This directory mixes official docs, open-source projects, and experimental runtimes. Verify maturity, licensing, and pricing before using any tool.
               </p>
             </div>
@@ -375,13 +371,13 @@ export default function LoopEngineering() {
                 placeholder="Search tools..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-9 pr-4 py-2.5 rounded-lg border border-border bg-background focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                className="w-full pl-9 pr-4 py-2.5 rounded-lg border border-border bg-background focus:border-ring focus:ring-2 focus:ring-ring/20 transition-colors"
               />
             </div>
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="px-4 py-2.5 rounded-lg border border-border bg-background focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+              className="px-4 py-2.5 rounded-lg border border-border bg-background focus:border-ring focus:ring-2 focus:ring-ring/20 transition-colors"
             >
               {toolCategories.map((cat) => (
                 <option key={cat} value={cat}>{cat}</option>
@@ -411,21 +407,21 @@ export default function LoopEngineering() {
                   href={`https://loopengineering.app/tools/${tool.name.toLowerCase().replace(/\s+|\//g, "-")}/`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col p-5 rounded-xl border border-white/5 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-cyan-500/40 transition-all"
+                  className="group flex flex-col p-5 rounded-xl border border-border bg-card hover:border-cool/40 transition-colors"
                 >
                   <div className="flex items-start justify-between mb-2">
-                    <h3 className="font-semibold group-hover:text-cyan-400 transition-colors">{tool.name}</h3>
+                    <h3 className="font-semibold group-hover:text-cool transition-colors">{tool.name}</h3>
                     <span className={`text-[10px] px-2 py-0.5 rounded-full border font-mono ${maturityColors[tool.maturity]}`}>
                       {tool.maturity}
                     </span>
                   </div>
-                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground mb-2 font-mono">{tool.category}</div>
+                  <div className="text-[10px] text-muted-foreground mb-2 font-mono">{tool.category}</div>
                   <p className="text-sm text-muted-foreground mb-3 flex-1">{tool.desc}</p>
                   <div className="text-xs text-muted-foreground mb-3">
                     <span className="text-muted-foreground/70">Best for: </span>
                     <span className="text-muted-foreground">{tool.bestFor}</span>
                   </div>
-                  <div className="flex items-center gap-1 text-xs text-cyan-400 font-medium">
+                  <div className="flex items-center gap-1 text-xs text-cool font-medium">
                     View tool <ExternalLink className="w-3 h-3" />
                   </div>
                 </a>
@@ -444,7 +440,7 @@ export default function LoopEngineering() {
               placeholder="Search guides..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 rounded-lg border border-border bg-background focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+              className="w-full pl-9 pr-4 py-2.5 rounded-lg border border-border bg-background focus:border-ring focus:ring-2 focus:ring-ring/20 transition-colors"
             />
           </div>
 
@@ -461,12 +457,12 @@ export default function LoopEngineering() {
                   href={`https://loopengineering.app/guides/${guide.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}/`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col p-5 rounded-xl border border-white/5 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-cyan-500/40 transition-all"
+                  className="group flex flex-col p-5 rounded-xl border border-border bg-card hover:border-cool/40 transition-colors"
                 >
-                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground mb-2 font-mono">{guide.category}</div>
-                  <h3 className="font-semibold mb-2 group-hover:text-cyan-400 transition-colors">{guide.title}</h3>
+                  <div className="text-[10px] text-muted-foreground mb-2 font-mono">{guide.category}</div>
+                  <h3 className="font-semibold mb-2 group-hover:text-cool transition-colors">{guide.title}</h3>
                   <p className="text-sm text-muted-foreground mb-4 flex-1">{guide.desc}</p>
-                  <div className="flex items-center gap-1 text-xs text-cyan-400 font-medium">
+                  <div className="flex items-center gap-1 text-xs text-cool font-medium">
                     Read guide <ChevronRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
                   </div>
                 </a>
@@ -485,7 +481,7 @@ export default function LoopEngineering() {
               href="https://loopengineering.app/methodology-skill-generator/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500 text-white font-medium hover:bg-cyan-600 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
             >
               <Sparkles className="w-4 h-4" />
               Open Skill Generator
@@ -496,10 +492,10 @@ export default function LoopEngineering() {
           {/* Skills Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {skills.map((skill, i) => (
-              <div key={i} className="p-5 rounded-xl border border-white/5 bg-gradient-to-b from-white/[0.04] to-white/[0.01]">
+              <div key={i} className="p-5 rounded-xl border border-border bg-card">
                 <div className="flex items-start justify-between mb-2">
                   <h3 className="font-semibold">{skill.name}</h3>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-mono uppercase">
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-mono">
                     {skill.category}
                   </span>
                 </div>

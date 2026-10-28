@@ -131,18 +131,18 @@ export default function BaseConverter() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-teal-100 text-teal-600">
+        <div className="inline-flex p-2 rounded-lg bg-info/10 text-info">
           <Code className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Base Converter</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="space-y-4 bg-white rounded-lg border border-gray-200 p-4">
+        <div className="space-y-4 bg-card rounded-lg border border-border p-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">输入值</label>
+            <label className="text-sm font-medium text-muted-foreground">输入值</label>
             <input
-              className="w-full rounded-md border border-gray-300 px-3 py-2"
+              className="w-full rounded-md border border-border px-3 py-2"
               placeholder="支持前缀：0x / 0b / 0o；仅整数"
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -151,9 +151,9 @@ export default function BaseConverter() {
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1">
-              <label className="text-sm font-medium text-gray-700">源进制</label>
+              <label className="text-sm font-medium text-muted-foreground">源进制</label>
               <select
-                className="w-full rounded-md border border-gray-300 px-3 py-2"
+                className="w-full rounded-md border border-border px-3 py-2"
                 value={srcBase}
                 onChange={(e) => setSrcBase(Number(e.target.value))}
               >
@@ -165,9 +165,9 @@ export default function BaseConverter() {
               </select>
             </div>
             <div className="space-y-1">
-              <label className="text-sm font-medium text-gray-700">目标进制</label>
+              <label className="text-sm font-medium text-muted-foreground">目标进制</label>
               <select
-                className="w-full rounded-md border border-gray-300 px-3 py-2"
+                className="w-full rounded-md border border-border px-3 py-2"
                 value={dstBase}
                 onChange={(e) => setDstBase(Number(e.target.value))}
               >
@@ -190,18 +190,18 @@ export default function BaseConverter() {
               Uppercase
             </label>
             <div className="space-y-1">
-              <label className="text-sm font-medium text-gray-700">分组</label>
+              <label className="text-sm font-medium text-muted-foreground">分组</label>
               <input
                 type="number"
                 min={0}
                 max={8}
-                className="w-full rounded-md border border-gray-300 px-3 py-2"
+                className="w-full rounded-md border border-border px-3 py-2"
                 value={groupSize}
                 onChange={(e) => setGroupSize(Number(e.target.value))}
               />
             </div>
             <button
-              className="px-3 py-2 rounded-md bg-teal-600 text-white text-sm"
+              className="px-3 py-2 rounded-md bg-info text-info-foreground text-sm"
               onClick={() => setInput("")}
             >
               清空
@@ -209,18 +209,18 @@ export default function BaseConverter() {
           </div>
 
           {error && (
-            <div className="flex items-center gap-2 text-sm text-red-600">
+            <div className="flex items-center gap-2 text-sm text-destructive">
               <AlertCircle className="h-4 w-4" /> {error}
             </div>
           )}
         </div>
 
-        <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="lg:col-span-2 bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">结果</div>
           <div className="flex items-center gap-2">
             <div className="flex-1 font-mono text-lg break-all">{result || "—"}</div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 bg-teal-600 text-white rounded-md text-sm hover:bg-teal-700 disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-info text-info-foreground rounded-md text-sm hover:bg-info disabled:opacity-50"
               disabled={!result}
               onClick={() => copy(result)}
             >
@@ -229,20 +229,20 @@ export default function BaseConverter() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div className="rounded-md border border-gray-200 px-3 py-2">
-              <div className="text-sm text-gray-500">Binary (2)</div>
+            <div className="rounded-md border border-border px-3 py-2">
+              <div className="text-sm text-muted-foreground">Binary (2)</div>
               <div className="font-mono text-sm break-all">{quick?.bin || "—"}</div>
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
-              <div className="text-sm text-gray-500">Octal (8)</div>
+            <div className="rounded-md border border-border px-3 py-2">
+              <div className="text-sm text-muted-foreground">Octal (8)</div>
               <div className="font-mono text-sm break-all">{quick?.oct || "—"}</div>
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
-              <div className="text-sm text-gray-500">Decimal (10)</div>
+            <div className="rounded-md border border-border px-3 py-2">
+              <div className="text-sm text-muted-foreground">Decimal (10)</div>
               <div className="font-mono text-sm break-all">{quick?.dec || "—"}</div>
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2">
-              <div className="text-sm text-gray-500">Hex (16)</div>
+            <div className="rounded-md border border-border px-3 py-2">
+              <div className="text-sm text-muted-foreground">Hex (16)</div>
               <div className="font-mono text-sm break-all">{quick?.hex || "—"}</div>
             </div>
           </div>

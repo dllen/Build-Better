@@ -103,9 +103,9 @@ export default function CryptoCapitalGainsCalculator() {
     required?: boolean
   ) => (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1">
+      <label className="block text-sm font-medium text-muted-foreground mb-1">
         {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
+        {required && <span className="text-destructive ml-1">*</span>}
       </label>
       <input
         type="number"
@@ -114,7 +114,7 @@ export default function CryptoCapitalGainsCalculator() {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="block w-full border-gray-300 rounded-md shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm py-2 px-3 border"
+        className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
       />
     </div>
   );
@@ -126,58 +126,58 @@ export default function CryptoCapitalGainsCalculator() {
         <>
           {/* Main result */}
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">
+            <p className="text-sm font-medium text-muted-foreground mb-1">
               {t("cryptoCapitalGains.net_after_tax", "Net After Tax")}
             </p>
-            <p className="text-4xl font-bold text-green-600">{fmtUSD(result.netAfterTax)}</p>
+            <p className="text-4xl font-bold text-success">{fmtUSD(result.netAfterTax)}</p>
           </div>
 
           {/* Gain/Loss */}
-          <div className={`text-center p-4 rounded-lg ${result.isLoss ? "bg-red-50" : "bg-green-50"}`}>
-            <p className="text-sm font-medium text-gray-500 mb-1">
+          <div className={`text-center p-4 rounded-lg ${result.isLoss ? "bg-destructive/10" : "bg-success/10"}`}>
+            <p className="text-sm font-medium text-muted-foreground mb-1">
               {t("cryptoCapitalGains.gain_loss", "Gain/Loss")}
             </p>
-            <p className={`text-3xl font-bold ${result.isLoss ? "text-red-600" : "text-green-600"}`}>
+            <p className={`text-3xl font-bold ${result.isLoss ? "text-destructive" : "text-success"}`}>
               {result.isLoss ? "-" : "+"}
               {fmtUSD(Math.abs(result.gainLoss))}
             </p>
             {result.isLoss && (
-              <p className="text-xs text-red-600 mt-2">
+              <p className="text-xs text-destructive mt-2">
                 {t("cryptoCapitalGains.loss_note", "Loss can offset future gains")}
               </p>
             )}
           </div>
 
           {/* Details grid */}
-          <div className="grid grid-cols-2 gap-3 pt-4 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-3 pt-4 border-t border-border">
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">
+              <p className="text-sm text-muted-foreground mb-1">
                 {t("cryptoCapitalGains.cost_basis", "Cost Basis")}
               </p>
-              <p className="text-lg font-bold text-gray-900">{fmtUSD(result.costBasis)}</p>
+              <p className="text-lg font-bold text-foreground">{fmtUSD(result.costBasis)}</p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">
+              <p className="text-sm text-muted-foreground mb-1">
                 {t("cryptoCapitalGains.proceeds", "Proceeds")}
               </p>
-              <p className="text-lg font-bold text-gray-900">{fmtUSD(result.proceeds)}</p>
+              <p className="text-lg font-bold text-foreground">{fmtUSD(result.proceeds)}</p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">
+              <p className="text-sm text-muted-foreground mb-1">
                 {t("cryptoCapitalGains.tax_rate", "Tax Rate")}
               </p>
-              <p className="text-lg font-bold text-gray-900">{fmtPercent(result.taxRate)}</p>
+              <p className="text-lg font-bold text-foreground">{fmtPercent(result.taxRate)}</p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">
+              <p className="text-sm text-muted-foreground mb-1">
                 {t("cryptoCapitalGains.tax_owed", "Tax Owed")}
               </p>
-              <p className="text-lg font-bold text-red-600">{fmtUSD(result.taxOwed)}</p>
+              <p className="text-lg font-bold text-destructive">{fmtUSD(result.taxOwed)}</p>
             </div>
           </div>
 
           {/* Disclaimer */}
-          <div className="bg-amber-50 p-3 rounded-lg text-xs text-amber-800">
+          <div className="bg-primary/10 p-3 rounded-lg text-xs text-primary">
             {t(
               "cryptoCapitalGains.disclaimer",
               "This is a simplified estimate. Consult a tax professional for actual filing."
@@ -185,7 +185,7 @@ export default function CryptoCapitalGainsCalculator() {
           </div>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Coins className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">
             {t("cryptoCapitalGains.enter_values", "Enter transaction details to calculate")}
@@ -203,8 +203,8 @@ export default function CryptoCapitalGainsCalculator() {
         "Calculate crypto capital gains tax for Brazil and Kenya"
       )}
       icon={Coins}
-      iconBgColor="bg-amber-100"
-      iconColor="text-amber-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={[
         "crypto tax calculator",
         "bitcoin tax",
@@ -218,13 +218,13 @@ export default function CryptoCapitalGainsCalculator() {
       <div className="space-y-4">
         {/* Country selector */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             {t("cryptoCapitalGains.country", "Country")}
           </label>
           <select
             value={country}
             onChange={(e) => setCountry(e.target.value as Country)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm py-2 px-3 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
           >
             <option value="brazil">{t("cryptoCapitalGains.brazil", "Brazil")}</option>
             <option value="kenya">{t("cryptoCapitalGains.kenya", "Kenya")}</option>
@@ -233,7 +233,7 @@ export default function CryptoCapitalGainsCalculator() {
 
         {/* Crypto type selector */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             {t("cryptoCapitalGains.crypto_type", "Crypto Type")}
           </label>
           <select
@@ -241,7 +241,7 @@ export default function CryptoCapitalGainsCalculator() {
             onChange={(e) =>
               setCryptoType(e.target.value as typeof CRYPTO_TYPES[number]["value"])
             }
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm py-2 px-3 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
           >
             {CRYPTO_TYPES.map((type) => (
               <option key={type.value} value={type.value}>
@@ -253,29 +253,21 @@ export default function CryptoCapitalGainsCalculator() {
 
         {/* Transaction type */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             {t("cryptoCapitalGains.transaction_type", "Transaction Type")}
           </label>
           <div className="flex gap-2">
             <button
               type="button"
               onClick={() => setTransactionType("buy")}
-              className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-                transactionType === "buy"
-                  ? "bg-amber-600 text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
+              className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${ transactionType === "buy" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-border" }`}
             >
               {t("cryptoCapitalGains.buy", "Buy")}
             </button>
             <button
               type="button"
               onClick={() => setTransactionType("sell")}
-              className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-                transactionType === "sell"
-                  ? "bg-amber-600 text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
+              className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${ transactionType === "sell" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-border" }`}
             >
               {t("cryptoCapitalGains.sell", "Sell")}
             </button>
@@ -321,7 +313,7 @@ export default function CryptoCapitalGainsCalculator() {
         <button
           type="button"
           onClick={handleCalculate}
-          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 font-medium transition-colors"
+          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary font-medium transition-colors"
         >
           <Coins className="h-5 w-5" />
           {t("cryptoCapitalGains.calculate", "Calculate")}

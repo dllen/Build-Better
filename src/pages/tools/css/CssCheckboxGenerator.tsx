@@ -55,35 +55,35 @@ export default function CssCheckboxGenerator() {
       title="CSS Checkbox Generator"
       subtitle="Design custom CSS checkboxes — style color, size, radius, and border with a live preview."
       icon={CheckSquare}
-      iconBgColor="bg-green-100"
-      iconColor="text-green-600"
+      iconBgColor="bg-success/10"
+      iconColor="text-success"
       keywords={["css checkbox", "custom checkbox", "checkbox style", "checkmark css"]}
       children={
       <div className="space-y-5">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Checked color</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">Checked color</label>
           <input
             type="color"
             value={color}
             onChange={(e) => setColor(e.target.value)}
-            className="h-10 w-20 rounded-lg border border-gray-300 cursor-pointer bg-white p-1"
+            className="h-10 w-20 rounded-lg border border-border cursor-pointer bg-card p-1"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Size: {size}px</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">Size: {size}px</label>
           <input
             type="range"
             min={16}
             max={40}
             value={size}
             onChange={(e) => setSize(Number(e.target.value))}
-            className="w-full accent-green-600"
+            className="w-full accent-primary"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">
             Border radius: {radius}px
           </label>
           <input
@@ -92,12 +92,12 @@ export default function CssCheckboxGenerator() {
             max={size / 2}
             value={radius}
             onChange={(e) => setRadius(Number(e.target.value))}
-            className="w-full accent-green-600"
+            className="w-full accent-primary"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">
             Border width: {borderWidth}px
           </label>
           <input
@@ -106,21 +106,21 @@ export default function CssCheckboxGenerator() {
             max={4}
             value={borderWidth}
             onChange={(e) => setBorderWidth(Number(e.target.value))}
-            className="w-full accent-green-600"
+            className="w-full accent-primary"
           />
         </div>
       </div>
       }
       result={
       <div>
-        <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Live preview</p>
-        <div className="flex items-center justify-center gap-8 rounded-lg border border-gray-200 bg-gray-50 py-8 mb-4">
+        <p className="text-xs font-medium text-muted-foreground tracking-wide mb-2">Live preview</p>
+        <div className="flex items-center justify-center gap-8 rounded-lg border border-border bg-muted py-8 mb-4">
           <style>{css}</style>
-          <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer select-none">
+          <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer select-none">
             <input type="checkbox" className="my-checkbox" />
             Unchecked
           </label>
-          <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer select-none">
+          <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer select-none">
             <input type="checkbox" className="my-checkbox" defaultChecked />
             Checked
           </label>

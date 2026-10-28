@@ -39,16 +39,14 @@ export function RightPanel({
   }
 
   return (
-    <div className="w-72 flex-shrink-0 flex flex-col rounded-lg border border-border bg-card overflow-hidden shadow-inner transition-all duration-200 ease-out">
+    <div className="w-72 flex-shrink-0 flex flex-col rounded-lg border border-border bg-card overflow-hidden shadow-inner transition-colors duration-200 ease-out">
       <div className="flex items-center border-b border-border/50 bg-gradient-to-r from-muted/30 to-transparent">
         <div className="flex-1 flex">
           {TABS.map(({ key, icon: Icon, label }) => (
             <button
               key={key}
               onClick={() => onTabChange(key)}
-              className={`flex items-center gap-1.5 px-3 py-2 text-[11px] font-medium transition-colors border-b-2 -mb-px ${
-                activeTab === key ? "text-cyan-400 border-cyan-400" : "text-muted-foreground border-transparent hover:text-foreground"
-              }`}
+              className={`flex items-center gap-1.5 px-3 py-2 text-[11px] font-medium transition-colors border-b-2 -mb-px ${ activeTab === key ? "text-info border-border" : "text-muted-foreground border-transparent hover:text-foreground" }`}
             >
               <Icon className="w-3.5 h-3.5" />
               <span className="hidden xl:inline">{label}</span>

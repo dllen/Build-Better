@@ -79,30 +79,30 @@ export default function TimeTracker() {
   const resultNode = (
     <div className="space-y-4">
       <div className="text-center">
-        <p className="text-sm font-medium text-gray-500 mb-1">{runningId ? t("tools.time-tracker.running") : t("tools.time-tracker.total_hours")}</p>
-        <p className="text-4xl font-bold text-blue-600">
+        <p className="text-sm font-medium text-muted-foreground mb-1">{runningId ? t("tools.time-tracker.running") : t("tools.time-tracker.total_hours")}</p>
+        <p className="text-4xl font-bold text-primary">
           {runningId ? formatTime(elapsed / 1000) : formatTime(totalHours * 3600)}
         </p>
-        <p className="text-sm text-gray-500 mt-1">{fmt(totalEarnings)}</p>
+        <p className="text-sm text-muted-foreground mt-1">{fmt(totalEarnings)}</p>
       </div>
       <div className="flex gap-2">
-        <button onClick={copy} className="flex-1 flex items-center justify-center gap-1 px-3 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 text-sm">
+        <button onClick={copy} className="flex-1 flex items-center justify-center gap-1 px-3 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/10 text-sm">
           <Copy className="h-4 w-4" />{t("tools.time-tracker.copy")}
         </button>
-        <button onClick={download} className="flex-1 flex items-center justify-center gap-1 px-3 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 text-sm">
+        <button onClick={download} className="flex-1 flex items-center justify-center gap-1 px-3 py-2 bg-success/10 text-success rounded-lg hover:bg-success/10 text-sm">
           <Download className="h-4 w-4" />{t("tools.time-tracker.download")}
         </button>
-        <button onClick={clear} className="px-3 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 text-sm">
+        <button onClick={clear} className="px-3 py-2 bg-destructive/10 text-destructive rounded-lg hover:bg-destructive/10 text-sm">
           <Trash2 className="h-4 w-4" />
         </button>
       </div>
       <div className="max-h-48 overflow-y-auto space-y-1">
         {entries.slice().reverse().slice(0, 8).map(e => (
-          <div key={e.id} className="flex justify-between items-center text-sm py-1 border-b border-gray-100">
+          <div key={e.id} className="flex justify-between items-center text-sm py-1 border-b border-border">
             <span className="truncate flex-1">{e.project}</span>
             <span className="font-mono text-xs">{e.duration > 0 ? formatTime(e.duration) : t("tools.time-tracker.running")}</span>
             <span className="font-mono text-xs ml-2 w-20 text-right">{fmt((e.duration / 3600) * e.hourlyRate)}</span>
-            <button onClick={() => remove(e.id)} className="ml-1 text-red-500 text-xs">×</button>
+            <button onClick={() => remove(e.id)} className="ml-1 text-destructive text-xs">×</button>
           </div>
         ))}
       </div>
@@ -114,28 +114,28 @@ export default function TimeTracker() {
       title={t("tools.time-tracker.title")}
       subtitle={t("tools.time-tracker.subtitle")}
       icon={Timer}
-      iconBgColor="bg-rose-100"
-      iconColor="text-rose-600"
+      iconBgColor="bg-destructive/10"
+      iconColor="text-destructive"
       keywords={["time tracker", "timesheet", "work hours", "billable hours"]}
       result={resultNode}
     >
       <div className="space-y-3">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.time-tracker.project")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.time-tracker.project")}</label>
           <input value={project} onChange={e => setProject(e.target.value)} placeholder={t("tools.time-tracker.project_placeholder")} disabled={runningId !== null}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm py-2 px-3 border disabled:bg-gray-100" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border disabled:bg-muted" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.time-tracker.rate")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.time-tracker.rate")}</label>
           <input type="number" min="0" value={rate} onChange={e => setRate(e.target.value)} disabled={runningId !== null}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm py-2 px-3 border disabled:bg-gray-100" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border disabled:bg-muted" />
         </div>
         {runningId === null ? (
-          <button onClick={start} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+          <button onClick={start} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-success text-success-foreground rounded-lg hover:bg-success">
             <Play className="h-4 w-4" />{t("tools.time-tracker.start")}
           </button>
         ) : (
-          <button onClick={stop} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+          <button onClick={stop} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-destructive text-destructive-foreground rounded-lg hover:bg-destructive">
             <Square className="h-4 w-4" />{t("tools.time-tracker.stop")}
           </button>
         )}

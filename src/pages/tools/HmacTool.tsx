@@ -51,7 +51,7 @@ export default function HmacTool() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-emerald-100 text-emerald-600">
+          <div className="inline-flex p-2 rounded-lg bg-success/10 text-success">
             <Shield className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">HMAC 生成器</h1>
@@ -60,7 +60,7 @@ export default function HmacTool() {
       toolbar={
         <>
           <select
-            className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+            className="rounded-md border border-border px-2 py-1 text-sm"
             value={alg}
             onChange={(e) => setAlg(e.target.value as HashAlg)}
           >
@@ -69,7 +69,7 @@ export default function HmacTool() {
             <option value="SHA-512">SHA-512</option>
           </select>
           <select
-            className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+            className="rounded-md border border-border px-2 py-1 text-sm"
             value={enc}
             onChange={(e) => setEnc(e.target.value as OutEnc)}
           >
@@ -78,31 +78,31 @@ export default function HmacTool() {
             <option value="base64url">base64url</option>
           </select>
           <input
-            className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+            className="rounded-md border border-border px-2 py-1 text-sm"
             placeholder="密钥"
             value={key}
             onChange={(e) => setKey(e.target.value)}
           />
-          <span className="text-sm text-gray-600">{keyInfo || "—"}</span>
+          <span className="text-sm text-muted-foreground">{keyInfo || "—"}</span>
           <button
-            className="inline-flex items-center gap-2 px-3 py-2 bg-emerald-600 text-white rounded-md text-sm hover:bg-emerald-700 disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-3 py-2 bg-success text-success-foreground rounded-md text-sm hover:bg-success disabled:opacity-50"
             onClick={compute}
             disabled={!key || !msg || running}
           >
             计算
           </button>
           <button
-            className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+            className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
             onClick={() => copy(out)}
             disabled={!out}
           >
             <ClipboardCopy className="h-4 w-4" /> 复制{" "}
-            {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+            {copied ? <Check className="h-4 w-4 text-success" /> : null}
           </button>
         </>
       }
       inputLabel="消息文本"
-      inputActions={<span className="text-xs text-gray-500">{msgInfo || "—"}</span>}
+      inputActions={<span className="text-xs text-muted-foreground">{msgInfo || "—"}</span>}
       input={
         <textarea
           className="h-full w-full resize-none px-3 py-2 font-mono text-sm focus:outline-none"

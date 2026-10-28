@@ -40,7 +40,7 @@ export function EditorToolbar(props: EditorToolbarProps) {
   } = props;
 
   const btnClass = "p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-all duration-150 hover:scale-105";
-  const activeBtnClass = "p-2 rounded-md bg-cyan-500/15 text-cyan-400 shadow-sm transition-all duration-150 hover:scale-105";
+  const activeBtnClass = "p-2 rounded-md bg-info/15 text-info transition-colors transition-transform duration-150 hover:scale-105";
 
   return (
     <div className="flex flex-col items-center gap-1 py-2 px-1.5 bg-card border border-border rounded-lg flex-shrink-0">
@@ -99,7 +99,7 @@ export function EditorToolbar(props: EditorToolbarProps) {
         className={panelOpen ? activeBtnClass : btnClass}>
         <PanelRight className="w-4 h-4" />
       </button>
-      <button onClick={onReset} title="重置" className={btnClass + " hover:text-red-400 hover:bg-red-500/10"}>
+      <button onClick={onReset} title="重置" className={btnClass + " hover:text-destructive hover:bg-destructive/10"}>
         <Trash2 className="w-3.5 h-3.5" />
       </button>
       <button onClick={onToggleFullscreen} title={isFullscreen ? "退出全屏" : "全屏"} className={btnClass}>

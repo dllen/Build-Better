@@ -107,7 +107,7 @@ export default function CsvToJson() {
       <EditorSplitLayout
         title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-cyan-100 text-cyan-600">
+          <div className="inline-flex p-2 rounded-lg bg-info/10 text-info">
             <FileText className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">CSV 转 JSON</h1>
@@ -121,12 +121,12 @@ export default function CsvToJson() {
                 type="file"
                 accept=".csv,text/csv"
                 onChange={(e) => setFile(e.target.files?.[0] || null)}
-                className="block text-sm text-gray-700 max-w-48"
+                className="block text-sm text-muted-foreground max-w-48"
               />
               {file && (
-                <span className="inline-flex items-center gap-1 text-xs text-gray-500">
+                <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
                   {file.name}（{file.size} 字节）
-                  <button className="text-blue-600" onClick={clearFile}>
+                  <button className="text-primary" onClick={clearFile}>
                     清除
                   </button>
                 </span>
@@ -138,7 +138,7 @@ export default function CsvToJson() {
                 type="text"
                 value={delimiter}
                 onChange={(e) => setDelimiter(e.target.value || ",")}
-                className="rounded-md border border-gray-300 px-2 py-1 w-12 text-sm"
+                className="rounded-md border border-border px-2 py-1 w-12 text-sm"
                 maxLength={2}
               />
             </label>
@@ -148,7 +148,7 @@ export default function CsvToJson() {
                 type="text"
                 value={quote}
                 onChange={(e) => setQuote(e.target.value || '"')}
-                className="rounded-md border border-gray-300 px-2 py-1 w-12 text-sm"
+                className="rounded-md border border-border px-2 py-1 w-12 text-sm"
                 maxLength={2}
               />
             </label>
@@ -163,7 +163,7 @@ export default function CsvToJson() {
             <label className="inline-flex items-center gap-1 text-sm">
               输出
               <select
-                className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+                className="rounded-md border border-border px-2 py-1 text-sm"
                 value={mode}
                 onChange={(e) => setMode(e.target.value as Mode)}
               >
@@ -173,7 +173,7 @@ export default function CsvToJson() {
             </label>
             <div className="flex flex-wrap gap-3">
               <button
-                className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+                className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
                 onClick={convert}
                 disabled={!canConvert || loading}
               >
@@ -181,15 +181,15 @@ export default function CsvToJson() {
                 转换
               </button>
               <button
-                className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+                className="btn disabled:opacity-50"
                 onClick={copy}
                 disabled={!result}
               >
-                {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+                {copied ? <Check className="h-4 w-4 text-success" /> : <Copy className="h-4 w-4" />}
                 {copied ? "已复制" : "复制JSON"}
               </button>
               <button
-                className="px-4 py-2 rounded-md bg-green-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+                className="btn disabled:opacity-50"
                 onClick={download}
                 disabled={!result}
               >
@@ -215,32 +215,32 @@ export default function CsvToJson() {
               {result}
             </pre>
             {!result && !loading && (
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-muted-foreground">
                 选择文件或粘贴文本后点击“转换”
               </div>
             )}
           </div>
         }
-        footer={error ? <div className="text-sm text-red-600">{error}</div> : undefined}
+        footer={error ? <div className="text-sm text-destructive">{error}</div> : undefined}
       />
-      <div className="inline-flex items-center gap-1 mt-2 mb-4 text-xs text-gray-500">
+      <div className="inline-flex items-center gap-1 mt-2 mb-4 text-xs text-muted-foreground">
         <Shield className="h-3 w-3" />
         数据仅在浏览器本地处理，不会上传到服务器。
       </div>
-      <div className="mt-8 p-6 bg-white rounded-xl border border-gray-200">
+      <div className="mt-8 p-6 bg-card rounded-xl border border-border">
         <h2 className="text-lg font-semibold mb-4">相关工具</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          <Link to="/json-editor" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">JSON 编辑器</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/json-editor" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">JSON 编辑器</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
-          <Link to="/sql-formatter" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">SQL 格式化</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/sql-formatter" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">SQL 格式化</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
-          <Link to="/text-diff" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">文本差异对比</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/text-diff" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">文本差异对比</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
         </div>
       </div>

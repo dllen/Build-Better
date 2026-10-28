@@ -139,14 +139,14 @@ export default function P2pChat() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <h1 className="mb-2 text-2xl font-bold text-gray-900">P2P 聊天</h1>
-      <p className="mb-6 text-sm text-gray-500">
+      <h1 className="mb-2 text-2xl font-bold text-foreground">P2P 聊天</h1>
+      <p className="mb-6 text-sm text-muted-foreground">
         双方输入相同的 UUID 即可建立端到端直连聊天，消息不经过任何服务器。
       </p>
 
       {!roomId ? (
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-          <label className="mb-2 block text-sm font-medium text-gray-700">房间 UUID</label>
+        <div className="rounded-lg border border-border bg-card p-6">
+          <label className="mb-2 block text-sm font-medium text-muted-foreground">房间 UUID</label>
           <input
             value={uuidInput}
             onChange={(e) => setUuidInput(e.target.value)}
@@ -155,21 +155,21 @@ export default function P2pChat() {
               if (e.key === "Enter") handleJoin();
             }}
             placeholder="粘贴对方分享的 UUID，或点击下方生成新房间"
-            className="mb-4 w-full rounded-lg border border-gray-300 px-3 py-2 font-mono text-sm outline-none focus:border-blue-500"
+            className="mb-4 w-full rounded-lg border border-border px-3 py-2 font-mono text-sm outline-none focus:border-border"
           />
           <div className="flex gap-3">
             <button
               type="button"
               onClick={handleJoin}
               disabled={!uuidInput.trim()}
-              className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 disabled:opacity-40"
+              className="rounded-lg bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary disabled:opacity-40"
             >
               加入房间
             </button>
             <button
               type="button"
               onClick={handleCreate}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border px-4 py-2 text-sm text-muted-foreground hover:bg-muted"
             >
               <Sparkles size={16} />
               生成新房间
@@ -178,27 +178,27 @@ export default function P2pChat() {
         </div>
       ) : (
         <>
-          <div className="mb-3 flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm shadow-sm">
-            <span className="text-gray-500">房间：</span>
-            <code className="flex-1 truncate font-mono text-gray-800">{roomId}</code>
+          <div className="mb-3 flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm">
+            <span className="text-muted-foreground">房间：</span>
+            <code className="flex-1 truncate font-mono text-foreground">{roomId}</code>
             <button
               type="button"
               onClick={copyUuid}
-              className="rounded p-1.5 text-gray-500 hover:bg-gray-100"
+              className="rounded p-1.5 text-muted-foreground hover:bg-muted"
               title="复制 UUID"
               aria-label="复制 UUID"
             >
-              {copied ? <Check size={16} className="text-green-600" /> : <Copy size={16} />}
+              {copied ? <Check size={16} className="text-success" /> : <Copy size={16} />}
             </button>
           </div>
 
           {timedOut && connState === "connecting" && (
-            <div className="mb-3 flex items-center justify-between rounded-lg border border-yellow-200 bg-yellow-50 px-4 py-2 text-sm text-yellow-800">
+            <div className="mb-3 flex items-center justify-between rounded-lg border border-border bg-primary/10 px-4 py-2 text-sm text-primary">
               <span>未找到对方，请检查 UUID 是否一致、双方是否都在线。</span>
               <button
                 type="button"
                 onClick={() => roomId && join(roomId)}
-                className="inline-flex items-center gap-1 rounded border border-yellow-300 px-2 py-1 hover:bg-yellow-100"
+                className="inline-flex items-center gap-1 rounded border border-border px-2 py-1 hover:bg-primary/10"
               >
                 <RefreshCw size={14} />
                 重试
@@ -214,7 +214,7 @@ export default function P2pChat() {
               <button
                 type="button"
                 onClick={handleLeave}
-                className="inline-flex items-center gap-1 rounded px-2 py-1 text-xs text-gray-500 hover:bg-gray-100"
+                className="inline-flex items-center gap-1 rounded px-2 py-1 text-xs text-muted-foreground hover:bg-muted"
               >
                 <LogOut size={14} />
                 退出房间

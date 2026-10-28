@@ -59,23 +59,23 @@ export default function AINegativeReviewResponder() {
     <div className="space-y-4">
       {loading ? (
         <div className="text-center py-12">
-          <Sparkles className="h-10 w-10 mx-auto mb-4 text-red-500 animate-pulse" />
-          <p className="text-sm text-gray-600">{t("tools.ai-review.generating")}</p>
+          <Sparkles className="h-10 w-10 mx-auto mb-4 text-destructive animate-pulse" />
+          <p className="text-sm text-muted-foreground">{t("tools.ai-review.generating")}</p>
         </div>
       ) : result ? (
         <>
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="bg-destructive/10 border border-border rounded-lg p-4">
             <div className="flex items-center gap-1 mb-2">
-              {[1, 2, 3, 4, 5].map(i => <Star key={i} className="h-3 w-3 fill-red-300 text-red-300" />)}
+              {[1, 2, 3, 4, 5].map(i => <Star key={i} className="h-3 w-3 fill-current text-destructive" />)}
             </div>
-            <pre className="whitespace-pre-wrap text-sm text-gray-900 font-sans">{result}</pre>
+            <pre className="whitespace-pre-wrap text-sm text-foreground font-sans">{result}</pre>
           </div>
-          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-destructive text-destructive-foreground rounded-lg hover:bg-destructive">
             <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.ai-review.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Star className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-sm">{t("tools.ai-review.enter_values")}</p>
           {ollamaOk === false && <div className="mt-3"><OllamaHelpBanner /></div>}
@@ -89,32 +89,32 @@ export default function AINegativeReviewResponder() {
       title={t("tools.ai-review.title")}
       subtitle={t("tools.ai-review.subtitle")}
       icon={Star}
-      iconBgColor="bg-red-100"
-      iconColor="text-red-600"
+      iconBgColor="bg-destructive/10"
+      iconColor="text-destructive"
       keywords={["negative review response", "ai customer service", "review reply", "ecommerce reputation"]}
       result={resultNode}
     >
       <div className="space-y-3">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.ai-review.review")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.ai-review.review")}</label>
           <textarea value={review} onChange={e => setReview(e.target.value)} rows={3} placeholder="The product broke after 2 days..."
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.ai-review.issue_type")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.ai-review.issue_type")}</label>
           <select value={issue} onChange={e => setIssue(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm py-2 px-3 border">
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
             {ISSUES.map(i => <option key={i}>{i}</option>)}
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.ai-review.resolution")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.ai-review.resolution")}</label>
           <input value={resolution} onChange={e => setResolution(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <OllamaModelBadge />
         <button onClick={generate} disabled={loading || !review.trim()}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50">
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-destructive text-destructive-foreground rounded-lg hover:bg-destructive disabled:opacity-50">
           <Sparkles className="h-4 w-4" />{loading ? "..." : t("tools.ai-review.generate")}
         </button>
       </div>

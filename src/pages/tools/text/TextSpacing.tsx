@@ -30,7 +30,7 @@ export default function TextSpacing() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-teal-100 text-teal-600">
+          <div className="inline-flex p-2 rounded-lg bg-info/10 text-info">
             <Space className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">文字间隔</h1>
@@ -39,7 +39,7 @@ export default function TextSpacing() {
       toolbar={
         <>
           <select
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            className="rounded-md border border-border px-3 py-2 text-sm"
             value={target}
             onChange={(e) => setTarget(e.target.value as Target)}
           >
@@ -48,18 +48,18 @@ export default function TextSpacing() {
             <option value="lines">按行</option>
           </select>
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm w-24"
+            className="rounded-md border border-border px-3 py-2 text-sm w-24"
             placeholder="分隔符"
             value={separator}
             onChange={(e) => setSeparator(e.target.value)}
           />
           <button
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-xs hover:bg-gray-50"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-xs hover:bg-muted"
             onClick={() => copy(result)}
             disabled={!result}
           >
             <ClipboardCopy className="h-3.5 w-3.5" /> 复制
-            {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : null}
+            {copied ? <Check className="h-3.5 w-3.5 text-success" /> : null}
           </button>
         </>
       }

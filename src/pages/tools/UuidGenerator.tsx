@@ -84,16 +84,16 @@ export default function UuidGenerator() {
       {toolSEOContent["uuid-generator"] && <ToolPageSEO data={toolSEOContent["uuid-generator"]} />}
       <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-indigo-100 text-indigo-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Fingerprint className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">UUID 生成器</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">数量（1-100）</label>
+            <label className="text-sm font-medium text-muted-foreground">数量（1-100）</label>
             <div className="flex items-center gap-3">
               <input
                 type="range"
@@ -109,7 +109,7 @@ export default function UuidGenerator() {
                 max={100}
                 value={count}
                 onChange={(e) => setCount(clampCount(parseInt(e.target.value, 10)))}
-                className="w-20 rounded-md border border-gray-300 px-3 py-2 text-sm"
+                className="w-20 rounded-md border border-border px-3 py-2 text-sm"
               />
             </div>
           </div>
@@ -135,26 +135,26 @@ export default function UuidGenerator() {
 
           <div className="flex gap-3">
             <button
-              className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 hover:bg-blue-700"
+              className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 hover:bg-primary"
               onClick={generate}
             >
               <RefreshCw className="h-4 w-4" />
               生成
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
               onClick={copyAll}
               disabled={!uuids.length}
             >
               {copiedAll ? (
-                <Check className="h-4 w-4 text-green-600" />
+                <Check className="h-4 w-4 text-success" />
               ) : (
                 <Copy className="h-4 w-4" />
               )}
               {copiedAll ? "已复制" : "全部复制"}
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
               onClick={clearAll}
               disabled={!uuids.length}
             >
@@ -163,52 +163,52 @@ export default function UuidGenerator() {
             </button>
           </div>
 
-          <div className="flex items-center gap-1 text-xs text-gray-500">
+          <div className="flex items-center gap-1 text-xs text-muted-foreground">
             <ShieldCheck className="h-4 w-4" />
             数据仅在浏览器本地处理，不会上传到服务器。
           </div>
         </div>
 
-        <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200 p-4">
+        <div className="lg:col-span-2 bg-card rounded-lg border border-border p-4">
           <div className="font-medium mb-2">结果</div>
           {uuids.length ? (
             <ul className="space-y-1">
               {uuids.map((id, i) => (
                 <li key={`${i}-${id}`}>
                   <button
-                    className="w-full text-left font-mono text-sm rounded-md border border-gray-200 px-3 py-2 hover:bg-gray-50 inline-flex items-center justify-between gap-2 break-all"
+                    className="w-full text-left font-mono text-sm rounded-md border border-border px-3 py-2 hover:bg-muted inline-flex items-center justify-between gap-2 break-all"
                     onClick={() => copyOne(id, i)}
                     title="点击复制"
                   >
                     <span>{id}</span>
                     {copiedIndex === i ? (
-                      <Check className="h-4 w-4 text-green-600 shrink-0" />
+                      <Check className="h-4 w-4 text-success shrink-0" />
                     ) : (
-                      <Copy className="h-4 w-4 text-gray-400 shrink-0" />
+                      <Copy className="h-4 w-4 text-muted-foreground shrink-0" />
                     )}
                   </button>
                 </li>
               ))}
             </ul>
           ) : (
-            <div className="text-sm text-gray-500">点击“生成”按钮生成 UUID</div>
+            <div className="text-sm text-muted-foreground">点击“生成”按钮生成 UUID</div>
           )}
         </div>
       </div>
-      <div className="mt-8 p-6 bg-white rounded-xl border border-gray-200">
+      <div className="mt-8 p-6 bg-card rounded-xl border border-border">
         <h2 className="text-lg font-semibold mb-4">相关工具</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          <Link to="/password-generator" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">密码生成器</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/password-generator" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">密码生成器</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
-          <Link to="/ulid" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">ULID 生成器</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/ulid" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">ULID 生成器</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
-          <Link to="/otp-generator" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">OTP 生成器</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/otp-generator" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">OTP 生成器</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
         </div>
       </div>

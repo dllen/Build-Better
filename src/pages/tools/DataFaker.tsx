@@ -192,14 +192,14 @@ export default function DataFaker() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-purple-100 text-purple-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Database className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">数据 Faker</h1>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-center gap-2 text-xs text-gray-500 mb-4">
+      <div className="bg-card rounded-lg border border-border p-4">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4">
           <Shield className="h-3 w-3" />
           <span>数据仅在浏览器本地处理，不会上传到服务器。</span>
         </div>
@@ -208,10 +208,10 @@ export default function DataFaker() {
           <div className="space-y-4">
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-sm font-medium text-gray-700">字段配置</label>
+                <label className="text-sm font-medium text-muted-foreground">字段配置</label>
                 <button
                   onClick={addField}
-                  className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700"
+                  className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary"
                 >
                   <Plus className="h-4 w-4" />
                   添加字段
@@ -226,12 +226,12 @@ export default function DataFaker() {
                       value={field.name}
                       onChange={(e) => updateField(field.id, "name", e.target.value)}
                       placeholder="字段名"
-                      className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="flex-1 rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                     <select
                       value={field.type}
                       onChange={(e) => updateField(field.id, "type", e.target.value)}
-                      className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                     >
                       {FIELD_TYPES.map((t) => (
                         <option key={t.value} value={t.value}>
@@ -241,7 +241,7 @@ export default function DataFaker() {
                     </select>
                     <button
                       onClick={() => removeField(field.id)}
-                      className="p-2 text-gray-400 hover:text-red-500"
+                      className="p-2 text-muted-foreground hover:text-destructive"
                       title="删除"
                     >
                       <Trash2 className="h-4 w-4" />
@@ -253,22 +253,22 @@ export default function DataFaker() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">生成条数</label>
+                <label className="text-sm font-medium text-muted-foreground">生成条数</label>
                 <input
                   type="number"
                   min={1}
                   max={1000}
                   value={count}
                   onChange={(e) => setCount(Math.max(1, Math.min(1000, Number(e.target.value))))}
-                  className="rounded-md border border-gray-300 px-3 py-2 w-full"
+                  className="rounded-md border border-border px-3 py-2 w-full"
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">输出格式</label>
+                <label className="text-sm font-medium text-muted-foreground">输出格式</label>
                 <select
                   value={format}
                   onChange={(e) => setFormat(e.target.value as OutputFormat)}
-                  className="rounded-md border border-gray-300 px-3 py-2 w-full"
+                  className="rounded-md border border-border px-3 py-2 w-full"
                 >
                   <option value="json">JSON</option>
                   <option value="csv">CSV</option>
@@ -279,13 +279,13 @@ export default function DataFaker() {
 
             {format === "sql" && (
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">表名</label>
+                <label className="text-sm font-medium text-muted-foreground">表名</label>
                 <input
                   type="text"
                   value={tableName}
                   onChange={(e) => setTableName(e.target.value || "mock_table")}
                   placeholder="mock_table"
-                  className="rounded-md border border-gray-300 px-3 py-2 w-full"
+                  className="rounded-md border border-border px-3 py-2 w-full"
                 />
               </div>
             )}
@@ -293,7 +293,7 @@ export default function DataFaker() {
             <div className="flex gap-3">
               <button
                 onClick={generate}
-                className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2"
+                className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2"
               >
                 <RefreshCw className="h-4 w-4" />
                 生成
@@ -301,7 +301,7 @@ export default function DataFaker() {
               <button
                 onClick={copy}
                 disabled={!output}
-                className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+                className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
               >
                 <Copy className="h-4 w-4" />
                 {copied ? "已复制" : "复制"}
@@ -309,7 +309,7 @@ export default function DataFaker() {
               <button
                 onClick={download}
                 disabled={!output}
-                className="px-4 py-2 rounded-md bg-green-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+                className="px-4 py-2 rounded-md bg-success text-success-foreground inline-flex items-center gap-2 disabled:opacity-50"
               >
                 <Download className="h-4 w-4" />
                 下载
@@ -317,17 +317,17 @@ export default function DataFaker() {
               <button
                 onClick={clear}
                 disabled={!output}
-                className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+                className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
               >
                 清空
               </button>
             </div>
 
-            {hint && <div className="text-sm text-orange-500">{hint}</div>}
+            {hint && <div className="text-sm text-primary">{hint}</div>}
           </div>
 
-          <div className="bg-gray-50 rounded-lg border border-gray-200 p-4">
-            <div className="font-medium mb-2 text-sm text-gray-700">输出预览</div>
+          <div className="bg-muted rounded-lg border border-border p-4">
+            <div className="font-medium mb-2 text-sm text-muted-foreground">输出预览</div>
             <pre className="font-mono text-sm whitespace-pre-wrap break-words max-h-[500px] overflow-y-auto">
               {output || '点击「生成」查看输出结果'}
             </pre>

@@ -82,17 +82,17 @@ export default function LoremIpsumGenerator() {
       title="Lorem Ipsum Generator"
       subtitle="Generate placeholder text for your designs and mockups."
       icon={FileText}
-      iconBgColor="bg-slate-100"
-      iconColor="text-slate-600"
+      iconBgColor="bg-muted"
+      iconColor="text-muted-foreground"
       keywords={["lorem ipsum", "placeholder text", "dummy text", "filler text", "random text"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Output Type</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">Output Type</label>
             <select
               value={outputType}
               onChange={(e) => setOutputType(e.target.value as OutputType)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500"
+              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-border"
             >
               <option value="paragraphs">Paragraphs</option>
               <option value="sentences">Sentences</option>
@@ -100,7 +100,7 @@ export default function LoremIpsumGenerator() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted-foreground mb-1">
               Count: {count}
             </label>
             <input
@@ -109,12 +109,12 @@ export default function LoremIpsumGenerator() {
               max={outputType === "paragraphs" ? 20 : outputType === "sentences" ? 50 : 200}
               value={count}
               onChange={(e) => setCount(Number(e.target.value))}
-              className="w-full accent-slate-600"
+              className="w-full accent-primary"
             />
           </div>
           {outputType === "paragraphs" && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-muted-foreground mb-1">
                 Words per paragraph: {wordsPerParagraph}
               </label>
               <input
@@ -123,22 +123,22 @@ export default function LoremIpsumGenerator() {
                 max={100}
                 value={wordsPerParagraph}
                 onChange={(e) => setWordsPerParagraph(Number(e.target.value))}
-                className="w-full accent-slate-600"
+                className="w-full accent-primary"
               />
             </div>
           )}
-          <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+          <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
             <input
               type="checkbox"
               checked={startWithLorem}
               onChange={(e) => setStartWithLorem(e.target.checked)}
-              className="rounded text-slate-600 focus:ring-slate-500"
+              className="rounded text-muted-foreground focus:ring-border"
             />
             Start with "Lorem ipsum dolor sit amet..."
           </label>
           <button
             onClick={generate}
-            className="w-full flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-800 text-white py-2.5 rounded-lg font-medium transition-colors shadow-sm active:scale-95"
+            className="w-full flex items-center justify-center gap-2 bg-secondary hover:bg-muted text-secondary-foreground py-2.5 rounded-lg font-medium transition-colors active:scale-95"
           >
             <RefreshCw className="h-5 w-5" />
             Generate
@@ -148,19 +148,19 @@ export default function LoremIpsumGenerator() {
       result={
         <div className="h-full flex flex-col">
           <div className="flex items-center justify-between mb-3">
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-muted-foreground">
               {wordCount} words · {charCount} chars
             </div>
             <button
               onClick={copyText}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-sm hover:bg-gray-50"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-sm hover:bg-muted"
             >
-              {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : <Copy className="h-3.5 w-3.5" />}
+              {copied ? <Check className="h-3.5 w-3.5 text-success" /> : <Copy className="h-3.5 w-3.5" />}
               {copied ? "Copied!" : "Copy"}
             </button>
           </div>
           <div className="flex-1 overflow-auto">
-            <pre className="text-sm text-gray-700 whitespace-pre-wrap leading-relaxed font-sans">
+            <pre className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed font-sans">
               {text}
             </pre>
           </div>

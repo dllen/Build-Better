@@ -136,7 +136,7 @@ export default function DateTimeTools() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-emerald-100 text-emerald-600">
+        <div className="inline-flex p-2 rounded-lg bg-success/10 text-success">
           <Calendar className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Date & Time Tools</h1>
@@ -144,17 +144,17 @@ export default function DateTimeTools() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="space-y-4">
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3">
             <div className="font-medium">Timestamp → Date</div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <input
-                className="rounded-md border border-gray-300 px-3 py-2"
+                className="rounded-md border border-border px-3 py-2"
                 placeholder="输入时间戳"
                 value={tsValue}
                 onChange={(e) => setTsValue(e.target.value)}
               />
               <select
-                className="rounded-md border border-gray-300 px-3 py-2"
+                className="rounded-md border border-border px-3 py-2"
                 value={tsUnit}
                 onChange={(e) => setTsUnit(e.target.value as TsUnit)}
               >
@@ -162,7 +162,7 @@ export default function DateTimeTools() {
                 <option value="seconds">秒</option>
               </select>
               <select
-                className="rounded-md border border-gray-300 px-3 py-2"
+                className="rounded-md border border-border px-3 py-2"
                 value={tsZone}
                 onChange={(e) => setTsZone(Number(e.target.value))}
               >
@@ -175,11 +175,11 @@ export default function DateTimeTools() {
             </div>
             <div className="flex items-center gap-3">
               <div className="flex-1">
-                <div className="text-sm text-gray-500">日期</div>
+                <div className="text-sm text-muted-foreground">日期</div>
                 <div className="font-mono text-sm break-all">{tsOut?.date || "—"}</div>
               </div>
               <button
-                className="inline-flex items-center gap-2 px-3 py-2 bg-emerald-600 text-white rounded-md text-sm hover:bg-emerald-700 disabled:opacity-50"
+                className="inline-flex items-center gap-2 px-3 py-2 bg-success text-success-foreground rounded-md text-sm hover:bg-success disabled:opacity-50"
                 disabled={!tsOut?.date}
                 onClick={() => tsOut?.date && copy(tsOut.date)}
               >
@@ -188,11 +188,11 @@ export default function DateTimeTools() {
             </div>
             <div className="flex items-center gap-3">
               <div className="flex-1">
-                <div className="text-sm text-gray-500">ISO</div>
+                <div className="text-sm text-muted-foreground">ISO</div>
                 <div className="font-mono text-sm break-all">{tsOut?.iso || "—"}</div>
               </div>
               <button
-                className="inline-flex items-center gap-2 px-3 py-2 bg-emerald-600 text-white rounded-md text-sm hover:bg-emerald-700 disabled:opacity-50"
+                className="inline-flex items-center gap-2 px-3 py-2 bg-success text-success-foreground rounded-md text-sm hover:bg-success disabled:opacity-50"
                 disabled={!tsOut?.iso}
                 onClick={() => tsOut?.iso && copy(tsOut.iso)}
               >
@@ -201,29 +201,29 @@ export default function DateTimeTools() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3">
             <div className="font-medium">Date → Timestamp</div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <input
                 type="datetime-local"
-                className="rounded-md border border-gray-300 px-3 py-2"
+                className="rounded-md border border-border px-3 py-2"
                 value={dateInput}
                 onChange={(e) => setDateInput(e.target.value)}
               />
               <select
-                className="rounded-md border border-gray-300 px-3 py-2"
+                className="rounded-md border border-border px-3 py-2"
                 value={dateTsUnit}
                 onChange={(e) => setDateTsUnit(e.target.value as TsUnit)}
               >
                 <option value="milliseconds">毫秒</option>
                 <option value="seconds">秒</option>
               </select>
-              <div className="rounded-md border border-gray-300 px-3 py-2 font-mono text-sm truncate">
+              <div className="rounded-md border border-border px-3 py-2 font-mono text-sm truncate">
                 {dateTs || "—"}
               </div>
             </div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 bg-emerald-600 text-white rounded-md text-sm hover:bg-emerald-700 disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-success text-success-foreground rounded-md text-sm hover:bg-success disabled:opacity-50"
               disabled={!dateTs}
               onClick={() => dateTs && copy(dateTs)}
             >
@@ -233,22 +233,22 @@ export default function DateTimeTools() {
         </div>
 
         <div className="space-y-4">
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3">
             <div className="font-medium">格式化</div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-start">
               <input
                 type="datetime-local"
-                className="rounded-md border border-gray-300 px-3 py-2"
+                className="rounded-md border border-border px-3 py-2"
                 value={fmtInput}
                 onChange={(e) => setFmtInput(e.target.value)}
               />
               <input
-                className="rounded-md border border-gray-300 px-3 py-2"
+                className="rounded-md border border-border px-3 py-2"
                 value={fmtPattern}
                 onChange={(e) => setFmtPattern(e.target.value)}
               />
               <select
-                className="rounded-md border border-gray-300 px-3 py-2"
+                className="rounded-md border border-border px-3 py-2"
                 value={fmtZone}
                 onChange={(e) => setFmtZone(Number(e.target.value))}
               >
@@ -263,7 +263,7 @@ export default function DateTimeTools() {
               {presets.map((p) => (
                 <button
                   key={p.label}
-                  className="px-2 py-1 text-xs rounded border border-gray-300 hover:bg-gray-100"
+                  className="px-2 py-1 text-xs rounded border border-border hover:bg-muted"
                   onClick={() => setFmtPattern(p.pattern)}
                 >
                   {p.label}
@@ -273,71 +273,71 @@ export default function DateTimeTools() {
             <div className="font-mono text-sm break-all">{fmtOut || "—"}</div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3">
             <div className="font-medium">相对时间</div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <input
                 type="datetime-local"
-                className="rounded-md border border-gray-300 px-3 py-2"
+                className="rounded-md border border-border px-3 py-2"
                 value={relInput}
                 onChange={(e) => setRelInput(e.target.value)}
               />
-              <div className="rounded-md border border-gray-300 px-3 py-2">{relOut || "—"}</div>
+              <div className="rounded-md border border-border px-3 py-2">{relOut || "—"}</div>
             </div>
           </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">区间差值</div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <input
               type="datetime-local"
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               value={start}
               onChange={(e) => setStart(e.target.value)}
             />
             <input
               type="datetime-local"
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               value={end}
               onChange={(e) => setEnd(e.target.value)}
             />
           </div>
-          <div className="text-sm text-gray-500">差值（绝对值）</div>
+          <div className="text-sm text-muted-foreground">差值（绝对值）</div>
           <div className="font-mono text-sm">{diffOut?.human || "—"}</div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="flex items-center gap-2">
-            <Clock className="h-5 w-5 text-gray-600" />
+            <Clock className="h-5 w-5 text-muted-foreground" />
             <div className="font-medium">加减时间</div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
             <input
               type="datetime-local"
-              className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2"
+              className="rounded-md border border-border px-3 py-2 md:col-span-2"
               value={calcInput}
               onChange={(e) => setCalcInput(e.target.value)}
             />
             <input
               type="number"
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               placeholder="天"
               value={calcDays}
               onChange={(e) => setCalcDays(Number(e.target.value))}
             />
             <input
               type="number"
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               placeholder="小时"
               value={calcHours}
               onChange={(e) => setCalcHours(Number(e.target.value))}
             />
             <input
               type="number"
-              className="rounded-md border border-gray-300 px-3 py-2"
+              className="rounded-md border border-border px-3 py-2"
               placeholder="分钟"
               value={calcMinutes}
               onChange={(e) => setCalcMinutes(Number(e.target.value))}
@@ -347,16 +347,16 @@ export default function DateTimeTools() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+      <div className="bg-card rounded-lg border border-border p-4 space-y-3">
         <div className="font-medium">日期元信息</div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <input
             type="datetime-local"
-            className="rounded-md border border-gray-300 px-3 py-2 md:col-span-2"
+            className="rounded-md border border-border px-3 py-2 md:col-span-2"
             value={metaInput}
             onChange={(e) => setMetaInput(e.target.value)}
           />
-          <div className="rounded-md border border-gray-300 px-3 py-2">
+          <div className="rounded-md border border-border px-3 py-2">
             {metaOut ? (
               <div className="text-sm">
                 <div>ISO 周序：{metaOut.week}</div>

@@ -292,15 +292,15 @@ const GoGame: React.FC = () => {
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link to="/games">
-            <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full">
+            <button className="p-2 hover:bg-muted rounded-full transition-colors">
               <ArrowLeft className="h-6 w-6" />
             </button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+            <h1 className="text-3xl font-bold text-foreground">
               {t("games.go.title", "Go (Weiqi)")}
             </h1>
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-muted-foreground">
               {t("games.go.subtitle", "Strategy board game")}
             </p>
           </div>
@@ -309,14 +309,14 @@ const GoGame: React.FC = () => {
            <button 
                 onClick={undoMove} 
                 disabled={history.length === 0}
-                className="flex items-center px-4 py-2 border rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50"
+                className="flex items-center px-4 py-2 border rounded-md hover:bg-muted transition-colors disabled:opacity-50"
            >
              <Undo className="mr-2 h-4 w-4" />
              {t("common.undo", "Undo")}
            </button>
           <button 
                 onClick={resetGame}
-                className="flex items-center px-4 py-2 border rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="flex items-center px-4 py-2 border rounded-md hover:bg-muted transition-colors"
           >
             <RefreshCw className="mr-2 h-4 w-4" />
             {t("common.restart", "Restart")}
@@ -328,7 +328,7 @@ const GoGame: React.FC = () => {
         <div className="md:col-span-2 flex justify-center">
             {/* Go Board */}
             <div 
-                className="relative bg-[#DEB887] shadow-lg select-none"
+                className="relative bg-board-wood select-none"
                 style={{
                     width: "100%",
                     maxWidth: "600px",
@@ -338,7 +338,7 @@ const GoGame: React.FC = () => {
             >
                 {/* Grid Lines */}
                 <div className="absolute inset-0 p-[20px] pointer-events-none">
-                     <svg width="100%" height="100%" viewBox={`0 0 ${BOARD_SIZE-1} ${BOARD_SIZE-1}`} style={{ overflow: "visible" }}>
+                     <svg width="100%" height="100%" viewBox={`0 0 ${BOARD_SIZE-1} ${BOARD_SIZE-1}`} style={{ overflow: "visible" }} aria-hidden="true">
                         {Array.from({ length: BOARD_SIZE }).map((_, i) => (
                             <line 
                                 key={`h-${i}`} 
@@ -384,7 +384,7 @@ const GoGame: React.FC = () => {
                             >
                                 {cell !== EMPTY && (
                                     <div 
-                                        className={`rounded-full shadow-sm z-10
+                                        className={`rounded-full z-10
                                             ${cell === BLACK ? "bg-black" : "bg-white"}
                                             ${cell === WHITE ? "border border-gray-300" : ""}
                                         `}
@@ -392,8 +392,8 @@ const GoGame: React.FC = () => {
                                             width: "90%",
                                             height: "90%",
                                             background: cell === BLACK 
-                                                ? "radial-gradient(circle at 30% 30%, #555, #000)" 
-                                                : "radial-gradient(circle at 30% 30%, #fff, #ddd)"
+                                                ? "radial-gradient(circle at 30% 30%, var(--stone-black-hi), var(--stone-black))" 
+                                                : "radial-gradient(circle at 30% 30%, var(--stone-white-hi), var(--stone-white))"
                                         }}
                                     />
                                 )}
@@ -408,7 +408,7 @@ const GoGame: React.FC = () => {
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border p-6">
+          <div className="bg-card rounded-lg border border-border p-6">
             <div className="mb-4">
               <h3 className="text-lg font-semibold mb-4">{t("games.go.settings", "Game Settings")}</h3>
             </div>
@@ -420,7 +420,7 @@ const GoGame: React.FC = () => {
                 <select
                   value={difficulty}
                   onChange={(e) => setDifficulty(e.target.value as unknown as "easy" | "medium" | "hard")}
-                  className="w-full p-2 border rounded-md bg-transparent dark:bg-gray-700"
+                  className="w-full p-2 border border-border rounded-md bg-transparent"
                 >
                   <option value="easy">{t("games.go.easy", "Easy")}</option>
                   <option value="medium">{t("games.go.medium", "Medium")}</option>
@@ -428,7 +428,7 @@ const GoGame: React.FC = () => {
                 </select>
               </div>
 
-              <div className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg space-y-3">
+              <div className="p-4 bg-muted rounded-lg space-y-3">
                 <div className="flex justify-between items-center">
                    <div className="flex items-center gap-2">
                        <div className="w-4 h-4 rounded-full bg-black"></div>

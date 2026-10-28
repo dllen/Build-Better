@@ -76,7 +76,7 @@ export default function TextTranspose() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-sky-100 text-sky-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <ArrowRightLeft className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">Row ↔ Column Converter</h1>
@@ -87,7 +87,7 @@ export default function TextTranspose() {
           <label className="inline-flex items-center gap-1 text-sm">
             方向
             <select
-              className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+              className="rounded-md border border-border px-2 py-1 text-sm"
               value={direction}
               onChange={(e) => setDirection(e.target.value as Direction)}
             >
@@ -100,7 +100,7 @@ export default function TextTranspose() {
               <label className="inline-flex items-center gap-1 text-sm">
                 分隔符
                 <select
-                  className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+                  className="rounded-md border border-border px-2 py-1 text-sm"
                   value={delimiter}
                   onChange={(e) => setDelimiter(e.target.value)}
                 >
@@ -113,7 +113,7 @@ export default function TextTranspose() {
               </label>
               {delimiter === "__custom__" && (
                 <input
-                  className="w-24 rounded-md border border-gray-300 px-2 py-1 text-sm"
+                  className="w-24 rounded-md border border-border px-2 py-1 text-sm"
                   placeholder="分隔符"
                   value={customDelimiter}
                   onChange={(e) => setCustomDelimiter(e.target.value)}
@@ -125,7 +125,7 @@ export default function TextTranspose() {
               <label className="inline-flex items-center gap-1 text-sm">
                 连接符
                 <select
-                  className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+                  className="rounded-md border border-border px-2 py-1 text-sm"
                   value={joiner}
                   onChange={(e) => setJoiner(e.target.value)}
                 >
@@ -138,7 +138,7 @@ export default function TextTranspose() {
               </label>
               {joiner === "__custom__" && (
                 <input
-                  className="w-24 rounded-md border border-gray-300 px-2 py-1 text-sm"
+                  className="w-24 rounded-md border border-border px-2 py-1 text-sm"
                   placeholder="连接符"
                   value={customJoiner}
                   onChange={(e) => setCustomJoiner(e.target.value)}
@@ -159,15 +159,15 @@ export default function TextTranspose() {
             去除空项
           </label>
           <button
-            className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+            className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
             onClick={copy}
             disabled={!output}
           >
             <ClipboardCopy className="h-4 w-4" /> 复制{" "}
-            {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+            {copied ? <Check className="h-4 w-4 text-success" /> : null}
           </button>
           <button
-            className="inline-flex items-center gap-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
+            className="inline-flex items-center gap-1 px-3 py-2 border border-border rounded-md text-sm"
             onClick={() => setInput("")}
           >
             <Trash2 className="h-3.5 w-3.5" /> 清空
@@ -190,13 +190,13 @@ export default function TextTranspose() {
       outputLabel={`输出${direction === "row-to-col" ? "（每行一项）" : "（单行）"}`}
       output={
         <textarea
-          className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-gray-50 focus:outline-none"
+          className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-muted focus:outline-none"
           readOnly
           value={output}
         />
       }
       footer={
-        <div className="text-xs text-gray-600">
+        <div className="text-xs text-muted-foreground">
           项目数: {stats.items}，字符数: {stats.chars}
         </div>
       }

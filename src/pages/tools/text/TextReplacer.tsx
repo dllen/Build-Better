@@ -85,7 +85,7 @@ export default function TextReplacer() {
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-6">
       <div className="flex items-center gap-2 mb-6">
-        <div className="p-2 bg-green-100 text-green-600 rounded-lg">
+        <div className="p-2 bg-success/10 text-success rounded-lg">
           <Replace size={24} />
         </div>
         <h1 className="text-2xl font-bold">Text Replacer</h1>
@@ -93,19 +93,19 @@ export default function TextReplacer() {
 
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-4">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+          <div className="bg-card rounded-xl border border-border p-4">
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Enter text here..."
-              className="w-full h-96 p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none font-mono text-sm"
+              className="w-full h-96 p-4 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent resize-none font-mono text-sm"
             />
             <div className="flex justify-between items-center mt-4">
                <div className="flex gap-2">
                  <button
                     onClick={undo}
                     disabled={history.length === 0}
-                    className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 rounded-lg disabled:opacity-50"
+                    className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted rounded-lg disabled:opacity-50"
                   >
                     <History size={14} /> Undo
                   </button>
@@ -113,14 +113,14 @@ export default function TextReplacer() {
                <div className="flex gap-2">
                 <button
                   onClick={() => setText('')}
-                  className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 text-muted-foreground hover:bg-muted rounded-lg transition-colors"
                 >
                   <RotateCcw size={16} />
                   Clear
                 </button>
                 <button
                   onClick={handleCopy}
-                  className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-success text-success-foreground rounded-lg hover:bg-success transition-colors"
                 >
                   <Copy size={16} />
                   {message || 'Copy Result'}
@@ -131,12 +131,12 @@ export default function TextReplacer() {
         </div>
 
         <div className="space-y-4">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+          <div className="bg-card rounded-xl border border-border p-4">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="font-semibold text-gray-700">Replacements</h3>
+              <h3 className="font-semibold text-muted-foreground">Replacements</h3>
               <button 
                 onClick={addPair}
-                className="text-sm text-green-600 hover:text-green-700 flex items-center gap-1"
+                className="text-sm text-success hover:text-success flex items-center gap-1"
               >
                 <Plus size={14} /> Add Rule
               </button>
@@ -144,11 +144,11 @@ export default function TextReplacer() {
             
             <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2">
               {pairs.map((pair, index) => (
-                <div key={index} className="p-3 bg-gray-50 rounded-lg border border-gray-200 space-y-2">
+                <div key={index} className="p-3 bg-muted rounded-lg border border-border space-y-2">
                   <div className="flex justify-between items-start">
-                    <span className="text-xs font-medium text-gray-500">Rule #{index + 1}</span>
+                    <span className="text-xs font-medium text-muted-foreground">Rule #{index + 1}</span>
                     {pairs.length > 1 && (
-                      <button onClick={() => removePair(index)} className="text-gray-400 hover:text-red-500">
+                      <button onClick={() => removePair(index)} className="text-muted-foreground hover:text-destructive">
                         <Trash2 size={14} />
                       </button>
                     )}
@@ -159,32 +159,32 @@ export default function TextReplacer() {
                     value={pair.find}
                     onChange={(e) => updatePair(index, 'find', e.target.value)}
                     placeholder="Find..."
-                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-1 focus:ring-green-500"
+                    className="w-full px-3 py-2 text-sm border border-border rounded-md focus:ring-1 focus:ring-ring"
                   />
                   <input
                     type="text"
                     value={pair.replace}
                     onChange={(e) => updatePair(index, 'replace', e.target.value)}
                     placeholder="Replace with..."
-                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-1 focus:ring-green-500"
+                    className="w-full px-3 py-2 text-sm border border-border rounded-md focus:ring-1 focus:ring-ring"
                   />
                   
                   <div className="flex gap-4 mt-2">
-                    <label className="flex items-center gap-2 text-xs text-gray-600 cursor-pointer">
+                    <label className="flex items-center gap-2 text-xs text-muted-foreground cursor-pointer">
                       <input
                         type="checkbox"
                         checked={pair.useRegex}
                         onChange={(e) => updatePair(index, 'useRegex', e.target.checked)}
-                        className="rounded text-green-600 focus:ring-green-500"
+                        className="rounded text-success focus:ring-ring"
                       />
                       Regex
                     </label>
-                    <label className="flex items-center gap-2 text-xs text-gray-600 cursor-pointer">
+                    <label className="flex items-center gap-2 text-xs text-muted-foreground cursor-pointer">
                       <input
                         type="checkbox"
                         checked={pair.caseSensitive}
                         onChange={(e) => updatePair(index, 'caseSensitive', e.target.checked)}
-                        className="rounded text-green-600 focus:ring-green-500"
+                        className="rounded text-success focus:ring-ring"
                       />
                       Match Case
                     </label>
@@ -195,7 +195,7 @@ export default function TextReplacer() {
 
             <button
               onClick={processReplacement}
-              className="w-full mt-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium transition-colors"
+              className="w-full mt-4 py-2 bg-success text-success-foreground rounded-lg hover:bg-success font-medium transition-colors"
             >
               Replace All
             </button>

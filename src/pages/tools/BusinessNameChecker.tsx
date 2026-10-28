@@ -42,26 +42,26 @@ export default function BusinessNameChecker() {
       {checked ? (
         <>
           <div className="text-center mb-4">
-            <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.business-name.title")}</p>
-            <p className="text-2xl font-bold text-gray-900">"{name}"</p>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.business-name.title")}</p>
+            <p className="text-2xl font-bold text-foreground">"{name}"</p>
+            <p className="text-xs text-muted-foreground mt-1">
               {results.filter(r => r.valid).length} / {PLATFORMS.length} {t("tools.business-name.platforms_passed")}
             </p>
           </div>
           <div className="space-y-2 max-h-72 overflow-y-auto">
             {results.map((r, i) => (
-              <div key={i} className={`p-3 rounded-lg flex items-center justify-between ${r.valid ? "bg-green-50 border border-green-200" : "bg-red-50 border border-red-200"}`}>
+              <div key={i} className={`p-3 rounded-lg flex items-center justify-between ${r.valid ? "bg-success/10 border border-border" : "bg-destructive/10 border border-border"}`}>
                 <span className="flex items-center gap-2">
-                  {r.valid ? <Check className="h-4 w-4 text-green-600" /> : <X className="h-4 w-4 text-red-600" />}
+                  {r.valid ? <Check className="h-4 w-4 text-success" /> : <X className="h-4 w-4 text-destructive" />}
                   <span className="font-medium text-sm">{r.platform.name}</span>
                 </span>
-                <span className={`text-xs ${r.valid ? "text-green-700" : "text-red-700"}`}>{r.reason}</span>
+                <span className={`text-xs ${r.valid ? "text-success" : "text-destructive"}`}>{r.reason}</span>
               </div>
             ))}
           </div>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Store className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("tools.business-name.enter_values")}</p>
           <p className="text-xs mt-2">{t("tools.business-name.note")}</p>
@@ -75,18 +75,18 @@ export default function BusinessNameChecker() {
       title={t("tools.business-name.title")}
       subtitle={t("tools.business-name.subtitle")}
       icon={Store}
-      iconBgColor="bg-purple-100"
-      iconColor="text-purple-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["business name checker", "username checker", "shopee name", "tokopedia name"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.business-name.business_name")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.business-name.business_name")}</label>
           <input value={name} onChange={e => { setName(e.target.value); setChecked(false); }} placeholder="MyShop" onKeyDown={e => e.key === "Enter" && check()}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
-        <button onClick={check} className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
+        <button onClick={check} className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary">
           {t("tools.business-name.check")}
         </button>
       </div>

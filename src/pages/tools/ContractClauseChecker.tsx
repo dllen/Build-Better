@@ -254,11 +254,11 @@ export default function ContractClauseChecker() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "pass":
-        return <CheckCircle className="h-5 w-5 text-green-500" />;
+        return <CheckCircle className="h-5 w-5 text-success" />;
       case "warning":
-        return <AlertTriangle className="h-5 w-5 text-amber-500" />;
+        return <AlertTriangle className="h-5 w-5 text-primary" />;
       case "fail":
-        return <XCircle className="h-5 w-5 text-red-500" />;
+        return <XCircle className="h-5 w-5 text-destructive" />;
       default:
         return null;
     }
@@ -280,13 +280,13 @@ export default function ContractClauseChecker() {
   const getRiskColor = (level: string) => {
     switch (level) {
       case "high":
-        return "bg-red-100 text-red-800 border-red-200";
+        return "bg-destructive/10 text-destructive border-border";
       case "medium":
-        return "bg-amber-100 text-amber-800 border-amber-200";
+        return "bg-primary/10 text-primary border-border";
       case "low":
-        return "bg-green-100 text-green-800 border-green-200";
+        return "bg-success/10 text-success border-border";
       default:
-        return "bg-gray-100 text-gray-800";
+        return "bg-muted text-foreground";
     }
   };
 
@@ -306,30 +306,30 @@ export default function ContractClauseChecker() {
   const inputPanel = (
     <div className="space-y-6">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-muted-foreground mb-2">
           {isZh ? "选择国家" : "Select Country"}
         </label>
         <select
           value={country}
           onChange={(e) => setCountry(e.target.value as CountryKey)}
-          className="block w-full border-gray-300 rounded-md shadow-sm focus:border-slate-500 focus:ring-slate-500 sm:text-sm py-2 px-3 border"
+          className="block w-full border-border rounded-md focus:border-border focus:ring-border sm:text-sm py-2 px-3 border"
         >
-          <option value="saudi">🇸🇦 {isZh ? "沙特阿拉伯" : "Saudi Arabia"}</option>
-          <option value="indonesia">🇮🇩 {isZh ? "印尼" : "Indonesia"}</option>
-          <option value="vietnam">🇻🇳 {isZh ? "越南" : "Vietnam"}</option>
-          <option value="uae">🇦🇪 {isZh ? "阿联酋" : "UAE"}</option>
-          <option value="philippines">🇵🇭 {isZh ? "菲律宾" : "Philippines"}</option>
+          <option value="saudi">{isZh ? "沙特阿拉伯" : "Saudi Arabia"}</option>
+          <option value="indonesia">{isZh ? "印尼" : "Indonesia"}</option>
+          <option value="vietnam">{isZh ? "越南" : "Vietnam"}</option>
+          <option value="uae">{isZh ? "阿联酋" : "UAE"}</option>
+          <option value="philippines">{isZh ? "菲律宾" : "Philippines"}</option>
         </select>
       </div>
 
-      <div className="border-t border-gray-200 pt-4">
-        <h3 className="text-sm font-medium text-gray-700 mb-4">
+      <div className="border-t border-border pt-4">
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">
           {isZh ? "合同条款检查" : "Contract Clause Check"}
         </h3>
 
         <div className="space-y-4">
           <div>
-            <label className="block text-xs text-gray-500 mb-1">
+            <label className="block text-xs text-muted-foreground mb-1">
               {isZh ? "试用期" : "Probation Period"} ({countryRule.rules.probation.unit})
             </label>
             <input
@@ -338,12 +338,12 @@ export default function ContractClauseChecker() {
               value={values.probation}
               onChange={(e) => handleValueChange("probation", e.target.value)}
               placeholder={isZh ? `例如: ${countryRule.rules.probation.max}` : `e.g., ${countryRule.rules.probation.max}`}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-slate-500 focus:ring-slate-500 sm:text-sm py-2 px-3 border"
+              className="block w-full border-border rounded-md focus:border-border focus:ring-border sm:text-sm py-2 px-3 border"
             />
           </div>
 
           <div>
-            <label className="block text-xs text-gray-500 mb-1">
+            <label className="block text-xs text-muted-foreground mb-1">
               {isZh ? "年假天数" : "Annual Leave Days"} ({countryRule.rules.annualLeave.unit})
             </label>
             <input
@@ -352,12 +352,12 @@ export default function ContractClauseChecker() {
               value={values.annualLeave}
               onChange={(e) => handleValueChange("annualLeave", e.target.value)}
               placeholder={isZh ? `例如: ${countryRule.rules.annualLeave.min}` : `e.g., ${countryRule.rules.annualLeave.min}`}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-slate-500 focus:ring-slate-500 sm:text-sm py-2 px-3 border"
+              className="block w-full border-border rounded-md focus:border-border focus:ring-border sm:text-sm py-2 px-3 border"
             />
           </div>
 
           <div>
-            <label className="block text-xs text-gray-500 mb-1">
+            <label className="block text-xs text-muted-foreground mb-1">
               {isZh ? "加班工资倍数" : "Overtime Pay Multiplier"}
             </label>
             <input
@@ -367,7 +367,7 @@ export default function ContractClauseChecker() {
               value={values.overtime}
               onChange={(e) => handleValueChange("overtime", e.target.value)}
               placeholder={isZh ? `例如: 1.5` : `e.g., 1.5`}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-slate-500 focus:ring-slate-500 sm:text-sm py-2 px-3 border"
+              className="block w-full border-border rounded-md focus:border-border focus:ring-border sm:text-sm py-2 px-3 border"
             />
           </div>
 
@@ -377,16 +377,16 @@ export default function ContractClauseChecker() {
                 type="checkbox"
                 checked={values.socialInsurance}
                 onChange={(e) => handleValueChange("socialInsurance", e.target.checked)}
-                className="rounded border-gray-300 text-slate-600 focus:ring-slate-500"
+                className="rounded border-border text-muted-foreground focus:ring-border"
               />
-              <span className="text-gray-700">
+              <span className="text-muted-foreground">
                 {isZh ? "包含社保缴纳条款" : "Includes social insurance clause"}
               </span>
             </label>
           </div>
 
           <div>
-            <label className="block text-xs text-gray-500 mb-1">
+            <label className="block text-xs text-muted-foreground mb-1">
               {isZh ? "离职通知期" : "Termination Notice Period"} ({countryRule.rules.terminationNotice.unit})
             </label>
             <input
@@ -395,12 +395,12 @@ export default function ContractClauseChecker() {
               value={values.terminationNotice}
               onChange={(e) => handleValueChange("terminationNotice", e.target.value)}
               placeholder={isZh ? `例如: ${countryRule.rules.terminationNotice.min}` : `e.g., ${countryRule.rules.terminationNotice.min}`}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-slate-500 focus:ring-slate-500 sm:text-sm py-2 px-3 border"
+              className="block w-full border-border rounded-md focus:border-border focus:ring-border sm:text-sm py-2 px-3 border"
             />
           </div>
 
           <div>
-            <label className="block text-xs text-gray-500 mb-1">
+            <label className="block text-xs text-muted-foreground mb-1">
               {isZh ? "竞业限制期限" : "Non-Compete Period"} (个月 / months)
             </label>
             <input
@@ -409,13 +409,13 @@ export default function ContractClauseChecker() {
               value={values.nonCompete}
               onChange={(e) => handleValueChange("nonCompete", e.target.value)}
               placeholder={isZh ? "例如: 6" : "e.g., 6"}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-slate-500 focus:ring-slate-500 sm:text-sm py-2 px-3 border"
+              className="block w-full border-border rounded-md focus:border-border focus:ring-border sm:text-sm py-2 px-3 border"
             />
           </div>
         </div>
       </div>
 
-      <div className="bg-blue-50 p-3 rounded-lg text-xs text-blue-700 flex items-start gap-2">
+      <div className="bg-primary/10 p-3 rounded-lg text-xs text-primary flex items-start gap-2">
         <Info className="h-4 w-4 flex-shrink-0 mt-0.5" />
         <span>
           {isZh
@@ -429,7 +429,7 @@ export default function ContractClauseChecker() {
   const resultPanel = (
     <div className="space-y-6">
       {results.length === 0 ? (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Scale className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{isZh ? "请输入合同条款进行检测" : "Enter contract clauses to check"}</p>
         </div>
@@ -444,32 +444,32 @@ export default function ContractClauseChecker() {
           </div>
 
           {/* Results Table */}
-          <div className="border border-gray-200 rounded-lg overflow-hidden">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+          <div className="border border-border rounded-lg overflow-hidden">
+            <table className="min-w-full divide-y divide-border">
+              <thead className="bg-muted">
                 <tr>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">
                     {isZh ? "条款" : "Clause"}
                   </th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">
                     {isZh ? "你的值" : "Your Value"}
                   </th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">
                     {isZh ? "法定限制" : "Legal Limit"}
                   </th>
-                  <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-3 py-2 text-center text-xs font-medium text-muted-foreground">
                     {isZh ? "状态" : "Status"}
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-card divide-y divide-border">
                 {results.map((result, idx) => (
                   <tr key={idx}>
-                    <td className="px-3 py-2 text-sm text-gray-900">
+                    <td className="px-3 py-2 text-sm text-foreground">
                       {isZh ? result.clauseZh : result.clause}
                     </td>
-                    <td className="px-3 py-2 text-sm text-gray-600">{result.yourValue}</td>
-                    <td className="px-3 py-2 text-sm text-gray-600">{result.legalLimit}</td>
+                    <td className="px-3 py-2 text-sm text-muted-foreground">{result.yourValue}</td>
+                    <td className="px-3 py-2 text-sm text-muted-foreground">{result.legalLimit}</td>
                     <td className="px-3 py-2 text-center">
                       <div className="flex items-center justify-center gap-1">
                         {getStatusIcon(result.status)}
@@ -485,7 +485,7 @@ export default function ContractClauseChecker() {
           {/* Recommendations */}
           {results.some((r) => r.recommendation) && (
             <div className="space-y-2">
-              <h4 className="font-medium text-gray-900">
+              <h4 className="font-medium text-foreground">
                 {isZh ? "改善建议" : "Recommendations"}
               </h4>
               {results
@@ -493,11 +493,7 @@ export default function ContractClauseChecker() {
                 .map((r, idx) => (
                   <div
                     key={idx}
-                    className={`p-3 rounded-lg text-sm ${
-                      r.status === "fail"
-                        ? "bg-red-50 text-red-800"
-                        : "bg-amber-50 text-amber-800"
-                    }`}
+                    className={`p-3 rounded-lg text-sm ${ r.status === "fail" ? "bg-destructive/10 text-destructive" : "bg-primary/10 text-primary" }`}
                   >
                     <div className="font-medium">
                       {isZh ? r.clauseZh : r.clause}
@@ -517,8 +513,8 @@ export default function ContractClauseChecker() {
       title={t("contractClause.title")}
       subtitle={t("contractClause.subtitle")}
       icon={Scale}
-      iconBgColor="bg-slate-100"
-      iconColor="text-slate-600"
+      iconBgColor="bg-muted"
+      iconColor="text-muted-foreground"
       keywords={[
         "contract checker",
         "labor law",

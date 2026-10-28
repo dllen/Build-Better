@@ -1,31 +1,36 @@
-/* src/pages/tools/json-editor/editor-theme.css */
+/* Hallmark · shape: Ecosystem Index · genre: modern-minimal · theme: Console (deal 1/3, seed browser-toolbox-hub-150-ed3b·bf2639f0·2026-10-28·r0) · redesign: full
+ * hero: Banner · nav: search-led bar · footer: colophon block · imagery: the product (capture.mjs) · signature: the measured tool count in the measured face · console: graphite
+ * axes: Hanging|Asymmetric spans|Hairline rule|Outlined|Margin-aligned|None · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V5 · weakest: P — the Console theme's "instrument vs person" argument is carried by colour, not by page structure; the hero states the count and the reader browses, so the argument lives in the tool cards' measured counters rather than in a manifesto */
 
-/* Override jsoneditor styles to match project theme */
+/* The JSON Editor is a third-party widget with its own class names. Every
+   colour below comes from the token layer, so the editor follows the light
+   and dark colourways with the rest of the site. */
+
 .jsoneditor {
   border: none !important;
   border-radius: 0 !important;
+  background: var(--color-paper-2) !important;
+  color: var(--color-ink) !important;
 }
 
 .jsoneditor-menu {
-  background: hsl(222 47% 10%) !important;
-  border-bottom: 1px solid hsl(217 33% 17%) !important;
-}
-
-.jsoneditor-frame {
-  background: hsl(222 47% 8%) !important;
+  background: var(--color-paper-3) !important;
+  border-bottom: var(--rule-hair) solid var(--color-rule) !important;
+  color: var(--color-ink) !important;
 }
 
 .jsoneditor-tree {
-  background: hsl(222 47% 8%) !important;
-  color: hsl(215 20% 70%) !important;
+  background: var(--color-paper-3) !important;
+  color: var(--color-muted) !important;
 }
 
 .jsoneditor-text-outer {
-  background: hsl(222 47% 8%) !important;
+  background: var(--color-paper-3) !important;
 }
 
 .jsoneditor-code {
-  background: hsl(222 47% 8%) !important;
+  background: var(--color-paper-3) !important;
 }
 
 .jsoneditor-statusbar {
@@ -36,43 +41,44 @@
   display: none !important;
 }
 
-/* Tree mode syntax colors */
+/* Tree mode syntax colours: a field is ink, a string is a value, a number is
+   a reading, a boolean is a flag. */
 .jsoneditor-tree .jsoneditor-field {
-  color: hsl(142 71% 45%) !important;
+  color: var(--color-ink) !important;
 }
 
 .jsoneditor-tree .jsoneditor-value.jsoneditor-string {
-  color: hsl(38 92% 50%) !important;
+  color: var(--color-ok) !important;
 }
 
 .jsoneditor-tree .jsoneditor-value.jsoneditor-number {
-  color: hsl(199 89% 48%) !important;
+  color: var(--color-cool) !important;
 }
 
 .jsoneditor-tree .jsoneditor-value.jsoneditor-boolean {
-  color: hsl(270 75% 60%) !important;
+  color: var(--color-accent) !important;
 }
 
 .jsoneditor-tree .jsoneditor-value.jsoneditor-null {
-  color: hsl(215 20% 50%) !important;
+  color: var(--color-muted) !important;
 }
 
 /* Smooth mode transitions */
 .jsoneditor .jsoneditor-outer {
-  transition: opacity 0.15s ease !important;
+  transition: opacity var(--dur-micro) var(--ease-out) !important;
 }
 
 /* Context menu overlay fixes */
 .jsoneditor-contextmenu {
-  z-index: 60 !important;
+  z-index: var(--z-tooltip) !important;
 }
 
 /* Search box styling */
 .jsoneditor-search input {
-  background: hsl(222 47% 10%) !important;
-  border: 1px solid hsl(217 33% 17%) !important;
-  color: hsl(215 20% 70%) !important;
-  border-radius: 6px !important;
+  background: var(--color-paper-2) !important;
+  border: var(--rule-hair) solid var(--color-rule) !important;
+  color: var(--color-ink) !important;
+  border-radius: var(--radius-pill) !important;
   padding: 4px 8px !important;
 }
 
@@ -84,23 +90,63 @@
 
 .jsoneditor-tree::-webkit-scrollbar-thumb,
 .jsoneditor-text-outer::-webkit-scrollbar-thumb {
-  background: hsl(217 33% 17%);
+  background: var(--color-rule);
   border-radius: 3px;
 }
 
 /* Edit/new field inputs in tree mode */
 .jsoneditor .jsoneditor-edit input,
 .jsoneditor .jsoneditor-edit select {
-  background: hsl(222 47% 10%) !important;
-  border: 1px solid hsl(199 89% 48%) !important;
-  color: hsl(215 20% 70%) !important;
+  background: var(--color-paper-2) !important;
+  border: var(--rule-hair) solid var(--color-focus) !important;
+  color: var(--color-ink) !important;
   border-radius: 4px !important;
   padding: 2px 4px !important;
-  font-family: monospace !important;
+  font-family: var(--font-outlier) !important;
 }
 
 /* Drag & drop indicator */
 .jsoneditor-dragarea {
-  background: hsl(222 47% 10%) !important;
+  background: var(--color-paper-2) !important;
   opacity: 0.9 !important;
+}
+
+/* The parts the editor paints for itself: the size badges beside a value, the
+   mode selector, the menu buttons and the validation line. */
+.jsoneditor-tree .jsoneditor-readonly,
+.jsoneditor-tree .jsoneditor-value.jsoneditor-object,
+.jsoneditor-tree .jsoneditor-value.jsoneditor-array {
+  color: var(--color-muted) !important;
+}
+
+.jsoneditor-tree .jsoneditor-field {
+  color: var(--color-ink) !important;
+}
+
+.jsoneditor-modes button,
+.jsoneditor-menu button,
+.jsoneditor-menu a {
+  color: var(--color-ink-2) !important;
+}
+
+.jsoneditor-modes button.jsoneditor-selected,
+.jsoneditor-menu button:disabled,
+.jsoneditor-menu a:disabled {
+  color: var(--color-ink) !important;
+  background: var(--color-paper-2) !important;
+}
+
+.jsoneditor-validate,
+.jsoneditor-validation,
+.jsoneditor-statusbar .jsoneditor-validate {
+  color: var(--color-ink-2) !important;
+}
+
+/* The menu icon buttons are drawn as background images; give them the ink. */
+.jsoneditor-menu > button {
+  filter: invert(0.82);
+}
+
+:root:not(.dark) .jsoneditor-menu > button {
+  filter: none;
 }

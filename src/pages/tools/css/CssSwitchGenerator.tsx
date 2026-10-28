@@ -74,13 +74,13 @@ export default function CssSwitchGenerator() {
       title="CSS Switch Generator"
       subtitle="Build custom CSS toggle switches with live preview — pill or rectangular, any color and size."
       icon={ToggleLeft}
-      iconBgColor="bg-blue-100"
-      iconColor="text-blue-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["css toggle", "switch generator", "toggle switch", "css switch", "on off toggle"]}
       children={
       <div className="space-y-5">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Style</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">Style</label>
           <div className="grid grid-cols-2 gap-2">
             {(
               [
@@ -92,11 +92,7 @@ export default function CssSwitchGenerator() {
                 key={s.id}
                 type="button"
                 onClick={() => setStyle(s.id)}
-                className={`py-2 px-3 text-sm rounded-lg border transition-colors ${
-                  style === s.id
-                    ? "border-blue-500 bg-blue-50 text-blue-700 font-medium"
-                    : "border-gray-300 text-gray-600 hover:border-gray-400"
-                }`}
+                className={`py-2 px-3 text-sm rounded-lg border transition-colors ${ style === s.id ? "border-border bg-primary/10 text-primary font-medium" : "border-border text-muted-foreground hover:border-border" }`}
               >
                 {s.label}
               </button>
@@ -105,17 +101,17 @@ export default function CssSwitchGenerator() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">On color</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">On color</label>
           <input
             type="color"
             value={color}
             onChange={(e) => setColor(e.target.value)}
-            className="h-10 w-20 rounded-lg border border-gray-300 cursor-pointer bg-white p-1"
+            className="h-10 w-20 rounded-lg border border-border cursor-pointer bg-card p-1"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Width: {width}px</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">Width: {width}px</label>
           <input
             type="range"
             min={40}
@@ -123,9 +119,9 @@ export default function CssSwitchGenerator() {
             step={2}
             value={width}
             onChange={(e) => setWidth(Number(e.target.value))}
-            className="w-full accent-blue-600"
+            className="w-full accent-primary"
           />
-          <div className="flex justify-between text-xs text-gray-400 mt-1">
+          <div className="flex justify-between text-xs text-muted-foreground mt-1">
             <span>40</span>
             <span>96</span>
           </div>
@@ -134,8 +130,8 @@ export default function CssSwitchGenerator() {
       }
       result={
       <div>
-        <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Live preview</p>
-        <div className="flex items-center justify-center gap-8 rounded-lg border border-gray-200 bg-gray-50 py-8 mb-4">
+        <p className="text-xs font-medium text-muted-foreground tracking-wide mb-2">Live preview</p>
+        <div className="flex items-center justify-center gap-8 rounded-lg border border-border bg-muted py-8 mb-4">
           <style>{css}</style>
           <label className="switch cursor-pointer">
             <input type="checkbox" />

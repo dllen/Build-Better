@@ -143,35 +143,35 @@ export default function TxDecoder() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <FileText className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">交易解码器</h1>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+      <div className="bg-card rounded-lg border border-border p-4 space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-muted-foreground mb-2">
             交易哈希 (TX Hash)
           </label>
           <textarea
             value={hash}
             onChange={(e) => { setHash(e.target.value); setResult(null); setError(null); }}
             placeholder="输入交易哈希，例如：0x1234...abcd"
-            className="w-full h-20 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono text-sm resize-none"
+            className="w-full h-20 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm resize-none"
           />
         </div>
 
         <div className="flex flex-wrap gap-3">
           <button
-            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={decode}
             disabled={loading || !hash.trim()}
           >
             {loading ? "解码中..." : "解码交易"}
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={clear}
             disabled={!hash && !result && !loading}
           >
@@ -180,102 +180,98 @@ export default function TxDecoder() {
         </div>
 
         {error && (
-          <div className="text-sm text-red-600 bg-red-50 rounded-md px-3 py-2">{error}</div>
+          <div className="text-sm text-destructive bg-destructive/10 rounded-md px-3 py-2">{error}</div>
         )}
 
         {result && (
           <div className="space-y-4">
             {/* Status */}
-            <div className={`rounded-md px-4 py-3 text-center font-semibold ${
-              result.status === "success" ? "bg-green-100 text-green-700" :
-              result.status === "failed" ? "bg-red-100 text-red-700" :
-              "bg-yellow-100 text-yellow-700"
-            }`}>
+            <div className={`rounded-md px-4 py-3 text-center font-semibold ${ result.status === "success" ? "bg-success/10 text-success" : result.status === "failed" ? "bg-destructive/10 text-destructive" : "bg-primary/10 text-primary" }`}>
               状态：{result.status === "success" ? "成功" : result.status === "failed" ? "失败" : "待确认"}
             </div>
 
             {/* Basic Info */}
-            <div className="bg-gray-50 rounded-md border border-gray-200 p-4 space-y-2 text-sm">
+            <div className="bg-muted rounded-md border border-border p-4 space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-500">交易哈希：</span>
+                <span className="text-muted-foreground">交易哈希：</span>
                 <span className="font-mono flex items-center gap-1">
                   {formatAddress(result.hash)}
                   <button onClick={() => copyToClipboard(result.hash, "hash")}>
-                    {copied === "hash" ? <Check className="h-3 w-3 text-green-500" /> : <Copy className="h-3 w-3" />}
+                    {copied === "hash" ? <Check className="h-3 w-3 text-success" /> : <Copy className="h-3 w-3" />}
                   </button>
-                  <a href={`https://etherscan.io/tx/${result.hash}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                  <a href={`https://etherscan.io/tx/${result.hash}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                     <ExternalLink className="h-3 w-3" />
                   </a>
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-500">From：</span>
+                <span className="text-muted-foreground">From：</span>
                 <span className="font-mono flex items-center gap-1">
                   {formatAddress(result.from)}
                   <button onClick={() => copyToClipboard(result.from, "from")}>
-                    {copied === "from" ? <Check className="h-3 w-3 text-green-500" /> : <Copy className="h-3 w-3" />}
+                    {copied === "from" ? <Check className="h-3 w-3 text-success" /> : <Copy className="h-3 w-3" />}
                   </button>
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-500">To：</span>
+                <span className="text-muted-foreground">To：</span>
                 <span className="font-mono flex items-center gap-1">
                   {result.to ? formatAddress(result.to) : "合约创建"}
                   {result.to && (
                     <button onClick={() => copyToClipboard(result.to, "to")}>
-                      {copied === "to" ? <Check className="h-3 w-3 text-green-500" /> : <Copy className="h-3 w-3" />}
+                      {copied === "to" ? <Check className="h-3 w-3 text-success" /> : <Copy className="h-3 w-3" />}
                     </button>
                   )}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-500">金额：</span>
+                <span className="text-muted-foreground">金额：</span>
                 <span className="font-mono">{formatValue(result.value)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-500">Gas：</span>
+                <span className="text-muted-foreground">Gas：</span>
                 <span className="font-mono">{parseInt(result.gas, 16).toLocaleString()}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-500">Nonce：</span>
+                <span className="text-muted-foreground">Nonce：</span>
                 <span className="font-mono">{result.nonce}</span>
               </div>
             </div>
 
             {/* Method */}
             {result.inputMethod && (
-              <div className="bg-blue-50 rounded-md border border-blue-200 px-4 py-3">
-                <div className="text-sm text-blue-700">
+              <div className="bg-primary/10 rounded-md border border-border px-4 py-3">
+                <div className="text-sm text-primary">
                   <span className="font-medium">方法：</span>
-                  <code className="ml-2 bg-blue-100 px-2 py-0.5 rounded">{result.inputMethod}</code>
+                  <code className="ml-2 bg-primary/10 px-2 py-0.5 rounded">{result.inputMethod}</code>
                 </div>
               </div>
             )}
 
             {/* Input Data */}
             {result.inputData && result.inputData !== "0x" && (
-              <details className="border border-gray-200 rounded-md">
-                <summary className="px-4 py-2 cursor-pointer text-sm font-medium text-gray-700 hover:bg-gray-50">
+              <details className="border border-border rounded-md">
+                <summary className="px-4 py-2 cursor-pointer text-sm font-medium text-muted-foreground hover:bg-muted">
                   原始 Input Data
                 </summary>
-                <div className="px-4 py-2 bg-gray-50">
-                  <pre className="text-xs font-mono break-all whitespace-pre-wrap text-gray-600">{result.inputData}</pre>
+                <div className="px-4 py-2 bg-muted">
+                  <pre className="text-xs font-mono break-all whitespace-pre-wrap text-muted-foreground">{result.inputData}</pre>
                 </div>
               </details>
             )}
 
             {/* Logs */}
             {result.logs.length > 0 && (
-              <details className="border border-gray-200 rounded-md" open={false}>
-                <summary className="px-4 py-2 cursor-pointer text-sm font-medium text-gray-700 hover:bg-gray-50">
+              <details className="border border-border rounded-md" open={false}>
+                <summary className="px-4 py-2 cursor-pointer text-sm font-medium text-muted-foreground hover:bg-muted">
                   Logs ({result.logs.length})
                 </summary>
                 <div className="px-4 py-2 space-y-2">
                   {result.logs.map((log, i) => (
-                    <div key={i} className="bg-gray-50 rounded p-2 text-xs font-mono">
-                      <div className="text-gray-500">Contract: {log.address}</div>
-                      <div className="text-gray-500">Topics: {log.topics.join(", ")}</div>
-                      <div className="text-gray-400 break-all">Data: {log.data}</div>
+                    <div key={i} className="bg-muted rounded p-2 text-xs font-mono">
+                      <div className="text-muted-foreground">Contract: {log.address}</div>
+                      <div className="text-muted-foreground">Topics: {log.topics.join(", ")}</div>
+                      <div className="text-muted-foreground break-all">Data: {log.data}</div>
                     </div>
                   ))}
                 </div>
@@ -284,7 +280,7 @@ export default function TxDecoder() {
           </div>
         )}
 
-        <div className="text-xs text-gray-500">
+        <div className="text-xs text-muted-foreground">
           数据来源：Etherscan API。请求直接从浏览器发起，不会经过 Build-Better 服务器。
         </div>
       </div>

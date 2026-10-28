@@ -57,7 +57,7 @@ export default function SizeConverter() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="py-12 px-4 sm:px-6 lg:px-8">
       <SEO
         title={t("tools.size-converter.title")}
         description="Convert shoe and clothing sizes between US, EU, UK, and Asian sizing systems."
@@ -66,25 +66,21 @@ export default function SizeConverter() {
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10">
           <div className="flex justify-center mb-4">
-            <div className="p-3 bg-pink-100 rounded-full">
-              <Ruler className="h-8 w-8 text-pink-600" />
+            <div className="p-3 bg-destructive/10 rounded-full">
+              <Ruler className="h-8 w-8 text-destructive" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">{t("tools.size-converter.title")}</h1>
-          <p className="text-lg text-gray-600">{t("tools.size-converter.subtitle")}</p>
+          <h1 className="text-3xl font-bold text-foreground sm:text-4xl mb-4">{t("tools.size-converter.title")}</h1>
+          <p className="text-lg text-muted-foreground">{t("tools.size-converter.subtitle")}</p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl p-6 mb-6">
+        <div className="bg-card rounded-2xl p-6 mb-6">
           <div className="flex flex-wrap gap-3">
             {CATEGORIES.map(cat => (
               <button
                 key={cat.id}
                 onClick={() => setCategory(cat.id)}
-                className={`px-5 py-2.5 text-sm font-medium rounded-xl transition-colors ${
-                  category === cat.id
-                    ? "bg-pink-600 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
+                className={`px-5 py-2.5 text-sm font-medium rounded-xl transition-colors ${ category === cat.id ? "bg-destructive text-destructive-foreground" : "bg-muted text-muted-foreground hover:bg-border" }`}
               >
                 {cat.label}
               </button>
@@ -92,13 +88,13 @@ export default function SizeConverter() {
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="bg-card rounded-2xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-gray-50 border-b border-gray-200">
+                <tr className="bg-muted border-b border-border">
                   {HEADERS.map(h => (
-                    <th key={h} className="px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    <th key={h} className="px-6 py-3 text-center text-xs font-semibold text-muted-foreground">
                       {h}
                     </th>
                   ))}
@@ -108,13 +104,13 @@ export default function SizeConverter() {
                 {table.map((row, idx) => (
                   <tr
                     key={idx}
-                    className={`border-b border-gray-100 transition-colors ${hoveredIdx === idx ? "bg-pink-50" : "hover:bg-gray-50"}`}
+                    className={`border-b border-border transition-colors ${hoveredIdx === idx ? "bg-destructive/10" : "hover:bg-muted"}`}
                     onMouseEnter={() => setHoveredIdx(idx)}
                     onMouseLeave={() => setHoveredIdx(null)}
                   >
                     {HEADERS.map(h => (
                       <td key={h} className="px-6 py-3 text-center font-medium">
-                        <span className={hoveredIdx === idx ? "text-pink-600 font-bold" : "text-gray-900"}>
+                        <span className={hoveredIdx === idx ? "text-destructive font-bold" : "text-foreground"}>
                           {getCellValue(row, h)}
                         </span>
                       </td>
@@ -125,14 +121,14 @@ export default function SizeConverter() {
             </table>
           </div>
           {table.length === 0 && (
-            <div className="text-center py-12 text-gray-400">
+            <div className="text-center py-12 text-muted-foreground">
               <p>{t("tools.size-converter.more_coming")}</p>
             </div>
           )}
         </div>
 
-        <p className="text-center text-xs text-gray-400 mt-4">
-          Sizes are approximate. Always check with the specific brand's size chart.
+        <p className="text-center text-xs text-muted-foreground mt-4">
+          Sizes are approximate. Always check with the specific brand’s size chart.
         </p>
       </div>
     </div>

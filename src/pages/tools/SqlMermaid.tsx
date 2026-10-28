@@ -232,7 +232,7 @@ export default function SqlMermaid() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-purple-100 text-purple-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <Database className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">SQL 转 Mermaid ER 图</h1>
@@ -241,21 +241,21 @@ export default function SqlMermaid() {
       toolbar={
         <>
           <button
-            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 hover:bg-blue-700 transition-colors"
+            className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 hover:bg-primary transition-colors"
             onClick={generate}
           >
             生成
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 hover:bg-gray-200 transition-colors disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 hover:bg-border transition-colors disabled:opacity-50"
             onClick={copy}
             disabled={!output}
           >
-            {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+            {copied ? <Check className="h-4 w-4 text-success" /> : <Copy className="h-4 w-4" />}
             {copied ? "已复制" : "复制"}
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 hover:bg-gray-200 transition-colors"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 hover:bg-border transition-colors"
             onClick={clear}
           >
             <Trash2 className="h-4 w-4" />
@@ -275,19 +275,19 @@ export default function SqlMermaid() {
       outputLabel="Mermaid 代码"
       output={
         output ? (
-          <pre className="h-full overflow-auto px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words bg-gray-50">
+          <pre className="h-full overflow-auto px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words bg-muted">
             {output}
           </pre>
         ) : (
-          <div className="h-full overflow-auto px-3 py-2 text-sm text-gray-500">
+          <div className="h-full overflow-auto px-3 py-2 text-sm text-muted-foreground">
             输入 DDL 后点击"生成"
           </div>
         )
       }
       footer={
         <>
-          {error && <div className="text-sm text-red-600 bg-red-50 rounded-md px-3 py-2">{error}</div>}
-          <p className="text-xs text-gray-500">数据仅在浏览器本地处理，不会上传到服务器。</p>
+          {error && <div className="text-sm text-destructive bg-destructive/10 rounded-md px-3 py-2">{error}</div>}
+          <p className="text-xs text-muted-foreground">数据仅在浏览器本地处理，不会上传到服务器。</p>
         </>
       }
     />

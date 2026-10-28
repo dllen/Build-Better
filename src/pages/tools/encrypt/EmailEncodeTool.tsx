@@ -35,8 +35,8 @@ export default function EmailEncode() {
 
   return (
     <EditorSplitLayout
-      title={<><div className="inline-flex p-2 rounded-lg bg-green-100 text-green-600"><Mail className="h-5 w-5" /></div><h1 className="text-2xl font-semibold">Email Encode</h1></>}
-      toolbar={<select className="rounded-md border border-gray-300 px-3 py-2 text-sm" value={encodeType} onChange={(e) => setEncodeType(e.target.value as EncodeType)}>
+      title={<><div className="inline-flex p-2 rounded-lg bg-success/10 text-success"><Mail className="h-5 w-5" /></div><h1 className="text-2xl font-semibold">Email Encode</h1></>}
+      toolbar={<select className="rounded-md border border-border px-3 py-2 text-sm" value={encodeType} onChange={(e) => setEncodeType(e.target.value as EncodeType)}>
         <option value="decimal">Decimal Entities</option>
         <option value="hex">Hex Entities</option>
         <option value="mailto">Mailto Link</option>
@@ -44,8 +44,8 @@ export default function EmailEncode() {
       inputLabel="Input"
       input={<textarea className="w-full h-full p-4 font-mono text-sm resize-none border-0 focus:outline-none" placeholder="Enter email address to encode..." value={input} onChange={(e) => setInput(e.target.value)} />}
       outputLabel="Output"
-      output={<pre className="w-full h-full p-4 font-mono text-sm whitespace-pre-wrap break-words overflow-auto bg-gray-50">{result}</pre>}
-      outputActions={<button onClick={() => copy(result)} className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-green-600 text-white hover:bg-green-700">{copied ? <Check className="h-4 w-4" /> : <ClipboardCopy className="h-4 w-4" />} Copy</button>}
+      output={<pre className="w-full h-full p-4 font-mono text-sm whitespace-pre-wrap break-words overflow-auto bg-muted">{result}</pre>}
+      outputActions={<button onClick={() => copy(result)} className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-success text-success-foreground hover:bg-success">{copied ? <Check className="h-4 w-4" /> : <ClipboardCopy className="h-4 w-4" />} Copy</button>}
     />
   );
 }

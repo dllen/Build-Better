@@ -133,14 +133,14 @@ backend app_backend
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
       <div className="flex items-center gap-3">
-        <div className="p-3 rounded-lg bg-blue-100 text-blue-600">
+        <div className="p-3 rounded-lg bg-primary/10 text-primary">
           <Network className="h-6 w-6" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-foreground">
             {t("tools.haproxy-config.title", "HAProxy Config Generator")}
           </h1>
-          <p className="text-gray-500">
+          <p className="text-muted-foreground">
             {t(
               "tools.haproxy-config.subtitle",
               "Generate high-availability load balancer configurations"
@@ -153,32 +153,32 @@ backend app_backend
         {/* Configuration Form */}
         <div className="space-y-6">
           {/* Global & Defaults */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
+          <div className="bg-card rounded-xl border border-border p-6 space-y-4">
             <h2 className="text-lg font-semibold flex items-center gap-2">
-              <Settings className="h-5 w-5 text-gray-500" />
+              <Settings className="h-5 w-5 text-muted-foreground" />
               {t("tools.haproxy-config.global_defaults", "Global & Defaults")}
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-muted-foreground mb-1">
                   {t("tools.haproxy-config.maxconn", "Max Connections")}
                 </label>
                 <input
                   type="number"
                   value={maxConn}
                   onChange={(e) => setMaxConn(Number(e.target.value))}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full rounded-lg border border-border px-3 py-2 focus:ring-2 focus:ring-ring outline-none"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-muted-foreground mb-1">
                   {t("tools.haproxy-config.mode", "Mode")}
                 </label>
                 <select
                   value={mode}
                   onChange={(e) => setMode(e.target.value as "http" | "tcp")}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none bg-white"
+                  className="w-full rounded-lg px-3 py-2 focus:ring-2 focus:ring-ring outline-none bg-muted"
                 >
                   <option value="http">HTTP</option>
                   <option value="tcp">TCP</option>
@@ -188,70 +188,70 @@ backend app_backend
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-medium text-gray-500 mb-1">
+                <label className="block text-xs font-medium text-muted-foreground mb-1">
                   Timeout Connect (ms)
                 </label>
                 <input
                   type="number"
                   value={timeoutConnect}
                   onChange={(e) => setTimeoutConnect(Number(e.target.value))}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:ring-2 focus:ring-ring outline-none"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-500 mb-1">
+                <label className="block text-xs font-medium text-muted-foreground mb-1">
                   Timeout Client (ms)
                 </label>
                 <input
                   type="number"
                   value={timeoutClient}
                   onChange={(e) => setTimeoutClient(Number(e.target.value))}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:ring-2 focus:ring-ring outline-none"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-500 mb-1">
+                <label className="block text-xs font-medium text-muted-foreground mb-1">
                   Timeout Server (ms)
                 </label>
                 <input
                   type="number"
                   value={timeoutServer}
                   onChange={(e) => setTimeoutServer(Number(e.target.value))}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:ring-2 focus:ring-ring outline-none"
                 />
               </div>
             </div>
           </div>
 
           {/* Frontend Settings */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
+          <div className="bg-card rounded-xl border border-border p-6 space-y-4">
             <h2 className="text-lg font-semibold flex items-center gap-2">
-              <Layers className="h-5 w-5 text-blue-500" />
+              <Layers className="h-5 w-5 text-primary" />
               {t("tools.haproxy-config.frontend", "Frontend Settings")}
             </h2>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-muted-foreground mb-1">
                 {t("tools.haproxy-config.bind_port", "Bind Port")}
               </label>
               <input
                 type="number"
                 value={frontendPort}
                 onChange={(e) => setFrontendPort(Number(e.target.value))}
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full rounded-lg border border-border px-3 py-2 focus:ring-2 focus:ring-ring outline-none"
               />
             </div>
 
-            <div className="pt-2 border-t border-gray-100">
+            <div className="pt-2 border-t border-border">
               <div className="flex items-center justify-between mb-3">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={statsEnabled}
                     onChange={(e) => setStatsEnabled(e.target.checked)}
-                    className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                    className="w-4 h-4 text-primary rounded focus:ring-ring"
                   />
-                  <span className="text-sm font-medium text-gray-700">
+                  <span className="text-sm font-medium text-muted-foreground">
                     {t("tools.haproxy-config.enable_stats", "Enable Stats Page")}
                   </span>
                 </label>
@@ -260,21 +260,21 @@ backend app_backend
               {statsEnabled && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pl-6">
                   <div>
-                    <label className="block text-xs text-gray-500 mb-1">Stats URI</label>
+                    <label className="block text-xs text-muted-foreground mb-1">Stats URI</label>
                     <input
                       type="text"
                       value={statsUri}
                       onChange={(e) => setStatsUri(e.target.value)}
-                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                      className="w-full rounded-lg border border-border px-3 py-2 text-sm"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs text-gray-500 mb-1">Auth (user:pass)</label>
+                    <label className="block text-xs text-muted-foreground mb-1">Auth (user:pass)</label>
                     <input
                       type="text"
                       value={statsAuth}
                       onChange={(e) => setStatsAuth(e.target.value)}
-                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                      className="w-full rounded-lg border border-border px-3 py-2 text-sm"
                     />
                   </div>
                 </div>
@@ -283,28 +283,28 @@ backend app_backend
           </div>
 
           {/* Backend Servers */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
+          <div className="bg-card rounded-xl border border-border p-6 space-y-4">
             <div className="flex justify-between items-center">
               <h2 className="text-lg font-semibold flex items-center gap-2">
-                <Server className="h-5 w-5 text-green-500" />
+                <Server className="h-5 w-5 text-success" />
                 {t("tools.haproxy-config.backend", "Backend Servers")}
               </h2>
               <button
                 onClick={addServer}
-                className="text-sm px-3 py-1 bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100 transition-colors flex items-center gap-1"
+                className="text-sm px-3 py-1 bg-primary/10 text-primary rounded-md hover:bg-primary/10 transition-colors flex items-center gap-1"
               >
                 <Plus className="h-3 w-3" /> {t("tools.haproxy-config.add_server", "Add Server")}
               </button>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-muted-foreground mb-1">
                 {t("tools.haproxy-config.balance", "Load Balance Algorithm")}
               </label>
               <select
                 value={balanceAlgorithm}
                 onChange={(e) => setBalanceAlgorithm(e.target.value as "roundrobin" | "leastconn" | "source")}
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none bg-white"
+                className="w-full rounded-lg px-3 py-2 focus:ring-2 focus:ring-ring outline-none bg-muted"
               >
                 <option value="roundrobin">Round Robin</option>
                 <option value="leastconn">Least Connections</option>
@@ -314,18 +314,18 @@ backend app_backend
 
             <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2">
               {servers.map((s, i) => (
-                <div key={i} className="p-3 bg-gray-50 rounded-lg border border-gray-200 space-y-2">
+                <div key={i} className="p-3 bg-muted rounded-lg border border-border space-y-2">
                   <div className="flex gap-2">
                     <input
                       type="text"
                       placeholder="Name"
                       value={s.name}
                       onChange={(e) => updateServer(i, "name", e.target.value)}
-                      className="flex-1 min-w-0 rounded border border-gray-300 px-2 py-1 text-sm"
+                      className="flex-1 min-w-0 rounded border border-border px-2 py-1 text-sm"
                     />
                     <button
                       onClick={() => removeServer(i)}
-                      className="text-gray-400 hover:text-red-500"
+                      className="text-muted-foreground hover:text-destructive"
                       disabled={servers.length <= 1}
                     >
                       <Trash2 className="h-4 w-4" />
@@ -337,14 +337,14 @@ backend app_backend
                       placeholder="IP / Host"
                       value={s.address}
                       onChange={(e) => updateServer(i, "address", e.target.value)}
-                      className="flex-[2] min-w-0 rounded border border-gray-300 px-2 py-1 text-sm"
+                      className="flex-[2] min-w-0 rounded border border-border px-2 py-1 text-sm"
                     />
                     <input
                       type="number"
                       placeholder="Port"
                       value={s.port}
                       onChange={(e) => updateServer(i, "port", Number(e.target.value))}
-                      className="flex-1 min-w-0 rounded border border-gray-300 px-2 py-1 text-sm"
+                      className="flex-1 min-w-0 rounded border border-border px-2 py-1 text-sm"
                     />
                   </div>
                   <label className="flex items-center gap-2 cursor-pointer">
@@ -352,9 +352,9 @@ backend app_backend
                       type="checkbox"
                       checked={s.check}
                       onChange={(e) => updateServer(i, "check", e.target.checked)}
-                      className="w-3 h-3 text-blue-600 rounded focus:ring-blue-500"
+                      className="w-3 h-3 text-primary rounded focus:ring-ring"
                     />
-                    <span className="text-xs text-gray-600">Enable Health Check</span>
+                    <span className="text-xs text-muted-foreground">Enable Health Check</span>
                   </label>
                 </div>
               ))}
@@ -365,12 +365,12 @@ backend app_backend
         {/* Output Area */}
         <div className="lg:sticky lg:top-6 h-fit space-y-4">
           <div className="flex justify-between items-center">
-            <h3 className="font-semibold text-gray-700">
+            <h3 className="font-semibold text-muted-foreground">
               {t("tools.haproxy-config.generated_config", "Generated Configuration")}
             </h3>
             <button
               onClick={handleCopy}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary transition-colors"
             >
               {copied ? <CheckCircle className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
               {copied ? "Copied!" : "Copy Config"}
@@ -378,7 +378,7 @@ backend app_backend
           </div>
 
           <div className="relative group">
-            <pre className="bg-gray-900 text-gray-100 p-6 rounded-xl overflow-x-auto font-mono text-sm leading-relaxed min-h-[500px] shadow-lg">
+            <pre className="bg-card text-muted-foreground p-6 rounded-xl overflow-x-auto font-mono text-sm leading-relaxed min-h-[500px]">
               {generatedConfig}
             </pre>
           </div>
@@ -400,8 +400,7 @@ function CheckCircle({ className }: { className?: string }) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={className}
-    >
+      className={className} aria-hidden="true">
       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
       <polyline points="22 4 12 14.01 9 11.01"></polyline>
     </svg>

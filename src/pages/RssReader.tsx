@@ -429,7 +429,7 @@ export default function RssReader() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <div className="text-foreground font-sans">
       <SEO
         title={toolSEOContent['rss-read']?.title || 'RSS Reader'}
         description={toolSEOContent['rss-read']?.description || 'Read aggregated RSS feeds.'}
@@ -438,7 +438,7 @@ export default function RssReader() {
       {toolSEOContent['rss-read'] && <ToolPageSEO data={toolSEOContent['rss-read']} />}
 
       <div className="max-w-7xl mx-auto p-4 md:p-8 space-y-6">
-        <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-card border border-border rounded-2xl p-5 shadow-sm">
+        <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-card border border-border rounded-2xl p-5">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-primary/10 rounded-xl border border-primary/20">
               <Rss className="w-8 h-8 text-primary" />
@@ -464,7 +464,7 @@ export default function RssReader() {
             </div>
             <button
               onClick={handleRefresh}
-              className="p-2.5 bg-background border border-border rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors shadow-sm"
+              className="p-2.5 bg-background border border-border rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors"
               title="Refresh Feeds"
               type="button"
             >
@@ -474,7 +474,7 @@ export default function RssReader() {
         </header>
 
         {errors.length > 0 && (
-          <div className="bg-destructive/10 border border-destructive/20 rounded-xl p-4 flex items-start gap-3 shadow-sm">
+          <div className="bg-destructive/10 border border-destructive/20 rounded-xl p-4 flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <p className="text-sm font-medium text-destructive">
@@ -501,10 +501,10 @@ export default function RssReader() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          <div className={`lg:col-span-1 bg-card rounded-xl border border-border overflow-hidden flex flex-col shadow-sm ${
+          <div className={`lg:col-span-1 bg-card rounded-xl border border-border overflow-hidden flex flex-col ${
             sidebarOpen ? 'block' : 'hidden lg:flex'
-          } h-[calc(100vh-250px)]`}>
-            <div className="p-4 border-b border-border bg-card/80 backdrop-blur-sm sticky top-0">
+          } h-[calc(100dvh-250px)]`}>
+            <div className="p-4 border-b border-border bg-card/80 sticky top-0">
               <h2 className="font-semibold text-card-foreground flex items-center gap-2">
                 <List className="w-4 h-4" />
                 Sources ({allFeeds.length})
@@ -596,7 +596,7 @@ export default function RssReader() {
                     onClick={() => setViewFilter(filter)}
                     className={`flex-1 sm:flex-none px-3 py-1.5 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
                       viewFilter === filter
-                        ? 'bg-background text-foreground shadow-sm ring-1 ring-border'
+                        ? 'bg-background text-foreground ring-1 ring-border'
                         : 'text-muted-foreground hover:text-foreground'
                     }`}
                     type="button"
@@ -618,7 +618,7 @@ export default function RssReader() {
               <div className="flex items-center justify-center h-64 text-muted-foreground bg-card border-2 border-dashed border-border rounded-xl">
                 <div className="flex flex-col items-center gap-3">
                   <RefreshCw className="w-8 h-8 animate-spin text-primary" />
-                  <p>Loading feeds...</p>
+                  <p>Loading feeds…</p>
                 </div>
               </div>
             ) : filteredItems.length > 0 ? (
@@ -629,7 +629,7 @@ export default function RssReader() {
                   return (
                     <article
                       key={`${item.link}-${index}`}
-                      className={`group bg-card border rounded-xl p-5 shadow-sm transition-all duration-300 ${
+                      className={`group bg-card border rounded-xl p-5 transition-colors duration-300 ${
                         read
                           ? 'border-border opacity-80'
                           : 'border-border hover:border-primary/30'
@@ -716,13 +716,13 @@ export default function RssReader() {
 
         {detailItem && (
           <div
-            className="fixed inset-0 z-50 flex items-start justify-center p-4 bg-background/80 backdrop-blur-sm overflow-y-auto"
+            className="fixed inset-0 z-50 flex items-start justify-center p-4 bg-background/80 overflow-y-auto"
             onClick={() => setDetailItem(null)}
             role="dialog"
             aria-modal="true"
           >
             <div
-              className="relative w-full max-w-3xl bg-card text-card-foreground border border-border rounded-2xl shadow-2xl my-8 p-6 md:p-8 space-y-4"
+              className="relative w-full max-w-3xl bg-card text-card-foreground border border-border rounded-2xl my-8 p-6 md:p-8 space-y-4"
               onClick={(e) => e.stopPropagation()}
             >
               <button

@@ -47,14 +47,14 @@ export default function ProductCostBreakdown() {
   };
 
   const inputs = [
-    { key: "material", label: t("tools.product-cost.material"), value: material, set: setMaterial, color: "bg-blue-500" },
-    { key: "labor", label: t("tools.product-cost.labor"), value: labor, set: setLabor, color: "bg-green-500" },
-    { key: "packaging", label: t("tools.product-cost.packaging"), value: packaging, set: setPackaging, color: "bg-yellow-500" },
-    { key: "shipping", label: t("tools.product-cost.shipping"), value: shipping, set: setShipping, color: "bg-purple-500" },
-    { key: "platform", label: t("tools.product-cost.platform"), value: platform, set: setPlatform, color: "bg-pink-500" },
-    { key: "payment", label: t("tools.product-cost.payment"), value: payment, set: setPayment, color: "bg-orange-500" },
-    { key: "duty", label: t("tools.product-cost.duty"), value: duty, set: setDuty, color: "bg-red-500" },
-    { key: "ad", label: t("tools.product-cost.ad"), value: adCost, set: setAdCost, color: "bg-indigo-500" },
+    { key: "material", label: t("tools.product-cost.material"), value: material, set: setMaterial, color: "bg-primary" },
+    { key: "labor", label: t("tools.product-cost.labor"), value: labor, set: setLabor, color: "bg-success" },
+    { key: "packaging", label: t("tools.product-cost.packaging"), value: packaging, set: setPackaging, color: "bg-primary" },
+    { key: "shipping", label: t("tools.product-cost.shipping"), value: shipping, set: setShipping, color: "bg-primary" },
+    { key: "platform", label: t("tools.product-cost.platform"), value: platform, set: setPlatform, color: "bg-destructive" },
+    { key: "payment", label: t("tools.product-cost.payment"), value: payment, set: setPayment, color: "bg-primary" },
+    { key: "duty", label: t("tools.product-cost.duty"), value: duty, set: setDuty, color: "bg-destructive" },
+    { key: "ad", label: t("tools.product-cost.ad"), value: adCost, set: setAdCost, color: "bg-primary" },
   ];
 
   const resultNode = (
@@ -62,13 +62,13 @@ export default function ProductCostBreakdown() {
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.product-cost.total_cost")}</p>
-            <p className="text-4xl font-bold text-blue-600">{fmt(result.total)}</p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.product-cost.total_cost")}</p>
+            <p className="text-4xl font-bold text-primary">{fmt(result.total)}</p>
           </div>
           {/* Visual bar */}
           <div className="h-8 rounded-lg overflow-hidden flex">
             {result.items.map((i, idx) => (
-              <div key={idx} className="bg-blue-500" style={{ width: `${i.pct}%`, backgroundColor: inputs.find(inp => inp.key === (i.label === t("tools.product-cost.material") ? "material" : ""))?.color || "#3b82f6" }} title={`${i.label}: ${i.pct.toFixed(1)}%`} />
+              <div key={idx} className="bg-primary" style={{ width: `${i.pct}%`, backgroundColor: inputs.find(inp => inp.key === (i.label === t("tools.product-cost.material") ? "material" : ""))?.color || "var(--color-chart-fallback)" }} title={`${i.label}: ${i.pct.toFixed(1)}%`} />
             ))}
           </div>
           <div className="space-y-1 max-h-48 overflow-y-auto">
@@ -77,7 +77,7 @@ export default function ProductCostBreakdown() {
               return (
                 <div key={idx} className="flex items-center justify-between text-sm py-1">
                   <span className="flex items-center gap-2">
-                    <span className={`w-3 h-3 rounded ${input?.color || "bg-gray-400"}`}></span>
+                    <span className={`w-3 h-3 rounded ${input?.color || "bg-muted-foreground"}`}></span>
                     {i.label}
                   </span>
                   <span className="font-mono">{fmt(i.value)} ({i.pct.toFixed(1)}%)</span>
@@ -85,12 +85,12 @@ export default function ProductCostBreakdown() {
               );
             })}
           </div>
-          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary">
             <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.product-cost.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Boxes className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("tools.product-cost.enter_values")}</p>
         </div>
@@ -103,17 +103,17 @@ export default function ProductCostBreakdown() {
       title={t("tools.product-cost.title")}
       subtitle={t("tools.product-cost.subtitle")}
       icon={Boxes}
-      iconBgColor="bg-orange-100"
-      iconColor="text-orange-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["product cost", "cost breakdown", "unit economics", "manufacturing cost"]}
       result={resultNode}
     >
       <div className="space-y-2">
         {inputs.map(input => (
           <div key={input.key}>
-            <label className="block text-sm font-medium text-gray-700 mb-1">{input.label}</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">{input.label}</label>
             <input type="number" step="0.01" min="0" value={input.value} onChange={e => input.set(e.target.value)} placeholder="0"
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm py-2 px-3 border" />
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
           </div>
         ))}
       </div>

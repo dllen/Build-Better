@@ -23,7 +23,7 @@ export default function LocalizedContent({ toolId, lang, fallbackOnly }: Props) 
 
   if (!Mdx || fallbackOnly) {
     return (
-      <p className="text-gray-500 italic text-sm">
+      <p className="text-muted-foreground italic text-sm">
         Localized content for {toolId} ({lang}) coming soon.
       </p>
     );

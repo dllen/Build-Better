@@ -427,8 +427,8 @@ export default function GitignoreGenerator() {
     <div className="max-w-5xl mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2.5 rounded-lg bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/30">
-          <FileText className="w-5 h-5 text-orange-400" />
+        <div className="p-2.5 rounded-lg bg-gradient-to-br from-primary/20 to-primary/20 border border-border/30">
+          <FileText className="w-5 h-5 text-primary" />
         </div>
         <div>
           <h1 className="text-2xl font-bold">.gitignore Generator</h1>
@@ -439,10 +439,10 @@ export default function GitignoreGenerator() {
       </div>
 
       {/* Trust Banner */}
-      <div className="flex items-center gap-2 px-4 py-3 rounded-lg border border-emerald-500/20 bg-emerald-500/5">
-        <Sparkles className="w-4 h-4 text-emerald-400" />
-        <p className="text-sm text-emerald-400">
-          100% Local Processing — all generation happens in your browser
+      <div className="flex items-center gap-2 px-4 py-3 rounded-lg border border-border/20 bg-success/5">
+        <Sparkles className="w-4 h-4 text-success" />
+        <p className="text-sm text-success">
+          100% Local Processing: all generation happens in your browser
         </p>
       </div>
 
@@ -486,11 +486,7 @@ export default function GitignoreGenerator() {
               <button
                 key={lang.key}
                 onClick={() => toggleLanguage(lang.key)}
-                className={`px-3 py-1.5 rounded-lg text-sm border transition-all ${
-                  selected.includes(lang.key)
-                    ? "bg-orange-500/10 text-orange-400 border-orange-500/30"
-                    : "bg-muted/50 border-transparent hover:bg-muted"
-                }`}
+                className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${ selected.includes(lang.key) ? "bg-primary/10 text-primary border-border/30" : "bg-muted/50 border-transparent hover:bg-muted" }`}
               >
                 {lang.name}
                 {selected.includes(lang.key) && (
@@ -518,8 +514,8 @@ export default function GitignoreGenerator() {
               >
                 {copied ? (
                   <>
-                    <Check className="w-3 h-3 text-emerald-400" />
-                    <span className="text-emerald-400">Copied!</span>
+                    <Check className="w-3 h-3 text-success" />
+                    <span className="text-success">Copied!</span>
                   </>
                 ) : (
                   <>
@@ -531,7 +527,7 @@ export default function GitignoreGenerator() {
               <button
                 onClick={handleDownload}
                 disabled={!content}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm bg-orange-500 text-white hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm bg-primary text-primary-foreground hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 <Download className="w-3 h-3" />
                 Download .gitignore
@@ -554,15 +550,15 @@ export default function GitignoreGenerator() {
           </div>
 
           {/* Tips */}
-          <div className="rounded-lg border border-cyan-500/20 bg-cyan-500/5 p-4">
-            <h3 className="text-xs font-medium text-cyan-400 uppercase tracking-wide mb-2">
+          <div className="rounded-lg border border-border/20 bg-info/5 p-4">
+            <h3 className="text-xs font-medium text-info tracking-wide mb-2">
               Tips
             </h3>
             <ul className="text-xs text-muted-foreground space-y-1">
               <li>• Add .gitignore before your first commit</li>
               <li>• You can have multiple .gitignore files in subdirectories</li>
               <li>• Use git check-ignore -v to debug ignored files</li>
-              <li>• Templates are based on GitHub's gitignore repository</li>
+              <li>• Templates are based on GitHub’s gitignore repository</li>
             </ul>
           </div>
         </div>
@@ -576,7 +572,7 @@ export default function GitignoreGenerator() {
             href="https://github.com/github/gitignore"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-cyan-400 hover:underline"
+            className="text-info hover:underline"
           >
             github/gitignore
           </a>

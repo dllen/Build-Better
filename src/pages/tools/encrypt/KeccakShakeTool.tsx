@@ -36,15 +36,15 @@ export default function KeccakShake() {
 
   return (
     <EditorSplitLayout
-      title={<><div className="inline-flex p-2 rounded-lg bg-teal-100 text-teal-600"><Fingerprint className="h-5 w-5" /></div><h1 className="text-2xl font-semibold">Keccak / SHA3 / Shake</h1></>}
-      toolbar={<select className="rounded-md border border-gray-300 px-3 py-2 text-sm" value={algo} onChange={(e) => setAlgo(e.target.value)}>
+      title={<><div className="inline-flex p-2 rounded-lg bg-info/10 text-info"><Fingerprint className="h-5 w-5" /></div><h1 className="text-2xl font-semibold">Keccak / SHA3 / Shake</h1></>}
+      toolbar={<select className="rounded-md border border-border px-3 py-2 text-sm" value={algo} onChange={(e) => setAlgo(e.target.value)}>
         {ALGOS.map(a => <option key={a.value} value={a.value}>{a.label}</option>)}
       </select>}
       inputLabel="Input"
       input={<textarea className="w-full h-full p-4 font-mono text-sm resize-none border-0 focus:outline-none" placeholder="Enter text to hash..." value={input} onChange={(e) => setInput(e.target.value)} />}
       outputLabel="Output"
-      output={<pre className="w-full h-full p-4 font-mono text-sm whitespace-pre-wrap break-words overflow-auto bg-gray-50">{result}</pre>}
-      outputActions={<button onClick={() => copy(result)} className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-teal-600 text-white hover:bg-teal-700">{copied ? <Check className="h-4 w-4" /> : <ClipboardCopy className="h-4 w-4" />} Copy</button>}
+      output={<pre className="w-full h-full p-4 font-mono text-sm whitespace-pre-wrap break-words overflow-auto bg-muted">{result}</pre>}
+      outputActions={<button onClick={() => copy(result)} className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-info text-info-foreground hover:bg-info">{copied ? <Check className="h-4 w-4" /> : <ClipboardCopy className="h-4 w-4" />} Copy</button>}
     />
   );
 }

@@ -159,13 +159,13 @@ export default function KubectlBuilder() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-sky-100 text-sky-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Box className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">kubectl Builder</h1>
       </div>
 
-      <div className="flex items-center gap-2 text-sm text-gray-500 bg-gray-50 rounded-lg px-3 py-2">
+      <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted rounded-lg px-3 py-2">
         <Shield className="h-4 w-4" />
         Data stays in your browser. Nothing is sent to a server.
       </div>
@@ -174,12 +174,12 @@ export default function KubectlBuilder() {
         {/* Form */}
         <div className="lg:col-span-2 space-y-4">
           {/* Operation + Resource */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-card rounded-lg border border-border p-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">Operation</label>
+                <label className="text-sm font-medium text-muted-foreground">Operation</label>
                 <select
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm"
                   value={operation}
                   onChange={(e) => setOperation(e.target.value as Operation)}
                 >
@@ -191,9 +191,9 @@ export default function KubectlBuilder() {
                 </select>
               </div>
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">Resource Type</label>
+                <label className="text-sm font-medium text-muted-foreground">Resource Type</label>
                 <select
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm"
                   value={resource}
                   onChange={(e) => setResource(e.target.value as ResourceType)}
                 >
@@ -208,24 +208,24 @@ export default function KubectlBuilder() {
           </div>
 
           {/* Name + Namespace */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-card rounded-lg border border-border p-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">
+                <label className="text-sm font-medium text-muted-foreground">
                   {showResourceName ? "Resource Name" : "Pod Name"}
-                  <span className="text-gray-400 font-normal"> (optional)</span>
+                  <span className="text-muted-foreground font-normal"> (optional)</span>
                 </label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="my-app"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-sky-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
               {showNamespace && (
                 <div className="space-y-1">
-                  <label className="text-sm font-medium text-gray-700">Namespace</label>
+                  <label className="text-sm font-medium text-muted-foreground">Namespace</label>
                   <div className="flex items-center gap-3">
                     <input
                       type="text"
@@ -233,10 +233,10 @@ export default function KubectlBuilder() {
                       onChange={(e) => setNamespace(e.target.value)}
                       placeholder="default"
                       disabled={allNamespaces}
-                      className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:opacity-50"
+                      className="flex-1 rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-50"
                     />
                     {showNamespace && (
-                      <label className="inline-flex items-center gap-1.5 text-xs text-gray-500 whitespace-nowrap">
+                      <label className="inline-flex items-center gap-1.5 text-xs text-muted-foreground whitespace-nowrap">
                         <input
                           type="checkbox"
                           checked={allNamespaces}
@@ -257,12 +257,12 @@ export default function KubectlBuilder() {
 
           {/* Output format */}
           {showOutput && (
-            <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="bg-card rounded-lg border border-border p-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-sm font-medium text-gray-700">Output Format (-o)</label>
+                  <label className="text-sm font-medium text-muted-foreground">Output Format (-o)</label>
                   <select
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                    className="w-full rounded-md border border-border px-3 py-2 text-sm"
                     value={outputFormat}
                     onChange={(e) => setOutputFormat(e.target.value)}
                   >
@@ -282,7 +282,7 @@ export default function KubectlBuilder() {
                       onChange={(e) => setWatch(e.target.checked)}
                       className="rounded"
                     />
-                    <span className="text-sm text-gray-700">Watch (-w)</span>
+                    <span className="text-sm text-muted-foreground">Watch (-w)</span>
                   </label>
                 </div>
               </div>
@@ -291,26 +291,26 @@ export default function KubectlBuilder() {
 
           {/* Port Forward */}
           {showPortForward && (
-            <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="bg-card rounded-lg border border-border p-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-sm font-medium text-gray-700">Local Port</label>
+                  <label className="text-sm font-medium text-muted-foreground">Local Port</label>
                   <input
                     type="text"
                     value={localPort}
                     onChange={(e) => setLocalPort(e.target.value)}
                     placeholder="8080"
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-sky-400"
+                    className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-sm font-medium text-gray-700">Target Port</label>
+                  <label className="text-sm font-medium text-muted-foreground">Target Port</label>
                   <input
                     type="text"
                     value={targetPort}
                     onChange={(e) => setTargetPort(e.target.value)}
                     placeholder="80"
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-sky-400"
+                    className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                 </div>
               </div>
@@ -319,15 +319,15 @@ export default function KubectlBuilder() {
 
           {/* File */}
           {showFile && (
-            <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="bg-card rounded-lg border border-border p-4">
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">File (-f)</label>
+                <label className="text-sm font-medium text-muted-foreground">File (-f)</label>
                 <input
                   type="text"
                   value={file}
                   onChange={(e) => setFile(e.target.value)}
                   placeholder="deployment.yaml"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-sky-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
             </div>
@@ -335,26 +335,26 @@ export default function KubectlBuilder() {
 
           {/* Container */}
           {showContainer && (
-            <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="bg-card rounded-lg border border-border p-4">
               <div className="space-y-1">
-                <label className="text-sm font-medium text-gray-700">Container (-c)</label>
+                <label className="text-sm font-medium text-muted-foreground">Container (-c)</label>
                 <input
                   type="text"
                   value={container}
                   onChange={(e) => setContainer(e.target.value)}
                   placeholder="main"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-sky-400"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
             </div>
           )}
 
           {/* Labels */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700">Labels (-l)</span>
+              <span className="text-sm font-medium text-muted-foreground">Labels (-l)</span>
               <button
-                className="text-xs text-sky-600 hover:text-sky-700 inline-flex items-center gap-1"
+                className="text-xs text-primary hover:text-primary inline-flex items-center gap-1"
                 onClick={addLabel}
               >
                 <Plus className="h-3 w-3" /> Add
@@ -367,18 +367,18 @@ export default function KubectlBuilder() {
                   value={l.key}
                   onChange={(e) => updateLabel(i, "key", e.target.value)}
                   placeholder="app"
-                  className="flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-sky-400"
+                  className="flex-1 rounded-md border border-border px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
-                <span className="text-gray-400">=</span>
+                <span className="text-muted-foreground">=</span>
                 <input
                   type="text"
                   value={l.value}
                   onChange={(e) => updateLabel(i, "value", e.target.value)}
                   placeholder="nginx"
-                  className="flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-sky-400"
+                  className="flex-1 rounded-md border border-border px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring"
                 />
                 <button
-                  className="text-gray-400 hover:text-red-500"
+                  className="text-muted-foreground hover:text-destructive"
                   onClick={() => removeLabel(i)}
                 >
                   <Trash2 className="h-4 w-4" />
@@ -386,14 +386,14 @@ export default function KubectlBuilder() {
               </div>
             ))}
             {labels.length === 0 && (
-              <div className="text-xs text-gray-400">No labels (optional)</div>
+              <div className="text-xs text-muted-foreground">No labels (optional)</div>
             )}
           </div>
 
           {/* Delete flags */}
           {isDelete && (
-            <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-2">
-              <span className="text-sm font-medium text-gray-700">Delete Flags</span>
+            <div className="bg-card rounded-lg border border-border p-4 space-y-2">
+              <span className="text-sm font-medium text-muted-foreground">Delete Flags</span>
               <div className="flex flex-wrap gap-2">
                 {[
                   { flag: "force", label: "--force" },
@@ -401,11 +401,7 @@ export default function KubectlBuilder() {
                 ].map(({ flag, label }) => (
                   <label
                     key={flag}
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs border cursor-pointer transition-colors ${
-                      flags.includes(flag)
-                        ? "bg-red-50 border-red-300 text-red-700"
-                        : "bg-white border-gray-200 text-gray-600 hover:border-gray-300"
-                    }`}
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs border cursor-pointer transition-colors ${ flags.includes(flag) ? "bg-destructive/10 border-border text-destructive" : "border-border text-muted-foreground" }`}
                   >
                     <input
                       type="checkbox"
@@ -423,18 +419,18 @@ export default function KubectlBuilder() {
 
         {/* Output */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3 sticky top-4">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3 sticky top-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700">Command</span>
+              <span className="text-sm font-medium text-muted-foreground">Command</span>
               <button
-                className="px-3 py-1.5 rounded-md bg-sky-600 text-white text-sm inline-flex items-center gap-1.5 disabled:opacity-50"
+                className="px-3 py-1.5 rounded-md bg-primary text-primary-foreground text-sm inline-flex items-center gap-1.5 disabled:opacity-50"
                 onClick={copyCmd}
               >
                 <Copy className="h-3.5 w-3.5" />
                 {copied ? "Copied ✓" : "Copy"}
               </button>
             </div>
-            <pre className="font-mono text-xs whitespace-pre-wrap break-words bg-gray-900 text-green-400 rounded-md p-3 overflow-x-auto">
+            <pre className="font-mono text-xs whitespace-pre-wrap break-words bg-muted text-success rounded-md p-3 overflow-x-auto">
               {kubectl}
             </pre>
           </div>

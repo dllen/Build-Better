@@ -59,12 +59,12 @@ export default function IpIntConverter() {
   const Row = ({ label, value, error, copyKey }: { label: string; value: string; error: string | null; copyKey: string }) => (
     <div className="flex items-center gap-2">
       <div className="flex-1 min-w-0">
-        <p className="text-xs text-gray-500">{label}</p>
-        <p className={`font-mono text-sm truncate ${error ? "text-red-600" : "text-gray-800"}`}>{error || value || "—"}</p>
+        <p className="text-xs text-muted-foreground">{label}</p>
+        <p className={`font-mono text-sm truncate ${error ? "text-destructive" : "text-foreground"}`}>{error || value || "—"}</p>
       </div>
       {value && !error && (
         <button onClick={() => copy(copyKey, value)}
-          className="flex items-center gap-1 px-2.5 py-1.5 text-gray-500 hover:bg-gray-100 rounded-lg text-xs flex-shrink-0">
+          className="flex items-center gap-1 px-2.5 py-1.5 text-muted-foreground hover:bg-muted rounded-lg text-xs flex-shrink-0">
           {copied === copyKey ? <Check size={13} /> : <Copy size={13} />} {copied === copyKey ? "Copied" : "Copy"}
         </button>
       )}
@@ -76,35 +76,35 @@ export default function IpIntConverter() {
       title="IP ↔ Integer Converter"
       subtitle="Convert IPv4 addresses to 32-bit integers and IPv6 addresses to 128-bit integers — and back."
       icon={ArrowRightLeft}
-      iconBgColor="bg-sky-100"
-      iconColor="text-sky-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["ip to int", "ipv4 integer", "ipv6 bigint", "ip converter", "dotted quad to number"]}
       children={
         <div className="space-y-6">
           <div>
-            <h3 className="text-sm font-semibold text-gray-700 mb-3">IP → Integer</h3>
-            <label className="block text-xs text-gray-500 mb-1">IPv4 or IPv6 address</label>
+            <h3 className="text-sm font-semibold text-muted-foreground mb-3">IP → Integer</h3>
+            <label className="block text-xs text-muted-foreground mb-1">IPv4 or IPv6 address</label>
             <input value={ip} onChange={(e) => setIp(e.target.value)} placeholder="192.168.1.1 or 2001:db8::1"
-              className={`w-full px-3 py-2.5 border rounded-lg font-mono text-sm focus:ring-2 focus:ring-sky-500 ${v4.error ? "border-red-300 bg-red-50" : "border-gray-300"}`} />
+              className={`w-full px-3 py-2.5 border rounded-lg font-mono text-sm focus:ring-2 focus:ring-ring ${v4.error ? "border-border bg-destructive/10" : "border-border"}`} />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-gray-700 mb-3">Integer → IP</h3>
-            <label className="block text-xs text-gray-500 mb-1">Integer (auto-detects IPv4 range ≤ 2³²−1, otherwise IPv6)</label>
+            <h3 className="text-sm font-semibold text-muted-foreground mb-3">Integer → IP</h3>
+            <label className="block text-xs text-muted-foreground mb-1">Integer (auto-detects IPv4 range ≤ 2³²−1, otherwise IPv6)</label>
             <input value={int} onChange={(e) => setInt(e.target.value)} placeholder="3232235777"
-              className={`w-full px-3 py-2.5 border rounded-lg font-mono text-sm focus:ring-2 focus:ring-sky-500 ${fromInt.error ? "border-red-300 bg-red-50" : "border-gray-300"}`} />
+              className={`w-full px-3 py-2.5 border rounded-lg font-mono text-sm focus:ring-2 focus:ring-ring ${fromInt.error ? "border-border bg-destructive/10" : "border-border"}`} />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-gray-700 mb-3">IPv6 ↔ 128-bit Integer</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground mb-3">IPv6 ↔ 128-bit Integer</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs text-gray-500 mb-1">IPv6 → bigint</label>
+                <label className="block text-xs text-muted-foreground mb-1">IPv6 → bigint</label>
                 <input value={ipv6} onChange={(e) => setIpv6(e.target.value)}
-                  className={`w-full px-3 py-2.5 border rounded-lg font-mono text-sm ${v6toBig.error ? "border-red-300 bg-red-50" : "border-gray-300"}`} />
+                  className={`w-full px-3 py-2.5 border rounded-lg font-mono text-sm ${v6toBig.error ? "border-border bg-destructive/10" : "border-border"}`} />
               </div>
               <div>
-                <label className="block text-xs text-gray-500 mb-1">bigint → IPv6</label>
+                <label className="block text-xs text-muted-foreground mb-1">bigint → IPv6</label>
                 <input value={big} onChange={(e) => setBig(e.target.value)}
-                  className={`w-full px-3 py-2.5 border rounded-lg font-mono text-sm ${bigToV6.error ? "border-red-300 bg-red-50" : "border-gray-300"}`} />
+                  className={`w-full px-3 py-2.5 border rounded-lg font-mono text-sm ${bigToV6.error ? "border-border bg-destructive/10" : "border-border"}`} />
               </div>
             </div>
           </div>
@@ -112,17 +112,17 @@ export default function IpIntConverter() {
       }
       result={
         <div className="space-y-4">
-          <div className="p-3 bg-gray-50 rounded-lg space-y-2">
+          <div className="p-3 bg-muted rounded-lg space-y-2">
             <Row label={v4.kind === "ipv6" ? "Unsigned 128-bit integer" : "Unsigned 32-bit integer"} value={v4.value} error={v4.error} copyKey="ip2int" />
           </div>
-          <div className="p-3 bg-gray-50 rounded-lg">
+          <div className="p-3 bg-muted rounded-lg">
             <Row label="IP address" value={fromInt.value} error={fromInt.error} copyKey="int2ip" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="p-2.5 bg-gray-50 rounded-lg">
+            <div className="p-2.5 bg-muted rounded-lg">
               <Row label="128-bit integer" value={v6toBig.value} error={v6toBig.error} copyKey="v6big" />
             </div>
-            <div className="p-2.5 bg-gray-50 rounded-lg">
+            <div className="p-2.5 bg-muted rounded-lg">
               <Row label="Compressed IPv6" value={bigToV6.value} error={bigToV6.error} copyKey="bigv6" />
             </div>
           </div>

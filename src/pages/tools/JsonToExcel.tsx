@@ -62,7 +62,7 @@ export default function JsonToExcel() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-2 text-xl font-semibold">
-          <FileCode className="h-5 w-5 text-blue-600" />
+          <FileCode className="h-5 w-5 text-primary" />
           <span>JSON → Excel</span>
         </div>
       }
@@ -71,19 +71,19 @@ export default function JsonToExcel() {
           <button
             onClick={download}
             disabled={downloading || !input.trim()}
-            className="inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Download className="h-3 w-3" />
             {downloading ? "生成中..." : "下载 .xlsx"}
           </button>
-          <button onClick={clear} className="ml-auto inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
+          <button onClick={clear} className="ml-auto inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
             <Eraser className="h-3 w-3" />清空
           </button>
         </div>
       }
       inputLabel="JSON 输入"
       inputActions={
-        <span className="text-xs text-gray-500">{input.length} 字符</span>
+        <span className="text-xs text-muted-foreground">{input.length} 字符</span>
       }
       input={
         <textarea
@@ -98,7 +98,7 @@ export default function JsonToExcel() {
         <button
           onClick={download}
           disabled={downloading || !input.trim()}
-          className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Download className="h-3 w-3" />
           下载 .xlsx
@@ -106,13 +106,13 @@ export default function JsonToExcel() {
       }
       output={
         <div className="flex h-full flex-col items-center justify-center gap-4 p-6 text-center">
-          <FileCode className="h-12 w-12 text-gray-300" />
+          <FileCode className="h-12 w-12 text-muted-foreground" />
           <div className="space-y-1">
-            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">点击上方按钮生成 Excel 文件</p>
-            <p className="text-xs text-gray-500">支持 JSON 数组和对象，自动提取所有键作为列标题</p>
+            <p className="text-sm font-medium text-muted-foreground dark:text-muted-foreground">点击上方按钮生成 Excel 文件</p>
+            <p className="text-xs text-muted-foreground">支持 JSON 数组和对象，自动提取所有键作为列标题</p>
           </div>
           {error ? (
-            <div className="flex items-center gap-1 text-sm text-red-600">
+            <div className="flex items-center gap-1 text-sm text-destructive">
               <AlertCircle className="h-3 w-3" />
               {error}
             </div>

@@ -269,7 +269,7 @@ export default function ManualChat() {
     onChange?: (v: string) => void
   ) => (
     <div className="mb-4">
-      <label className="mb-1 block text-sm font-medium text-gray-700">{label}</label>
+      <label className="mb-1 block text-sm font-medium text-muted-foreground">{label}</label>
       <textarea
         value={value}
         readOnly={readonly}
@@ -283,15 +283,15 @@ export default function ManualChat() {
         }
         rows={4}
         placeholder={readonly ? "" : "粘贴对方发给你的连接码"}
-        className="w-full rounded-lg border border-gray-300 px-3 py-2 font-mono text-xs outline-none focus:border-blue-500"
+        className="w-full rounded-lg border border-border px-3 py-2 font-mono text-xs outline-none focus:border-border"
       />
     </div>
   );
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <h1 className="mb-2 text-2xl font-bold text-gray-900">手动连接聊天</h1>
-      <p className="mb-6 text-sm text-gray-500">
+      <h1 className="mb-2 text-2xl font-bold text-foreground">手动连接聊天</h1>
+      <p className="mb-6 text-sm text-muted-foreground">
         不依赖任何服务器：通过其他渠道（微信、邮件等）交换连接码完成握手，之后消息端到端直连。
       </p>
 
@@ -300,10 +300,10 @@ export default function ManualChat() {
           <button
             type="button"
             onClick={createInvite}
-            className="rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm hover:border-blue-400"
+            className="rounded-lg border border-border bg-card p-6 text-left hover:border-border"
           >
-            <p className="mb-1 font-medium text-gray-900">我是发起方</p>
-            <p className="text-sm text-gray-500">创建邀请码，发给对方</p>
+            <p className="mb-1 font-medium text-foreground">我是发起方</p>
+            <p className="text-sm text-muted-foreground">创建邀请码，发给对方</p>
           </button>
           <button
             type="button"
@@ -312,42 +312,42 @@ export default function ManualChat() {
               setCodeError(false);
               setPhase("join-input");
             }}
-            className="rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm hover:border-blue-400"
+            className="rounded-lg border border-border bg-card p-6 text-left hover:border-border"
           >
-            <p className="mb-1 font-medium text-gray-900">我是接收方</p>
-            <p className="text-sm text-gray-500">粘贴对方的邀请码加入</p>
+            <p className="mb-1 font-medium text-foreground">我是接收方</p>
+            <p className="text-sm text-muted-foreground">粘贴对方的邀请码加入</p>
           </button>
         </div>
       )}
 
       {phase === "offer-ready" && (
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+        <div className="rounded-lg border border-border bg-card p-6">
           {codeBlock("① 你的邀请码（复制发给对方）", true, outCode)}
           <button
             type="button"
             onClick={copyCode}
-            className="mb-6 inline-flex items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
+            className="mb-6 inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted"
           >
-            {copied ? <Check size={14} className="text-green-600" /> : <Copy size={14} />}
+            {copied ? <Check size={14} className="text-success" /> : <Copy size={14} />}
             {copied ? "已复制" : "复制邀请码"}
           </button>
           {codeBlock("② 粘贴对方的应答码", false, inCode, setInCode)}
           {codeError && (
-            <p className="mb-3 text-sm text-red-600">连接码无效或已损坏，请检查后重试。</p>
+            <p className="mb-3 text-sm text-destructive">连接码无效或已损坏，请检查后重试。</p>
           )}
           <div className="flex gap-3">
             <button
               type="button"
               onClick={acceptAnswer}
               disabled={!inCode.trim()}
-              className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 disabled:opacity-40"
+              className="rounded-lg bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary disabled:opacity-40"
             >
               确认应答码，建立连接
             </button>
             <button
               type="button"
               onClick={resetAll}
-              className="rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              className="rounded-lg border border-border px-4 py-2 text-sm text-muted-foreground hover:bg-muted"
             >
               返回
             </button>
@@ -356,24 +356,24 @@ export default function ManualChat() {
       )}
 
       {phase === "join-input" && (
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+        <div className="rounded-lg border border-border bg-card p-6">
           {codeBlock("粘贴对方的邀请码", false, inCode, setInCode)}
           {codeError && (
-            <p className="mb-3 text-sm text-red-600">连接码无效或已损坏，请检查后重试。</p>
+            <p className="mb-3 text-sm text-destructive">连接码无效或已损坏，请检查后重试。</p>
           )}
           <div className="flex gap-3">
             <button
               type="button"
               onClick={joinInvite}
               disabled={!inCode.trim()}
-              className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 disabled:opacity-40"
+              className="rounded-lg bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary disabled:opacity-40"
             >
               生成应答码
             </button>
             <button
               type="button"
               onClick={() => setPhase("choose")}
-              className="rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              className="rounded-lg border border-border px-4 py-2 text-sm text-muted-foreground hover:bg-muted"
             >
               返回
             </button>
@@ -382,21 +382,21 @@ export default function ManualChat() {
       )}
 
       {phase === "answer-ready" && (
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+        <div className="rounded-lg border border-border bg-card p-6">
           {codeBlock("你的应答码（复制发回给对方）", true, outCode)}
           <button
             type="button"
             onClick={copyCode}
-            className="mb-4 inline-flex items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
+            className="mb-4 inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted"
           >
-            {copied ? <Check size={14} className="text-green-600" /> : <Copy size={14} />}
+            {copied ? <Check size={14} className="text-success" /> : <Copy size={14} />}
             {copied ? "已复制" : "复制应答码"}
           </button>
-          <p className="mb-4 text-sm text-gray-500">对方填入应答码后连接自动建立。</p>
+          <p className="mb-4 text-sm text-muted-foreground">对方填入应答码后连接自动建立。</p>
           <button
             type="button"
             onClick={() => setPhase("chat")}
-            className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
+            className="rounded-lg bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary"
           >
             进入聊天界面
           </button>
@@ -406,12 +406,12 @@ export default function ManualChat() {
       {phase === "chat" && (
         <>
           {connState === "failed" && (
-            <div className="mb-3 flex items-center justify-between rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-800">
+            <div className="mb-3 flex items-center justify-between rounded-lg border border-border bg-destructive/10 px-4 py-2 text-sm text-destructive">
               <span>P2P 连接失败，双方 NAT 限制过严，可换网络后重试。</span>
               <button
                 type="button"
                 onClick={resetAll}
-                className="inline-flex items-center gap-1 rounded border border-red-300 px-2 py-1 hover:bg-red-100"
+                className="inline-flex items-center gap-1 rounded border border-border px-2 py-1 hover:bg-destructive/10"
               >
                 <RotateCcw size={14} />
                 重新开始
@@ -426,7 +426,7 @@ export default function ManualChat() {
               <button
                 type="button"
                 onClick={resetAll}
-                className="inline-flex items-center gap-1 rounded px-2 py-1 text-xs text-gray-500 hover:bg-gray-100"
+                className="inline-flex items-center gap-1 rounded px-2 py-1 text-xs text-muted-foreground hover:bg-muted"
               >
                 <LogOut size={14} />
                 离开会话

@@ -92,7 +92,7 @@ export default function DedupSortDiff() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-orange-100 text-orange-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <GitCompare className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">Dedup & Sort Diff</h1>
@@ -101,7 +101,7 @@ export default function DedupSortDiff() {
       toolbar={
         <>
           <select
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            className="rounded-md border border-border px-3 py-2 text-sm"
             value={mode}
             onChange={(e) => setMode(e.target.value as Mode)}
           >
@@ -110,7 +110,7 @@ export default function DedupSortDiff() {
           </select>
           {mode === "token" && (
             <input
-              className="rounded-md border border-gray-300 px-3 py-2 text-sm w-32"
+              className="rounded-md border border-border px-3 py-2 text-sm w-32"
               placeholder="分隔符"
               value={delimiter}
               onChange={(e) => setDelimiter(e.target.value)}
@@ -129,14 +129,14 @@ export default function DedupSortDiff() {
             去除空项
           </label>
           <select
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            className="rounded-md border border-border px-3 py-2 text-sm"
             value={String(sortAsc)}
             onChange={(e) => setSortAsc(e.target.value === "true")}
           >
             <option value="true">升序</option>
             <option value="false">降序</option>
           </select>
-          <div className="ml-auto text-xs text-gray-600">
+          <div className="ml-auto text-xs text-muted-foreground">
             左唯一: {stats.leftUnique} · 右唯一: {stats.rightUnique} · 交集: {stats.intersection}
           </div>
         </>
@@ -144,12 +144,12 @@ export default function DedupSortDiff() {
       inputLabel="Left"
       inputActions={
         <button
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-xs hover:bg-gray-50"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-xs hover:bg-muted"
           onClick={() => copy(leftOut)}
           disabled={!leftOut}
         >
           <ClipboardCopy className="h-3.5 w-3.5" /> Copy
-          {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : null}
+          {copied ? <Check className="h-3.5 w-3.5 text-success" /> : null}
         </button>
       }
       input={
@@ -162,12 +162,12 @@ export default function DedupSortDiff() {
       outputLabel="Right"
       outputActions={
         <button
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-xs hover:bg-gray-50"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-xs hover:bg-muted"
           onClick={() => copy(rightOut)}
           disabled={!rightOut}
         >
           <ClipboardCopy className="h-3.5 w-3.5" /> Copy
-          {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : null}
+          {copied ? <Check className="h-3.5 w-3.5 text-success" /> : null}
         </button>
       }
       output={
@@ -178,14 +178,14 @@ export default function DedupSortDiff() {
         />
       }
       footer={
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-card rounded-lg border border-border p-4">
           <div className="font-medium mb-2">Diff</div>
           <div className="font-mono whitespace-pre-wrap break-words text-sm">
             {parts.map((p, i) =>
               p.added ? (
-                <span key={i} className="bg-green-200 text-green-900">{p.value}</span>
+                <span key={i} className="bg-success/10 text-success">{p.value}</span>
               ) : p.removed ? (
-                <span key={i} className="bg-red-200 text-red-900 line-through">{p.value}</span>
+                <span key={i} className="bg-destructive/10 text-destructive line-through">{p.value}</span>
               ) : (
                 <span key={i}>{p.value}</span>
               )

@@ -38,10 +38,10 @@ export default function PackingListGenerator() {
 
   const resultNode = (
     <div className="space-y-3">
-      <div className="bg-gray-50 p-3 rounded-lg text-sm">
-        <div className="border-b border-gray-200 pb-2 mb-2">
+      <div className="bg-muted p-3 rounded-lg text-sm">
+        <div className="border-b border-border pb-2 mb-2">
           <p className="font-mono font-bold">{invoiceNo}</p>
-          <p className="text-xs text-gray-500">{date}</p>
+          <p className="text-xs text-muted-foreground">{date}</p>
         </div>
         <div className="space-y-1 mb-2 text-xs">
           {lines.map((l, i) => (
@@ -51,16 +51,16 @@ export default function PackingListGenerator() {
             </div>
           ))}
         </div>
-        <div className="border-t border-gray-300 pt-2 flex justify-between font-bold">
+        <div className="border-t border-border pt-2 flex justify-between font-bold">
           <span>Total: {totalQty} items</span>
           <span>{fmt(totalValue)}</span>
         </div>
       </div>
       <div className="flex gap-2">
-        <button onClick={copy} className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">
+        <button onClick={copy} className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary text-sm">
           <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.packing-list.copy")}
         </button>
-        <button onClick={download} className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm">
+        <button onClick={download} className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-success text-success-foreground rounded-lg hover:bg-success text-sm">
           <Download className="h-4 w-4" />{t("tools.packing-list.download")}
         </button>
       </div>
@@ -72,30 +72,30 @@ export default function PackingListGenerator() {
       title={t("tools.packing-list.title")}
       subtitle={t("tools.packing-list.subtitle")}
       icon={ListChecks}
-      iconBgColor="bg-orange-100"
-      iconColor="text-orange-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["packing list", "cross-border shipping", "export document", "invoice"]}
       result={resultNode}
     >
       <div className="space-y-3">
         <div className="grid grid-cols-2 gap-2">
-          <input placeholder="PL #" value={invoiceNo} onChange={e => setInvoiceNo(e.target.value)} className="border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm py-2 px-3 border" />
-          <input type="date" value={date} onChange={e => setDate(e.target.value)} className="border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm py-2 px-3 border" />
+          <input placeholder="PL #" value={invoiceNo} onChange={e => setInvoiceNo(e.target.value)} className="border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
+          <input type="date" value={date} onChange={e => setDate(e.target.value)} className="border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
-        <input placeholder={t("tools.packing-list.shipper")} value={shipper} onChange={e => setShipper(e.target.value)} className="block w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm py-2 px-3 border" />
-        <input placeholder={t("tools.packing-list.consignee")} value={consignee} onChange={e => setConsignee(e.target.value)} className="block w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm py-2 px-3 border" />
+        <input placeholder={t("tools.packing-list.shipper")} value={shipper} onChange={e => setShipper(e.target.value)} className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
+        <input placeholder={t("tools.packing-list.consignee")} value={consignee} onChange={e => setConsignee(e.target.value)} className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         <div className="space-y-1 max-h-48 overflow-y-auto">
           {lines.map(l => (
             <div key={l.id} className="grid grid-cols-12 gap-1">
-              <input placeholder={t("tools.packing-list.desc")} value={l.description} onChange={e => update(l.id, "description", e.target.value)} className="col-span-5 border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm py-1 px-2 border" />
-              <input type="number" min="1" value={l.quantity} onChange={e => update(l.id, "quantity", +e.target.value)} className="col-span-2 border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm py-1 px-2 border" />
-              <input type="number" min="0" step="0.01" value={l.unitPrice} onChange={e => update(l.id, "unitPrice", +e.target.value)} className="col-span-2 border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm py-1 px-2 border" />
-              <input placeholder="HS" value={l.hsCode} onChange={e => update(l.id, "hsCode", e.target.value)} className="col-span-2 border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm py-1 px-2 border" />
-              <button onClick={() => remove(l.id)} className="col-span-1 px-1 py-1 bg-red-100 text-red-700 rounded text-xs">×</button>
+              <input placeholder={t("tools.packing-list.desc")} value={l.description} onChange={e => update(l.id, "description", e.target.value)} className="col-span-5 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-1 px-2 border" />
+              <input type="number" min="1" value={l.quantity} onChange={e => update(l.id, "quantity", +e.target.value)} className="col-span-2 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-1 px-2 border" />
+              <input type="number" min="0" step="0.01" value={l.unitPrice} onChange={e => update(l.id, "unitPrice", +e.target.value)} className="col-span-2 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-1 px-2 border" />
+              <input placeholder="HS" value={l.hsCode} onChange={e => update(l.id, "hsCode", e.target.value)} className="col-span-2 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-1 px-2 border" />
+              <button onClick={() => remove(l.id)} className="col-span-1 px-1 py-1 bg-destructive/10 text-destructive rounded text-xs">×</button>
             </div>
           ))}
         </div>
-        <button onClick={add} className="w-full px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 text-sm">+ {t("tools.packing-list.add_item")}</button>
+        <button onClick={add} className="w-full px-3 py-1.5 bg-muted text-muted-foreground rounded-lg hover:bg-border text-sm">+ {t("tools.packing-list.add_item")}</button>
       </div>
     </CalculatorShell>
   );

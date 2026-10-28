@@ -119,26 +119,26 @@ export default function DrawDigitalClock() {
   return (
     <div className="max-w-2xl mx-auto py-8 px-4">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2 bg-amber-100 text-amber-600 rounded-lg"><Clock className="h-5 w-5" /></div>
-        <h1 className="text-2xl font-bold text-gray-900">Digital Clock</h1>
+        <div className="p-2 bg-primary/10 text-primary rounded-lg"><Clock className="h-5 w-5" /></div>
+        <h1 className="text-2xl font-bold text-foreground">Digital Clock</h1>
       </div>
-      <p className="text-sm text-gray-500 mb-6">A live analog clock in your browser, refreshing every second.</p>
-      <div className="space-y-6 p-6 rounded-xl border border-gray-200 bg-white">
+      <p className="text-sm text-muted-foreground mb-6">A live analog clock in your browser, refreshing every second.</p>
+      <div className="space-y-6 p-6 rounded-xl border border-border bg-card">
         <div className="flex flex-wrap items-center gap-4">
           <select value={theme} onChange={(e) => setTheme(e.target.value)}
-            className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none bg-white">
+            className="rounded-lg px-3 py-2 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-muted">
             <option value="classic">Classic</option>
             <option value="dark">Dark</option>
             <option value="minimal">Minimal</option>
           </select>
-          <span className="text-xl font-mono text-gray-700 ml-auto">{timeStr}</span>
+          <span className="text-xl font-mono text-muted-foreground ml-auto">{timeStr}</span>
         </div>
-        <div className="flex justify-center p-4 rounded-lg bg-gray-50 border border-gray-200">
-          <canvas ref={canvasRef} className="max-w-full h-auto rounded-lg shadow-md" />
+        <div className="flex justify-center p-4 rounded-lg bg-muted border border-border">
+          <canvas ref={canvasRef} className="max-w-full h-auto rounded-lg" role="img" aria-label="Drawing output"/>
         </div>
         <div className="flex justify-center">
           <button onClick={() => { const url = canvasRef.current?.toDataURL("image/png"); if (url) { const a = document.createElement("a"); a.href = url; a.download = "clock.png"; a.click(); } }}
-            className="inline-flex items-center gap-1 px-3 py-2 text-sm text-gray-600 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+            className="inline-flex items-center gap-1 px-3 py-2 text-sm text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded-lg transition-colors">
             <Download className="h-4 w-4" />Download
           </button>
         </div>

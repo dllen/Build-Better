@@ -32,16 +32,16 @@ export function AutoRouteIndicator({ tool, language, showReason = true }: Props)
   if (!decision || !decision.picked) return null;
 
   return (
-    <div className="bg-blue-50 border border-blue-200 rounded-md p-2 text-xs">
+    <div className="bg-accent border border-border rounded-md p-2 text-xs">
       <div className="flex items-center gap-2">
-        <Sparkles className="h-3 w-3 text-blue-500 flex-shrink-0" />
-        <span className="font-semibold text-blue-900">Auto-routed</span>
-        <span className="text-blue-700">→</span>
-        <span className="font-mono text-blue-900">{decision.picked}</span>
-        <span className="text-blue-500 ml-auto">{decision.task}</span>
+        <Sparkles className="h-3 w-3 text-cool flex-shrink-0" />
+        <span className="font-semibold text-ink">Auto-routed</span>
+        <span className="text-ink-2">→</span>
+        <span className="font-mono text-ink">{decision.picked}</span>
+        <span className="text-cool ml-auto">{decision.task}</span>
       </div>
       {showReason && (
-        <p className="text-blue-600 mt-1 ml-5 leading-relaxed">{decision.reason}</p>
+        <p className="text-cool mt-1 ml-5 leading-relaxed">{decision.reason}</p>
       )}
     </div>
   );

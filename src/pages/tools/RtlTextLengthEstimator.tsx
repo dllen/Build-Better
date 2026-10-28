@@ -57,59 +57,59 @@ export default function RtlTextLengthEstimator() {
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">
+            <p className="text-sm font-medium text-muted-foreground mb-1">
               {t("rtlTextLength.estimated_rtl_length")}
             </p>
-            <p className="text-4xl font-bold text-indigo-600">
+            <p className="text-4xl font-bold text-primary">
               {result.estimatedRtlCount.toLocaleString()}
             </p>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               {t("rtlTextLength.characters")}
             </p>
           </div>
 
-          <div className="bg-indigo-50 p-3 rounded-lg text-sm text-indigo-800 text-center">
+          <div className="bg-primary/10 p-3 rounded-lg text-sm text-primary text-center">
             +{result.percentageIncrease.toFixed(1)}% {t("rtlTextLength.increase")}
           </div>
 
-          <div className="grid grid-cols-2 gap-3 pt-6 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-3 pt-6 border-t border-border">
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">{t("rtlTextLength.original")}</p>
-              <p className="text-xl font-bold text-gray-900">
+              <p className="text-sm text-muted-foreground mb-1">{t("rtlTextLength.original")}</p>
+              <p className="text-xl font-bold text-foreground">
                 {result.originalCount.toLocaleString()}
               </p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">{t("rtlTextLength.estimated_lines")}</p>
-              <p className="text-xl font-bold text-gray-900">{result.estimatedLines}</p>
+              <p className="text-sm text-muted-foreground mb-1">{t("rtlTextLength.estimated_lines")}</p>
+              <p className="text-xl font-bold text-foreground">{result.estimatedLines}</p>
             </div>
           </div>
 
           <div className="pt-4">
-            <p className="text-sm font-medium text-gray-700 mb-2">
+            <p className="text-sm font-medium text-muted-foreground mb-2">
               {t("rtlTextLength.visual_comparison")}
             </p>
-            <div className="relative h-8 bg-gray-200 rounded-full overflow-hidden">
+            <div className="relative h-8 bg-border rounded-full overflow-hidden">
               <div
-                className="absolute left-0 top-0 h-full bg-indigo-400 transition-all duration-300"
+                className="absolute left-0 top-0 h-full bg-primary/10 transition-colors duration-300"
                 style={{ width: `${Math.min(100, (result.originalCount / result.estimatedRtlCount) * 100)}%` }}
               />
               <div
-                className="absolute top-0 h-full bg-indigo-600 transition-all duration-300"
+                className="absolute top-0 h-full bg-primary transition-colors duration-300"
                 style={{
                   left: `${Math.min(100, (result.originalCount / result.estimatedRtlCount) * 100)}%`,
                   width: `${Math.max(0, 100 - (result.originalCount / result.estimatedRtlCount) * 100)}%`,
                 }}
               />
             </div>
-            <div className="flex justify-between text-xs text-gray-500 mt-1">
+            <div className="flex justify-between text-xs text-muted-foreground mt-1">
               <span>{t("rtlTextLength.original")}</span>
               <span>{t("rtlTextLength.rtl")}</span>
             </div>
           </div>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Type className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("rtlTextLength.enter_text")}</p>
         </div>
@@ -122,14 +122,14 @@ export default function RtlTextLengthEstimator() {
       title={t("rtlTextLength.title")}
       subtitle={t("rtlTextLength.subtitle")}
       icon={Type}
-      iconBgColor="bg-indigo-100"
-      iconColor="text-indigo-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["rtl text length", "right-to-left text", "arabic text", "hebrew text", "persian text", "urdu text", "text expansion"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             {t("rtlTextLength.input_text")}
           </label>
           <textarea
@@ -137,18 +137,18 @@ export default function RtlTextLengthEstimator() {
             onChange={(e) => setInputText(e.target.value)}
             placeholder={t("rtlTextLength.text_placeholder")}
             rows={6}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-2 px-3 border resize-none"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border resize-none"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             {t("rtlTextLength.language")}
           </label>
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-2 px-3 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
           >
             {Object.entries(RTL_LANGUAGES).map(([key, config]) => (
               <option key={key} value={key}>
@@ -159,7 +159,7 @@ export default function RtlTextLengthEstimator() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             {t("rtlTextLength.expansion_factor")}: {expansionFactor.toFixed(2)}
           </label>
           <input
@@ -171,7 +171,7 @@ export default function RtlTextLengthEstimator() {
             onChange={(e) => setExpansionFactor(parseFloat(e.target.value))}
             className="block w-full"
           />
-          <div className="flex justify-between text-xs text-gray-500 mt-1">
+          <div className="flex justify-between text-xs text-muted-foreground mt-1">
             <span>1.15</span>
             <span>1.40</span>
           </div>

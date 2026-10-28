@@ -124,13 +124,13 @@ const IndieDeveloper = () => {
   }, [projects, searchTerm, selectedCategory]);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+          <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl">
             中国独立开发者项目精选
           </h1>
-          <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-400">
+          <p className="mt-3 max-w-2xl mx-auto text-xl text-muted-foreground">
             从创意到变现的实战路径，探索优秀的独立开发作品
           </p>
         </div>
@@ -139,11 +139,11 @@ const IndieDeveloper = () => {
         <div className="mb-8 flex flex-col sm:flex-row gap-4 justify-between items-center">
           <div className="relative w-full sm:w-96">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-gray-400" />
+              <Search className="h-5 w-5 text-muted-foreground" />
             </div>
             <input
               type="text"
-              className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md leading-5 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="block w-full pl-10 pr-3 py-2 border border-border rounded-md leading-5 bg-muted text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring sm:text-sm"
               placeholder="搜索项目、开发者或描述..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -151,11 +151,11 @@ const IndieDeveloper = () => {
           </div>
           
           <div className="flex items-center space-x-2 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0">
-            <Filter className="h-5 w-5 text-gray-400 flex-shrink-0" />
+            <Filter className="h-5 w-5 text-muted-foreground flex-shrink-0" />
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+              className="block w-full pl-3 pr-10 py-2 text-base border-border focus:outline-none focus:ring-ring focus:border-ring sm:text-sm rounded-md bg-card text-card-foreground"
             >
               {categories.map(category => (
                 <option key={category} value={category}>{category}</option>
@@ -167,42 +167,42 @@ const IndieDeveloper = () => {
         {/* Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((project, index) => (
-            <div key={index} className="flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
+            <div key={index} className="flex flex-col bg-card rounded-lg overflow-hidden border border-border">
               <div className="p-6 flex-1 flex flex-col">
                 <div className="flex justify-between items-start">
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 mb-2">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent/10 text-primary mb-2">
                     {project.category}
                   </span>
                   <a 
                     href={project.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors"
                   >
                     <ExternalLink className="h-5 w-5" />
                   </a>
                 </div>
                 
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
+                <h3 className="text-xl font-bold text-foreground mb-1">
                   {project.name}
                 </h3>
                 
-                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+                <div className="flex items-center text-sm text-muted-foreground mb-4">
                   <User className="h-4 w-4 mr-1" />
                   <span>{project.developer}</span>
                 </div>
                 
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed flex-1">
+                <p className="text-ink-2 text-sm leading-relaxed flex-1">
                   {project.description}
                 </p>
               </div>
               
-              <div className="bg-gray-50 dark:bg-gray-700/50 px-6 py-3 border-t border-gray-200 dark:border-gray-700">
+              <div className="bg-muted px-6 py-3 border-t border-border">
                 <a 
                   href={project.link} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 flex items-center justify-center"
+                  className="text-sm font-medium text-primary hover:text-primary/80 transition-colors flex items-center justify-center"
                 >
                   访问项目 <ExternalLink className="ml-1 h-3 w-3" />
                 </a>
@@ -213,9 +213,9 @@ const IndieDeveloper = () => {
         
         {filteredProjects.length === 0 && (
           <div className="text-center py-12">
-            <Search className="mx-auto h-12 w-12 text-gray-400" />
-            <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-white">没有找到相关项目</h3>
-            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">请尝试调整搜索关键词或类别过滤器。</p>
+            <Search className="mx-auto h-12 w-12 text-muted-foreground" />
+            <h3 className="mt-2 text-sm font-medium text-foreground">没有找到相关项目</h3>
+            <p className="mt-1 text-sm text-muted-foreground">请尝试调整搜索关键词或类别过滤器。</p>
           </div>
         )}
       </div>

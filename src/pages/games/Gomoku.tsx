@@ -166,29 +166,29 @@ export default function Gomoku() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] space-y-6">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100dvh-200px)] space-y-6">
       <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold text-gray-900">Gomoku (AI)</h1>
-        <p className="text-gray-600">Five in a Row against AI</p>
+        <h1 className="text-3xl font-bold text-foreground">Gomoku (AI)</h1>
+        <p className="text-muted-foreground">Five in a Row against AI</p>
       </div>
 
-      <div className="flex items-center gap-8 bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+      <div className="flex items-center gap-8 bg-card p-4 rounded-xl border border-border">
         <div
-          className={`flex items-center gap-2 ${currentPlayer === BLACK ? "font-bold text-blue-600" : "text-gray-500"}`}
+          className={`flex items-center gap-2 ${currentPlayer === BLACK ? "font-bold text-primary" : "text-muted-foreground"}`}
         >
           <User className="w-5 h-5" /> You (Black)
         </div>
-        <div className="text-gray-300">vs</div>
+        <div className="text-muted-foreground/60">vs</div>
         <div
-          className={`flex items-center gap-2 ${currentPlayer === WHITE ? "font-bold text-red-600" : "text-gray-500"}`}
+          className={`flex items-center gap-2 ${currentPlayer === WHITE ? "font-bold text-destructive" : "text-muted-foreground"}`}
         >
           <Cpu className="w-5 h-5" /> AI (White) {isAiThinking && "..."}
         </div>
       </div>
 
-      <div className="relative bg-[#e6c288] p-4 rounded-lg shadow-xl border-4 border-[#c5a065]">
+      <div className="relative bg-board-wood p-4 rounded-lg border-4 border-board-edge">
         <div
-          className="grid gap-0 bg-[#e6c288]"
+          className="grid gap-0 bg-board-wood"
           style={{
             gridTemplateColumns: `repeat(${BOARD_SIZE}, 30px)`,
             gridTemplateRows: `repeat(${BOARD_SIZE}, 30px)`,
@@ -210,7 +210,7 @@ export default function Gomoku() {
                 {/* Piece */}
                 {cell !== EMPTY && (
                   <div
-                    className={`w-[22px] h-[22px] rounded-full shadow-sm z-10 ${
+                    className={`w-[22px] h-[22px] rounded-full z-10 ${
                       cell === BLACK
                         ? "bg-gray-900 radial-gradient-black"
                         : "bg-white border border-gray-200 radial-gradient-white"
@@ -220,7 +220,7 @@ export default function Gomoku() {
 
                 {/* Hover effect */}
                 {cell === EMPTY && !winner && currentPlayer === BLACK && (
-                  <div className="w-[10px] h-[10px] rounded-full bg-black/10 opacity-0 hover:opacity-100 transition-opacity z-10" />
+                  <div className="w-[10px] h-[10px] rounded-full bg-scrim/15 opacity-0 hover:opacity-100 transition-opacity z-10" />
                 )}
               </div>
             ))
@@ -228,13 +228,13 @@ export default function Gomoku() {
         </div>
 
         {winner && (
-          <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white backdrop-blur-sm z-20 rounded-sm">
-            <div className="text-4xl font-bold mb-4 drop-shadow-lg">
+          <div className="absolute inset-0 bg-scrim/55 flex flex-col items-center justify-center text-white z-20 rounded-sm">
+            <div className="text-4xl font-bold mb-4">
               {winner === BLACK ? "You Win!" : winner === WHITE ? "AI Wins!" : "Draw!"}
             </div>
             <button
               onClick={resetGame}
-              className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-full font-bold transition-colors shadow-lg"
+              className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full font-bold transition-colors"
             >
               <RotateCcw className="w-5 h-5" /> Play Again
             </button>

@@ -174,13 +174,13 @@ const InvestmentReturnCalculator = () => {
         ]}
       />
 
-      <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-8 text-white">
+      <div className="bg-card rounded-2xl overflow-hidden">
+        <div className="bg-gradient-to-r from-primary to-primary px-6 py-8 text-card-foreground">
           <div className="flex items-center gap-3 mb-2">
             <TrendingUp className="h-8 w-8" />
             <h1 className="text-3xl font-bold">{t("tools.investment-return.name")}</h1>
           </div>
-          <p className="text-blue-100 opacity-90 text-lg">
+          <p className="text-primary opacity-90 text-lg">
             {t("tools.investment-return.subtitle")}
           </p>
         </div>
@@ -189,57 +189,57 @@ const InvestmentReturnCalculator = () => {
           {/* Input Section */}
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-muted-foreground mb-1">
                 {t("tools.investment-return.initial_amount")}
               </label>
-              <div className="relative rounded-md shadow-sm">
+              <div className="relative rounded-md">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <span className="text-gray-500 sm:text-sm">¥</span>
+                  <span className="text-muted-foreground sm:text-sm">¥</span>
                 </div>
                 <input
                   type="number"
                   value={initialAmount}
                   onChange={(e) => setInitialAmount(e.target.value)}
-                  className="block w-full pl-7 pr-12 py-3 border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                  className="block w-full pl-7 pr-12 py-3 border-border rounded-lg focus:ring-ring focus:border-border"
                   placeholder="0.00"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-muted-foreground mb-1">
                 {t("tools.investment-return.rate")}
               </label>
-              <div className="relative rounded-md shadow-sm">
+              <div className="relative rounded-md">
                 <input
                   type="number"
                   value={rate}
                   onChange={(e) => setRate(e.target.value)}
-                  className="block w-full pl-3 pr-12 py-3 border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                  className="block w-full pl-3 pr-12 py-3 border-border rounded-lg focus:ring-ring focus:border-border"
                   placeholder="0.00"
                 />
                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                  <span className="text-gray-500 sm:text-sm">%</span>
+                  <span className="text-muted-foreground sm:text-sm">%</span>
                 </div>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-muted-foreground mb-1">
                 {t("tools.investment-return.years")}
               </label>
-              <div className="relative rounded-md shadow-sm">
+              <div className="relative rounded-md">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Calendar className="h-5 w-5 text-gray-400" />
+                  <Calendar className="h-5 w-5 text-muted-foreground" />
                 </div>
                 <input
                   type="number"
                   value={years}
                   onChange={(e) => setYears(e.target.value)}
-                  className="block w-full pl-10 pr-12 py-3 border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                  className="block w-full pl-10 pr-12 py-3 border-border rounded-lg focus:ring-ring focus:border-border"
                 />
                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                  <span className="text-gray-500 sm:text-sm">
+                  <span className="text-muted-foreground sm:text-sm">
                     {t("tools.investment-return.year_unit")}
                   </span>
                 </div>
@@ -247,25 +247,25 @@ const InvestmentReturnCalculator = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-muted-foreground mb-1">
                 {t("tools.investment-return.monthly_contribution")}
               </label>
-              <div className="relative rounded-md shadow-sm">
+              <div className="relative rounded-md">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <span className="text-gray-500 sm:text-sm">¥</span>
+                  <span className="text-muted-foreground sm:text-sm">¥</span>
                 </div>
                 <input
                   type="number"
                   value={monthlyContribution}
                   onChange={(e) => setMonthlyContribution(e.target.value)}
-                  className="block w-full pl-7 pr-12 py-3 border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                  className="block w-full pl-7 pr-12 py-3 border-border rounded-lg focus:ring-ring focus:border-border"
                   placeholder="0.00"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
                 {t("tools.investment-return.compound_freq")}
               </label>
               <div className="flex gap-4">
@@ -275,9 +275,9 @@ const InvestmentReturnCalculator = () => {
                     value="monthly"
                     checked={compoundFreq === "monthly"}
                     onChange={() => setCompoundFreq("monthly")}
-                    className="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
+                    className="h-4 w-4 text-primary border-border focus:ring-ring"
                   />
-                  <span className="ml-2 text-gray-700">
+                  <span className="ml-2 text-muted-foreground">
                     {t("tools.investment-return.freq_monthly")}
                   </span>
                 </label>
@@ -287,9 +287,9 @@ const InvestmentReturnCalculator = () => {
                     value="yearly"
                     checked={compoundFreq === "yearly"}
                     onChange={() => setCompoundFreq("yearly")}
-                    className="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
+                    className="h-4 w-4 text-primary border-border focus:ring-ring"
                   />
-                  <span className="ml-2 text-gray-700">
+                  <span className="ml-2 text-muted-foreground">
                     {t("tools.investment-return.freq_yearly")}
                   </span>
                 </label>
@@ -298,7 +298,7 @@ const InvestmentReturnCalculator = () => {
 
             <button
               onClick={calculate}
-              className="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
+              className="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-lg text-sm font-medium text-primary-foreground bg-primary hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring transition-colors"
             >
               <RefreshCw className="h-4 w-4" />
               {t("tools.investment-return.calculate_btn")}
@@ -306,71 +306,71 @@ const InvestmentReturnCalculator = () => {
           </div>
 
           {/* Result Section */}
-          <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-            <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-indigo-500" />
+          <div className="bg-muted rounded-xl p-6 border border-border">
+            <h3 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
+              <TrendingUp className="h-5 w-5 text-primary" />
               {t("tools.investment-return.result_title")}
             </h3>
 
             {result ? (
               <div className="space-y-6">
                 <div>
-                  <p className="text-sm text-gray-500 mb-1">
+                  <p className="text-sm text-muted-foreground mb-1">
                     {t("tools.investment-return.total_amount")}
                   </p>
-                  <p className="text-3xl font-bold text-indigo-600">
+                  <p className="text-3xl font-bold text-primary">
                     {formatCurrency(result.totalAmount)}
                   </p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-                    <p className="text-sm text-gray-500 mb-1">
+                  <div className="bg-muted p-4 rounded-lg">
+                    <p className="text-sm text-muted-foreground mb-1">
                       {t("tools.investment-return.total_principal")}
                     </p>
-                    <p className="text-xl font-semibold text-gray-900">
+                    <p className="text-xl font-semibold text-foreground">
                       {formatCurrency(result.totalPrincipal)}
                     </p>
                   </div>
-                  <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-                    <p className="text-sm text-gray-500 mb-1">
+                  <div className="bg-muted p-4 rounded-lg">
+                    <p className="text-sm text-muted-foreground mb-1">
                       {t("tools.investment-return.total_interest")}
                     </p>
-                    <p className="text-xl font-semibold text-green-600">
+                    <p className="text-xl font-semibold text-success">
                       {formatCurrency(result.totalInterest)}
                     </p>
                   </div>
                 </div>
 
                 <div className="mt-6">
-                  <h4 className="text-sm font-medium text-gray-700 mb-3">
+                  <h4 className="text-sm font-medium text-muted-foreground mb-3">
                     {t("tools.investment-return.schedule_title")}
                   </h4>
-                  <div className="max-h-64 overflow-y-auto border rounded-lg bg-white">
-                    <table className="min-w-full divide-y divide-gray-200">
-                      <thead className="bg-gray-50 sticky top-0">
+                  <div className="max-h-64 overflow-y-auto border rounded-lg bg-muted">
+                    <table className="min-w-full divide-y divide-border">
+                      <thead className="bg-muted sticky top-0">
                         <tr>
-                          <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground">
                             {t("tools.investment-return.year_col")}
                           </th>
-                          <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground">
                             {t("tools.investment-return.amount_col")}
                           </th>
-                          <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground">
                             {t("tools.investment-return.interest_col")}
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="bg-white divide-y divide-gray-200">
+                      <tbody className="bg-muted divide-y divide-border">
                         {result.yearlyData.map((row) => (
-                          <tr key={row.year} className="hover:bg-gray-50">
-                            <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-900">
+                          <tr key={row.year} className="hover:bg-muted">
+                            <td className="px-4 py-2 whitespace-nowrap text-sm text-foreground">
                               {row.year}
                             </td>
-                            <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-900 text-right">
+                            <td className="px-4 py-2 whitespace-nowrap text-sm text-foreground text-right">
                               {formatCurrency(row.amount)}
                             </td>
-                            <td className="px-4 py-2 whitespace-nowrap text-sm text-green-600 text-right">
+                            <td className="px-4 py-2 whitespace-nowrap text-sm text-success text-right">
                               {formatCurrency(row.interest)}
                             </td>
                           </tr>
@@ -381,7 +381,7 @@ const InvestmentReturnCalculator = () => {
                 </div>
               </div>
             ) : (
-              <div className="h-full flex flex-col items-center justify-center text-gray-400">
+              <div className="h-full flex flex-col items-center justify-center text-muted-foreground">
                 <TrendingUp className="h-12 w-12 mb-2 opacity-20" />
                 <p>{t("tools.investment-return.empty_tip")}</p>
               </div>

@@ -9,14 +9,12 @@ type PaymentType = "royalties" | "wages" | "dividends" | "services" | "other";
 
 interface CountryConfig {
   name: string;
-  flag: string;
   rates: Record<PaymentType, number>;
 }
 
 const COUNTRY_CONFIGS: Record<Country, CountryConfig> = {
   indonesia: {
     name: "Indonesia",
-    flag: "🇮🇩",
     rates: {
       royalties: 20, // PPH 26
       wages: 0,
@@ -27,7 +25,6 @@ const COUNTRY_CONFIGS: Record<Country, CountryConfig> = {
   },
   vietnam: {
     name: "Vietnam",
-    flag: "🇻🇳",
     rates: {
       royalties: 10,
       wages: 0,
@@ -38,7 +35,6 @@ const COUNTRY_CONFIGS: Record<Country, CountryConfig> = {
   },
   uae: {
     name: "UAE",
-    flag: "🇦🇪",
     rates: {
       royalties: 0,
       wages: 0,
@@ -49,7 +45,6 @@ const COUNTRY_CONFIGS: Record<Country, CountryConfig> = {
   },
   saudi: {
     name: "Saudi Arabia",
-    flag: "🇸🇦",
     rates: {
       royalties: 15,
       wages: 0,
@@ -60,7 +55,6 @@ const COUNTRY_CONFIGS: Record<Country, CountryConfig> = {
   },
   generic: {
     name: "Generic",
-    flag: "🌐",
     rates: {
       royalties: 10,
       wages: 0,
@@ -132,7 +126,7 @@ export default function WithholdingTaxCalculator() {
   const copyResults = () => {
     if (!result) return;
     const text = `Withholding Tax Calculation
-Country: ${currentConfig.flag} ${currentConfig.name}
+Country: ${currentConfig.name}
 Payment Type: ${t(`withholdingTax.payment_types.${paymentType}`)}
 Gross Amount: ${fmtUSD(result.gross)}
 Withholding Rate: ${result.rate.toFixed(2)}%
@@ -159,17 +153,17 @@ Net Amount: ${fmtUSD(result.net)}`;
     <div className="space-y-4">
       {/* Country Dropdown */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-muted-foreground mb-1">
           {t("withholdingTax.country")}
         </label>
         <select
           value={country}
           onChange={(e) => handleCountryChange(e.target.value as Country)}
-          className="block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+          className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
         >
           {Object.entries(COUNTRY_CONFIGS).map(([key, config]) => (
             <option key={key} value={key}>
-              {config.flag} {config.name}
+              {config.name}
             </option>
           ))}
         </select>
@@ -177,13 +171,13 @@ Net Amount: ${fmtUSD(result.net)}`;
 
       {/* Payment Type Dropdown */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-muted-foreground mb-1">
           {t("withholdingTax.payment_type")}
         </label>
         <select
           value={paymentType}
           onChange={(e) => handlePaymentTypeChange(e.target.value as PaymentType)}
-          className="block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+          className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
         >
           {PAYMENT_TYPES.map((type) => (
             <option key={type} value={type}>
@@ -195,23 +189,21 @@ Net Amount: ${fmtUSD(result.net)}`;
 
       {/* Tax Rate */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-muted-foreground mb-1">
           {t("withholdingTax.tax_rate")}
         </label>
         <div className="flex items-center gap-2">
           <div
-            className={`flex-1 p-3 rounded-lg border ${
-              useCustomRate ? "border-blue-300 bg-blue-50" : "border-gray-200 bg-gray-50"
-            }`}
+            className={`flex-1 p-3 rounded-lg border ${ useCustomRate ? "border-border bg-primary/10" : "border-border bg-muted" }`}
           >
-            <span className="text-lg font-semibold text-gray-900">
+            <span className="text-lg font-semibold text-foreground">
               {useCustomRate && customRate ? `${customRate}%` : `${defaultRate}%`}
             </span>
-            <span className="text-sm text-gray-500 ml-1">
+            <span className="text-sm text-muted-foreground ml-1">
               {t("withholdingTax.default_rate")}
             </span>
           </div>
-          <label className="flex items-center gap-2 text-sm text-gray-600 whitespace-nowrap">
+          <label className="flex items-center gap-2 text-sm text-muted-foreground whitespace-nowrap">
             <input
               type="checkbox"
               checked={useCustomRate}
@@ -230,14 +222,14 @@ Net Amount: ${fmtUSD(result.net)}`;
             value={customRate}
             onChange={(e) => setCustomRate(e.target.value)}
             placeholder="Enter rate %"
-            className="mt-2 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+            className="mt-2 block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
           />
         )}
       </div>
 
       {/* Amount Input */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-muted-foreground mb-1">
           {t("withholdingTax.amount")} (USD)
         </label>
         <input
@@ -247,7 +239,7 @@ Net Amount: ${fmtUSD(result.net)}`;
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           placeholder="10000.00"
-          className="block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+          className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
         />
       </div>
     </div>
@@ -258,35 +250,35 @@ Net Amount: ${fmtUSD(result.net)}`;
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">
+            <p className="text-sm font-medium text-muted-foreground mb-1">
               {t("withholdingTax.net_amount")}
             </p>
-            <p className="text-4xl font-bold text-green-600">{fmtUSD(result.net)}</p>
+            <p className="text-4xl font-bold text-success">{fmtUSD(result.net)}</p>
           </div>
-          <div className="grid grid-cols-2 gap-3 pt-6 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-3 pt-6 border-t border-border">
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">{t("withholdingTax.gross_amount")}</p>
-              <p className="text-xl font-bold text-gray-900">{fmtUSD(result.gross)}</p>
+              <p className="text-sm text-muted-foreground mb-1">{t("withholdingTax.gross_amount")}</p>
+              <p className="text-xl font-bold text-foreground">{fmtUSD(result.gross)}</p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">{t("withholdingTax.tax_withheld")}</p>
-              <p className="text-xl font-bold text-red-600">{fmtUSD(result.tax)}</p>
+              <p className="text-sm text-muted-foreground mb-1">{t("withholdingTax.tax_withheld")}</p>
+              <p className="text-xl font-bold text-destructive">{fmtUSD(result.tax)}</p>
             </div>
           </div>
-          <div className="bg-blue-50 p-3 rounded-lg text-sm text-blue-800">
+          <div className="bg-primary/10 p-3 rounded-lg text-sm text-primary">
             <span className="font-medium">{t("withholdingTax.withholding_rate")}:</span>{" "}
             {result.rate.toFixed(2)}%
           </div>
           <button
             onClick={copyResults}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary"
           >
             {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
             {copied ? t("common.copied") : t("withholdingTax.copy_results")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Receipt className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("withholdingTax.enter_values")}</p>
         </div>
@@ -299,8 +291,8 @@ Net Amount: ${fmtUSD(result.net)}`;
       title={t("withholdingTax.title")}
       subtitle={t("withholdingTax.subtitle")}
       icon={Receipt}
-      iconBgColor="bg-blue-100"
-      iconColor="text-blue-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={[
         "withholding tax calculator",
         " withholding tax",

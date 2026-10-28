@@ -54,21 +54,21 @@ export default function MarginCalculator() {
       {profit !== null ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.margin-calculator.profit")}</p>
-            <p className="text-4xl font-bold text-green-600">{formatCurrency(profit)}</p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.margin-calculator.profit")}</p>
+            <p className="text-4xl font-bold text-success">{formatCurrency(profit)}</p>
           </div>
-          <div className="grid grid-cols-2 gap-4 pt-6 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-4 pt-6 border-t border-border">
             <div className="text-center">
-              <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.margin-calculator.margin")}</p>
-              <p className="text-2xl font-bold text-gray-900 flex items-center justify-center gap-1">
-                <Percent className="h-5 w-5 text-blue-500" />
+              <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.margin-calculator.margin")}</p>
+              <p className="text-2xl font-bold text-foreground flex items-center justify-center gap-1">
+                <Percent className="h-5 w-5 text-primary" />
                 {formatPercent(margin)}
               </p>
             </div>
             <div className="text-center">
-              <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.margin-calculator.markup")}</p>
-              <p className="text-2xl font-bold text-gray-900 flex items-center justify-center gap-1">
-                <TrendingUp className="h-5 w-5 text-purple-500" />
+              <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.margin-calculator.markup")}</p>
+              <p className="text-2xl font-bold text-foreground flex items-center justify-center gap-1">
+                <TrendingUp className="h-5 w-5 text-primary" />
                 {formatPercent(markup)}
               </p>
             </div>
@@ -76,21 +76,21 @@ export default function MarginCalculator() {
           <div className="flex gap-3 pt-4">
             <button
               onClick={copyResults}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary transition-colors"
             >
               <Copy className="h-4 w-4" />
               {copied ? t("common.copied") : t("tools.margin-calculator.copy")}
             </button>
             <button
               onClick={reset}
-              className="flex-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+              className="flex-1 px-4 py-2 bg-muted text-muted-foreground rounded-lg hover:bg-border transition-colors"
             >
               Reset
             </button>
           </div>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <DollarSign className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("tools.margin-calculator.enter_values")}</p>
         </div>
@@ -103,14 +103,14 @@ export default function MarginCalculator() {
       title={t("tools.margin-calculator.title")}
       subtitle={t("tools.margin-calculator.subtitle")}
       icon={Percent}
-      iconBgColor="bg-blue-100"
-      iconColor="text-blue-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={[t("tools.margin-calculator.name"), "profit margin calculator", "markup calculator", "ecommerce"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.margin-calculator.cost")} ($)</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.margin-calculator.cost")} ($)</label>
           <input
             type="number"
             step="0.01"
@@ -118,11 +118,11 @@ export default function MarginCalculator() {
             value={cost}
             onChange={(e) => setCost(e.target.value)}
             placeholder="0.00"
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-3 px-4 border"
+            className="block w-full rounded-md border-border focus:border-border focus:ring-ring sm:text-sm py-3 px-4 border"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.margin-calculator.selling_price")} ($)</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.margin-calculator.selling_price")} ($)</label>
           <input
             type="number"
             step="0.01"
@@ -130,11 +130,11 @@ export default function MarginCalculator() {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             placeholder="0.00"
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-3 px-4 border"
+            className="block w-full rounded-md border-border focus:border-border focus:ring-ring sm:text-sm py-3 px-4 border"
           />
         </div>
         {cost && price && parseFloat(price) <= parseFloat(cost) && (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-700">
+          <div className="bg-destructive/10 border border-border rounded-lg p-3 text-sm text-destructive">
             {t("tools.margin-calculator.price_below_cost")} Adjust for a profit.
           </div>
         )}

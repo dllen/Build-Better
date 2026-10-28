@@ -116,8 +116,8 @@ export default function TextRandomGenerator() {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-lg bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 border border-violet-500/30">
-            <Dices className="w-5 h-5 text-violet-400" />
+          <div className="p-2.5 rounded-lg bg-gradient-to-br from-primary/20 to-primary/20 border border-border/30">
+            <Dices className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold">Random String Generator</h1>
@@ -143,7 +143,7 @@ export default function TextRandomGenerator() {
       {/* Preset selector */}
       <div className="p-4 rounded-xl border border-border bg-card space-y-4">
         <div>
-          <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">预设类型</label>
+          <label className="text-xs font-medium text-muted-foreground">预设类型</label>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2">
             {(Object.keys(PRESETS) as Preset[]).map((key) => {
               const cfg = PRESETS[key];
@@ -152,11 +152,7 @@ export default function TextRandomGenerator() {
                 <button
                   key={key}
                   onClick={() => handlePresetChange(key)}
-                  className={`p-3 rounded-lg border text-left transition-all ${
-                    isActive
-                      ? "border-violet-500/50 bg-violet-500/10 text-violet-400"
-                      : "border-border/50 hover:border-violet-500/30 hover:bg-muted/50 text-muted-foreground"
-                  }`}
+                  className={`p-3 rounded-lg border text-left transition-colors ${ isActive ? "border-border/50 bg-primary/10 text-primary" : "border-border/50 hover:border-border/30 hover:bg-muted/50 text-muted-foreground" }`}
                 >
                   <div className="text-xs font-medium text-foreground">{cfg.label}</div>
                   <div className="text-[10px] mt-0.5">{cfg.desc}</div>
@@ -169,13 +165,13 @@ export default function TextRandomGenerator() {
         {/* Custom charset */}
         {preset === "custom" && (
           <div>
-            <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">自定义字符集</label>
+            <label className="text-xs font-medium text-muted-foreground">自定义字符集</label>
             <input
               type="text"
               value={customChars}
               onChange={(e) => setCustomChars(e.target.value)}
               placeholder="输入允许的字符..."
-              className="w-full mt-1.5 px-3 py-2 text-sm font-mono bg-muted/50 border border-border/30 rounded-lg outline-none focus:border-violet-500/30"
+              className="w-full mt-1.5 px-3 py-2 text-sm font-mono bg-muted/50 border border-border/30 rounded-lg outline-none focus:border-border/30"
               spellCheck={false}
             />
           </div>
@@ -184,8 +180,8 @@ export default function TextRandomGenerator() {
         {/* Length & Count */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-              长度: <span className="text-violet-400 font-mono">{length}</span>
+            <label className="text-xs font-medium text-muted-foreground">
+              长度: <span className="text-primary font-mono">{length}</span>
             </label>
             <input
               type="range"
@@ -193,7 +189,7 @@ export default function TextRandomGenerator() {
               max={128}
               value={length}
               onChange={(e) => setLength(Number(e.target.value))}
-              className="w-full mt-1 accent-violet-500"
+              className="w-full mt-1 accent-primary"
             />
             <div className="flex justify-between text-[10px] text-muted-foreground">
               <span>1</span>
@@ -201,8 +197,8 @@ export default function TextRandomGenerator() {
             </div>
           </div>
           <div>
-            <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-              生成数量: <span className="text-violet-400 font-mono">{count}</span>
+            <label className="text-xs font-medium text-muted-foreground">
+              生成数量: <span className="text-primary font-mono">{count}</span>
             </label>
             <input
               type="range"
@@ -210,7 +206,7 @@ export default function TextRandomGenerator() {
               max={20}
               value={count}
               onChange={(e) => setCount(Number(e.target.value))}
-              className="w-full mt-1 accent-violet-500"
+              className="w-full mt-1 accent-primary"
             />
             <div className="flex justify-between text-[10px] text-muted-foreground">
               <span>1</span>
@@ -222,7 +218,7 @@ export default function TextRandomGenerator() {
         {/* Generate button */}
         <button
           onClick={generate}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg bg-violet-500/15 text-violet-400 border border-violet-500/30 hover:bg-violet-500/25 transition-colors"
+          className="btn btn--primary w-full"
         >
           <Shuffle className="w-4 h-4" /> 生成随机字符串
         </button>
@@ -234,7 +230,7 @@ export default function TextRandomGenerator() {
           <div className="flex items-center justify-between px-4 py-2.5 border-b border-border/50 bg-muted/20">
             <span className="text-xs font-medium text-muted-foreground">生成结果 ({results.length})</span>
             <div className="flex items-center gap-2">
-              {message && <span className="text-[10px] text-emerald-400">{message}</span>}
+              {message && <span className="text-[10px] text-success">{message}</span>}
               <button
                 onClick={handleCopyAll}
                 className="flex items-center gap-1 px-2.5 py-1 text-[10px] rounded-md bg-muted/50 border border-border/30 text-muted-foreground hover:text-foreground transition-colors"
@@ -253,7 +249,7 @@ export default function TextRandomGenerator() {
                 <span className="text-xs text-foreground break-all flex-1 select-all">{r}</span>
                 <button
                   onClick={() => handleCopy(r)}
-                  className="shrink-0 p-1 rounded opacity-0 group-hover:opacity-100 hover:bg-secondary transition-all"
+                  className="shrink-0 p-1 rounded opacity-0 group-hover:opacity-100 hover:bg-secondary transition-colors transition-opacity"
                   title="复制"
                 >
                   <Copy className="w-3.5 h-3.5 text-muted-foreground" />

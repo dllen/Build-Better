@@ -48,19 +48,19 @@ export default function GenerateEDigits() {
   return (
     <div className="max-w-2xl mx-auto py-8 px-4">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2 bg-rose-100 text-rose-600 rounded-lg">
+        <div className="p-2 bg-destructive/10 text-destructive rounded-lg">
           <Sigma className="h-5 w-5" />
         </div>
-        <h1 className="text-2xl font-bold text-gray-900">Euler's Number Digit Generator</h1>
+        <h1 className="text-2xl font-bold text-foreground">Euler’s Number Digit Generator</h1>
       </div>
-      <p className="text-sm text-gray-500 mb-6">
+      <p className="text-sm text-muted-foreground mb-6">
         Generate the digits of <em>e</em> (Euler's number, base of the natural logarithm) up to any
         length.
       </p>
-      <div className="space-y-4 p-6 rounded-xl border border-gray-200 bg-white">
+      <div className="space-y-4 p-6 rounded-xl border border-border bg-card">
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-1.5 text-sm">
-            <span className="text-gray-600 font-medium">Digits after decimal:</span>
+            <span className="text-muted-foreground font-medium">Digits after decimal:</span>
             <input
               type="number"
               min={1}
@@ -69,12 +69,12 @@ export default function GenerateEDigits() {
               onChange={(e) =>
                 setCount(Math.max(1, Math.min(10000, Number(e.target.value))))
               }
-              className="w-24 rounded-lg border border-gray-300 px-3 py-2 text-sm text-center focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none"
+              className="w-24 rounded-lg border border-border px-3 py-2 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none"
             />
           </div>
           <button
             onClick={handleGenerate}
-            className="inline-flex items-center gap-2 px-5 py-2 bg-rose-600 text-white text-sm font-medium rounded-lg hover:bg-rose-700 transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2 bg-destructive text-destructive-foreground text-sm font-medium rounded-lg hover:bg-destructive transition-colors"
           >
             <Sigma className="h-4 w-4" />
             Generate
@@ -82,7 +82,7 @@ export default function GenerateEDigits() {
           {digits && (
             <button
               onClick={handleCopy}
-              className="inline-flex items-center gap-1 px-3 py-2 text-sm text-gray-600 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+              className="inline-flex items-center gap-1 px-3 py-2 text-sm text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded-lg transition-colors"
             >
               <Copy className="h-4 w-4" />
               Copy
@@ -90,8 +90,8 @@ export default function GenerateEDigits() {
           )}
         </div>
         {digits && (
-          <div className="p-4 rounded-lg bg-gray-50 border border-gray-200 max-h-64 overflow-auto">
-            <p className="font-mono text-sm text-gray-800 break-all leading-relaxed">{digits}</p>
+          <div className="p-4 rounded-lg bg-muted border border-border max-h-64 overflow-auto">
+            <p className="font-mono text-sm text-foreground break-all leading-relaxed">{digits}</p>
           </div>
         )}
       </div>

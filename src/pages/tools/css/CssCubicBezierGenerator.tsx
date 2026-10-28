@@ -54,13 +54,13 @@ export default function CssCubicBezierGenerator() {
       title="CSS Cubic Bezier Generator"
       subtitle="Visually craft custom easing curves for transitions and animations, with a live motion test."
       icon={Spline}
-      iconBgColor="bg-violet-100"
-      iconColor="text-violet-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["cubic bezier", "easing curve", "css transition", "animation timing", "bezier generator"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Presets</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Presets</label>
             <div className="grid grid-cols-3 gap-2">
               {PRESETS.map((p) => (
                 <button
@@ -72,7 +72,7 @@ export default function CssCubicBezierGenerator() {
                     setX2(p.value[2]);
                     setY2(p.value[3]);
                   }}
-                  className="py-2 px-2 text-xs rounded-lg border border-gray-300 text-gray-600 hover:border-violet-500 hover:text-violet-700 transition-colors"
+                  className="py-2 px-2 text-xs rounded-lg border border-border text-muted-foreground hover:border-border hover:text-primary transition-colors"
                 >
                   {p.label}
                 </button>
@@ -90,7 +90,7 @@ export default function CssCubicBezierGenerator() {
               ] as { label: string; value: number; set: (n: number) => void }[]
             ).map((c) => (
               <div key={c.label}>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">{c.label}</label>
+                <label className="block text-sm font-medium text-muted-foreground mb-1.5">{c.label}</label>
                 <input
                   type="number"
                   min={0}
@@ -101,7 +101,7 @@ export default function CssCubicBezierGenerator() {
                     const n = Number(e.target.value);
                     if (!Number.isNaN(n) && n >= 0 && n <= 1) c.set(n);
                   }}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-violet-500 focus:ring-1 focus:ring-violet-500 outline-none bg-white"
+                  className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card"
                 />
                 <input
                   type="range"
@@ -110,14 +110,14 @@ export default function CssCubicBezierGenerator() {
                   step={0.01}
                   value={c.value}
                   onChange={(e) => c.set(Number(e.target.value))}
-                  className="w-full accent-violet-600 mt-1"
+                  className="w-full accent-primary mt-1"
                 />
               </div>
             ))}
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">
               Duration: {fmt(duration)}s
             </label>
             <input
@@ -127,11 +127,11 @@ export default function CssCubicBezierGenerator() {
               step={0.1}
               value={duration}
               onChange={(e) => setDuration(Number(e.target.value))}
-              className="w-full accent-violet-600"
+              className="w-full accent-primary"
             />
           </div>
 
-          <svg viewBox="0 0 100 100" className="w-full h-44 bg-gray-50 rounded-lg border border-gray-200 overflow-visible">
+          <svg viewBox="0 0 100 100" className="w-full h-44 bg-muted rounded-lg border border-border overflow-visible" aria-hidden="true">
             {/* grid */}
             {[25, 50, 75].map((v) => (
               <g key={v} stroke="#e5e7eb" strokeWidth="0.5">
@@ -161,8 +161,8 @@ export default function CssCubicBezierGenerator() {
       }
       result={
         <div>
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Live preview</p>
-          <div className="relative min-h-[140px] flex items-center rounded-lg border border-gray-200 bg-gray-50 mb-2 overflow-hidden">
+          <p className="text-xs font-medium text-muted-foreground tracking-wide mb-2">Live preview</p>
+          <div className="relative min-h-[140px] flex items-center rounded-lg border border-border bg-muted mb-2 overflow-hidden">
             <style>{demoCss}</style>
             <div
               className="bezier-demo"
@@ -174,7 +174,7 @@ export default function CssCubicBezierGenerator() {
               }}
             />
           </div>
-          <p className="text-xs text-gray-400 mb-4">The square animates infinitely with your curve.</p>
+          <p className="text-xs text-muted-foreground mb-4">The square animates infinitely with your curve.</p>
           <CodeBlock code={css} label="CSS" />
         </div>
       }

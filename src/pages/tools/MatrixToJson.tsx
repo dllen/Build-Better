@@ -65,23 +65,23 @@ export default function MatrixToJson() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-2 text-xl font-semibold">
-          <Table className="h-5 w-5 text-blue-600" />
+          <Table className="h-5 w-5 text-primary" />
           <span>Table to JSON</span>
         </div>
       }
       toolbar={
         <div className="flex items-center gap-2 flex-wrap">
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-muted-foreground">
             Tab-delimited table: first row = headers, subsequent rows = data
           </div>
-          <button onClick={clear} className="ml-auto inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
+          <button onClick={clear} className="ml-auto inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
             <Eraser className="h-3 w-3" />Clear
           </button>
         </div>
       }
       inputLabel="Table Input"
       inputActions={
-        <span className="text-xs text-gray-500">{input.length} chars</span>
+        <span className="text-xs text-muted-foreground">{input.length} chars</span>
       }
       input={
         <MatrixInput
@@ -92,8 +92,8 @@ export default function MatrixToJson() {
       }
       outputLabel="JSON Output"
       outputActions={
-        <button onClick={copy} className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-          {copied ? <Check className="h-3 w-3 text-green-600" /> : <Copy className="h-3 w-3" />}
+        <button onClick={copy} className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
+          {copied ? <Check className="h-3 w-3 text-success" /> : <Copy className="h-3 w-3" />}
           {copied ? "Copied" : "Copy"}
         </button>
       }
@@ -104,7 +104,7 @@ export default function MatrixToJson() {
       }
       footer={
         error ? (
-          <div className="flex items-center gap-2 text-sm text-red-600">
+          <div className="flex items-center gap-2 text-sm text-destructive">
             <AlertCircle className="h-3 w-3" />
             {error}
           </div>

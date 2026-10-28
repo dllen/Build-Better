@@ -87,21 +87,21 @@ INSERT INTO \`users\` (\`id\`, \`name\`, \`email\`) VALUES (2, 'Lucy', 'lucy@exa
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-2 text-xl font-semibold">
-          <Database className="h-5 w-5 text-blue-600" />
+          <Database className="h-5 w-5 text-primary" />
           <span>SQL → JSON</span>
         </div>
       }
       toolbar={
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xs text-gray-500">解析 CREATE TABLE + INSERT 语句</span>
-          <button onClick={clear} className="ml-auto inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
+          <span className="text-xs text-muted-foreground">解析 CREATE TABLE + INSERT 语句</span>
+          <button onClick={clear} className="ml-auto inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
             <Eraser className="h-3 w-3" />清空
           </button>
         </div>
       }
       inputLabel="SQL 输入"
       inputActions={
-        <span className="text-xs text-gray-500">{input.length} 字符</span>
+        <span className="text-xs text-muted-foreground">{input.length} 字符</span>
       }
       input={
         <textarea
@@ -113,8 +113,8 @@ INSERT INTO \`users\` (\`id\`, \`name\`, \`email\`) VALUES (2, 'Lucy', 'lucy@exa
       }
       outputLabel="JSON 输出"
       outputActions={
-        <button onClick={copy} className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-          {copied ? <Check className="h-3 w-3 text-green-600" /> : <Copy className="h-3 w-3" />}
+        <button onClick={copy} className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
+          {copied ? <Check className="h-3 w-3 text-success" /> : <Copy className="h-3 w-3" />}
           {copied ? "已复制" : "复制"}
         </button>
       }
@@ -123,7 +123,7 @@ INSERT INTO \`users\` (\`id\`, \`name\`, \`email\`) VALUES (2, 'Lucy', 'lucy@exa
           <code>{result || "// 输出将显示在这里"}</code>
         </pre>
       }
-      footer={error ? <div className="text-sm text-red-600">{error}</div> : null}
+      footer={error ? <div className="text-sm text-destructive">{error}</div> : null}
     />
   );
 }

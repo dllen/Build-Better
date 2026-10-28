@@ -271,8 +271,8 @@ export default function AiDevelopment() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">AI Development Navigation</h1>
-        <p className="text-xl text-gray-600 mb-8">
+        <h1 className="text-4xl font-bold text-foreground mb-4">AI Development Navigation</h1>
+        <p className="text-xl text-ink-2 mb-8">
           Curated resources for AI developers, including MCP, Agents, and LLMs.
         </p>
         <SearchInput
@@ -289,14 +289,14 @@ export default function AiDevelopment() {
 
           return (
             <div key={category.id}>
-              <h2 className="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">
+              <h2 className="text-2xl font-bold text-foreground mb-6 border-b border-border pb-2">
                 {category.title}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {categoryResources.map((resource) => (
                   <div
                     key={resource.id}
-                    className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow relative group"
+                    className="bg-card rounded-xl border border-border p-6 hairline-lift relative group"
                   >
                     <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
                       <button
@@ -304,11 +304,11 @@ export default function AiDevelopment() {
                           e.preventDefault();
                           toggleFavorite(resource.id);
                         }}
-                        className="text-gray-400 hover:text-yellow-500"
+                        className="text-muted-foreground hover:text-primary transition-colors"
                         title={favorites.includes(resource.id) ? "Remove from favorites" : "Add to favorites"}
                       >
                         {favorites.includes(resource.id) ? (
-                          <Star className="h-5 w-5 fill-current text-yellow-500" />
+                          <Star className="h-5 w-5 fill-current text-primary" />
                         ) : (
                           <Star className="h-5 w-5" />
                         )}
@@ -321,12 +321,12 @@ export default function AiDevelopment() {
                       className="block h-full"
                     >
                       <div className="flex items-center gap-2 mb-3">
-                        <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                        <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                           {resource.title}
                         </h3>
-                        <ExternalLink className="h-4 w-4 text-gray-400" />
+                        <ExternalLink className="h-4 w-4 text-muted-foreground" />
                       </div>
-                      <p className="text-gray-600 text-sm leading-relaxed">
+                      <p className="text-ink-2 text-sm leading-relaxed">
                         {resource.description}
                       </p>
                     </a>
@@ -339,7 +339,7 @@ export default function AiDevelopment() {
       </div>
 
       {filteredResources.length === 0 && (
-        <div className="text-center text-gray-500 mt-12">
+        <div className="text-center text-muted-foreground mt-12">
           No resources found matching "{searchQuery}"
         </div>
       )}

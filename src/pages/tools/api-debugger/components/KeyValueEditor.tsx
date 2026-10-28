@@ -43,7 +43,7 @@ export function KeyValueEditor({
             className="shrink-0 text-muted-foreground hover:text-foreground transition-colors"
           >
             {item.enabled ? (
-              <ToggleRight className="w-4 h-4 text-emerald-400" />
+              <ToggleRight className="w-4 h-4 text-success" />
             ) : (
               <ToggleLeft className="w-4 h-4" />
             )}
@@ -53,7 +53,7 @@ export function KeyValueEditor({
             value={item.key}
             onChange={(e) => update(item.id, "key", e.target.value)}
             placeholder={keyPlaceholder}
-            className="flex-1 min-w-0 px-2 py-1.5 text-xs bg-muted/50 border border-border/30 rounded-md outline-none focus:border-cyan-500/30 font-mono"
+            className="flex-1 min-w-0 px-2 py-1.5 text-xs bg-muted/50 border border-border/30 rounded-md outline-none focus:border-border/30 font-mono"
             spellCheck={false}
           />
           <input
@@ -61,7 +61,7 @@ export function KeyValueEditor({
             value={item.value}
             onChange={(e) => update(item.id, "value", e.target.value)}
             placeholder={valuePlaceholder}
-            className="flex-1 min-w-0 px-2 py-1.5 text-xs bg-muted/50 border border-border/30 rounded-md outline-none focus:border-cyan-500/30 font-mono"
+            className="flex-1 min-w-0 px-2 py-1.5 text-xs bg-muted/50 border border-border/30 rounded-md outline-none focus:border-border/30 font-mono"
             spellCheck={false}
           />
           {showDescription && (
@@ -70,13 +70,13 @@ export function KeyValueEditor({
               value={item.description}
               onChange={(e) => update(item.id, "description", e.target.value)}
               placeholder="Description"
-              className="w-24 min-w-0 px-2 py-1.5 text-xs bg-muted/50 border border-border/30 rounded-md outline-none focus:border-cyan-500/30 hidden sm:block"
+              className="w-24 min-w-0 px-2 py-1.5 text-xs bg-muted/50 border border-border/30 rounded-md outline-none focus:border-border/30 hidden sm:block"
               spellCheck={false}
             />
           )}
           <button
             onClick={() => remove(item.id)}
-            className="shrink-0 p-1 text-muted-foreground hover:text-red-400 opacity-0 group-hover:opacity-100 transition-all"
+            className="shrink-0 p-1 text-muted-foreground hover:text-destructive opacity-0 group-hover:opacity-100 transition-colors transition-opacity"
           >
             <Trash2 className="w-3.5 h-3.5" />
           </button>

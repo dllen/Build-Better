@@ -218,19 +218,19 @@ export default function Sudoku() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-amber-100 text-amber-600">
+        <div className="inline-flex p-2 rounded-lg bg-accent/10 text-primary">
           <Grid2x2 className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Sudoku</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-4">
           <div className="flex items-center justify-between">
             <div className="font-medium">棋盘</div>
             <div className="flex items-center gap-2">
               <select
-                className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+                className="rounded-md bg-muted px-2 py-1 text-sm"
                 value={difficulty}
                 onChange={(e) => newGame(e.target.value as Difficulty)}
               >
@@ -239,14 +239,14 @@ export default function Sudoku() {
                 <option value="hard">困难</option>
               </select>
               <button
-                className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm hover:bg-muted transition-colors"
                 onClick={() => newGame(difficulty)}
               >
                 <RefreshCw className="h-4 w-4" /> 新开局
               </button>
             </div>
           </div>
-          <div className="inline-grid grid-cols-9 gap-px bg-gray-300 rounded-md p-px">
+          <div className="inline-grid grid-cols-9 gap-px bg-border rounded-md p-px">
             {board.map((row, r) =>
               row.map((cell, c) => {
                 const selected = sel && sel[0] === r && sel[1] === c;
@@ -258,7 +258,7 @@ export default function Sudoku() {
                 return (
                   <button
                     key={`${r}-${c}`}
-                    className={`w-12 h-12 flex items-center justify-center bg-white ${selected ? "bg-blue-50" : ""} ${cell.fixed ? "text-gray-900 font-semibold" : "text-blue-700"} ${conflict ? "bg-red-100" : ""} border border-gray-300 ${thickTop} ${thickLeft} ${thickRight} ${thickBottom}`}
+                    className={`w-12 h-12 flex items-center justify-center bg-muted ${selected ? "bg-accent/10" : ""} ${cell.fixed ? "text-foreground font-semibold" : "text-primary"} ${conflict ? "bg-destructive/10" : ""} border border-border ${thickTop} ${thickLeft} ${thickRight} ${thickBottom} transition-colors`}
                     onClick={() => setSel([r, c])}
                   >
                     {cell.v || ""}
@@ -271,14 +271,14 @@ export default function Sudoku() {
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
               <button
                 key={n}
-                className="px-3 py-2 rounded-md border border-gray-300 hover:bg-gray-100 text-sm"
+                className="px-3 py-2 rounded-md border border-border hover:bg-muted transition-colors text-sm"
                 onClick={() => input(n)}
               >
                 {n}
               </button>
             ))}
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 rounded-md border border-gray-300 text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-md border border-border text-sm hover:bg-muted transition-colors"
               onClick={clearCell}
             >
               <Eraser className="h-4 w-4" /> 清除
@@ -286,32 +286,32 @@ export default function Sudoku() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">操作</div>
           <div className="flex items-center gap-2">
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded-md text-sm hover:bg-green-700"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-success text-white rounded-md text-sm hover:bg-success/90 transition-colors"
               onClick={checkBoard}
             >
               <Check className="h-4 w-4" /> 检查
             </button>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 bg-purple-600 text-white rounded-md text-sm hover:bg-purple-700"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90 transition-colors"
               onClick={solveBoard}
             >
               一键求解
             </button>
           </div>
           <div
-            className={`text-sm ${done ? "text-green-700" : status.includes("冲突") ? "text-red-700" : "text-gray-700"}`}
+            className={`text-sm ${done ? "text-success" : status.includes("冲突") ? "text-destructive" : "text-ink-2"}`}
           >
             {status || "—"}
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">说明</div>
-          <div className="text-sm text-gray-700">
+          <div className="text-sm text-ink-2">
             选择格子后可通过数字键或下方数字按钮填入，支持方向键移动。红色高亮表示行/列/宫存在冲突。
           </div>
         </div>

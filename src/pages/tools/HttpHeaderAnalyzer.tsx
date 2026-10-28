@@ -142,7 +142,7 @@ export default function HttpHeaderAnalyzer() {
       <EditorSplitLayout
         title={
           <>
-            <div className="p-2 bg-blue-100 text-blue-600 rounded-lg">
+            <div className="p-2 bg-primary/10 text-primary rounded-lg">
               <Globe className="h-5 w-5" />
             </div>
             <h1 className="text-2xl font-bold">HTTP Header Analyzer</h1>
@@ -152,14 +152,14 @@ export default function HttpHeaderAnalyzer() {
           <>
             <button
               onClick={() => setInput("")}
-              className="flex items-center gap-2 px-3 py-1.5 text-gray-600 hover:bg-gray-100 rounded-lg text-sm"
+              className="flex items-center gap-2 px-3 py-1.5 text-muted-foreground hover:bg-muted rounded-lg text-sm"
             >
               Clear
             </button>
             <button
               onClick={handleCopy}
               disabled={headers.length === 0}
-              className="ml-auto flex items-center gap-2 px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm disabled:opacity-50"
+              className="ml-auto flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-lg hover:bg-primary text-sm disabled:opacity-50"
             >
               {copied ? <Check size={14} /> : <Copy size={14} />}
               {copied ? "Copied!" : "Copy Result"}
@@ -180,12 +180,12 @@ export default function HttpHeaderAnalyzer() {
         output={
           <div className="h-full overflow-y-auto">
             {headers.length === 0 ? (
-              <div className="p-6 text-sm text-gray-400">
+              <div className="p-6 text-sm text-muted-foreground">
                 Paste HTTP headers on the left to analyze them.
               </div>
             ) : (
               <div className="p-3 space-y-1">
-                <div className="text-xs text-gray-400 mb-2 px-1">
+                <div className="text-xs text-muted-foreground mb-2 px-1">
                   {known} known, {headers.length - known} custom
                 </div>
                 {structured.map((h, i) => {
@@ -193,25 +193,23 @@ export default function HttpHeaderAnalyzer() {
                   return (
                     <div
                       key={`${h.key}-${i}`}
-                      className={`rounded-lg border px-3 py-2 ${
-                        isKnown ? "border-blue-200 bg-blue-50/50" : "border-gray-200 bg-gray-50/50"
-                      }`}
+                      className={`rounded-lg border px-3 py-2 ${ isKnown ? "border-border bg-primary/10" : "border-border bg-muted/50" }`}
                     >
                       <div className="flex items-start justify-between gap-2">
-                        <code className="font-mono text-xs font-semibold text-gray-800 break-all">
+                        <code className="font-mono text-xs font-semibold text-foreground break-all">
                           {h.key}
                         </code>
                         {h.doc && (
-                          <span className="text-[10px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded flex-shrink-0">
+                          <span className="text-[10px] text-muted-foreground bg-muted px-1.5 py-0.5 rounded flex-shrink-0">
                             {h.doc.category}
                           </span>
                         )}
                       </div>
-                      <div className="font-mono text-xs text-gray-600 break-all mt-0.5">{h.value}</div>
+                      <div className="font-mono text-xs text-muted-foreground break-all mt-0.5">{h.value}</div>
                       {h.doc ? (
-                        <div className="text-[11px] text-gray-500 mt-1">{h.doc.desc}</div>
+                        <div className="text-[11px] text-muted-foreground mt-1">{h.doc.desc}</div>
                       ) : (
-                        <div className="text-[11px] text-gray-400 italic mt-1">Custom / non-standard header</div>
+                        <div className="text-[11px] text-muted-foreground italic mt-1">Custom / non-standard header</div>
                       )}
                     </div>
                   );

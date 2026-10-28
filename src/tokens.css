@@ -1,0 +1,260 @@
+/* Hallmark · shape: Ecosystem Index · genre: modern-minimal · theme: Console (deal 1/3, seed browser-toolbox-hub-150-ed3b·bf2639f0·2026-10-28·r0) · redesign: full
+ * hero: Banner · nav: search-led bar · footer: colophon block · imagery: the product (capture.mjs) · signature: the measured tool count in the measured face · console: graphite
+ * axes: Hanging|Asymmetric spans|Hairline rule|Outlined|Margin-aligned|None · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V5 · weakest: P — the Console theme's "instrument vs person" argument is carried by colour, not by page structure; the hero states the count and the reader browses, so the argument lives in the tool cards' measured counters rather than in a manifesto */
+
+:root {
+  color-scheme: light;
+
+  /* --- The scale -------------------------------------------------------- */
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 144px;
+
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5625rem;
+  --text-2xl: 1.953rem;
+  --text-3xl: 2.441rem;
+  --text-display-s: clamp(2.25rem, 4vw + 0.5rem, 3.75rem);
+  --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem);
+  --text-section: clamp(2rem, 2.5vw + 1rem, 3.5rem);
+  --text-title: clamp(1.25rem, 0.75vw + 0.875rem, 1.625rem);
+  --text-lead: clamp(1.125rem, 0.35vw + 1rem, 1.375rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+
+  --container: 1440px;
+  --gutter: 64px;
+  --gap-columns: 32px;
+  --section-gap-s: 120px;
+  --section-gap: 144px;
+  --section-gap-l: 176px;
+
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-sticky-nav: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+
+  /* --- The Console ground: three paper steps ---------------------------- */
+  --color-paper: oklch(98% 0.006 85);
+  --color-paper-2: oklch(95% 0.008 85);
+  --color-paper-3: oklch(92% 0.009 85);
+  --color-ink: oklch(19% 0.01 60);
+  --color-ink-2: oklch(31% 0.012 60);
+  --color-muted: oklch(42% 0.014 60);
+  --color-rule: oklch(87% 0.01 70);
+  --color-rule-2: oklch(76% 0.014 70);
+
+  /* --- Two meanings: amber is a person, cool is an instrument ----------- */
+  --color-accent: oklch(52% 0.12 62);
+  --color-accent-ink: oklch(98% 0.01 85);
+  --color-accent-soft: oklch(92% 0.05 78);
+  --color-focus: oklch(52% 0.12 62);
+  --color-cool: oklch(48% 0.14 250);
+  --color-cool-soft: oklch(93% 0.035 250);
+  --color-ok: oklch(45% 0.13 150);
+  --color-ok-soft: oklch(94% 0.035 150);
+  --color-bad: oklch(52% 0.17 25);
+  --color-bad-soft: oklch(94% 0.035 25);
+
+  /* --- The materials that are not chrome --------------------------------
+     A Go board is wood, a Chinese chess square is pale wood, a chart series
+     needs a colour when the data has none. These are the game's and the
+     chart's own material, so they hold their value in both colourways. */
+  --color-board-wood: oklch(79% 0.06 76);
+  --color-board-wood-2: oklch(86% 0.05 84);
+  --color-board-edge: oklch(52% 0.07 62);
+  --color-chart-fallback: oklch(60% 0.16 250);
+  --color-swatch-edge: oklch(35% 0.02 250);
+
+  /* A scrim behind a dialog is not a surface of the page: it stays dark in
+     every colourway. */
+  --color-scrim: oklch(12% 0.008 250);
+
+  /* The Jungle board is a material, not a surface: land, river, trap and den
+     keep their value in both colourways, and the pieces are dark inks that
+     read on the wood. */
+  --board-land: oklch(88% 0.045 84);
+  --board-river: oklch(76% 0.09 235);
+  --board-trap: oklch(72% 0.012 250);
+  --board-den-blue: oklch(80% 0.07 245);
+  --board-den-red: oklch(82% 0.07 25);
+  --piece-blue: oklch(38% 0.13 250);
+  --piece-red: oklch(40% 0.16 25);
+
+  /* A Go stone is black or white porcelain with a highlight; these hold in
+     both colourways because the stone is the game's material. */
+  --stone-black-hi: oklch(35% 0.01 250);
+  --stone-black: oklch(16% 0.008 250);
+  --stone-white-hi: oklch(99% 0.002 90);
+  --stone-white: oklch(88% 0.004 90);
+
+  /* --- Type ------------------------------------------------------------- */
+  /* Host Grotesk carries the Latin text. The Noto Sans variants follow it,
+     each with Google's own unicode-range, so a CJK, Korean, Arabic or
+     Traditional-Chinese glyph routes to the face that draws it. One stack,
+     one body voice, every script. */
+  --font-display: "Host Grotesk", "Noto Sans SC", "Noto Sans TC", "Noto Sans JP",
+    "Noto Sans KR", "Noto Sans Arabic", "Noto Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-display);
+  --font-outlier: "Atkinson Hyperlegible Mono", ui-monospace, monospace;
+  --radius-card: 10px;
+  --radius-pill: 6px;
+  --rule-hair: 1px;
+  --shadow-card: none;
+  --tracking-display: -0.03em;
+  --display-weight: 500;
+
+  /* --- The project's own semantic contract, remapped to the Console ground.
+         These are the names every component already uses (bg-background,
+         text-foreground, border-border, bg-primary, ...), so the redesign
+         never needs a literal colour anywhere in the markup.
+
+         The four surface steps are a real ladder, not synonyms:
+           background  paper, the ground
+           card        one step up, the panel
+           muted       one step down, the recessed well (a surface in a surface)
+           secondary   one step above the panel, for a control that must sit up
+         Without the separation a hover from card to muted is invisible. ---- */
+  --background: 85 20% 98%;
+  --foreground: 60 25% 19%;
+  --card: 85 18% 95%;
+  --card-foreground: 60 25% 19%;
+  --popover: 85 18% 95%;
+  --popover-foreground: 60 25% 19%;
+  --primary: 36 55% 34%;
+  --primary-foreground: 40 30% 98%;
+  --secondary: 85 24% 99%;
+  --secondary-foreground: 60 25% 19%;
+  --muted: 85 16% 92%;
+  --muted-foreground: 60 18% 32%;
+  --accent: 40 45% 93%;
+  --accent-foreground: 60 25% 19%;
+  --destructive: 25 60% 40%;
+  --destructive-foreground: 85 20% 98%;
+  --border: 70 12% 87%;
+  --input: 70 12% 76%;
+  --ring: 36 55% 34%;
+  --radius: 0.625rem;
+
+  --success: 150 22% 32%;
+  --success-foreground: 150 30% 98%;
+  --warning: 70 42% 54%;
+  --info: 250 35% 44%;
+  --info-foreground: 250 30% 98%;
+
+  /* The two extra steps the greyscale remap needs: a raised surface
+     (Tailwind's gray-50/100) and the second ink (gray-700). */
+  --surface-raised: 85 20% 97%;
+  --ink-2: 60 22% 27%;
+
+  --surface-elevated: 85 18% 95%;
+  --surface-overlay: 85 16% 92%;
+
+  --surface-overlay: 250 7% 13.5%;
+  --glow-primary: 0 0% 0% / 0;
+  --glow-secondary: 0 0% 0% / 0;
+
+  /* --- The paper colourway: the same system in daylight ------------------ */
+  --color-paper-light: oklch(98% 0.006 85);
+  --color-paper-2-light: oklch(95% 0.008 85);
+  --color-paper-3-light: oklch(92% 0.009 85);
+  --color-ink-light: oklch(19% 0.01 60);
+  --color-ink-2-light: oklch(31% 0.012 60);
+  --color-muted-light: oklch(46% 0.014 60);
+  --color-rule-light: oklch(87% 0.01 70);
+  --color-rule-2-light: oklch(76% 0.014 70);
+  --color-accent-light: oklch(54% 0.14 70);
+  --color-accent-ink-light: oklch(98% 0.01 85);
+  --color-accent-soft-light: oklch(92% 0.05 78);
+  --color-cool-light: oklch(52% 0.14 250);
+  --color-cool-soft-light: oklch(93% 0.035 250);
+  --color-ok-light: oklch(50% 0.13 150);
+  --color-ok-soft-light: oklch(94% 0.035 150);
+  --color-bad-light: oklch(52% 0.17 25);
+  --color-bad-soft-light: oklch(94% 0.035 25);
+}
+
+/* The graphite colourway. The Console theme declares three dials; this is
+   the default one: a graphite ground stepped in three lightnesses, pale
+   ink, amber for a person and cool blue for an instrument. */
+.dark {
+  color-scheme: dark;
+
+  --color-paper: oklch(17% 0.008 250);
+  --color-paper-2: oklch(21% 0.009 250);
+  --color-paper-3: oklch(13.5% 0.007 250);
+  --color-ink: oklch(95% 0.005 250);
+  --color-ink-2: oklch(83% 0.008 250);
+  --color-muted: oklch(71% 0.01 250);
+  --color-rule: oklch(31% 0.01 250);
+  --color-rule-2: oklch(42% 0.012 250);
+  --color-accent: oklch(82% 0.15 80);
+  --color-accent-ink: oklch(18% 0.04 75);
+  --color-accent-soft: oklch(29% 0.05 80);
+  --color-focus: oklch(82% 0.15 80);
+  --color-cool: oklch(77% 0.12 245);
+  --color-cool-soft: oklch(29% 0.05 245);
+  --color-ok: oklch(76% 0.15 150);
+  --color-ok-soft: oklch(24.5% 0.03 150);
+  --color-bad: oklch(70% 0.17 25);
+  --color-bad-soft: oklch(24.5% 0.035 25);
+
+  /* --- The project's own semantic contract, remapped to the Console ground.
+         These are the names every component already uses (bg-background,
+         text-foreground, border-border, bg-primary, ...), so the redesign
+         never needs a literal colour anywhere in the markup. --------------- */
+  --background: 250 8% 17%;
+  --foreground: 250 6% 95%;
+  --card: 250 8% 21%;
+  --card-foreground: 250 6% 95%;
+  --popover: 250 8% 21%;
+  --popover-foreground: 250 6% 95%;
+  --primary: 80 15% 82%;
+  --primary-foreground: 80 40% 18%;
+  --secondary: 250 9% 26%;
+  --secondary-foreground: 250 6% 95%;
+  --muted: 250 8% 13.5%;
+  --muted-foreground: 250 7% 80%;
+  --accent: 250 9% 26%;
+  --accent-foreground: 250 6% 95%;
+  --destructive: 25 17% 70%;
+  --destructive-foreground: 250 8% 17%;
+  --border: 250 9% 31%;
+  --input: 250 10% 42%;
+  --ring: 80 15% 82%;
+  --radius: 0.625rem;
+
+  --success: 150 13% 76%;
+  --success-foreground: 150 30% 12%;
+  --warning: 80 15% 82%;
+  --info: 245 12% 77%;
+  --info-foreground: 245 30% 14%;
+
+  /* The two extra steps the greyscale remap needs: a raised surface
+     (Tailwind's gray-50/100) and the second ink (gray-700). */
+  --surface-raised: 250 8% 24%;
+  --ink-2: 250 7% 80%;
+
+  --surface-elevated: 250 8% 21%;
+  --surface-overlay: 250 7% 13.5%;
+}

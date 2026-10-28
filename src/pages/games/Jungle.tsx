@@ -61,23 +61,23 @@ const getTerrain = (r: number, c: number) => {
 
 // Initial Board Setup
 const initialPieces: { [key: string]: Piece } = {
-  "0,0": { player: PLAYER_BLUE, rank: LION, label: "🦁" },
-  "0,6": { player: PLAYER_BLUE, rank: TIGER, label: "🐯" },
-  "1,1": { player: PLAYER_BLUE, rank: DOG, label: "🐕" },
-  "1,5": { player: PLAYER_BLUE, rank: CAT, label: "🐈" },
-  "2,0": { player: PLAYER_BLUE, rank: RAT, label: "🐀" },
-  "2,2": { player: PLAYER_BLUE, rank: LEOPARD, label: "🐆" },
-  "2,4": { player: PLAYER_BLUE, rank: WOLF, label: "🐺" },
-  "2,6": { player: PLAYER_BLUE, rank: ELEPHANT, label: "🐘" },
+  "0,0": { player: PLAYER_BLUE, rank: LION, label: "L" },
+  "0,6": { player: PLAYER_BLUE, rank: TIGER, label: "T" },
+  "1,1": { player: PLAYER_BLUE, rank: DOG, label: "D" },
+  "1,5": { player: PLAYER_BLUE, rank: CAT, label: "C" },
+  "2,0": { player: PLAYER_BLUE, rank: RAT, label: "R" },
+  "2,2": { player: PLAYER_BLUE, rank: LEOPARD, label: "P" },
+  "2,4": { player: PLAYER_BLUE, rank: WOLF, label: "W" },
+  "2,6": { player: PLAYER_BLUE, rank: ELEPHANT, label: "E" },
 
-  "8,6": { player: PLAYER_RED, rank: LION, label: "🦁" },
-  "8,0": { player: PLAYER_RED, rank: TIGER, label: "🐯" },
-  "7,5": { player: PLAYER_RED, rank: DOG, label: "🐕" },
-  "7,1": { player: PLAYER_RED, rank: CAT, label: "🐈" },
-  "6,6": { player: PLAYER_RED, rank: RAT, label: "🐀" },
-  "6,4": { player: PLAYER_RED, rank: LEOPARD, label: "🐆" },
-  "6,2": { player: PLAYER_RED, rank: WOLF, label: "🐺" },
-  "6,0": { player: PLAYER_RED, rank: ELEPHANT, label: "🐘" },
+  "8,6": { player: PLAYER_RED, rank: LION, label: "L" },
+  "8,0": { player: PLAYER_RED, rank: TIGER, label: "T" },
+  "7,5": { player: PLAYER_RED, rank: DOG, label: "D" },
+  "7,1": { player: PLAYER_RED, rank: CAT, label: "C" },
+  "6,6": { player: PLAYER_RED, rank: RAT, label: "R" },
+  "6,4": { player: PLAYER_RED, rank: LEOPARD, label: "P" },
+  "6,2": { player: PLAYER_RED, rank: WOLF, label: "W" },
+  "6,0": { player: PLAYER_RED, rank: ELEPHANT, label: "E" },
 };
 
 const Jungle: React.FC = () => {
@@ -363,10 +363,10 @@ const Jungle: React.FC = () => {
     const isSelected = selectedPos?.r === r && selectedPos?.c === c;
     const isValid = validMoves.some(m => m.r === r && m.c === c);
 
-    let bgClass = "bg-[#f0d9b5]"; // Default Land
-    if (terrain.type === TYPE_RIVER) bgClass = "bg-blue-300";
-    if (terrain.type === TYPE_TRAP) bgClass = "bg-gray-300 border-dashed border-2 border-gray-500";
-    if (terrain.type === TYPE_DEN) bgClass = terrain.owner === PLAYER_BLUE ? "bg-blue-200" : "bg-red-200";
+    let bgClass = "bg-land"; // Default Land
+    if (terrain.type === TYPE_RIVER) bgClass = "bg-river";
+    if (terrain.type === TYPE_TRAP) bgClass = "bg-trap border-dashed border-2 border-board-edge";
+    if (terrain.type === TYPE_DEN) bgClass = terrain.owner === PLAYER_BLUE ? "bg-den-blue" : "bg-den-red";
 
     return (
       <div
@@ -388,8 +388,9 @@ const Jungle: React.FC = () => {
         
         {piece && (
           <div className={`
-            text-3xl md:text-4xl transition-transform
-            ${piece.player === PLAYER_RED ? "drop-shadow-[0_2px_2px_rgba(220,38,38,0.8)]" : "drop-shadow-[0_2px_2px_rgba(37,99,235,0.8)]"}
+            text-xl md:text-2xl font-medium tracking-tight
+            select-none motion-safe:transition-transform
+            ${piece.player === PLAYER_RED ? "text-piece-red" : "text-piece-blue"}
             ${isSelected ? "scale-125" : "hover:scale-110"}
           `}>
             {piece.label}
@@ -410,15 +411,15 @@ const Jungle: React.FC = () => {
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link to="/games">
-            <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full">
+            <button className="p-2 hover:bg-muted rounded-full transition-colors">
               <ArrowLeft className="h-6 w-6" />
             </button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+            <h1 className="text-3xl font-bold text-foreground">
               {t("games.jungle.title", "Jungle Chess")}
             </h1>
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-muted-foreground">
               {t("games.jungle.subtitle", "Classic Animal Battle Game")}
             </p>
           </div>
@@ -427,14 +428,14 @@ const Jungle: React.FC = () => {
            <button 
                 onClick={undoMove} 
                 disabled={history.length === 0}
-                className="flex items-center px-4 py-2 border rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50"
+                className="flex items-center px-4 py-2 border rounded-md hover:bg-muted transition-colors disabled:opacity-50"
            >
              <Undo className="mr-2 h-4 w-4" />
              {t("common.undo", "Undo")}
            </button>
           <button 
                 onClick={resetGame}
-                className="flex items-center px-4 py-2 border rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="flex items-center px-4 py-2 border rounded-md hover:bg-muted transition-colors"
           >
             <RefreshCw className="mr-2 h-4 w-4" />
             {t("common.restart", "Restart")}
@@ -445,14 +446,14 @@ const Jungle: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-2 flex justify-center">
             {/* Board Container */}
-            <div className="border-4 border-amber-800 rounded-lg overflow-hidden shadow-xl bg-amber-100 p-1">
+            <div className="border-4 border-amber-800 rounded-lg overflow-hidden bg-amber-100 p-1">
                 <div 
                     className="grid"
                     style={{
                         gridTemplateColumns: `repeat(${COLS}, minmax(40px, 60px))`,
                         gridTemplateRows: `repeat(${ROWS}, minmax(40px, 60px))`,
                         gap: "1px",
-                        backgroundColor: "#8B4513" // Border color between cells
+                        backgroundColor: "var(--color-board-edge)" // Border color between cells
                     }}
                 >
                     {Array.from({ length: ROWS }).map((_, r) => 
@@ -463,7 +464,7 @@ const Jungle: React.FC = () => {
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border p-6">
+          <div className="bg-card rounded-lg border border-border p-6">
             <div className="mb-4">
               <h3 className="text-lg font-semibold mb-4">{t("games.jungle.settings", "Game Settings")}</h3>
             </div>
@@ -475,7 +476,7 @@ const Jungle: React.FC = () => {
                 <select
                   value={difficulty}
                   onChange={(e) => setDifficulty(e.target.value as unknown as "easy" | "medium" | "hard")}
-                  className="w-full p-2 border rounded-md bg-transparent dark:bg-gray-700"
+                  className="w-full p-2 border border-border rounded-md bg-transparent"
                 >
                   <option value="easy">{t("games.jungle.easy", "Easy")}</option>
                   <option value="medium">{t("games.jungle.medium", "Medium")}</option>
@@ -483,14 +484,14 @@ const Jungle: React.FC = () => {
                 </select>
               </div>
 
-              <div className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg space-y-3">
-                 <div className="text-sm text-gray-500">{t("games.jungle.rules", "Rank: 🐘 > 🦁 > 🐯 > 🐆 > 🐺 > 🐕 > 🐈 > 🐀 (> 🐘)")}</div>
+              <div className="p-4 bg-muted rounded-lg space-y-3">
+                 <div className="text-sm text-muted-foreground">{t("games.jungle.rules", "Rank: E > L > T > P > W > D > C > R (> E)")}</div>
                  
                  <div className="flex justify-between items-center mt-4">
-                     <span className={`font-bold ${turn === PLAYER_RED ? "text-red-600 scale-110" : "text-gray-400"}`}>
+                     <span className={`font-bold ${turn === PLAYER_RED ? "text-destructive scale-110" : "text-muted-foreground"}`}>
                          {t("games.jungle.red", "Red (You)")}
                      </span>
-                     <span className={`font-bold ${turn === PLAYER_BLUE ? "text-blue-600 scale-110" : "text-gray-400"}`}>
+                     <span className={`font-bold ${turn === PLAYER_BLUE ? "text-info scale-110" : "text-muted-foreground"}`}>
                          {t("games.jungle.blue", "Blue (AI)")}
                      </span>
                  </div>
@@ -498,7 +499,7 @@ const Jungle: React.FC = () => {
 
               <div className="text-center py-4">
                  {winner !== null ? (
-                     <div className="text-xl font-bold text-primary animate-bounce">
+                     <div className="text-xl font-medium text-primary">
                          {winner === PLAYER_RED ? t("games.jungle.red_win", "Red Wins!") : t("games.jungle.blue_win", "Blue Wins!")}
                      </div>
                  ) : (

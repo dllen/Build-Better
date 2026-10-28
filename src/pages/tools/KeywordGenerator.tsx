@@ -76,22 +76,22 @@ export default function KeywordGenerator() {
       {keywords.length > 0 ? (
         <>
           <div className="text-center mb-2">
-            <p className="text-xs text-gray-500">{keywords.length} {t("tools.keyword.keywords_found")}</p>
+            <p className="text-xs text-muted-foreground">{keywords.length} {t("tools.keyword.keywords_found")}</p>
           </div>
-          <div className="space-y-1 max-h-72 overflow-y-auto bg-gray-50 p-3 rounded-lg">
+          <div className="space-y-1 max-h-72 overflow-y-auto bg-muted p-3 rounded-lg">
             {keywords.map((k, i) => (
-              <div key={i} className="flex items-center justify-between text-sm py-1 border-b border-gray-200 last:border-0">
+              <div key={i} className="flex items-center justify-between text-sm py-1 border-b border-border last:border-0">
                 <span className="font-mono text-xs">{k}</span>
-                <span className="text-xs text-gray-500">{k.split(" ").length}w</span>
+                <span className="text-xs text-muted-foreground">{k.split(" ").length}w</span>
               </div>
             ))}
           </div>
-          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary">
             <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.keyword.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Hash className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("tools.keyword.enter_values")}</p>
         </div>
@@ -104,16 +104,16 @@ export default function KeywordGenerator() {
       title={t("tools.keyword.title")}
       subtitle={t("tools.keyword.subtitle")}
       icon={Hash}
-      iconBgColor="bg-pink-100"
-      iconColor="text-pink-600"
+      iconBgColor="bg-destructive/10"
+      iconColor="text-destructive"
       keywords={["keyword generator", "long-tail keywords", "ecommerce seo", "keyword research"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.keyword.category")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.keyword.category")}</label>
           <select value={category} onChange={e => setCategory(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm py-2 px-3 border">
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
             <option value="fashion">Fashion / Clothing</option>
             <option value="electronics">Electronics / Tech</option>
             <option value="beauty">Beauty / Skincare</option>
@@ -121,11 +121,11 @@ export default function KeywordGenerator() {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.keyword.seed")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.keyword.seed")}</label>
           <input value={seed} onChange={e => setSeed(e.target.value)} placeholder={t("tools.keyword.seed_placeholder")} onKeyDown={e => e.key === "Enter" && generate_()}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
-        <button onClick={generate_} className="w-full px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700">{t("tools.keyword.generate")}</button>
+        <button onClick={generate_} className="w-full px-4 py-2 bg-destructive text-destructive-foreground rounded-lg hover:bg-destructive">{t("tools.keyword.generate")}</button>
       </div>
     </CalculatorShell>
   );

@@ -121,8 +121,8 @@ export default function ApiDebugger() {
         <TrustBanner />
         <div className="flex items-center justify-between mt-2">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/30">
-              <Terminal className="w-5 h-5 text-orange-400" />
+            <div className="p-2 rounded-lg bg-gradient-to-br from-primary/20 to-primary/20 border border-border/30">
+              <Terminal className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h1 className="text-lg font-bold">{t("tools.api-debugger.name", "API Debugger")}</h1>
@@ -176,7 +176,7 @@ export default function ApiDebugger() {
 
         {/* Split handle */}
         <div
-          className="w-1 bg-border/30 hover:bg-cyan-500/50 cursor-col-resize transition-colors flex-shrink-0"
+          className="w-1 bg-border/30 hover:bg-info/50 cursor-col-resize transition-colors flex-shrink-0"
           onMouseDown={(e) => {
             const startX = e.clientX;
             const startRatio = splitRatio;

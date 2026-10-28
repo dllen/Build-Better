@@ -129,7 +129,7 @@ export default function JsonDiffTool() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-orange-100 text-orange-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <GitCompare className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">JSON Diff</h1>
@@ -147,14 +147,14 @@ export default function JsonDiffTool() {
             Sort object keys
           </label>
           <button
-            className="px-3 py-1.5 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 text-sm disabled:opacity-50"
+            className="px-3 py-1.5 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 text-sm disabled:opacity-50"
             onClick={copyDiff}
             disabled={structRows.rows.length === 0}
           >
-            {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+            {copied ? <Check className="h-4 w-4 text-success" /> : <Copy className="h-4 w-4" />}
             {copied ? "Copied" : "Copy Diff"}
           </button>
-          <div className="ml-auto text-xs text-gray-600">
+          <div className="ml-auto text-xs text-muted-foreground">
             Added: {stats.added} · Removed: {stats.removed} · Changed: {stats.changed} · Total: {stats.total}
           </div>
         </>
@@ -168,7 +168,7 @@ export default function JsonDiffTool() {
             onChange={(e) => setLeftText(e.target.value)}
           />
           {!leftParsed.ok && (
-            <div className="px-3 py-1 text-xs text-red-600 bg-red-50 border-t border-red-200">
+            <div className="px-3 py-1 text-xs text-destructive bg-destructive/10 border-t border-border">
               Parse error: {leftParsed.error}
             </div>
           )}
@@ -183,7 +183,7 @@ export default function JsonDiffTool() {
             onChange={(e) => setRightText(e.target.value)}
           />
           {!rightParsed.ok && (
-            <div className="px-3 py-1 text-xs text-red-600 bg-red-50 border-t border-red-200">
+            <div className="px-3 py-1 text-xs text-destructive bg-destructive/10 border-t border-border">
               Parse error: {rightParsed.error}
             </div>
           )}
@@ -191,25 +191,25 @@ export default function JsonDiffTool() {
       }
       footer={
         <>
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3">
             <div className="font-medium">Structural Changes</div>
             {structRows.rows.length === 0 ? (
-              <div className="text-sm text-gray-600">No differences</div>
+              <div className="text-sm text-muted-foreground">No differences</div>
             ) : (
               <>
                 {structRows.truncated && (
-                  <div className="text-xs text-amber-600 bg-amber-50 px-2 py-1 rounded">
+                  <div className="text-xs text-primary bg-primary/10 px-2 py-1 rounded">
                     Showing first {MAX_DIFF_ROWS} of all changes. For large comparisons, consider using smaller inputs.
                   </div>
                 )}
-                <div className="rounded-md border border-gray-200 overflow-x-auto">
+                <div className="rounded-md border border-border overflow-x-auto">
                   <table className="min-w-full text-sm">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-muted">
                       <tr>
-                        <th className="text-left px-3 py-2 font-medium text-gray-700">Path</th>
-                        <th className="text-left px-3 py-2 font-medium text-gray-700">Type</th>
-                        <th className="text-left px-3 py-2 font-medium text-gray-700">Left</th>
-                        <th className="text-left px-3 py-2 font-medium text-gray-700">Right</th>
+                        <th className="text-left px-3 py-2 font-medium text-muted-foreground">Path</th>
+                        <th className="text-left px-3 py-2 font-medium text-muted-foreground">Type</th>
+                        <th className="text-left px-3 py-2 font-medium text-muted-foreground">Left</th>
+                        <th className="text-left px-3 py-2 font-medium text-muted-foreground">Right</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -218,11 +218,11 @@ export default function JsonDiffTool() {
                         <td className="px-3 py-2 font-mono">{row.path}</td>
                         <td className="px-3 py-2">
                           {row.type === "added" ? (
-                            <span className="inline-flex px-2 py-1 rounded-md bg-green-100 text-green-700">added</span>
+                            <span className="inline-flex px-2 py-1 rounded-md bg-success/10 text-success">added</span>
                           ) : row.type === "removed" ? (
-                            <span className="inline-flex px-2 py-1 rounded-md bg-red-100 text-red-700">removed</span>
+                            <span className="inline-flex px-2 py-1 rounded-md bg-destructive/10 text-destructive">removed</span>
                           ) : (
-                            <span className="inline-flex px-2 py-1 rounded-md bg-yellow-100 text-yellow-700">changed</span>
+                            <span className="inline-flex px-2 py-1 rounded-md bg-primary/10 text-primary">changed</span>
                           )}
                         </td>
                         <td className="px-3 py-2">
@@ -240,14 +240,14 @@ export default function JsonDiffTool() {
             )}
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-card rounded-lg border border-border p-4">
             <div className="font-medium mb-2">Pretty Diff</div>
             <div className="font-mono whitespace-pre-wrap break-words text-sm">
               {jsonParts.map((p, i) =>
                 p.added ? (
-                  <span key={i} className="bg-green-200 text-green-900">{p.value}</span>
+                  <span key={i} className="bg-success/10 text-success">{p.value}</span>
                 ) : p.removed ? (
-                  <span key={i} className="bg-red-200 text-red-900 line-through">{p.value}</span>
+                  <span key={i} className="bg-destructive/10 text-destructive line-through">{p.value}</span>
                 ) : (
                   <span key={i}>{p.value}</span>
                 )

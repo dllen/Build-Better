@@ -103,7 +103,7 @@ export default function HashTools() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-indigo-100 text-indigo-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Hash className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Hash Tools</h1>
@@ -112,9 +112,9 @@ export default function HashTools() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Text</label>
+            <label className="text-sm font-medium text-muted-foreground">Text</label>
             <textarea
-              className="w-full h-40 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="w-full h-40 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
               placeholder="Enter text"
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -123,9 +123,9 @@ export default function HashTools() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-1">
-              <label className="text-sm font-medium text-gray-700">Algorithm</label>
+              <label className="text-sm font-medium text-muted-foreground">Algorithm</label>
               <select
-                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
                 value={alg}
                 onChange={(e) => setAlg(e.target.value as TextAlg)}
               >
@@ -138,9 +138,9 @@ export default function HashTools() {
             </div>
 
             <div className="space-y-1">
-              <label className="text-sm font-medium text-gray-700">Encoding</label>
+              <label className="text-sm font-medium text-muted-foreground">Encoding</label>
               <select
-                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
                 value={enc}
                 onChange={(e) => setEnc(e.target.value as OutEnc)}
                 disabled={alg === "CRC32"}
@@ -154,39 +154,39 @@ export default function HashTools() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4 flex items-center justify-between">
+          <div className="bg-card rounded-lg border border-border p-4 flex items-center justify-between">
             <div className="space-y-1">
-              <div className="text-sm text-gray-500">Result</div>
-              <div className="font-mono break-all text-sm text-gray-800">{textResult || "—"}</div>
+              <div className="text-sm text-muted-foreground">Result</div>
+              <div className="font-mono break-all text-sm text-foreground">{textResult || "—"}</div>
             </div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700 disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary disabled:opacity-50"
               onClick={() => copy(textResult)}
               disabled={!textResult}
             >
               <ClipboardCopy className="h-4 w-4" />
               Copy
             </button>
-            {textLoading && <Loader2 className="h-4 w-4 animate-spin text-indigo-600" />}
+            {textLoading && <Loader2 className="h-4 w-4 animate-spin text-primary" />}
           </div>
         </div>
 
         <div className="space-y-4">
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3">
             <div className="font-medium">HMAC</div>
             <div className="space-y-2">
-              <label className="text-sm text-gray-700">Message</label>
+              <label className="text-sm text-muted-foreground">Message</label>
               <textarea
-                className="w-full h-20 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                className="w-full h-20 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
                 placeholder="Enter message"
                 value={hmacMsg}
                 onChange={(e) => setHmacMsg(e.target.value)}
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm text-gray-700">Key</label>
+              <label className="text-sm text-muted-foreground">Key</label>
               <input
-                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
                 placeholder="Enter key"
                 value={hmacKey}
                 onChange={(e) => setHmacKey(e.target.value)}
@@ -194,9 +194,9 @@ export default function HashTools() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
-                <label className="text-sm text-gray-700">Algorithm</label>
+                <label className="text-sm text-muted-foreground">Algorithm</label>
                 <select
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
                   value={hmacAlg}
                   onChange={(e) => setHmacAlg(e.target.value as HashAlg)}
                 >
@@ -206,9 +206,9 @@ export default function HashTools() {
                 </select>
               </div>
               <div className="space-y-1">
-                <label className="text-sm text-gray-700">Encoding</label>
+                <label className="text-sm text-muted-foreground">Encoding</label>
                 <select
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
                   value={hmacEnc}
                   onChange={(e) => setHmacEnc(e.target.value as OutEnc)}
                 >
@@ -220,12 +220,12 @@ export default function HashTools() {
                 </select>
               </div>
             </div>
-            <div className="bg-gray-50 rounded-md border border-gray-200 px-3 py-2 flex items-center justify-between">
-              <div className="font-mono break-all text-sm text-gray-800">{hmacResult || "—"}</div>
+            <div className="bg-muted rounded-md border border-border px-3 py-2 flex items-center justify-between">
+              <div className="font-mono break-all text-sm text-foreground">{hmacResult || "—"}</div>
               <div className="flex items-center gap-2">
-                {hmacLoading && <Loader2 className="h-4 w-4 animate-spin text-indigo-600" />}
+                {hmacLoading && <Loader2 className="h-4 w-4 animate-spin text-primary" />}
                 <button
-                  className="inline-flex items-center gap-2 px-3 py-2 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700 disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary disabled:opacity-50"
                   onClick={() => copy(hmacResult)}
                   disabled={!hmacResult}
                 >
@@ -236,21 +236,21 @@ export default function HashTools() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-3">
             <div className="flex items-center gap-2">
-              <FileSignature className="h-5 w-5 text-gray-600" />
+              <FileSignature className="h-5 w-5 text-muted-foreground" />
               <div className="font-medium">File Hash</div>
             </div>
             <input
               type="file"
-              className="block w-full text-sm text-gray-600"
+              className="block w-full text-sm text-muted-foreground"
               onChange={handleFile}
             />
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
-                <label className="text-sm text-gray-700">Algorithm</label>
+                <label className="text-sm text-muted-foreground">Algorithm</label>
                 <select
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
                   value={fileAlg}
                   onChange={(e) => setFileAlg(e.target.value as HashAlg)}
                 >
@@ -260,9 +260,9 @@ export default function HashTools() {
                 </select>
               </div>
               <div className="space-y-1">
-                <label className="text-sm text-gray-700">Encoding</label>
+                <label className="text-sm text-muted-foreground">Encoding</label>
                 <select
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
                   value={fileEnc}
                   onChange={(e) => setFileEnc(e.target.value as OutEnc)}
                 >
@@ -274,12 +274,12 @@ export default function HashTools() {
                 </select>
               </div>
             </div>
-            <div className="bg-gray-50 rounded-md border border-gray-200 px-3 py-2 flex items-center justify-between">
-              <div className="truncate text-sm text-gray-500">{fileName || "No file selected"}</div>
+            <div className="bg-muted rounded-md border border-border px-3 py-2 flex items-center justify-between">
+              <div className="truncate text-sm text-muted-foreground">{fileName || "No file selected"}</div>
               <div className="flex items-center gap-2">
-                {fileLoading && <Loader2 className="h-4 w-4 animate-spin text-indigo-600" />}
+                {fileLoading && <Loader2 className="h-4 w-4 animate-spin text-primary" />}
                 <button
-                  className="inline-flex items-center gap-2 px-3 py-2 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700 disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary disabled:opacity-50"
                   onClick={() => copy(fileResult)}
                   disabled={!fileResult}
                 >
@@ -288,7 +288,7 @@ export default function HashTools() {
                 </button>
               </div>
             </div>
-            <div className="font-mono break-all text-sm text-gray-800">{fileResult || "—"}</div>
+            <div className="font-mono break-all text-sm text-foreground">{fileResult || "—"}</div>
           </div>
         </div>
       </div>

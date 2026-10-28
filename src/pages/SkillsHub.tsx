@@ -97,38 +97,38 @@ const SkillsHub = () => {
 
   const getCategoryColor = (category: string) => {
     const colors: Record<string, string> = {
-      'productivity': 'bg-blue-500',
-      'development': 'bg-green-500',
-      'writing': 'bg-purple-500',
-      'research': 'bg-orange-500',
-      'design': 'bg-pink-500',
-      'data': 'bg-cyan-500',
-      'automation': 'bg-yellow-500',
-      'communication': 'bg-indigo-500',
-      'education': 'bg-teal-500',
-      'business': 'bg-red-500',
+      'productivity': 'bg-info',
+      'development': 'bg-success',
+      'writing': 'bg-primary',
+      'research': 'bg-accent',
+      'design': 'bg-cool',
+      'data': 'bg-info',
+      'automation': 'bg-primary',
+      'communication': 'bg-cool',
+      'education': 'bg-success',
+      'business': 'bg-destructive',
     };
     const key = category.toLowerCase();
-    return colors[key] || 'bg-gray-500';
+    return colors[key] || 'bg-muted-foreground';
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Puzzle className="h-10 w-10 text-indigo-600 dark:text-indigo-400" />
-            <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+            <Puzzle className="h-10 w-10 text-primary" />
+            <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl">
               Skills Hub 导航
             </h1>
           </div>
-          <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-400">
+          <p className="mt-3 max-w-2xl mx-auto text-xl text-muted-foreground">
             来自 skills-hub.ai 的热门 Skills 合集，按安装量排序
           </p>
-          <div className="mt-4 flex items-center justify-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="mt-4 flex items-center justify-center gap-4 text-sm text-muted-foreground">
             <span className="flex items-center gap-1">
-              <Puzzle className="h-4 w-4 text-indigo-500" />
+              <Puzzle className="h-4 w-4 text-primary" />
               {data.total_count} Skills
             </span>
             <span className="flex items-center gap-1">
@@ -143,11 +143,11 @@ const SkillsHub = () => {
           {/* Search */}
           <div className="relative w-full lg:w-96">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-gray-400" />
+              <Search className="h-5 w-5 text-muted-foreground" />
             </div>
             <input
               type="text"
-              className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md leading-5 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="block w-full pl-10 pr-3 py-2 border border-border rounded-md leading-5 bg-muted text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring sm:text-sm"
               placeholder="搜索 Skills 名称、描述或作者..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -158,9 +158,9 @@ const SkillsHub = () => {
             {/* Category Filter */}
             {categories.length > 1 && (
               <div className="flex items-center gap-2">
-                <Filter className="h-4 w-4 text-gray-400" />
+                <Filter className="h-4 w-4 text-muted-foreground" />
                 <select
-                  className="border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm py-1.5 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  className="border border-border rounded-md bg-muted text-foreground text-sm py-1.5 px-3 focus:outline-none focus:ring-1 focus:ring-ring"
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
                 >
@@ -175,9 +175,9 @@ const SkillsHub = () => {
 
             {/* Sort */}
             <div className="flex items-center gap-2">
-              <Filter className="h-4 w-4 text-gray-400" />
+              <Filter className="h-4 w-4 text-muted-foreground" />
               <select
-                className="border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm py-1.5 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                className="border border-border rounded-md bg-muted text-foreground text-sm py-1.5 px-3 focus:outline-none focus:ring-1 focus:ring-ring"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as 'installs' | 'name' | 'author')}
               >
@@ -189,7 +189,7 @@ const SkillsHub = () => {
 
             {/* Show Count */}
             <select
-              className="border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm py-1.5 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              className="border border-border rounded-md bg-muted text-foreground text-sm py-1.5 px-3 focus:outline-none focus:ring-1 focus:ring-ring"
               value={showTop}
               onChange={(e) => setShowTop(Number(e.target.value))}
             >
@@ -218,8 +218,8 @@ const SkillsHub = () => {
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-3 py-1 rounded-full text-sm transition-colors ${
                     selectedCategory === cat
-                      ? 'bg-indigo-500 text-white'
-                      : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted text-ink-2 hover:bg-accent'
                   }`}
                 >
                   <span className={`inline-block w-2 h-2 rounded-full ${getCategoryColor(cat)} mr-1`}></span>
@@ -230,7 +230,7 @@ const SkillsHub = () => {
         )}
 
         {/* Results */}
-        <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+        <div className="text-sm text-muted-foreground mb-4">
           找到 {filteredAndSortedSkills.length} 个 Skills
         </div>
 
@@ -239,7 +239,7 @@ const SkillsHub = () => {
           {filteredAndSortedSkills.map((skill, index) => (
             <div
               key={`${skill.name}-${index}`}
-              className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:border-indigo-300 dark:hover:border-indigo-600 transition-colors group"
+              className="bg-card rounded-lg border border-border p-4 hover:border-primary/40 transition-colors group"
             >
               <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -253,16 +253,16 @@ const SkillsHub = () => {
                       }}
                     />
                   ) : (
-                    <div className="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center flex-shrink-0">
-                      <Puzzle className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                      <Puzzle className="h-5 w-5 text-primary" />
                     </div>
                   )}
                   <div className="min-w-0">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white truncate">
+                    <h3 className="text-lg font-semibold text-foreground truncate">
                       {skill.name}
                     </h3>
                     {skill.author && (
-                      <p className="text-sm text-gray-500 dark:text-gray-400 truncate flex items-center gap-1">
+                      <p className="text-sm text-muted-foreground truncate flex items-center gap-1">
                         <User className="h-3 w-3" />
                         {getAuthorName(skill.author)}
                       </p>
@@ -274,7 +274,7 @@ const SkillsHub = () => {
                     href={skill.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="ml-2 p-1.5 text-gray-400 hover:text-indigo-500 transition-colors flex-shrink-0"
+                    className="ml-2 p-1.5 text-muted-foreground hover:text-primary transition-colors flex-shrink-0"
                     title="查看详情"
                   >
                     <ExternalLink className="h-4 w-4" />
@@ -282,7 +282,7 @@ const SkillsHub = () => {
                 )}
               </div>
 
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 line-clamp-2 min-h-[2.5rem]">
+              <p className="text-sm text-ink-2 mb-3 line-clamp-2 min-h-[2.5rem]">
                 {skill.description || '暂无描述'}
               </p>
 
@@ -290,7 +290,7 @@ const SkillsHub = () => {
               {getCategoryName(skill.category) && (
                 <div className="flex flex-wrap gap-1 mb-3">
                   <span
-                    className="px-2 py-0.5 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full"
+                    className="px-2 py-0.5 text-xs bg-muted text-ink-2 rounded-full"
                   >
                     {getCategoryName(skill.category)}
                   </span>
@@ -298,10 +298,10 @@ const SkillsHub = () => {
               )}
 
               {/* Meta */}
-              <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+              <div className="flex items-center gap-4 text-sm text-muted-foreground">
                 {skill.installs > 0 && (
                   <span className="flex items-center gap-1">
-                    <Download className="h-3.5 w-3.5 text-green-500" />
+                    <Download className="h-3.5 w-3.5 text-success" />
                     {formatInstalls(skill.installs)}
                   </span>
                 )}
@@ -319,11 +319,11 @@ const SkillsHub = () => {
         {/* Empty State */}
         {filteredAndSortedSkills.length === 0 && (
           <div className="text-center py-12">
-            <Puzzle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+            <Puzzle className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-foreground mb-2">
               没有找到匹配的 Skills
             </h3>
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-muted-foreground">
               尝试调整搜索条件或清除筛选
             </p>
           </div>
@@ -335,7 +335,7 @@ const SkillsHub = () => {
             href={data.browse_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
           >
             <Globe className="h-5 w-5" />
             访问 Skills Hub 探索更多

@@ -4,16 +4,16 @@ import { Calendar } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const COUNTRIES = [
-  { id: "ID", name: "Indonesia", flag: "🇮🇩" },
-  { id: "SA", name: "Saudi Arabia", flag: "🇸🇦" },
-  { id: "PH", name: "Philippines", flag: "🇵🇭" },
-  { id: "VN", name: "Vietnam", flag: "🇻🇳" },
-  { id: "TH", name: "Thailand", flag: "🇹🇭" },
-  { id: "AE", name: "UAE", flag: "🇦🇪" },
-  { id: "BR", name: "Brazil", flag: "🇧🇷" },
-  { id: "KE", name: "Kenya", flag: "🇰🇪" },
-  { id: "MY", name: "Malaysia", flag: "🇲🇾" },
-  { id: "SG", name: "Singapore", flag: "🇸🇬" },
+  { id: "ID", name: "Indonesia", },
+  { id: "SA", name: "Saudi Arabia", },
+  { id: "PH", name: "Philippines", },
+  { id: "VN", name: "Vietnam", },
+  { id: "TH", name: "Thailand", },
+  { id: "AE", name: "UAE", },
+  { id: "BR", name: "Brazil", },
+  { id: "KE", name: "Kenya", },
+  { id: "MY", name: "Malaysia", },
+  { id: "SG", name: "Singapore", },
 ];
 
 const HOLIDAYS: Record<string, { date: string; name: string; type: "public" | "religious" | "national" }[]> = {
@@ -78,7 +78,7 @@ export default function HolidayCalendar() {
     <div className="space-y-3">
       <div className="flex justify-between items-center mb-2">
         <h3 className="text-sm font-semibold">{COUNTRIES.find(c => c.id === country)?.name} {year}</h3>
-        <span className="text-xs text-gray-500">{holidays.length} holidays</span>
+        <span className="text-xs text-muted-foreground">{holidays.length} holidays</span>
       </div>
       <div className="max-h-72 overflow-y-auto space-y-1">
         {holidays.map((h, i) => {
@@ -88,24 +88,14 @@ export default function HolidayCalendar() {
           const isPast = date < today;
           const isToday = date.toDateString() === today.toDateString();
           return (
-            <div key={i} className={`flex justify-between items-center text-sm p-2 rounded-lg ${
-              isToday ? "bg-blue-50 border border-blue-200" : isPast ? "bg-gray-50 opacity-60" : "bg-white border border-gray-100"
-            }`}>
+            <div key={i} className={`flex justify-between items-center text-sm p-2 rounded-lg ${ isToday ? "bg-primary/10 border border-border" : isPast ? "bg-muted opacity-60" : "bg-card border border-border" }`}>
               <div className="flex items-center gap-2">
-                <span className={`w-8 text-center text-xs font-bold rounded ${
-                  h.type === "religious" ? "bg-emerald-100 text-emerald-700" :
-                  h.type === "national" ? "bg-red-100 text-red-700" :
-                  "bg-blue-100 text-blue-700"
-                }`}>
+                <span className={`w-8 text-center text-xs font-bold rounded ${ h.type === "religious" ? "bg-success/10 text-success" : h.type === "national" ? "bg-destructive/10 text-destructive" : "bg-primary/10 text-primary" }`}>
                   {month.toString().padStart(2, "0")}/{day.toString().padStart(2, "0")}
                 </span>
                 <span className="text-sm">{h.name}</span>
               </div>
-              <span className={`text-xs px-2 py-0.5 rounded ${
-                h.type === "religious" ? "text-emerald-600" :
-                h.type === "national" ? "text-red-600" :
-                "text-blue-600"
-              }`}>{h.type}</span>
+              <span className={`text-xs px-2 py-0.5 rounded ${ h.type === "religious" ? "text-success" : h.type === "national" ? "text-destructive" : "text-primary" }`}>{h.type}</span>
             </div>
           );
         })}
@@ -118,23 +108,23 @@ export default function HolidayCalendar() {
       title={t("tools.holiday.title")}
       subtitle={t("tools.holiday.subtitle")}
       icon={Calendar}
-      iconBgColor="bg-rose-100"
-      iconColor="text-rose-600"
+      iconBgColor="bg-destructive/10"
+      iconColor="text-destructive"
       keywords={["holiday calendar", "public holidays", "national holidays", "religious holidays"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.holiday.country")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.holiday.country")}</label>
           <select value={country} onChange={e => setCountry(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm py-2 px-3 border">
-            {COUNTRIES.map(c => <option key={c.id} value={c.id}>{c.flag} {c.name}</option>)}
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
+            {COUNTRIES.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.holiday.year")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.holiday.year")}</label>
           <select value={year} onChange={e => setYear(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm py-2 px-3 border">
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
             {[2025, 2026, 2027].map(y => <option key={y} value={y}>{y}</option>)}
           </select>
         </div>

@@ -39,49 +39,49 @@ export default function DrawMementoMoriCalendar() {
   return (
     <div className="max-w-2xl mx-auto py-8 px-4">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2 bg-rose-100 text-rose-600 rounded-lg"><CalendarDays className="h-5 w-5" /></div>
-        <h1 className="text-2xl font-bold text-gray-900">Memento Mori Calendar</h1>
+        <div className="p-2 bg-destructive/10 text-destructive rounded-lg"><CalendarDays className="h-5 w-5" /></div>
+        <h1 className="text-2xl font-bold text-foreground">Memento Mori Calendar</h1>
       </div>
-      <p className="text-sm text-gray-500 mb-6">Visualize your life in weeks. Each box represents one week.</p>
-      <div className="space-y-6 p-6 rounded-xl border border-gray-200 bg-white">
+      <p className="text-sm text-muted-foreground mb-6">Visualize your life in weeks. Each box represents one week.</p>
+      <div className="space-y-6 p-6 rounded-xl border border-border bg-card">
         <div className="grid grid-cols-3 gap-4">
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Birth Year</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">Birth Year</label>
             <input type="number" min={1900} max={2100} value={birthYear}
               onChange={(e) => setBirthYear(Number(e.target.value))}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none" />
+              className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none" />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Month</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">Month</label>
             <select value={birthMonth} onChange={(e) => setBirthMonth(Number(e.target.value))}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none bg-white">
+              className="w-full rounded-lg px-3 py-2 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-muted">
               {Array.from({ length: 12 }, (_, i) => i + 1).map(m => (
                 <option key={m} value={m}>{new Date(2000, m - 1, 1).toLocaleString("en", { month: "long" })}</option>
               ))}
             </select>
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Day</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">Day</label>
             <input type="number" min={1} max={31} value={birthDay}
               onChange={(e) => setBirthDay(Number(e.target.value))}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none" />
+              className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none" />
           </div>
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-500 mb-1">Life Expectancy (years): {lifeExpectancy}</label>
+          <label className="block text-xs font-medium text-muted-foreground mb-1">Life Expectancy (years): {lifeExpectancy}</label>
           <input type="range" min={50} max={120} value={lifeExpectancy}
             onChange={(e) => setLifeExpectancy(Number(e.target.value))}
-            className="w-full accent-rose-500" />
-          <div className="flex justify-between text-xs text-gray-400 mt-1"><span>50</span><span>120</span></div>
+            className="w-full accent-primary" />
+          <div className="flex justify-between text-xs text-muted-foreground mt-1"><span>50</span><span>120</span></div>
         </div>
         <div className="flex gap-3">
           <button onClick={() => setShowCalendar(true)}
-            className="inline-flex items-center gap-2 px-5 py-2 bg-rose-600 text-white text-sm font-medium rounded-lg hover:bg-rose-700 transition-colors">
+            className="inline-flex items-center gap-2 px-5 py-2 bg-destructive text-destructive-foreground text-sm font-medium rounded-lg hover:bg-destructive transition-colors">
             <CalendarDays className="h-4 w-4" />Show Calendar
           </button>
           {showCalendar && (
             <button onClick={handleDownload}
-              className="inline-flex items-center gap-1 px-3 py-2 text-sm text-gray-600 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+              className="inline-flex items-center gap-1 px-3 py-2 text-sm text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded-lg transition-colors">
               <Download className="h-4 w-4" />Download
             </button>
           )}
@@ -91,25 +91,25 @@ export default function DrawMementoMoriCalendar() {
           <div className="space-y-4">
             <div className="flex flex-wrap items-center gap-4 text-sm">
               <div className="flex items-center gap-1.5">
-                <span className="w-3 h-3 rounded bg-rose-500 inline-block" />
-                <span className="text-gray-600">Lived: {weeksLived.toLocaleString()} weeks</span>
+                <span className="w-3 h-3 rounded bg-destructive inline-block" />
+                <span className="text-muted-foreground">Lived: {weeksLived.toLocaleString()} weeks</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="w-3 h-3 rounded bg-gray-200 inline-block border border-gray-300" />
-                <span className="text-gray-600">Remaining: {(totalWeeks - weeksLived).toLocaleString()} weeks</span>
+                <span className="w-3 h-3 rounded bg-border inline-block border border-border" />
+                <span className="text-muted-foreground">Remaining: {(totalWeeks - weeksLived).toLocaleString()} weeks</span>
               </div>
-              <span className="text-gray-400">({((weeksLived / totalWeeks) * 100).toFixed(1)}% lived)</span>
+              <span className="text-muted-foreground">({((weeksLived / totalWeeks) * 100).toFixed(1)}% lived)</span>
             </div>
-            <div className="grid gap-0.5 p-3 rounded-lg bg-gray-50 border border-gray-200 max-h-96 overflow-auto"
+            <div className="grid gap-0.5 p-3 rounded-lg bg-muted border border-border max-h-96 overflow-auto"
               style={{ gridTemplateColumns: `repeat(52, minmax(0, 1fr))` }}>
               {Array.from({ length: totalWeeks }, (_, i) => (
                 <div key={i}
-                  className={`aspect-square rounded-sm ${i < weeksLived ? "bg-rose-500" : "bg-gray-200"}`}
+                  className={`aspect-square rounded-sm ${i < weeksLived ? "bg-destructive" : "bg-border"}`}
                   title={`Week ${i + 1}${i < weeksLived ? " (lived)" : " (ahead)"}`} />
               ))}
             </div>
-            <p className="text-xs text-gray-400 text-center italic">
-              "Remember that you will die." — Each row is one year of your life.
+            <p className="text-xs text-muted-foreground text-center italic">
+              “Remember that you will die.” Each row is one year of your life.
             </p>
           </div>
         )}

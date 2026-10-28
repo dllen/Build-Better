@@ -46,23 +46,23 @@ export default function CssGlassmorphismGenerator() {
       title="CSS Glassmorphism Generator"
       subtitle="Create frosted-glass cards with backdrop blur and translucent backgrounds — the glassmorphism UI trend."
       icon={GlassWater}
-      iconBgColor="bg-sky-100"
-      iconColor="text-sky-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["glassmorphism", "frosted glass", "backdrop filter", "glass card", "glass effect"]}
       children={
         <div className="space-y-5">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Glass color</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-1.5">Glass color</label>
               <input
                 type="color"
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
-                className="h-10 w-20 rounded-lg border border-gray-300 cursor-pointer bg-white p-1"
+                className="h-10 w-20 rounded-lg border border-border cursor-pointer bg-card p-1"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label className="block text-sm font-medium text-muted-foreground mb-1.5">
                 Radius: {radius}px
               </label>
               <input
@@ -71,13 +71,13 @@ export default function CssGlassmorphismGenerator() {
                 max={40}
                 value={radius}
                 onChange={(e) => setRadius(Number(e.target.value))}
-                className="w-full accent-sky-600 mt-3"
+                className="w-full accent-primary mt-3"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">
               Blur: {blur}px
             </label>
             <input
@@ -86,12 +86,12 @@ export default function CssGlassmorphismGenerator() {
               max={30}
               value={blur}
               onChange={(e) => setBlur(Number(e.target.value))}
-              className="w-full accent-sky-600"
+              className="w-full accent-primary"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">
               Background opacity: {bgAlpha.toFixed(2)}
             </label>
             <input
@@ -101,12 +101,12 @@ export default function CssGlassmorphismGenerator() {
               step={0.01}
               value={bgAlpha}
               onChange={(e) => setBgAlpha(Number(e.target.value))}
-              className="w-full accent-sky-600"
+              className="w-full accent-primary"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">
               Border opacity: {borderAlpha.toFixed(2)}
             </label>
             <input
@@ -116,16 +116,16 @@ export default function CssGlassmorphismGenerator() {
               step={0.01}
               value={borderAlpha}
               onChange={(e) => setBorderAlpha(Number(e.target.value))}
-              className="w-full accent-sky-600"
+              className="w-full accent-primary"
             />
           </div>
         </div>
       }
       result={
         <div>
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Live preview</p>
+          <p className="text-xs font-medium text-muted-foreground tracking-wide mb-2">Live preview</p>
           <div
-            className="relative rounded-xl overflow-hidden mb-4 border border-gray-200"
+            className="relative rounded-xl overflow-hidden mb-4 border border-border"
             style={{
               background:
                 "linear-gradient(135deg, #667eea 0%, #764ba2 40%, #f093fb 100%)",
@@ -156,8 +156,8 @@ export default function CssGlassmorphismGenerator() {
             />
             <div className="flex items-center justify-center py-10 px-6 relative">
               <div style={{ ...glassStyle, padding: "24px 32px", maxWidth: 280 }} className="text-center">
-                <p className="text-lg font-semibold text-white drop-shadow">Glassmorphism</p>
-                <p className="text-xs text-white/80 mt-1 drop-shadow">
+                <p className="text-lg font-semibold text-card-foreground drop-shadow">Glassmorphism</p>
+                <p className="text-xs text-card-foreground/80 mt-1 drop-shadow">
                   Frosted glass card with backdrop blur
                 </p>
               </div>

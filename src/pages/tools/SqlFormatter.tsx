@@ -108,7 +108,7 @@ export default function SqlFormatter() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <Database className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">SQL 格式化工具</h1>
@@ -117,11 +117,11 @@ export default function SqlFormatter() {
       toolbar={
         <>
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700">方言</label>
+            <label className="text-sm font-medium text-muted-foreground">方言</label>
             <select
               value={dialect}
               onChange={(e) => setDialect(e.target.value as Dialect)}
-              className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             >
               {DIALECTS.map((d) => (
                 <option key={d.value} value={d.value}>
@@ -132,11 +132,11 @@ export default function SqlFormatter() {
           </div>
 
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700">关键字</label>
+            <label className="text-sm font-medium text-muted-foreground">关键字</label>
             <select
               value={keywordCase}
               onChange={(e) => setKeywordCase(e.target.value as KeywordCase)}
-              className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             >
               {KEYWORD_CASES.map((k) => (
                 <option key={k.value} value={k.value}>
@@ -147,11 +147,11 @@ export default function SqlFormatter() {
           </div>
 
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700">缩进</label>
+            <label className="text-sm font-medium text-muted-foreground">缩进</label>
             <select
               value={indentSize}
               onChange={(e) => setIndentSize(Number(e.target.value))}
-              className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             >
               {INDENT_SIZES.map((n) => (
                 <option key={n} value={n}>
@@ -164,7 +164,7 @@ export default function SqlFormatter() {
           <button
             onClick={() => runFormat(false)}
             disabled={!canRun}
-            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50 hover:bg-blue-700"
+            className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50 hover:bg-primary"
           >
             <Wand2 className="h-4 w-4" />
             格式化
@@ -172,7 +172,7 @@ export default function SqlFormatter() {
           <button
             onClick={() => runFormat(true)}
             disabled={!canRun}
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50 hover:bg-gray-200"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50 hover:bg-border"
           >
             <Minimize2 className="h-4 w-4" />
             压缩
@@ -180,7 +180,7 @@ export default function SqlFormatter() {
           <button
             onClick={handleClear}
             disabled={!canRun && !output}
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50 hover:bg-gray-200"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50 hover:bg-border"
           >
             <Trash2 className="h-4 w-4" />
             清空
@@ -203,15 +203,15 @@ export default function SqlFormatter() {
           <button
             onClick={handleCopy}
             disabled={!output}
-            className="px-3 py-1.5 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-1.5 text-xs disabled:opacity-50 hover:bg-gray-200"
+            className="px-3 py-1.5 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-1.5 text-xs disabled:opacity-50 hover:bg-border"
           >
-            {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : <Copy className="h-3.5 w-3.5" />}
+            {copied ? <Check className="h-3.5 w-3.5 text-success" /> : <Copy className="h-3.5 w-3.5" />}
             {copied ? "已复制 ✓" : "复制"}
           </button>
           <button
             onClick={handleDownload}
             disabled={!output}
-            className="px-3 py-1.5 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-1.5 text-xs disabled:opacity-50 hover:bg-gray-200"
+            className="px-3 py-1.5 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-1.5 text-xs disabled:opacity-50 hover:bg-border"
           >
             <Download className="h-3.5 w-3.5" />
             下载
@@ -224,17 +224,17 @@ export default function SqlFormatter() {
           readOnly
           placeholder="点击“格式化”或“压缩”后在此显示结果"
           spellCheck={false}
-          className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-gray-50 focus:outline-none"
+          className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-muted focus:outline-none"
         />
       }
       footer={
         <>
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-sm text-red-700">
+            <div className="bg-destructive/10 border border-border rounded-lg p-4 text-sm text-destructive">
               {error}
             </div>
           )}
-          <p className="text-xs text-gray-500">数据仅在浏览器本地处理，不会上传到服务器。</p>
+          <p className="text-xs text-muted-foreground">数据仅在浏览器本地处理，不会上传到服务器。</p>
         </>
       }
     />

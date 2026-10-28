@@ -209,24 +209,20 @@ export default function CssLoaderGenerator() {
       title="CSS Loader Generator"
       subtitle="Create pure-CSS loading spinners and animations — no images or JavaScript required."
       icon={Loader2}
-      iconBgColor="bg-indigo-100"
-      iconColor="text-indigo-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["css loader", "loading spinner", "css animation", "spinner css"]}
       children={
       <div className="space-y-5">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Loader type</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">Loader type</label>
           <div className="grid grid-cols-2 gap-2">
             {LOADER_TYPES.map((t) => (
               <button
                 key={t.id}
                 type="button"
                 onClick={() => setType(t.id)}
-                className={`py-2 px-3 text-sm rounded-lg border transition-colors ${
-                  type === t.id
-                    ? "border-indigo-500 bg-indigo-50 text-indigo-700 font-medium"
-                    : "border-gray-300 text-gray-600 hover:border-gray-400"
-                }`}
+                className={`py-2 px-3 text-sm rounded-lg border transition-colors ${ type === t.id ? "border-border bg-primary/10 text-primary font-medium" : "border-border text-muted-foreground hover:border-border" }`}
               >
                 {t.label}
               </button>
@@ -235,19 +231,19 @@ export default function CssLoaderGenerator() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Size: {size}px</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">Size: {size}px</label>
           <input
             type="range"
             min={16}
             max={96}
             value={size}
             onChange={(e) => setSize(Number(e.target.value))}
-            className="w-full accent-indigo-600"
+            className="w-full accent-primary"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">
             Speed: {duration.toFixed(1)}s per cycle
           </label>
           <input
@@ -257,25 +253,25 @@ export default function CssLoaderGenerator() {
             step={0.1}
             value={duration}
             onChange={(e) => setDuration(Number(e.target.value))}
-            className="w-full accent-indigo-600"
+            className="w-full accent-primary"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Color</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">Color</label>
           <input
             type="color"
             value={color}
             onChange={(e) => setColor(e.target.value)}
-            className="h-10 w-20 rounded-lg border border-gray-300 cursor-pointer bg-white p-1"
+            className="h-10 w-20 rounded-lg border border-border cursor-pointer bg-card p-1"
           />
         </div>
       </div>
       }
       result={
       <div>
-        <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Live preview</p>
-        <div className="min-h-[140px] flex items-center justify-center rounded-lg border border-gray-200 bg-gray-50 mb-4 overflow-hidden">
+        <p className="text-xs font-medium text-muted-foreground tracking-wide mb-2">Live preview</p>
+        <div className="min-h-[140px] flex items-center justify-center rounded-lg border border-border bg-muted mb-4 overflow-hidden">
           <style>{css}</style>
           <div className="loader" aria-hidden="true">
             {Array.from({ length: children }, (_, i) => (

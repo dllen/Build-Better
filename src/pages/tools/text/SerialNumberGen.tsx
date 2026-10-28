@@ -32,7 +32,7 @@ export default function SerialNumberGen() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-stone-100 text-stone-600">
+          <div className="inline-flex p-2 rounded-lg bg-muted text-muted-foreground">
             <Hash className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">流水号生成</h1>
@@ -41,20 +41,20 @@ export default function SerialNumberGen() {
       toolbar={
         <div className="flex flex-wrap items-center gap-2">
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm w-24"
+            className="rounded-md border border-border px-3 py-2 text-sm w-24"
             placeholder="前缀"
             value={prefix}
             onChange={(e) => setPrefix(e.target.value)}
           />
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm w-20"
+            className="rounded-md border border-border px-3 py-2 text-sm w-20"
             type="number"
             min={0}
             value={start}
             onChange={(e) => setStart(parseInt(e.target.value) || 0)}
           />
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm w-20"
+            className="rounded-md border border-border px-3 py-2 text-sm w-20"
             type="number"
             min={1}
             max={20}
@@ -62,13 +62,13 @@ export default function SerialNumberGen() {
             onChange={(e) => setDigits(parseInt(e.target.value) || 1)}
           />
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm w-24"
+            className="rounded-md border border-border px-3 py-2 text-sm w-24"
             placeholder="后缀"
             value={suffix}
             onChange={(e) => setSuffix(e.target.value)}
           />
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm w-20"
+            className="rounded-md border border-border px-3 py-2 text-sm w-20"
             type="number"
             min={1}
             max={10000}
@@ -76,7 +76,7 @@ export default function SerialNumberGen() {
             onChange={(e) => setCount(parseInt(e.target.value) || 1)}
           />
           <select
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            className="rounded-md border border-border px-3 py-2 text-sm"
             value={separator}
             onChange={(e) => setSeparator(e.target.value)}
           >
@@ -85,24 +85,24 @@ export default function SerialNumberGen() {
             <option value=" ">空格</option>
           </select>
           <button
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-xs hover:bg-gray-50"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-xs hover:bg-muted"
             onClick={() => copy(result)}
             disabled={!result}
           >
             <ClipboardCopy className="h-3.5 w-3.5" /> 复制
-            {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : null}
+            {copied ? <Check className="h-3.5 w-3.5 text-success" /> : null}
           </button>
         </div>
       }
       inputLabel="参数配置"
       input={
-        <div className="h-full overflow-auto px-3 py-3 text-sm text-gray-500 space-y-2">
-          <div>前缀: <code className="text-gray-800">{prefix || "(无)"}</code></div>
-          <div>起始: <code className="text-gray-800">{start}</code></div>
-          <div>位数: <code className="text-gray-800">{digits}</code></div>
-          <div>后缀: <code className="text-gray-800">{suffix || "(无)"}</code></div>
-          <div>数量: <code className="text-gray-800">{count}</code></div>
-          <div className="pt-2 border-t text-xs text-gray-400">示例: {prefix}{String(start).padStart(digits, "0")}{suffix}</div>
+        <div className="h-full overflow-auto px-3 py-3 text-sm text-muted-foreground space-y-2">
+          <div>前缀: <code className="text-foreground">{prefix || "(无)"}</code></div>
+          <div>起始: <code className="text-foreground">{start}</code></div>
+          <div>位数: <code className="text-foreground">{digits}</code></div>
+          <div>后缀: <code className="text-foreground">{suffix || "(无)"}</code></div>
+          <div>数量: <code className="text-foreground">{count}</code></div>
+          <div className="pt-2 border-t text-xs text-muted-foreground">示例: {prefix}{String(start).padStart(digits, "0")}{suffix}</div>
         </div>
       }
       outputLabel="生成结果"

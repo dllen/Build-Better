@@ -34,17 +34,17 @@ export default function RobotsGenerator() {
       title="robots.txt Generator"
       subtitle="Build a robots.txt with presets and per-user-agent rules — allow, disallow, sitemap and crawl-delay."
       icon={Bot}
-      iconBgColor="bg-orange-100"
-      iconColor="text-orange-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["robots.txt generator", "robots txt", "crawler rules", "seo robots", "sitemap robots"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-xs text-gray-500 mb-2">Presets</label>
+            <label className="block text-xs text-muted-foreground mb-2">Presets</label>
             <div className="flex flex-wrap gap-2">
               {ROBOTS_PRESETS.map((p) => (
                 <button key={p.id} onClick={() => applyPreset(p.id)} title={p.description}
-                  className={`px-3 py-1.5 rounded-lg text-sm border ${activePreset === p.id ? "bg-orange-600 text-white border-orange-600" : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"}`}>
+                  className={`px-3 py-1.5 rounded-lg text-sm border ${activePreset === p.id ? "bg-primary text-primary-foreground border-border" : "bg-card text-muted-foreground border-border hover:bg-muted"}`}>
                   {p.label}
                 </button>
               ))}
@@ -52,62 +52,62 @@ export default function RobotsGenerator() {
           </div>
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-gray-700">User-agent rules</h3>
-              <button onClick={addRule} className="flex items-center gap-1.5 px-3 py-1.5 text-orange-600 hover:bg-orange-50 rounded-lg text-sm">
+              <h3 className="text-sm font-semibold text-muted-foreground">User-agent rules</h3>
+              <button onClick={addRule} className="flex items-center gap-1.5 px-3 py-1.5 text-primary hover:bg-primary/10 rounded-lg text-sm">
                 <Plus size={14} /> Add rule
               </button>
             </div>
             {rules.map((rule) => (
-              <div key={rule.id} className="p-3 border border-gray-200 rounded-lg space-y-2.5">
+              <div key={rule.id} className="p-3 border border-border rounded-lg space-y-2.5">
                 <div className="flex items-center gap-2">
                   <div className="flex-1">
-                    <label className="block text-xs text-gray-500 mb-1">User-agent</label>
+                    <label className="block text-xs text-muted-foreground mb-1">User-agent</label>
                     <input value={rule.userAgent} onChange={(e) => updateRule(rule.id, { userAgent: e.target.value })}
-                      placeholder="* or Googlebot" className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono" />
+                      placeholder="* or Googlebot" className="w-full px-3 py-2 border border-border rounded-lg text-sm font-mono" />
                   </div>
                   <button onClick={() => removeRule(rule.id)} disabled={rules.length === 1}
-                    className="mt-5 p-2 text-gray-400 hover:text-red-600 rounded-lg disabled:opacity-30" title="Remove">
+                    className="mt-5 p-2 text-muted-foreground hover:text-destructive rounded-lg disabled:opacity-30" title="Remove">
                     <Trash2 size={16} />
                   </button>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
-                  <div><label className="block text-xs text-gray-500 mb-1">Allow (one path/line)</label>
+                  <div><label className="block text-xs text-muted-foreground mb-1">Allow (one path/line)</label>
                     <textarea value={rule.allow.join("\n")} rows={3}
                       onChange={(e) => updateRule(rule.id, { allow: e.target.value.split("\n").filter(Boolean) })}
-                      placeholder={"/\n/blog/"} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono resize-y" /></div>
-                  <div><label className="block text-xs text-gray-500 mb-1">Disallow (one path/line)</label>
+                      placeholder={"/\n/blog/"} className="w-full px-3 py-2 border border-border rounded-lg text-sm font-mono resize-y" /></div>
+                  <div><label className="block text-xs text-muted-foreground mb-1">Disallow (one path/line)</label>
                     <textarea value={rule.disallow.join("\n")} rows={3}
                       onChange={(e) => updateRule(rule.id, { disallow: e.target.value.split("\n").filter(Boolean) })}
-                      placeholder={"/admin/\n/private/"} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono resize-y" /></div>
+                      placeholder={"/admin/\n/private/"} className="w-full px-3 py-2 border border-border rounded-lg text-sm font-mono resize-y" /></div>
                 </div>
               </div>
             ))}
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div><label className="block text-xs text-gray-500 mb-1">Sitemap URL</label>
+            <div><label className="block text-xs text-muted-foreground mb-1">Sitemap URL</label>
               <input value={sitemap} onChange={(e) => setSitemap(e.target.value)} placeholder="https://example.com/sitemap.xml"
-                className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm" /></div>
-            <div><label className="block text-xs text-gray-500 mb-1">Host (optional)</label>
+                className="w-full px-3 py-2.5 border border-border rounded-lg text-sm" /></div>
+            <div><label className="block text-xs text-muted-foreground mb-1">Host (optional)</label>
               <input value={host} onChange={(e) => setHost(e.target.value)} placeholder="example.com"
-                className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm" /></div>
-            <div><label className="block text-xs text-gray-500 mb-1">Crawl-delay</label>
+                className="w-full px-3 py-2.5 border border-border rounded-lg text-sm" /></div>
+            <div><label className="block text-xs text-muted-foreground mb-1">Crawl-delay</label>
               <input type="number" min={0} value={crawlDelay}
                 onChange={(e) => setCrawlDelay(e.target.value === "" ? "" : Number(e.target.value))}
-                placeholder="10" className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm" /></div>
+                placeholder="10" className="w-full px-3 py-2.5 border border-border rounded-lg text-sm" /></div>
           </div>
         </div>
       }
       result={
         <div>
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-sm font-semibold text-gray-700">Output</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground">Output</h3>
             <button onClick={handleCopy}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
+              className="flex items-center gap-1.5 px-3 py-1.5 text-muted-foreground hover:bg-muted rounded-lg text-sm">
               {copied ? <Check size={14} /> : <Copy size={14} />} {copied ? "Copied!" : "Copy"}
             </button>
           </div>
           <textarea readOnly value={output} rows={14}
-            className="w-full px-3 py-2.5 border border-gray-200 rounded-lg font-mono text-sm bg-gray-50" />
+            className="w-full px-3 py-2.5 border border-border rounded-lg font-mono text-sm bg-muted" />
         </div>
       }
     />

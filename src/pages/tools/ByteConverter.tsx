@@ -81,27 +81,27 @@ export default function ByteConverter() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-emerald-100 text-emerald-600">
+        <div className="inline-flex p-2 rounded-lg bg-success/10 text-success">
           <HardDrive className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Byte Converter</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="space-y-4 bg-white rounded-lg border border-gray-200 p-4">
+        <div className="space-y-4 bg-card rounded-lg border border-border p-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">输入值</label>
+            <label className="text-sm font-medium text-muted-foreground">输入值</label>
             <input
-              className="w-full rounded-md border border-gray-300 px-3 py-2 font-mono"
+              className="w-full rounded-md border border-border px-3 py-2 font-mono"
               placeholder="1"
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
           </div>
           <div className="space-y-1">
-            <label className="text-sm font-medium text-gray-700">输入单位</label>
+            <label className="text-sm font-medium text-muted-foreground">输入单位</label>
             <select
-              className="w-full rounded-md border border-gray-300 px-3 py-2"
+              className="w-full rounded-md border border-border px-3 py-2"
               value={unitIdx}
               onChange={(e) => setUnitIdx(Number(e.target.value))}
             >
@@ -113,14 +113,14 @@ export default function ByteConverter() {
             </select>
           </div>
           {error && (
-            <div className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">{error}</div>
+            <div className="text-sm text-destructive bg-destructive/10 rounded-lg px-3 py-2">{error}</div>
           )}
         </div>
 
-        <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-sm font-medium text-gray-700 mb-3">转换结果</div>
+        <div className="lg:col-span-2 bg-card rounded-lg border border-border p-4">
+          <div className="text-sm font-medium text-muted-foreground mb-3">转换结果</div>
           {results.length === 0 ? (
-            <div className="text-sm text-gray-400">输入数值查看所有单位转换</div>
+            <div className="text-sm text-muted-foreground">输入数值查看所有单位转换</div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
               {results.map((r) => {
@@ -128,16 +128,14 @@ export default function ByteConverter() {
                 return (
                   <div
                     key={r.abbr}
-                    className={`rounded-md border px-3 py-2 flex items-center justify-between gap-2 ${
-                      isSource ? "border-emerald-300 bg-emerald-50" : "border-gray-200"
-                    }`}
+                    className={`rounded-md border px-3 py-2 flex items-center justify-between gap-2 ${ isSource ? "border-border bg-success/10" : "border-border" }`}
                   >
                     <div>
-                      <div className="text-xs text-gray-500">{r.name}</div>
+                      <div className="text-xs text-muted-foreground">{r.name}</div>
                       <div className="font-mono text-sm font-medium break-all">{r.value}</div>
                     </div>
                     <button
-                      className="text-gray-400 hover:text-emerald-600 transition-colors flex-shrink-0"
+                      className="text-muted-foreground hover:text-success transition-colors flex-shrink-0"
                       title={`Copy ${r.abbr}`}
                       onClick={() => copy(r.value)}
                     >

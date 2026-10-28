@@ -8,11 +8,11 @@ interface StructureTreeProps {
 }
 
 const TYPE_ICONS: Record<string, string> = {
-  object: "{ }", array: "[ ]", string: "T", number: "#", boolean: "⚡", null: "∅",
+  object: "{ }", array: "[ ]", string: "T", number: "#", boolean: "T/F", null: "∅",
 };
 const TYPE_COLORS: Record<string, string> = {
-  object: "text-cyan-400", array: "text-amber-400", string: "text-emerald-400",
-  number: "text-blue-400", boolean: "text-purple-400", null: "text-muted-foreground",
+  object: "text-info", array: "text-primary", string: "text-success",
+  number: "text-primary", boolean: "text-primary", null: "text-muted-foreground",
 };
 
 function TreeNode({ node, depth, onNavigate, searchTerm }: {
@@ -27,9 +27,7 @@ function TreeNode({ node, depth, onNavigate, searchTerm }: {
   return (
     <div>
       <div
-        className={`flex items-center gap-1 py-1 px-1.5 rounded cursor-pointer hover:bg-muted/80 transition-colors text-xs ${
-          matchesSearch && searchTerm ? "bg-amber-500/10 ring-1 ring-amber-500/20" : ""
-        }`}
+        className={`flex items-center gap-1 py-1 px-1.5 rounded cursor-pointer hover:bg-muted/80 transition-colors text-xs ${ matchesSearch && searchTerm ? "bg-primary/10 ring-1 ring-ring/20" : "" }`}
         style={{ paddingLeft: `${depth * 12 + 4}px` }}
         onClick={() => { if (hasChildren) setExpanded(!expanded); onNavigate?.(node.path); }}
       >

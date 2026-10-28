@@ -102,46 +102,46 @@ export default function TokenHolderAnalyzer() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-purple-100 text-purple-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Users className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">代币持有者分析</h1>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+      <div className="bg-card rounded-lg border border-border p-4 space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">合约地址</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-2">合约地址</label>
             <textarea
               value={address}
               onChange={(e) => { setAddress(e.target.value); setHolders([]); setError(null); }}
               placeholder="输入 ERC-20 合约地址"
-              className="w-full h-20 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono text-sm resize-none"
+              className="w-full h-20 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm resize-none"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">查询数量（1-50）</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-2">查询数量（1-50）</label>
             <input
               type="number"
               min={1}
               max={50}
               value={holderCount}
               onChange={(e) => setHolderCount(Math.min(50, Math.max(1, parseInt(e.target.value) || 1)))}
-              className="w-full h-20 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono text-sm"
+              className="w-full h-20 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm"
             />
           </div>
         </div>
 
         <div className="flex flex-wrap gap-3">
           <button
-            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={fetchHolders}
             disabled={loading || !address.trim()}
           >
             {loading ? "查询中..." : "查询持有者"}
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground disabled:opacity-50"
             onClick={clear}
             disabled={!address && !holders.length}
           >
@@ -150,26 +150,26 @@ export default function TokenHolderAnalyzer() {
         </div>
 
         {error && (
-          <div className="text-sm text-red-600 bg-red-50 rounded-md px-3 py-2">{error}</div>
+          <div className="text-sm text-destructive bg-destructive/10 rounded-md px-3 py-2">{error}</div>
         )}
 
         {holders.length > 0 && (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-200 text-left">
-                  <th className="py-2 pr-4 text-gray-500 font-medium">#</th>
-                  <th className="py-2 pr-4 text-gray-500 font-medium">地址</th>
-                  <th className="py-2 pr-4 text-gray-500 font-medium text-right">余额</th>
-                  <th className="py-2 text-gray-500 font-medium text-right">占比</th>
+                <tr className="border-b border-border text-left">
+                  <th className="py-2 pr-4 text-muted-foreground font-medium">#</th>
+                  <th className="py-2 pr-4 text-muted-foreground font-medium">地址</th>
+                  <th className="py-2 pr-4 text-muted-foreground font-medium text-right">余额</th>
+                  <th className="py-2 text-muted-foreground font-medium text-right">占比</th>
                 </tr>
               </thead>
               <tbody>
                 {holders.map((h) => (
-                  <tr key={h.address} className="border-b border-gray-100 hover:bg-gray-50">
-                    <td className="py-2 pr-4 text-gray-500">{h.rank}</td>
+                  <tr key={h.address} className="border-b border-border hover:bg-muted">
+                    <td className="py-2 pr-4 text-muted-foreground">{h.rank}</td>
                     <td className="py-2 pr-4 font-mono">
-                      <span className="text-xs">{h.address.slice(0, 10)}...{h.address.slice(-6)}</span>
+                      <span className="text-xs">{h.address.slice(0, 10)}…{h.address.slice(-6)}</span>
                     </td>
                     <td className="py-2 pr-4 font-mono text-right">{h.balance}</td>
                     <td className="py-2 font-mono text-right">{h.percentage}</td>
@@ -180,7 +180,7 @@ export default function TokenHolderAnalyzer() {
           </div>
         )}
 
-        <div className="text-xs text-gray-500">
+        <div className="text-xs text-muted-foreground">
           数据来源：Etherscan API。注意：此方法基于转账记录估算持有者，实际余额可能因未转账而不同。请求直接从浏览器发起，不会经过 Build-Better 服务器。
         </div>
       </div>

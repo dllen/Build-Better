@@ -38,13 +38,13 @@ export default function CountryNameGenerator() {
       title="Country Name Generator"
       subtitle="Generate random country names with flags, capitals, and regions."
       icon={Globe}
-      iconBgColor="bg-blue-100"
-      iconColor="text-blue-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["country", "random", "flag", "capital", "generator"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">
               Number of countries: {count}
             </label>
             <input
@@ -53,9 +53,9 @@ export default function CountryNameGenerator() {
               max={250}
               value={count}
               onChange={(e) => setCount(Number(e.target.value))}
-              className="w-full accent-blue-600"
+              className="w-full accent-primary"
             />
-            <div className="flex justify-between text-xs text-gray-400 mt-1">
+            <div className="flex justify-between text-xs text-muted-foreground mt-1">
               <span>1</span>
               <span>250</span>
             </div>
@@ -63,7 +63,7 @@ export default function CountryNameGenerator() {
 
           <button
             onClick={() => setTrigger((t) => t + 1)}
-            className="w-full py-2.5 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+            className="w-full py-2.5 px-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary transition-colors text-sm font-medium"
           >
             Regenerate
           </button>
@@ -71,16 +71,16 @@ export default function CountryNameGenerator() {
       }
       result={
         <div className="space-y-4">
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+          <p className="text-xs font-medium text-muted-foreground tracking-wide">
             Generated countries
           </p>
-          <div className="divide-y divide-gray-100 max-h-96 overflow-auto rounded-lg border border-gray-200">
+          <div className="divide-y divide-border max-h-96 overflow-auto rounded-lg border border-border">
             {selected.map((c) => (
-              <div key={c.code} className="flex items-center gap-3 p-3 bg-white">
+              <div key={c.code} className="flex items-center gap-3 p-3 bg-card">
                 <span className="text-2xl">{flagEmoji(c.code)}</span>
                 <div className="min-w-0">
-                  <p className="font-medium text-gray-900 truncate">{c.name}</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="font-medium text-foreground truncate">{c.name}</p>
+                  <p className="text-xs text-muted-foreground">
                     {c.capital} • {c.region} • {c.subregion}
                   </p>
                 </div>
@@ -89,7 +89,7 @@ export default function CountryNameGenerator() {
           </div>
           <button
             onClick={handleCopy}
-            className="w-full py-2.5 px-4 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm font-medium"
+            className="w-full py-2.5 px-4 border border-border text-primary rounded-lg hover:bg-primary/10 transition-colors text-sm font-medium"
           >
             Copy all country names
           </button>

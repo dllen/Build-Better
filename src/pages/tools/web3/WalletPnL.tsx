@@ -121,33 +121,33 @@ export default function WalletPnL() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-emerald-100 text-emerald-600">
+        <div className="inline-flex p-2 rounded-lg bg-success/10 text-success">
           <Wallet className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">钱包资产查询</h1>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+      <div className="bg-card rounded-lg border border-border p-4 space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">钱包地址</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">钱包地址</label>
           <textarea
             value={address}
             onChange={(e) => { setAddress(e.target.value); setTokens([]); setError(null); }}
             placeholder="输入以太坊钱包地址"
-            className="w-full h-20 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono text-sm resize-none"
+            className="w-full h-20 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm resize-none"
           />
         </div>
 
         <div className="flex flex-wrap gap-3">
           <button
-            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={fetchWallet}
             disabled={loading || !address.trim()}
           >
             {loading ? "查询中..." : "查询资产"}
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground disabled:opacity-50"
             onClick={clear}
             disabled={!address && tokens.length === 0}
           >
@@ -156,27 +156,27 @@ export default function WalletPnL() {
         </div>
 
         {error && (
-          <div className="text-sm text-red-600 bg-red-50 rounded-md px-3 py-2">{error}</div>
+          <div className="text-sm text-destructive bg-destructive/10 rounded-md px-3 py-2">{error}</div>
         )}
 
         {/* Total Value Card */}
         {totalValue > 0 && (
-          <div className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-lg border border-emerald-200 p-6 text-center">
-            <div className="text-sm text-gray-500 mb-1">总资产估值</div>
-            <div className="text-3xl font-bold text-emerald-700">${totalValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+          <div className="bg-gradient-to-r from-primary/20 to-primary/20 rounded-lg border border-border p-6 text-center">
+            <div className="text-sm text-muted-foreground mb-1">总资产估值</div>
+            <div className="text-3xl font-bold text-success">${totalValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
           </div>
         )}
 
         {/* ETH Balance */}
         {ethBalance > 0 && (
-          <div className="bg-gray-50 rounded-md border border-gray-200 p-4 space-y-2">
+          <div className="bg-muted rounded-md border border-border p-4 space-y-2">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <span className="text-lg font-bold">Ξ ETH</span>
               </div>
               <div className="text-right">
                 <div className="font-mono font-medium">{ethBalance.toFixed(6)} ETH</div>
-                <div className="text-sm text-gray-500">≈ ${(ethBalance * ethPrice).toFixed(2)}</div>
+                <div className="text-sm text-muted-foreground">≈ ${(ethBalance * ethPrice).toFixed(2)}</div>
               </div>
             </div>
           </div>
@@ -187,18 +187,18 @@ export default function WalletPnL() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-200 text-left">
-                  <th className="py-2 pr-4 text-gray-500 font-medium">代币</th>
-                  <th className="py-2 pr-4 text-gray-500 font-medium text-right">余额</th>
-                  <th className="py-2 text-gray-500 font-medium text-right">价值 (USD)</th>
+                <tr className="border-b border-border text-left">
+                  <th className="py-2 pr-4 text-muted-foreground font-medium">代币</th>
+                  <th className="py-2 pr-4 text-muted-foreground font-medium text-right">余额</th>
+                  <th className="py-2 text-muted-foreground font-medium text-right">价值 (USD)</th>
                 </tr>
               </thead>
               <tbody>
                 {tokens.map((t) => (
-                  <tr key={t.contractAddress} className="border-b border-gray-100 hover:bg-gray-50">
+                  <tr key={t.contractAddress} className="border-b border-border hover:bg-muted">
                     <td className="py-2 pr-4 font-medium">{t.symbol}</td>
                     <td className="py-2 pr-4 font-mono text-right">{t.balance}</td>
-                    <td className="py-2 font-mono text-right text-gray-500">
+                    <td className="py-2 font-mono text-right text-muted-foreground">
                       {t.usdValue > 0 ? `$${t.usdValue.toFixed(2)}` : "—"}
                     </td>
                   </tr>
@@ -208,7 +208,7 @@ export default function WalletPnL() {
           </div>
         )}
 
-        <div className="text-xs text-gray-500">
+        <div className="text-xs text-muted-foreground">
           数据来源：Etherscan API + CoinGecko。ETH 实时价格来自 CoinGecko。ERC-20 价格需要额外查询，暂时显示余额。请求直接从浏览器发起，不会经过 Build-Better 服务器。
         </div>
       </div>

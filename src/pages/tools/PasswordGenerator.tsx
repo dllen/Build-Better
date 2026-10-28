@@ -122,16 +122,16 @@ export default function PasswordGenerator() {
       {toolSEOContent["password-generator"] && <ToolPageSEO data={toolSEOContent["password-generator"]} />}
       <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-purple-100 text-purple-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Lock className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Password Generator</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="space-y-4 bg-white rounded-lg border border-gray-200 p-4">
+        <div className="space-y-4 bg-card rounded-lg border border-border p-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Length: {length}</label>
+            <label className="text-sm font-medium text-muted-foreground">Length: {length}</label>
             <input
               type="range"
               min={6}
@@ -184,7 +184,7 @@ export default function PasswordGenerator() {
             </label>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 text-xs text-gray-600">
+          <div className="grid grid-cols-2 gap-3 text-xs text-muted-foreground">
             <div>Pool size: {pool.length}</div>
             <div>
               Entropy: {entropyBits} bits ({strength})
@@ -193,46 +193,46 @@ export default function PasswordGenerator() {
 
           <div className="flex gap-3">
             <button
-              className="px-4 py-2 rounded-md bg-blue-600 text-white disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-primary text-primary-foreground disabled:opacity-50"
               disabled={!pool.length}
               onClick={generatePassword}
             >
               Generate
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
               onClick={copy}
               disabled={!password}
             >
-              {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+              {copied ? <Check className="h-4 w-4 text-success" /> : <Copy className="h-4 w-4" />}
               {copied ? "Copied" : "Copy"}
             </button>
           </div>
         </div>
 
-        <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200 p-4">
+        <div className="lg:col-span-2 bg-card rounded-lg border border-border p-4">
           <div className="font-medium mb-2">Result</div>
           <div className="font-mono text-lg break-all">{password || ""}</div>
         </div>
       </div>
-      <div className="inline-flex items-center gap-1 mt-2 mb-4 text-xs text-gray-500">
+      <div className="inline-flex items-center gap-1 mt-2 mb-4 text-xs text-muted-foreground">
         <Shield className="h-3 w-3" />
         数据仅在浏览器本地处理，不会上传到服务器。
       </div>
-      <div className="mt-8 p-6 bg-white rounded-xl border border-gray-200">
+      <div className="mt-8 p-6 bg-card rounded-xl border border-border">
         <h2 className="text-lg font-semibold mb-4">Related Tools</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          <Link to="/uuid-generator" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">UUID 生成器</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/uuid-generator" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">UUID 生成器</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
-          <Link to="/bcrypt" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">Bcrypt 哈希</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/bcrypt" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">Bcrypt 哈希</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
-          <Link to="/hash-tools" className="flex items-center gap-2 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 hover:border-blue-200 transition-colors">
-            <span className="text-sm font-medium text-gray-700">Hash Tools</span>
-            <ArrowRight className="h-3 w-3 text-gray-400 ml-auto" />
+          <Link to="/hash-tools" className="flex items-center gap-2 p-3 rounded-lg border border-border hover:bg-muted hover:border-border transition-colors">
+            <span className="text-sm font-medium text-muted-foreground">Hash Tools</span>
+            <ArrowRight className="h-3 w-3 text-muted-foreground ml-auto" />
           </Link>
         </div>
       </div>

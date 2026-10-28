@@ -23,9 +23,7 @@ export function TabBar({ tabs, activeTabId, onSelectTab, onCloseTab, onAddTab, o
             <div
               key={tab.id}
               onClick={() => onSelectTab(tab.id)}
-              className={`group flex items-center gap-1.5 px-3 py-2 text-xs cursor-pointer border-r border-border/30 transition-colors shrink-0 ${
-                isActive ? "bg-card border-b-2 border-b-cyan-400 -mb-px" : "hover:bg-muted/50"
-              }`}
+              className={`group flex items-center gap-1.5 px-3 py-2 text-xs cursor-pointer border-r border-border/30 transition-colors shrink-0 ${ isActive ? "bg-card border-b-2 border-b-cyan-400 -mb-px" : "hover:bg-muted/50" }`}
             >
               <span className={`font-mono font-semibold text-[10px] ${methodColor}`}>
                 {tab.method}
@@ -44,14 +42,14 @@ export function TabBar({ tabs, activeTabId, onSelectTab, onCloseTab, onAddTab, o
                 </span>
               )}
               {tab.isLoading && (
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-primary/10 animate-pulse" />
               )}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   onCloseTab(tab.id);
                 }}
-                className="p-0.5 rounded opacity-0 group-hover:opacity-100 hover:bg-secondary/80 transition-all ml-1"
+                className="p-0.5 rounded opacity-0 group-hover:opacity-100 hover:bg-secondary/80 transition-colors transition-opacity ml-1"
               >
                 <X className="w-3 h-3 text-muted-foreground" />
               </button>

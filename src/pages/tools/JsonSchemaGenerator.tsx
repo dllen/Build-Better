@@ -196,7 +196,7 @@ export default function JsonSchemaGenerator() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-violet-100 text-violet-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <FileCode2 className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">JSON Schema 生成器</h1>
@@ -230,7 +230,7 @@ export default function JsonSchemaGenerator() {
           </label>
           <div className="flex flex-wrap gap-3">
             <button
-              className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
               onClick={generate}
               disabled={!inputText.trim() || loading}
             >
@@ -238,15 +238,15 @@ export default function JsonSchemaGenerator() {
               生成
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
               onClick={copy}
               disabled={!outputSchema}
             >
-              {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+              {copied ? <Check className="h-4 w-4 text-success" /> : <Copy className="h-4 w-4" />}
               {copied ? "已复制" : "复制"}
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
               onClick={download}
               disabled={!outputSchema}
             >
@@ -254,7 +254,7 @@ export default function JsonSchemaGenerator() {
               下载
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2"
               onClick={clear}
             >
               <Trash2 className="h-4 w-4" />
@@ -275,21 +275,21 @@ export default function JsonSchemaGenerator() {
       outputLabel="生成的 JSON Schema"
       output={
         outputSchema ? (
-          <pre className="h-full overflow-auto px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words bg-gray-50">
+          <pre className="h-full overflow-auto px-3 py-2 font-mono text-sm whitespace-pre-wrap break-words bg-muted">
             {outputSchema}
           </pre>
         ) : (
-          <div className="px-3 py-2 text-sm text-gray-500">点击"生成"按钮将 JSON 样本转换为 JSON Schema (draft-07)</div>
+          <div className="px-3 py-2 text-sm text-muted-foreground">点击"生成"按钮将 JSON 样本转换为 JSON Schema (draft-07)</div>
         )
       }
       footer={
         <>
           {error && (
-            <div className="text-sm text-red-600 whitespace-pre-wrap bg-red-50 rounded-md p-3 border border-red-200">
+            <div className="text-sm text-destructive whitespace-pre-wrap bg-destructive/10 rounded-md p-3 border border-border">
               {error}
             </div>
           )}
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-muted-foreground">
             数据仅在浏览器本地处理，不会上传到服务器。
           </p>
         </>

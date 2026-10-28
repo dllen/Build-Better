@@ -46,10 +46,10 @@ export default function SslCertificateChecker() {
   }, [domain]);
 
   const daysColor = (days: number) => {
-    if (days < 0) return "text-red-600";
-    if (days < 30) return "text-orange-500";
-    if (days < 90) return "text-yellow-600";
-    return "text-green-600";
+    if (days < 0) return "text-destructive";
+    if (days < 30) return "text-primary";
+    if (days < 90) return "text-primary";
+    return "text-success";
   };
 
   return (
@@ -57,38 +57,38 @@ export default function SslCertificateChecker() {
       title="SSL Certificate Checker"
       subtitle="Check SSL/TLS certificate details and expiry for any domain."
       icon={Shield}
-      iconBgColor="bg-green-100"
-      iconColor="text-green-600"
+      iconBgColor="bg-success/10"
+      iconColor="text-success"
       keywords={["ssl checker", "certificate checker", "ssl expiry", "tls certificate", "https check"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Domain</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">Domain</label>
             <input
               type="text"
               value={domain}
               onChange={(e) => setDomain(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && checkCert()}
               placeholder="example.com"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg font-mono text-lg focus:ring-2 focus:ring-green-500"
+              className="w-full px-4 py-3 border border-border rounded-lg font-mono text-lg focus:ring-2 focus:ring-ring"
             />
-            <p className="text-xs text-gray-400 mt-1">Enter domain without https:// prefix</p>
+            <p className="text-xs text-muted-foreground mt-1">Enter domain without https:// prefix</p>
           </div>
           <button
             onClick={checkCert}
             disabled={!domain.trim() || loading}
-            className="w-full flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white py-2.5 rounded-lg font-medium transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2 bg-success hover:bg-success text-success-foreground py-2.5 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Search className="h-5 w-5" />}
             {loading ? "Checking..." : "Check Certificate"}
           </button>
           {error && (
-            <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm flex items-start gap-2">
+            <div className="p-3 rounded-lg bg-destructive/10 border border-border text-destructive text-sm flex items-start gap-2">
               <AlertTriangle className="h-4 w-4 mt-0.5 flex-shrink-0" />
               <span>{error}</span>
             </div>
           )}
-          <div className="text-xs text-gray-400">
+          <div className="text-xs text-muted-foreground">
             Powered by server-side TLS connection — no external API dependency.
           </div>
         </div>
@@ -100,17 +100,17 @@ export default function SslCertificateChecker() {
               <div className={`text-3xl font-bold ${daysColor(cert.daysRemaining)}`}>
                 {cert.daysRemaining < 0 ? "EXPIRED" : cert.daysRemaining}
               </div>
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-muted-foreground">
                 {cert.daysRemaining < 0 ? `expired ${Math.abs(cert.daysRemaining)} days ago` : "days remaining"}
               </div>
             </div>
             {cert.isExpired && (
-              <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm">
+              <div className="p-3 rounded-lg bg-destructive/10 border border-border text-destructive text-sm">
                 ⚠ This certificate has expired! Renew immediately.
               </div>
             )}
             {!cert.isExpired && cert.daysRemaining < 30 && (
-              <div className="p-3 rounded-lg bg-amber-50 border border-amber-200 text-amber-700 text-sm">
+              <div className="p-3 rounded-lg bg-primary/10 border border-border text-primary text-sm">
                 ⚠ Certificate expires soon — consider renewing.
               </div>
             )}
@@ -125,17 +125,17 @@ export default function SslCertificateChecker() {
                 cert.cipher ? { label: "Cipher", value: cert.cipher } : null,
               ].filter(Boolean).map(({ label, value }) => (
                 <div key={label} className="flex items-start justify-between gap-2 text-sm">
-                  <span className="text-gray-500 flex-shrink-0">{label}</span>
-                  <span className="text-gray-800 font-mono text-right break-all">{value}</span>
+                  <span className="text-muted-foreground flex-shrink-0">{label}</span>
+                  <span className="text-foreground font-mono text-right break-all">{value}</span>
                 </div>
               ))}
             </div>
             {cert.sans.length > 0 && (
               <div>
-                <div className="text-xs font-medium text-gray-500 mb-1">Subject Alt Names</div>
+                <div className="text-xs font-medium text-muted-foreground mb-1">Subject Alt Names</div>
                 <div className="flex flex-wrap gap-1">
                   {cert.sans.map((san) => (
-                    <span key={san} className="px-2 py-0.5 bg-gray-100 rounded text-xs font-mono text-gray-700">
+                    <span key={san} className="px-2 py-0.5 bg-muted rounded text-xs font-mono text-muted-foreground">
                       {san}
                     </span>
                   ))}
@@ -146,13 +146,13 @@ export default function SslCertificateChecker() {
               href={`https://www.ssllabs.com/ssltest/analyze.html?d=${domain}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-sm text-green-600 hover:underline"
+              className="inline-flex items-center gap-1 text-sm text-success hover:underline"
             >
               Full analysis on SSL Labs <ExternalLink className="h-3.5 w-3.5" />
             </a>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center text-gray-400 text-sm py-8">
+          <div className="flex flex-col items-center justify-center text-muted-foreground text-sm py-8">
             <Shield className="h-12 w-12 mb-3 opacity-30" />
             <p>Enter a domain and click Check to see certificate details.</p>
           </div>

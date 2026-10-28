@@ -188,26 +188,26 @@ export default function PacVim() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-teal-100 text-teal-600">
+        <div className="inline-flex p-2 rounded-lg bg-accent/10 text-primary">
           <Keyboard className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">PacVim</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200 p-4">
+        <div className="lg:col-span-2 bg-card rounded-lg border border-border p-4">
           <div className="flex items-center justify-between mb-4">
             <div className="font-medium">{level.name}</div>
             <div className="flex items-center gap-2">
               {open ? (
-                <span className="inline-flex items-center gap-1 text-green-600 text-sm">
+                <span className="inline-flex items-center gap-1 text-success text-sm">
                   <Check className="h-4 w-4" /> Exit Open
                 </span>
               ) : (
-                <span className="text-gray-500 text-sm">Collect sequence to open</span>
+                <span className="text-muted-foreground text-sm">Collect sequence to open</span>
               )}
               <button
-                className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm hover:bg-muted transition-colors"
                 onClick={resetLevel}
               >
                 <RotateCcw className="h-4 w-4" /> Reset
@@ -215,7 +215,7 @@ export default function PacVim() {
             </div>
           </div>
 
-          <div className="inline-block bg-gray-50 rounded-md border border-gray-200 p-2">
+          <div className="inline-block bg-muted rounded-md border border-border p-2">
             <div
               className="grid"
               style={{
@@ -232,7 +232,7 @@ export default function PacVim() {
                     return (
                       <div
                         key={`${r}-${c}`}
-                        className="w-7 h-7 rounded bg-blue-500 text-white flex items-center justify-center"
+                        className="w-7 h-7 rounded bg-accent0 text-white flex items-center justify-center"
                       >
                         @
                       </div>
@@ -250,7 +250,7 @@ export default function PacVim() {
                     return (
                       <div
                         key={`${r}-${c}`}
-                        className={`${base} bg-red-100 text-red-600 border border-red-200`}
+                        className={`${base} bg-destructive/10 text-destructive border border-border`}
                       >
                         !
                       </div>
@@ -259,7 +259,7 @@ export default function PacVim() {
                     return (
                       <div
                         key={`${r}-${c}`}
-                        className={`${base} ${open ? "bg-green-100 text-green-700 border border-green-200" : "bg-yellow-100 text-yellow-700 border border-yellow-200"}`}
+                        className={`${base} ${open ? "bg-success/10 text-ok border border-border" : "bg-accent/10 text-primary border border-border"}`}
                       >
                         {open ? "E" : "X"}
                       </div>
@@ -267,7 +267,7 @@ export default function PacVim() {
                   return (
                     <div
                       key={`${r}-${c}`}
-                      className={`${base} bg-indigo-100 text-indigo-700 border border-indigo-200`}
+                      className={`${base} bg-cool/10 text-cool border border-border`}
                     >
                       {cell.ch}
                     </div>
@@ -278,10 +278,10 @@ export default function PacVim() {
           </div>
 
           {won && (
-            <div className="mt-4 rounded-md border border-green-200 bg-green-50 p-3 text-green-700 text-sm flex items-center justify-between">
+            <div className="mt-4 rounded-md border border-border bg-success/10 p-3 text-foreground text-sm flex items-center justify-between">
               <div>All levels complete</div>
               <button
-                className="inline-flex items-center gap-2 px-3 py-2 bg-teal-600 text-white rounded-md text-sm"
+                className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm transition-colors hover:bg-primary/90"
                 onClick={() => setLevelIndex(0)}
               >
                 <Play className="h-4 w-4" /> Replay
@@ -290,19 +290,19 @@ export default function PacVim() {
           )}
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">Sequence</div>
           <div className="flex flex-wrap gap-2">
             {level.sequence.map((ch, i) => (
               <div
                 key={i}
-                className={`px-2 py-1 rounded-md border text-sm font-mono ${seqState[i] === "done" ? "bg-green-100 text-green-700 border-green-200" : seqState[i] === "next" ? "bg-blue-100 text-blue-700 border-blue-200" : "bg-gray-100 text-gray-700 border-gray-200"}`}
+                className={`px-2 py-1 rounded-md border text-sm font-mono ${seqState[i] === "done" ? "bg-success/10 text-success border-success/30" : seqState[i] === "next" ? "bg-accent/10 text-primary border-primary/30" : "bg-muted text-ink-2 border-border"}`}
               >
                 {ch}
               </div>
             ))}
           </div>
-          <div className="space-y-1 text-sm text-gray-600">
+          <div className="space-y-1 text-sm text-ink-2">
             <div>移动：h j k l 或方向键</div>
             <div>收集顺序：按顺序踩到字符方块</div>
             <div>门：收集完成后出口开放</div>

@@ -99,7 +99,7 @@ export default function LinkMatch() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-pink-100 text-pink-600">
+        <div className="inline-flex p-2 rounded-lg bg-accent/10 text-primary">
           <Link2 className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Link Match</h1>
@@ -107,9 +107,9 @@ export default function LinkMatch() {
 
       <div className="flex flex-wrap items-center gap-4">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-gray-700">Difficulty:</span>
+          <span className="text-sm font-medium text-ink-2">Difficulty:</span>
           <select
-            className="rounded-md border border-gray-300 px-3 py-1.5 text-sm"
+            className="rounded-md border border-border bg-muted px-3 py-1.5 text-sm"
             value={difficulty}
             onChange={(e) => handleDifficultyChange(e.target.value as Difficulty)}
           >
@@ -120,21 +120,21 @@ export default function LinkMatch() {
             ))}
           </select>
         </div>
-        <div className="text-sm text-gray-600">Remaining: {remaining}</div>
+        <div className="text-sm text-ink-2">Remaining: {remaining}</div>
         <button
-          className="px-3 py-2 bg-blue-600 text-white rounded-md flex items-center gap-2 text-sm"
+          className="px-3 py-2 bg-primary text-primary-foreground rounded-md flex items-center gap-2 text-sm transition-colors hover:bg-primary/90"
           onClick={() => reset()}
         >
           <RotateCcw className="h-4 w-4" /> Reset
         </button>
         <button
-          className="px-3 py-2 bg-amber-500 text-white rounded-md flex items-center gap-2 text-sm hover:bg-amber-600 transition-colors"
+          className="px-3 py-2 bg-accent text-accent-foreground rounded-md flex items-center gap-2 text-sm hover:bg-accent/90 transition-colors"
           onClick={handleHint}
         >
           <Lightbulb className="h-4 w-4" /> Hint
         </button>
         <button
-          className="px-3 py-2 bg-gray-100 text-gray-700 rounded-md flex items-center gap-2 text-sm hover:bg-gray-200 transition-colors"
+          className="px-3 py-2 bg-muted text-ink-2 rounded-md flex items-center gap-2 text-sm hover:bg-accent transition-colors"
           onClick={() => setShowRules(!showRules)}
         >
           <Info className="h-4 w-4" /> Rules
@@ -142,15 +142,15 @@ export default function LinkMatch() {
       </div>
 
       {showRules && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 relative">
+        <div className="bg-accent/10 border border-border rounded-lg p-4 relative">
           <button
             onClick={() => setShowRules(false)}
-            className="absolute top-2 right-2 text-blue-400 hover:text-blue-600"
+            className="absolute top-2 right-2 text-muted-foreground hover:text-foreground transition-colors"
           >
             <X className="h-5 w-5" />
           </button>
-          <h3 className="font-semibold text-blue-900 mb-2">How to Play</h3>
-          <ul className="list-disc list-inside space-y-1 text-sm text-blue-800">
+          <h3 className="font-semibold text-foreground mb-2">How to Play</h3>
+          <ul className="list-disc list-inside space-y-1 text-sm text-ink-2">
             <li>Connect two identical tiles to remove them from the board.</li>
             <li>
               The connecting line between two tiles cannot have more than <strong>two turns</strong>{" "}
@@ -164,7 +164,7 @@ export default function LinkMatch() {
 
       <div className="overflow-auto pb-4">
         <div
-          className="inline-grid bg-gray-100 p-1 rounded-md border border-gray-200"
+          className="inline-grid bg-muted p-1 rounded-md border border-border"
           style={{
             gridTemplateColumns: `repeat(${cols}, 36px)`,
             gridTemplateRows: `repeat(${rows}, 36px)`,
@@ -173,19 +173,19 @@ export default function LinkMatch() {
           {grid.map((row, r) =>
             row.map((cell, c) => {
               const base =
-                "w-[34px] h-[34px] m-[1px] rounded text-sm font-bold flex items-center justify-center select-none transition-all duration-200";
+                "w-[34px] h-[34px] m-[1px] rounded text-sm font-bold flex items-center justify-center select-none transition-[transform,background-color,box-shadow] duration-200";
               const removed = "bg-transparent";
               const normal =
-                "bg-white border border-gray-300 cursor-pointer hover:bg-gray-50 hover:scale-105 hover:shadow-sm hover:z-10";
+                "bg-card border border-border cursor-pointer hover:bg-accent hover:scale-105 hover:z-10";
               const selected =
                 sel && sel.r === r && sel.c === c
-                  ? "ring-2 ring-pink-400 bg-pink-50 scale-105 z-10 shadow-sm"
+                  ? "ring-2 ring-primary bg-accent/10 scale-105 z-10"
                   : "";
               const isHint =
                 hint &&
                 ((hint[0].r === r && hint[0].c === c) || (hint[1].r === r && hint[1].c === c));
               const hinted = isHint
-                ? "ring-2 ring-amber-400 bg-amber-50 scale-105 z-10 shadow-sm animate-pulse"
+                ? "ring-2 ring-warning bg-accent/10 scale-105 z-10 animate-pulse"
                 : "";
               return (
                 <div

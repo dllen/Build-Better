@@ -116,25 +116,25 @@ export default function DrawDragonCurve() {
   const totalSegments = Math.pow(2, iterations);
 
   return (
-    <div className={`max-w-3xl mx-auto py-8 px-4 ${isDark ? "text-gray-100" : ""}`}>
+    <div className={`max-w-3xl mx-auto py-8 px-4 ${isDark ? "text-muted-foreground" : ""}`}>
       {/* Title */}
       <div className="flex items-center gap-3 mb-2">
-        <div className="p-2 bg-purple-100 text-purple-600 rounded-lg">
-          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <div className="p-2 bg-primary/10 text-primary rounded-lg">
+          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <path d="M4 20c4 0 4-16 8-16s4 16 8 16" />
             <path d="M4 12h16" />
           </svg>
         </div>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Dragon Curve</h1>
+        <h1 className="text-2xl font-bold text-foreground dark:text-muted-foreground">Dragon Curve</h1>
       </div>
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
-        Heighway Dragon Curve — a self-similar fractal formed by repeatedly folding a strip of paper in half.
+      <p className="text-sm text-muted-foreground dark:text-muted-foreground mb-6">
+        The Heighway Dragon Curve, a self-similar fractal formed by repeatedly folding a strip of paper in half.
       </p>
 
       {/* Controls */}
-      <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 mb-6">
+      <div className="p-4 rounded-xl border border-border dark:border-border bg-card dark:bg-muted mb-6">
         <div className="flex flex-wrap items-center gap-4">
-          <div className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-300">
+          <div className="flex items-center gap-1.5 text-sm text-muted-foreground dark:text-muted-foreground">
             <span>Iterations:</span>
             <input
               type="number"
@@ -142,52 +142,54 @@ export default function DrawDragonCurve() {
               max={15}
               value={iterations}
               onChange={(e) => setIterations(Math.max(0, Math.min(15, Number(e.target.value))))}
-              className="w-16 rounded-lg border border-gray-300 dark:border-gray-600 px-2 py-1.5 text-sm text-center focus:border-purple-500 focus:ring-1 focus:ring-purple-500 outline-none bg-white dark:bg-gray-700 dark:text-gray-100"
+              className="w-16 rounded-lg border border-border dark:border-border px-2 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card dark:bg-secondary dark:text-muted-foreground"
             />
           </div>
-          <div className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-300">
+          <div className="flex items-center gap-1.5 text-sm text-muted-foreground dark:text-muted-foreground">
             <span>Line:</span>
             <input
               type="color"
               value={lineColor}
               onChange={(e) => setLineColor(e.target.value)}
-              className="w-8 h-8 rounded border border-gray-300 dark:border-gray-600 cursor-pointer"
+              className="w-8 h-8 rounded border border-border dark:border-border cursor-pointer"
             />
           </div>
-          <div className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-300">
+          <div className="flex items-center gap-1.5 text-sm text-muted-foreground dark:text-muted-foreground">
             <span>Background:</span>
             <input
               type="color"
               value={bgColor}
               onChange={(e) => setBgColor(e.target.value)}
-              className="w-8 h-8 rounded border border-gray-300 dark:border-gray-600 cursor-pointer"
+              className="w-8 h-8 rounded border border-border dark:border-border cursor-pointer"
             />
           </div>
           <button
             onClick={draw}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary transition-colors"
           >
             <RefreshCw className="h-3.5 w-3.5" />Draw
           </button>
         </div>
-        <p className="mt-3 text-xs text-gray-400 dark:text-gray-500">
-          Iterations: {iterations} &middot; Segments: {totalSegments.toLocaleString()} &middot; Toggle dark mode to auto-adjust colors
-        </p>
+        <div className="mt-3 flex flex-wrap items-center text-xs text-muted-foreground">
+          <span className="px-3 first:pl-0 last:pr-0 border-l border-border first:border-l-0">Iterations: {iterations}</span>
+          <span className="px-3 first:pl-0 last:pr-0 border-l border-border first:border-l-0">Segments: {totalSegments.toLocaleString()}</span>
+          <span className="px-3 first:pl-0 last:pr-0 border-l border-border first:border-l-0">Toggle dark mode to auto-adjust colors</span>
+        </div>
       </div>
 
       {/* Canvas */}
-      <div className="rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-        <div className="flex items-center justify-between px-4 py-2 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Dragon Curve</span>
+      <div className="rounded-xl border border-border dark:border-border overflow-hidden">
+        <div className="flex items-center justify-between px-4 py-2 bg-muted dark:bg-muted border-b border-border dark:border-border">
+          <span className="text-sm font-medium text-muted-foreground dark:text-muted-foreground">Dragon Curve</span>
           <button
             onClick={handleDownload}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground dark:text-muted-foreground dark:hover:text-muted-foreground hover:bg-muted dark:hover:bg-secondary rounded transition-colors"
           >
             <Download className="h-3.5 w-3.5" />Download PNG
           </button>
         </div>
-        <div ref={containerRef} className="flex items-center justify-center p-4 bg-[#1a1a2e]">
-          <canvas ref={canvasRef} className="max-w-full h-auto rounded" />
+        <div ref={containerRef} className="flex items-center justify-center p-4 bg-paper-3">
+          <canvas ref={canvasRef} className="max-w-full h-auto rounded" role="img" aria-label="Drawing output"/>
         </div>
       </div>
     </div>

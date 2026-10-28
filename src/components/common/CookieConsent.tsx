@@ -21,11 +21,11 @@ export function CookieConsent() {
     <div
       role="dialog"
       aria-label="Cookie consent"
-      className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ease-out ${
+      className={`fixed bottom-0 left-0 right-0 z-toast transition-transform duration-long ease-out motion-reduce:transition-none ${
         visible ? 'translate-y-0' : 'translate-y-full'
       }`}
     >
-      <div className="border-t border-border bg-card/95 backdrop-blur-sm shadow-lg">
+      <div className="border-t border-border bg-card">
         <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">
             This site uses cookies for ads and analytics. See our{' '}
@@ -41,14 +41,14 @@ export function CookieConsent() {
             <button
               type="button"
               onClick={() => setConsent(false)}
-              className="px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-secondary transition-colors"
+              className="btn"
             >
               Reject
             </button>
             <button
               type="button"
               onClick={() => setConsent(true)}
-              className="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity"
+              className="btn btn--primary"
             >
               Accept All
             </button>

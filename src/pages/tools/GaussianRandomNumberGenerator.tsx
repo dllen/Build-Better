@@ -68,48 +68,48 @@ export default function GaussianRandomNumberGenerator() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-100 text-blue-600 rounded-lg">
+          <div className="p-2 bg-primary/10 text-primary rounded-lg">
             <Sigma className="h-5 w-5" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Gaussian Random Number Generator</h1>
+          <h1 className="text-2xl font-bold text-foreground">Gaussian Random Number Generator</h1>
         </div>
       }
       toolbar={
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-1.5 text-sm">
-            <label className="text-gray-600">Mean:</label>
+            <label className="text-muted-foreground">Mean:</label>
             <input
               type="number"
               value={mean}
               onChange={(e) => setMean(Number(e.target.value))}
-              className="w-20 rounded-lg border border-gray-300 px-2 py-1.5 text-sm text-center focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-20 rounded-lg border border-border px-2 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none"
             />
           </div>
           <div className="flex items-center gap-1.5 text-sm">
-            <label className="text-gray-600">Std Dev:</label>
+            <label className="text-muted-foreground">Std Dev:</label>
             <input
               type="number"
               min={0.01}
               step={0.01}
               value={stddev}
               onChange={(e) => setStddev(Math.max(0.01, Number(e.target.value)))}
-              className="w-20 rounded-lg border border-gray-300 px-2 py-1.5 text-sm text-center focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-20 rounded-lg border border-border px-2 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none"
             />
           </div>
           <div className="flex items-center gap-1.5 text-sm">
-            <label className="text-gray-600">Count:</label>
+            <label className="text-muted-foreground">Count:</label>
             <input
               type="number"
               min={1}
               max={10000}
               value={count}
               onChange={(e) => setCount(Math.max(1, Math.min(10000, Number(e.target.value))))}
-              className="w-20 rounded-lg border border-gray-300 px-2 py-1.5 text-sm text-center focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-20 rounded-lg border border-border px-2 py-1.5 text-sm text-center focus:border-border focus:ring-1 focus:ring-ring outline-none"
             />
           </div>
           <button
             onClick={handleGenerate}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary transition-colors"
           >
             <Sigma className="h-3.5 w-3.5" />
             Generate
@@ -121,23 +121,23 @@ export default function GaussianRandomNumberGenerator() {
         numbers.length > 0 ? (
           <button
             onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors"
           >
-            {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : <Copy className="h-3.5 w-3.5" />}
+            {copied ? <Check className="h-3.5 w-3.5 text-success" /> : <Copy className="h-3.5 w-3.5" />}
             {copied ? "Copied" : "Copy"}
           </button>
         ) : undefined
       }
       input={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-4">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4">
           {numbers.length > 0 ? (
-            <div className="font-mono text-sm text-gray-700 columns-4 gap-4">
+            <div className="font-mono text-sm text-muted-foreground columns-4 gap-4">
               {numbers.map((n, i) => (
                 <div key={i} className="py-0.5">{n}</div>
               ))}
             </div>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               Click Generate to create normally-distributed random numbers
             </div>
           )}
@@ -146,24 +146,24 @@ export default function GaussianRandomNumberGenerator() {
       outputLabel="Distribution"
       outputActions={
         numbers.length > 0 ? (
-          <span className="text-xs text-gray-400">
+          <span className="text-xs text-muted-foreground">
             μ={stats.mean.toFixed(2)} σ={stats.stddev.toFixed(2)} · min={stats.min} max={stats.max}
           </span>
         ) : undefined
       }
       output={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-4">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4">
           {bins.length > 0 ? (
             <div className="flex items-end gap-px h-full">
               {bins.map((bin, i) => (
                 <div key={i} className="flex-1 flex flex-col items-center justify-end h-full min-w-[12px]">
                   <div
-                    className="w-full bg-blue-400 rounded-t-sm transition-all duration-300"
+                    className="w-full bg-primary/10 rounded-t-sm transition-colors duration-300"
                     style={{ height: bin.height, minHeight: bin.count > 0 ? "2px" : "0" }}
                     title={`${bin.label}: ${bin.count}`}
                   />
                   {bins.length <= 20 && (
-                    <span className="text-[9px] text-gray-400 mt-1 rotate-45 origin-left whitespace-nowrap">
+                    <span className="text-[9px] text-muted-foreground mt-1 rotate-45 origin-left whitespace-nowrap">
                       {bin.label}
                     </span>
                   )}
@@ -171,7 +171,7 @@ export default function GaussianRandomNumberGenerator() {
               ))}
             </div>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               Histogram will appear here
             </div>
           )}

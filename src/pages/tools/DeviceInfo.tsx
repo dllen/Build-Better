@@ -107,16 +107,16 @@ export default function DeviceInfo() {
 
       <div className="max-w-4xl mx-auto">
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+          <h1 className="text-3xl font-medium mb-4 text-foreground">
             {t("tools.device-info.title", "Device Information")}
           </h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             {t("tools.device-info.description", "Get detailed information about your current device, screen, and browser.")}
           </p>
         </div>
 
         <div className="grid gap-6">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+          <div className="bg-card rounded-xl border border-border overflow-hidden">
             <div className="p-6">
               <div className="grid gap-4">
                 {info.map((item) => {
@@ -124,26 +124,26 @@ export default function DeviceInfo() {
                   return (
                     <div
                       key={item.key}
-                      className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
+                      className="flex items-center justify-between p-4 bg-muted rounded-lg hover:bg-muted transition-colors group"
                     >
                       <div className="flex items-center gap-4 overflow-hidden">
-                        <div className="p-2 bg-white rounded-lg shadow-sm">
-                          <Icon className="w-5 h-5 text-blue-600" />
+                        <div className="p-2 bg-muted rounded-lg">
+                          <Icon className="w-5 h-5 text-primary" />
                         </div>
                         <div className="min-w-0">
-                          <p className="text-sm font-medium text-gray-500">{item.label}</p>
-                          <p className="text-gray-900 font-mono text-sm break-all truncate">
+                          <p className="text-sm font-medium text-muted-foreground">{item.label}</p>
+                          <p className="text-foreground font-mono text-sm break-all truncate">
                             {String(item.value)}
                           </p>
                         </div>
                       </div>
                       <button
                         onClick={() => copyToClipboard(String(item.value), item.key)}
-                        className="p-2 text-gray-400 hover:text-blue-600 transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
+                        className="p-2 text-muted-foreground hover:text-primary transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
                         title={t("tools.device-info.copy", "Copy")}
                       >
                         {copiedKey === item.key ? (
-                          <Check className="w-4 h-4 text-green-500" />
+                          <Check className="w-4 h-4 text-success" />
                         ) : (
                           <Copy className="w-4 h-4" />
                         )}

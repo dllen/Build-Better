@@ -42,8 +42,8 @@ export default function JsObfuscator() {
 
   return (
     <EditorSplitLayout
-      title={<><div className="inline-flex p-2 rounded-lg bg-fuchsia-100 text-fuchsia-600"><EyeOff className="h-5 w-5" /></div><h1 className="text-2xl font-semibold">JS Obfuscator</h1></>}
-      toolbar={<select className="rounded-md border border-gray-300 px-3 py-2 text-sm" value={method} onChange={(e) => setMethod(e.target.value as Method)}>
+      title={<><div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary"><EyeOff className="h-5 w-5" /></div><h1 className="text-2xl font-semibold">JS Obfuscator</h1></>}
+      toolbar={<select className="rounded-md border border-border px-3 py-2 text-sm" value={method} onChange={(e) => setMethod(e.target.value as Method)}>
         <option value="hex">Hex (\\xNN)</option>
         <option value="charcode">CharCode</option>
         <option value="mixed">Mixed</option>
@@ -51,8 +51,8 @@ export default function JsObfuscator() {
       inputLabel="Input"
       input={<textarea className="w-full h-full p-4 font-mono text-sm resize-none border-0 focus:outline-none" placeholder="Enter JavaScript string to obfuscate..." value={input} onChange={(e) => setInput(e.target.value)} />}
       outputLabel="Output"
-      output={<pre className="w-full h-full p-4 font-mono text-sm whitespace-pre-wrap break-words overflow-auto bg-gray-50">{result}</pre>}
-      outputActions={<button onClick={() => copy(result)} className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-fuchsia-600 text-white hover:bg-fuchsia-700">{copied ? <Check className="h-4 w-4" /> : <ClipboardCopy className="h-4 w-4" />} Copy</button>}
+      output={<pre className="w-full h-full p-4 font-mono text-sm whitespace-pre-wrap break-words overflow-auto bg-muted">{result}</pre>}
+      outputActions={<button onClick={() => copy(result)} className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground hover:bg-primary">{copied ? <Check className="h-4 w-4" /> : <ClipboardCopy className="h-4 w-4" />} Copy</button>}
     />
   );
 }

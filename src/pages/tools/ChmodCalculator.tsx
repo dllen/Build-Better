@@ -149,14 +149,14 @@ export default function ChmodCalculator() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-emerald-100 text-emerald-600">
+        <div className="inline-flex p-2 rounded-lg bg-success/10 text-success">
           <Shield className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Chmod 计算器</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">用户（Owner）</div>
           <label className="inline-flex items-center gap-2 text-sm">
             <input
@@ -183,7 +183,7 @@ export default function ChmodCalculator() {
             执行 x
           </label>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">用户组（Group）</div>
           <label className="inline-flex items-center gap-2 text-sm">
             <input
@@ -210,7 +210,7 @@ export default function ChmodCalculator() {
             执行 x
           </label>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">其他（Others）</div>
           <label className="inline-flex items-center gap-2 text-sm">
             <input
@@ -240,7 +240,7 @@ export default function ChmodCalculator() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">特殊位（Special bits）</div>
           <label className="inline-flex items-center gap-2 text-sm">
             <input
@@ -267,45 +267,45 @@ export default function ChmodCalculator() {
             sticky
           </label>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">结果</div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div className="rounded-md border border-gray-200 px-3 py-2 font-mono">
+            <div className="rounded-md border border-border px-3 py-2 font-mono">
               八进制: {octal}
             </div>
-            <div className="rounded-md border border-gray-200 px-3 py-2 font-mono">
+            <div className="rounded-md border border-border px-3 py-2 font-mono">
               权限串: {permStr}
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex-1 rounded-md border border-gray-200 px-3 py-2 font-mono text-sm break-words">
+            <div className="flex-1 rounded-md border border-border px-3 py-2 font-mono text-sm break-words">
               {chmodCmd}
             </div>
             <button
-              className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
               onClick={() => copy(chmodCmd)}
             >
               <ClipboardCopy className="h-4 w-4" /> 复制{" "}
-              {copied ? <Check className="h-4 w-4 text-green-600" /> : null}
+              {copied ? <Check className="h-4 w-4 text-success" /> : null}
             </button>
           </div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-3">
           <div className="font-medium">从输入解析</div>
           <input
-            className="w-full rounded-md border border-gray-300 px-3 py-2"
+            className="w-full rounded-md border border-border px-3 py-2"
             placeholder="如 755 或 u=rwx,g=rx,o=rx 或 a+rx"
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
           <button
-            className="inline-flex items-center gap-2 px-3 py-2 bg-emerald-600 text-white rounded-md text-sm hover:bg-emerald-700 disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-3 py-2 bg-success text-success-foreground rounded-md text-sm hover:bg-success disabled:opacity-50"
             onClick={applyInput}
             disabled={!input.trim()}
           >
             解析并应用
           </button>
-          <div className="text-sm text-gray-600">当前符号模式: {symbolic}</div>
+          <div className="text-sm text-muted-foreground">当前符号模式: {symbolic}</div>
         </div>
       </div>
     </div>

@@ -34,7 +34,7 @@ export default function ColumnSubstring() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-indigo-100 text-indigo-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <Columns className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">按列截取</h1>
@@ -43,13 +43,13 @@ export default function ColumnSubstring() {
       toolbar={
         <>
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm w-24"
+            className="rounded-md border border-border px-3 py-2 text-sm w-24"
             placeholder="列分隔符"
             value={delimiter}
             onChange={(e) => setDelimiter(e.target.value)}
           />
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm w-20"
+            className="rounded-md border border-border px-3 py-2 text-sm w-20"
             type="number"
             min={0}
             placeholder="列序号"
@@ -57,18 +57,18 @@ export default function ColumnSubstring() {
             onChange={(e) => setColIndex(parseInt(e.target.value) || 0)}
           />
           <input
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm w-28"
+            className="rounded-md border border-border px-3 py-2 text-sm w-28"
             placeholder="输出分隔符"
             value={outDelimiter === "\n" ? "" : outDelimiter}
             onChange={(e) => setOutDelimiter(e.target.value || "\n")}
           />
           <button
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-xs hover:bg-gray-50"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-xs hover:bg-muted"
             onClick={() => copy(result)}
             disabled={!result}
           >
             <ClipboardCopy className="h-3.5 w-3.5" /> 复制
-            {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : null}
+            {copied ? <Check className="h-3.5 w-3.5 text-success" /> : null}
           </button>
         </>
       }

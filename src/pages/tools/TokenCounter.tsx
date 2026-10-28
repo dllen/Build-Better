@@ -75,28 +75,24 @@ export default function TokenCounter() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-amber-100 text-amber-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Hash className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Token 计数器</h1>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+      <div className="bg-card rounded-lg border border-border p-4 space-y-4">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">选择编码</label>
+          <label className="text-sm font-medium text-muted-foreground">选择编码</label>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
             {ENCODINGS.map((enc) => (
               <button
                 key={enc.id}
                 onClick={() => setEncoding(enc.id)}
-                className={`px-3 py-2 rounded-md text-sm text-left transition-colors ${
-                  encoding === enc.id
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
+                className={`px-3 py-2 rounded-md text-sm text-left transition-colors ${ encoding === enc.id ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-border" }`}
               >
                 <div className="font-mono font-medium">{enc.label}</div>
-                <div className={`text-xs mt-0.5 ${encoding === enc.id ? "text-blue-100" : "text-gray-500"}`}>
+                <div className={`text-xs mt-0.5 ${encoding === enc.id ? "text-primary" : "text-muted-foreground"}`}>
                   {enc.description}
                 </div>
               </button>
@@ -105,37 +101,37 @@ export default function TokenCounter() {
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">输入文本</label>
+          <label className="text-sm font-medium text-muted-foreground">输入文本</label>
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="在此输入或粘贴文本..."
-            className="w-full h-48 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono text-sm resize-y"
+            className="w-full h-48 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm resize-y"
           />
         </div>
 
         <div className="flex gap-3 flex-wrap">
           <button
-            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={count}
             disabled={!text.trim() || loading}
           >
             {loading ? (
-              <span className="inline-block h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              <span className="inline-block h-4 w-4 border-2 border-border border-t-transparent rounded-full animate-spin" />
             ) : (
               <Hash className="h-4 w-4" />
             )}
             计数
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={copyResult}
             disabled={tokenCount === null}
           >
             {copied ? (
               <>
-                <Check className="h-4 w-4 text-green-600" />
-                <span className="text-green-600">已复制</span>
+                <Check className="h-4 w-4 text-success" />
+                <span className="text-success">已复制</span>
               </>
             ) : (
               <>
@@ -145,7 +141,7 @@ export default function TokenCounter() {
             )}
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2"
             onClick={clearAll}
           >
             <Trash2 className="h-4 w-4" />
@@ -154,29 +150,29 @@ export default function TokenCounter() {
         </div>
 
         {error && (
-          <div className="text-sm text-red-600 bg-red-50 rounded-md px-3 py-2">{error}</div>
+          <div className="text-sm text-destructive bg-destructive/10 rounded-md px-3 py-2">{error}</div>
         )}
 
         {tokenCount !== null && !error && (
-          <div className="bg-gray-50 rounded-md px-4 py-3 space-y-2">
+          <div className="bg-muted rounded-md px-4 py-3 space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Token 数量</span>
-              <span className="text-xl font-mono font-bold text-gray-900">{tokenCount.toLocaleString()}</span>
+              <span className="text-sm text-muted-foreground">Token 数量</span>
+              <span className="text-xl font-mono font-bold text-foreground">{tokenCount.toLocaleString()}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">编码</span>
-              <span className="text-sm font-mono text-gray-700">{encoding}</span>
+              <span className="text-sm text-muted-foreground">编码</span>
+              <span className="text-sm font-mono text-muted-foreground">{encoding}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">估算成本</span>
-              <span className="text-sm font-mono text-gray-700">
+              <span className="text-sm text-muted-foreground">估算成本</span>
+              <span className="text-sm font-mono text-muted-foreground">
                 ${estimatedCost?.toFixed(6)}（{PRICING[encoding].pricePer1K}/1K tokens）
               </span>
             </div>
           </div>
         )}
 
-        <div className="text-xs text-gray-400 flex items-center gap-1">
+        <div className="text-xs text-muted-foreground flex items-center gap-1">
           <span>数据仅在浏览器本地处理，不会上传到服务器。</span>
         </div>
       </div>

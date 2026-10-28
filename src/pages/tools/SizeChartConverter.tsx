@@ -189,7 +189,7 @@ export default function SizeChartConverter() {
     <div className="space-y-6">
       {/* Category Selector */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-muted-foreground mb-2">
           {isZh ? "选择品类" : "Select Category"}
         </label>
         <div className="grid grid-cols-2 gap-2">
@@ -197,11 +197,7 @@ export default function SizeChartConverter() {
             <button
               key={cat}
               onClick={() => handleCategoryChange(cat)}
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                category === cat
-                  ? "bg-pink-600 text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${ category === cat ? "bg-destructive text-destructive-foreground" : "bg-muted text-muted-foreground hover:bg-border" }`}
             >
               {isZh ? SIZE_DATA[cat].labelZh : SIZE_DATA[cat].label}
             </button>
@@ -212,13 +208,13 @@ export default function SizeChartConverter() {
       {/* Source Market Selector */}
       {category !== "shoes" && (
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-muted-foreground mb-2">
             {isZh ? "来源市场" : "Source Market"}
           </label>
           <select
             value={sourceMarket}
             onChange={(e) => setSourceMarket(e.target.value as MarketKey)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm py-2 px-3 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
           >
             {MARKETS.map((market) => (
               <option key={market} value={market}>
@@ -231,14 +227,14 @@ export default function SizeChartConverter() {
 
       {/* Size Input */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-muted-foreground mb-2">
           {isZh ? "输入尺码" : "Input Size"}
         </label>
         {category === "shoes" ? (
           <select
             value={inputSize}
             onChange={(e) => setInputSize(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm py-2 px-3 border"
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
           >
             <option value="">{isZh ? "选择尺码..." : "Select size..."}</option>
             {categoryData.markets.US.map((size) => (
@@ -252,7 +248,7 @@ export default function SizeChartConverter() {
             <select
               value={inputSize}
               onChange={(e) => setInputSize(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm py-2 px-3 border mb-2"
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border mb-2"
             >
               <option value="">{isZh ? "选择尺码..." : "Select size..."}</option>
               {availableSizes.map((size) => (
@@ -266,15 +262,15 @@ export default function SizeChartConverter() {
               value={inputSize}
               onChange={(e) => setInputSize(e.target.value)}
               placeholder={isZh ? "或手动输入..." : "Or enter manually..."}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm py-2 px-3 border"
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
             />
           </>
         )}
       </div>
 
       {/* Quick Reference - Available Sizes */}
-      <div className="bg-gray-50 p-3 rounded-lg">
-        <p className="text-xs text-gray-600 mb-2">
+      <div className="bg-muted p-3 rounded-lg">
+        <p className="text-xs text-muted-foreground mb-2">
           {isZh ? "可用尺码:" : "Available sizes:"}
         </p>
         <div className="flex flex-wrap gap-1">
@@ -282,17 +278,13 @@ export default function SizeChartConverter() {
             <button
               key={size}
               onClick={() => setInputSize(size)}
-              className={`px-2 py-1 text-xs rounded ${
-                inputSize === size
-                  ? "bg-pink-600 text-white"
-                  : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"
-              }`}
+              className={`px-2 py-1 text-xs rounded ${ inputSize === size ? "bg-destructive text-destructive-foreground" : "bg-card border border-border text-muted-foreground hover:bg-muted" }`}
             >
               {size}
             </button>
           ))}
           {availableSizes.length > 8 && (
-            <span className="text-xs text-gray-500 self-center">
+            <span className="text-xs text-muted-foreground self-center">
               +{availableSizes.length - 8} {isZh ? "更多" : "more"}
             </span>
           )}
@@ -304,53 +296,47 @@ export default function SizeChartConverter() {
   const resultPanel = (
     <div className="space-y-6">
       {!conversionResults ? (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Ruler className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{isZh ? "选择尺码以查看对照表" : "Select a size to view conversion"}</p>
         </div>
       ) : (
         <>
           {/* Conversion Table */}
-          <div className="border border-gray-200 rounded-lg overflow-hidden">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+          <div className="border border-border rounded-lg overflow-hidden">
+            <table className="min-w-full divide-y divide-border">
+              <thead className="bg-muted">
                 <tr>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">
                     {isZh ? "市场" : "Market"}
                   </th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">
                     {isZh ? "你的尺码" : "Your Size"}
                   </th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">
                     {isZh ? "本地尺码" : "Local Size"}
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-card divide-y divide-border">
                 {conversionResults.map((row, idx) => (
                   <tr
                     key={row.market}
-                    className={
-                      HIGHLIGHTED_MARKETS.includes(row.market)
-                        ? "bg-amber-50"
-                        : idx % 2 === 0
-                        ? "bg-white"
-                        : "bg-gray-50"
-                    }
+                    className={HIGHLIGHTED_MARKETS.includes(row.market) ? "bg-primary/10" : idx % 2 === 0 ? "" : "bg-muted"}
                   >
                     <td className="px-3 py-2 text-sm">
                       <span className="flex items-center gap-2">
                         {HIGHLIGHTED_MARKETS.includes(row.market) && (
-                          <span className="w-2 h-2 rounded-full bg-amber-400"></span>
+                          <span className="w-2 h-2 rounded-full bg-primary/10"></span>
                         )}
                         <span className="font-medium">
                           {isZh ? MARKET_NAMES[row.market as MarketKey].zh : MARKET_NAMES[row.market as MarketKey].en}
                         </span>
-                        <span className="text-gray-400 text-xs">({row.market})</span>
+                        <span className="text-muted-foreground text-xs">({row.market})</span>
                       </span>
                     </td>
-                    <td className="px-3 py-2 text-sm text-gray-600">{row.yourSize}</td>
-                    <td className="px-3 py-2 text-sm font-medium text-gray-900">{row.localSize}</td>
+                    <td className="px-3 py-2 text-sm text-muted-foreground">{row.yourSize}</td>
+                    <td className="px-3 py-2 text-sm font-medium text-foreground">{row.localSize}</td>
                   </tr>
                 ))}
               </tbody>
@@ -359,7 +345,7 @@ export default function SizeChartConverter() {
 
           {/* Highlighted Markets Note */}
           {conversionResults.some((r) => HIGHLIGHTED_MARKETS.includes(r.market)) && (
-            <div className="flex items-center gap-2 text-xs text-amber-700 bg-amber-50 p-2 rounded">
+            <div className="flex items-center gap-2 text-xs text-primary bg-primary/10 p-2 rounded">
               <Info className="h-4 w-4 flex-shrink-0" />
               <span>
                 {isZh
@@ -370,7 +356,7 @@ export default function SizeChartConverter() {
           )}
 
           {/* Disclaimer */}
-          <div className="flex items-start gap-2 text-xs text-gray-500 bg-gray-50 p-3 rounded">
+          <div className="flex items-start gap-2 text-xs text-muted-foreground bg-muted p-3 rounded">
             <Info className="h-4 w-4 flex-shrink-0 mt-0.5" />
             <span>
               {isZh
@@ -388,8 +374,8 @@ export default function SizeChartConverter() {
       title={t("sizeChart.title")}
       subtitle={t("sizeChart.subtitle")}
       icon={Ruler}
-      iconBgColor="bg-pink-100"
-      iconColor="text-pink-600"
+      iconBgColor="bg-destructive/10"
+      iconColor="text-destructive"
       keywords={[
         "size converter",
         "size chart",

@@ -71,7 +71,7 @@ export function AuthForm({
     setResendNotice("");
     try {
       await resendVerification(email.trim());
-      setResendNotice("Verification email sent — check your inbox.");
+      setResendNotice("Verification email sent. Check your inbox.");
     } catch {
       setResendNotice("Failed to resend the verification email.");
     }
@@ -92,12 +92,12 @@ export function AuthForm({
       <p className="text-sm text-muted-foreground mb-5">登录后可跨设备共享图片与文本</p>
 
       {expired && (
-        <p className="mb-4 text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+        <p className="mb-4 text-sm text-primary bg-accent border border-border rounded-pill px-3 py-2">
           Your session has expired. Log in again.
         </p>
       )}
       {notice && (
-        <p className="mb-4 text-sm text-blue-700 bg-blue-50 border border-blue-200 rounded-lg px-3 py-2">
+        <p className="mb-4 text-sm text-ink-2 bg-accent border border-border rounded-pill px-3 py-2">
           {notice}
         </p>
       )}
@@ -109,7 +109,7 @@ export function AuthForm({
             type="button"
             onClick={() => { setMode(m); setError(""); setUnverified(false); setSuccess(""); }}
             className={`flex-1 py-2 text-sm font-medium border-b-2 transition-colors ${
-              mode === m ? "border-blue-600 text-blue-600" : "border-transparent text-muted-foreground hover:text-foreground"
+              mode === m ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"
             }`}
           >
             {m === "login" ? "登录" : "注册"}
@@ -123,7 +123,7 @@ export function AuthForm({
           <input
             id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com" autoFocus
-            className="w-full px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+            className="field"
           />
         </div>
         <div>
@@ -131,7 +131,7 @@ export function AuthForm({
           <input
             id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}
             placeholder={mode === "register" ? "At least 8 characters" : "Your password"}
-            className="w-full px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+            className="field"
           />
         </div>
         {mode === "register" && (
@@ -140,30 +140,30 @@ export function AuthForm({
             <input
               id="confirm" type="password" value={confirm} onChange={(e) => setConfirm(e.target.value)}
               placeholder="Re-enter password"
-              className="w-full px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+              className="field"
             />
           </div>
         )}
 
         {mode === "login" && unverified && (
-          <div className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
-            <p>Email not verified — check your inbox.</p>
-            <button type="button" onClick={handleResend} className="mt-1 text-sm font-medium text-blue-600 hover:underline">
-              Resend verification email
+          <div className="text-sm text-primary bg-accent border border-border rounded-pill px-3 py-2">
+            <p>Email not verified. Check your inbox.</p>
+            <button type="button" onClick={handleResend} className="mt-1 text-sm font-medium text-primary hover:underline">
+              Resend the email
             </button>
-            {resendNotice && <p className="mt-1 text-blue-600">{resendNotice}</p>}
+            {resendNotice && <p className="mt-1 text-primary">{resendNotice}</p>}
           </div>
         )}
 
-        {success && <p className="text-sm text-green-600">{success}</p>}
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {success && <p className="text-sm text-success">{success}</p>}
+        {error && <p className="text-sm text-destructive">{error}</p>}
 
         <button
           type="submit"
           disabled={submitting || !email.trim() || !password.trim()}
-          className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="btn btn--primary w-full"
         >
-          {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
+          {submitting && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
           {submitting ? "请稍候…" : mode === "login" ? "登录" : "创建账户"}
         </button>
       </form>
@@ -177,15 +177,15 @@ export function AuthForm({
             <input
               type="password" value={authToken} onChange={(e) => setAuthToken(e.target.value)}
               placeholder="AUTH_TOKEN"
-              className="flex-1 px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+              className="field flex-1 text-sm"
             />
             <button type="submit" disabled={!authToken.trim()}
-              className="px-3 py-2 bg-foreground text-background text-sm rounded-lg hover:opacity-90 disabled:opacity-50">
+              className="btn text-sm disabled:opacity-50">
               初始化
             </button>
           </form>
         )}
-        {adminError && <p className="mt-1 text-xs text-red-600">{adminError}</p>}
+        {adminError && <p className="mt-1 text-xs text-destructive">{adminError}</p>}
       </div>
 
       <p className="mt-4 text-xs text-muted-foreground text-center">

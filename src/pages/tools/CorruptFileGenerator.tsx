@@ -94,23 +94,23 @@ export default function CorruptFileGenerator() {
   return (
     <div className="max-w-2xl mx-auto py-8 px-4">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2 bg-red-100 text-red-600 rounded-lg">
+        <div className="p-2 bg-destructive/10 text-destructive rounded-lg">
           <Bug className="h-5 w-5" />
         </div>
-        <h1 className="text-2xl font-bold text-gray-900">Corrupt File Generator</h1>
+        <h1 className="text-2xl font-bold text-foreground">Corrupt File Generator</h1>
       </div>
 
-      <p className="text-sm text-gray-500 mb-6">
+      <p className="text-sm text-muted-foreground mb-6">
         Generate intentionally broken/corrupt files with fake format headers. Useful for testing error handling, file validation, and robustness of file-processing pipelines.
       </p>
 
-      <div className="space-y-4 p-6 rounded-xl border border-gray-200 bg-white">
+      <div className="space-y-4 p-6 rounded-xl border border-border bg-card">
         <div className="flex flex-wrap items-center gap-3">
-          <label className="text-sm font-medium text-gray-700">Format:</label>
+          <label className="text-sm font-medium text-muted-foreground">Format:</label>
           <select
             value={format}
             onChange={(e) => setFormat(e.target.value as CorruptFormat)}
-            className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none bg-white"
+            className="rounded-lg px-3 py-2 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-muted"
           >
             <option value="pdf">PDF</option>
             <option value="docx">DOCX</option>
@@ -122,18 +122,18 @@ export default function CorruptFileGenerator() {
             <option value="bin">Binary (no header)</option>
           </select>
 
-          <label className="text-sm font-medium text-gray-700 ml-3">Size:</label>
+          <label className="text-sm font-medium text-muted-foreground ml-3">Size:</label>
           <input
             type="number"
             min={1}
             value={size}
             onChange={(e) => setSize(Math.max(1, Number(e.target.value)))}
-            className="w-24 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none"
+            className="w-24 rounded-lg border border-border px-3 py-2 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none"
           />
           <select
             value={unit}
             onChange={(e) => setUnit(e.target.value as "KB" | "MB")}
-            className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none bg-white"
+            className="rounded-lg px-3 py-2 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-muted"
           >
             <option value="KB">KB</option>
             <option value="MB">MB</option>
@@ -143,24 +143,24 @@ export default function CorruptFileGenerator() {
         <button
           onClick={handleGenerate}
           disabled={generating}
-          className="inline-flex items-center gap-2 px-6 py-2.5 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-2.5 bg-destructive text-destructive-foreground text-sm font-medium rounded-lg hover:bg-destructive disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           <Bug className={`h-4 w-4 ${generating ? "animate-spin" : ""}`} />
           {generating ? "Generating..." : "Generate Corrupt File"}
         </button>
 
         {generated && (
-          <div className="mt-4 p-4 rounded-lg border border-red-200 bg-red-50 flex items-center justify-between">
+          <div className="mt-4 p-4 rounded-lg border border-border bg-destructive/10 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Bug className="h-8 w-8 text-red-400" />
+              <Bug className="h-8 w-8 text-destructive" />
               <div>
-                <p className="text-sm font-medium text-gray-700">{generated.name}</p>
-                <p className="text-xs text-gray-500">{formatSize(generated.blob.size)}</p>
+                <p className="text-sm font-medium text-muted-foreground">{generated.name}</p>
+                <p className="text-xs text-muted-foreground">{formatSize(generated.blob.size)}</p>
               </div>
             </div>
             <button
               onClick={handleDownload}
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition-colors"
+              className="inline-flex items-center gap-1.5 px-4 py-2 bg-destructive text-destructive-foreground text-sm font-medium rounded-lg hover:bg-destructive transition-colors"
             >
               <Download className="h-4 w-4" />
               Download

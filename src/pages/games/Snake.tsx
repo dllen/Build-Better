@@ -149,28 +149,28 @@ export default function Snake() {
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] space-y-6 outline-none"
+      className="flex flex-col items-center justify-center min-h-[calc(100dvh-200px)] space-y-6 outline-none"
       tabIndex={0}
     >
       <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold text-gray-900">Snake Game</h1>
-        <p className="text-gray-600">Use arrow keys to control the snake</p>
+        <h1 className="text-3xl font-bold text-foreground">Snake Game</h1>
+        <p className="text-muted-foreground">Use arrow keys to control the snake</p>
       </div>
 
       <div className="flex items-center gap-8">
-        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 min-w-[120px] text-center">
-          <div className="text-sm text-gray-500 mb-1">Score</div>
-          <div className="text-2xl font-bold text-blue-600">{score}</div>
+        <div className="bg-card p-4 rounded-xl border border-border min-w-[120px] text-center">
+          <div className="text-sm text-muted-foreground mb-1">Score</div>
+          <div className="text-2xl font-bold text-primary">{score}</div>
         </div>
-        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 min-w-[120px] text-center">
-          <div className="text-sm text-gray-500 mb-1 flex items-center justify-center gap-1">
-            <Trophy className="h-4 w-4 text-yellow-500" /> Best
+        <div className="bg-card p-4 rounded-xl border border-border min-w-[120px] text-center">
+          <div className="text-sm text-muted-foreground mb-1 flex items-center justify-center gap-1">
+            <Trophy className="h-4 w-4 text-primary" /> Best
           </div>
-          <div className="text-2xl font-bold text-purple-600">{highScore}</div>
+          <div className="text-2xl font-bold text-cool">{highScore}</div>
         </div>
       </div>
 
-      <div className="relative bg-gray-900 rounded-lg shadow-lg p-1 border-4 border-gray-800">
+      <div className="relative bg-gray-900 rounded-lg p-1 border-4 border-gray-800">
         <div
           className="relative bg-gray-900"
           style={{
@@ -181,7 +181,7 @@ export default function Snake() {
           {snake.map((segment, i) => (
             <div
               key={`${segment.x}-${segment.y}-${i}`}
-              className="absolute bg-green-500 rounded-sm"
+              className="absolute bg-success rounded-sm"
               style={{
                 left: segment.x * CELL_SIZE,
                 top: segment.y * CELL_SIZE,
@@ -193,7 +193,7 @@ export default function Snake() {
             />
           ))}
           <div
-            className="absolute bg-red-500 rounded-full animate-pulse"
+            className="absolute bg-destructive rounded-full animate-pulse"
             style={{
               left: food.x * CELL_SIZE,
               top: food.y * CELL_SIZE,
@@ -204,11 +204,11 @@ export default function Snake() {
         </div>
 
         {(!isPlaying || gameOver) && (
-          <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white backdrop-blur-sm">
-            {gameOver && <div className="text-3xl font-bold text-red-400 mb-4">Game Over!</div>}
+          <div className="absolute inset-0 bg-scrim/65 flex flex-col items-center justify-center text-white">
+            {gameOver && <div className="text-3xl font-bold text-destructive mb-4">Game Over!</div>}
             <button
               onClick={resetGame}
-              className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-full font-bold transition-colors"
+              className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full font-bold transition-colors"
             >
               {gameOver ? <RotateCcw className="w-5 h-5" /> : <Play className="w-5 h-5" />}
               {gameOver ? "Try Again" : "Start Game"}

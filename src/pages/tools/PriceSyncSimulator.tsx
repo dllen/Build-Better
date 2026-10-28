@@ -80,14 +80,14 @@ export default function PriceSyncSimulator() {
   };
 
   const getRowClass = (margin: number, profit: number) => {
-    if (profit < 0) return "bg-red-50";
+    if (profit < 0) return "bg-destructive/10";
     return "";
   };
 
   const getMarginClass = (margin: number, profit: number) => {
-    if (profit < 0) return "text-red-600 font-semibold";
-    if (margin < 0) return "text-red-600";
-    return "text-gray-900";
+    if (profit < 0) return "text-destructive font-semibold";
+    if (margin < 0) return "text-destructive";
+    return "text-foreground";
   };
 
   const resultNode = (
@@ -95,26 +95,26 @@ export default function PriceSyncSimulator() {
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-3">{t("priceSync.summary")}</p>
+            <p className="text-sm font-medium text-muted-foreground mb-3">{t("priceSync.summary")}</p>
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-green-50 p-3 rounded-lg">
-                <p className="text-xs text-gray-500 mb-1">{t("priceSync.best_platform")}</p>
-                <p className="text-lg font-bold text-green-700">{result.bestPlatform.name}</p>
-                <p className="text-sm text-green-600">{`${result.bestPlatform.profitMargin.toFixed(1)}%`}</p>
+              <div className="bg-success/10 p-3 rounded-lg">
+                <p className="text-xs text-muted-foreground mb-1">{t("priceSync.best_platform")}</p>
+                <p className="text-lg font-bold text-success">{result.bestPlatform.name}</p>
+                <p className="text-sm text-success">{`${result.bestPlatform.profitMargin.toFixed(1)}%`}</p>
               </div>
-              <div className="bg-red-50 p-3 rounded-lg">
-                <p className="text-xs text-gray-500 mb-1">{t("priceSync.worst_platform")}</p>
-                <p className="text-lg font-bold text-red-700">{result.worstPlatform.name}</p>
-                <p className="text-sm text-red-600">{`${result.worstPlatform.profitMargin.toFixed(1)}%`}</p>
+              <div className="bg-destructive/10 p-3 rounded-lg">
+                <p className="text-xs text-muted-foreground mb-1">{t("priceSync.worst_platform")}</p>
+                <p className="text-lg font-bold text-destructive">{result.worstPlatform.name}</p>
+                <p className="text-sm text-destructive">{`${result.worstPlatform.profitMargin.toFixed(1)}%`}</p>
               </div>
             </div>
           </div>
-          <div className="bg-blue-50 p-4 rounded-lg text-center">
-            <p className="text-sm text-gray-600">{t("priceSync.average_margin")}</p>
-            <p className="text-3xl font-bold text-blue-700">{`${result.averageMargin.toFixed(1)}%`}</p>
+          <div className="bg-primary/10 p-4 rounded-lg text-center">
+            <p className="text-sm text-muted-foreground">{t("priceSync.average_margin")}</p>
+            <p className="text-3xl font-bold text-primary">{`${result.averageMargin.toFixed(1)}%`}</p>
           </div>
-          <div className="border-t border-gray-100 pt-4">
-            <p className="text-sm font-medium text-gray-500 mb-2">{t("priceSync.platform_details")}</p>
+          <div className="border-t border-border pt-4">
+            <p className="text-sm font-medium text-muted-foreground mb-2">{t("priceSync.platform_details")}</p>
             <div className="space-y-2 max-h-64 overflow-y-auto">
               {platforms
                 .filter((p) => p.price > 0)
@@ -122,15 +122,9 @@ export default function PriceSyncSimulator() {
                 .map((p) => (
                   <div
                     key={p.name}
-                    className={`flex justify-between items-center p-2 rounded ${
-                      p.name === result.bestPlatform.name
-                        ? "bg-green-100 border border-green-300"
-                        : p.name === result.worstPlatform.name
-                        ? "bg-red-100 border border-red-300"
-                        : "bg-gray-50"
-                    }`}
+                    className={`flex justify-between items-center p-2 rounded ${ p.name === result.bestPlatform.name ? "bg-success/10 border border-border" : p.name === result.worstPlatform.name ? "bg-destructive/10 border border-border" : "bg-muted" }`}
                   >
-                    <span className="font-medium text-gray-900">{p.name}</span>
+                    <span className="font-medium text-foreground">{p.name}</span>
                     <span className={getMarginClass(p.profitMargin, p.profit)}>
                       {fmt(p.profit)} ({`${p.profitMargin.toFixed(1)}%`})
                     </span>
@@ -140,7 +134,7 @@ export default function PriceSyncSimulator() {
           </div>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <TrendingUp className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("priceSync.enter_values")}</p>
         </div>
@@ -153,18 +147,18 @@ export default function PriceSyncSimulator() {
       title={t("priceSync.title")}
       subtitle={t("priceSync.subtitle")}
       icon={TrendingUp}
-      iconBgColor="bg-teal-100"
-      iconColor="text-teal-600"
+      iconBgColor="bg-info/10"
+      iconColor="text-info"
       keywords={["price sync", "multi-platform pricing", "profit calculator", "ecommerce pricing"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             {t("priceSync.product_cost")}
           </label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
             <input
               type="number"
               min="0"
@@ -172,18 +166,18 @@ export default function PriceSyncSimulator() {
               value={productCost}
               onChange={(e) => setProductCost(e.target.value)}
               placeholder="10.00"
-              className="block w-full pl-7 pr-3 border-gray-300 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm py-2 border"
+              className="block w-full pl-7 pr-3 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 border"
             />
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-muted-foreground mb-2">
             {t("priceSync.platforms")}
           </label>
           <div className="overflow-x-auto">
             <table className="min-w-full text-sm">
               <thead>
-                <tr className="text-left text-gray-500 border-b">
+                <tr className="text-left text-muted-foreground border-b">
                   <th className="pb-2 font-medium">{t("priceSync.platform")}</th>
                   <th className="pb-2 font-medium">{t("priceSync.fee_rate")}</th>
                   <th className="pb-2 font-medium">{t("priceSync.your_price")}</th>
@@ -201,7 +195,7 @@ export default function PriceSyncSimulator() {
                       key={platform.name}
                       className={`border-b ${getRowClass(profitMargin, profit)}`}
                     >
-                      <td className="py-2 font-medium text-gray-900">{platform.name}</td>
+                      <td className="py-2 font-medium text-foreground">{platform.name}</td>
                       <td className="py-2">
                         <div className="flex items-center">
                           <input
@@ -211,14 +205,14 @@ export default function PriceSyncSimulator() {
                             step="0.1"
                             value={platform.feeRate}
                             onChange={(e) => handleFeeRateChange(index, parseFloat(e.target.value) || 0)}
-                            className="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:border-teal-500 focus:ring-teal-500"
+                            className="w-16 px-2 py-1 text-sm border border-border rounded focus:border-border focus:ring-ring"
                           />
-                          <span className="ml-1 text-gray-500">%</span>
+                          <span className="ml-1 text-muted-foreground">%</span>
                         </div>
                       </td>
                       <td className="py-2">
                         <div className="flex items-center">
-                          <span className="text-gray-500 mr-1">$</span>
+                          <span className="text-muted-foreground mr-1">$</span>
                           <input
                             type="number"
                             min="0"
@@ -226,7 +220,7 @@ export default function PriceSyncSimulator() {
                             value={platform.price || ""}
                             onChange={(e) => handlePriceChange(index, parseFloat(e.target.value) || 0)}
                             placeholder="0.00"
-                            className="w-24 px-2 py-1 text-sm border border-gray-300 rounded focus:border-teal-500 focus:ring-teal-500"
+                            className="w-24 px-2 py-1 text-sm border border-border rounded focus:border-border focus:ring-ring"
                           />
                         </div>
                       </td>
@@ -234,12 +228,12 @@ export default function PriceSyncSimulator() {
                         {platform.price > 0 ? (
                           <>
                             {profit < 0 && (
-                              <span className="text-red-600 text-xs block">{t("priceSync.below_cost")}</span>
+                              <span className="text-destructive text-xs block">{t("priceSync.below_cost")}</span>
                             )}
                             {fmt(profit)}
                           </>
                         ) : (
-                          <span className="text-gray-400">-</span>
+                          <span className="text-muted-foreground">-</span>
                         )}
                       </td>
                     </tr>

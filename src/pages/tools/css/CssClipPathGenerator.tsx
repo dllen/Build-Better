@@ -59,24 +59,20 @@ export default function CssClipPathGenerator() {
       title="CSS Clip Path Generator"
       subtitle="Crop elements into shapes with clip-path — circle, ellipse, triangles, hexagon, star and more."
       icon={Shapes}
-      iconBgColor="bg-rose-100"
-      iconColor="text-rose-600"
+      iconBgColor="bg-destructive/10"
+      iconColor="text-destructive"
       keywords={["clip path", "css clip", "shape crop", "polygon css", "clip path generator"]}
       children={
       <div className="space-y-5">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Shape</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">Shape</label>
           <div className="grid grid-cols-3 gap-2">
             {SHAPES.map((s) => (
               <button
                 key={s.id}
                 type="button"
                 onClick={() => setShape(s.id)}
-                className={`py-2 px-3 text-sm rounded-lg border transition-colors ${
-                  shape === s.id
-                    ? "border-rose-500 bg-rose-50 text-rose-700 font-medium"
-                    : "border-gray-300 text-gray-600 hover:border-gray-400"
-                }`}
+                className={`py-2 px-3 text-sm rounded-lg border transition-colors ${ shape === s.id ? "border-border bg-destructive/10 text-destructive font-medium" : "border-border text-muted-foreground hover:border-border" }`}
               >
                 {s.label}
               </button>
@@ -86,14 +82,14 @@ export default function CssClipPathGenerator() {
 
         {selected.hasParams && shape === "circle" && (
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Radius: {size}%</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Radius: {size}%</label>
             <input
               type="range"
               min={10}
               max={75}
               value={size}
               onChange={(e) => setSize(Number(e.target.value))}
-              className="w-full accent-rose-600"
+              className="w-full accent-primary"
             />
           </div>
         )}
@@ -101,7 +97,7 @@ export default function CssClipPathGenerator() {
         {selected.hasParams && shape === "ellipse" && (
           <>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label className="block text-sm font-medium text-muted-foreground mb-1.5">
                 Horizontal radius: {rx}%
               </label>
               <input
@@ -110,11 +106,11 @@ export default function CssClipPathGenerator() {
                 max={75}
                 value={rx}
                 onChange={(e) => setRx(Number(e.target.value))}
-                className="w-full accent-rose-600"
+                className="w-full accent-primary"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label className="block text-sm font-medium text-muted-foreground mb-1.5">
                 Vertical radius: {ry}%
               </label>
               <input
@@ -123,21 +119,21 @@ export default function CssClipPathGenerator() {
                 max={75}
                 value={ry}
                 onChange={(e) => setRy(Number(e.target.value))}
-                className="w-full accent-rose-600"
+                className="w-full accent-primary"
               />
             </div>
           </>
         )}
 
-        <p className="text-xs text-gray-400">
+        <p className="text-xs text-muted-foreground">
           Polygons are generated with fixed coordinates — apply the class to any element or image.
         </p>
       </div>
       }
       result={
       <div>
-        <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Live preview</p>
-        <div className="flex items-center justify-center rounded-lg border border-gray-200 bg-gray-50 py-6 mb-4">
+        <p className="text-xs font-medium text-muted-foreground tracking-wide mb-2">Live preview</p>
+        <div className="flex items-center justify-center rounded-lg border border-border bg-muted py-6 mb-4">
           <div style={previewStyle} />
         </div>
         <CodeBlock code={css} label="CSS" />

@@ -94,20 +94,20 @@ export default function TokenApprovalChecker() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-green-100 text-green-600">
+        <div className="inline-flex p-2 rounded-lg bg-success/10 text-success">
           <ShieldCheck className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Token 授权查询</h1>
       </div>
 
       {/* Input Card */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+      <div className="bg-card rounded-lg border border-border p-4 space-y-4">
         <div className="space-y-1">
-          <label className="text-sm font-medium text-gray-700">Ethereum 地址</label>
+          <label className="text-sm font-medium text-muted-foreground">Ethereum 地址</label>
           <div className="flex gap-2">
             <input
               type="text"
-              className="flex-1 rounded-md border border-gray-300 px-3 py-2 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="flex-1 rounded-md border border-border px-3 py-2 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-ring"
               placeholder="0x..."
               value={address}
               onChange={(e) => setAddress(e.target.value)}
@@ -116,27 +116,27 @@ export default function TokenApprovalChecker() {
             <button
               onClick={handleSearch}
               disabled={loading || !address.trim()}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
               查询
             </button>
           </div>
-          {error && <p className="text-sm text-red-600">{error}</p>}
+          {error && <p className="text-sm text-destructive">{error}</p>}
         </div>
 
         <div className="flex gap-2">
           <button
             onClick={handleRefresh}
             disabled={loading || !address.trim()}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm hover:bg-border disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
             刷新
           </button>
           <button
             onClick={handleClear}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm hover:bg-border"
           >
             <Trash2 className="h-4 w-4" />
             清空
@@ -145,7 +145,7 @@ export default function TokenApprovalChecker() {
       </div>
 
       {/* Privacy Hint */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg px-4 py-3 text-sm text-blue-800">
+      <div className="bg-primary/10 border border-border rounded-lg px-4 py-3 text-sm text-primary">
         {`数据仅从公开 API 获取，不会上传到其他服务器。请勿在此页面输入私钥或助记词。`}
       </div>
 
@@ -153,12 +153,12 @@ export default function TokenApprovalChecker() {
       {searched && !loading && (
         <div className="space-y-3">
           {results !== null && results.length === 0 ? (
-            <div className="bg-white rounded-lg border border-gray-200 p-6 text-center text-gray-500">
+            <div className="bg-card rounded-lg border border-border p-6 text-center text-muted-foreground">
               该地址暂无 Token 授权记录。
             </div>
           ) : results !== null && results.length > 0 ? (
             <>
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-muted-foreground">
                 共找到 {results.length} 条授权记录
               </div>
               <div className="space-y-2">
@@ -167,33 +167,33 @@ export default function TokenApprovalChecker() {
                   return (
                     <div
                       key={idx}
-                      className="bg-white rounded-lg border border-gray-200 p-4"
+                      className="bg-card rounded-lg border border-border p-4"
                     >
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex-1 min-w-0 space-y-1">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="font-medium text-gray-900">
+                            <span className="font-medium text-foreground">
                               {item.symbol || item.token || "Unknown Token"}
                             </span>
                             {isUnlimitedApproval && (
-                              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
+                              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary">
                                 无限授权
                               </span>
                             )}
                           </div>
-                          <div className="text-sm text-gray-500">
+                          <div className="text-sm text-muted-foreground">
                             <span className="font-medium">授权给：</span>
                             <span
-                              className="font-mono cursor-pointer hover:text-blue-600"
+                              className="font-mono cursor-pointer hover:text-primary"
                               title={item.spender}
                               onClick={() => navigator.clipboard.writeText(item.spender)}
                             >
                               {item.spender}
                             </span>
                           </div>
-                          <div className="text-sm text-gray-500">
+                          <div className="text-sm text-muted-foreground">
                             <span className="font-medium">授权额度：</span>
-                            <span className={isUnlimitedApproval ? "text-yellow-700 font-medium" : "text-gray-700"}>
+                            <span className={isUnlimitedApproval ? "text-primary font-medium" : "text-muted-foreground"}>
                               {formatAmount(item.amount, item.decimals)}
                             </span>
                           </div>
@@ -209,7 +209,7 @@ export default function TokenApprovalChecker() {
       )}
 
       {/* Warning Note */}
-      <div className="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-800">
+      <div className="bg-primary/10 border border-border rounded-lg px-4 py-3 text-sm text-primary">
         {`此工具仅用于查询授权信息。如需撤销授权，请使用 dedicated revocation tools（如 revoke.cash）并确认合约地址。`}
       </div>
     </div>

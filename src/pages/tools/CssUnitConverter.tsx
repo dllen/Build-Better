@@ -61,27 +61,27 @@ export default function CssUnitConverter() {
       title="CSS Unit Converter"
       subtitle="Convert between px, em, rem, vw, % and other CSS units."
       icon={Ruler}
-      iconBgColor="bg-indigo-100"
-      iconColor="text-indigo-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["css unit converter", "px to rem", "em to px", "vw converter", "css units"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Value</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">Value</label>
             <input
               type="number"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg font-mono text-lg focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 border border-border rounded-lg font-mono text-lg focus:ring-2 focus:ring-ring"
               placeholder="16"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">From Unit</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">From Unit</label>
             <select
               value={fromUnit}
               onChange={(e) => setFromUnit(e.target.value as Unit)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring"
             >
               {Object.entries(unitLabels).map(([u, label]) => (
                 <option key={u} value={u}>{label}</option>
@@ -90,57 +90,57 @@ export default function CssUnitConverter() {
           </div>
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="block text-xs text-gray-500 mb-1">Root font-size</label>
+              <label className="block text-xs text-muted-foreground mb-1">Root font-size</label>
               <input
                 type="number"
                 value={baseFontSize}
                 onChange={(e) => setBaseFontSize(Number(e.target.value) || 16)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:ring-2 focus:ring-ring"
               />
-              <span className="text-xs text-gray-400">px</span>
+              <span className="text-xs text-muted-foreground">px</span>
             </div>
             <div>
-              <label className="block text-xs text-gray-500 mb-1">Parent font-size</label>
+              <label className="block text-xs text-muted-foreground mb-1">Parent font-size</label>
               <input
                 type="number"
                 value={parentFontSize}
                 onChange={(e) => setParentFontSize(Number(e.target.value) || 16)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:ring-2 focus:ring-ring"
               />
-              <span className="text-xs text-gray-400">px</span>
+              <span className="text-xs text-muted-foreground">px</span>
             </div>
             <div>
-              <label className="block text-xs text-gray-500 mb-1">Viewport</label>
+              <label className="block text-xs text-muted-foreground mb-1">Viewport</label>
               <input
                 type="number"
                 value={viewportWidth}
                 onChange={(e) => setViewportWidth(Number(e.target.value) || 1440)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:ring-2 focus:ring-ring"
               />
-              <span className="text-xs text-gray-400">px</span>
+              <span className="text-xs text-muted-foreground">px</span>
             </div>
           </div>
         </div>
       }
       result={
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Converted Values</h3>
+          <h3 className="text-sm font-semibold text-muted-foreground tracking-wide">Converted Values</h3>
           {results.length === 0 ? (
-            <p className="text-gray-400 text-sm">Enter a value above to see conversions.</p>
+            <p className="text-muted-foreground text-sm">Enter a value above to see conversions.</p>
           ) : (
             <div className="space-y-3">
               {results.map(({ unit, value }) => (
-                <div key={unit} className="flex items-center justify-between bg-gray-50 rounded-lg px-4 py-3">
+                <div key={unit} className="flex items-center justify-between bg-muted rounded-lg px-4 py-3">
                   <div>
-                    <div className="text-xs text-gray-500">{unitLabels[unit as Unit]}</div>
-                    <div className="font-mono text-lg text-gray-800">{value} {unit}</div>
+                    <div className="text-xs text-muted-foreground">{unitLabels[unit as Unit]}</div>
+                    <div className="font-mono text-lg text-foreground">{value} {unit}</div>
                   </div>
-                  <ArrowRightLeft className="h-4 w-4 text-gray-300" />
+                  <ArrowRightLeft className="h-4 w-4 text-muted-foreground" />
                 </div>
               ))}
             </div>
           )}
-          <div className="text-xs text-gray-400 mt-2">
+          <div className="text-xs text-muted-foreground mt-2">
             Based on root: {baseFontSize}px, parent: {parentFontSize}px, viewport: {viewportWidth}px
           </div>
         </div>

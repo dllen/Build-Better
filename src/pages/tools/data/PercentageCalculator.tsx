@@ -32,17 +32,17 @@ export default function PercentageCalculator() {
       title="Percentage Calculator"
       subtitle="Perform common percentage calculations quickly."
       icon={Percent}
-      iconBgColor="bg-emerald-100"
-      iconColor="text-emerald-600"
+      iconBgColor="bg-success/10"
+      iconColor="text-success"
       keywords={["percentage", "percent", "calculator", "increase", "decrease"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Calculation type</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Calculation type</label>
             <select
               value={mode}
               onChange={(e) => setMode(e.target.value as PercentageMode)}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none bg-white"
+              className="w-full rounded-lg border border-border px-3 py-2.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card"
             >
               {MODES.map((m) => (
                 <option key={m.value} value={m.value}>
@@ -54,44 +54,44 @@ export default function PercentageCalculator() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label className="block text-sm font-medium text-muted-foreground mb-1.5">
                 {mode === "whatPercentage" || mode === "difference" ? "Value A" : "Value"}
               </label>
               <input
                 type="number"
                 value={a}
                 onChange={(e) => setA(Number(e.target.value))}
-                className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none"
+                className="w-full rounded-lg border border-border px-3 py-2.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label className="block text-sm font-medium text-muted-foreground mb-1.5">
                 {mode === "whatPercentage" || mode === "difference" ? "Value B" : "%"}
               </label>
               <input
                 type="number"
                 value={b}
                 onChange={(e) => setB(Number(e.target.value))}
-                className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none"
+                className="w-full rounded-lg border border-border px-3 py-2.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none"
               />
             </div>
           </div>
 
-          {error && <p className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">{error}</p>}
+          {error && <p className="text-sm text-destructive bg-destructive/10 rounded-lg px-3 py-2">{error}</p>}
         </div>
       }
       result={
         <div className="text-center">
           {result ? (
             <>
-              <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">{result.label}</p>
-              <p className="text-4xl font-bold text-gray-900">
+              <p className="text-xs font-medium text-muted-foreground tracking-wide mb-2">{result.label}</p>
+              <p className="text-4xl font-bold text-foreground">
                 {Number.isInteger(result.value) ? result.value : result.value.toFixed(4)}
               </p>
-              <p className="text-sm text-gray-500 mt-2">Result</p>
+              <p className="text-sm text-muted-foreground mt-2">Result</p>
             </>
           ) : (
-            <p className="text-gray-400 text-sm">Enter values to calculate</p>
+            <p className="text-muted-foreground text-sm">Enter values to calculate</p>
           )}
         </div>
       }

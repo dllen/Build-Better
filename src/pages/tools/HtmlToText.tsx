@@ -82,12 +82,12 @@ export default function HtmlToText() {
             description={t("tools.html-to-text.desc")}
             keywords={["html to text", "extract text", "remove tags", "html cleaner"]}
           />
-          <div className="p-2.5 rounded-lg bg-blue-100 text-blue-600">
+          <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
             <FileText className="h-6 w-6" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t("tools.html-to-text.name")}</h1>
-            <p className="text-gray-500 mt-1">{t("tools.html-to-text.desc")}</p>
+            <h1 className="text-2xl font-bold text-foreground">{t("tools.html-to-text.name")}</h1>
+            <p className="text-muted-foreground mt-1">{t("tools.html-to-text.desc")}</p>
           </div>
         </>
       }
@@ -95,7 +95,7 @@ export default function HtmlToText() {
         <>
           <button
             onClick={handleConvert}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors shadow-sm"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-primary-foreground bg-primary rounded-md hover:bg-primary transition-colors"
           >
             <ArrowRight className="h-4 w-4" />
             {t("tools.html-to-text.convert_btn")}
@@ -103,9 +103,9 @@ export default function HtmlToText() {
           <button
             onClick={handleCopy}
             disabled={!text}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors shadow-sm disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-muted-foreground bg-card border border-border rounded-md hover:bg-muted transition-colors disabled:opacity-50"
           >
-            {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+            {copied ? <Check className="h-4 w-4 text-success" /> : <Copy className="h-4 w-4" />}
             {copied ? t("tools.html-to-text.copied") : t("tools.html-to-text.copy_btn")}
           </button>
         </>
@@ -125,7 +125,7 @@ export default function HtmlToText() {
         <textarea
           value={text}
           readOnly
-          className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-gray-50 focus:outline-none"
+          className="h-full w-full resize-none px-3 py-2 font-mono text-sm bg-muted focus:outline-none"
         />
       }
     />

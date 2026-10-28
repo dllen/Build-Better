@@ -59,23 +59,23 @@ export default function AiCostCalculator() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-amber-100 text-amber-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Coins className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">AI 成本计算器</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+        <div className="bg-card rounded-lg border border-border p-4 space-y-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">模型选择</label>
+            <label className="text-sm font-medium text-muted-foreground">模型选择</label>
             <select
               value={selectedModel}
               onChange={(e) => {
                 setSelectedModel(e.target.value);
                 setResult(null);
               }}
-              className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
             >
               {MODELS.map((m) => (
                 <option key={m.name} value={m.name}>
@@ -83,102 +83,102 @@ export default function AiCostCalculator() {
                 </option>
               ))}
             </select>
-            <div className="text-xs text-gray-500">
+            <div className="text-xs text-muted-foreground">
               输入 ${model.inputPrice} / 输出 ${model.outputPrice} (每 1M tokens, USD)
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">输入 Token 数</label>
+              <label className="text-sm font-medium text-muted-foreground">输入 Token 数</label>
               <input
                 type="number"
                 min="0"
                 value={inputTokens}
                 onChange={(e) => setInputTokens(e.target.value)}
                 placeholder="例如：100000"
-                className="rounded-md border border-gray-300 px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="rounded-md border border-border px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">输出 Token 数</label>
+              <label className="text-sm font-medium text-muted-foreground">输出 Token 数</label>
               <input
                 type="number"
                 min="0"
                 value={outputTokens}
                 onChange={(e) => setOutputTokens(e.target.value)}
                 placeholder="例如：50000"
-                className="rounded-md border border-gray-300 px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="rounded-md border border-border px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">请求次数（可选）</label>
+            <label className="text-sm font-medium text-muted-foreground">请求次数（可选）</label>
             <input
               type="number"
               min="1"
               value={requestCount}
               onChange={(e) => setRequestCount(e.target.value)}
               placeholder="1"
-              className="rounded-md border border-gray-300 px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="rounded-md border border-border px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-ring"
             />
-            <div className="text-xs text-gray-500">用于批量估算总成本</div>
+            <div className="text-xs text-muted-foreground">用于批量估算总成本</div>
           </div>
 
           <div className="flex gap-3">
             <button
-              className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
               onClick={calculate}
             >
               计算
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2"
+              className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2"
               onClick={clear}
             >
               清空
             </button>
           </div>
 
-          <div className="text-xs text-gray-400 flex items-center gap-1">
+          <div className="text-xs text-muted-foreground flex items-center gap-1">
             <span>数据仅在浏览器本地处理，不会上传到服务器。</span>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-card rounded-lg border border-border p-4">
           {result ? (
             <div className="space-y-4">
-              <div className="font-medium text-gray-700">费用明细</div>
+              <div className="font-medium text-muted-foreground">费用明细</div>
 
               <div className="grid grid-cols-3 gap-3">
-                <div className="bg-gray-50 rounded-lg p-3 text-center">
-                  <div className="text-xs text-gray-500 mb-1">输入费用</div>
-                  <div className="text-lg font-semibold text-gray-900">
+                <div className="bg-muted rounded-lg p-3 text-center">
+                  <div className="text-xs text-muted-foreground mb-1">输入费用</div>
+                  <div className="text-lg font-semibold text-foreground">
                     ${result.inputCost.toFixed(4)}
                   </div>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3 text-center">
-                  <div className="text-xs text-gray-500 mb-1">输出费用</div>
-                  <div className="text-lg font-semibold text-gray-900">
+                <div className="bg-muted rounded-lg p-3 text-center">
+                  <div className="text-xs text-muted-foreground mb-1">输出费用</div>
+                  <div className="text-lg font-semibold text-foreground">
                     ${result.outputCost.toFixed(4)}
                   </div>
                 </div>
-                <div className="bg-blue-50 rounded-lg p-3 text-center">
-                  <div className="text-xs text-blue-600 mb-1">总费用</div>
-                  <div className="text-lg font-semibold text-blue-700">
+                <div className="bg-primary/10 rounded-lg p-3 text-center">
+                  <div className="text-xs text-primary mb-1">总费用</div>
+                  <div className="text-lg font-semibold text-primary">
                     ${result.totalCost.toFixed(4)}
                   </div>
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-3">
-                <div className="text-xs text-gray-500 mb-1">计算公式</div>
-                <div className="text-sm font-mono text-gray-700 break-all">{result.formula}</div>
+              <div className="bg-muted rounded-lg p-3">
+                <div className="text-xs text-muted-foreground mb-1">计算公式</div>
+                <div className="text-sm font-mono text-muted-foreground break-all">{result.formula}</div>
               </div>
             </div>
           ) : (
-            <div className="text-sm text-gray-500 h-full flex items-center justify-center min-h-32">
+            <div className="text-sm text-muted-foreground h-full flex items-center justify-center min-h-32">
               选择模型并输入 Token 数量后点击“计算”
             </div>
           )}

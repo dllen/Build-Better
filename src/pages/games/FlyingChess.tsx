@@ -362,23 +362,23 @@ const FlyingChess: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
+    <div className="flex flex-col items-center justify-center p-4">
       <div className="max-w-4xl w-full">
         <div className="flex items-center mb-6">
           <Link to="/games" className="mr-4">
-            <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full">
+            <button className="p-2 hover:bg-muted rounded-full transition-colors">
               <ArrowLeft className="w-6 h-6" />
             </button>
           </Link>
           <h1 className="text-3xl font-bold flex items-center gap-2">
-            <Plane className="w-8 h-8 text-blue-500" />
+            <Plane className="w-8 h-8 text-cool" />
             {t("games.flying_chess.title", "Flying Chess")}
           </h1>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 aspect-square relative bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden border-4 border-slate-200 dark:border-slate-700">
-            <svg viewBox="0 0 100 100" className="w-full h-full">
+          <div className="lg:col-span-2 aspect-square relative bg-card rounded-xl overflow-hidden border-4 border-border">
+            <svg viewBox="0 0 100 100" className="w-full h-full" aria-hidden="true">
               <rect x="15" y="15" width="70" height="70" fill="none" stroke="#e2e8f0" strokeWidth="8" rx="4" />
               
               <line x1="50" y1="85" x2="50" y2="50" stroke={COLORS.red} strokeWidth="6" strokeDasharray="1 1" />
@@ -407,9 +407,9 @@ const FlyingChess: React.FC = () => {
                     <g 
                       key={`${player}-${i}`}
                       onClick={() => player === PLAYERS[gameState.currentPlayerIndex] && handleMove(i)}
-                      style={{ cursor: player === PLAYERS[gameState.currentPlayerIndex] ? "pointer" : "default", transition: "all 0.3s ease" }}
+                      style={{ cursor: player === PLAYERS[gameState.currentPlayerIndex] ? "pointer" : "default", transition: "fill 0.3s ease" }}
                     >
-                      <circle cx={x} cy={y} r="3" fill={COLORS[player]} stroke="white" strokeWidth="1" className="transition-all duration-300" />
+                      <circle cx={x} cy={y} r="3" fill={COLORS[player]} stroke="white" strokeWidth="1" className="transition-colors duration-short ease-out" />
                       {player === PLAYERS[gameState.currentPlayerIndex] && 
                        gameState.waitingForMove && 
                        gameState.diceValue && 
@@ -423,18 +423,18 @@ const FlyingChess: React.FC = () => {
             </svg>
             
             {!gameStarted && (
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl text-center">
+              <div className="absolute inset-0 bg-scrim/55 flex items-center justify-center z-10">
+                <div className="bg-muted p-8 rounded-xl text-center">
                   <h2 className="text-2xl font-bold mb-4">{t("games.flying_chess.title", "Flying Chess")}</h2>
                   <div className="flex gap-4 mb-6 justify-center">
                     {(["easy", "medium", "hard"] as const).map((d) => (
                       <button
                         key={d}
                         onClick={() => setDifficulty(d)}
-                        className={`px-4 py-2 rounded-lg capitalize ${
+                        className={`px-4 py-2 rounded-lg capitalize transition-colors ${
                           difficulty === d 
-                            ? "bg-blue-600 text-white" 
-                            : "bg-gray-200 dark:bg-gray-700"
+                            ? "bg-primary text-primary-foreground" 
+                            : "bg-muted text-ink-2 hover:bg-accent"
                         }`}
                       >
                         {t(`games.flying_chess.${d}`, d)}
@@ -443,7 +443,7 @@ const FlyingChess: React.FC = () => {
                   </div>
                   <button 
                     onClick={() => setGameStarted(true)} 
-                    className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg flex items-center justify-center hover:bg-blue-700"
+                    className="w-full bg-primary text-primary-foreground px-6 py-3 rounded-lg flex items-center justify-center hover:bg-primary/90 transition-colors"
                   >
                     <Play className="w-5 h-5 mr-2" />
                     {t("games.start", "Start Game")}
@@ -454,20 +454,20 @@ const FlyingChess: React.FC = () => {
           </div>
 
           <div className="flex flex-col gap-4">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border">
+            <div className="bg-card p-6 rounded-xl border border-border">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-semibold">{t("games.flying_chess.status", "Game Status")}</h3>
                 <button 
                   onClick={() => setGameStarted(false)}
-                  className="p-2 border rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="p-2 border rounded hover:bg-muted transition-colors"
                 >
                   <RefreshCw className="w-4 h-4" />
                 </button>
               </div>
               
-              <div className="flex items-center justify-between mb-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+              <div className="flex items-center justify-between mb-6 p-4 bg-muted rounded-lg">
                 <div className="text-center">
-                  <div className="text-sm text-gray-500 mb-1">{t("games.flying_chess.turn", "Turn")}</div>
+                  <div className="text-sm text-muted-foreground mb-1">{t("games.flying_chess.turn", "Turn")}</div>
                   <div className="font-bold capitalize" style={{ color: COLORS[PLAYERS[gameState.currentPlayerIndex]] }}>
                     {t(`games.flying_chess.${PLAYERS[gameState.currentPlayerIndex]}`)}
                   </div>
@@ -475,14 +475,14 @@ const FlyingChess: React.FC = () => {
                 
                 <div className="flex flex-col items-center">
                   <div className={`w-16 h-16 flex items-center justify-center rounded-xl text-3xl font-bold border-4
-                    ${gameState.waitingForDice ? "animate-pulse border-blue-400" : "border-gray-200"}
+                    ${gameState.waitingForDice ? "animate-pulse border-ring" : "border-border"}
                   `}>
                     {gameState.diceValue || "?"}
                   </div>
                   {gameState.waitingForDice && PLAYERS[gameState.currentPlayerIndex] === "red" && (
                     <button 
                       onClick={rollDice} 
-                      className="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                      className="mt-2 px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors"
                     >
                       {t("games.flying_chess.roll", "Roll")}
                     </button>
@@ -492,16 +492,16 @@ const FlyingChess: React.FC = () => {
 
               <div className="space-y-2 max-h-60 overflow-y-auto">
                 {gameState.logs.map((log, i) => (
-                  <div key={i} className="text-sm text-gray-600 dark:text-gray-400 border-b pb-1">
+                  <div key={i} className="text-sm text-ink-2 border-b border-border pb-1">
                     {log}
                   </div>
                 ))}
               </div>
             </div>
             
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border">
+            <div className="bg-card p-6 rounded-xl border border-border">
               <h3 className="font-semibold mb-2">{t("games.flying_chess.rules", "Rules")}</h3>
-              <ul className="text-sm text-gray-600 dark:text-gray-400 list-disc pl-4 space-y-1">
+              <ul className="text-sm text-ink-2 list-disc pl-4 space-y-1">
                 <li>{t("games.flying_chess.rule1", "Roll 6 to launch a plane.")}</li>
                 <li>{t("games.flying_chess.rule2", "Land on same color to jump.")}</li>
                 <li>{t("games.flying_chess.rule3", "Land on opponent to kick them back.")}</li>

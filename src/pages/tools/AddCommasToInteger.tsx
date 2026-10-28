@@ -63,14 +63,14 @@ export default function AddCommasToInteger() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-lime-100 text-lime-600 rounded-lg"><Hash className="h-5 w-5" /></div>
-          <h1 className="text-2xl font-bold text-gray-900">Add Commas to Integer</h1>
+          <div className="p-2 bg-success/10 text-success rounded-lg"><Hash className="h-5 w-5" /></div>
+          <h1 className="text-2xl font-bold text-foreground">Add Commas to Integer</h1>
         </div>
       }
       toolbar={
         <div className="flex flex-wrap items-center gap-3">
           <select value={style} onChange={(e) => setStyle(e.target.value)}
-            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-lime-500 focus:ring-1 focus:ring-lime-500 outline-none bg-white">
+            className="rounded-lg border border-border px-3 py-1.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none bg-card">
             <option value="western">Western (1,000,000)</option>
             <option value="indian">Indian (10,00,000)</option>
             <option value="chinese">Chinese (100,0000)</option>
@@ -78,7 +78,7 @@ export default function AddCommasToInteger() {
             <option value="underscore">Underscore (1_000_000)</option>
           </select>
           <button onClick={handleFormat}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-lime-600 text-white text-sm font-medium rounded-lg hover:bg-lime-700 transition-colors">
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-success text-success-foreground text-sm font-medium rounded-lg hover:bg-success transition-colors">
             <Hash className="h-3.5 w-3.5" />Format
           </button>
         </div>
@@ -87,24 +87,24 @@ export default function AddCommasToInteger() {
       input={
         <textarea value={input} onChange={(e) => { setInput(e.target.value); setOutput(""); }}
           placeholder="Enter a number (e.g. 1000000)..."
-          className="h-full w-full resize-none rounded-lg border border-gray-200 bg-white p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-lime-500/20 focus:border-lime-400"
+          className="h-full w-full resize-none rounded-lg border border-border bg-card p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-border"
           spellCheck={false} />
       }
       outputLabel="Formatted"
       outputActions={
         output && output !== "Invalid number" ? (
           <button onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors">
+            className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded transition-colors">
             <Copy className="h-3.5 w-3.5" />Copy
           </button>
         ) : undefined
       }
       output={
-        <div className="h-full overflow-auto rounded-lg border border-gray-200 bg-white p-4">
+        <div className="h-full overflow-auto rounded-lg border border-border bg-card p-4">
           {output ? (
-            <p className={`text-lg font-mono ${output === "Invalid number" ? "text-red-500" : "text-gray-800"}`}>{output}</p>
+            <p className={`text-lg font-mono ${output === "Invalid number" ? "text-destructive" : "text-foreground"}`}>{output}</p>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
               Formatted number will appear here
             </div>
           )}

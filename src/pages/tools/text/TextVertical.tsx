@@ -9,7 +9,7 @@ export default function TextVertical() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-fuchsia-100 text-fuchsia-600">
+          <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
             <AlignJustify className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">文字竖排</h1>
@@ -27,7 +27,7 @@ export default function TextVertical() {
       outputLabel="竖排预览"
       output={
         <div className="h-full overflow-auto px-3 py-2" style={{ writingMode: "vertical-rl", textOrientation: "upright" }}>
-          <div className="text-base leading-loose tracking-wider">
+          <div className="text-base leading-loose">
             {text || "—"}
           </div>
         </div>

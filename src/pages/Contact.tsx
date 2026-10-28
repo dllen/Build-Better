@@ -15,13 +15,13 @@ export default function Contact() {
           </p>
         </header>
 
-        <section className="space-y-4 bg-card text-card-foreground rounded-xl border border-border p-6 shadow-sm">
+        <section className="space-y-4 bg-card text-card-foreground rounded-xl border border-border p-6">
           <div className="space-y-1">
             <h2 className="text-lg font-semibold">Bug reports or suggestions</h2>
             <p className="text-muted-foreground leading-relaxed">
               <a
                 href="mailto:hello@buildbetter.app"
-                className="text-primary underline underline-offset-4 hover:text-primary/80"
+                className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
               >
                 hello@buildbetter.app
               </a>
@@ -33,7 +33,7 @@ export default function Contact() {
             <p className="text-muted-foreground leading-relaxed">
               <a
                 href="mailto:privacy@buildbetter.app"
-                className="text-primary underline underline-offset-4 hover:text-primary/80"
+                className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
               >
                 privacy@buildbetter.app
               </a>
@@ -45,7 +45,7 @@ export default function Contact() {
             <p className="text-muted-foreground leading-relaxed">
               <a
                 href="mailto:partners@buildbetter.app"
-                className="text-primary underline underline-offset-4 hover:text-primary/80"
+                className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
               >
                 partners@buildbetter.app
               </a>
@@ -53,7 +53,7 @@ export default function Contact() {
           </div>
         </section>
 
-        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6 shadow-sm">
+        <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6">
           <h2 className="text-xl font-semibold">Response time</h2>
           <p className="text-muted-foreground leading-relaxed">
             Usually within 48 hours on weekdays.

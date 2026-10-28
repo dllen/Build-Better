@@ -127,23 +127,23 @@ const severityConfig: Record<
   危险: {
     label: "危险",
     icon: ShieldAlert,
-    color: "text-red-600",
-    bg: "bg-red-50",
-    text: "text-red-800",
+    color: "text-destructive",
+    bg: "bg-destructive/10",
+    text: "text-destructive",
   },
   警告: {
     label: "警告",
     icon: AlertTriangle,
-    color: "text-amber-600",
-    bg: "bg-amber-50",
-    text: "text-amber-800",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    text: "text-primary",
   },
   提示: {
     label: "提示",
     icon: Info,
-    color: "text-blue-600",
-    bg: "bg-blue-50",
-    text: "text-blue-800",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    text: "text-primary",
   },
 };
 
@@ -185,7 +185,7 @@ export default function SqlReview() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-purple-100 text-purple-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Search className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">SQL Review</h1>
@@ -194,37 +194,37 @@ export default function SqlReview() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Input panel */}
         <div className="space-y-4">
-          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+          <div className="bg-card rounded-lg border border-border p-4 space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
                 SQL 输入
               </label>
               <textarea
                 value={sql}
                 onChange={(e) => setSql(e.target.value)}
                 placeholder="在此粘贴 SQL 语句..."
-                className="w-full h-48 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono text-sm resize-none"
+                className="w-full h-48 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm resize-none"
               />
             </div>
 
             <div className="flex gap-3">
               <button
                 onClick={check}
-                className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+                className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
               >
                 <Search className="h-4 w-4" />
                 检查
               </button>
               <button
                 onClick={clear}
-                className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2"
+                className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2"
               >
                 <Trash2 className="h-4 w-4" />
                 清空
               </button>
             </div>
 
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-muted-foreground">
               数据仅在浏览器本地处理，不会上传到服务器。
             </p>
           </div>
@@ -233,25 +233,25 @@ export default function SqlReview() {
           {checked && (
             <div className="flex flex-wrap gap-2">
               {dangerCount > 0 && (
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-700">
+                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium bg-destructive/10 text-destructive">
                   <ShieldAlert className="h-3.5 w-3.5" />
                   危险 {dangerCount}
                 </span>
               )}
               {warnCount > 0 && (
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium bg-amber-100 text-amber-700">
+                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
                   <AlertTriangle className="h-3.5 w-3.5" />
                   警告 {warnCount}
                 </span>
               )}
               {infoCount > 0 && (
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-700">
+                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
                   <Info className="h-3.5 w-3.5" />
                   提示 {infoCount}
                 </span>
               )}
               {issues.length === 0 && (
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-700">
+                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium bg-success/10 text-success">
                   <Info className="h-3.5 w-3.5" />
                   未发现问题
                 </span>
@@ -261,20 +261,20 @@ export default function SqlReview() {
         </div>
 
         {/* Output panel */}
-        <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200 p-4 space-y-3">
-          <div className="font-medium text-gray-700">检查结果</div>
+        <div className="lg:col-span-2 bg-card rounded-lg border border-border p-4 space-y-3">
+          <div className="font-medium text-muted-foreground">检查结果</div>
 
           {!checked && (
-            <p className="text-sm text-gray-400">输入 SQL 后点击"检查"开始分析。</p>
+            <p className="text-sm text-muted-foreground">输入 SQL 后点击"检查"开始分析。</p>
           )}
 
           {checked && issues.length === 0 && (
             <div className="flex flex-col items-center justify-center py-10 space-y-2">
-              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-                <Info className="h-6 w-6 text-green-600" />
+              <div className="w-12 h-12 rounded-full bg-success/10 flex items-center justify-center">
+                <Info className="h-6 w-6 text-success" />
               </div>
-              <p className="text-green-700 font-medium">未发现问题</p>
-              <p className="text-sm text-gray-400">SQL 语句符合基本规范。</p>
+              <p className="text-success font-medium">未发现问题</p>
+              <p className="text-sm text-muted-foreground">SQL 语句符合基本规范。</p>
             </div>
           )}
 
@@ -298,17 +298,17 @@ export default function SqlReview() {
                   {items.map((issue, i) => (
                     <div
                       key={i}
-                      className="border border-gray-200 rounded-md p-3 space-y-1.5"
+                      className="border border-border rounded-md p-3 space-y-1.5"
                     >
                       <div className="flex items-start gap-2">
-                        <span className="text-xs font-mono text-gray-400 mt-0.5">
+                        <span className="text-xs font-mono text-muted-foreground mt-0.5">
                           #{issue.line}
                         </span>
                         <span className={`text-xs font-semibold ${config.color}`}>
                           {issue.rule}
                         </span>
                       </div>
-                      <pre className="text-xs font-mono text-gray-600 bg-gray-50 rounded px-2 py-1 whitespace-pre-wrap break-all">
+                      <pre className="text-xs font-mono text-muted-foreground bg-muted rounded px-2 py-1 whitespace-pre-wrap break-all">
                         {issue.snippet}
                       </pre>
                       <p className={`text-sm ${config.text}`}>

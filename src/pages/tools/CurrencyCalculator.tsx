@@ -60,16 +60,16 @@ export default function CurrencyCalculator() {
       {result !== null ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">{amount} {from} =</p>
-            <p className="text-4xl font-bold text-blue-600">{RATES[to].symbol}{fmt(result)}</p>
-            <p className="text-sm text-gray-500 mt-1">{t("tools.currency-calculator.rate_label")} 1 {from} = {rate?.toFixed(4)} {to}</p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">{amount} {from} =</p>
+            <p className="text-4xl font-bold text-primary">{RATES[to].symbol}{fmt(result)}</p>
+            <p className="text-sm text-muted-foreground mt-1">{t("tools.currency-calculator.rate_label")} 1 {from} = {rate?.toFixed(4)} {to}</p>
           </div>
-          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary">
             <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.currency-calculator.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Globe className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("tools.currency-calculator.enter_values")}</p>
         </div>
@@ -82,33 +82,33 @@ export default function CurrencyCalculator() {
       title={t("tools.currency-calculator.title")}
       subtitle={t("tools.currency-calculator.subtitle")}
       icon={Globe}
-      iconBgColor="bg-cyan-100"
-      iconColor="text-cyan-600"
+      iconBgColor="bg-info/10"
+      iconColor="text-info"
       keywords={["currency converter", "exchange rate", "money converter", "forex calculator"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.currency-calculator.amount")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.currency-calculator.amount")}</label>
           <input type="number" step="0.01" min="0" value={amount} onChange={e => setAmount(e.target.value)} placeholder="100"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <div className="grid grid-cols-2 gap-2 items-end">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.currency-calculator.from")}</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.currency-calculator.from")}</label>
             <select value={from} onChange={e => setFrom(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm py-2 px-3 border">
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
               {Object.entries(RATES).map(([k, v]) => <option key={k} value={k}>{k} - {v.name}</option>)}
             </select>
           </div>
-          <button onClick={swap} className="h-10 px-3 bg-cyan-100 text-cyan-700 rounded-lg hover:bg-cyan-200 flex items-center justify-center gap-1">
+          <button onClick={swap} className="h-10 px-3 bg-info/10 text-info rounded-lg hover:bg-info/10 flex items-center justify-center gap-1">
             <ArrowRightLeft className="h-4 w-4" />{t("tools.currency-calculator.swap")}
           </button>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.currency-calculator.to")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.currency-calculator.to")}</label>
           <select value={to} onChange={e => setTo(e.target.value)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm py-2 px-3 border">
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
             {Object.entries(RATES).map(([k, v]) => <option key={k} value={k}>{k} - {v.name}</option>)}
           </select>
         </div>

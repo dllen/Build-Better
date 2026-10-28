@@ -59,43 +59,43 @@ export default function AIProductDescriptionGenerator() {
     <div className="space-y-4">
       {loading ? (
         <div className="text-center py-12">
-          <Sparkles className="h-10 w-10 mx-auto mb-4 text-purple-500 animate-pulse" />
-          <p className="text-sm text-gray-600">{t("tools.ai-product-desc.generating")}</p>
+          <Sparkles className="h-10 w-10 mx-auto mb-4 text-primary animate-pulse" />
+          <p className="text-sm text-muted-foreground">{t("tools.ai-product-desc.generating")}</p>
         </div>
       ) : result ? (
         <>
           <div className="space-y-3">
             {result.title && (
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
-                <p className="text-xs text-purple-600 mb-1">TITLE</p>
+              <div className="bg-primary/10 border border-border rounded-lg p-3">
+                <p className="text-xs text-primary mb-1">TITLE</p>
                 <p className="font-bold text-sm">{result.title}</p>
               </div>
             )}
             {result.short && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                <p className="text-xs text-blue-600 mb-1">SHORT</p>
+              <div className="bg-primary/10 border border-border rounded-lg p-3">
+                <p className="text-xs text-primary mb-1">SHORT</p>
                 <p className="text-sm">{result.short}</p>
               </div>
             )}
             {result.long && (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                <p className="text-xs text-green-600 mb-1">LONG</p>
+              <div className="bg-success/10 border border-border rounded-lg p-3">
+                <p className="text-xs text-success mb-1">LONG</p>
                 <p className="text-sm whitespace-pre-wrap">{result.long}</p>
               </div>
             )}
             {result.keywords && (
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
-                <p className="text-xs text-amber-600 mb-1">SEO KEYWORDS</p>
+              <div className="bg-primary/10 border border-border rounded-lg p-3">
+                <p className="text-xs text-primary mb-1">SEO KEYWORDS</p>
                 <p className="text-sm">{result.keywords}</p>
               </div>
             )}
           </div>
-          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
+          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary">
             <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.ai-product-desc.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Sparkles className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-sm">{t("tools.ai-product-desc.enter_values")}</p>
           {ollamaOk === false && <div className="mt-3"><OllamaHelpBanner /></div>}
@@ -109,49 +109,49 @@ export default function AIProductDescriptionGenerator() {
       title={t("tools.ai-product-desc.title")}
       subtitle={t("tools.ai-product-desc.subtitle")}
       icon={Sparkles}
-      iconBgColor="bg-purple-100"
-      iconColor="text-purple-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["ai product description", "product copy", "ecommerce seo", "ai writing"]}
       result={resultNode}
     >
       <div className="space-y-3">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.ai-product-desc.product_name")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.ai-product-desc.product_name")}</label>
           <input value={productName} onChange={e => setProductName(e.target.value)} placeholder="Wireless Bluetooth Earbuds"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.ai-product-desc.features")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.ai-product-desc.features")}</label>
           <textarea value={features} onChange={e => setFeatures(e.target.value)} rows={3}
             placeholder={t("tools.ai-product-desc.features_placeholder")}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <div className="grid grid-cols-3 gap-2">
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.ai-product-desc.platform")}</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">{t("tools.ai-product-desc.platform")}</label>
             <select value={platform} onChange={e => setPlatform(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm py-2 px-2 border">
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-2 border">
               {PLATFORMS.map(p => <option key={p}>{p}</option>)}
             </select>
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.ai-product-desc.language")}</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">{t("tools.ai-product-desc.language")}</label>
             <select value={language} onChange={e => setLanguage(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm py-2 px-2 border">
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-2 border">
               {LANGS.map(l => <option key={l}>{l}</option>)}
             </select>
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">{t("tools.ai-product-desc.tone")}</label>
+            <label className="block text-xs font-medium text-muted-foreground mb-1">{t("tools.ai-product-desc.tone")}</label>
             <select value={tone} onChange={e => setTone(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm py-2 px-2 border">
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-2 border">
               {TONES.map(tn => <option key={tn}>{tn}</option>)}
             </select>
           </div>
         </div>
         <OllamaModelBadge />
         <button onClick={generate} disabled={loading || !productName.trim()}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50">
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary disabled:opacity-50">
           <Sparkles className="h-4 w-4" />{loading ? "..." : t("tools.ai-product-desc.generate")}
         </button>
       </div>

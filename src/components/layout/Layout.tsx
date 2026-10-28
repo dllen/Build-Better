@@ -81,10 +81,7 @@ export function Layout() {
           <Outlet />
         </main>
         {!fillViewport && showToolAd && (
-          <aside
-            aria-label="Advertisement"
-            className="container mx-auto px-4 pb-6"
-          >
+          <aside aria-label="Advertisement" className="container mx-auto px-4 pb-6">
             <AdSlot format="auto" minHeight={90} className="mx-auto max-w-3xl" />
           </aside>
         )}

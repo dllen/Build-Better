@@ -40,7 +40,7 @@ export default function TextClearChars() {
     <EditorSplitLayout
       title={
         <>
-          <div className="inline-flex p-2 rounded-lg bg-red-100 text-red-600">
+          <div className="inline-flex p-2 rounded-lg bg-destructive/10 text-destructive">
             <Eraser className="h-5 w-5" />
           </div>
           <h1 className="text-2xl font-semibold">文本清洗</h1>
@@ -69,12 +69,12 @@ export default function TextClearChars() {
             空白
           </label>
           <button
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-300 text-xs hover:bg-gray-50"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border text-xs hover:bg-muted"
             onClick={() => copy(result)}
             disabled={!result}
           >
             <ClipboardCopy className="h-3.5 w-3.5" /> 复制
-            {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : null}
+            {copied ? <Check className="h-3.5 w-3.5 text-success" /> : null}
           </button>
         </>
       }
@@ -95,9 +95,9 @@ export default function TextClearChars() {
       }
       footer={
         <div className="flex gap-4 text-sm">
-          <div className="rounded-md border border-gray-200 px-3 py-2">原始: {stats.original} 字符</div>
-          <div className="rounded-md border border-gray-200 px-3 py-2">结果: {stats.result} 字符</div>
-          <div className="rounded-md border border-gray-200 px-3 py-2">移除: {stats.removed} 字符</div>
+          <div className="rounded-md border border-border px-3 py-2">原始: {stats.original} 字符</div>
+          <div className="rounded-md border border-border px-3 py-2">结果: {stats.result} 字符</div>
+          <div className="rounded-md border border-border px-3 py-2">移除: {stats.removed} 字符</div>
         </div>
       }
     />

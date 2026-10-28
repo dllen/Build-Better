@@ -99,21 +99,17 @@ export default function EnsLookup() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Globe className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">ENS 域名查询</h1>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+      <div className="bg-card rounded-lg border border-border p-4 space-y-4">
         <div className="flex flex-wrap items-center gap-4">
-          <div className="inline-flex rounded-md border border-gray-300 overflow-hidden">
+          <div className="inline-flex rounded-md border border-border overflow-hidden">
             <button
-              className={`px-4 py-2 text-sm inline-flex items-center gap-1 ${
-                mode === "resolve"
-                  ? "bg-blue-600 text-white"
-                  : "bg-white text-gray-700"
-              }`}
+              className={`px-4 py-2 text-sm inline-flex items-center gap-1 ${ mode === "resolve" ? "bg-primary text-primary-foreground" : "text-muted-foreground" }`}
               onClick={() => {
                 setMode("resolve");
                 setResult(null);
@@ -123,11 +119,7 @@ export default function EnsLookup() {
               正向解析
             </button>
             <button
-              className={`px-4 py-2 text-sm inline-flex items-center gap-1 ${
-                mode === "reverse"
-                  ? "bg-blue-600 text-white"
-                  : "bg-white text-gray-700"
-              }`}
+              className={`px-4 py-2 text-sm inline-flex items-center gap-1 ${ mode === "reverse" ? "bg-primary text-primary-foreground" : "text-muted-foreground" }`}
               onClick={() => {
                 setMode("reverse");
                 setResult(null);
@@ -137,13 +129,13 @@ export default function EnsLookup() {
               反向解析
             </button>
           </div>
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-muted-foreground">
             {mode === "resolve" ? "ENS 域名 → ETH 地址" : "ETH 地址 → ENS 域名"}
           </span>
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">
+          <label className="text-sm font-medium text-muted-foreground">
             {mode === "resolve" ? "ENS 域名" : "以太坊地址"}
           </label>
           <input
@@ -154,72 +146,72 @@ export default function EnsLookup() {
             placeholder={
               mode === "resolve" ? "输入 ENS 域名，如 vitalik.eth" : "输入以太坊地址，如 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
             }
-            className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono text-sm"
+            className="w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm"
           />
         </div>
 
         {result && (
-          <div className="rounded-md bg-gray-50 border border-gray-200 p-4 space-y-3 text-sm">
+          <div className="rounded-md bg-muted border border-border p-4 space-y-3 text-sm">
             {result.address && (
               <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-                <span className="text-gray-500 min-w-20">解析地址：</span>
-                <span className="font-mono text-gray-900 break-all">{result.address}</span>
+                <span className="text-muted-foreground min-w-20">解析地址：</span>
+                <span className="font-mono text-foreground break-all">{result.address}</span>
               </div>
             )}
             {result.name && (
               <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-                <span className="text-gray-500 min-w-20">ENS 名称：</span>
-                <span className="font-mono text-gray-900">{result.name}</span>
+                <span className="text-muted-foreground min-w-20">ENS 名称：</span>
+                <span className="font-mono text-foreground">{result.name}</span>
               </div>
             )}
             {result.owner && (
               <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-                <span className="text-gray-500 min-w-20">域名所有者：</span>
-                <span className="font-mono text-gray-900 break-all">{result.owner}</span>
+                <span className="text-muted-foreground min-w-20">域名所有者：</span>
+                <span className="font-mono text-foreground break-all">{result.owner}</span>
               </div>
             )}
             {result.ttl !== undefined && (
               <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-                <span className="text-gray-500 min-w-20">TTL：</span>
-                <span className="text-gray-900">{result.ttl} 秒</span>
+                <span className="text-muted-foreground min-w-20">TTL：</span>
+                <span className="text-foreground">{result.ttl} 秒</span>
               </div>
             )}
           </div>
         )}
 
         {error && (
-          <div className="rounded-md bg-red-50 border border-red-200 p-3 text-sm text-red-700">
+          <div className="rounded-md bg-destructive/10 border border-border p-3 text-sm text-destructive">
             {error}
           </div>
         )}
 
         <div className="flex flex-wrap gap-3">
           <button
-            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={lookup}
             disabled={loading || !input.trim()}
           >
             {loading ? (
-              <span className="inline-block h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin" />
+              <span className="inline-block h-4 w-4 rounded-full border-2 border-border border-t-transparent animate-spin" />
             ) : (
               <Search className="h-4 w-4" />
             )}
             {loading ? "查询中..." : "查询"}
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={copy}
             disabled={!result?.address}
           >
             {copied ? (
-              <Check className="h-4 w-4 text-green-600" />
+              <Check className="h-4 w-4 text-success" />
             ) : (
               <Copy className="h-4 w-4" />
             )}
             {copied ? "已复制 ✓" : "复制结果"}
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={clear}
             disabled={!input && !result}
           >
@@ -228,10 +220,10 @@ export default function EnsLookup() {
           </button>
         </div>
 
-        <div className="text-xs text-gray-500 leading-relaxed">
+        <div className="text-xs text-muted-foreground leading-relaxed">
           数据仅在浏览器本地处理，查询请求仅发送到公开 ENS API，不会上传到其他服务器。请勿在此页面输入私钥或助记词。
         </div>
-        <div className="text-xs text-amber-600">
+        <div className="text-xs text-primary">
           ENS 查询依赖第三方公开 API，仅用于信息查询。
         </div>
       </div>

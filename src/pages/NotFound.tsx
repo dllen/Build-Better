@@ -6,13 +6,13 @@ export default function NotFound() {
     <>
       <SEO
         title="404 - Page Not Found"
-        description="The page you're looking for doesn't exist."
+        description="The page you’re looking for doesn’t exist."
       />
-      <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
+      <div className="flex min-h-[60dvh] flex-col items-center justify-center text-center">
         <h1 className="mb-4 text-6xl font-bold text-muted-foreground">404</h1>
         <h2 className="mb-2 text-2xl font-semibold">Page Not Found</h2>
         <p className="mb-6 text-muted-foreground">
-          The page you're looking for doesn't exist.
+          The page you’re looking for doesn’t exist.
         </p>
         <Link
           to="/"

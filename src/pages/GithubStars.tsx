@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ExternalLink, Star, GitFork, Search, Filter, Github, Languages, Calendar } from 'lucide-react';
+import { ExternalLink, Star, GitFork, Search, Filter, Github, Languages, Calendar, ScrollText } from 'lucide-react';
 
 // 导入 GitHub Stars 数据
 import githubStarsData from '@/data/github-stars.json';
@@ -83,45 +83,45 @@ const GithubStars = () => {
 
   const getLanguageColor = (lang: string) => {
     const colors: Record<string, string> = {
-      'TypeScript': 'bg-blue-500',
-      'JavaScript': 'bg-yellow-500',
-      'Python': 'bg-green-500',
-      'Go': 'bg-cyan-500',
-      'Rust': 'bg-orange-500',
-      'Java': 'bg-red-500',
-      'C++': 'bg-purple-500',
-      'C': 'bg-gray-500',
-      'Ruby': 'bg-pink-500',
-      'PHP': 'bg-indigo-500',
-      'Swift': 'bg-orange-400',
-      'Kotlin': 'bg-purple-400',
-      'Vue': 'bg-green-400',
-      'CSS': 'bg-blue-400',
-      'HTML': 'bg-orange-300',
-      'Shell': 'bg-green-600',
-      'Makefile': 'bg-gray-600',
-      'Jupyter Notebook': 'bg-orange-500',
+      'TypeScript': 'bg-info',
+      'JavaScript': 'bg-primary',
+      'Python': 'bg-success',
+      'Go': 'bg-cool',
+      'Rust': 'bg-accent',
+      'Java': 'bg-destructive',
+      'C++': 'bg-info',
+      'C': 'bg-muted-foreground',
+      'Ruby': 'bg-destructive',
+      'PHP': 'bg-cool',
+      'Swift': 'bg-accent',
+      'Kotlin': 'bg-primary',
+      'Vue': 'bg-success',
+      'CSS': 'bg-info',
+      'HTML': 'bg-accent',
+      'Shell': 'bg-success',
+      'Makefile': 'bg-muted-foreground',
+      'Jupyter Notebook': 'bg-accent',
     };
-    return colors[lang] || 'bg-gray-400';
+    return colors[lang] || 'bg-muted-foreground';
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Github className="h-10 w-10 text-gray-900 dark:text-white" />
-            <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+            <Github className="h-10 w-10 text-foreground" />
+            <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl">
               我的 GitHub Stars
             </h1>
           </div>
-          <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-400">
+          <p className="mt-3 max-w-2xl mx-auto text-xl text-muted-foreground">
             收藏的优质开源项目，按技术栈和话题分类整理
           </p>
-          <div className="mt-4 flex items-center justify-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="mt-4 flex items-center justify-center gap-4 text-sm text-muted-foreground">
             <span className="flex items-center gap-1">
-              <Star className="h-4 w-4 text-yellow-500" />
+              <Star className="h-4 w-4 text-primary" />
               {data.total_count} Stars
             </span>
             <span className="flex items-center gap-1">
@@ -136,11 +136,11 @@ const GithubStars = () => {
           {/* Search */}
           <div className="relative w-full lg:w-96">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-gray-400" />
+              <Search className="h-5 w-5 text-muted-foreground" />
             </div>
             <input
               type="text"
-              className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md leading-5 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="block w-full pl-10 pr-3 py-2 border border-border rounded-md leading-5 bg-muted text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring sm:text-sm"
               placeholder="搜索项目名称、描述或话题..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -150,9 +150,9 @@ const GithubStars = () => {
           <div className="flex flex-wrap gap-3">
             {/* Language Filter */}
             <div className="flex items-center gap-2">
-              <Languages className="h-4 w-4 text-gray-400" />
+              <Languages className="h-4 w-4 text-muted-foreground" />
               <select
-                className="border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm py-1.5 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                className="border border-border rounded-md bg-muted text-foreground text-sm py-1.5 px-3 focus:outline-none focus:ring-1 focus:ring-ring"
                 value={selectedLanguage}
                 onChange={(e) => setSelectedLanguage(e.target.value)}
               >
@@ -166,9 +166,9 @@ const GithubStars = () => {
 
             {/* Sort */}
             <div className="flex items-center gap-2">
-              <Filter className="h-4 w-4 text-gray-400" />
+              <Filter className="h-4 w-4 text-muted-foreground" />
               <select
-                className="border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm py-1.5 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                className="border border-border rounded-md bg-muted text-foreground text-sm py-1.5 px-3 focus:outline-none focus:ring-1 focus:ring-ring"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as 'stars' | 'updated' | 'name')}
               >
@@ -180,7 +180,7 @@ const GithubStars = () => {
 
             {/* Show Count */}
             <select
-              className="border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm py-1.5 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              className="border border-border rounded-md bg-muted text-foreground text-sm py-1.5 px-3 focus:outline-none focus:ring-1 focus:ring-ring"
               value={showTop}
               onChange={(e) => setShowTop(Number(e.target.value))}
             >
@@ -203,8 +203,8 @@ const GithubStars = () => {
                 onClick={() => setSelectedLanguage(lang)}
                 className={`px-3 py-1 rounded-full text-sm transition-colors ${
                   selectedLanguage === lang
-                    ? 'bg-indigo-500 text-white'
-                    : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-muted text-ink-2 hover:bg-accent'
                 }`}
               >
                 <span className={`inline-block w-2 h-2 rounded-full ${getLanguageColor(lang)} mr-1`}></span>
@@ -214,7 +214,7 @@ const GithubStars = () => {
         </div>
 
         {/* Results */}
-        <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+        <div className="text-sm text-muted-foreground mb-4">
           找到 {filteredAndSortedRepos.length} 个项目
         </div>
 
@@ -223,14 +223,14 @@ const GithubStars = () => {
           {filteredAndSortedRepos.map((repo) => (
             <div
               key={repo.full_name}
-              className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:border-indigo-300 dark:hover:border-indigo-600 transition-colors group"
+              className="bg-card rounded-lg border border-border p-4 hover:border-primary/40 transition-colors group"
             >
               <div className="flex items-start justify-between mb-2">
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white truncate">
+                  <h3 className="text-lg font-semibold text-foreground truncate">
                     {repo.name}
                   </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
+                  <p className="text-sm text-muted-foreground truncate">
                     {repo.full_name.split('/')[0]}
                   </p>
                 </div>
@@ -238,14 +238,14 @@ const GithubStars = () => {
                   href={repo.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ml-2 p-1.5 text-gray-400 hover:text-indigo-500 transition-colors"
+                  className="ml-2 p-1.5 text-muted-foreground hover:text-primary transition-colors"
                   title="在 GitHub 查看"
                 >
                   <ExternalLink className="h-4 w-4" />
                 </a>
               </div>
 
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 line-clamp-2 min-h-[2.5rem]">
+              <p className="text-sm text-ink-2 mb-3 line-clamp-2 min-h-[2.5rem]">
                 {repo.description || '暂无描述'}
               </p>
 
@@ -255,7 +255,7 @@ const GithubStars = () => {
                   {repo.topics.slice(0, 4).map(topic => (
                     <span
                       key={topic}
-                      className="px-2 py-0.5 text-xs bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 rounded-full"
+                      className="px-2 py-0.5 text-xs bg-accent/10 text-primary rounded-full"
                     >
                       {topic}
                     </span>
@@ -264,13 +264,13 @@ const GithubStars = () => {
               )}
 
               {/* Meta */}
-              <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+              <div className="flex items-center gap-4 text-sm text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <span className={`w-2.5 h-2.5 rounded-full ${getLanguageColor(repo.language)}`}></span>
                   {repo.language}
                 </span>
                 <span className="flex items-center gap-1">
-                  <Star className="h-3.5 w-3.5 text-yellow-500" />
+                  <Star className="h-3.5 w-3.5 text-primary" />
                   {repo.stars.toLocaleString()}
                 </span>
                 <span className="flex items-center gap-1">
@@ -278,8 +278,9 @@ const GithubStars = () => {
                   {repo.forks.toLocaleString()}
                 </span>
                 {repo.license && (
-                  <span className="text-xs" title={repo.license}>
-                    📜 {repo.license.split(' ')[0]}
+                  <span className="text-xs inline-flex items-center gap-1" title={repo.license}>
+                    <ScrollText className="h-3 w-3" aria-hidden="true" />
+                    {repo.license.split(' ')[0]}
                   </span>
                 )}
               </div>
@@ -290,11 +291,11 @@ const GithubStars = () => {
         {/* Empty State */}
         {filteredAndSortedRepos.length === 0 && (
           <div className="text-center py-12">
-            <Github className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+            <Github className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-foreground mb-2">
               没有找到匹配的项目
             </h3>
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-muted-foreground">
               尝试调整搜索条件或清除筛选
             </p>
           </div>
@@ -306,7 +307,7 @@ const GithubStars = () => {
             href={`https://github.com/${data.username}?tab=stars`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
           >
             <Github className="h-5 w-5" />
             在 GitHub 查看全部 Stars

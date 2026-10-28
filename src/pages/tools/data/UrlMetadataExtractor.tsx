@@ -44,18 +44,18 @@ export default function UrlMetadataExtractor() {
       title="URL Metadata Extractor"
       subtitle="Extract title, description, and Open Graph metadata from any URL."
       icon={Link2}
-      iconBgColor="bg-lime-100"
-      iconColor="text-lime-600"
+      iconBgColor="bg-success/10"
+      iconColor="text-success"
       keywords={["url", "metadata", "og", "extractor", "title"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Website URL</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Website URL</label>
             <input
               type="url"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-lime-500 focus:ring-1 focus:ring-lime-500 outline-none"
+              className="w-full rounded-lg border border-border px-3 py-2.5 text-sm focus:border-border focus:ring-1 focus:ring-ring outline-none"
               placeholder="https://example.com"
             />
           </div>
@@ -63,57 +63,57 @@ export default function UrlMetadataExtractor() {
           <button
             onClick={handleExtract}
             disabled={loading}
-            className="w-full py-2.5 px-4 bg-lime-600 text-white rounded-lg hover:bg-lime-700 transition-colors text-sm font-medium disabled:opacity-50"
+            className="w-full py-2.5 px-4 bg-success text-success-foreground rounded-lg hover:bg-success transition-colors text-sm font-medium disabled:opacity-50"
           >
             {loading ? "Extracting..." : "Extract metadata"}
           </button>
 
-          {error && <p className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">{error}</p>}
+          {error && <p className="text-sm text-destructive bg-destructive/10 rounded-lg px-3 py-2">{error}</p>}
         </div>
       }
       result={
         <div className="space-y-4">
           {result ? (
             <>
-              <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Metadata</p>
+              <p className="text-xs font-medium text-muted-foreground tracking-wide">Metadata</p>
               <div className="space-y-3 text-sm">
                 <div>
-                  <p className="text-xs text-gray-500 uppercase">Title</p>
-                  <p className="font-medium text-gray-900">{result.title || "—"}</p>
+                  <p className="text-xs text-muted-foreground">Title</p>
+                  <p className="font-medium text-foreground">{result.title || "—"}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 uppercase">Description</p>
-                  <p className="text-gray-700">{result.description || "—"}</p>
+                  <p className="text-xs text-muted-foreground">Description</p>
+                  <p className="text-muted-foreground">{result.description || "—"}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 uppercase">Keywords</p>
-                  <p className="text-gray-700">{result.keywords || "—"}</p>
+                  <p className="text-xs text-muted-foreground">Keywords</p>
+                  <p className="text-muted-foreground">{result.keywords || "—"}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 uppercase">Canonical</p>
+                  <p className="text-xs text-muted-foreground">Canonical</p>
                   <a
                     href={result.canonical || result.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-lime-600 hover:underline break-all"
+                    className="text-success hover:underline break-all"
                   >
                     {result.canonical || result.url}
                   </a>
                 </div>
                 {result.image && (
                   <div>
-                    <p className="text-xs text-gray-500 uppercase mb-1">OG Image</p>
+                    <p className="text-xs text-muted-foreground mb-1">OG Image</p>
                     <img
                       src={result.image}
                       alt="OG preview"
-                      className="max-w-full h-auto rounded-lg border border-gray-200"
+                      className="max-w-full h-auto rounded-lg border border-border"
                     />
                   </div>
                 )}
               </div>
             </>
           ) : (
-            <p className="text-gray-400 text-sm">Enter a URL to extract metadata</p>
+            <p className="text-muted-foreground text-sm">Enter a URL to extract metadata</p>
           )}
         </div>
       }

@@ -69,31 +69,31 @@ export default function PPh21Calculator() {
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">{t("tools.pph21.net_salary")}</p>
-            <p className="text-4xl font-bold text-green-600">{fmt(result.net)}</p>
-            <p className="text-xs text-gray-500 mt-1">{t("tools.pph21.effective_rate")} {result.effectiveRate.toFixed(2)}%</p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t("tools.pph21.net_salary")}</p>
+            <p className="text-4xl font-bold text-success">{fmt(result.net)}</p>
+            <p className="text-xs text-muted-foreground mt-1">{t("tools.pph21.effective_rate")} {result.effectiveRate.toFixed(2)}%</p>
           </div>
-          <div className="grid grid-cols-2 gap-3 pt-6 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-3 pt-6 border-t border-border">
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">{t("tools.pph21.tax")}</p>
-              <p className="text-xl font-bold text-red-600">{fmt(result.tax)}</p>
+              <p className="text-sm text-muted-foreground mb-1">{t("tools.pph21.tax")}</p>
+              <p className="text-xl font-bold text-destructive">{fmt(result.tax)}</p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">{t("tools.pph21.annual_pkp")}</p>
-              <p className="text-xl font-bold text-gray-900">{fmt(result.pkp)}</p>
+              <p className="text-sm text-muted-foreground mb-1">{t("tools.pph21.annual_pkp")}</p>
+              <p className="text-xl font-bold text-foreground">{fmt(result.pkp)}</p>
             </div>
           </div>
           {result.bracket > 0 && (
-            <div className="bg-blue-50 p-3 rounded-lg text-sm text-blue-800">
+            <div className="bg-primary/10 p-3 rounded-lg text-sm text-primary">
               {t("tools.pph21.bracket")} <strong>{result.bracket}%</strong>
             </div>
           )}
-          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button onClick={copy} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary">
             <Copy className="h-4 w-4" />{copied ? t("common.copied") : t("tools.pph21.copy")}
           </button>
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Calculator className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("tools.pph21.enter_values")}</p>
         </div>
@@ -106,21 +106,21 @@ export default function PPh21Calculator() {
       title={t("tools.pph21.title")}
       subtitle={t("tools.pph21.subtitle")}
       icon={Calculator}
-      iconBgColor="bg-red-100"
-      iconColor="text-red-600"
+      iconBgColor="bg-destructive/10"
+      iconColor="text-destructive"
       keywords={["pph 21 calculator", "indonesia tax", "pajak", "income tax indonesia"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.pph21.gross_monthly")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.pph21.gross_monthly")}</label>
           <input type="number" min="0" value={grossMonthly} onChange={e => setGrossMonthly(e.target.value)} placeholder="10000000"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm py-2 px-3 border" />
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t("tools.pph21.tax_status")}</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-1">{t("tools.pph21.tax_status")}</label>
           <select value={status} onChange={e => setStatus(e.target.value as keyof typeof PTKP)}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm py-2 px-3 border">
+            className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border">
             <optgroup label="Tidak Kawin (Single)">
               <option value="TK0">TK/0 - Single</option>
               <option value="TK1">TK/1 - Single + 1 dependent</option>

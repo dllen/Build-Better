@@ -67,16 +67,16 @@ export default function RsaKeygen() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-yellow-100 text-yellow-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Key className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">RSA 密钥对生成器</h1>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+      <div className="bg-card rounded-lg border border-border p-4 space-y-3">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <select
-            className="rounded-md border border-gray-300 px-3 py-2"
+            className="rounded-md border border-border px-3 py-2"
             value={modulus}
             onChange={(e) => setModulus(Number(e.target.value))}
           >
@@ -85,7 +85,7 @@ export default function RsaKeygen() {
             <option value={4096}>4096</option>
           </select>
           <select
-            className="rounded-md border border-gray-300 px-3 py-2"
+            className="rounded-md border border-border px-3 py-2"
             value={hash}
             onChange={(e) => setHash(e.target.value as HashName)}
           >
@@ -94,7 +94,7 @@ export default function RsaKeygen() {
             <option value="SHA-512">SHA-512</option>
           </select>
           <button
-            className="inline-flex items-center gap-2 px-3 py-2 bg-yellow-600 text-white rounded-md text-sm hover:bg-yellow-700 disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary disabled:opacity-50"
             onClick={generate}
             disabled={running}
           >
@@ -106,40 +106,40 @@ export default function RsaKeygen() {
             <div className="flex items-center justify-between">
               <div className="font-medium">公钥（SPKI PEM）</div>
               <button
-                className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
                 onClick={() => copy(pubPem, "pub")}
                 disabled={!pubPem}
               >
                 <ClipboardCopy className="h-4 w-4" /> 复制{" "}
-                {copied.pub ? <Check className="h-4 w-4 text-green-600" /> : null}
+                {copied.pub ? <Check className="h-4 w-4 text-success" /> : null}
               </button>
             </div>
-            <div className="rounded-md border border-gray-200 p-3">
+            <div className="rounded-md border border-border p-3">
               <pre className="whitespace-pre-wrap break-words text-sm font-mono">
                 {pubPem || "—"}
               </pre>
             </div>
-            <div className="text-xs text-gray-600">长度：{sizes.pub || "—"} 字符</div>
+            <div className="text-xs text-muted-foreground">长度：{sizes.pub || "—"} 字符</div>
           </div>
 
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <div className="font-medium">私钥（PKCS#8 PEM）</div>
               <button
-                className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm"
                 onClick={() => copy(privPem, "priv")}
                 disabled={!privPem}
               >
                 <ClipboardCopy className="h-4 w-4" /> 复制{" "}
-                {copied.priv ? <Check className="h-4 w-4 text-green-600" /> : null}
+                {copied.priv ? <Check className="h-4 w-4 text-success" /> : null}
               </button>
             </div>
-            <div className="rounded-md border border-gray-200 p-3">
+            <div className="rounded-md border border-border p-3">
               <pre className="whitespace-pre-wrap break-words text-sm font-mono">
                 {privPem || "—"}
               </pre>
             </div>
-            <div className="text-xs text-gray-600">长度：{sizes.priv || "—"} 字符</div>
+            <div className="text-xs text-muted-foreground">长度：{sizes.priv || "—"} 字符</div>
           </div>
         </div>
       </div>

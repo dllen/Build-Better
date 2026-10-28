@@ -135,43 +135,43 @@ export default function TokenRiskScanner() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-red-100 text-red-600">
+        <div className="inline-flex p-2 rounded-lg bg-destructive/10 text-destructive">
           <Shield className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">Token 风险扫描</h1>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+      <div className="bg-card rounded-lg border border-border p-4 space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-muted-foreground mb-2">
             合约地址
           </label>
           <textarea
             value={address}
             onChange={(e) => { setAddress(e.target.value); setRiskItems([]); setError(null); }}
             placeholder="输入 ERC-20 代币合约地址，例如：0xdAC17F958D2ee523a2206206994597C13D831ec7 (USDT)"
-            className="w-full h-20 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono text-sm resize-none"
+            className="w-full h-20 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm resize-none"
           />
         </div>
 
         <div className="flex flex-wrap gap-3">
           <button
-            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={analyze}
             disabled={loading || !address.trim()}
           >
             {loading ? "分析中..." : "分析风险"}
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={copy}
             disabled={!address.trim()}
           >
-            {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+            {copied ? <Check className="h-4 w-4 text-success" /> : <Copy className="h-4 w-4" />}
             {copied ? "已复制" : "复制地址"}
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={clear}
             disabled={!address && !riskItems.length}
           >
@@ -180,15 +180,11 @@ export default function TokenRiskScanner() {
         </div>
 
         {error && (
-          <div className="text-sm text-red-600 bg-red-50 rounded-md px-3 py-2">{error}</div>
+          <div className="text-sm text-destructive bg-destructive/10 rounded-md px-3 py-2">{error}</div>
         )}
 
         {overallRisk && (
-          <div className={`rounded-md px-4 py-3 text-center font-semibold text-lg ${
-            overallRisk === "高危" ? "bg-red-100 text-red-700" :
-            overallRisk === "中危" ? "bg-yellow-100 text-yellow-700" :
-            "bg-green-100 text-green-700"
-          }`}>
+          <div className={`rounded-md px-4 py-3 text-center font-semibold text-lg ${ overallRisk === "高危" ? "bg-destructive/10 text-destructive" : overallRisk === "中危" ? "bg-primary/10 text-primary" : "bg-success/10 text-success" }`}>
             风险等级：{overallRisk}
           </div>
         )}
@@ -196,24 +192,24 @@ export default function TokenRiskScanner() {
         {riskItems.length > 0 && (
           <div className="space-y-2">
             {riskItems.map((item, i) => (
-              <div key={i} className="flex items-start gap-3 p-3 rounded-md border border-gray-200 bg-gray-50">
+              <div key={i} className="flex items-start gap-3 p-3 rounded-md border border-border bg-muted">
                 {item.status === "safe" ? (
-                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
                 ) : item.status === "warning" ? (
-                  <AlertTriangle className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
+                  <AlertTriangle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 ) : (
-                  <XCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
+                  <XCircle className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
                 )}
                 <div>
-                  <div className="font-medium text-gray-800">{item.name}</div>
-                  <div className="text-sm text-gray-500">{item.detail}</div>
+                  <div className="font-medium text-foreground">{item.name}</div>
+                  <div className="text-sm text-muted-foreground">{item.detail}</div>
                 </div>
               </div>
             ))}
           </div>
         )}
 
-        <div className="text-xs text-gray-500">
+        <div className="text-xs text-muted-foreground">
           数据来源：Etherscan API。请求直接从浏览器发起，不会经过 Build-Better 服务器。
         </div>
       </div>

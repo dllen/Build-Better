@@ -35,3 +35,6 @@ public/pdf-tools/_next/
 
 
 package-lock.json
+
+# Hallmark design-skill working records (before/after captures, preflight, log)
+.hallmark/

@@ -86,67 +86,67 @@ export default function FreelancerRetainerCalculator() {
       {result ? (
         <>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">{t("freelancerRetainer.monthly_target")}</p>
-            <p className="text-4xl font-bold text-violet-600">{fmt(result.monthlyIncomeTarget)}</p>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t("freelancerRetainer.monthly_target")}</p>
+            <p className="text-4xl font-bold text-primary">{fmt(result.monthlyIncomeTarget)}</p>
+            <p className="text-xs text-muted-foreground mt-1">
               {t("freelancerRetainer.gross_needed")}: {fmt(result.grossMonthlyNeeded)}
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 pt-4 border-t border-gray-100">
-            <div className="text-center p-3 bg-violet-50 rounded-lg">
-              <p className="text-xs text-gray-500 mb-1">{t("freelancerRetainer.suggested_hourly")}</p>
-              <p className="text-xl font-bold text-violet-700">{fmt(result.suggestedHourlyRate)}</p>
+          <div className="grid grid-cols-2 gap-3 pt-4 border-t border-border">
+            <div className="text-center p-3 bg-primary/10 rounded-lg">
+              <p className="text-xs text-muted-foreground mb-1">{t("freelancerRetainer.suggested_hourly")}</p>
+              <p className="text-xl font-bold text-primary">{fmt(result.suggestedHourlyRate)}</p>
             </div>
-            <div className="text-center p-3 bg-violet-50 rounded-lg">
-              <p className="text-xs text-gray-500 mb-1">{t("freelancerRetainer.recommended_daily")}</p>
-              <p className="text-xl font-bold text-violet-700">{fmt(result.recommendedDailyRate)}</p>
+            <div className="text-center p-3 bg-primary/10 rounded-lg">
+              <p className="text-xs text-muted-foreground mb-1">{t("freelancerRetainer.recommended_daily")}</p>
+              <p className="text-xl font-bold text-primary">{fmt(result.recommendedDailyRate)}</p>
             </div>
           </div>
 
-          <div className="bg-amber-50 p-4 rounded-lg">
-            <p className="text-sm font-medium text-amber-800 mb-2">{t("freelancerRetainer.minimum_rate")}</p>
-            <p className="text-2xl font-bold text-amber-700">{fmt(result.minimumHourlyRate)}</p>
-            <p className="text-xs text-amber-600 mt-1">{t("freelancerRetainer.min_rate_note")}</p>
+          <div className="bg-primary/10 p-4 rounded-lg">
+            <p className="text-sm font-medium text-primary mb-2">{t("freelancerRetainer.minimum_rate")}</p>
+            <p className="text-2xl font-bold text-primary">{fmt(result.minimumHourlyRate)}</p>
+            <p className="text-xs text-primary mt-1">{t("freelancerRetainer.min_rate_note")}</p>
           </div>
 
           {billingMode === "hourly" && (
-            <div className="bg-green-50 p-4 rounded-lg text-center">
-              <p className="text-sm text-gray-600">{t("freelancerRetainer.your_hourly")}</p>
-              <p className="text-3xl font-bold text-green-700">
+            <div className="bg-success/10 p-4 rounded-lg text-center">
+              <p className="text-sm text-muted-foreground">{t("freelancerRetainer.your_hourly")}</p>
+              <p className="text-3xl font-bold text-success">
                 {hourlyRate ? fmt(parseFloat(hourlyRate)) : "-"}
               </p>
               {hourlyRate && parseFloat(hourlyRate) < result.minimumHourlyRate && (
-                <p className="text-xs text-red-600 mt-2">{t("freelancerRetainer.below_minimum")}</p>
+                <p className="text-xs text-destructive mt-2">{t("freelancerRetainer.below_minimum")}</p>
               )}
             </div>
           )}
 
           {billingMode === "project" && result.projectPrice && (
-            <div className="bg-blue-50 p-4 rounded-lg text-center">
-              <p className="text-sm text-gray-600">{t("freelancerRetainer.recommended_project")}</p>
-              <p className="text-3xl font-bold text-blue-700">{fmt(result.projectPrice)}</p>
-              <p className="text-xs text-gray-500 mt-1">
+            <div className="bg-primary/10 p-4 rounded-lg text-center">
+              <p className="text-sm text-muted-foreground">{t("freelancerRetainer.recommended_project")}</p>
+              <p className="text-3xl font-bold text-primary">{fmt(result.projectPrice)}</p>
+              <p className="text-xs text-muted-foreground mt-1">
                 {t("freelancerRetainer.at")} {projectsPerMonth} {t("freelancerRetainer.projects_per_month")}
               </p>
             </div>
           )}
 
           {billingMode === "retainer" && result.retainerPrice && (
-            <div className="bg-purple-50 p-4 rounded-lg text-center">
-              <p className="text-sm text-gray-600">{t("freelancerRetainer.suggested_retainer")}</p>
-              <p className="text-3xl font-bold text-purple-700">{fmt(result.retainerPrice)}</p>
-              <p className="text-xs text-gray-500 mt-1">
+            <div className="bg-primary/10 p-4 rounded-lg text-center">
+              <p className="text-sm text-muted-foreground">{t("freelancerRetainer.suggested_retainer")}</p>
+              <p className="text-3xl font-bold text-primary">{fmt(result.retainerPrice)}</p>
+              <p className="text-xs text-muted-foreground mt-1">
                 {t("freelancerRetainer.includes")} {result.hoursIncluded} {t("freelancerRetainer.hours_per_month")}
               </p>
-              <p className="text-sm text-purple-600 mt-2">
+              <p className="text-sm text-primary mt-2">
                 = {fmt(result.retainerPrice / (result.hoursIncluded || 1))}/hr
               </p>
             </div>
           )}
         </>
       ) : (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <Briefcase className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("freelancerRetainer.enter_values")}</p>
         </div>
@@ -159,18 +159,18 @@ export default function FreelancerRetainerCalculator() {
       title={t("freelancerRetainer.title")}
       subtitle={t("freelancerRetainer.subtitle")}
       icon={Briefcase}
-      iconBgColor="bg-violet-100"
-      iconColor="text-violet-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={["freelancer", "retainer", "hourly rate", "project pricing", "income calculator"]}
       result={resultNode}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             {t("freelancerRetainer.annual_net_income")}
           </label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
             <input
               type="number"
               min="0"
@@ -178,14 +178,14 @@ export default function FreelancerRetainerCalculator() {
               value={annualNetIncome}
               onChange={(e) => setAnnualNetIncome(e.target.value)}
               placeholder="60000"
-              className="block w-full pl-7 pr-3 border-gray-300 rounded-md shadow-sm focus:border-violet-500 focus:ring-violet-500 sm:text-sm py-2 border"
+              className="block w-full pl-7 pr-3 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 border"
             />
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted-foreground mb-1">
               {t("freelancerRetainer.working_months")}
             </label>
             <input
@@ -194,11 +194,11 @@ export default function FreelancerRetainerCalculator() {
               max="12"
               value={workingMonths}
               onChange={(e) => setWorkingMonths(e.target.value)}
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-violet-500 focus:ring-violet-500 sm:text-sm py-2 px-3 border"
+              className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted-foreground mb-1">
               {t("freelancerRetainer.overhead_percent")}
             </label>
             <div className="relative">
@@ -208,48 +208,36 @@ export default function FreelancerRetainerCalculator() {
                 max="100"
                 value={overheadPercent}
                 onChange={(e) => setOverheadPercent(e.target.value)}
-                className="block w-full pr-8 border-gray-300 rounded-md shadow-sm focus:border-violet-500 focus:ring-violet-500 sm:text-sm py-2 px-3 border"
+                className="block w-full pr-8 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">%</span>
             </div>
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-muted-foreground mb-2">
             {t("freelancerRetainer.billing_mode")}
           </label>
-          <div className="flex rounded-md shadow-sm" role="group">
+          <div className="flex rounded-md" role="group">
             <button
               type="button"
               onClick={() => setBillingMode("hourly")}
-              className={`flex-1 px-4 py-2 text-sm font-medium rounded-l-lg border ${
-                billingMode === "hourly"
-                  ? "bg-violet-600 text-white border-violet-600"
-                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-              }`}
+              className={`flex-1 px-4 py-2 text-sm font-medium rounded-l-lg border ${ billingMode === "hourly" ? "bg-primary text-primary-foreground border-border" : "bg-card text-muted-foreground border-border hover:bg-muted" }`}
             >
               {t("freelancerRetainer.hourly")}
             </button>
             <button
               type="button"
               onClick={() => setBillingMode("project")}
-              className={`flex-1 px-4 py-2 text-sm font-medium border-t border-b ${
-                billingMode === "project"
-                  ? "bg-violet-600 text-white border-violet-600"
-                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-              }`}
+              className={`flex-1 px-4 py-2 text-sm font-medium border-t border-b ${ billingMode === "project" ? "bg-primary text-primary-foreground border-border" : "bg-card text-muted-foreground border-border hover:bg-muted" }`}
             >
               {t("freelancerRetainer.per_project")}
             </button>
             <button
               type="button"
               onClick={() => setBillingMode("retainer")}
-              className={`flex-1 px-4 py-2 text-sm font-medium rounded-r-lg border ${
-                billingMode === "retainer"
-                  ? "bg-violet-600 text-white border-violet-600"
-                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-              }`}
+              className={`flex-1 px-4 py-2 text-sm font-medium rounded-r-lg border ${ billingMode === "retainer" ? "bg-primary text-primary-foreground border-border" : "bg-card text-muted-foreground border-border hover:bg-muted" }`}
             >
               {t("freelancerRetainer.retainer")}
             </button>
@@ -258,11 +246,11 @@ export default function FreelancerRetainerCalculator() {
 
         {billingMode === "hourly" && (
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted-foreground mb-1">
               {t("freelancerRetainer.your_hourly_rate")}
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
               <input
                 type="number"
                 min="0"
@@ -270,9 +258,9 @@ export default function FreelancerRetainerCalculator() {
                 value={hourlyRate}
                 onChange={(e) => setHourlyRate(e.target.value)}
                 placeholder="25.00"
-                className="block w-full pl-7 pr-3 border-gray-300 rounded-md shadow-sm focus:border-violet-500 focus:ring-violet-500 sm:text-sm py-2 border"
+                className="block w-full pl-7 pr-3 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 border"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">/hr</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">/hr</span>
             </div>
           </div>
         )}
@@ -280,11 +268,11 @@ export default function FreelancerRetainerCalculator() {
         {billingMode === "project" && (
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-muted-foreground mb-1">
                 {t("freelancerRetainer.avg_project_value")}
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
                 <input
                   type="number"
                   min="0"
@@ -292,12 +280,12 @@ export default function FreelancerRetainerCalculator() {
                   value={projectValue}
                   onChange={(e) => setProjectValue(e.target.value)}
                   placeholder="1000"
-                  className="block w-full pl-7 pr-3 border-gray-300 rounded-md shadow-sm focus:border-violet-500 focus:ring-violet-500 sm:text-sm py-2 border"
+                  className="block w-full pl-7 pr-3 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 border"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-muted-foreground mb-1">
                 {t("freelancerRetainer.projects_per_month")}
               </label>
               <input
@@ -306,7 +294,7 @@ export default function FreelancerRetainerCalculator() {
                 step="1"
                 value={projectsPerMonth}
                 onChange={(e) => setProjectsPerMonth(e.target.value)}
-                className="block w-full border-gray-300 rounded-md shadow-sm focus:border-violet-500 focus:ring-violet-500 sm:text-sm py-2 px-3 border"
+                className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
               />
             </div>
           </div>
@@ -314,7 +302,7 @@ export default function FreelancerRetainerCalculator() {
 
         {billingMode === "retainer" && (
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted-foreground mb-1">
               {t("freelancerRetainer.hours_included")}
             </label>
             <div className="relative">
@@ -324,9 +312,9 @@ export default function FreelancerRetainerCalculator() {
                 step="1"
                 value={hoursIncluded}
                 onChange={(e) => setHoursIncluded(e.target.value)}
-                className="block w-full pr-10 border-gray-300 rounded-md shadow-sm focus:border-violet-500 focus:ring-violet-500 sm:text-sm py-2 px-3 border"
+                className="block w-full pr-10 border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">hrs/mo</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">hrs/mo</span>
             </div>
           </div>
         )}

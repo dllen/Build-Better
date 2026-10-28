@@ -53,20 +53,20 @@ export default function CssBorderRadiusGenerator() {
       title="CSS Border Radius Generator"
       subtitle="Create organic blob shapes with 8-value border-radius — full control over each corner's two radii."
       icon={Frame}
-      iconBgColor="bg-red-100"
-      iconColor="text-red-600"
+      iconBgColor="bg-destructive/10"
+      iconColor="text-destructive"
       keywords={["border radius", "blob generator", "css shapes", "rounded corners", "organic shape"]}
       children={
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Presets</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Presets</label>
             <div className="grid grid-cols-3 gap-2">
               {PRESETS.map((p) => (
                 <button
                   key={p.label}
                   type="button"
                   onClick={() => setV([...p.v])}
-                  className="py-2 px-2 text-xs rounded-lg border border-gray-300 text-gray-600 hover:border-red-500 hover:text-red-700 transition-colors"
+                  className="py-2 px-2 text-xs rounded-lg border border-border text-muted-foreground hover:border-border hover:text-destructive transition-colors"
                 >
                   {p.label}
                 </button>
@@ -77,7 +77,7 @@ export default function CssBorderRadiusGenerator() {
           <div className="grid grid-cols-2 gap-x-4 gap-y-1">
             {CONTROLS.map((c) => (
               <div key={c.key}>
-                <label className="block text-xs font-medium text-gray-500">
+                <label className="block text-xs font-medium text-muted-foreground">
                   {c.label}: {v[c.key]}%
                 </label>
                 <input
@@ -86,13 +86,13 @@ export default function CssBorderRadiusGenerator() {
                   max={100}
                   value={v[c.key]}
                   onChange={(e) => setCorner(c.key)(Number(e.target.value))}
-                  className="w-full accent-red-600"
+                  className="w-full accent-primary"
                 />
               </div>
             ))}
           </div>
 
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-muted-foreground">
             The 8-value syntax is <code>border-radius: h1 h2 h3 h4 / v1 v2 v3 v4</code> — horizontal and
             vertical radii for top-left, top-right, bottom-right, bottom-left corners.
           </p>
@@ -100,8 +100,8 @@ export default function CssBorderRadiusGenerator() {
       }
       result={
         <div>
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Live preview</p>
-          <div className="flex items-center justify-center rounded-lg border border-gray-200 bg-gray-50 py-8 mb-4">
+          <p className="text-xs font-medium text-muted-foreground tracking-wide mb-2">Live preview</p>
+          <div className="flex items-center justify-center rounded-lg border border-border bg-muted py-8 mb-4">
             <div style={previewStyle} />
           </div>
           <CodeBlock code={css} label="CSS" />

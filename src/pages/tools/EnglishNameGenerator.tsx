@@ -275,10 +275,10 @@ export default function EnglishNameGenerator() {
       <div className="max-w-4xl mx-auto space-y-8">
         <div className="text-center">
           <h1 className="text-3xl font-bold mb-4 flex items-center justify-center gap-2">
-            <User className="w-8 h-8 text-indigo-600" />
+            <User className="w-8 h-8 text-primary" />
             {t("tools.english-name.title", "English Name Generator")}
           </h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             {t(
               "tools.english-name.subtitle",
               "Find the perfect English name that matches your Chinese name"
@@ -287,23 +287,23 @@ export default function EnglishNameGenerator() {
         </div>
 
         {/* Input Section */}
-        <div className="bg-white p-6 rounded-lg shadow-md space-y-6 max-w-xl mx-auto">
+        <div className="bg-card p-6 rounded-lg space-y-6 max-w-xl mx-auto">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted-foreground mb-1">
               {t("tools.english-name.input_label", "Your Chinese Name")}
             </label>
             <input
               type="text"
               value={chineseName}
               onChange={(e) => setChineseName(e.target.value)}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-ring outline-none"
               placeholder={t("tools.english-name.placeholder", "e.g. 李明")}
               onKeyDown={(e) => e.key === "Enter" && generateNames()}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-muted-foreground mb-2">
               {t("tools.english-name.gender_label", "Gender")}
             </label>
             <div className="flex gap-4">
@@ -314,7 +314,7 @@ export default function EnglishNameGenerator() {
                   value="male"
                   checked={gender === "male"}
                   onChange={() => setGender("male")}
-                  className="text-indigo-600 focus:ring-indigo-500"
+                  className="text-primary focus:ring-ring"
                 />
                 {t("tools.english-name.gender_male", "Male")}
               </label>
@@ -325,7 +325,7 @@ export default function EnglishNameGenerator() {
                   value="female"
                   checked={gender === "female"}
                   onChange={() => setGender("female")}
-                  className="text-indigo-600 focus:ring-indigo-500"
+                  className="text-primary focus:ring-ring"
                 />
                 {t("tools.english-name.gender_female", "Female")}
               </label>
@@ -336,7 +336,7 @@ export default function EnglishNameGenerator() {
                   value="neutral"
                   checked={gender === "neutral"}
                   onChange={() => setGender("neutral")}
-                  className="text-indigo-600 focus:ring-indigo-500"
+                  className="text-primary focus:ring-ring"
                 />
                 {t("tools.english-name.gender_neutral", "Neutral")}
               </label>
@@ -346,7 +346,7 @@ export default function EnglishNameGenerator() {
           <button
             onClick={generateNames}
             disabled={!chineseName.trim()}
-            className="w-full py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2 font-medium"
+            className="w-full py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2 font-medium"
           >
             <Search className="w-5 h-5" />
             {t("tools.english-name.generate_btn", "Generate Names")}
@@ -357,12 +357,12 @@ export default function EnglishNameGenerator() {
         {hasSearched && (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-gray-800">
+              <h2 className="text-xl font-semibold text-foreground">
                 {t("tools.english-name.results_title", "Suggested Names")}
               </h2>
               <button
                 onClick={generateNames}
-                className="flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800"
+                className="flex items-center gap-1 text-sm text-primary hover:text-primary"
               >
                 <RefreshCw className="w-4 h-4" />
                 {t("tools.english-name.refresh", "Refresh")}
@@ -374,15 +374,15 @@ export default function EnglishNameGenerator() {
                 {suggestions.map((item, index) => (
                   <div
                     key={index}
-                    className="bg-white p-5 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow group relative"
+                    className="bg-card p-5 rounded-lg border border-border transition-shadow group relative"
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-2xl font-bold text-indigo-700">
+                      <h3 className="text-2xl font-bold text-primary">
                         {item.name}
                       </h3>
                       <button
                         onClick={() => handleCopy(item.name)}
-                        className="text-gray-400 hover:text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="text-muted-foreground hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity"
                         title="Copy"
                       >
                         <Copy className="w-5 h-5" />
@@ -390,14 +390,14 @@ export default function EnglishNameGenerator() {
                     </div>
                     
                     <div className="space-y-2 text-sm">
-                      <p className="text-gray-600">
-                        <span className="font-medium text-gray-900">{t("tools.english-name.meaning", "Meaning")}:</span> {item.meaning}
+                      <p className="text-muted-foreground">
+                        <span className="font-medium text-foreground">{t("tools.english-name.meaning", "Meaning")}:</span> {item.meaning}
                       </p>
-                      <p className="text-gray-600">
-                        <span className="font-medium text-gray-900">{t("tools.english-name.origin", "Origin")}:</span> {item.origin}
+                      <p className="text-muted-foreground">
+                        <span className="font-medium text-foreground">{t("tools.english-name.origin", "Origin")}:</span> {item.origin}
                       </p>
-                      <div className="pt-2 mt-2 border-t border-gray-100">
-                         <span className="inline-block px-2 py-1 bg-indigo-50 text-indigo-700 text-xs rounded-full">
+                      <div className="pt-2 mt-2 border-t border-border">
+                         <span className="inline-block px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">
                            {item.reason}
                          </span>
                       </div>
@@ -406,8 +406,8 @@ export default function EnglishNameGenerator() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12 bg-gray-50 rounded-lg">
-                <p className="text-gray-500">
+              <div className="text-center py-12 bg-muted rounded-lg">
+                <p className="text-muted-foreground">
                   {t("tools.english-name.no_results", "No suitable names found based on current criteria. Try different inputs.")}
                 </p>
               </div>

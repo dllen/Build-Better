@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { RotateCcw, ArrowLeft, Copy, Share2, History, Volume2 } from 'lucide-react';
+import { RotateCcw, ArrowLeft, Copy, Share2, History, Volume2, Lightbulb } from 'lucide-react';
 import relationship from 'relationship-ts';
 
 interface HistoryItem {
@@ -135,29 +135,21 @@ export default function KinshipCalculator() {
 
   return (
     <div className="container mx-auto p-4 max-w-4xl">
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+      <div className="bg-card dark:bg-muted rounded-xl p-6">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-foreground dark:text-card-foreground">
             {t('tools.kinship.title', '中国亲戚称呼计算器')}
           </h1>
           <div className="flex gap-2">
              <button
               onClick={() => setGender(1)}
-              className={`px-4 py-2 rounded-lg transition-colors ${
-                gender === 1
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200'
-              }`}
+              className={`px-4 py-2 rounded-lg transition-colors ${ gender === 1 ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground dark:bg-secondary dark:text-muted-foreground hover:bg-border' }`}
             >
               {t('tools.kinship.male', '我是男性')}
             </button>
             <button
               onClick={() => setGender(0)}
-              className={`px-4 py-2 rounded-lg transition-colors ${
-                gender === 0
-                  ? 'bg-pink-600 text-white'
-                  : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200'
-              }`}
+              className={`px-4 py-2 rounded-lg transition-colors ${ gender === 0 ? 'bg-destructive text-destructive-foreground' : 'bg-muted text-muted-foreground dark:bg-secondary dark:text-muted-foreground hover:bg-border' }`}
             >
               {t('tools.kinship.female', '我是女性')}
             </button>
@@ -167,20 +159,20 @@ export default function KinshipCalculator() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Column: Input */}
           <div className="space-y-6">
-            <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl min-h-[120px] flex flex-col justify-center relative border border-gray-200 dark:border-gray-700">
-               <span className="text-gray-500 dark:text-gray-400 text-sm absolute top-3 left-4">
+            <div className="bg-muted dark:bg-muted p-4 rounded-xl min-h-[120px] flex flex-col justify-center relative dark:border-border">
+               <span className="text-muted-foreground dark:text-muted-foreground text-sm absolute top-3 left-4">
                   {t('tools.kinship.current_relation', '当前关系')}
                </span>
-               <div className="text-lg font-medium text-gray-800 dark:text-gray-200 mt-4 break-words">
+               <div className="text-lg font-medium text-foreground dark:text-muted-foreground mt-4 break-words">
                   {relationChain.length === 0 ? (
-                      <span className="text-gray-400">{t('tools.kinship.placeholder', '请选择关系...')}</span>
+                      <span className="text-muted-foreground">{t('tools.kinship.placeholder', '请选择关系...')}</span>
                   ) : (
                       <>
-                        <span className="text-blue-600 dark:text-blue-400 font-bold">我</span>
+                        <span className="text-primary dark:text-primary font-bold">我</span>
                         {relationChain.map((rel, index) => (
                             <span key={index}>
-                                <span className="mx-1 text-gray-400">的</span>
-                                <span className="text-gray-800 dark:text-gray-200">{rel}</span>
+                                <span className="mx-1 text-muted-foreground">的</span>
+                                <span className="text-foreground dark:text-muted-foreground">{rel}</span>
                             </span>
                         ))}
                       </>
@@ -188,10 +180,10 @@ export default function KinshipCalculator() {
                </div>
                 {relationChain.length > 0 && (
                     <div className="absolute bottom-3 right-3 flex gap-2">
-                         <button onClick={handleUndo} className="p-1.5 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors" title={t('common.undo', '撤销')}>
+                         <button onClick={handleUndo} className="p-1.5 text-muted-foreground hover:text-muted-foreground dark:hover:text-muted-foreground transition-colors" title={t('common.undo', '撤销')}>
                             <RotateCcw size={18} />
                          </button>
-                         <button onClick={handleReset} className="p-1.5 text-red-500 hover:text-red-700 transition-colors" title={t('common.reset', '重置')}>
+                         <button onClick={handleReset} className="p-1.5 text-destructive hover:text-destructive transition-colors" title={t('common.reset', '重置')}>
                             <ArrowLeft size={18} />
                          </button>
                     </div>
@@ -203,15 +195,15 @@ export default function KinshipCalculator() {
                 <button
                   key={rel.label}
                   onClick={() => handleAddRelation(rel.value)}
-                  className="aspect-square flex items-center justify-center text-lg font-medium bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-200 dark:hover:border-blue-800 hover:text-blue-600 dark:hover:text-blue-400 transition-all shadow-sm active:scale-95"
+                  className="aspect-square flex items-center justify-center text-lg font-medium bg-muted dark:bg-muted dark:border-border rounded-xl hover:bg-primary/10 dark:hover:bg-primary/20 hover:border-border dark:hover:border-border hover:text-primary dark:hover:text-primary transition-colors transition-transform active:scale-95"
                 >
                   {rel.label}
                 </button>
               ))}
             </div>
             
-             <div className="pt-4 border-t border-gray-100 dark:border-gray-800">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+             <div className="pt-4 border-t border-border dark:border-border">
+                <label className="block text-sm font-medium text-muted-foreground dark:text-muted-foreground mb-2">
                     {t('tools.kinship.reverse_lookup', '称呼反查 (如: 舅舅)')}
                 </label>
                 <div className="flex gap-2">
@@ -219,12 +211,12 @@ export default function KinshipCalculator() {
                         type="text" 
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
-                        className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+                        className="flex-1 px-4 py-2 border border-border dark:border-border rounded-lg bg-card dark:bg-muted text-foreground dark:text-card-foreground focus:ring-2 focus:ring-ring outline-none"
                         placeholder="输入称呼..."
                     />
                     <button 
                         onClick={handleReverseLookup}
-                        className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600"
+                        className="btn"
                     >
                         {t('common.search', '查询')}
                     </button>
@@ -234,56 +226,56 @@ export default function KinshipCalculator() {
 
           {/* Right Column: Result & History */}
           <div className="space-y-6">
-            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-900/50 min-h-[160px] flex flex-col justify-center items-center text-center relative">
-               <span className="text-blue-500 dark:text-blue-400 text-sm absolute top-4 left-4 font-medium uppercase tracking-wider">
+            <div className="bg-primary/10 dark:bg-primary/20 p-6 rounded-xl border border-border dark:border-border/50 min-h-[160px] flex flex-col justify-center items-center text-center relative">
+               <span className="text-primary dark:text-primary text-sm absolute top-4 left-4 font-medium">
                   {t('tools.kinship.result', '计算结果')}
                </span>
                
                {result.length > 0 ? (
                    <>
-                        <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                        <div className="text-3xl font-bold text-foreground dark:text-card-foreground mb-2">
                             {result.join(' / ')}
                         </div>
                         <div className="flex gap-3 mt-4">
-                             <button onClick={handleCopy} className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" title={t('common.copy', '复制')}>
+                             <button onClick={handleCopy} className="p-2 bg-muted dark:bg-muted rounded-full text-muted-foreground dark:text-muted-foreground hover:text-primary dark:hover:text-primary transition-colors" title={t('common.copy', '复制')}>
                                 <Copy size={20} />
                              </button>
-                              <button onClick={handleSpeak} className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" title={t('common.speak', '朗读')}>
+                              <button onClick={handleSpeak} className="p-2 bg-muted dark:bg-muted rounded-full text-muted-foreground dark:text-muted-foreground hover:text-primary dark:hover:text-primary transition-colors" title={t('common.speak', '朗读')}>
                                 <Volume2 size={20} />
                              </button>
-                             <button onClick={handleShare} className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" title={t('common.share', '分享')}>
+                             <button onClick={handleShare} className="p-2 bg-muted dark:bg-muted rounded-full text-muted-foreground dark:text-muted-foreground hover:text-primary dark:hover:text-primary transition-colors" title={t('common.share', '分享')}>
                                 <Share2 size={20} />
                              </button>
                         </div>
                    </>
                ) : (
-                   <span className="text-gray-400 dark:text-gray-500 italic">
+                   <span className="text-muted-foreground dark:text-muted-foreground italic">
                        {t('tools.kinship.waiting', '等待计算...')}
                    </span>
                )}
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-                <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700 flex items-center gap-2 bg-gray-50 dark:bg-gray-900/50">
-                    <History size={16} className="text-gray-500" />
-                    <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            <div className="bg-muted dark:bg-muted rounded-xl dark:border-border overflow-hidden">
+                <div className="px-4 py-3 border-b border-border dark:border-border flex items-center gap-2 bg-muted dark:bg-muted/50">
+                    <History size={16} className="text-muted-foreground" />
+                    <h3 className="text-sm font-medium text-muted-foreground dark:text-muted-foreground">
                         {t('common.history', '查询历史')}
                     </h3>
                 </div>
                 <div className="max-h-[300px] overflow-y-auto">
                     {history.length === 0 ? (
-                        <div className="p-8 text-center text-gray-400 text-sm">
+                        <div className="p-8 text-center text-muted-foreground text-sm">
                             {t('common.no_history', '暂无历史记录')}
                         </div>
                     ) : (
-                        <div className="divide-y divide-gray-100 dark:divide-gray-700">
+                        <div className="divide-y divide-border dark:divide-border">
                             {history.map((item) => (
-                                <div key={item.id} className="p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors flex justify-between items-center group">
+                                <div key={item.id} className="p-4 hover:bg-muted dark:hover:bg-secondary/50 transition-colors flex justify-between items-center group">
                                     <div>
-                                        <div className="text-sm text-gray-900 dark:text-gray-100 font-medium mb-1">
+                                        <div className="text-sm text-foreground dark:text-muted-foreground font-medium mb-1">
                                             {item.relation || item.result.join('/')}
                                         </div>
-                                        <div className="text-xs text-gray-500">
+                                        <div className="text-xs text-muted-foreground">
                                             {new Date(item.timestamp).toLocaleString()}
                                             <span className="mx-2">•</span>
                                             {item.gender === 1 ? '男' : '女'}
@@ -295,7 +287,7 @@ export default function KinshipCalculator() {
                                             setResult(item.result);
                                             setGender(item.gender);
                                         }}
-                                        className="text-blue-600 text-sm opacity-0 group-hover:opacity-100 transition-opacity"
+                                        className="text-primary text-sm opacity-0 group-hover:opacity-100 transition-opacity"
                                     >
                                         {t('common.load', '加载')}
                                     </button>
@@ -308,9 +300,10 @@ export default function KinshipCalculator() {
           </div>
         </div>
 
-        <div className="mt-8 bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-100 dark:border-amber-900/50 text-amber-800 dark:text-amber-200 text-sm">
+        <div className="mt-8 bg-primary/10 dark:bg-primary/20 p-4 rounded-lg border border-border dark:border-border/50 text-primary dark:text-primary text-sm">
             <h4 className="font-bold mb-2 flex items-center gap-2">
-                💡 {t('tools.kinship.tips_title', '使用小贴士')}
+                <Lightbulb className="h-4 w-4 shrink-0" aria-hidden="true" />
+                {t('tools.kinship.tips_title', '使用小贴士')}
             </h4>
             <ul className="list-disc list-inside space-y-1 opacity-90">
                 <li>{t('tools.kinship.tip1', '点击"父"、"母"等按钮依次添加关系。')}</li>

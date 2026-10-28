@@ -4445,3 +4445,42 @@ export function recentTools(): ToolMeta[] {
 export function categoryOrder(cat: CategoryId): number {
   return CATEGORY_ORDER.get(cat) ?? 999;
 }
+
+// ============ 工具色调 ============
+// The Console theme carries two meanings: cool is an instrument, amber is a
+// person. Each category takes one, so the 150 tools read as one system
+// instead of 23 stock swatches. `tone` names the pair of tokens a card
+// uses; the class strings live in the token layer, never in the registry.
+
+export type ToolTone = "cool" | "amber" | "plain";
+
+const CATEGORY_TONE: Record<CategoryId, ToolTone> = {
+  developer: "cool",
+  data: "cool",
+  linux: "cool",
+  devops: "cool",
+  json: "cool",
+  format: "cool",
+  network: "cool",
+  web3: "cool",
+  crypto: "cool",
+  text: "plain",
+  image: "plain",
+  ai: "amber",
+  finance: "amber",
+  life: "amber",
+  games: "amber",
+};
+
+/** The tone a tool wears: the tone of its category. */
+export function toolTone(cat: CategoryId): ToolTone {
+  return CATEGORY_TONE[cat] ?? "plain";
+}
+
+/** The class pair a tool card uses for its icon tile and icon glyph. */
+export function toolToneClasses(cat: CategoryId): { tile: string; glyph: string } {
+  const tone = toolTone(cat);
+  if (tone === "cool") return { tile: "tone-cool-tile", glyph: "tone-cool-glyph" };
+  if (tone === "amber") return { tile: "tone-amber-tile", glyph: "tone-amber-glyph" };
+  return { tile: "tone-plain-tile", glyph: "tone-plain-glyph" };
+}

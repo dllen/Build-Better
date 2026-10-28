@@ -89,32 +89,32 @@ export default function JsonMerge() {
     <MergeLayout
       title={
         <div className="flex items-center gap-2 text-xl font-semibold">
-          <GitMerge className="h-5 w-5 text-blue-600" />
+          <GitMerge className="h-5 w-5 text-primary" />
           <span>JSON Merge</span>
         </div>
       }
       toolbar={
         <div className="flex items-center gap-2 flex-wrap">
-          <label className="text-sm text-gray-700 dark:text-gray-300">Strategy:</label>
+          <label className="text-sm text-muted-foreground dark:text-muted-foreground">Strategy:</label>
           <select
             value={strategy}
             onChange={(e) => setStrategy(e.target.value as MergeStrategy)}
-            className="px-2 py-1 text-sm border rounded bg-white dark:bg-gray-900"
+            className="px-2 py-1 text-sm border rounded bg-card dark:bg-muted"
           >
             {STRATEGIES.map((s) => (
               <option key={s.value} value={s.value}>{s.label}</option>
             ))}
           </select>
-          <div className="ml-auto text-xs text-gray-500">
+          <div className="ml-auto text-xs text-muted-foreground">
             deep-merge: recursive merge | prefer-a: left wins | prefer-b: right wins
           </div>
-          <button onClick={clear} className="inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
+          <button onClick={clear} className="inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
             <Eraser className="h-3 w-3" />Clear
           </button>
         </div>
       }
       leftLabel="JSON A"
-      leftActions={<span className="text-xs text-gray-500">{leftInput.length} chars</span>}
+      leftActions={<span className="text-xs text-muted-foreground">{leftInput.length} chars</span>}
       left={
         <textarea
           value={leftInput}
@@ -124,7 +124,7 @@ export default function JsonMerge() {
         />
       }
       rightLabel="JSON B"
-      rightActions={<span className="text-xs text-gray-500">{rightInput.length} chars</span>}
+      rightActions={<span className="text-xs text-muted-foreground">{rightInput.length} chars</span>}
       right={
         <textarea
           value={rightInput}
@@ -135,8 +135,8 @@ export default function JsonMerge() {
       }
       outputLabel="Merged Result"
       outputActions={
-        <button onClick={copy} className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-          {copied ? <Check className="h-3 w-3 text-green-600" /> : <Copy className="h-3 w-3" />}
+        <button onClick={copy} className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
+          {copied ? <Check className="h-3 w-3 text-success" /> : <Copy className="h-3 w-3" />}
           {copied ? "Copied" : "Copy"}
         </button>
       }
@@ -147,7 +147,7 @@ export default function JsonMerge() {
       }
       footer={
         error ? (
-          <div className="flex items-center gap-2 text-sm text-red-600">
+          <div className="flex items-center gap-2 text-sm text-destructive">
             <AlertCircle className="h-3 w-3" />
             {error}
           </div>

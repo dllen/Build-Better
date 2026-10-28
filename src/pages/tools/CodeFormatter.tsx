@@ -200,8 +200,8 @@ export default function CodeFormatter() {
       title={
         <>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t("tools.code-formatter.name")}</h1>
-            <p className="text-sm text-gray-500">{t("tools.code-formatter.desc")}</p>
+            <h1 className="text-2xl font-bold text-foreground">{t("tools.code-formatter.name")}</h1>
+            <p className="text-sm text-muted-foreground">{t("tools.code-formatter.desc")}</p>
           </div>
           <SEO
             title={`${t("tools.code-formatter.name")} - BuildBetter`}
@@ -212,12 +212,12 @@ export default function CodeFormatter() {
       }
       toolbar={
         <>
-          <div className="flex items-center gap-2 bg-white border border-gray-300 rounded-lg px-3 py-1.5 shadow-sm">
-            <Settings2 className="h-4 w-4 text-gray-500" />
+          <div className="flex items-center gap-2 bg-card border border-border rounded-lg px-3 py-1.5">
+            <Settings2 className="h-4 w-4 text-muted-foreground" />
             <select
               value={theme}
               onChange={(e) => setTheme(e.target.value as Theme)}
-              className="bg-transparent border-none text-sm font-medium focus:ring-0 cursor-pointer text-gray-700"
+              className="bg-transparent border-none text-sm font-medium focus:ring-0 cursor-pointer text-muted-foreground"
             >
               {Object.entries(THEMES).map(([value, labelKey]) => (
                 <option key={value} value={value}>
@@ -230,7 +230,7 @@ export default function CodeFormatter() {
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value as Language)}
-            className="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-card border border-border rounded-lg px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring"
           >
             {Object.entries(LANGUAGES).map(([key, config]) => (
               <option key={key} value={key}>
@@ -242,64 +242,64 @@ export default function CodeFormatter() {
           <button
             onClick={handleFormat}
             disabled={loading || !input}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-sm transition-all active:scale-95"
+            className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors transition-opacity transition-transform active:scale-95"
           >
             {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Play className="h-4 w-4" />}
             {t("tools.code-formatter.format_btn")}
           </button>
 
           <div className="flex flex-wrap items-center gap-3 ml-auto text-sm">
-            <label className="flex items-center gap-1.5 text-gray-600">
+            <label className="flex items-center gap-1.5 text-muted-foreground">
               {t("tools.code-formatter.options.tab_width")}:
               <input
                 type="number"
                 value={tabWidth}
                 onChange={(e) => setTabWidth(Number(e.target.value))}
-                className="w-14 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-14 px-2 py-1 text-sm border border-border rounded focus:outline-none focus:ring-1 focus:ring-ring"
                 min={1}
                 max={8}
               />
             </label>
 
-            <label className="flex items-center gap-1.5 text-gray-600">
+            <label className="flex items-center gap-1.5 text-muted-foreground">
               {t("tools.code-formatter.options.print_width")}:
               <input
                 type="number"
                 value={printWidth}
                 onChange={(e) => setPrintWidth(Number(e.target.value))}
-                className="w-14 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-14 px-2 py-1 text-sm border border-border rounded focus:outline-none focus:ring-1 focus:ring-ring"
                 min={40}
                 max={200}
                 step={10}
               />
             </label>
 
-            <label className="flex items-center gap-1.5 cursor-pointer text-gray-600">
+            <label className="flex items-center gap-1.5 cursor-pointer text-muted-foreground">
               <input
                 type="checkbox"
                 checked={useTabs}
                 onChange={(e) => setUseTabs(e.target.checked)}
-                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="rounded border-border text-primary focus:ring-ring"
               />
               {t("tools.code-formatter.options.use_tabs")}
             </label>
 
-            <label className="flex items-center gap-1.5 cursor-pointer text-gray-600">
+            <label className="flex items-center gap-1.5 cursor-pointer text-muted-foreground">
               <input
                 type="checkbox"
                 checked={semi}
                 onChange={(e) => setSemi(e.target.checked)}
-                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="rounded border-border text-primary focus:ring-ring"
               />
               {t("tools.code-formatter.options.semi")}
             </label>
 
-            <label className="flex items-center gap-1.5 cursor-pointer text-gray-600">
+            <label className="flex items-center gap-1.5 cursor-pointer text-muted-foreground">
               <input
                 type="checkbox"
                 checked={singleQuote}
                 onChange={(e) => setSingleQuote(e.target.checked)}
-                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="rounded border-border text-primary focus:ring-ring"
               />
               {t("tools.code-formatter.options.single_quote")}
             </label>
@@ -308,7 +308,7 @@ export default function CodeFormatter() {
       }
       inputLabel={t("tools.code-formatter.input_label")}
       input={
-        <Suspense fallback={<div className="flex items-center justify-center h-full text-gray-400"><Loader2 className="h-6 w-6 animate-spin" /></div>}>
+        <Suspense fallback={<div className="flex items-center justify-center h-full text-muted-foreground"><Loader2 className="h-6 w-6 animate-spin" /></div>}>
           <Editor
             height="100%"
             defaultLanguage={LANGUAGES[language].monacoId}
@@ -333,7 +333,7 @@ export default function CodeFormatter() {
         <button
           onClick={handleCopy}
           disabled={!output}
-          className="text-gray-600 hover:text-blue-600 disabled:opacity-30 disabled:hover:text-gray-600 transition-colors flex items-center gap-1.5 text-xs font-medium px-2 py-1 rounded hover:bg-blue-50"
+          className="text-muted-foreground hover:text-primary disabled:opacity-30 disabled:hover:text-muted-foreground transition-colors flex items-center gap-1.5 text-xs font-medium px-2 py-1 rounded hover:bg-primary/10"
         >
           {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
           {copied ? t("tools.code-formatter.copied") : t("tools.code-formatter.copy_btn")}
@@ -342,18 +342,18 @@ export default function CodeFormatter() {
       output={
         <div className="relative h-full">
           {error ? (
-            <div className="absolute inset-0 p-4 bg-red-50/50 overflow-auto">
-              <div className="bg-white p-4 rounded-xl border border-red-200 shadow-sm">
-                <h3 className="text-red-600 font-semibold mb-2">
+            <div className="absolute inset-0 p-4 bg-destructive/10/50 overflow-auto">
+              <div className="bg-card p-4 rounded-xl border border-border">
+                <h3 className="text-destructive font-semibold mb-2">
                   {t("tools.code-formatter.error_title")}
                 </h3>
-                <pre className="text-sm text-red-500 whitespace-pre-wrap font-mono bg-red-50 p-4 rounded-lg overflow-x-auto">
+                <pre className="text-sm text-destructive whitespace-pre-wrap font-mono bg-destructive/10 p-4 rounded-lg overflow-x-auto">
                   {error}
                 </pre>
               </div>
             </div>
           ) : (
-            <Suspense fallback={<div className="flex items-center justify-center h-full text-gray-400"><Loader2 className="h-6 w-6 animate-spin" /></div>}>
+            <Suspense fallback={<div className="flex items-center justify-center h-full text-muted-foreground"><Loader2 className="h-6 w-6 animate-spin" /></div>}>
               <Editor
                 height="100%"
                 defaultLanguage={LANGUAGES[language].monacoId}

@@ -82,15 +82,15 @@ export default function WalletAnalyzer() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <div className="inline-flex p-2 rounded-lg bg-blue-100 text-blue-600">
+        <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
           <Wallet className="h-5 w-5" />
         </div>
         <h1 className="text-2xl font-semibold">以太坊钱包解析</h1>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-4">
+      <div className="bg-card rounded-lg border border-border p-4 space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-muted-foreground mb-2">
             钱包地址
           </label>
           <textarea
@@ -101,13 +101,13 @@ export default function WalletAnalyzer() {
               setError(null);
             }}
             placeholder="粘贴以太坊地址，例如：0x742d35Cc6634C0532925a3b844Bc9e7595f..."
-            className="w-full h-20 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono text-sm resize-none"
+            className="w-full h-20 rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm resize-none"
           />
         </div>
 
         <div className="flex flex-wrap gap-3">
           <button
-            className="px-4 py-2 rounded-md bg-blue-600 text-white inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-primary text-primary-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={parse}
             disabled={!address.trim()}
           >
@@ -115,19 +115,19 @@ export default function WalletAnalyzer() {
             解析
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={copy}
             disabled={!address.trim()}
           >
             {copied ? (
-              <Check className="h-4 w-4 text-green-600" />
+              <Check className="h-4 w-4 text-success" />
             ) : (
               <Copy className="h-4 w-4" />
             )}
             {copied ? "已复制 ✓" : "复制地址"}
           </button>
           <button
-            className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 inline-flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 rounded-md bg-muted text-muted-foreground inline-flex items-center gap-2 disabled:opacity-50"
             onClick={clear}
             disabled={!address && !parsed}
           >
@@ -137,46 +137,46 @@ export default function WalletAnalyzer() {
         </div>
 
         {error && (
-          <div className="text-sm text-red-600 bg-red-50 rounded-md px-3 py-2">
+          <div className="text-sm text-destructive bg-destructive/10 rounded-md px-3 py-2">
             {error}
           </div>
         )}
 
         {parsed && !error && (
-          <div className="bg-gray-50 rounded-md border border-gray-200 p-4 space-y-3">
+          <div className="bg-muted rounded-md border border-border p-4 space-y-3">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               <div>
-                <span className="text-gray-500">地址长度：</span>
-                <span className={`font-mono ${parsed.lengthValid ? "text-green-600" : "text-red-600"}`}>
+                <span className="text-muted-foreground">地址长度：</span>
+                <span className={`font-mono ${parsed.lengthValid ? "text-success" : "text-destructive"}`}>
                   {parsed.length} 字符 {parsed.lengthValid ? "✓" : "✗"}
                 </span>
               </div>
               <div>
-                <span className="text-gray-500">EIP-55 Checksum：</span>
-                <span className={`font-medium ${parsed.checksum === "是" ? "text-green-600" : parsed.checksum === "否" ? "text-gray-700" : "text-gray-400"}`}>
+                <span className="text-muted-foreground">EIP-55 Checksum：</span>
+                <span className={`font-medium ${parsed.checksum === "是" ? "text-success" : parsed.checksum === "否" ? "text-muted-foreground" : "text-muted-foreground"}`}>
                   {parsed.checksum}
                 </span>
               </div>
               <div>
-                <span className="text-gray-500">地址格式：</span>
-                <span className={`font-medium ${parsed.lengthValid ? "text-green-600" : "text-red-600"}`}>
+                <span className="text-muted-foreground">地址格式：</span>
+                <span className={`font-medium ${parsed.lengthValid ? "text-success" : "text-destructive"}`}>
                   {parsed.lengthValid ? "有效 42 字符" : "长度异常"}
                 </span>
               </div>
               <div className="sm:col-span-2">
-                <span className="text-gray-500">地址类型：</span>
-                <span className="text-gray-700">{parsed.type}</span>
+                <span className="text-muted-foreground">地址类型：</span>
+                <span className="text-muted-foreground">{parsed.type}</span>
               </div>
             </div>
           </div>
         )}
 
-        <div className="bg-amber-50 border border-amber-200 rounded-md px-3 py-2 text-sm text-amber-800 flex items-start gap-2">
+        <div className="bg-primary/10 border border-border rounded-md px-3 py-2 text-sm text-primary flex items-start gap-2">
           <AlertTriangle className="h-4 w-4 mt-0.5 flex-shrink-0" />
           <span>请勿在此页面输入私钥或助记词。本工具不会请求任何区块链权限。</span>
         </div>
 
-        <div className="text-xs text-gray-500">
+        <div className="text-xs text-muted-foreground">
           数据仅在浏览器本地处理，不会上传到服务器。请勿在此页面输入私钥或助记词。
         </div>
       </div>

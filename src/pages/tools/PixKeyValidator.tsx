@@ -77,16 +77,12 @@ export default function PixKeyValidator() {
   };
 
   const renderTabs = () => (
-    <div className="flex flex-wrap rounded-lg bg-gray-100 p-1 mb-6">
+    <div className="flex flex-wrap rounded-lg bg-muted p-1 mb-6">
       {TAB_TYPES.map(({ type, label }) => (
         <button
           key={type}
           onClick={() => handleTypeChange(type)}
-          className={`flex-1 min-w-[60px] py-2 px-3 rounded-md text-sm font-medium transition-colors ${
-            activeType === type
-              ? "bg-white text-gray-900 shadow-sm"
-              : "text-gray-600 hover:text-gray-900"
-          }`}
+          className={`flex-1 min-w-[60px] py-2 px-3 rounded-md text-sm font-medium transition-colors ${ activeType === type ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground" }`}
         >
           {label}
         </button>
@@ -112,7 +108,7 @@ export default function PixKeyValidator() {
   const renderInput = () => (
     <div className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-muted-foreground mb-1">
           {t("pixKey.input_label")}
         </label>
         <input
@@ -120,14 +116,14 @@ export default function PixKeyValidator() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder={getPlaceholder()}
-          className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-2 px-3 border"
+          className="block w-full border-border rounded-md focus:border-border focus:ring-ring sm:text-sm py-2 px-3 border"
         />
       </div>
 
       {(activeType === "cpf" || activeType === "cnpj") && (
         <button
           onClick={handleGenerate}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium"
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary font-medium"
         >
           <RefreshCw className="h-4 w-4" />
           {t("pixKey.generate")}
@@ -139,7 +135,7 @@ export default function PixKeyValidator() {
   const renderResult = () => {
     if (isValid === null) {
       return (
-        <div className="text-center text-gray-400 py-12">
+        <div className="text-center text-muted-foreground py-12">
           <CreditCard className="h-12 w-12 mx-auto mb-4 opacity-40" />
           <p className="text-lg">{t("pixKey.enter_key")}</p>
         </div>
@@ -151,7 +147,7 @@ export default function PixKeyValidator() {
         <div className="space-y-6">
           {/* Valid indicator */}
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-800 rounded-full">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-success/10 text-success rounded-full">
               <Check className="h-5 w-5" />
               <span className="font-medium">{t("pixKey.valid")}</span>
             </div>
@@ -160,7 +156,7 @@ export default function PixKeyValidator() {
           {/* Type label for CPF/CNPJ */}
           {(activeType === "cpf" || activeType === "cnpj") && (
             <div className="text-center">
-              <span className="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">
+              <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
                 {activeType === "cpf"
                   ? t("pixKey.personal_cpf")
                   : t("pixKey.business_cnpj")}
@@ -170,26 +166,26 @@ export default function PixKeyValidator() {
 
           {/* Formatted value */}
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-1">
+            <p className="text-sm font-medium text-muted-foreground mb-1">
               {t("pixKey.formatted")}
             </p>
-            <p className="text-2xl font-bold text-gray-900 break-all">
+            <p className="text-2xl font-bold text-foreground break-all">
               {formattedValue}
             </p>
           </div>
 
           {/* Raw digits for CPF/CNPJ */}
           {(activeType === "cpf" || activeType === "cnpj") && (
-            <div className="bg-gray-50 rounded-lg p-3 text-center">
-              <p className="text-xs text-gray-500 mb-1">{t("pixKey.raw_digits")}</p>
-              <p className="text-sm font-mono text-gray-700">{rawDigits}</p>
+            <div className="bg-muted rounded-lg p-3 text-center">
+              <p className="text-xs text-muted-foreground mb-1">{t("pixKey.raw_digits")}</p>
+              <p className="text-sm font-mono text-muted-foreground">{rawDigits}</p>
             </div>
           )}
 
           {/* Copy button */}
           <button
             onClick={handleCopy}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-card text-card-foreground rounded-lg hover:bg-muted"
           >
             <Copy className="h-4 w-4" />
             {copied ? t("pixKey.copied") : t("pixKey.copy")}
@@ -202,12 +198,12 @@ export default function PixKeyValidator() {
     return (
       <div className="space-y-6">
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 text-red-800 rounded-full">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-destructive/10 text-destructive rounded-full">
             <X className="h-5 w-5" />
             <span className="font-medium">{t("pixKey.invalid")}</span>
           </div>
         </div>
-        <div className="text-center text-gray-500">
+        <div className="text-center text-muted-foreground">
           <p>{t("pixKey.invalid_message")}</p>
         </div>
       </div>
@@ -219,8 +215,8 @@ export default function PixKeyValidator() {
       title={t("pixKey.title")}
       subtitle={t("pixKey.subtitle")}
       icon={CreditCard}
-      iconBgColor="bg-indigo-100"
-      iconColor="text-indigo-600"
+      iconBgColor="bg-primary/10"
+      iconColor="text-primary"
       keywords={[
         "pix key validator",
         "brazil pix",

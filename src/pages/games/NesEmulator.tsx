@@ -53,10 +53,10 @@ export default function NesEmulatorPage() {
 
   if (selectedGame) {
     return (
-      <div className="container mx-auto px-4 py-8 min-h-screen bg-gray-950 text-white">
+      <div className="container mx-auto px-4 py-8">
         <button 
           onClick={() => setSelectedGame(null)}
-          className="flex items-center gap-2 mb-6 px-4 py-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors"
+          className="flex items-center gap-2 mb-6 px-4 py-2 bg-muted rounded-lg hover:bg-accent transition-colors"
         >
           <ArrowLeft size={20} />
           Back to Library
@@ -68,27 +68,27 @@ export default function NesEmulatorPage() {
               romUrl={selectedGame.romUrl} 
               core={selectedGame.core} 
             />
-            <div className="mt-6 p-6 bg-gray-900 rounded-xl">
+            <div className="mt-6 p-6 bg-card rounded-xl border border-border">
               <div className="flex justify-between items-start mb-4">
                 <h1 className="text-3xl font-bold">{selectedGame.title}</h1>
                 <button 
                   onClick={(e) => toggleFavorite(e, selectedGame.id)}
-                  className={`p-2 rounded-full ${favorites.includes(selectedGame.id) ? 'text-red-500 bg-red-500/10' : 'text-gray-400 bg-gray-800'}`}
+                  className={`p-2 rounded-full transition-colors ${favorites.includes(selectedGame.id) ? 'text-destructive bg-destructive/10' : 'text-muted-foreground bg-muted hover:text-foreground'}`}
                 >
                   <Heart size={24} fill={favorites.includes(selectedGame.id) ? "currentColor" : "none"} />
                 </button>
               </div>
               <div className="flex gap-2 mb-4">
-                <span className="px-3 py-1 bg-blue-900/50 text-blue-400 rounded-full text-sm border border-blue-800">
+                <span className="px-3 py-1 bg-accent/10 text-cool rounded-full text-sm border border-border">
                   {selectedGame.genre}
                 </span>
               </div>
-              <p className="text-gray-300 leading-relaxed">{selectedGame.description}</p>
+              <p className="text-ink-2 leading-relaxed">{selectedGame.description}</p>
             </div>
           </div>
 
           <div className="space-y-6">
-            <div className="bg-gray-900 p-6 rounded-xl">
+            <div className="bg-card p-6 rounded-xl border border-border">
               <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
                 <Gamepad size={20} />
                 Similar Games
@@ -101,16 +101,16 @@ export default function NesEmulatorPage() {
                     <div 
                       key={game.id}
                       onClick={() => handleGameSelect(game)}
-                      className="flex gap-4 p-3 rounded-lg hover:bg-gray-800 cursor-pointer transition-colors group"
+                      className="flex gap-4 p-3 rounded-well hover:bg-muted cursor-pointer transition-colors group"
                     >
                       <img 
                         src={game.coverUrl} 
                         alt={game.title} 
-                        className="w-16 h-16 object-cover rounded shadow-md group-hover:scale-105 transition-transform"
+                        className="w-16 h-16 object-cover rounded transition-transform"
                       />
                       <div>
                         <h3 className="font-semibold text-sm">{game.title}</h3>
-                        <p className="text-xs text-gray-400 mt-1">{game.genre}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{game.genre}</p>
                       </div>
                     </div>
                   ))}
@@ -123,23 +123,23 @@ export default function NesEmulatorPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 min-h-screen bg-gray-950 text-white">
+    <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
         <div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-medium text-foreground">
             NES Arcade
           </h1>
-          <p className="text-gray-400 mt-1">Classic 8-bit Games Collection</p>
+          <p className="text-muted-foreground mt-1">Classic 8-bit Games Collection</p>
         </div>
 
         <div className="relative w-full md:w-96">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
           <input
             type="text"
             placeholder="Search games..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-500"
+            className="w-full pl-10 pr-4 py-2 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring text-foreground placeholder:text-muted-foreground"
           />
         </div>
       </div>
@@ -147,8 +147,8 @@ export default function NesEmulatorPage() {
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Sidebar Filters */}
         <div className="lg:w-64 space-y-2 flex-shrink-0">
-          <div className="bg-gray-900 p-4 rounded-xl sticky top-4">
-            <h2 className="text-lg font-semibold mb-4 flex items-center gap-2 text-gray-300">
+          <div className="bg-card p-4 rounded-xl border border-border sticky top-4">
+            <h2 className="text-lg font-semibold mb-4 flex items-center gap-2 text-foreground">
               <Filter size={18} />
               Categories
             </h2>
@@ -159,8 +159,8 @@ export default function NesEmulatorPage() {
                   onClick={() => setFilter(genre)}
                   className={`w-full text-left px-4 py-2 rounded-lg transition-colors flex items-center gap-2 ${
                     filter === genre 
-                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20' 
-                      : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                      ? 'bg-primary text-primary-foreground' 
+                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                   }`}
                 >
                   {genre === 'Favorites' && <Heart size={16} />}
@@ -175,7 +175,7 @@ export default function NesEmulatorPage() {
         {/* Game Grid */}
         <div className="flex-1">
           {filteredGames.length === 0 ? (
-            <div className="text-center py-20 text-gray-500">
+            <div className="text-center py-20 text-muted-foreground">
               <p className="text-xl">No games found</p>
               <p className="text-sm mt-2">Try adjusting your search or filter</p>
             </div>
@@ -184,18 +184,18 @@ export default function NesEmulatorPage() {
               {filteredGames.map(game => (
                 <div 
                   key={game.id}
-                  className="group bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-800 hover:border-blue-500/50 cursor-pointer relative"
+                  className="group bg-card rounded-xl overflow-hidden transition-[transform,border-color] duration-300 hover:-translate-y-1 border border-border hover:border-primary/50 cursor-pointer relative"
                   onClick={() => handleGameSelect(game)}
                 >
                   <div className="aspect-[3/4] overflow-hidden relative">
                     <img 
                       src={game.coverUrl} 
                       alt={game.title} 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-500"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-                      <span className="inline-block px-2 py-1 bg-blue-600 text-xs rounded-full self-start mb-2">
+                      <span className="inline-block px-2 py-1 bg-primary text-primary-foreground text-xs rounded-full self-start mb-2">
                         Play Now
                       </span>
                     </div>
@@ -203,17 +203,17 @@ export default function NesEmulatorPage() {
                   
                   <div className="p-4">
                     <div className="flex justify-between items-start gap-2 mb-1">
-                      <h3 className="font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-1">
+                      <h3 className="font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
                         {game.title}
                       </h3>
                       <button 
                         onClick={(e) => toggleFavorite(e, game.id)}
-                        className={`transition-colors ${favorites.includes(game.id) ? 'text-red-500' : 'text-gray-600 hover:text-red-400'}`}
+                        className={`transition-colors ${favorites.includes(game.id) ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}`}
                       >
                         <Heart size={18} fill={favorites.includes(game.id) ? "currentColor" : "none"} />
                       </button>
                     </div>
-                    <p className="text-xs text-gray-500">{game.genre}</p>
+                    <p className="text-xs text-muted-foreground">{game.genre}</p>
                   </div>
                 </div>
               ))}

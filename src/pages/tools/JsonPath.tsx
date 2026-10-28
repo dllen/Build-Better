@@ -66,29 +66,29 @@ export default function JsonPath() {
     <EditorSplitLayout
       title={
         <div className="flex items-center gap-2 text-xl font-semibold">
-          <Route className="h-5 w-5 text-blue-600" />
+          <Route className="h-5 w-5 text-primary" />
           <span>JSONPath Evaluator</span>
         </div>
       }
       toolbar={
         <div className="flex items-center gap-2 flex-wrap">
-          <label className="text-sm text-gray-700 dark:text-gray-300">Path:</label>
+          <label className="text-sm text-muted-foreground dark:text-muted-foreground">Path:</label>
           <input
             type="text"
             value={path}
             onChange={(e) => setPath(e.target.value)}
-            className="px-2 py-1 text-sm border rounded font-mono w-64 bg-white dark:bg-gray-900"
+            className="px-2 py-1 text-sm border rounded font-mono w-64 bg-card dark:bg-muted"
             placeholder="$.store.book[*].author"
           />
-          <div className="ml-auto text-xs text-gray-500">Supports: $, $.key, $.key.sub, $.key[*], $.key[n], $.*, $[n]</div>
-          <button onClick={clear} className="inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
+          <div className="ml-auto text-xs text-muted-foreground">Supports: $, $.key, $.key.sub, $.key[*], $.key[n], $.*, $[n]</div>
+          <button onClick={clear} className="inline-flex items-center gap-1 px-3 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
             <Eraser className="h-3 w-3" />Clear
           </button>
         </div>
       }
       inputLabel="JSON Input"
       inputActions={
-        <span className="text-xs text-gray-500">{input.length} chars</span>
+        <span className="text-xs text-muted-foreground">{input.length} chars</span>
       }
       input={
         <textarea
@@ -104,8 +104,8 @@ export default function JsonPath() {
         </span>
       }
       outputActions={
-        <button onClick={copy} className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-          {copied ? <Check className="h-3 w-3 text-green-600" /> : <Copy className="h-3 w-3" />}
+        <button onClick={copy} className="inline-flex items-center gap-1 px-2 py-1 text-sm border rounded hover:bg-muted dark:hover:bg-muted">
+          {copied ? <Check className="h-3 w-3 text-success" /> : <Copy className="h-3 w-3" />}
           {copied ? "Copied" : "Copy"}
         </button>
       }
@@ -116,7 +116,7 @@ export default function JsonPath() {
       }
       footer={
         error ? (
-          <div className="flex items-center gap-2 text-sm text-red-600">
+          <div className="flex items-center gap-2 text-sm text-destructive">
             <AlertCircle className="h-3 w-3" />
             {error}
           </div>
