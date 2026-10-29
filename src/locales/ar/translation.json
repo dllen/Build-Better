@@ -30,7 +30,10 @@
     "section_tools": "أدوات التطوير",
     "section_popular": "الأدوات الشائعة",
     "section_recent": "المضافة حديثاً",
-    "all_categories": "الكل"
+    "all_categories": "الكل",
+    "rail_prev": "الأدوات السابقة",
+    "rail_next": "الأدوات التالية",
+    "rail_page": "{{current}} / {{total}}"
   },
   "tools": {
     "kinship": {

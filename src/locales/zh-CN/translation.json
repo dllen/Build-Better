@@ -30,7 +30,10 @@
     "section_tools": "小工具",
     "section_popular": "热门工具",
     "section_recent": "最近新增",
-    "all_categories": "全部"
+    "all_categories": "全部",
+    "rail_prev": "上一个工具",
+    "rail_next": "下一个工具",
+    "rail_page": "{{current}} / {{total}}"
   },
   "tools": {
     "kinship": {

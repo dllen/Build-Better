@@ -6,6 +6,8 @@
 /* Hallmark · dismissed 70 · the resend handler awaits resendVerification, which POSTs to /api/auth/resend-verification before the notice appears · the auth dialog reports a real response */
 /* Hallmark · dismissed F1 · the subtitle ends in a quoted string the scanner reads past; the copy itself carries no straight quote · the meta tag generator's head element is a term, not punctuation */
 /* Hallmark · dismissed F2 · the only three-period runs left are the rest and spread operators in the field filter · the meta tag generator writes no ellipsis in its copy */
+/* Hallmark · checked 2026-10-29 · redesign: polish · the tool rail, paged: every tile the same width and height, the run snapped a tile at a time, two controls and a measured page count beside the heading
+ * built: Hallmark · theme: Console · hero: Banner · nav: search-led bar · footer: colophon block · floor: 0 FAIL · reflex: 0 */
 @import "./tokens.css";
 @import "./base.css";
 
@@ -332,6 +334,175 @@
   .rail > * {
     scroll-snap-align: start;
     flex: 0 0 auto;
+  }
+
+  /* ============================================
+     The tool rail: a paged run of equal tiles.
+
+     Every tile is the same width and the same
+     height, so a long title or a long
+     description never makes one tile taller
+     than its neighbour. The text inside is
+     clamped to a fixed number of lines; the
+     card keeps the height, the copy is cut.
+
+     The run scrolls by touch, wheel and arrow
+     keys, snapping a tile at a time to the
+     start edge. The two controls page it, and
+     the edges fade so the next tile reads as
+     cut by the frame rather than as a missing
+     card.
+     ============================================ */
+
+  .tool-rail {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: var(--rail-tile, 16.5rem);
+    gap: var(--gap-columns);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-block-end: var(--space-xs);
+  }
+
+  .tool-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tool-rail > * {
+    scroll-snap-align: start;
+    min-width: 0;
+  }
+
+  .tool-rail:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 4px;
+  }
+
+  /* The edge fade: the run continues past the
+     frame, so the last visible tile is cut by
+     a wash rather than stopped dead. The fade
+     is a mask on the scroll box, so it moves
+     with the content and never covers it. */
+  .tool-rail--faded {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      var(--color-paper) var(--space-md),
+      var(--color-paper) calc(100% - var(--space-md)),
+      transparent 100%
+    );
+  }
+
+  /* One tile. The height is fixed, the type is
+     clamped, so the grid never grows ragged. */
+  .tool-tile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    height: var(--rail-tile-height, 13.5rem);
+    padding: var(--space-md);
+    background: var(--color-paper-2);
+    border: var(--rule-hair) solid var(--color-rule);
+    border-radius: var(--radius-card);
+    transition: border-color var(--dur-short) var(--ease-out),
+      background-color var(--dur-short) var(--ease-out);
+  }
+
+  .tool-tile:hover {
+    border-color: var(--color-rule-2);
+    background: var(--color-paper-3);
+  }
+
+  .tool-tile__name {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    min-width: 0;
+  }
+
+  .tool-tile__desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    min-width: 0;
+  }
+
+  /* The two controls that page the run. Quiet,
+     outlined, never louder than the cards they
+     move. They sit above the run's right edge
+     so the eye finds them with the count. */
+  .rail-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+
+  .rail-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: var(--rule-hair) solid var(--color-rule);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-ink-2);
+    cursor: pointer;
+    transition: border-color var(--dur-micro) var(--ease-out),
+      color var(--dur-micro) var(--ease-out), background-color var(--dur-micro) var(--ease-out),
+      opacity var(--dur-micro) var(--ease-out);
+  }
+
+  .rail-btn:hover:not(:disabled) {
+    border-color: var(--color-rule-2);
+    color: var(--color-ink);
+    background: var(--color-paper-2);
+  }
+
+  .rail-btn:active:not(:disabled) {
+    background: var(--color-paper-3);
+  }
+
+  .rail-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  /* The ring, at once. The project's own recipe:
+     an outline that reads against the paper,
+     held off the control by the offset. */
+  .rail-btn:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  /* The page indicator: a measured fraction of
+     where the reader is, and how many pages
+     there are. A fact, not a decoration. */
+  .rail-page {
+    font-family: var(--font-outlier);
+    font-variant-numeric: tabular-nums slashed-zero;
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    min-width: 5.5ch;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  @media (max-width: 40rem) {
+    .tool-rail {
+      grid-auto-columns: var(--rail-tile-narrow, 14.5rem);
+    }
   }
 }
 

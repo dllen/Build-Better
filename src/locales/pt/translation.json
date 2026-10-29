@@ -30,7 +30,10 @@
     "section_tools": "Ferramentas",
     "section_popular": "Ferramentas Populares",
     "section_recent": "Ferramentas Recentes",
-    "all_categories": "Todas"
+    "all_categories": "Todas",
+    "rail_prev": "Ferramentas anteriores",
+    "rail_next": "Próximas ferramentas",
+    "rail_page": "{{current}} / {{total}}"
   },
   "tools": {
     "kinship": {

@@ -30,7 +30,10 @@
     "section_tools": "開発者ツール",
     "section_popular": "人気のツール",
     "section_recent": "最近追加",
-    "all_categories": "すべて"
+    "all_categories": "すべて",
+    "rail_prev": "前のツール",
+    "rail_next": "次のツール",
+    "rail_page": "{{current}} / {{total}}"
   },
   "tools": {
     "kinship": {

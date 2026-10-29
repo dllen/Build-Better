@@ -30,7 +30,10 @@
     "section_tools": "Инструменты разработчика",
     "section_popular": "Популярные инструменты",
     "section_recent": "Недавно добавленные",
-    "all_categories": "Все"
+    "all_categories": "Все",
+    "rail_prev": "Предыдущие инструменты",
+    "rail_next": "Следующие инструменты",
+    "rail_page": "{{current}} / {{total}}"
   },
   "tools": {
     "kinship": {

@@ -30,7 +30,10 @@
     "section_tools": "Outils de développement",
     "section_popular": "Outils populaires",
     "section_recent": "Ajoutés récemment",
-    "all_categories": "Tous"
+    "all_categories": "Tous",
+    "rail_prev": "Outils précédents",
+    "rail_next": "Outils suivants",
+    "rail_page": "{{current}} / {{total}}"
   },
   "tools": {
     "kinship": {

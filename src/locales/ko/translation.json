@@ -30,7 +30,10 @@
     "section_tools": "개발자 도구",
     "section_popular": "인기 도구",
     "section_recent": "최근 추가",
-    "all_categories": "전체"
+    "all_categories": "전체",
+    "rail_prev": "이전 도구",
+    "rail_next": "다음 도구",
+    "rail_page": "{{current}} / {{total}}"
   },
   "tools": {
     "kinship": {

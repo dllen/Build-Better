@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import Fuse from "fuse.js";
 import { SEO } from "@/components/seo";
 import { SearchInput } from "@/components/common/SearchInput";
+import { ToolRail } from "@/components/common/ToolRail";
 import {
   CATEGORIES,
   groupedTools,
@@ -93,21 +94,7 @@ export default function Home() {
     title: string;
     count: number;
     tools: ResolvedTool[];
-  }) => (
-    <section className="section-s">
-      <div className="flex items-baseline justify-between gap-4 mb-6">
-        <h2 className="text-section font-medium text-foreground">{title}</h2>
-        <span className="measured text-sm text-muted-foreground">{count}</span>
-      </div>
-      <div className="rail pb-3 -mx-4 px-4">
-        {tools.map((tool) => (
-          <div key={tool.id} className="w-64 shrink-0">
-            <ToolCard tool={tool} />
-          </div>
-        ))}
-      </div>
-    </section>
-  );
+  }) => <ToolRail title={title} count={count} tools={tools} />;
 
   return (
     <div>

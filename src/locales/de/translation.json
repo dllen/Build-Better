@@ -30,7 +30,10 @@
     "section_tools": "Entwicklerwerkzeuge",
     "section_popular": "Beliebte Werkzeuge",
     "section_recent": "Kürzlich hinzugefügt",
-    "all_categories": "Alle"
+    "all_categories": "Alle",
+    "rail_prev": "Vorherige Werkzeuge",
+    "rail_next": "Nächste Werkzeuge",
+    "rail_page": "{{current}} / {{total}}"
   },
   "tools": {
     "kinship": {
