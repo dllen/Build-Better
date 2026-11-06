@@ -37,7 +37,7 @@ The feature exists because the site is free and ad-supported with no account sys
 - Pre-rendering: `scripts/prerender-routes.mjs` lists static routes with a trailing slash and expands them to all 11 locale variants. `/about/`, `/privacy/`, `/contact/` are included; the sitemap script (`STATIC_ROUTES = ["/", "/settings"]`) is not.
 - Ads: `src/components/layout/Layout.tsx` renders an `AdSlot` only when the path starts with `/tools/`, so `/support` is ad-free with no extra work.
 - Images: `sharp` is already present in `node_modules`; `sips` is available on macOS. System `python3` has no Pillow.
-- Assets provided by the maintainer: `wx.jpeg` (828×1124, WeChat Pay poster) and `zfb.jpeg` (1673×2507, Alipay poster), currently untracked at the repo root.
+- Assets provided by the maintainer: `wx.jpeg` (828×1124, WeChat Pay poster) and `zfb.jpeg` (1708×2560, Alipay poster), currently untracked at the repo root.
 
 ## 4. Decisions from brainstorming
 
@@ -90,7 +90,7 @@ Support Build Better
 
 - Wrapper: `<article className="max-w-3xl mx-auto space-y-8 text-foreground">`, matching `About.tsx` / `Contact.tsx`.
 - Cards: `grid gap-6 sm:grid-cols-2`; each card `bg-card text-card-foreground rounded-xl border border-border p-6 flex flex-col items-center text-center gap-4`.
-- QR frame: `bg-white p-3 rounded-lg`, image `w-full max-w-[240px] h-auto`, explicit intrinsic `width`/`height` matching the asset (WeChat 385×385, Alipay 640×640) to reserve space and avoid layout shift.
+- QR frame: `bg-[#ffffff] p-3 rounded-lg`, image `w-full max-w-[240px] h-auto`, explicit intrinsic `width`/`height` matching the asset (WeChat 385×385, Alipay 640×640) to reserve space and avoid layout shift. The literal `#ffffff` is deliberate: `tailwind.config.js` remaps the stock `white` colour to `hsl(var(--background))`, so `bg-white` would turn dark in dark mode and leave the code sitting in a dark inset ring.
 - Both codes are the page's main content and sit above the fold: no `loading="lazy"` (it would delay the page's primary paint). Use `decoding="async"` plus those explicit dimensions so there is no layout shift.
 
 ### 6.2 Copy
@@ -115,7 +115,7 @@ No signature or personal name is rendered in text, and the cropped assets exclud
 - Each QR image gets a descriptive `alt` ("WeChat Pay QR code — scan with WeChat to tip Build Better", "Alipay QR code — scan with Alipay to tip Build Better").
 - Chinese text is wrapped in `lang="zh-CN"` spans; the page's own language is unaffected.
 - The cards are non-interactive; no focus management or keyboard traps are introduced.
-- Contrast comes from the design tokens; the QR frame is explicitly white so the code never inverts in dark mode.
+- Contrast comes from the design tokens; the QR images carry their own white background and the frame is a literal `#ffffff` (not the remapped `white` token), so the codes never invert in dark mode.
 
 ## 7. Navigation and routing
 
@@ -172,6 +172,7 @@ Total ≈ 30 KB, inside the ≤ 50 KB budget.
 | Dark mode | QR sits in a white padded frame; never inverted by CSS filters |
 | RTL locales (`ar`) | Page is LTR English/Chinese content; verify alignment at `/ar/support` |
 | Sparse content hurting SEO | Page stays out of the sitemap and carries its own `SEO` title/description; can gain `noindex` later if needed |
+| Locale-prefixed URLs (`/zh-CN/support`, …) | Pre-existing app-wide bug found during implementation: every `/:lang` URL falls through to NotFound (e.g. `/zh-CN/about` too), so the 10 locale pre-render files produced by this feature render the 404 page today. The English `/support` page and the footer link are unaffected. Fixing the route tree (absolute child paths under `path="/:lang?"` in `AppRoutes.tsx`) is a separate, much larger change; the e2e locale test is a documented `test.fixme` until then. |
 
 ## 10. Files touched
 

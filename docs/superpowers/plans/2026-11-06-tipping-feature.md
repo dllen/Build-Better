@@ -302,8 +302,8 @@ export default function Support() {
               key={method.name}
               className="bg-card text-card-foreground rounded-xl border border-border p-6 flex flex-col items-center text-center gap-4"
             >
-              {/* White frame is deliberate: the QR must never be tinted or inverted by the theme. */}
-              <div className="bg-white p-3 rounded-lg border border-border">
+              {/* Literal #ffffff is deliberate: tailwind.config.js remaps the stock "white" colour to hsl(var(--background)), which would turn this frame dark in dark mode. */}
+              <div className="bg-[#ffffff] p-3 rounded-lg border border-border">
                 <img
                   src={method.image}
                   alt={method.alt}
@@ -469,7 +469,7 @@ node scripts/prerender-routes.mjs
 node --input-type=module -e "import { readFileSync } from 'node:fs'; const routes = JSON.parse(readFileSync('prerender-routes.json', 'utf8')); for (const r of ['/support/', '/zh-CN/support/', '/ar/support/']) console.log(r, routes.includes(r));"
 ~~~
 
-Expected: the same "Generated ... routes" line as before, with the route count 12 higher (1 new base route + 11 locale variants), followed by:
+Expected: the same "Generated ... routes" line as before, with the route count 11 higher (1 new base route + 10 locale variants; English is the base route), followed by:
 ~~~
 /support/ true
 /zh-CN/support/ true
