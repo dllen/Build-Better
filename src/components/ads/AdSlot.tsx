@@ -1,23 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { useCookieConsent } from "@/contexts/CookieConsentContext";
+import { ADS_ENABLED, ADSENSE_PUBLISHER_ID, loadAdsenseScript } from "./adsense";
 
 /**
  * Lazy-loaded Google AdSense ad slot.
  *
- * - Defers AdSense script load until the slot scrolls into view
- *   (saves ~30 KB JS on initial page load; Core Web Vitals).
- * - Skips rendering entirely in dev (no VITE_ADSENSE_PUBLISHER_ID),
- *   when the user-agent is a bot, or when cookie consent has been
- *   rejected / not yet given.
- * - Honors a `data-adbreak-test` opt-in via the `test` prop (only
- *   use during AdSense review).
+ * - Ads are globally paused unless `VITE_ADS_ENABLED="true"` (see `adsense.ts`).
+ *   While paused this renders an empty, hidden placeholder and never requests
+ *   Google's ad script.
+ * - Defers the AdSense script load until the slot scrolls into view and the
+ *   visitor has accepted cookies (saves ~30 KB JS on initial page load and
+ *   keeps prerendered HTML clean).
+ * - Skips rendering for bots.
+ * - Honors a `data-adtest` opt-in via the `test` prop (only use during review).
  */
-
-declare global {
-  interface Window {
-    adsbygoogle: Array<Record<string, unknown>>;
-  }
-}
 
 export interface AdSlotProps {
   /** AdSense ad slot ID; defaults to empty for auto ads. */
@@ -34,13 +30,10 @@ export interface AdSlotProps {
   className?: string;
 }
 
-const PUBLISHER_ID = import.meta.env.VITE_ADSENSE_PUBLISHER_ID as
-  | string
-  | undefined;
 const IS_BOT =
   typeof navigator !== "undefined" &&
   /(bot|spider|crawl|preview|facebookexternalhit|slack|lighthouse|pagespeed)/i.test(
-    navigator.userAgent,
+    navigator.userAgent
   );
 
 export function AdSlot({
@@ -58,7 +51,7 @@ export function AdSlot({
 
   // Lazy: only start loading the ad when the slot is within 200px of viewport.
   useEffect(() => {
-    if (!PUBLISHER_ID || IS_BOT) return;
+    if (!ADS_ENABLED || IS_BOT) return;
     const el = containerRef.current;
     if (!el) return;
     if (typeof IntersectionObserver === "undefined") {
@@ -75,16 +68,19 @@ export function AdSlot({
           }
         }
       },
-      { rootMargin: "200px 0px" },
+      { rootMargin: "200px 0px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  // Push to adsbygoogle queue once the script tag has parsed.
+  // Load the script and queue the slot once it is visible and consent is given.
   useEffect(() => {
-    if (!shouldLoad || pushed) return;
+    if (!ADS_ENABLED || !shouldLoad || pushed || IS_BOT || consent !== true) {
+      return;
+    }
     if (typeof window === "undefined") return;
+    loadAdsenseScript();
     window.adsbygoogle = window.adsbygoogle || [];
     try {
       window.adsbygoogle.push({});
@@ -92,9 +88,9 @@ export function AdSlot({
     } catch (err) {
       console.warn("[AdSlot] push failed:", err);
     }
-  }, [shouldLoad, pushed]);
+  }, [shouldLoad, pushed, consent]);
 
-  if (!PUBLISHER_ID || IS_BOT || consent !== true) {
+  if (!ADS_ENABLED || IS_BOT || consent !== true) {
     return (
       <div
         ref={containerRef}
@@ -110,7 +106,7 @@ export function AdSlot({
       <ins
         className="adsbygoogle"
         style={{ display: "block", minHeight }}
-        data-ad-client={PUBLISHER_ID}
+        data-ad-client={ADSENSE_PUBLISHER_ID}
         data-ad-slot={slot || undefined}
         data-ad-layout-key={layoutKey || undefined}
         data-ad-format={format}

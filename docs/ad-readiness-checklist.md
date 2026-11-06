@@ -2,6 +2,15 @@
 
 > Generated: 2026-10-19
 > AdSense Application: Submitted 2026-10-01 | Status: ⚠️ Pending Review
+>
+> **2026-11-06: ads paused.** Google AdSense is temporarily offline:
+> `VITE_ADS_ENABLED=false` in `.env`, and the `adsbygoogle.js` loader was removed
+> from `index.html` (it is now lazy-injected from `src/components/ads/AdSlot.tsx`
+> only when the flag is `"true"`). No ad requests, ad DOM, or ad cookies are
+> produced while paused. To re-enable: set `VITE_ADS_ENABLED=true` in `.env` and
+> rebuild — no code changes needed. `public/ads.txt` and the
+> `google-adsense-account` meta tag were intentionally kept (declaration/
+> verification only, inert while paused).
 
 ## 1. Required Pages
 

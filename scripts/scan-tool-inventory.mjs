@@ -69,7 +69,7 @@ function findApiKeyPatterns(content) {
   if (/api[_-]?key\s*[:=]\s*['"][^'"]+['"]/i.test(content)) risks.push('hardcoded-api-key');
   if (/secret\s*[:=]\s*['"][^'"]+['"]/i.test(content)) risks.push('hardcoded-secret');
   if (/token\s*[:=]\s*['"][^'"]+['"]/i.test(content) && !/csrf/i.test(content)) risks.push('hardcoded-token');
-  if (/VITE_/.test(content) && !/VITE_ADSENSE_PUBLISHER_ID/.test(content)) risks.push('vite-env-var-reference');
+  if (/VITE_/.test(content) && !/VITE_(?:ADSENSE_PUBLISHER_ID|ADS_ENABLED)/.test(content)) risks.push('vite-env-var-reference');
   if (/import\.meta\.env/.test(content)) risks.push('env-var-usage');
   return risks;
 }
