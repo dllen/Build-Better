@@ -40,6 +40,12 @@ export function Footer() {
               >
                 Terms of Use
               </Link>
+              <Link
+                to="/support"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Support
+              </Link>
             </div>
             <div className="flex flex-col gap-2">
               <Link
