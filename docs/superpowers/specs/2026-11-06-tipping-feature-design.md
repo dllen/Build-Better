@@ -90,8 +90,8 @@ Support Build Better
 
 - Wrapper: `<article className="max-w-3xl mx-auto space-y-8 text-foreground">`, matching `About.tsx` / `Contact.tsx`.
 - Cards: `grid gap-6 sm:grid-cols-2`; each card `bg-card text-card-foreground rounded-xl border border-border p-6 flex flex-col items-center text-center gap-4`.
-- QR frame: `bg-white p-3 rounded-lg`, image `w-full max-w-[240px] h-auto`, explicit `width`/`height` to reserve space and avoid layout shift.
-- Both codes are the page's main content and sit above the fold: no `loading="lazy"` (it would delay the page's primary paint). Use `decoding="async"` plus explicit `width`/`height` (640×640) so the space is reserved and there is no layout shift.
+- QR frame: `bg-white p-3 rounded-lg`, image `w-full max-w-[240px] h-auto`, explicit intrinsic `width`/`height` matching the asset (WeChat 385×385, Alipay 640×640) to reserve space and avoid layout shift.
+- Both codes are the page's main content and sit above the fold: no `loading="lazy"` (it would delay the page's primary paint). Use `decoding="async"` plus those explicit dimensions so there is no layout shift.
 
 ### 6.2 Copy
 
@@ -108,7 +108,7 @@ English and Chinese are rendered side by side (Chinese below English, `lang="zh-
 - Closing: "Thank you." / "谢谢。"
 - `SEO` props: title `Support Build Better`, description "Build Better is free and ad-light. If it saved you time, you can leave a tip with WeChat Pay or Alipay."
 
-No signature or personal name is rendered in text; the payer name appears only inside the QR images.
+No signature or personal name is rendered in text, and the cropped assets exclude the poster's payer-name line — the card labels ("WeChat Pay" / "微信支付") identify the method instead.
 
 ### 6.3 Accessibility
 
@@ -140,17 +140,24 @@ They are source-of-truth only (not served), so future code rotations can rebuild
 
 `scripts/build-support-qr.mjs` (Node + `sharp`; build-time only — `sharp` is already in `node_modules` and nothing ships to the browser):
 
-1. Crop each poster to the white QR card region — a generous crop that includes the payer name line and leaves the white quiet zone intact.
-2. Resize to a 640×640 square (crop to square first, so the code stays centred and the quiet zone is even).
+1. Crop the square QR area of each poster: the QR modules plus a white margin (~6% of the QR side, minimum 24 px) and nothing else. The poster's coloured frame and payer-name line are excluded.
+2. Do not upscale. The WeChat QR is only 337 px in the source, so its output stays at native 385×385; the Alipay crop (1160 px) is downscaled to 640×640.
 3. Encode WebP at quality 82, effort 6.
-4. Write to `public/support/wechat-pay.webp` and `public/support/alipay.webp`, printing the byte size of each.
+4. Write to `public/support/wechat-pay.webp` and `public/support/alipay.webp`, print the byte size of each, and fail if either exceeds 40 KB.
 
-The crop rectangles are constants in the script and are tuned once against the source images. Target: ≤ 25 KB per file.
+Crop rectangles were measured against the provided files and are constants in the script:
+
+| Asset | Source | Crop (left, top, w, h) | Output | Measured size |
+|---|---|---|---|---|
+| `wechat-pay.webp` | 828×1124 | 221, 275, 385, 385 | 385×385 | ~12 KB |
+| `alipay.webp` | 1708×2560 | 274, 898, 1160, 1160 | 640×640 | ~17 KB |
+
+Total ≈ 30 KB, inside the ≤ 50 KB budget.
 
 ### 8.3 Validation
 
 - Inspect each crop at full resolution and at 240 px (the rendered size) to confirm the code is crisp and the quiet zone is not clipped.
-- Confirm each cropped file still decodes to a URL. If a decoder is available locally (e.g. an installed QR library), run it in the build script's verification step; otherwise validate visually and with one phone scan on a preview deploy.
+- There is no QR decoder in the dependency tree (`qrcode` generates codes, it does not decode them), so decoding is validated by eye at display size plus the phone scan below. The WeChat source is the lower-resolution one: if its 240 px render scans poorly on an older phone, either shrink the display size or fall back to showing that poster uncropped.
 - Phone scan of both codes from a preview build is the acceptance test: WeChat and Alipay must open the payee screen.
 
 ## 9. Edge cases and risks
