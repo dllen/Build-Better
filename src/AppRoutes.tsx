@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate, useParams, Outlet } from "react-router-dom";
 import { useEffect } from "react";
-import "./i18n/config"; // Import i18n config
+import i18n, { SUPPORTED_LANGUAGES } from "./i18n/config"; // Import i18n config
 import { Layout } from "@/components/layout/Layout";
 import Home from "@/pages/Home";
 import Settings from "@/pages/Settings";
@@ -389,18 +389,23 @@ import NotFound from "@/pages/NotFound";
 // Syncs i18n language with URL language prefix
 function LangLayout() {
   const { lang } = useParams();
+  const isValidLang = !lang || SUPPORTED_LANGUAGES.includes(lang);
 
   useEffect(() => {
-    // Only change language if lang is a valid code (not undefined for /)
-    // If lang is undefined, keep current i18n language (fallback handles it)
-    if (lang) {
-      import("i18next").then((i18n) => {
-        if (lang !== i18n.default.language) {
-          i18n.default.changeLanguage(lang);
-        }
-      });
+    // Only change language for a supported prefix. An unprefixed URL keeps the
+    // detected/cached language; an unsupported prefix falls through to 404 below.
+    if (lang && isValidLang && lang !== i18n.language) {
+      i18n.changeLanguage(lang);
     }
-  }, [lang]);
+  }, [lang, isValidLang]);
+
+  if (!isValidLang) {
+    return (
+      <Layout>
+        <NotFound />
+      </Layout>
+    );
+  }
 
   return <Outlet />;
 }
@@ -410,649 +415,649 @@ export function AppRoutes() {
     <Routes>
       <Route path="/:lang?" element={<LangLayout />}>
         <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/games" element={<Games />} />
-        <Route path="/rss-read" element={<RssReader />} />
-        <Route path="/indie-developer" element={<IndieDeveloper />} />
-        <Route path="/non-indie-developer" element={<NonIndieDeveloper />} />
-        <Route path="/data-developer" element={<DataDeveloper />} />
-        <Route path="/ai-development" element={<AiDevelopment />} />
-        <Route path="/loop-engineering" element={<LoopEngineering />} />
-        <Route path="/github-stars" element={<GithubStars />} />
-        <Route path="/skills-hub" element={<SkillsHub />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/support" element={<Support />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route index element={<Home />} />
+        <Route path="games" element={<Games />} />
+        <Route path="rss-read" element={<RssReader />} />
+        <Route path="indie-developer" element={<IndieDeveloper />} />
+        <Route path="non-indie-developer" element={<NonIndieDeveloper />} />
+        <Route path="data-developer" element={<DataDeveloper />} />
+        <Route path="ai-development" element={<AiDevelopment />} />
+        <Route path="loop-engineering" element={<LoopEngineering />} />
+        <Route path="github-stars" element={<GithubStars />} />
+        <Route path="skills-hub" element={<SkillsHub />} />
+        <Route path="settings" element={<Settings />} />
+        <Route path="privacy" element={<Privacy />} />
+        <Route path="terms" element={<Terms />} />
+        <Route path="about" element={<About />} />
+        <Route path="support" element={<Support />} />
+        <Route path="contact" element={<Contact />} />
         
         {/* ========== NEW TOP-LEVEL ROUTES (Week 2) ========== */}
         {/* Developer Tools */}
-        <Route path="/api-debugger" element={<ApiDebugger />} />
-        <Route path="/code-formatter" element={<CodeFormatter />} />
-        <Route path="/html-to-text" element={<HtmlToText />} />
-        <Route path="/token-generator" element={<TokenGenerator />} />
-        <Route path="/format-converter" element={<FormatConverter />} />
-        <Route path="/device-info" element={<DeviceInfo />} />
-        <Route path="/json-editor" element={<JsonEditorTool />} />
-        <Route path="/json-diff" element={<JsonDiffTool />} />
-        <Route path="/json-to-typescript" element={<JsonToTypescript />} />
-        <Route path="/json-to-java" element={<JsonToJava />} />
-        <Route path="/json-to-python" element={<JsonToPython />} />
-        <Route path="/json-to-go" element={<JsonToGo />} />
-        <Route path="/json-to-csharp" element={<JsonToCsharp />} />
-        <Route path="/json-to-kotlin" element={<JsonToKotlin />} />
-        <Route path="/json-to-swift" element={<JsonToSwift />} />
-        <Route path="/json-to-rust" element={<JsonToRust />} />
-        <Route path="/json-to-dart" element={<JsonToDart />} />
-        <Route path="/json-to-ruby" element={<JsonToRuby />} />
-        <Route path="/json-to-cpp" element={<JsonToCpp />} />
-        <Route path="/json-to-php" element={<JsonToPhp />} />
-        <Route path="/json-to-scala" element={<JsonToScala />} />
-        <Route path="/json-to-graphql" element={<JsonToGraphql />} />
-        <Route path="/json-to-sql" element={<JsonToSql />} />
-        <Route path="/sql-to-json" element={<SqlToJson />} />
-        <Route path="/json-to-xml" element={<JsonToXml />} />
-        <Route path="/json-to-yaml" element={<JsonToYaml />} />
-        <Route path="/json-to-toml" element={<JsonToToml />} />
-        <Route path="/json-to-csv" element={<JsonToCsv />} />
-        <Route path="/json-to-excel" element={<JsonToExcel />} />
-        <Route path="/json-to-postman" element={<JsonToPostman />} />
-        <Route path="/json-sort" element={<JsonSort />} />
-        <Route path="/json-compress" element={<JsonCompress />} />
-        <Route path="/json-clean" element={<JsonClean />} />
-        <Route path="/json-get" element={<JsonToGet />} />
-        <Route path="/json-path" element={<JsonPath />} />
-        <Route path="/json-merge" element={<JsonMerge />} />
-        <Route path="/matrix-to-json" element={<MatrixToJson />} />
-        <Route path="/regex-tester" element={<RegexTester />} />
-        <Route path="/markdown-html" element={<MarkdownHtml />} />
-        <Route path="/email-md" element={<EmailMarkdown />} />
-        <Route path="/jwt-decode" element={<JwtDecodeTool />} />
-        <Route path="/split-files" element={<SplitFiles />} />
-        <Route path="/join-files" element={<JoinFiles />} />
-        <Route path="/random-file-generator" element={<RandomFileGenerator />} />
-        <Route path="/corrupt-file-generator" element={<CorruptFileGenerator />} />
-        <Route path="/corrupt-a-file" element={<CorruptAFile />} />
+        <Route path="api-debugger" element={<ApiDebugger />} />
+        <Route path="code-formatter" element={<CodeFormatter />} />
+        <Route path="html-to-text" element={<HtmlToText />} />
+        <Route path="token-generator" element={<TokenGenerator />} />
+        <Route path="format-converter" element={<FormatConverter />} />
+        <Route path="device-info" element={<DeviceInfo />} />
+        <Route path="json-editor" element={<JsonEditorTool />} />
+        <Route path="json-diff" element={<JsonDiffTool />} />
+        <Route path="json-to-typescript" element={<JsonToTypescript />} />
+        <Route path="json-to-java" element={<JsonToJava />} />
+        <Route path="json-to-python" element={<JsonToPython />} />
+        <Route path="json-to-go" element={<JsonToGo />} />
+        <Route path="json-to-csharp" element={<JsonToCsharp />} />
+        <Route path="json-to-kotlin" element={<JsonToKotlin />} />
+        <Route path="json-to-swift" element={<JsonToSwift />} />
+        <Route path="json-to-rust" element={<JsonToRust />} />
+        <Route path="json-to-dart" element={<JsonToDart />} />
+        <Route path="json-to-ruby" element={<JsonToRuby />} />
+        <Route path="json-to-cpp" element={<JsonToCpp />} />
+        <Route path="json-to-php" element={<JsonToPhp />} />
+        <Route path="json-to-scala" element={<JsonToScala />} />
+        <Route path="json-to-graphql" element={<JsonToGraphql />} />
+        <Route path="json-to-sql" element={<JsonToSql />} />
+        <Route path="sql-to-json" element={<SqlToJson />} />
+        <Route path="json-to-xml" element={<JsonToXml />} />
+        <Route path="json-to-yaml" element={<JsonToYaml />} />
+        <Route path="json-to-toml" element={<JsonToToml />} />
+        <Route path="json-to-csv" element={<JsonToCsv />} />
+        <Route path="json-to-excel" element={<JsonToExcel />} />
+        <Route path="json-to-postman" element={<JsonToPostman />} />
+        <Route path="json-sort" element={<JsonSort />} />
+        <Route path="json-compress" element={<JsonCompress />} />
+        <Route path="json-clean" element={<JsonClean />} />
+        <Route path="json-get" element={<JsonToGet />} />
+        <Route path="json-path" element={<JsonPath />} />
+        <Route path="json-merge" element={<JsonMerge />} />
+        <Route path="matrix-to-json" element={<MatrixToJson />} />
+        <Route path="regex-tester" element={<RegexTester />} />
+        <Route path="markdown-html" element={<MarkdownHtml />} />
+        <Route path="email-md" element={<EmailMarkdown />} />
+        <Route path="jwt-decode" element={<JwtDecodeTool />} />
+        <Route path="split-files" element={<SplitFiles />} />
+        <Route path="join-files" element={<JoinFiles />} />
+        <Route path="random-file-generator" element={<RandomFileGenerator />} />
+        <Route path="corrupt-file-generator" element={<CorruptFileGenerator />} />
+        <Route path="corrupt-a-file" element={<CorruptAFile />} />
 
         {/* Image Tools */}
-        <Route path="/qr-generator" element={<QrGenerator />} />
-        <Route path="/otp-generator" element={<OtpGenerator />} />
-        <Route path="/wifi-qr-generator" element={<WifiQrGenerator />} />
-        <Route path="/barcode-generator" element={<BarcodeGenerator />} />
-        <Route path="/random-color" element={<RandomColor />} />
-        <Route path="/add-noise-image" element={<AddNoiseToImage />} />
-        <Route path="/random-bitmap-generator" element={<RandomBitmapGenerator />} />
-        <Route path="/bulk-batch-add-noise-image" element={<BulkAddNoiseImage />} />
-        <Route path="/bulk-batch-random-bitmap-generator" element={<BulkRandomBitmapGenerator />} />
+        <Route path="qr-generator" element={<QrGenerator />} />
+        <Route path="otp-generator" element={<OtpGenerator />} />
+        <Route path="wifi-qr-generator" element={<WifiQrGenerator />} />
+        <Route path="barcode-generator" element={<BarcodeGenerator />} />
+        <Route path="random-color" element={<RandomColor />} />
+        <Route path="add-noise-image" element={<AddNoiseToImage />} />
+        <Route path="random-bitmap-generator" element={<RandomBitmapGenerator />} />
+        <Route path="bulk-batch-add-noise-image" element={<BulkAddNoiseImage />} />
+        <Route path="bulk-batch-random-bitmap-generator" element={<BulkRandomBitmapGenerator />} />
         {/* Chat */}
-        <Route path="/webchat" element={<WebChat />} />
-        <Route path="/p2p-chat" element={<P2pChat />} />
-        <Route path="/manual-chat" element={<ManualChat />} />
-        <Route path="/english-name" element={<EnglishNameGenerator />} />
-        <Route path="/product-finder" element={<ProductFinder />} />
-        <Route path="/image-compressor" element={<ImageCompressor />} />
-        <Route path="/image-resizer" element={<ImageResizer />} />
-        <Route path="/image-converter" element={<ImageConverter />} />
-        <Route path="/image-watermark" element={<ImageWatermark />} />
-        <Route path="/image-joiner" element={<ImageJoiner />} />
-        <Route path="/image-ascii" element={<ImageAsciiArt />} />
+        <Route path="webchat" element={<WebChat />} />
+        <Route path="p2p-chat" element={<P2pChat />} />
+        <Route path="manual-chat" element={<ManualChat />} />
+        <Route path="english-name" element={<EnglishNameGenerator />} />
+        <Route path="product-finder" element={<ProductFinder />} />
+        <Route path="image-compressor" element={<ImageCompressor />} />
+        <Route path="image-resizer" element={<ImageResizer />} />
+        <Route path="image-converter" element={<ImageConverter />} />
+        <Route path="image-watermark" element={<ImageWatermark />} />
+        <Route path="image-joiner" element={<ImageJoiner />} />
+        <Route path="image-ascii" element={<ImageAsciiArt />} />
         
         {/* Text Tools */}
-        <Route path="/text" element={<TextTools />} />
-        <Route path="/text/case" element={<TextCaseConverter />} />
-        <Route path="/text/replace" element={<TextReplacer />} />
-        <Route path="/text/sort" element={<TextSorter />} />
-        <Route path="/text/numbers" element={<TextLineNumber />} />
-        <Route path="/text/html" element={<TextToHtml />} />
-        <Route path="/text/symbols" element={<SymbolPicker />} />
-        <Route path="/text/emojis" element={<EmojiPicker />} />
-        <Route path="/text/fancy" element={<FancyTextGenerator />} />
-        <Route path="/text/typesetter" element={<TextTypesetter />} />
-        <Route path="/text/similarity" element={<TextSimilarity />} />
-        <Route path="/text/workflow" element={<TextWorkflow />} />
-        <Route path="/text/random" element={<TextRandomGenerator />} />
-        <Route path="/text/stats" element={<TextStats />} />
-        <Route path="/text/deduplicate" element={<TextDeduper />} />
-        <Route path="/text/diff" element={<DedupSortDiff />} />
-        <Route path="/text/transpose" element={<TextTranspose />} />
-        <Route path="/text/pinyin" element={<PinyinConverter />} />
-        <Route path="/text/full-half-width" element={<FullHalfWidth />} />
-        <Route path="/text/simplified-traditional" element={<SimplifiedTraditional />} />
-        <Route path="/text/vertical" element={<TextVertical />} />
-        <Route path="/text/spacing" element={<TextSpacing />} />
-        <Route path="/text/list-sum" element={<ListSum />} />
-        <Route path="/text/stroke-count" element={<StrokeCount />} />
-        <Route path="/text/stroke-order" element={<StrokeOrder />} />
-        <Route path="/text/column-substr" element={<ColumnSubstring />} />
-        <Route path="/text/numbering" element={<LineNumbering />} />
-        <Route path="/text/clear-chars" element={<TextClearChars />} />
-        <Route path="/text/idcard-check" element={<IdCardCheck />} />
-        <Route path="/text/idcard-info" element={<IdCardBirthday />} />
-        <Route path="/text/serial-gen" element={<SerialNumberGen />} />
-        <Route path="/password-generator" element={<PasswordGenerator />} />
-        <Route path="/text-diff" element={<TextDiff />} />
-        <Route path="/text-deduper" element={<TextDeduper />} />
-        <Route path="/list-randomizer" element={<ListRandomizer />} />
-        <Route path="/dedup-sort-diff" element={<DedupSortDiff />} />
-        <Route path="/text-stats" element={<TextStats />} />
-        <Route path="/text-cipher" element={<TextCipher />} />
+        <Route path="text" element={<TextTools />} />
+        <Route path="text/case" element={<TextCaseConverter />} />
+        <Route path="text/replace" element={<TextReplacer />} />
+        <Route path="text/sort" element={<TextSorter />} />
+        <Route path="text/numbers" element={<TextLineNumber />} />
+        <Route path="text/html" element={<TextToHtml />} />
+        <Route path="text/symbols" element={<SymbolPicker />} />
+        <Route path="text/emojis" element={<EmojiPicker />} />
+        <Route path="text/fancy" element={<FancyTextGenerator />} />
+        <Route path="text/typesetter" element={<TextTypesetter />} />
+        <Route path="text/similarity" element={<TextSimilarity />} />
+        <Route path="text/workflow" element={<TextWorkflow />} />
+        <Route path="text/random" element={<TextRandomGenerator />} />
+        <Route path="text/stats" element={<TextStats />} />
+        <Route path="text/deduplicate" element={<TextDeduper />} />
+        <Route path="text/diff" element={<DedupSortDiff />} />
+        <Route path="text/transpose" element={<TextTranspose />} />
+        <Route path="text/pinyin" element={<PinyinConverter />} />
+        <Route path="text/full-half-width" element={<FullHalfWidth />} />
+        <Route path="text/simplified-traditional" element={<SimplifiedTraditional />} />
+        <Route path="text/vertical" element={<TextVertical />} />
+        <Route path="text/spacing" element={<TextSpacing />} />
+        <Route path="text/list-sum" element={<ListSum />} />
+        <Route path="text/stroke-count" element={<StrokeCount />} />
+        <Route path="text/stroke-order" element={<StrokeOrder />} />
+        <Route path="text/column-substr" element={<ColumnSubstring />} />
+        <Route path="text/numbering" element={<LineNumbering />} />
+        <Route path="text/clear-chars" element={<TextClearChars />} />
+        <Route path="text/idcard-check" element={<IdCardCheck />} />
+        <Route path="text/idcard-info" element={<IdCardBirthday />} />
+        <Route path="text/serial-gen" element={<SerialNumberGen />} />
+        <Route path="password-generator" element={<PasswordGenerator />} />
+        <Route path="text-diff" element={<TextDiff />} />
+        <Route path="text-deduper" element={<TextDeduper />} />
+        <Route path="list-randomizer" element={<ListRandomizer />} />
+        <Route path="dedup-sort-diff" element={<DedupSortDiff />} />
+        <Route path="text-stats" element={<TextStats />} />
+        <Route path="text-cipher" element={<TextCipher />} />
         
         {/* Data Tools */}
-        <Route path="/csv-to-json" element={<CsvToJson />} />
-        <Route path="/hash-tools" element={<HashTools />} />
-        <Route path="/data-converter" element={<DataConverter />} />
+        <Route path="csv-to-json" element={<CsvToJson />} />
+        <Route path="hash-tools" element={<HashTools />} />
+        <Route path="data-converter" element={<DataConverter />} />
         
         {/* Utility Tools */}
-        <Route path="/date-time" element={<DateTimeTools />} />
-        <Route path="/network-tools" element={<NetworkTools />} />
-        <Route path="/base-converter" element={<BaseConverter />} />
-        <Route path="/byte-converter" element={<ByteConverter />} />
-        <Route path="/curl-builder" element={<CurlBuilder />} />
-        <Route path="/color-hunt" element={<ColorHunt />} />
-        <Route path="/cron-quartz" element={<CronQuartz />} />
-        <Route path="/cron-parser" element={<CronParser />} />
-        <Route path="/calculator" element={<CalculatorTool />} />
-        <Route path="/bcrypt" element={<BcryptTool />} />
-        <Route path="/ulid" element={<UlidTool />} />
-        <Route path="/bip39" element={<Bip39Tool />} />
-        <Route path="/perpetual-calendar" element={<PerpetualCalendar />} />
-        <Route path="/i18n-manager" element={<I18nManager />} />
-        <Route path="/hmac" element={<HmacTool />} />
-        <Route path="/rsa-keygen" element={<RsaKeygen />} />
-        <Route path="/keycode" element={<KeycodeInfo />} />
-        <Route path="/chmod" element={<ChmodCalculator />} />
-        <Route path="/unit-converter" element={<UnitConverter />} />
-        <Route path="/date-diff" element={<DateDiffCalculator />} />
-        <Route path="/naming" element={<ProgrammerNamingTool />} />
-        <Route path="/domain-valuation" element={<DomainValuation />} />
-        <Route path="/kinship-calculator" element={<KinshipCalculator />} />
-        <Route path="/lottery-ssq" element={<LotterySsq />} />
-        <Route path="/mermaid-renderer" element={<MermaidRenderer />} />
-        <Route path="/short-url" element={<ShortUrlTool />} />
-        <Route path="/sharepool" element={<SharePool />} />
-        <Route path="/sharepool/verify" element={<SharePool />} />
-        <Route path="/commit-message" element={<CommitMessageGenerator />} />
-        <Route path="/gitignore" element={<GitignoreGenerator />} />
+        <Route path="date-time" element={<DateTimeTools />} />
+        <Route path="network-tools" element={<NetworkTools />} />
+        <Route path="base-converter" element={<BaseConverter />} />
+        <Route path="byte-converter" element={<ByteConverter />} />
+        <Route path="curl-builder" element={<CurlBuilder />} />
+        <Route path="color-hunt" element={<ColorHunt />} />
+        <Route path="cron-quartz" element={<CronQuartz />} />
+        <Route path="cron-parser" element={<CronParser />} />
+        <Route path="calculator" element={<CalculatorTool />} />
+        <Route path="bcrypt" element={<BcryptTool />} />
+        <Route path="ulid" element={<UlidTool />} />
+        <Route path="bip39" element={<Bip39Tool />} />
+        <Route path="perpetual-calendar" element={<PerpetualCalendar />} />
+        <Route path="i18n-manager" element={<I18nManager />} />
+        <Route path="hmac" element={<HmacTool />} />
+        <Route path="rsa-keygen" element={<RsaKeygen />} />
+        <Route path="keycode" element={<KeycodeInfo />} />
+        <Route path="chmod" element={<ChmodCalculator />} />
+        <Route path="unit-converter" element={<UnitConverter />} />
+        <Route path="date-diff" element={<DateDiffCalculator />} />
+        <Route path="naming" element={<ProgrammerNamingTool />} />
+        <Route path="domain-valuation" element={<DomainValuation />} />
+        <Route path="kinship-calculator" element={<KinshipCalculator />} />
+        <Route path="lottery-ssq" element={<LotterySsq />} />
+        <Route path="mermaid-renderer" element={<MermaidRenderer />} />
+        <Route path="short-url" element={<ShortUrlTool />} />
+        <Route path="sharepool" element={<SharePool />} />
+        <Route path="sharepool/verify" element={<SharePool />} />
+        <Route path="commit-message" element={<CommitMessageGenerator />} />
+        <Route path="gitignore" element={<GitignoreGenerator />} />
     
         {/* Drawing */}
-        <Route path="/drawing-tool" element={<DrawingTool />} />
+        <Route path="drawing-tool" element={<DrawingTool />} />
 
         {/* Encrypt Tools */}
-        <Route path="/encrypt" element={<EncryptTools />} />
-        <Route path="/encrypt/aes-des" element={<AesDesEncrypt />} />
-        <Route path="/encrypt/sm4" element={<Sm4Encrypt />} />
-        <Route path="/encrypt/rsa" element={<RsaEncrypt />} />
-        <Route path="/encrypt/md2-md4" element={<Md2Md4Tool />} />
-        <Route path="/encrypt/keccak" element={<KeccakShakeTool />} />
-        <Route path="/encrypt/sm3" element={<Sm3Tool />} />
-        <Route path="/encrypt/scrypt" element={<ScryptTool />} />
-        <Route path="/encrypt/base32" element={<Base32Tool />} />
-        <Route path="/encrypt/crc" element={<CrcTool />} />
-        <Route path="/encrypt/escape" element={<EscapeTool />} />
-        <Route path="/encrypt/utf8" element={<Utf8Tool />} />
-        <Route path="/encrypt/punycode" element={<PunycodeTool />} />
-        <Route path="/encrypt/morse" element={<MorseTool />} />
-        <Route path="/encrypt/type7" element={<Type7Tool />} />
-        <Route path="/encrypt/gzip" element={<GzipTool />} />
-        <Route path="/encrypt/htpasswd" element={<HtpasswdTool />} />
-        <Route path="/encrypt/db-passwords" element={<DbPasswordTool />} />
-        <Route path="/encrypt/js-obfuscator" element={<JsObfuscatorTool />} />
-        <Route path="/encrypt/email-encode" element={<EmailEncodeTool />} />
+        <Route path="encrypt" element={<EncryptTools />} />
+        <Route path="encrypt/aes-des" element={<AesDesEncrypt />} />
+        <Route path="encrypt/sm4" element={<Sm4Encrypt />} />
+        <Route path="encrypt/rsa" element={<RsaEncrypt />} />
+        <Route path="encrypt/md2-md4" element={<Md2Md4Tool />} />
+        <Route path="encrypt/keccak" element={<KeccakShakeTool />} />
+        <Route path="encrypt/sm3" element={<Sm3Tool />} />
+        <Route path="encrypt/scrypt" element={<ScryptTool />} />
+        <Route path="encrypt/base32" element={<Base32Tool />} />
+        <Route path="encrypt/crc" element={<CrcTool />} />
+        <Route path="encrypt/escape" element={<EscapeTool />} />
+        <Route path="encrypt/utf8" element={<Utf8Tool />} />
+        <Route path="encrypt/punycode" element={<PunycodeTool />} />
+        <Route path="encrypt/morse" element={<MorseTool />} />
+        <Route path="encrypt/type7" element={<Type7Tool />} />
+        <Route path="encrypt/gzip" element={<GzipTool />} />
+        <Route path="encrypt/htpasswd" element={<HtpasswdTool />} />
+        <Route path="encrypt/db-passwords" element={<DbPasswordTool />} />
+        <Route path="encrypt/js-obfuscator" element={<JsObfuscatorTool />} />
+        <Route path="encrypt/email-encode" element={<EmailEncodeTool />} />
 
         {/* Format Tools */}
-        <Route path="/format" element={<FormatTools />} />
-        <Route path="/format/python-formatter" element={<PythonFormat />} />
-        <Route path="/format/java-formatter" element={<JavaFormat />} />
-        <Route path="/format/php-formatter" element={<PhpFormat />} />
-        <Route path="/format/ruby-formatter" element={<RubyFormat />} />
-        <Route path="/format/csharp-formatter" element={<CsharpFormat />} />
-        <Route path="/format/c-formatter" element={<CFormat />} />
-        <Route path="/format/vbscript-formatter" element={<VbscriptFormat />} />
-        <Route path="/format/perl-formatter" element={<PerlFormat />} />
+        <Route path="format" element={<FormatTools />} />
+        <Route path="format/python-formatter" element={<PythonFormat />} />
+        <Route path="format/java-formatter" element={<JavaFormat />} />
+        <Route path="format/php-formatter" element={<PhpFormat />} />
+        <Route path="format/ruby-formatter" element={<RubyFormat />} />
+        <Route path="format/csharp-formatter" element={<CsharpFormat />} />
+        <Route path="format/c-formatter" element={<CFormat />} />
+        <Route path="format/vbscript-formatter" element={<VbscriptFormat />} />
+        <Route path="format/perl-formatter" element={<PerlFormat />} />
 
         {/* Config Generators */}
-        <Route path="/nginx-config" element={<NginxConfigGenerator />} />
-        <Route path="/apache-config" element={<ApacheConfigGenerator />} />
-        <Route path="/haproxy-config" element={<HAProxyConfigGenerator />} />
+        <Route path="nginx-config" element={<NginxConfigGenerator />} />
+        <Route path="apache-config" element={<ApacheConfigGenerator />} />
+        <Route path="haproxy-config" element={<HAProxyConfigGenerator />} />
     
         {/* Phase B — MVP Tools */}
-        <Route path="/base64" element={<Base64Tool />} />
-        <Route path="/url-encoder" element={<UrlEncoder />} />
-        <Route path="/uuid-generator" element={<UuidGenerator />} />
-        <Route path="/sql-formatter" element={<SqlFormatter />} />
-        <Route path="/sql-table-extractor" element={<SqlTableExtractor />} />
+        <Route path="base64" element={<Base64Tool />} />
+        <Route path="url-encoder" element={<UrlEncoder />} />
+        <Route path="uuid-generator" element={<UuidGenerator />} />
+        <Route path="sql-formatter" element={<SqlFormatter />} />
+        <Route path="sql-table-extractor" element={<SqlTableExtractor />} />
         
         {/* Finance Tools */}
-        <Route path="/fake-iban-generator" element={<FakeIbanGenerator />} />
-        <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
-        <Route path="/investment-return" element={<InvestmentReturnCalculator />} />
-        <Route path="/roi-calculator" element={<ROICalculator />} />
-        <Route path="/discount-calculator" element={<DiscountCalculator />} />
-        <Route path="/break-even-calculator" element={<BreakEvenCalculator />} />
-        <Route path="/tip-calculator" element={<TipCalculator />} />
-        <Route path="/size-converter" element={<SizeConverter />} />
-        <Route path="/seller-profit-calculator" element={<SellerProfitCalculator />} />
-        <Route path="/marketplace-fee-calculator" element={<MarketplaceFeeCalculator />} />
-        <Route path="/vat-calculator" element={<VatCalculator />} />
-        <Route path="/currency-calculator" element={<CurrencyCalculator />} />
-        <Route path="/time-zone-converter" element={<TimeZoneConverter />} />
-        <Route path="/import-duty-calculator" element={<ImportDutyCalculator />} />
-        <Route path="/invoice-generator" element={<InvoiceGenerator />} />
-        <Route path="/freelancer-rate-calculator" element={<FreelancerRateCalculator />} />
-        <Route path="/shipping-box-optimizer" element={<ShippingBoxOptimizer />} />
-        <Route path="/product-cost-breakdown" element={<ProductCostBreakdown />} />
-        <Route path="/business-name-checker" element={<BusinessNameChecker />} />
-        <Route path="/hs-code-lookup" element={<HsCodeLookup />} />
-        <Route path="/contract-template-generator" element={<ContractTemplateGenerator />} />
-        <Route path="/time-tracker" element={<TimeTracker />} />
-        <Route path="/zakat-calculator" element={<ZakatCalculator />} />
-        <Route path="/holiday-calendar" element={<HolidayCalendar />} />
-        <Route path="/pph21-calculator" element={<PPh21Calculator />} />
-        <Route path="/crypto-capital-gains-calculator" element={<CryptoCapitalGainsCalculator />} />
-        <Route path="/sss-philhealth-pagibig" element={<SSSPhilHealthPagibigCalculator />} />
-        <Route path="/vat-reverse-calculator" element={<VatReverseCalculator />} />
-        <Route path="/packing-list-generator" element={<PackingListGenerator />} />
-        <Route path="/repricing-tool" element={<RepricingTool />} />
-        <Route path="/fx-spread-calculator" element={<FxSpreadCalculator />} />
-        <Route path="/keyword-generator" element={<KeywordGenerator />} />
-        <Route path="/business-registration-guide" element={<BusinessRegistrationGuide />} />
-        <Route path="/ollama-setup" element={<OllamaSetup />} />
-        <Route path="/ai-customer-reply" element={<AICustomerReplyGenerator />} />
-        <Route path="/ai-product-desc" element={<AIProductDescriptionGenerator />} />
-        <Route path="/ai-review" element={<AINegativeReviewResponder />} />
-        <Route path="/ai-seo" element={<AIProductSEOOptimizer />} />
-        <Route path="/ai-whatsapp" element={<AIWhatsAppAutoReply />} />
-        <Route path="/margin-calculator" element={<MarginCalculator />} />
+        <Route path="fake-iban-generator" element={<FakeIbanGenerator />} />
+        <Route path="mortgage-calculator" element={<MortgageCalculator />} />
+        <Route path="investment-return" element={<InvestmentReturnCalculator />} />
+        <Route path="roi-calculator" element={<ROICalculator />} />
+        <Route path="discount-calculator" element={<DiscountCalculator />} />
+        <Route path="break-even-calculator" element={<BreakEvenCalculator />} />
+        <Route path="tip-calculator" element={<TipCalculator />} />
+        <Route path="size-converter" element={<SizeConverter />} />
+        <Route path="seller-profit-calculator" element={<SellerProfitCalculator />} />
+        <Route path="marketplace-fee-calculator" element={<MarketplaceFeeCalculator />} />
+        <Route path="vat-calculator" element={<VatCalculator />} />
+        <Route path="currency-calculator" element={<CurrencyCalculator />} />
+        <Route path="time-zone-converter" element={<TimeZoneConverter />} />
+        <Route path="import-duty-calculator" element={<ImportDutyCalculator />} />
+        <Route path="invoice-generator" element={<InvoiceGenerator />} />
+        <Route path="freelancer-rate-calculator" element={<FreelancerRateCalculator />} />
+        <Route path="shipping-box-optimizer" element={<ShippingBoxOptimizer />} />
+        <Route path="product-cost-breakdown" element={<ProductCostBreakdown />} />
+        <Route path="business-name-checker" element={<BusinessNameChecker />} />
+        <Route path="hs-code-lookup" element={<HsCodeLookup />} />
+        <Route path="contract-template-generator" element={<ContractTemplateGenerator />} />
+        <Route path="time-tracker" element={<TimeTracker />} />
+        <Route path="zakat-calculator" element={<ZakatCalculator />} />
+        <Route path="holiday-calendar" element={<HolidayCalendar />} />
+        <Route path="pph21-calculator" element={<PPh21Calculator />} />
+        <Route path="crypto-capital-gains-calculator" element={<CryptoCapitalGainsCalculator />} />
+        <Route path="sss-philhealth-pagibig" element={<SSSPhilHealthPagibigCalculator />} />
+        <Route path="vat-reverse-calculator" element={<VatReverseCalculator />} />
+        <Route path="packing-list-generator" element={<PackingListGenerator />} />
+        <Route path="repricing-tool" element={<RepricingTool />} />
+        <Route path="fx-spread-calculator" element={<FxSpreadCalculator />} />
+        <Route path="keyword-generator" element={<KeywordGenerator />} />
+        <Route path="business-registration-guide" element={<BusinessRegistrationGuide />} />
+        <Route path="ollama-setup" element={<OllamaSetup />} />
+        <Route path="ai-customer-reply" element={<AICustomerReplyGenerator />} />
+        <Route path="ai-product-desc" element={<AIProductDescriptionGenerator />} />
+        <Route path="ai-review" element={<AINegativeReviewResponder />} />
+        <Route path="ai-seo" element={<AIProductSEOOptimizer />} />
+        <Route path="ai-whatsapp" element={<AIWhatsAppAutoReply />} />
+        <Route path="margin-calculator" element={<MarginCalculator />} />
 
         {/* Data Tools Batch (freetools.org) */}
-        <Route path="/country-name-generator" element={<CountryNameGenerator />} />
-        <Route path="/random-number-generator" element={<RandomNumberGenerator />} />
-        <Route path="/multi-dice-roller" element={<MultiDiceRoller />} />
-        <Route path="/percentage-calculator" element={<PercentageCalculator />} />
-        <Route path="/area-calculator" element={<AreaCalculator />} />
-        <Route path="/coefficient-of-variation" element={<CoefficientOfVariation />} />
-        <Route path="/sample-size-calculator" element={<SampleSizeCalculator />} />
-        <Route path="/binary-division-calculator" element={<BinaryDivisionCalculator />} />
-        <Route path="/number-list-generator" element={<NumberListGenerator />} />
-        <Route path="/number-sorter" element={<NumberSorter />} />
-        <Route path="/empty-row-remover" element={<EmptyRowRemover />} />
-        <Route path="/email-extractor" element={<EmailExtractor />} />
-        <Route path="/url-metadata-extractor" element={<UrlMetadataExtractor />} />
-        <Route path="/coin-flipper" element={<CoinFlipper />} />
-        <Route path="/gaussian-random-number-generator" element={<GaussianRandomNumberGenerator />} />
-        <Route path="/random-string-generator" element={<RandomStringGenerator />} />
+        <Route path="country-name-generator" element={<CountryNameGenerator />} />
+        <Route path="random-number-generator" element={<RandomNumberGenerator />} />
+        <Route path="multi-dice-roller" element={<MultiDiceRoller />} />
+        <Route path="percentage-calculator" element={<PercentageCalculator />} />
+        <Route path="area-calculator" element={<AreaCalculator />} />
+        <Route path="coefficient-of-variation" element={<CoefficientOfVariation />} />
+        <Route path="sample-size-calculator" element={<SampleSizeCalculator />} />
+        <Route path="binary-division-calculator" element={<BinaryDivisionCalculator />} />
+        <Route path="number-list-generator" element={<NumberListGenerator />} />
+        <Route path="number-sorter" element={<NumberSorter />} />
+        <Route path="empty-row-remover" element={<EmptyRowRemover />} />
+        <Route path="email-extractor" element={<EmailExtractor />} />
+        <Route path="url-metadata-extractor" element={<UrlMetadataExtractor />} />
+        <Route path="coin-flipper" element={<CoinFlipper />} />
+        <Route path="gaussian-random-number-generator" element={<GaussianRandomNumberGenerator />} />
+        <Route path="random-string-generator" element={<RandomStringGenerator />} />
 
         {/* ========== GAMES ========== */}
-        <Route path="/games/snake" element={<Snake />} />
-        <Route path="/games/tetris" element={<Tetris />} />
-        <Route path="/games/gomoku" element={<Gomoku />} />
-        <Route path="/games/dino" element={<Dino />} />
-        <Route path="/games/minesweeper" element={<Minesweeper />} />
-        <Route path="/games/2048" element={<Game2048 />} />
-        <Route path="/games/link-match" element={<LinkMatch />} />
-        <Route path="/games/sudoku" element={<Sudoku />} />
-        <Route path="/games/pacvim" element={<PacVim />} />
-        <Route path="/games/chinese-chess" element={<ChineseChess />} />
-        <Route path="/games/go" element={<GoGame />} />
-        <Route path="/games/jungle" element={<Jungle />} />
-        <Route path="/games/flying-chess" element={<FlyingChess />} />
-        <Route path="/games/chinese-checkers" element={<ChineseCheckers />} />
-        <Route path="/games/nes" element={<NesEmulatorPage />} />
+        <Route path="games/snake" element={<Snake />} />
+        <Route path="games/tetris" element={<Tetris />} />
+        <Route path="games/gomoku" element={<Gomoku />} />
+        <Route path="games/dino" element={<Dino />} />
+        <Route path="games/minesweeper" element={<Minesweeper />} />
+        <Route path="games/2048" element={<Game2048 />} />
+        <Route path="games/link-match" element={<LinkMatch />} />
+        <Route path="games/sudoku" element={<Sudoku />} />
+        <Route path="games/pacvim" element={<PacVim />} />
+        <Route path="games/chinese-chess" element={<ChineseChess />} />
+        <Route path="games/go" element={<GoGame />} />
+        <Route path="games/jungle" element={<Jungle />} />
+        <Route path="games/flying-chess" element={<FlyingChess />} />
+        <Route path="games/chinese-checkers" element={<ChineseCheckers />} />
+        <Route path="games/nes" element={<NesEmulatorPage />} />
         
         {/* ========== LEGACY ROUTES WITH 301 REDIRECT (Week 2) ========== */}
         {/* Developer Tools - Legacy */}
-        <Route path="/tools/api-debugger" element={<Navigate to="/api-debugger" replace />} />
-        <Route path="/tools/code-formatter" element={<Navigate to="/code-formatter" replace />} />
-        <Route path="/tools/html-to-text" element={<Navigate to="/html-to-text" replace />} />
-        <Route path="/tools/token-generator" element={<Navigate to="/token-generator" replace />} />
-        <Route path="/tools/format-converter" element={<Navigate to="/format-converter" replace />} />
-        <Route path="/tools/device-info" element={<Navigate to="/device-info" replace />} />
-        <Route path="/tools/json-editor" element={<Navigate to="/json-editor" replace />} />
-        <Route path="/tools/json-diff" element={<Navigate to="/json-diff" replace />} />
-        <Route path="/tools/regex-tester" element={<Navigate to="/regex-tester" replace />} />
-        <Route path="/tools/markdown-html" element={<Navigate to="/markdown-html" replace />} />
-        <Route path="/tools/email-md" element={<Navigate to="/email-md" replace />} />
-        <Route path="/tools/jwt-decode" element={<Navigate to="/jwt-decode" replace />} />
+        <Route path="tools/api-debugger" element={<Navigate to="/api-debugger" replace />} />
+        <Route path="tools/code-formatter" element={<Navigate to="/code-formatter" replace />} />
+        <Route path="tools/html-to-text" element={<Navigate to="/html-to-text" replace />} />
+        <Route path="tools/token-generator" element={<Navigate to="/token-generator" replace />} />
+        <Route path="tools/format-converter" element={<Navigate to="/format-converter" replace />} />
+        <Route path="tools/device-info" element={<Navigate to="/device-info" replace />} />
+        <Route path="tools/json-editor" element={<Navigate to="/json-editor" replace />} />
+        <Route path="tools/json-diff" element={<Navigate to="/json-diff" replace />} />
+        <Route path="tools/regex-tester" element={<Navigate to="/regex-tester" replace />} />
+        <Route path="tools/markdown-html" element={<Navigate to="/markdown-html" replace />} />
+        <Route path="tools/email-md" element={<Navigate to="/email-md" replace />} />
+        <Route path="tools/jwt-decode" element={<Navigate to="/jwt-decode" replace />} />
         
         {/* Image Tools - Legacy */}
-        <Route path="/tools/qr-generator" element={<Navigate to="/qr-generator" replace />} />
-        <Route path="/tools/otp-generator" element={<Navigate to="/otp-generator" replace />} />
-        <Route path="/tools/wifi-qr-generator" element={<Navigate to="/wifi-qr-generator" replace />} />
-        <Route path="/tools/p2p-chat" element={<Navigate to="/p2p-chat" replace />} />
-        <Route path="/tools/manual-chat" element={<Navigate to="/manual-chat" replace />} />
-        <Route path="/tools/english-name" element={<Navigate to="/english-name" replace />} />
-        <Route path="/tools/image-compressor" element={<Navigate to="/image-compressor" replace />} />
-        <Route path="/tools/image-resizer" element={<Navigate to="/image-resizer" replace />} />
-        <Route path="/tools/image-converter" element={<Navigate to="/image-converter" replace />} />
-        <Route path="/tools/image-watermark" element={<Navigate to="/image-watermark" replace />} />
-        <Route path="/tools/image-joiner" element={<Navigate to="/image-joiner" replace />} />
-        <Route path="/tools/image-ascii" element={<Navigate to="/image-ascii" replace />} />
+        <Route path="tools/qr-generator" element={<Navigate to="/qr-generator" replace />} />
+        <Route path="tools/otp-generator" element={<Navigate to="/otp-generator" replace />} />
+        <Route path="tools/wifi-qr-generator" element={<Navigate to="/wifi-qr-generator" replace />} />
+        <Route path="tools/p2p-chat" element={<Navigate to="/p2p-chat" replace />} />
+        <Route path="tools/manual-chat" element={<Navigate to="/manual-chat" replace />} />
+        <Route path="tools/english-name" element={<Navigate to="/english-name" replace />} />
+        <Route path="tools/image-compressor" element={<Navigate to="/image-compressor" replace />} />
+        <Route path="tools/image-resizer" element={<Navigate to="/image-resizer" replace />} />
+        <Route path="tools/image-converter" element={<Navigate to="/image-converter" replace />} />
+        <Route path="tools/image-watermark" element={<Navigate to="/image-watermark" replace />} />
+        <Route path="tools/image-joiner" element={<Navigate to="/image-joiner" replace />} />
+        <Route path="tools/image-ascii" element={<Navigate to="/image-ascii" replace />} />
         
         {/* Text Tools - Legacy */}
-        <Route path="/tools/text" element={<Navigate to="/text" replace />} />
-        <Route path="/tools/text/case" element={<Navigate to="/text/case" replace />} />
-        <Route path="/tools/text/replace" element={<Navigate to="/text/replace" replace />} />
-        <Route path="/tools/text/sort" element={<Navigate to="/text/sort" replace />} />
-        <Route path="/tools/text/numbers" element={<Navigate to="/text/numbers" replace />} />
-        <Route path="/tools/text/html" element={<Navigate to="/text/html" replace />} />
-        <Route path="/tools/text/symbols" element={<Navigate to="/text/symbols" replace />} />
-        <Route path="/tools/text/emojis" element={<Navigate to="/text/emojis" replace />} />
-        <Route path="/tools/text/fancy" element={<Navigate to="/text/fancy" replace />} />
-        <Route path="/tools/text/typesetter" element={<Navigate to="/text/typesetter" replace />} />
-        <Route path="/tools/text/similarity" element={<Navigate to="/text/similarity" replace />} />
-        <Route path="/tools/text/workflow" element={<Navigate to="/text/workflow" replace />} />
-        <Route path="/tools/text/random" element={<Navigate to="/text/random" replace />} />
-        <Route path="/tools/text/stats" element={<Navigate to="/text/stats" replace />} />
-        <Route path="/tools/text/deduplicate" element={<Navigate to="/text/deduplicate" replace />} />
-        <Route path="/tools/text/diff" element={<Navigate to="/text/diff" replace />} />
-        <Route path="/tools/text/transpose" element={<Navigate to="/text/transpose" replace />} />
-        <Route path="/tools/password-generator" element={<Navigate to="/password-generator" replace />} />
-        <Route path="/tools/text-diff" element={<Navigate to="/text-diff" replace />} />
-        <Route path="/tools/text-deduper" element={<Navigate to="/text-deduper" replace />} />
-        <Route path="/tools/dedup-sort-diff" element={<Navigate to="/dedup-sort-diff" replace />} />
-        <Route path="/tools/text-stats" element={<Navigate to="/text-stats" replace />} />
-        <Route path="/tools/text-cipher" element={<Navigate to="/text-cipher" replace />} />
+        <Route path="tools/text" element={<Navigate to="/text" replace />} />
+        <Route path="tools/text/case" element={<Navigate to="/text/case" replace />} />
+        <Route path="tools/text/replace" element={<Navigate to="/text/replace" replace />} />
+        <Route path="tools/text/sort" element={<Navigate to="/text/sort" replace />} />
+        <Route path="tools/text/numbers" element={<Navigate to="/text/numbers" replace />} />
+        <Route path="tools/text/html" element={<Navigate to="/text/html" replace />} />
+        <Route path="tools/text/symbols" element={<Navigate to="/text/symbols" replace />} />
+        <Route path="tools/text/emojis" element={<Navigate to="/text/emojis" replace />} />
+        <Route path="tools/text/fancy" element={<Navigate to="/text/fancy" replace />} />
+        <Route path="tools/text/typesetter" element={<Navigate to="/text/typesetter" replace />} />
+        <Route path="tools/text/similarity" element={<Navigate to="/text/similarity" replace />} />
+        <Route path="tools/text/workflow" element={<Navigate to="/text/workflow" replace />} />
+        <Route path="tools/text/random" element={<Navigate to="/text/random" replace />} />
+        <Route path="tools/text/stats" element={<Navigate to="/text/stats" replace />} />
+        <Route path="tools/text/deduplicate" element={<Navigate to="/text/deduplicate" replace />} />
+        <Route path="tools/text/diff" element={<Navigate to="/text/diff" replace />} />
+        <Route path="tools/text/transpose" element={<Navigate to="/text/transpose" replace />} />
+        <Route path="tools/password-generator" element={<Navigate to="/password-generator" replace />} />
+        <Route path="tools/text-diff" element={<Navigate to="/text-diff" replace />} />
+        <Route path="tools/text-deduper" element={<Navigate to="/text-deduper" replace />} />
+        <Route path="tools/dedup-sort-diff" element={<Navigate to="/dedup-sort-diff" replace />} />
+        <Route path="tools/text-stats" element={<Navigate to="/text-stats" replace />} />
+        <Route path="tools/text-cipher" element={<Navigate to="/text-cipher" replace />} />
         
         {/* Data Tools - Legacy */}
-        <Route path="/tools/csv-to-json" element={<Navigate to="/csv-to-json" replace />} />
-        <Route path="/tools/hash-tools" element={<Navigate to="/hash-tools" replace />} />
-        <Route path="/tools/data-converter" element={<Navigate to="/data-converter" replace />} />
+        <Route path="tools/csv-to-json" element={<Navigate to="/csv-to-json" replace />} />
+        <Route path="tools/hash-tools" element={<Navigate to="/hash-tools" replace />} />
+        <Route path="tools/data-converter" element={<Navigate to="/data-converter" replace />} />
         
         {/* Utility Tools - Legacy */}
-        <Route path="/tools/date-time" element={<Navigate to="/date-time" replace />} />
-        <Route path="/tools/network-tools" element={<Navigate to="/network-tools" replace />} />
-        <Route path="/tools/base-converter" element={<Navigate to="/base-converter" replace />} />
-        <Route path="/tools/color-hunt" element={<Navigate to="/color-hunt" replace />} />
-        <Route path="/tools/cron-quartz" element={<Navigate to="/cron-quartz" replace />} />
-        <Route path="/tools/calculator" element={<Navigate to="/calculator" replace />} />
-        <Route path="/tools/bcrypt" element={<Navigate to="/bcrypt" replace />} />
-        <Route path="/tools/ulid" element={<Navigate to="/ulid" replace />} />
-        <Route path="/tools/bip39" element={<Navigate to="/bip39" replace />} />
-        <Route path="/tools/perpetual-calendar" element={<Navigate to="/perpetual-calendar" replace />} />
-        <Route path="/tools/i18n-manager" element={<Navigate to="/i18n-manager" replace />} />
-        <Route path="/tools/hmac" element={<Navigate to="/hmac" replace />} />
-        <Route path="/tools/rsa-keygen" element={<Navigate to="/rsa-keygen" replace />} />
-        <Route path="/tools/keycode" element={<Navigate to="/keycode" replace />} />
-        <Route path="/tools/chmod" element={<Navigate to="/chmod" replace />} />
-        <Route path="/tools/unit-converter" element={<Navigate to="/unit-converter" replace />} />
-        <Route path="/tools/date-diff" element={<Navigate to="/date-diff" replace />} />
-        <Route path="/tools/naming" element={<Navigate to="/naming" replace />} />
-        <Route path="/tools/domain-valuation" element={<Navigate to="/domain-valuation" replace />} />
-        <Route path="/tools/kinship-calculator" element={<Navigate to="/kinship-calculator" replace />} />
-        <Route path="/tools/lottery-ssq" element={<Navigate to="/lottery-ssq" replace />} />
-        <Route path="/tools/mermaid-renderer" element={<Navigate to="/mermaid-renderer" replace />} />
-        <Route path="/tools/short-url" element={<Navigate to="/short-url" replace />} />
-        <Route path="/tools/commit-message" element={<Navigate to="/commit-message" replace />} />
-        <Route path="/tools/gitignore" element={<Navigate to="/gitignore" replace />} />
-        <Route path="/tools/drawing-tool" element={<Navigate to="/drawing-tool" replace />} />
+        <Route path="tools/date-time" element={<Navigate to="/date-time" replace />} />
+        <Route path="tools/network-tools" element={<Navigate to="/network-tools" replace />} />
+        <Route path="tools/base-converter" element={<Navigate to="/base-converter" replace />} />
+        <Route path="tools/color-hunt" element={<Navigate to="/color-hunt" replace />} />
+        <Route path="tools/cron-quartz" element={<Navigate to="/cron-quartz" replace />} />
+        <Route path="tools/calculator" element={<Navigate to="/calculator" replace />} />
+        <Route path="tools/bcrypt" element={<Navigate to="/bcrypt" replace />} />
+        <Route path="tools/ulid" element={<Navigate to="/ulid" replace />} />
+        <Route path="tools/bip39" element={<Navigate to="/bip39" replace />} />
+        <Route path="tools/perpetual-calendar" element={<Navigate to="/perpetual-calendar" replace />} />
+        <Route path="tools/i18n-manager" element={<Navigate to="/i18n-manager" replace />} />
+        <Route path="tools/hmac" element={<Navigate to="/hmac" replace />} />
+        <Route path="tools/rsa-keygen" element={<Navigate to="/rsa-keygen" replace />} />
+        <Route path="tools/keycode" element={<Navigate to="/keycode" replace />} />
+        <Route path="tools/chmod" element={<Navigate to="/chmod" replace />} />
+        <Route path="tools/unit-converter" element={<Navigate to="/unit-converter" replace />} />
+        <Route path="tools/date-diff" element={<Navigate to="/date-diff" replace />} />
+        <Route path="tools/naming" element={<Navigate to="/naming" replace />} />
+        <Route path="tools/domain-valuation" element={<Navigate to="/domain-valuation" replace />} />
+        <Route path="tools/kinship-calculator" element={<Navigate to="/kinship-calculator" replace />} />
+        <Route path="tools/lottery-ssq" element={<Navigate to="/lottery-ssq" replace />} />
+        <Route path="tools/mermaid-renderer" element={<Navigate to="/mermaid-renderer" replace />} />
+        <Route path="tools/short-url" element={<Navigate to="/short-url" replace />} />
+        <Route path="tools/commit-message" element={<Navigate to="/commit-message" replace />} />
+        <Route path="tools/gitignore" element={<Navigate to="/gitignore" replace />} />
+        <Route path="tools/drawing-tool" element={<Navigate to="/drawing-tool" replace />} />
     
         {/* Config Generators - Legacy */}
-        <Route path="/tools/nginx-config" element={<Navigate to="/nginx-config" replace />} />
-        <Route path="/tools/apache-config" element={<Navigate to="/apache-config" replace />} />
-        <Route path="/tools/haproxy-config" element={<Navigate to="/haproxy-config" replace />} />
+        <Route path="tools/nginx-config" element={<Navigate to="/nginx-config" replace />} />
+        <Route path="tools/apache-config" element={<Navigate to="/apache-config" replace />} />
+        <Route path="tools/haproxy-config" element={<Navigate to="/haproxy-config" replace />} />
     
         {/* Phase B — MVP Legacy */}
     
         {/* Phase C — Data Tools */}
-        <Route path="/sql-column-extractor" element={<SqlColumnExtractor />} />
-        <Route path="/sql-mermaid" element={<SqlMermaid />} />
-        <Route path="/sql-review" element={<SqlReview />} />
-        <Route path="/json-schema-generator" element={<JsonSchemaGenerator />} />
-        <Route path="/data-faker" element={<DataFaker />} />
+        <Route path="sql-column-extractor" element={<SqlColumnExtractor />} />
+        <Route path="sql-mermaid" element={<SqlMermaid />} />
+        <Route path="sql-review" element={<SqlReview />} />
+        <Route path="json-schema-generator" element={<JsonSchemaGenerator />} />
+        <Route path="data-faker" element={<DataFaker />} />
 
         {/* Tier 1 New Tools */}
-        <Route path="/color-converter" element={<ColorConverter />} />
-        <Route path="/css-unit-converter" element={<CssUnitConverter />} />
-        <Route path="/jwt-encoder" element={<JwtEncoder />} />
-        <Route path="/html-entity-encoder" element={<HtmlEntityEncoder />} />
-        <Route path="/lorem-ipsum-generator" element={<LoremIpsumGenerator />} />
-        <Route path="/ssl-certificate-checker" element={<SslCertificateChecker />} />
+        <Route path="color-converter" element={<ColorConverter />} />
+        <Route path="css-unit-converter" element={<CssUnitConverter />} />
+        <Route path="jwt-encoder" element={<JwtEncoder />} />
+        <Route path="html-entity-encoder" element={<HtmlEntityEncoder />} />
+        <Route path="lorem-ipsum-generator" element={<LoremIpsumGenerator />} />
+        <Route path="ssl-certificate-checker" element={<SslCertificateChecker />} />
 
         {/* Tier 2 New Tools */}
-        <Route path="/color-picker" element={<ColorPicker />} />
-        <Route path="/gradient-generator" element={<GradientGenerator />} />
-        <Route path="/box-shadow-generator" element={<BoxShadowGenerator />} />
-        <Route path="/css-loader-generator" element={<CssLoaderGenerator />} />
-        <Route path="/css-checkbox-generator" element={<CssCheckboxGenerator />} />
-        <Route path="/css-switch-generator" element={<CssSwitchGenerator />} />
-        <Route path="/css-clip-path-generator" element={<CssClipPathGenerator />} />
-        <Route path="/css-background-pattern-generator" element={<CssBackgroundPatternGenerator />} />
-        <Route path="/css-cubic-bezier-generator" element={<CssCubicBezierGenerator />} />
-        <Route path="/css-glassmorphism-generator" element={<CssGlassmorphismGenerator />} />
-        <Route path="/css-text-glitch-generator" element={<CssTextGlitchGenerator />} />
-        <Route path="/css-triangle-generator" element={<CssTriangleGenerator />} />
-        <Route path="/css-border-radius-generator" element={<CssBorderRadiusGenerator />} />
-        <Route path="/exif-viewer" element={<ExifViewer />} />
-        <Route path="/xml-formatter" element={<XmlFormatter />} />
-        <Route path="/yaml-validator" element={<YamlValidator />} />
-        <Route path="/semver-compare" element={<SemverCompare />} />
+        <Route path="color-picker" element={<ColorPicker />} />
+        <Route path="gradient-generator" element={<GradientGenerator />} />
+        <Route path="box-shadow-generator" element={<BoxShadowGenerator />} />
+        <Route path="css-loader-generator" element={<CssLoaderGenerator />} />
+        <Route path="css-checkbox-generator" element={<CssCheckboxGenerator />} />
+        <Route path="css-switch-generator" element={<CssSwitchGenerator />} />
+        <Route path="css-clip-path-generator" element={<CssClipPathGenerator />} />
+        <Route path="css-background-pattern-generator" element={<CssBackgroundPatternGenerator />} />
+        <Route path="css-cubic-bezier-generator" element={<CssCubicBezierGenerator />} />
+        <Route path="css-glassmorphism-generator" element={<CssGlassmorphismGenerator />} />
+        <Route path="css-text-glitch-generator" element={<CssTextGlitchGenerator />} />
+        <Route path="css-triangle-generator" element={<CssTriangleGenerator />} />
+        <Route path="css-border-radius-generator" element={<CssBorderRadiusGenerator />} />
+        <Route path="exif-viewer" element={<ExifViewer />} />
+        <Route path="xml-formatter" element={<XmlFormatter />} />
+        <Route path="yaml-validator" element={<YamlValidator />} />
+        <Route path="semver-compare" element={<SemverCompare />} />
 
         {/* Network Tools Batch (A-tier, client-side) */}
-        <Route path="/ip-generator" element={<IpGenerator />} />
-        <Route path="/ip-int-converter" element={<IpIntConverter />} />
-        <Route path="/subnet-calculator" element={<SubnetCalculator />} />
-        <Route path="/url-parser" element={<UrlParser />} />
-        <Route path="/http-header-analyzer" element={<HttpHeaderAnalyzer />} />
-        <Route path="/ua-parser" element={<UaParser />} />
-        <Route path="/ua-generator" element={<UaGenerator />} />
-        <Route path="/badge-generator" element={<BadgeGenerator />} />
-        <Route path="/robots-generator" element={<RobotsGenerator />} />
-        <Route path="/meta-generator" element={<MetaGenerator />} />
-        <Route path="/htaccess-to-nginx" element={<HtaccessToNginx />} />
-        <Route path="/auto-refresh" element={<AutoRefresh />} />
+        <Route path="ip-generator" element={<IpGenerator />} />
+        <Route path="ip-int-converter" element={<IpIntConverter />} />
+        <Route path="subnet-calculator" element={<SubnetCalculator />} />
+        <Route path="url-parser" element={<UrlParser />} />
+        <Route path="http-header-analyzer" element={<HttpHeaderAnalyzer />} />
+        <Route path="ua-parser" element={<UaParser />} />
+        <Route path="ua-generator" element={<UaGenerator />} />
+        <Route path="badge-generator" element={<BadgeGenerator />} />
+        <Route path="robots-generator" element={<RobotsGenerator />} />
+        <Route path="meta-generator" element={<MetaGenerator />} />
+        <Route path="htaccess-to-nginx" element={<HtaccessToNginx />} />
+        <Route path="auto-refresh" element={<AutoRefresh />} />
     
         {/* Phase D — DevOps Tools */}
-        <Route path="/docker-run-builder" element={<DockerRunBuilder />} />
-        <Route path="/docker-compose-generator" element={<DockerComposeGenerator />} />
-        <Route path="/dockerfile-generator" element={<DockerfileGenerator />} />
-        <Route path="/k8s-yaml-generator" element={<K8sYamlGenerator />} />
-        <Route path="/k8s-resource-calculator" element={<K8sResourceCalculator />} />
-        <Route path="/kubectl-builder" element={<KubectlBuilder />} />
-        <Route path="/systemd-generator" element={<SystemdGenerator />} />
+        <Route path="docker-run-builder" element={<DockerRunBuilder />} />
+        <Route path="docker-compose-generator" element={<DockerComposeGenerator />} />
+        <Route path="dockerfile-generator" element={<DockerfileGenerator />} />
+        <Route path="k8s-yaml-generator" element={<K8sYamlGenerator />} />
+        <Route path="k8s-resource-calculator" element={<K8sResourceCalculator />} />
+        <Route path="kubectl-builder" element={<KubectlBuilder />} />
+        <Route path="systemd-generator" element={<SystemdGenerator />} />
     
         {/* Phase C+D Legacy */}
     
         {/* Phase E — AI Tools */}
-        <Route path="/token-counter" element={<TokenCounter />} />
-        <Route path="/prompt-builder" element={<PromptBuilder />} />
-        <Route path="/prompt-diff" element={<PromptDiff />} />
-        <Route path="/rag-chunk-calculator" element={<RagChunkCalculator />} />
-        <Route path="/ai-cost-calculator" element={<AiCostCalculator />} />
-        <Route path="/llm-request-builder" element={<LlmRequestBuilder />} />
+        <Route path="token-counter" element={<TokenCounter />} />
+        <Route path="prompt-builder" element={<PromptBuilder />} />
+        <Route path="prompt-diff" element={<PromptDiff />} />
+        <Route path="rag-chunk-calculator" element={<RagChunkCalculator />} />
+        <Route path="ai-cost-calculator" element={<AiCostCalculator />} />
+        <Route path="llm-request-builder" element={<LlmRequestBuilder />} />
     
         {/* Phase E Legacy */}
     
         {/* Web3 Tools */}
-        <Route path="/web3/wallet-analyzer" element={<WalletAnalyzer />} />
-        <Route path="/web3/ens-lookup" element={<EnsLookup />} />
-        <Route path="/web3/gas-tracker" element={<GasTracker />} />
-        <Route path="/web3/tx-hash-identifier" element={<TxHashIdentifier />} />
-        <Route path="/web3/token-approval-checker" element={<TokenApprovalChecker />} />
-        <Route path="/web3/token-risk-scanner" element={<TokenRiskScanner />} />
-        <Route path="/web3/tx-decoder" element={<TxDecoder />} />
-        <Route path="/web3/token-holder-analyzer" element={<TokenHolderAnalyzer />} />
-        <Route path="/web3/wallet-pnl" element={<WalletPnL />} />
-        <Route path="/web3/whale-tracker" element={<WhaleTracker />} />
+        <Route path="web3/wallet-analyzer" element={<WalletAnalyzer />} />
+        <Route path="web3/ens-lookup" element={<EnsLookup />} />
+        <Route path="web3/gas-tracker" element={<GasTracker />} />
+        <Route path="web3/tx-hash-identifier" element={<TxHashIdentifier />} />
+        <Route path="web3/token-approval-checker" element={<TokenApprovalChecker />} />
+        <Route path="web3/token-risk-scanner" element={<TokenRiskScanner />} />
+        <Route path="web3/tx-decoder" element={<TxDecoder />} />
+        <Route path="web3/token-holder-analyzer" element={<TokenHolderAnalyzer />} />
+        <Route path="web3/wallet-pnl" element={<WalletPnL />} />
+        <Route path="web3/whale-tracker" element={<WhaleTracker />} />
     
         {/* Web3 Legacy */}
-        <Route path="/tools/web3/wallet-analyzer" element={<Navigate to="/web3/wallet-analyzer" replace />} />
-        <Route path="/tools/web3/ens-lookup" element={<Navigate to="/web3/ens-lookup" replace />} />
-        <Route path="/tools/web3/gas-tracker" element={<Navigate to="/web3/gas-tracker" replace />} />
-        <Route path="/tools/web3/tx-hash-identifier" element={<Navigate to="/web3/tx-hash-identifier" replace />} />
-        <Route path="/tools/web3/token-approval-checker" element={<Navigate to="/web3/token-approval-checker" replace />} />
-        <Route path="/tools/web3/token-risk-scanner" element={<Navigate to="/web3/token-risk-scanner" replace />} />
-        <Route path="/tools/web3/tx-decoder" element={<Navigate to="/web3/tx-decoder" replace />} />
-        <Route path="/tools/web3/token-holder-analyzer" element={<Navigate to="/web3/token-holder-analyzer" replace />} />
-        <Route path="/tools/web3/wallet-pnl" element={<Navigate to="/web3/wallet-pnl" replace />} />
-        <Route path="/tools/web3/whale-tracker" element={<Navigate to="/web3/whale-tracker" replace />} />
+        <Route path="tools/web3/wallet-analyzer" element={<Navigate to="/web3/wallet-analyzer" replace />} />
+        <Route path="tools/web3/ens-lookup" element={<Navigate to="/web3/ens-lookup" replace />} />
+        <Route path="tools/web3/gas-tracker" element={<Navigate to="/web3/gas-tracker" replace />} />
+        <Route path="tools/web3/tx-hash-identifier" element={<Navigate to="/web3/tx-hash-identifier" replace />} />
+        <Route path="tools/web3/token-approval-checker" element={<Navigate to="/web3/token-approval-checker" replace />} />
+        <Route path="tools/web3/token-risk-scanner" element={<Navigate to="/web3/token-risk-scanner" replace />} />
+        <Route path="tools/web3/tx-decoder" element={<Navigate to="/web3/tx-decoder" replace />} />
+        <Route path="tools/web3/token-holder-analyzer" element={<Navigate to="/web3/token-holder-analyzer" replace />} />
+        <Route path="tools/web3/wallet-pnl" element={<Navigate to="/web3/wallet-pnl" replace />} />
+        <Route path="tools/web3/whale-tracker" element={<Navigate to="/web3/whale-tracker" replace />} />
     
-        <Route path="/tools/token-counter" element={<Navigate to="/token-counter" replace />} />
-        <Route path="/tools/prompt-builder" element={<Navigate to="/prompt-builder" replace />} />
-        <Route path="/tools/prompt-diff" element={<Navigate to="/prompt-diff" replace />} />
-        <Route path="/tools/rag-chunk-calculator" element={<Navigate to="/rag-chunk-calculator" replace />} />
-        <Route path="/tools/ai-cost-calculator" element={<Navigate to="/ai-cost-calculator" replace />} />
-        <Route path="/tools/llm-request-builder" element={<Navigate to="/llm-request-builder" replace />} />
+        <Route path="tools/token-counter" element={<Navigate to="/token-counter" replace />} />
+        <Route path="tools/prompt-builder" element={<Navigate to="/prompt-builder" replace />} />
+        <Route path="tools/prompt-diff" element={<Navigate to="/prompt-diff" replace />} />
+        <Route path="tools/rag-chunk-calculator" element={<Navigate to="/rag-chunk-calculator" replace />} />
+        <Route path="tools/ai-cost-calculator" element={<Navigate to="/ai-cost-calculator" replace />} />
+        <Route path="tools/llm-request-builder" element={<Navigate to="/llm-request-builder" replace />} />
     
-        <Route path="/tools/sql-column-extractor" element={<Navigate to="/sql-column-extractor" replace />} />
-        <Route path="/tools/sql-mermaid" element={<Navigate to="/sql-mermaid" replace />} />
-        <Route path="/tools/sql-review" element={<Navigate to="/sql-review" replace />} />
-        <Route path="/tools/json-schema-generator" element={<Navigate to="/json-schema-generator" replace />} />
-        <Route path="/tools/data-faker" element={<Navigate to="/data-faker" replace />} />
-        <Route path="/tools/docker-run-builder" element={<Navigate to="/docker-run-builder" replace />} />
-        <Route path="/tools/docker-compose-generator" element={<Navigate to="/docker-compose-generator" replace />} />
-        <Route path="/tools/k8s-yaml-generator" element={<Navigate to="/k8s-yaml-generator" replace />} />
-        <Route path="/tools/k8s-resource-calculator" element={<Navigate to="/k8s-resource-calculator" replace />} />
-        <Route path="/tools/systemd-generator" element={<Navigate to="/systemd-generator" replace />} />
+        <Route path="tools/sql-column-extractor" element={<Navigate to="/sql-column-extractor" replace />} />
+        <Route path="tools/sql-mermaid" element={<Navigate to="/sql-mermaid" replace />} />
+        <Route path="tools/sql-review" element={<Navigate to="/sql-review" replace />} />
+        <Route path="tools/json-schema-generator" element={<Navigate to="/json-schema-generator" replace />} />
+        <Route path="tools/data-faker" element={<Navigate to="/data-faker" replace />} />
+        <Route path="tools/docker-run-builder" element={<Navigate to="/docker-run-builder" replace />} />
+        <Route path="tools/docker-compose-generator" element={<Navigate to="/docker-compose-generator" replace />} />
+        <Route path="tools/k8s-yaml-generator" element={<Navigate to="/k8s-yaml-generator" replace />} />
+        <Route path="tools/k8s-resource-calculator" element={<Navigate to="/k8s-resource-calculator" replace />} />
+        <Route path="tools/systemd-generator" element={<Navigate to="/systemd-generator" replace />} />
     
-        <Route path="/tools/base64" element={<Navigate to="/base64" replace />} />
-        <Route path="/tools/url-encoder" element={<Navigate to="/url-encoder" replace />} />
-        <Route path="/tools/uuid-generator" element={<Navigate to="/uuid-generator" replace />} />
-        <Route path="/tools/sql-formatter" element={<Navigate to="/sql-formatter" replace />} />
-        <Route path="/tools/sql-table-extractor" element={<Navigate to="/sql-table-extractor" replace />} />
+        <Route path="tools/base64" element={<Navigate to="/base64" replace />} />
+        <Route path="tools/url-encoder" element={<Navigate to="/url-encoder" replace />} />
+        <Route path="tools/uuid-generator" element={<Navigate to="/uuid-generator" replace />} />
+        <Route path="tools/sql-formatter" element={<Navigate to="/sql-formatter" replace />} />
+        <Route path="tools/sql-table-extractor" element={<Navigate to="/sql-table-extractor" replace />} />
         
         {/* Finance Tools - Legacy */}
-        <Route path="/tools/mortgage-calculator" element={<Navigate to="/mortgage-calculator" replace />} />
-        <Route path="/tools/investment-return" element={<Navigate to="/investment-return" replace />} />
-        <Route path="/tools/roi-calculator" element={<Navigate to="/roi-calculator" replace />} />
-        <Route path="/tools/discount-calculator" element={<Navigate to="/discount-calculator" replace />} />
-        <Route path="/tools/break-even-calculator" element={<Navigate to="/break-even-calculator" replace />} />
-        <Route path="/tools/tip-calculator" element={<Navigate to="/tip-calculator" replace />} />
-        <Route path="/tools/size-converter" element={<Navigate to="/size-converter" replace />} />
-        <Route path="/tools/seller-profit-calculator" element={<Navigate to="/seller-profit-calculator" replace />} />
-        <Route path="/tools/marketplace-fee-calculator" element={<Navigate to="/marketplace-fee-calculator" replace />} />
-        <Route path="/tools/vat-calculator" element={<Navigate to="/vat-calculator" replace />} />
-        <Route path="/tools/currency-calculator" element={<Navigate to="/currency-calculator" replace />} />
-        <Route path="/tools/time-zone-converter" element={<Navigate to="/time-zone-converter" replace />} />
-        <Route path="/tools/import-duty-calculator" element={<Navigate to="/import-duty-calculator" replace />} />
-        <Route path="/tools/invoice-generator" element={<Navigate to="/invoice-generator" replace />} />
-        <Route path="/tools/freelancer-rate-calculator" element={<Navigate to="/freelancer-rate-calculator" replace />} />
-        <Route path="/tools/shipping-box-optimizer" element={<Navigate to="/shipping-box-optimizer" replace />} />
-        <Route path="/tools/product-cost-breakdown" element={<Navigate to="/product-cost-breakdown" replace />} />
-        <Route path="/tools/business-name-checker" element={<Navigate to="/business-name-checker" replace />} />
-        <Route path="/tools/hs-code-lookup" element={<Navigate to="/hs-code-lookup" replace />} />
-        <Route path="/tools/contract-template-generator" element={<Navigate to="/contract-template-generator" replace />} />
-        <Route path="/tools/time-tracker" element={<Navigate to="/time-tracker" replace />} />
-        <Route path="/tools/zakat-calculator" element={<Navigate to="/zakat-calculator" replace />} />
-        <Route path="/tools/holiday-calendar" element={<Navigate to="/holiday-calendar" replace />} />
-        <Route path="/tools/pph21-calculator" element={<Navigate to="/pph21-calculator" replace />} />
-        <Route path="/tools/sss-philhealth-pagibig" element={<Navigate to="/sss-philhealth-pagibig" replace />} />
-        <Route path="/tools/vat-reverse-calculator" element={<Navigate to="/vat-reverse-calculator" replace />} />
-        <Route path="/tools/packing-list-generator" element={<Navigate to="/packing-list-generator" replace />} />
-        <Route path="/tools/repricing-tool" element={<Navigate to="/repricing-tool" replace />} />
-        <Route path="/tools/fx-spread-calculator" element={<Navigate to="/fx-spread-calculator" replace />} />
-        <Route path="/tools/keyword-generator" element={<Navigate to="/keyword-generator" replace />} />
-        <Route path="/tools/business-registration-guide" element={<Navigate to="/business-registration-guide" replace />} />
-        <Route path="/tools/ollama-setup" element={<Navigate to="/ollama-setup" replace />} />
-        <Route path="/tools/ai-customer-reply" element={<Navigate to="/ai-customer-reply" replace />} />
-        <Route path="/tools/ai-product-desc" element={<Navigate to="/ai-product-desc" replace />} />
-        <Route path="/tools/ai-review" element={<Navigate to="/ai-review" replace />} />
-        <Route path="/tools/ai-seo" element={<Navigate to="/ai-seo" replace />} />
-        <Route path="/tools/ai-whatsapp" element={<Navigate to="/ai-whatsapp" replace />} />
-        <Route path="/tools/margin-calculator" element={<Navigate to="/margin-calculator" replace />} />
+        <Route path="tools/mortgage-calculator" element={<Navigate to="/mortgage-calculator" replace />} />
+        <Route path="tools/investment-return" element={<Navigate to="/investment-return" replace />} />
+        <Route path="tools/roi-calculator" element={<Navigate to="/roi-calculator" replace />} />
+        <Route path="tools/discount-calculator" element={<Navigate to="/discount-calculator" replace />} />
+        <Route path="tools/break-even-calculator" element={<Navigate to="/break-even-calculator" replace />} />
+        <Route path="tools/tip-calculator" element={<Navigate to="/tip-calculator" replace />} />
+        <Route path="tools/size-converter" element={<Navigate to="/size-converter" replace />} />
+        <Route path="tools/seller-profit-calculator" element={<Navigate to="/seller-profit-calculator" replace />} />
+        <Route path="tools/marketplace-fee-calculator" element={<Navigate to="/marketplace-fee-calculator" replace />} />
+        <Route path="tools/vat-calculator" element={<Navigate to="/vat-calculator" replace />} />
+        <Route path="tools/currency-calculator" element={<Navigate to="/currency-calculator" replace />} />
+        <Route path="tools/time-zone-converter" element={<Navigate to="/time-zone-converter" replace />} />
+        <Route path="tools/import-duty-calculator" element={<Navigate to="/import-duty-calculator" replace />} />
+        <Route path="tools/invoice-generator" element={<Navigate to="/invoice-generator" replace />} />
+        <Route path="tools/freelancer-rate-calculator" element={<Navigate to="/freelancer-rate-calculator" replace />} />
+        <Route path="tools/shipping-box-optimizer" element={<Navigate to="/shipping-box-optimizer" replace />} />
+        <Route path="tools/product-cost-breakdown" element={<Navigate to="/product-cost-breakdown" replace />} />
+        <Route path="tools/business-name-checker" element={<Navigate to="/business-name-checker" replace />} />
+        <Route path="tools/hs-code-lookup" element={<Navigate to="/hs-code-lookup" replace />} />
+        <Route path="tools/contract-template-generator" element={<Navigate to="/contract-template-generator" replace />} />
+        <Route path="tools/time-tracker" element={<Navigate to="/time-tracker" replace />} />
+        <Route path="tools/zakat-calculator" element={<Navigate to="/zakat-calculator" replace />} />
+        <Route path="tools/holiday-calendar" element={<Navigate to="/holiday-calendar" replace />} />
+        <Route path="tools/pph21-calculator" element={<Navigate to="/pph21-calculator" replace />} />
+        <Route path="tools/sss-philhealth-pagibig" element={<Navigate to="/sss-philhealth-pagibig" replace />} />
+        <Route path="tools/vat-reverse-calculator" element={<Navigate to="/vat-reverse-calculator" replace />} />
+        <Route path="tools/packing-list-generator" element={<Navigate to="/packing-list-generator" replace />} />
+        <Route path="tools/repricing-tool" element={<Navigate to="/repricing-tool" replace />} />
+        <Route path="tools/fx-spread-calculator" element={<Navigate to="/fx-spread-calculator" replace />} />
+        <Route path="tools/keyword-generator" element={<Navigate to="/keyword-generator" replace />} />
+        <Route path="tools/business-registration-guide" element={<Navigate to="/business-registration-guide" replace />} />
+        <Route path="tools/ollama-setup" element={<Navigate to="/ollama-setup" replace />} />
+        <Route path="tools/ai-customer-reply" element={<Navigate to="/ai-customer-reply" replace />} />
+        <Route path="tools/ai-product-desc" element={<Navigate to="/ai-product-desc" replace />} />
+        <Route path="tools/ai-review" element={<Navigate to="/ai-review" replace />} />
+        <Route path="tools/ai-seo" element={<Navigate to="/ai-seo" replace />} />
+        <Route path="tools/ai-whatsapp" element={<Navigate to="/ai-whatsapp" replace />} />
+        <Route path="tools/margin-calculator" element={<Navigate to="/margin-calculator" replace />} />
 
         {/* onlinetools.com golden tools */}
-        <Route path="/hilbert-fractal" element={<DrawHilbertFractal />} />
-        <Route path="/lsystem-generator" element={<LSystemGenerator />} />
-        <Route path="/dragon-curve" element={<DrawDragonCurve />} />
-        <Route path="/moore-curve" element={<DrawMooreCurve />} />
-        <Route path="/gosper-curve" element={<DrawGosperCurve />} />
-        <Route path="/sierpinski-carpet" element={<DrawSierpinskiCarpet />} />
-        <Route path="/koch-snowflake" element={<DrawKochSnowflake />} />
-        <Route path="/cantor-set" element={<DrawCantorSet />} />
-        <Route path="/generate-pascals-triangle" element={<GeneratePascalsTriangle />} />
-        <Route path="/generate-pi-digits" element={<GeneratePiDigits />} />
-        <Route path="/draw-memento-mori-calendar" element={<DrawMementoMoriCalendar />} />
-        <Route path="/draw-digital-clock" element={<DrawDigitalClock />} />
-        <Route path="/convert-text-to-ascii-art" element={<ConvertTextToAsciiArt />} />
-        <Route path="/convert-ascii-to-image" element={<ConvertAsciiToImage />} />
-        <Route path="/spoof-unicode-text" element={<SpoofUnicodeText />} />
-        <Route path="/pixelate-image" element={<PixelateImage />} />
-        <Route path="/blur-image" element={<BlurImage />} />
-        <Route path="/sharpen-image" element={<SharpenImage />} />
-        <Route path="/resize-image" element={<ResizeImage />} />
-        <Route path="/flip-image" element={<FlipImage />} />
-        <Route path="/convert-emoji-to-image" element={<ConvertEmojiToImage />} />
-        <Route path="/convert-webp-to-png" element={<ConvertWebpToPng />} />
-        <Route path="/convert-webp-to-jpg" element={<ConvertWebpToJpg />} />
-        <Route path="/convert-png-to-webp" element={<ConvertPngToWebp />} />
-        <Route path="/convert-jpg-to-webp" element={<ConvertJpgToWebp />} />
-        <Route path="/convert-bmp-to-webp" element={<ConvertBmpToWebp />} />
-        <Route path="/enumerate-integers" element={<EnumerateIntegers />} />
-        <Route path="/add-commas-to-integer" element={<AddCommasToInteger />} />
-        <Route path="/obfuscate-json" element={<ObfuscateJson />} />
-        <Route path="/analyze-json" element={<AnalyzeJson />} />
+        <Route path="hilbert-fractal" element={<DrawHilbertFractal />} />
+        <Route path="lsystem-generator" element={<LSystemGenerator />} />
+        <Route path="dragon-curve" element={<DrawDragonCurve />} />
+        <Route path="moore-curve" element={<DrawMooreCurve />} />
+        <Route path="gosper-curve" element={<DrawGosperCurve />} />
+        <Route path="sierpinski-carpet" element={<DrawSierpinskiCarpet />} />
+        <Route path="koch-snowflake" element={<DrawKochSnowflake />} />
+        <Route path="cantor-set" element={<DrawCantorSet />} />
+        <Route path="generate-pascals-triangle" element={<GeneratePascalsTriangle />} />
+        <Route path="generate-pi-digits" element={<GeneratePiDigits />} />
+        <Route path="draw-memento-mori-calendar" element={<DrawMementoMoriCalendar />} />
+        <Route path="draw-digital-clock" element={<DrawDigitalClock />} />
+        <Route path="convert-text-to-ascii-art" element={<ConvertTextToAsciiArt />} />
+        <Route path="convert-ascii-to-image" element={<ConvertAsciiToImage />} />
+        <Route path="spoof-unicode-text" element={<SpoofUnicodeText />} />
+        <Route path="pixelate-image" element={<PixelateImage />} />
+        <Route path="blur-image" element={<BlurImage />} />
+        <Route path="sharpen-image" element={<SharpenImage />} />
+        <Route path="resize-image" element={<ResizeImage />} />
+        <Route path="flip-image" element={<FlipImage />} />
+        <Route path="convert-emoji-to-image" element={<ConvertEmojiToImage />} />
+        <Route path="convert-webp-to-png" element={<ConvertWebpToPng />} />
+        <Route path="convert-webp-to-jpg" element={<ConvertWebpToJpg />} />
+        <Route path="convert-png-to-webp" element={<ConvertPngToWebp />} />
+        <Route path="convert-jpg-to-webp" element={<ConvertJpgToWebp />} />
+        <Route path="convert-bmp-to-webp" element={<ConvertBmpToWebp />} />
+        <Route path="enumerate-integers" element={<EnumerateIntegers />} />
+        <Route path="add-commas-to-integer" element={<AddCommasToInteger />} />
+        <Route path="obfuscate-json" element={<ObfuscateJson />} />
+        <Route path="analyze-json" element={<AnalyzeJson />} />
 
 {/* Math tools — number */}
-<Route path="/generate-prime-numbers" element={<GeneratePrimeNumbers />} />
-<Route path="/generate-fibonacci-numbers" element={<GenerateFibonacciNumbers />} />
-<Route path="/generate-random-numbers" element={<GenerateRandomNumbers />} />
-<Route path="/calculate-prime-factors" element={<CalculatePrimeFactors />} />
-<Route path="/find-divisors" element={<FindDivisors />} />
-<Route path="/test-prime-numbers" element={<TestPrimeNumbers />} />
-<Route path="/test-fibonacci-numbers" element={<TestFibonacciNumbers />} />
-<Route path="/calculate-factorial" element={<CalculateFactorial />} />
+<Route path="generate-prime-numbers" element={<GeneratePrimeNumbers />} />
+<Route path="generate-fibonacci-numbers" element={<GenerateFibonacciNumbers />} />
+<Route path="generate-random-numbers" element={<GenerateRandomNumbers />} />
+<Route path="calculate-prime-factors" element={<CalculatePrimeFactors />} />
+<Route path="find-divisors" element={<FindDivisors />} />
+<Route path="test-prime-numbers" element={<TestPrimeNumbers />} />
+<Route path="test-fibonacci-numbers" element={<TestFibonacciNumbers />} />
+<Route path="calculate-factorial" element={<CalculateFactorial />} />
 
 {/* Math tools — matrix */}
-<Route path="/transpose-matrix" element={<TransposeMatrix />} />
-<Route path="/invert-matrix" element={<InvertMatrix />} />
-<Route path="/determinant-matrix" element={<DeterminantMatrix />} />
-<Route path="/multiply-matrices" element={<MultiplyMatrices />} />
-<Route path="/add-subtract-matrices" element={<AddSubtractMatrices />} />
-<Route path="/generate-identity-matrix" element={<GenerateIdentityMatrix />} />
+<Route path="transpose-matrix" element={<TransposeMatrix />} />
+<Route path="invert-matrix" element={<InvertMatrix />} />
+<Route path="determinant-matrix" element={<DeterminantMatrix />} />
+<Route path="multiply-matrices" element={<MultiplyMatrices />} />
+<Route path="add-subtract-matrices" element={<AddSubtractMatrices />} />
+<Route path="generate-identity-matrix" element={<GenerateIdentityMatrix />} />
 
 {/* Math tools — fun */}
-<Route path="/classify-number" element={<ClassifyNumber />} />
-<Route path="/generate-look-and-say-sequence" element={<GenerateLookAndSaySequence />} />
-<Route path="/generate-e-digits" element={<GenerateEDigits />} />
-<Route path="/generate-phi-digits" element={<GeneratePhiDigits />} />
+<Route path="classify-number" element={<ClassifyNumber />} />
+<Route path="generate-look-and-say-sequence" element={<GenerateLookAndSaySequence />} />
+<Route path="generate-e-digits" element={<GenerateEDigits />} />
+<Route path="generate-phi-digits" element={<GeneratePhiDigits />} />
 
-        <Route path="/tools/hilbert-fractal" element={<Navigate to="/hilbert-fractal" replace />} />
-        <Route path="/tools/lsystem-generator" element={<Navigate to="/lsystem-generator" replace />} />
-        <Route path="/tools/generate-pascals-triangle" element={<Navigate to="/generate-pascals-triangle" replace />} />
-        <Route path="/tools/generate-pi-digits" element={<Navigate to="/generate-pi-digits" replace />} />
-        <Route path="/tools/draw-memento-mori-calendar" element={<Navigate to="/draw-memento-mori-calendar" replace />} />
-        <Route path="/tools/draw-digital-clock" element={<Navigate to="/draw-digital-clock" replace />} />
-        <Route path="/tools/convert-text-to-ascii-art" element={<Navigate to="/convert-text-to-ascii-art" replace />} />
-        <Route path="/tools/convert-ascii-to-image" element={<Navigate to="/convert-ascii-to-image" replace />} />
-        <Route path="/tools/spoof-unicode-text" element={<Navigate to="/spoof-unicode-text" replace />} />
-        <Route path="/tools/pixelate-image" element={<Navigate to="/pixelate-image" replace />} />
-        <Route path="/tools/blur-image" element={<Navigate to="/blur-image" replace />} />
-        <Route path="/tools/sharpen-image" element={<Navigate to="/sharpen-image" replace />} />
-        <Route path="/tools/resize-image" element={<Navigate to="/resize-image" replace />} />
-        <Route path="/tools/flip-image" element={<Navigate to="/flip-image" replace />} />
-        <Route path="/tools/convert-emoji-to-image" element={<Navigate to="/convert-emoji-to-image" replace />} />
-        <Route path="/tools/convert-webp-to-png" element={<Navigate to="/convert-webp-to-png" replace />} />
-        <Route path="/tools/convert-webp-to-jpg" element={<Navigate to="/convert-webp-to-jpg" replace />} />
-        <Route path="/tools/convert-png-to-webp" element={<Navigate to="/convert-png-to-webp" replace />} />
-        <Route path="/tools/convert-jpg-to-webp" element={<Navigate to="/convert-jpg-to-webp" replace />} />
-        <Route path="/tools/convert-bmp-to-webp" element={<Navigate to="/convert-bmp-to-webp" replace />} />
-        <Route path="/tools/enumerate-integers" element={<Navigate to="/enumerate-integers" replace />} />
-        <Route path="/tools/add-commas-to-integer" element={<Navigate to="/add-commas-to-integer" replace />} />
-        <Route path="/tools/obfuscate-json" element={<Navigate to="/obfuscate-json" replace />} />
-        <Route path="/tools/analyze-json" element={<Navigate to="/analyze-json" replace />} />
+        <Route path="tools/hilbert-fractal" element={<Navigate to="/hilbert-fractal" replace />} />
+        <Route path="tools/lsystem-generator" element={<Navigate to="/lsystem-generator" replace />} />
+        <Route path="tools/generate-pascals-triangle" element={<Navigate to="/generate-pascals-triangle" replace />} />
+        <Route path="tools/generate-pi-digits" element={<Navigate to="/generate-pi-digits" replace />} />
+        <Route path="tools/draw-memento-mori-calendar" element={<Navigate to="/draw-memento-mori-calendar" replace />} />
+        <Route path="tools/draw-digital-clock" element={<Navigate to="/draw-digital-clock" replace />} />
+        <Route path="tools/convert-text-to-ascii-art" element={<Navigate to="/convert-text-to-ascii-art" replace />} />
+        <Route path="tools/convert-ascii-to-image" element={<Navigate to="/convert-ascii-to-image" replace />} />
+        <Route path="tools/spoof-unicode-text" element={<Navigate to="/spoof-unicode-text" replace />} />
+        <Route path="tools/pixelate-image" element={<Navigate to="/pixelate-image" replace />} />
+        <Route path="tools/blur-image" element={<Navigate to="/blur-image" replace />} />
+        <Route path="tools/sharpen-image" element={<Navigate to="/sharpen-image" replace />} />
+        <Route path="tools/resize-image" element={<Navigate to="/resize-image" replace />} />
+        <Route path="tools/flip-image" element={<Navigate to="/flip-image" replace />} />
+        <Route path="tools/convert-emoji-to-image" element={<Navigate to="/convert-emoji-to-image" replace />} />
+        <Route path="tools/convert-webp-to-png" element={<Navigate to="/convert-webp-to-png" replace />} />
+        <Route path="tools/convert-webp-to-jpg" element={<Navigate to="/convert-webp-to-jpg" replace />} />
+        <Route path="tools/convert-png-to-webp" element={<Navigate to="/convert-png-to-webp" replace />} />
+        <Route path="tools/convert-jpg-to-webp" element={<Navigate to="/convert-jpg-to-webp" replace />} />
+        <Route path="tools/convert-bmp-to-webp" element={<Navigate to="/convert-bmp-to-webp" replace />} />
+        <Route path="tools/enumerate-integers" element={<Navigate to="/enumerate-integers" replace />} />
+        <Route path="tools/add-commas-to-integer" element={<Navigate to="/add-commas-to-integer" replace />} />
+        <Route path="tools/obfuscate-json" element={<Navigate to="/obfuscate-json" replace />} />
+        <Route path="tools/analyze-json" element={<Navigate to="/analyze-json" replace />} />
         {/* Math tools — number */}
-        <Route path="/tools/generate-prime-numbers" element={<Navigate to="/generate-prime-numbers" replace />} />
-        <Route path="/tools/generate-fibonacci-numbers" element={<Navigate to="/generate-fibonacci-numbers" replace />} />
-        <Route path="/tools/generate-random-numbers" element={<Navigate to="/generate-random-numbers" replace />} />
-        <Route path="/tools/calculate-prime-factors" element={<Navigate to="/calculate-prime-factors" replace />} />
-        <Route path="/tools/find-divisors" element={<Navigate to="/find-divisors" replace />} />
-        <Route path="/tools/test-prime-numbers" element={<Navigate to="/test-prime-numbers" replace />} />
-        <Route path="/tools/test-fibonacci-numbers" element={<Navigate to="/test-fibonacci-numbers" replace />} />
-        <Route path="/tools/calculate-factorial" element={<Navigate to="/calculate-factorial" replace />} />
+        <Route path="tools/generate-prime-numbers" element={<Navigate to="/generate-prime-numbers" replace />} />
+        <Route path="tools/generate-fibonacci-numbers" element={<Navigate to="/generate-fibonacci-numbers" replace />} />
+        <Route path="tools/generate-random-numbers" element={<Navigate to="/generate-random-numbers" replace />} />
+        <Route path="tools/calculate-prime-factors" element={<Navigate to="/calculate-prime-factors" replace />} />
+        <Route path="tools/find-divisors" element={<Navigate to="/find-divisors" replace />} />
+        <Route path="tools/test-prime-numbers" element={<Navigate to="/test-prime-numbers" replace />} />
+        <Route path="tools/test-fibonacci-numbers" element={<Navigate to="/test-fibonacci-numbers" replace />} />
+        <Route path="tools/calculate-factorial" element={<Navigate to="/calculate-factorial" replace />} />
         {/* Math tools — matrix */}
-        <Route path="/tools/transpose-matrix" element={<Navigate to="/transpose-matrix" replace />} />
-        <Route path="/tools/invert-matrix" element={<Navigate to="/invert-matrix" replace />} />
-        <Route path="/tools/determinant-matrix" element={<Navigate to="/determinant-matrix" replace />} />
-        <Route path="/tools/multiply-matrices" element={<Navigate to="/multiply-matrices" replace />} />
-        <Route path="/tools/add-subtract-matrices" element={<Navigate to="/add-subtract-matrices" replace />} />
-        <Route path="/tools/generate-identity-matrix" element={<Navigate to="/generate-identity-matrix" replace />} />
+        <Route path="tools/transpose-matrix" element={<Navigate to="/transpose-matrix" replace />} />
+        <Route path="tools/invert-matrix" element={<Navigate to="/invert-matrix" replace />} />
+        <Route path="tools/determinant-matrix" element={<Navigate to="/determinant-matrix" replace />} />
+        <Route path="tools/multiply-matrices" element={<Navigate to="/multiply-matrices" replace />} />
+        <Route path="tools/add-subtract-matrices" element={<Navigate to="/add-subtract-matrices" replace />} />
+        <Route path="tools/generate-identity-matrix" element={<Navigate to="/generate-identity-matrix" replace />} />
         {/* Math tools — fun */}
-        <Route path="/tools/classify-number" element={<Navigate to="/classify-number" replace />} />
-        <Route path="/tools/generate-look-and-say-sequence" element={<Navigate to="/generate-look-and-say-sequence" replace />} />
-        <Route path="/tools/generate-e-digits" element={<Navigate to="/generate-e-digits" replace />} />
-        <Route path="/tools/generate-phi-digits" element={<Navigate to="/generate-phi-digits" replace />} />
+        <Route path="tools/classify-number" element={<Navigate to="/classify-number" replace />} />
+        <Route path="tools/generate-look-and-say-sequence" element={<Navigate to="/generate-look-and-say-sequence" replace />} />
+        <Route path="tools/generate-e-digits" element={<Navigate to="/generate-e-digits" replace />} />
+        <Route path="tools/generate-phi-digits" element={<Navigate to="/generate-phi-digits" replace />} />
 
         {/* 404 Catch-All */}
         <Route path="*" element={<NotFound />} />

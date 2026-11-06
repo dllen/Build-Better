@@ -32,11 +32,7 @@ test("Footer links to the support page", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1, name: "Support Build Better" })).toBeVisible();
 });
 
-// Pre-existing app-wide routing bug: locale-prefixed paths (/zh-CN/about, /ar/about, ...)
-// fall through to NotFound because AppRoutes nests absolute child paths under "/:lang?".
-// This page does not introduce the bug. TODO: flip back to test() when locale-prefixed
-// routes are fixed app-wide (tracked separately from this feature).
-test.fixme("Support page renders under a locale route", async ({ page }) => {
+test("Support page renders under a locale route", async ({ page }) => {
   await page.goto("/zh-CN/support");
   await expect(page.getByRole("heading", { level: 1, name: "Support Build Better" })).toBeVisible();
   await expect(page.getByText("微信支付", { exact: true })).toBeVisible();

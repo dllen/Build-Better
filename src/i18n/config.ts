@@ -14,6 +14,20 @@ import ptTranslation from "../locales/pt/translation.json";
 import ruTranslation from "../locales/ru/translation.json";
 import arTranslation from "../locales/ar/translation.json";
 
+export const SUPPORTED_LANGUAGES = [
+  "en",
+  "zh-CN",
+  "zh-TW",
+  "ja",
+  "ko",
+  "de",
+  "fr",
+  "es",
+  "pt",
+  "ru",
+  "ar",
+];
+
 const resources = {
   en: { translation: enTranslation },
   "zh-CN": { translation: zhCNTranslation },

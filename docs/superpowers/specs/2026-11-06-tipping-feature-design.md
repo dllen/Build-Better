@@ -172,7 +172,7 @@ Total ≈ 30 KB, inside the ≤ 50 KB budget.
 | Dark mode | QR sits in a white padded frame; never inverted by CSS filters |
 | RTL locales (`ar`) | Page is LTR English/Chinese content; verify alignment at `/ar/support` |
 | Sparse content hurting SEO | Page stays out of the sitemap and carries its own `SEO` title/description; can gain `noindex` later if needed |
-| Locale-prefixed URLs (`/zh-CN/support`, …) | Pre-existing app-wide bug found during implementation: every `/:lang` URL falls through to NotFound (e.g. `/zh-CN/about` too), so the 10 locale pre-render files produced by this feature render the 404 page today. The English `/support` page and the footer link are unaffected. Fixing the route tree (absolute child paths under `path="/:lang?"` in `AppRoutes.tsx`) is a separate, much larger change; the e2e locale test is a documented `test.fixme` until then. |
+| Locale-prefixed URLs (`/zh-CN/support`, …) | Pre-existing app-wide bug found during implementation: every `/:lang` URL falls through to NotFound (e.g. `/zh-CN/about` too), so the 10 locale pre-render files produced by this feature render the 404 page today. The English `/support` page and the footer link are unaffected. Fixed in a follow-up change: route paths under the `path="/:lang?"` layout are now relative, supported prefixes render, and unsupported prefixes render the 404 page. The e2e locale test is live again. |
 
 ## 10. Files touched
 

@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { CommandPalette } from "@/components/CommandPalette";
@@ -17,7 +17,7 @@ function isToolDetail(pathname: string): boolean {
   );
 }
 
-export function Layout() {
+export function Layout({ children }: { children?: ReactNode }) {
   const location = useLocation();
   const { addToHistory } = useHistory();
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
@@ -78,7 +78,7 @@ export function Layout() {
               : "py-8"
           }`}
         >
-          <Outlet />
+          {children ?? <Outlet />}
         </main>
         {!fillViewport && showToolAd && (
           <aside aria-label="Advertisement" className="container mx-auto px-4 pb-6">
