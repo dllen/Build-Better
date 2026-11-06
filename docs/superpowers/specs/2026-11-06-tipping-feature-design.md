@@ -34,7 +34,7 @@ The feature exists because the site is free and ad-supported with no account sys
 
 - Site: React 18 + TypeScript + Vite, deployed to Cloudflare Pages, 11 locales under `/:lang?`, design-token UI (`bg-card`, `border-border`, `text-muted-foreground`).
 - Static pages today: `About.tsx`, `Privacy.tsx`, `Terms.tsx`, `Contact.tsx` — English copy, no `t()` calls, routes registered in `src/AppRoutes.tsx` (lines ~423–426).
-- Pre-rendering: `scripts/prerender-routes.mjs` lists static routes with a trailing slash and expands them to all 11 locale variants. `/about/`, `/privacy/`, `/contact/` are included; the sitemap script (`STATIC_ROUTES = ["/", "/settings"]`) is not.
+- Pre-rendering: `scripts/prerender-routes.mjs` lists static routes with a trailing slash and expands them to the 10 non-English locale variants (English is the base route). `/about/`, `/privacy/`, `/contact/` are included; the sitemap script (`STATIC_ROUTES = ["/", "/settings"]`) is not.
 - Ads: `src/components/layout/Layout.tsx` renders an `AdSlot` only when the path starts with `/tools/`, so `/support` is ad-free with no extra work.
 - Images: `sharp` is already present in `node_modules`; `sips` is available on macOS. System `python3` has no Pillow.
 - Assets provided by the maintainer: `wx.jpeg` (828×1124, WeChat Pay poster) and `zfb.jpeg` (1708×2560, Alipay poster), currently untracked at the repo root.
