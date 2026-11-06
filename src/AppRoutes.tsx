@@ -8,6 +8,7 @@ import Privacy from "@/pages/Privacy";
 import About from "@/pages/About";
 import Terms from "@/pages/Terms";
 import Contact from "@/pages/Contact";
+import Support from "@/pages/Support";
 import Games from "@/pages/Games";
 import ApiDebugger from "@/pages/tools/ApiDebugger";
 import CodeFormatter from "@/pages/tools/CodeFormatter";
@@ -423,6 +424,7 @@ export function AppRoutes() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/about" element={<About />} />
+        <Route path="/support" element={<Support />} />
         <Route path="/contact" element={<Contact />} />
         
         {/* ========== NEW TOP-LEVEL ROUTES (Week 2) ========== */}
