@@ -52,12 +52,13 @@ export default function Support() {
 
         <section className="space-y-3">
           <p className="text-muted-foreground leading-relaxed">
-            Build Better is free, has no login, and runs in your browser. If it saved you a
-            few minutes today, you can leave a small tip — it pays for hosting and keeps the
-            tools ad-light.
+            Build Better is free, has no login, and runs in your browser. If it saved you a few
+            minutes today, you can leave a small tip — it pays for hosting and keeps the tools
+            ad-light.
           </p>
           <p className="text-muted-foreground leading-relaxed" lang="zh-CN">
-            Build Better 是一个免费、无需登录的浏览器工具站，所有工具都在你的浏览器里运行。如果它今天帮你省下了几分钟，可以请我喝杯咖啡。
+            Build Better
+            是一个免费、无需登录的浏览器工具站，所有工具都在你的浏览器里运行。如果它今天帮你省下了几分钟，可以请我喝杯咖啡。
           </p>
         </section>
 
@@ -103,15 +104,16 @@ export default function Support() {
 
         <section className="space-y-3 bg-card text-card-foreground rounded-xl border border-border p-6">
           <p className="text-muted-foreground leading-relaxed">
-            Any amount, one-off. No account, no subscription, and nothing is stored on the
-            site — the payment happens inside your wallet app.
+            Any amount, one-off. No account, no subscription, and nothing is stored on the site —
+            the payment happens inside your wallet app.
           </p>
           <p className="text-muted-foreground leading-relaxed" lang="zh-CN">
-            任意金额，一次性支持。无需账号、无需订阅，本站不存储任何信息——付款在你的支付 App 内完成。
+            任意金额，一次性支持。无需账号、无需订阅，本站不存储任何信息——付款在你的支付 App
+            内完成。
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Outside mainland China, WeChat Pay and Alipay require a Chinese bank account. If
-            you'd still like to help,{" "}
+            Outside mainland China, WeChat Pay and Alipay require a Chinese bank account. If you'd
+            still like to help,{" "}
             <Link
               to="/contact"
               className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"

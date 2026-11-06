@@ -34,10 +34,7 @@ await mkdir(OUT_DIR, { recursive: true });
 
 for (const job of JOBS) {
   const meta = await sharp(job.source).metadata();
-  if (
-    meta.width !== job.sourceSize.width ||
-    meta.height !== job.sourceSize.height
-  ) {
+  if (meta.width !== job.sourceSize.width || meta.height !== job.sourceSize.height) {
     throw new Error(
       job.source +
         " is " +
@@ -48,7 +45,7 @@ for (const job of JOBS) {
         job.sourceSize.width +
         "x" +
         job.sourceSize.height +
-        ". Re-measure the crop rectangle.",
+        ". Re-measure the crop rectangle."
     );
   }
 
@@ -67,10 +64,10 @@ for (const job of JOBS) {
         (size / 1024).toFixed(1) +
         " KB, over the " +
         MAX_BYTES / 1024 +
-        " KB budget",
+        " KB budget"
     );
   }
   console.log(
-    outPath + "  " + job.target + "x" + job.target + "  " + (size / 1024).toFixed(1) + " KB",
+    outPath + "  " + job.target + "x" + job.target + "  " + (size / 1024).toFixed(1) + " KB"
   );
 }

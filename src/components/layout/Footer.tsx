@@ -15,8 +15,8 @@ export function Footer() {
               <span>Build Better</span>
             </Link>
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-              A browser toolbox for the small jobs: format a body of text, read a
-              hash, convert a number, check a date.
+              A browser toolbox for the small jobs: format a body of text, read a hash, convert a
+              number, check a date.
             </p>
           </div>
 
@@ -71,12 +71,8 @@ export function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-border flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Build Better
-          </p>
-          <p className="text-xs text-muted-foreground measured">
-            React, Tailwind CSS, Cloudflare
-          </p>
+          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Build Better</p>
+          <p className="text-xs text-muted-foreground measured">React, Tailwind CSS, Cloudflare</p>
         </div>
       </div>
     </footer>
