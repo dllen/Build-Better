@@ -68,8 +68,8 @@ export default function Support() {
               key={method.name}
               className="bg-card text-card-foreground rounded-xl border border-border p-6 flex flex-col items-center text-center gap-4"
             >
-              {/* White frame is deliberate: the QR must never be tinted or inverted by the theme. */}
-              <div className="bg-white p-3 rounded-lg border border-border">
+              {/* Literal white is intentional: the repo's "white" token is remapped to the theme background. */}
+              <div className="bg-[#ffffff] p-3 rounded-lg border border-border">
                 <img
                   src={method.image}
                   alt={method.alt}
