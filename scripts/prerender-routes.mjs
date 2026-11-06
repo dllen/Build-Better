@@ -11,21 +11,11 @@ if (existsSync(toolsPath)) {
   console.log(`[prerender] Extracted ${toolPaths.length} paths from tools.ts`);
 }
 
-// ── Normalize: prepend /tools/ to regular tool slugs ────────────────────────────
-// tools.ts paths are like "/api-debugger" or "/hijri-calendar-converter"
-// Sitemap expects "/tools/api-debugger". Game/web3/text routes are top-level.
-// Filter out game/web3/chat/text top-level routes and add /tools/ prefix
-const normalizedRoutes = toolPaths.map((p) => {
-  if (
-    p.startsWith('/games/') ||
-    p.startsWith('/web3/') ||
-    p.startsWith('/text/') ||
-    p.startsWith('/chat/')
-  ) {
-    return p; // top-level route, use as-is
-  }
-  return `/tools${p}`; // regular tool slug
-});
+// ── Normalize: tools.ts paths are already canonical full routes ────────────────
+// The registry stores routes exactly as the app serves them ("/json-editor",
+// "/encrypt/aes-encrypt", "/games/snake", ...). They used to be prefixed with
+// "/tools" here, which pre-rendered legacy redirect URLs instead of the pages.
+const normalizedRoutes = toolPaths;
 
 // ── Fallback: also read from generate-sitemap.mjs to catch special routes ───────
 const sitemapPath = 'scripts/generate-sitemap.mjs';
@@ -49,13 +39,12 @@ const staticRoutes = [
   '/support/',
   '/settings',
   '/games/',
-  '/tools/',
 ];
 
 const baseRoutes = ['/', ...allToolRoutes.map((s) => `${s}/`), ...staticRoutes];
 const uniqueBaseRoutes = [...new Set(baseRoutes)];
 
-// ── Language variants (11 locales) ─────────────────────────────────────────────
+// ── Language variants (10 non-English locales; English is the base route) ──────
 const LANGUAGES = ['ja', 'ko', 'de', 'fr', 'es', 'pt', 'ru', 'ar', 'zh-CN', 'zh-TW'];
 
 const languageRoutes = [];
