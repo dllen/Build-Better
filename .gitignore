@@ -38,3 +38,7 @@ package-lock.json
 
 # Hallmark design-skill working records (before/after captures, preflight, log)
 .hallmark/
+
+# Playwright output
+playwright-report/
+test-results/
